@@ -176,7 +176,10 @@ if (isset($HTTP_GET_VARS['type'])) {
     $count = 0;
 	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {	
 		//let's see how many respondents we have for each survey.
-		$sql2 = "SELECT count(*) from response where survey_id = $sid";
+        //angek: let's not include incomplete surveys in the count.
+        // this occurs for multipage surveys as each page completed
+        // is submitted and stored.
+		$sql2 = "SELECT count(*) from response where survey_id = $sid and complete='Y'";
 		$result2 = mysql_query($sql2);
 		list($resp) = mysql_fetch_row($result2);
     	mysql_free_result($result2);
