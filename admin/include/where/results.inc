@@ -55,12 +55,15 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 		$qid = '';
         $cids = '';
         $rid = '';
+        $qidc = '';
+        $qidr = '';
+        $guicross = '';
 		if(!empty($HTTP_GET_VARS['qid']))
 			$qid = intval($HTTP_GET_VARS['qid']);
         if(!empty($HTTP_GET_VARS['cids']))
             $cids = _addslashes($HTTP_GET_VARS['cids']);
 	if (!empty($HTTP_POST_VARS['cids'])){
-		$cids = _addslashes($HTTP_POST_VARS['cids']);
+		$cids = array_map('_addslashes', $HTTP_POST_VARS['cids']);
 	}
 	if (!empty($HTTP_POST_VARS['qid']))
 		$qid = intval($HTTP_POST_VARS['qid']);
@@ -78,7 +81,7 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 		if(!empty($rid)) {
             		$ret = survey_results($sid, $precision, 0, '', '', $rid);
 		} else if (!empty($guicross)){
-			$ret = survey_results($sid, $precision, $totals, '','',$cids, $guicross);
+			$ret = survey_results($sid, $precision, $totals, '','','', $guicross);
 		} else if (!empty($qidc) || !empty($qidr)){
 			cross_tabulation($sid, $qidc, $qidr, $qid, $cids);
         	} else {
@@ -92,14 +95,16 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 		if(!empty($HTTP_GET_VARS['test'])) {
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=". $HTTP_GET_VARS['sid'] ."\">". _('Test Survey') ."</a><br>\n");
 		}
+
+
+        if (!empty($HTTP_GET_VARS['type'])) {
 ?>
-<?php	if (!empty($HTTP_GET_VARS['type'])) {
-		echo ("<br>\n");
-		echo ("<input type=\"reset\" name=\"Reset\" value=\"Reset\">\n");
-                echo ("&nbsp;\n");
-                echo ("<input type=\"submit\" name=\"Submit\" value=\"Cross Tabulate\">\n");
-                echo ("<br><br>\n");
-	}
+<br />
+<input type="reset" value="<?php echo _('Reset'); ?>" />
+<?php echo mksubmit('cross', _('Cross Tabulate')); ?>
+<br />
+<?php
+        }
 ?>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php
@@ -127,20 +132,19 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 	}
 	$result = mysql_query($sql);
 
+    if (empty($HTTP_GET_VARS['type'])) {
 ?>
-<?php
-	if (empty($HTTP_GET_VARS['type'])) {
-		echo("<h2>View Survey Results</h2>");
-		echo("Pick Survey to View");
+<h2><?php echo(_('View Survey Results')); ?></h2>
+<?php echo(_('Pick Survey to View')); ?>
 
-		echo("<input type=\"hidden\" name=\"rid\" value=\"\">");
-		echo("<input type=\"hidden\" name=\"sid\" value=\"\">");
-		echo("<input type=\"hidden\" name=\"where\" value=\"results\">");
-	}
-	else {
-		echo("<h2>Cross Tabulation</h2>");
-                echo("Pick Survey to Cross Tabulate");
-	}
+<input type="hidden" name="rid" value="" />
+<input type="hidden" name="sid" value="" />
+<input type="hidden" name="where" value="results" />
+<?php
+    } else {
+        echo('<h2>'. _('Cross Tabulation') ."</h2>\n");
+        echo(_('Pick Survey to Cross Tabulate'));
+    }
 ?>
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
