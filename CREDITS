@@ -1,36 +1,38 @@
 p h p E S P   (php Easy Survey Package)
-============================================================
+========================================================================
 $Id$
 
-This software was initially written for eGrad2000.com. I
-would like to thank everyone there and their commitment to
-open source software.
+This software was initially written for eGrad.com.  I would like to
+thank everyone there and their commitment to open source software.
 
-Further development past version 1.0 has been a product of
-my "spare time". I would like to thank college for all the
-spare time and the bandwidth. ;-)
+Further development past version 1.0 has been a product of my "spare
+time".  I would like to thank college for all the spare time and the
+bandwidth. ;-)
 
-Additional help in ideas, criticism, testing, and code from
-Romans Jasins <roma at latnet.lv>. Thanks Roma, especially
-for the Javascript and HTML help. Get some sleep!
+Additional help in ideas, criticism, testing, and code from Romans
+Jasins <roma at latnet.lv>.  Thanks Roma, especially for the Javascript
+and HTML help. Get some sleep!
 
-Additional development including authentication
-enhancements and CSV export were written for The
-University of Vermont.
+Authentication enhancements and CSV export additions were sponsored by
+The University of Vermont.
 
-Patches for adding "Section Text" to surveys were provided
-by Kon Angelopoulos <angekgabiel at iprimus.com.au>.
+The "Section Text" enhancements, survey themes, and cross analysis GUI
+were provided by Kon Angelopoulos <angekgabiel at iprimus.com.au>.
 
 Additional development by The ITLab <www.itlab.musc.edu>
 
-If you have made any significant enhancements or changes to
-phpESP please contribute back.
+If you have made any significant enhancements or changes to phpESP
+please contribute back.
 
 Language Translations
 =====================
-Danish (da)      Henrik <henrik at hornhaver.dk>
-German (de)      <flo.bee at web.de>
-French (fr)      Cedric Levasseur
-                 <cedric.levasseur at linux-at-business.com>,
-                 Olivier Sevin <cjanson at ifrance.com>
-Dutch  (nl)      Sipke Overbeeke <sipke at 8a.nl>
+Danish     (da)    Henrik <henrik at hornhaver.dk>
+German     (de)    <flo.bee at web.de>
+Spanish    (es)    RAUL PITTI <rpitti at netmasters.com.pa>
+French     (fr)    Cedric Levasseur
+                   <cedric.levasseur at linux-at-business.com>,
+                   Olivier Sevin <cjanson at ifrance.com>
+Italian    (it)    <info at cawi.it>
+Dutch      (nl)    Sipke Overbeeke <sipke at 8a.nl>
+Portuguese (pt)    Lopo Pizarro <lopopizarro at users.sourceforge.net>
+Portuguese (pt-br) Ricardo Cavallini <ricardo at cavallini.com.br>
