@@ -1,3 +1,10 @@
+****** IMPORTANT ******
+This is a developmental release.  Do not use this on your production phpESP database.
+We are now using ADODB and have made significant changes to the database API which
+may cause unknown data corruption.  Please create a fresh phpESP database instance and
+help us workout any remaining bugs.
+******IMPORTANT ******
+
 ===============
 UPDATING PHPESP
 ===============
