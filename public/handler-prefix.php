@@ -20,17 +20,17 @@
  * For example, here is a very small template:
  *   <?php $sid=42; include('phpESP/public/handler-prefix.php'); ?>
  *   <html>
- *   <head><title>Speednaked.com</title></head>
+ *   <head><title>Example.com</title></head>
  *   <body>
  *   <table border="0" width="800">
- *   <tr><td colspan="2"><img src="speednaked-banner.png"
+ *   <tr><td colspan="2"><img src="example-banner.png"
  *       border="0" width="800" height="42"></td></tr>
- *   <tr><td><?php inlcude('speednaked-sidebar.php'); ?></td>
+ *   <tr><td><?php inlcude('example-sidebar.php'); ?></td>
  *       <td><?php include('phpESP/public/handler.php'); ?>
  *       </td>
  *   </tr>
  *   <tr><td colspan="2"><p align="right"><font size="-2">
- *       Copyright &copy; 2003. Speednaked.com</font></p></td></tr>
+ *       Copyright &copy; 2003. Example.com</font></p></td></tr>
  *   </table>
  *   </body>
  *   </html>
