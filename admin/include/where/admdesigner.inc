@@ -8,6 +8,13 @@
 // <jflemer@alum.rpi.edu>
 // <jflemer@acm.rpi.edu>
 
+    /* SuperUser or Designers with "Administer Designers(pgroup)" permissions only*/
+    if(($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+        count($HTTP_SESSION_VARS['acl']['pgroup']) == 0) &&
+        !auth_no_access(_('to access this form'))) {
+        return;
+    }
+
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
 
@@ -92,66 +99,68 @@
 			$ex_day     = '';
 		}
 
-		if($r == 'superuser' && $HTTP_SESSION_VARS['acl']['superuser'] != 'Y')
-			$r = '';
-
 		/* new user */
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username='$u' AND realm='$r'";
-		$result = mysql_query($sql);
-		if(!$result || mysql_num_rows($result) < 1) {
-			if(empty($u) || empty($r) || empty($password)) {
-				$errstr .= mkerror(_('Username, Password, and Group are required.'));
-			} else {
-				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
-					(username,realm,password)
-					VALUES ('$u','$r',PASSWORD('$password'))";
-				if(!mysql_query($sql)) {
-					$u = '';
-					$r = '';
-					$errstr .= mkerror(_('Error adding account.') .' ('.
-						mysql_error() .')');
-				}
-			}
-		}
-		mysql_free_result($result);
+        /* check acl */
+        if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
+            in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
+            auth_no_access(_('to access this group'))) {
+            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username='$u' AND realm='$r'";
+            $result = mysql_query($sql);
+            if(!$result || mysql_num_rows($result) < 1) {
+            	if(empty($u) || empty($r) || empty($password)) {
+            		$errstr .= mkerror(_('Username, Password, and Group are required.'));
+            	} else {
+            		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
+            			(username,realm,password)
+            			VALUES ('$u','$r',PASSWORD('$password'))";
+            		if(!mysql_query($sql)) {
+            			$u = '';
+            			$r = '';
+            			$errstr .= mkerror(_('Error adding account.') .' ('.
+            				mysql_error() .')');
+            		}
+            	}
+            }
+            mysql_free_result($result);
+            
+            /* change user data */
+            if(!empty($u) && !empty($r)) {
+            	if(empty($pdesign))
+            		$pdesign = 'Y';
+            	$fields = array('pstatus','pdata','pall','pgroup','puser','disabled');
+            	foreach($fields as $f) {
+            		if(empty($$f))
+            			$$f = 'N';
+            	}
+            	if (!empty($password))
+            		$password = "password=PASSWORD('$password'),";
+            	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET
+            		$password
+            		fname='$fname',
+            		lname='$lname',
+            		email='$email',
+            		pdesign='$pdesign',
+            		pstatus='$pstatus',
+            		pdata='$pdata',
+            		pall='$pall',
+            		pgroup='$pgroup',
+            		puser='$puser',
+            		disabled='$disabled',
+            		changed=now(),
+            		expiration='$expiration'
+            	WHERE username='$u' AND realm='$r'";
+            	if(!mysql_query($sql)) {
+            		/* unsucessfull -- abort */
+            		$errstr .= mkerror(_('Cannot change account data.') .' ('.
+            			mysql_error() .')');
+            	}
+            }
+        }
 
-		/* change user data */
-		if(!empty($u) && !empty($r)) {
-			if(empty($pdesign))
-				$pdesign = 'Y';
-			$fields = array('pstatus','pdata','pall','pgroup','puser','disabled');
-			foreach($fields as $f) {
-				if(empty($$f))
-					$$f = 'N';
-			}
-			if (!empty($password))
-				$password = "password=PASSWORD('$password'),";
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET
-				$password
-				fname='$fname',
-				lname='$lname',
-				email='$email',
-				pdesign='$pdesign',
-				pstatus='$pstatus',
-				pdata='$pdata',
-				pall='$pall',
-				pgroup='$pgroup',
-				puser='$puser',
-				disabled='$disabled',
-				changed=now(),
-				expiration='$expiration'
-			WHERE username='$u' AND realm='$r'";
-			if(!mysql_query($sql)) {
-				/* unsucessfull -- abort */
-				$errstr .= mkerror(_('Cannot change account data.') .' ('.
-					mysql_error() .')');
-			}
-		}
-
-		if(empty($errstr)) {
-			include(esp_where('designers'));
-			return;
-		}
+	    if(empty($errstr)) {
+	    	include(esp_where('designers'));
+	    	return;
+	    }
 	} else if(isset($HTTP_GET_VARS['u']) && isset($HTTP_GET_VARS['r'])) {
 		$u = _addslashes($HTTP_GET_VARS['u']);
 		$r = _addslashes($HTTP_GET_VARS['r']);
@@ -299,12 +308,12 @@
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Members') ."</th>\n");
+	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Designers') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">". mkselect('pgroup',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Respondents') ."</th>\n");
+	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Respondents') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">". mkselect('puser',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
