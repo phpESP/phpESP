@@ -97,7 +97,7 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Email')); ?></b></td>
 		<td>
 			<input type="text" name="email" size="30" value="<?php echo(htmlspecialchars($survey['email'])); ?>"><br>
-			<?php echo(_('Sends a copy of each sumbission to address (or leave blank for no email backup).')); ?></td>
+			<?php echo(_('Sends a copy of each submission to address (or leave blank for no email backup).')); ?></td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
 	<tr valign="top">

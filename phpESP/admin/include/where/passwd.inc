@@ -17,7 +17,7 @@
 				$HTTP_SESSION_VARS['acl']['username'],
 				XADDSLASHES($HTTP_POST_VARS['oldpass']),
 				XADDSLASHES($HTTP_POST_VARS['newpass1']))) {
-			echo(_('Your password has been sucessfully changed.') ."<br>\n");
+			echo(_('Your password has been successfully changed.') ."<br>\n");
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
 			return;
 		} else {
