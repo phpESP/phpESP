@@ -97,9 +97,14 @@
 		<th align="left"><?php echo(_('Title')); ?></th>
 		<th align="left"><?php echo(_('Owner')); ?></th>
 		<th align="left"><?php echo(_('Group')); ?></th>
+		<th align="left"><?php echo(_('Resp')); ?></th>
 	</tr>
 <?php
 	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {
+
+		$sql2 = "SELECT count(*) from response where survey_id = $sid";
+		$result2 = mysql_query($sql2);
+		list($resp) = mysql_fetch_row($result2);
 
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
@@ -116,9 +121,12 @@
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
 		<td><?php echo($realm); ?></td>
+		<td><?php echo($resp); ?></td>
 	</tr>
 <?php
 	}
+	mysql_free_result($result);
+	mysql_free_result($result2);
 ?>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
