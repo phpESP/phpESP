@@ -1,14 +1,14 @@
 <?php
 
 	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
-	
+
 	$_name = '';
 	$_title = '';
     $_css = '';
 	if (isset($HTTP_GET_VARS['name'])) {
 		$_name = XADDSLASHES($HTTP_GET_VARS['name']);
 		unset($HTTP_GET_VARS['name']);
-		$HTTP_SERVER_VARS['QUERY_STRING'] = 
+		$HTTP_SERVER_VARS['QUERY_STRING'] =
 			ereg_replace('(^|&)name=[^&]*&?', '', $HTTP_SERVER_VARS['QUERY_STRING']);
 	}
 
@@ -24,7 +24,7 @@
 	}
 
     // call the handler-prefix once $sid is set to handle
-    // authentication / authorization 
+    // authentication / authorization
 	include($ESPCONFIG['handler_prefix']);
 
 	if (empty($_name) && isset($sid) && $sid) {

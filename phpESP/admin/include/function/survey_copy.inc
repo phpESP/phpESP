@@ -7,7 +7,7 @@
 
 if(!defined('_FUNCTION_SURVEY_COPY')) {
  	define('_FUNCTION_SURVEY_COPY',TRUE);
-	
+
 /* {{{ proto void add_squotes(string* value, string key)
    Adds single quotes to value. */
 function add_squotes (&$val, $key) {
@@ -54,7 +54,7 @@ function survey_copy($sid) {
 	$has_choices = esp_type_has_choices();
 
 	// make copies of all the questions
-	$sql = "SELECT * FROM question 
+	$sql = "SELECT * FROM question
 		WHERE survey_id='${sid}' AND deleted='N'
 		ORDER by position,id";
 	$result = mysql_query($sql);

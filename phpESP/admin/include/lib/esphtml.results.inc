@@ -73,8 +73,8 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 }
 /* }}} */
 
-	
-/* {{{ proto void mkresrank(array weights, int total, int precision, bool show_totals) 
+
+/* {{{ proto void mkresrank(array weights, int total, int precision, bool show_totals)
    Builds HTML showing RANK results. */
 function mkresrank($counts,$total,$precision,$showTotals) {
 	$bg='';
@@ -126,7 +126,7 @@ function mkresrank($counts,$total,$precision,$showTotals) {
 }
 /* }}} */
 
-/* {{{ proto void mkrescount(array weights, int total, int precision, bool show_totals) 
+/* {{{ proto void mkrescount(array weights, int total, int precision, bool show_totals)
    Builds HTML showing COUNT results. */
 function mkrescount($counts,$total,$precision,$showTotals) {
 	$i=0;
@@ -165,7 +165,7 @@ function mkrescount($counts,$total,$precision,$showTotals) {
 }
 /* }}} */
 
-/* {{{ proto void mkreslist(array weights, int total, int precision, bool show_totals) 
+/* {{{ proto void mkreslist(array weights, int total, int precision, bool show_totals)
 	Builds HTML showing LIST results. */
 function mkreslist($counts,$total,$precision,$showTotals) {
 	if($total==0)	return;
@@ -187,7 +187,7 @@ function mkreslist($counts,$total,$precision,$showTotals) {
 }
 /* }}} */
 
-/* {{{ proto void mkresavg(array weights, int total, int precision, bool show_totals) 
+/* {{{ proto void mkresavg(array weights, int total, int precision, bool show_totals)
 	Builds HTML showing AVG results. */
 function mkresavg($counts,$total,$precision,$showTotals,$length) {
 	if (!$length)

@@ -76,9 +76,9 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 	// load survey questions
 	for($i=0; $i<$num; $i++) {
 		$sid = $sids[$i];
-		$sql = "SELECT * 
+		$sql = "SELECT *
 				  FROM question
-				 WHERE survey_id=${sid} AND 
+				 WHERE survey_id=${sid} AND
 					   deleted='N'
 				 ORDER BY position,id";
 		if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
@@ -115,7 +115,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 		// now -- we assume the surveys are identical, and there is a
 		// one-to-one relation between the questions of each
-		// we take the first element of the SIDs array to be the "master"		
+		// we take the first element of the SIDs array to be the "master"
 
 		$tid = $question[0]['type_id'];
 		$table = $response_table[$tid];
@@ -149,7 +149,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 		case 'response_bool':
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
 					  FROM ${table} A
-					 WHERE A.question_id ${qidstr} AND 
+					 WHERE A.question_id ${qidstr} AND
 						   A.response_id ${ridstr}
 					 GROUP BY A.choice_id";
 			if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
@@ -172,7 +172,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			for($i=0; $i<$num; $i++) {
 				$sid = $sids[$i];
 				$qid = $question[$i]['id'];
-				$sql = "SELECT id 
+				$sql = "SELECT id
 					      FROM question_choice
 						 WHERE question_id=${qid} AND
 							   content NOT LIKE '!other%'
@@ -215,7 +215,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			for($i=0; $i<$num; $i++) {
 				$sid = $sids[$i];
 				$qid = $question[$i]['id'];
-				$sql = "SELECT id 
+				$sql = "SELECT id
 					      FROM question_choice
 						 WHERE question_id ${qidstr} AND
 							   content LIKE '!other%'
@@ -266,12 +266,12 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			if(empty($question[0]['result_id']))
 				$question[0]['result_id'] = 1;	// default to percentages
 
-			break;					
+			break;
 // -------------------------------- response_text --------------------------------
 		case 'response_text':
 			$sql = "SELECT A.response, COUNT(A.response_id)
 					  FROM ${table} A
-					 WHERE A.question_id ${qidstr} AND 
+					 WHERE A.question_id ${qidstr} AND
 						   A.response_id ${ridstr}
 					 GROUP BY A.response";
 			if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
@@ -291,7 +291,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				for($i=0; $i<$num; $i++) {
 					$sid = $sids[$i];
 					$qid = $question[$i]['id'];
-					$sql = "SELECT id 
+					$sql = "SELECT id
 					          FROM question_choice
 							 WHERE question_id ${qidstr}
 							 ORDER BY id";

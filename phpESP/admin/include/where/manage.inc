@@ -13,11 +13,11 @@
 <h2><?php echo(_('Management Interface')); ?></h2>
 <p><?php
 	if($GLOBALS['ESPCONFIG']['auth_design']) {
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') 
+		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y')
 			echo(mkwarn(_('Superuser')));
 		else
 			echo(_('Username'));
-		echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>'); 
+		echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>');
 	}
 ?></p>
 <table border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['active_bgcolor']); ?>" width="95%">

@@ -9,10 +9,10 @@
 
 	$url = $ESPCONFIG['ME'] .'?where=tab&tab=order';
 
-    if(isset($HTTP_POST_VARS['src'])) 
+    if(isset($HTTP_POST_VARS['src']))
     	$src = intval($HTTP_POST_VARS['src']);
     else
-        $src = 0; 
+        $src = 0;
     if (isset($HTTP_POST_VARS['dst']))
     	$dst = intval($HTTP_POST_VARS['dst']);
     else
@@ -31,7 +31,7 @@
 	} elseif ($src > 0) {
 		--$src;
 		--$dst;
-		
+
 		$sql = "SELECT id,position FROM question
 				WHERE survey_id='$sid' AND deleted='N'
 				ORDER BY position";
@@ -100,7 +100,7 @@ list.')); ?>
 	  break;
 	}
       }
-    }  
+    }
     document.phpesp.q.value=num;
     document.phpesp.submit();
 	return false;
@@ -112,7 +112,7 @@ list.')); ?>
 <input type="hidden" name="dst" value="">
 <input type="hidden" name="q"   value="">
 <table>
-<?php	
+<?php
 	while( list($qid, $tid, $pos, $content) = mysql_fetch_row($result)) {
 		$num++;
 		$select = '';

@@ -39,7 +39,7 @@ WHERE survey_id='${sid}' AND
 function survey_get_sections($sid, $field = 'id') {
 	if (empty($field))
 		$field = 'id';
-	
+
 	$sql = "SELECT $field, type_id FROM question
 			WHERE survey_id = $sid AND deleted = 'N'
 			ORDER BY position";
@@ -62,12 +62,12 @@ function survey_get_sections($sid, $field = 'id') {
 /* }}} */
 
 /* {{{ proto array survey_get_section_questions(int survey_id)
-	Returns 2D-array with question id's of sections, excludes 
+	Returns 2D-array with question id's of sections, excludes
     the section text question type. */
 function survey_get_section_questions($sid, $field = 'id') {
 	if (empty($field))
 		$field = 'id';
-	
+
 	$sql = "SELECT $field, type_id FROM question
 			WHERE survey_id = $sid AND deleted = 'N'
 			ORDER BY position";
@@ -90,7 +90,7 @@ function survey_get_section_questions($sid, $field = 'id') {
 	return $ret;
 }
 /* }}} */
-	
+
 
 /* {{{ proto string survey_select_section_sql(int survey_id, int section)
    Returns a string of a SQL fragment to limit questions to

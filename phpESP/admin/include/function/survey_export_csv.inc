@@ -13,7 +13,7 @@ function survey_generate_csv($sid) {
 	$columns = array();
 	$types = array();
 	$arr = array();
-	
+
 	$id_to_csv_map = array(
 		'0',	// 0: unused
 		'1',	// 1: bool -> boolean
@@ -48,7 +48,7 @@ function survey_generate_csv($sid) {
 				do {
 					$str2 = $str1;
 					$str1 = eregi_replace(
-					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]", 
+					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
 					" ", $str2);
 				} while ($str1 != $str2);
 				$col = $str1;
@@ -64,22 +64,22 @@ function survey_generate_csv($sid) {
 			array_push($types, $id_to_csv_map[$type]);
 		}
 	}
-	mysql_free_result($result);		
-	
+	mysql_free_result($result);
+
 	$num = 0;
-	
+
 	array_push($output, $columns);
 
-	$sql = "SELECT id FROM response 
+	$sql = "SELECT id FROM response
 		WHERE survey_id='$sid' AND complete='Y'
 		ORDER BY submitted";
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
 		// get the response
 		$response = response_select_named($sid, $row[0]);
-		
+
 		$arr = array();
-		
+
 		// merge it
 		for($i = 0; $i < $numcols; $i++) {
 			if (isset($response[$columns[$i]]) &&
@@ -106,7 +106,7 @@ function survey_generate_csv($sid) {
 		array_push($output, $arr);
 	}
 	mysql_free_result($result);
-	
+
 	return $output;
 }
 /* }}} */
@@ -121,16 +121,16 @@ function survey_export_csv($sid, $filename) {
 	umask($umask);
 	if(!$fh)
 		return 0;
-	
+
 	$data = survey_generate_csv($sid);
-	
+
 	foreach ($data as $row) {
 		fputs($fh, join(',', $row) . "\n");
 	}
-	
+
 	fflush($fh);
 	fclose($fh);
-	
+
 	return 1;
 }
 /* }}} */

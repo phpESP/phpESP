@@ -35,7 +35,7 @@
 		<p>Enter a name for the survey in the <b>name</b>
 		field. Do not use spaces in this name, think of
 		this as a filename.</p>
-		
+
 		<p>Choose a <b>group</b> to own this survey.</p>
 
 		<p>Fill out the <b>title</b>, <b>subtitle</b>, and
@@ -50,7 +50,7 @@
 
 		<p>If you would like to theme your survey select the
 		appropriate theme from the dropdown list. This will
-		establish a link to a specific css style sheet for 
+		establish a link to a specific css style sheet for
 		your survey. To design a theme please refer to the section:
 		<b>Creating and Assigning Survey Themes</b>.</p>
 
@@ -81,7 +81,7 @@
 		have parameters to change how they behave, consult
 		the chart below for the use of the <b>length</b>
 		and <b>precision</b> fields.</p>
-		
+
 		<table border="0">
 		  <tr><th align="left">Type</th><th align="left">Length</th><th align="left">Precision</th></tr>
 		  <tr><td colspan="3"><hr size="0" noshadow="true"></td></tr>
@@ -169,16 +169,16 @@
 	<p>All themes (css style sheets) are contained within the css
 	directory which is, by default, located in the public directory
 	of this package (and its path is definable in the phpESP.ini file).
-	Please ensure that all your css files are 
+	Please ensure that all your css files are
 	contained within this directory. In this directory you will find
 	the <b>template.css</b>. To create a new theme simply copy the
 	the template.css file and edit the class definitions.<b> Do not
 	alter the class names</b>. Greater style flexibility is assured
-	by not redefining html tags but rather by assigning classes to 
+	by not redefining html tags but rather by assigning classes to
 	these tags. <a href="../examples/classes.html" target="themes">Click here</a> to see what these classes actually define.
 	Once you've saved your new theme it will become available for
 	selection from the dropdown list that is found on the <b>general
-	tab</b> page. 
+	tab</b> page.
 </li>
 <li><h3><a name="test">Test Mode</h3></a>
 	<p>After you have created a survey you can put it into
@@ -293,7 +293,7 @@
 	<p>Editing a survey uses the same interface as creating
 	a new survey, refer to the help for creating a new
 	survey for more details.</p>
-	
+
 	<p><a href="#top">Back to Top</a></p>
 </li>
 <li><h3><a name="status">Putting a survey into production use</h3></a>
@@ -323,7 +323,7 @@
 
 	<p>NOTE: This code was also given to you on the
 	<b>Finish</b> tab of the survey design.</p>
-	
+
 	<p>If you would like to insert the (real-time) results
 	of a survey into a web page, use the following PHP
 	code.</p>
@@ -340,7 +340,7 @@
 	<li><p>On either the Respondent or Designer Managment Interfaces,
 		click <b>Bulk Upload</b>. You will be presented with a form asking
 		for <b>File Type</b> and <b>File to Upload</b>.  From the <b>File Type</b>
-		dropdown, select the file type you wish to upload.  From the 
+		dropdown, select the file type you wish to upload.  From the
 		<b>File to Upload</b> browse your local filesystem to find the specific
 		file you are uploading.</p>
 	</li>

@@ -10,7 +10,7 @@
 -- ...............................................................
 
 -- # realm (group) table
-CREATE TABLE realm ( 
+CREATE TABLE realm (
 	name		CHAR(16) NOT NULL,
 	title		CHAR(64) NOT NULL,
 	changed		TIMESTAMP(14) NOT NULL DEFAULT '',
@@ -18,7 +18,7 @@ CREATE TABLE realm (
 );
 
 -- # table of respondents (people who enter data / take surveys)
-CREATE TABLE respondent ( 
+CREATE TABLE respondent (
 	username	CHAR(16) NOT NULL,
 	password	CHAR(16) NOT NULL,
 	auth		CHAR(16) NOT NULL DEFAULT 'BASIC',

@@ -43,7 +43,7 @@
 
 	$statusbad = (STATUS_DELETED);
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = "SELECT id,name,title,owner,realm FROM survey 
+		$sql = "SELECT id,name,title,owner,realm FROM survey
 			WHERE NOT (status & $statusbad)
 			ORDER BY id DESC";
 	} else {
@@ -53,7 +53,7 @@
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,owner,realm FROM survey WHERE (owner='".
 			$HTTP_SESSION_VARS['acl']['username'] ."' ||
-			realm $realms) 
+			realm $realms)
 			AND NOT (status & $statusbad)
 			ORDER BY id DESC";
 	}
