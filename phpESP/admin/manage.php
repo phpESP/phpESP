@@ -16,6 +16,17 @@
 		exit;
 	}
 	include($CONFIG);
+	
+	if($ESPCONFIG['auth_manage']) {
+		session_register('acl');
+		if(get_cfg_var('register_globals')) {
+			$HTTP_SESSION_VARS['acl'] = &$acl;
+		}
+		if(!manage_auth(
+				XADDSLASHES(@$HTTP_SERVER_VARS['PHP_AUTH_USER']),
+				XADDSLASHES(@$HTTP_SERVER_VARS['PHP_AUTH_PW'])))
+			exit;
+	}
 ?>
 <HTML>
 <!-- $Id$ -->
