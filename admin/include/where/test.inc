@@ -14,15 +14,23 @@
 
 	/* sid selected for testing */
 	if(!empty($sid)) {
-		/* check status and ACL before testing */
-		$sql = "SELECT status,owner FROM survey WHERE id=${sid}";
+		$sql = "SELECT status,owner,realm FROM survey WHERE id=${sid}";
 		$result = mysql_query($sql);
-		if((list($status,$owner) = mysql_fetch_row($result)) &&
-			($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-				$HTTP_SESSION_VARS['acl']['seeall'] == 'Y' ||
-				$HTTP_SESSION_VARS['acl']['username'] == $owner ||
-				auth_no_access('to access this survey')) &&
-			($status & STATUS_TEST) && 
+		list($status,$owner,$realm) = mysql_fetch_row($result);
+		mysql_free_result($result);
+		
+		/* check ACL to see if user is allowed to test
+		 * _this_ survey */
+		$realms = array_intersect(
+				$HTTP_SESSION_VARS['acl']['pall'],
+				$HTTP_SESSION_VARS['acl']['pdesign']);
+		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+				$owner != $HTTP_SESSION_VARS['acl']['username'] &&
+				!in_array($realm, $realms) &&
+				!auth_no_access(_('to access this survey'))) {
+			return;
+		}
+		if (($status & STATUS_TEST) && 
 			!($status & (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE))) {
 			/* cleared for testing ... was that enough tests? */
 ?>
@@ -47,26 +55,33 @@
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <form>
 <?php
+			mysql_free_result($result);
+			return;
 		}
-		mysql_free_result($result);
-		return;
 	}
 	
 	/* no survey selected ... show a menu to choose from */
 	
 	/* check with ACL for allowed surveys */
+	/* load names and titles of all surveys available to
+	 * _this_ user */
 	$statusbad = (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE);
 	$statusok = STATUS_TEST;
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y')
-		$sql = "SELECT id,name,title,owner FROM survey 
-			WHERE (status & $statusok) AND NOT (status & $statusbad)
+	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+		$sql = "SELECT id,name,title,owner,realm FROM survey 
+		WHERE (status & $statusok) AND NOT (status & $statusbad)
+		ORDER BY id DESC";
+	} else {
+		$realms = array_to_insql(
+			array_intersect(
+				$HTTP_SESSION_VARS['acl']['pall'],
+				$HTTP_SESSION_VARS['acl']['pdesign']));
+		$sql = "SELECT id,name,title,owner,realm
+			FROM survey 
+			WHERE (status & $statusok) AND NOT (status & $statusbad) AND
+			(owner = '". $HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms)
 			ORDER BY id DESC";
-	else
-		$sql = "SELECT id,name,title,owner FROM survey WHERE owner='".
-			$HTTP_SESSION_VARS['acl']['username'] ."' 
-			AND (status & $statusok) AND NOT (status & $statusbad)
-			ORDER BY id DESC";
+	}
 	$result = mysql_query($sql);
 
 ?>
@@ -78,11 +93,13 @@
 		<th align="left"><?php echo(_('Name')); ?></th>
 		<th align="left"><?php echo(_('Title')); ?></th>
 		<th align="left"><?php echo(_('Owner')); ?></th>
+		<th align="left"><?php echo(_('Group')); ?></th>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
+		<th align="left"><?php echo(_('Export')); ?></th>
 	</tr>
 <?php
-	while(list($sid,$name,$title,$owner) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {
 
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
@@ -94,8 +111,12 @@
 		<td><?php echo($name); ?></td>
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
+		<td><?php echo($realm); ?></td>
 		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=${sid}"); ?>"><?php echo(_('Test')); ?></a></td>
 		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&test=1&sid=${sid}"); ?>"><?php echo(_('Results')); ?></a></td>
+		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=csv&test=1&sid=${sid}"); ?>"><?php echo(_('CSV')); ?></a>
+			<!-- / <a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=dbf&test=1&sid=${sid}"); ?>"><?php echo(_('DBF')); ?></a> -->
+		</td>
 	</tr>
 <?php
 	}
