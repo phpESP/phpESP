@@ -18,6 +18,7 @@ if(!defined('_LIB_ESPHTML_RESULTS')) {
   Builds HTML showing PERCENTAGE results. */
 function mkrespercent($counts,$total,$precision,$showTotals) {
 	$i=0;
+	$bg='';
 ?>
 <table width="90%" border="0">
 <?php
@@ -76,6 +77,7 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 /* {{{ proto void mkresrank(array weights, int total, int precision, bool show_totals) 
    Builds HTML showing RANK results. */
 function mkresrank($counts,$total,$precision,$showTotals) {
+	$bg='';
 ?>
 <table border="0">
 	<tr>
@@ -166,6 +168,7 @@ function mkrescount($counts,$total,$precision,$showTotals) {
 	Builds HTML showing LIST results. */
 function mkreslist($counts,$total,$precision,$showTotals) {
 	if($total==0)	return;
+	$bg='';
 ?>
 <table width="90%" border="0" cellpadding="1">
 	<tr><th align="left"><?php echo(_('#')); ?></th><th><?php echo(_('Response')); ?></th></tr>
@@ -175,7 +178,7 @@ function mkreslist($counts,$total,$precision,$showTotals) {
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
-		echo("<tr bgcolor=\"$bg\"><th align=\"left\">$num</th><td>$text</td></tr>\n");
+		echo("<tr bgcolor=\"$bg\"><th align=\"left\" valign=\"top\">$num</th><td>$text</td></tr>\n");
 	}
 ?>
 </table>
