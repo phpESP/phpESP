@@ -235,6 +235,7 @@ if (!empty($guicross)){
 		switch ($table) {
 // -------------------------------- response_bool --------------------------------
 		case 'response_bool':
+            $counts = array(_('Yes') => 0, _('No') => 0);
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
 					  FROM ${table} A
 					 WHERE A.question_id='${qid}' AND
@@ -261,16 +262,14 @@ if (!empty($guicross)){
 		case 'response_multiple':
 			$totals = 0;
 		case 'response_single':
-                $question_content=array();
-                $counts1=array();
-		$sql = "SELECT content FROM question_choice WHERE question_id='${qid}' ORDER BY id";
-                if($result = mysql_query($sql)){
-	               	while (list($row) = mysql_fetch_row($result)){
-        	               	array_push($question_content , $row);
-                        }
-                        mysql_free_result($result);
-                        unset($sql);
-                }
+        $sql = "SELECT C.content FROM question_choice C
+                WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
+                ORDER BY C.id";
+        if ($result = mysql_query($sql)) {
+            for ($j = 0; $j < mysql_num_rows($result); $j++)
+                $counts[mysql_result($result, $j, 0)] = 0;
+            mysql_free_result($result);
+        }
 
 			$sql = "SELECT C.content, COUNT(A.response_id) AS num
 					  FROM question_choice C,
@@ -284,18 +283,10 @@ if (!empty($guicross)){
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
-					$counts1[$ccontent] = $count;
+					$counts[$ccontent] = $count;
 				}
 				mysql_free_result($result);
 			}
-			//lets show all the question choices in the results page regardless of an
-			//associated count value.
-                        foreach($question_content as $qn){
-	 	        	if (isset($counts1[$qn]))
-                	        	$counts[$qn] = $counts1[$qn];
-                                else
-                                        $counts[$qn] = '0';
-                        }
 
 			// handle 'other...'
 			$sql = "SELECT A.response, C.content
@@ -307,9 +298,9 @@ if (!empty($guicross)){
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($answer,$ccontent) = mysql_fetch_row($result)) {
-					$content = ereg_replace("!other=?", "", $ccontent);
-					if($content != '')	$content .= ": ";
-					$content .= htmlspecialchars($answer);
+					$content = preg_replace(array('/^!other=/', '/^!other/'),
+                            array('', 'Other:'), $ccontent);
+					$content .= ' ' . htmlspecialchars($answer);
 					$counts[$content] = (isset($counts[$content]) ? $counts[$content] : 0)+1;
 				}
 				mysql_free_result($result);
@@ -354,6 +345,14 @@ if (!empty($guicross)){
 // -------------------------------- response_rank --------------------------------
 		case 'response_rank':
 			if($tid == 8) { //Rank
+                $sql = "SELECT C.content FROM question_choice C
+                        WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
+                        ORDER BY C.id";
+                if ($result = mysql_query($sql)) {
+                    for ($j = 0; $j < mysql_num_rows($result); $j++)
+                        $counts[mysql_result($result, $j, 0)] = null;
+                    mysql_free_result($result);
+                }
 				$sql = "SELECT C.content, AVG(A.rank+1) AS average
 						  FROM question_choice C, ${table} A
 						 WHERE C.question_id='${qid}' AND
@@ -391,8 +390,7 @@ if (!empty($guicross)){
 // ---------------------------------------------------------------------------
 	if (!empty($guicross) && $question["result_id"] == 1){
 		mkcrossformat($counts,$qid,$tid);
-	}
-	else if (empty($guicross)) {
+	} else {
 		switch($question["result_id"]) {
 			case "1":	// Percentages
 				mkrespercent($counts,$total,$precision,$totals);
