@@ -23,11 +23,13 @@
 
 if(!defined('_FUNCS')) {
  	define('_FUNCS',TRUE);
-
+	
 	if(get_magic_quotes_gpc()) {
 		function XADDSLASHES($a) { return($a); }
+		function DESLASH($a)     { return(stripslashes($a)); }
 	} else {
 		function XADDSLASHES($a) { return(addslashes($a)); }
+		function DESLASH($a)     { return($a); }
 	}
 	set_magic_quotes_runtime(0);
 
@@ -116,6 +118,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	require($ESPCONFIG['include_path']."/function/survey_report".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/function/survey_results".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
 
 } // end if !defined(_FUNCS)
 
