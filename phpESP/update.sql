@@ -22,4 +22,4 @@ UPDATE result_types SET name='Ordered' WHERE id='2';
 INSERT INTO result_types VALUES ('5','Average Rank');
 
 -- # UPGRADE FROM v1.1 to v1.2beta1
-ALTER TABLE answers_other ADD COLUMN choice_id INT NOT NULL;
+ALTER TABLE answers_other ADD COLUMN choice_id INT UNSIGNED NOT NULL;
