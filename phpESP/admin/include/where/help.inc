@@ -63,7 +63,7 @@
 
 		<h2 id="new">Creating a Survey</h2>
 
-		<p style="padding-left:10px;">Click <b><a href="<?php echo($ESPCONFIG['base_url']);?>manage.php?where=new" target="_blank">Create a New Survey</a></b> from the Management Interface.</p>
+		<p style="padding-left:10px;">Click <b><a href="manage.php?where=new" target="_blank">Create a New Survey</a></b> from the Management Interface.</p>
 		<h3 style="padding-left:10px;"><a name="general_tab"></a>General Tab:</h3>
 		<ul>
 		    <li>
@@ -248,7 +248,7 @@
 		<ul>
 		    <li>Once you have created/edited a survey, and are ready
 		    to make it available online you must activate it. Go to
-		    the Management Interface, click <b><a href="<?php echo($ESPCONFIG['base_url']);?>manage.php?where=status" target="_blank">Change the Status of
+		    the Management Interface, click <b><a href="manage.php?where=status" target="_blank">Change the Status of
 			    a Survey</a></b>. Find the survey you want to
 		    activate. Make note of the survey ID(SID) and the name(SURVEYNAME).
 		    </li>
@@ -534,7 +534,7 @@
 			spreadsheet programs.
 			</li>
 			<li>
-			From the Management Interface, select <b><a href="<?php echo($ESPCONFIG['base_url']);?>manage.php?where=export" target="_blank">Export Data to CSV</a></b> to 
+			From the Management Interface, select <b><a href="manage.php?where=export" target="_blank">Export Data to CSV</a></b> to 
 			view all the active or archived surveys.  Simply click the <b>download</b> link listed behind the desired
 			survey to obtain the CSV file.
 			</li>
