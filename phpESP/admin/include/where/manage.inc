@@ -54,11 +54,12 @@
 <?php
 	}
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-		count($HTTP_SESSION_VARS['acl']['puser']) > 0 ||
-		count($HTTP_SESSION_VARS['acl']['pgroup']) > 0) {
-?>
-				<li><a href="<?php echo("${base}?where=designers");   ?>"><?php echo(_('Manage Designer Accounts')); ?></a></li>
+		count($HTTP_SESSION_VARS['acl']['puser']) > 0) { ?>
 				<li><a href="<?php echo("${base}?where=respondents"); ?>"><?php echo(_('Manage Respondent Accounts')); ?></a></li>
+<?php   }
+    if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
+            count($HTTP_SESSION_VARS['acl']['pgroup']) > 0) { ?>
+				<li><a href="<?php echo("${base}?where=designers");   ?>"><?php echo(_('Manage Designer Accounts')); ?></a></li>
 <?php	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') { ?>
 				<li><a href="<?php echo("${base}?where=groups"); ?>"><?php echo(_('Manage Groups')); ?></a></li>
 <?php	}

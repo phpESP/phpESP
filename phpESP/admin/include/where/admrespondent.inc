@@ -8,6 +8,13 @@
 // <jflemer@alum.rpi.edu>
 // <jflemer@acm.rpi.edu>
 
+    /* SuperUser or Designers with "Administer Respondents(puser)" permissions only*/
+    if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+        count($HTTP_SESSION_VARS['acl']['puser']) == 0 &&
+        !auth_no_access(_('to access this form'))) {
+        return;
+    }
+
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
 
@@ -30,7 +37,7 @@
 		$r = _addslashes($HTTP_POST_VARS['r']);
 		/* check acl */
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-			in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
+			in_array($r, $HTTP_SESSION_VARS['acl']['puser']) ||
 			auth_no_access(_('to access this group'))) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username='$u' AND realm='$r'";
 			if(!mysql_query($sql) || mysql_affected_rows() < 1) {
@@ -86,55 +93,56 @@
 			$ex_day     = '';
 		}
 
-		if($r == 'superuser' && $HTTP_SESSION_VARS['acl']['superuser'] != 'Y')
-			$r = '';
-
 		/* new user */
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username='$u' AND realm='$r'";
-		$result = mysql_query($sql);
-		if(mysql_num_rows($result) < 1) {
-			if(empty($u) || empty($r) || empty($password)) {
-				$errstr .= mkerror(_('Username, Password, and Group are required.'));
-			} else {
-				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['respondent_table']."
-					(username,realm,password)
-					VALUES ('$u','$r',PASSWORD('$password'))";
-				if(!mysql_query($sql)) {
-					$u = '';
-					$r = '';
-					$errstr .= mkerror(_('Error adding account.') .' ('.
-						mysql_error() .')');
-				}
-			}
-		}
-		mysql_free_result($result);
-
-		/* change user data */
-		if(!empty($u) && !empty($r)) {
-			if(empty($disabled))
-				$disabled = 'N';
-			if (!empty($password))
-				$password = "password=PASSWORD('$password'),";
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['respondent_table']." SET
-				$password
-				fname='$fname',
-				lname='$lname',
-				email='$email',
-				disabled='$disabled',
-				changed=now(),
-				expiration='$expiration'
-			WHERE username='$u' AND realm='$r'";
-			if(!mysql_query($sql)) {
-				/* unsucessfull -- abort */
-				$errstr .= mkerror(_('Cannot change account data.') .' ('.
-					mysql_error() .')');
-			}
-		}
-
-		if(empty($errstr)) {
-			include(esp_where('respondents'));
-			return;
-		}
+        /* check acl */
+        if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
+            in_array($r, $HTTP_SESSION_VARS['acl']['puser']) ||
+            auth_no_access(_('to access this group'))) {
+            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username='$u' AND realm='$r'";
+            $result = mysql_query($sql);
+            if(mysql_num_rows($result) < 1) {
+            	if(empty($u) || empty($r) || empty($password)) {
+            		$errstr .= mkerror(_('Username, Password, and Group are required.'));
+            	} else {
+            		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['respondent_table']."
+            			(username,realm,password)
+            			VALUES ('$u','$r',PASSWORD('$password'))";
+            		if(!mysql_query($sql)) {
+            			$u = '';
+            			$r = '';
+            			$errstr .= mkerror(_('Error adding account.') .' ('.
+            				mysql_error() .')');
+            		}
+            	}
+            }
+            mysql_free_result($result);
+            
+            /* change user data */
+            if(!empty($u) && !empty($r)) {
+            	if(empty($disabled))
+            		$disabled = 'N';
+            	if (!empty($password))
+            		$password = "password=PASSWORD('$password'),";
+            	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['respondent_table']." SET
+            		$password
+            		fname='$fname',
+            		lname='$lname',
+            		email='$email',
+            		disabled='$disabled',
+            		changed=now(),
+            		expiration='$expiration'
+            	WHERE username='$u' AND realm='$r'";
+            	if(!mysql_query($sql)) {
+            		/* unsucessfull -- abort */
+            		$errstr .= mkerror(_('Cannot change account data.') .' ('.
+            			mysql_error() .')');
+            	}
+            }
+        }
+        if(empty($errstr)) {
+            include(esp_where('respondents'));
+            return;
+        }
 	} else if(isset($HTTP_GET_VARS['u']) && isset($HTTP_GET_VARS['r'])) {
 		$u = _addslashes($HTTP_GET_VARS['u']);
 		$r = _addslashes($HTTP_GET_VARS['r']);
@@ -204,7 +212,7 @@
 			}
 			mysql_free_result($result);
 		} else {
-			$groups =& $HTTP_SESSION_VARS['acl']['pgroup'];
+			$groups =& $HTTP_SESSION_VARS['acl']['puser'];
 		}
 		foreach($groups as $g) {
 			$r .= "<option value=\"$g\">$g</option>";
