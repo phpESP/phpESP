@@ -208,7 +208,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 if (!empty($guicross)){
 ?>
 <center>
-<a href="<?php echo($GLOBALS[ESPCONFIG]['base_url']."examples/analysis_help.php"); ?>" target="_blank">cross analysis help</a> | <a href="<?php echo($GLOBALS[ESPCONFIG]['base_url']."examples/tabulation_help.php"); ?>" target="_blank">cross tabulation help</a>
+<a href="<?php echo($GLOBALS['ESPCONFIG']['base_url']."examples/analysis_help.php"); ?>" target="_blank">cross analysis help</a> | <a href="<?php echo($GLOBALS['ESPCONFIG']['base_url']."examples/tabulation_help.php"); ?>" target="_blank">cross tabulation help</a>
 </center>
 <?php
 }
