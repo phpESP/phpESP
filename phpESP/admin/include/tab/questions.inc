@@ -64,6 +64,7 @@
 		foreach($fields as $f) {
 			$HTTP_POST_VARS[$f] =& $question[$f];
 		}
+        $HTTP_POST_VARS['name_dupcheck'] = $HTTP_POST_VARS['name'];
 	} else if ($updated) {
 		// adding a new question (possibly because there are no questions yet)
 		$curr_q = 0;
@@ -71,6 +72,7 @@
 		foreach(array('name','length','precise','content','position') as $f) {
 			$HTTP_POST_VARS[$f] = '';
 		}
+        $HTTP_POST_VARS['name_dupcheck'] = '';
 	} else {
 		foreach($fields as $f) {
             if(!empty($HTTP_POST_VARS[$f]))
@@ -94,6 +96,7 @@ function clearTextInputs() {
 </script>
 <center>
 	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>">
+    <?php echo(mkhidden('name_dupcheck')) ?>
 	<p>
 	<?php echo(_('Edit this field, or click the number of the field you would like to edit:')); ?>
 	</p>
