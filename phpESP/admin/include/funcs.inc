@@ -378,6 +378,8 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	require($PIECES."/funcs_html".$EXT);
 	require($PIECES."/funcs_render".$EXT);
 	require($PIECES."/function.survey_results".$EXT);
+	require($PIECES."/function.survey_report".$EXT);
+	require($PIECES."/function.survey_copy".$EXT);
 
 } // end if !defined(_FUNCS)
 
