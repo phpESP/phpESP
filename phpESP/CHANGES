@@ -2,6 +2,12 @@ p h p E S P   (php Easy Survey Package)
 ============================================================
 $Id$
 
+v1.5 RC1 ==> v1.5 RC2
+=====================
+* FIXED Bug with new lines in exported CSV files.
+* FIXED Font sizes in some of the themes.
+* FIXED Spelling mistakes.
+
 v1.4 final ==> v1.5 RC1
 =======================
 * NEW FEATURE: Survey Themes. See README_SURVEYTHEMES.
