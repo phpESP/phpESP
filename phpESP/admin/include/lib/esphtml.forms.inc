@@ -36,11 +36,11 @@ function mkerror ($msg) {
 	
 /* {{{ proto string mkradio(string name, string value)
    Returns HTML format for a radio button. */
-function mkradio ($name, $value) {
+function mkradio ($_name, $value) {
 	// needs register_globals = on
-	global $$name;
-	$str = '<input type="radio" name="' . htmlspecialchars($name) .'" value="' . htmlspecialchars($value) .'"';
-	if ( $$name == $value )
+	global $$_name;
+	$str = '<input type="radio" name="' . htmlspecialchars($_name) .'" value="' . htmlspecialchars($value) .'"';
+	if ( isset($$_name) && $$_name == $value )
 		$str .= ' checked';
 	$str .= '>';
 	return($str);
@@ -49,11 +49,11 @@ function mkradio ($name, $value) {
 	
 /* {{{ proto string mkcheckbox(string name, string value)
    Returns HTML format for a check box. */
-function mkcheckbox ($name, $value) {
+function mkcheckbox ($_name, $value) {
 	// needs register_globals = on
-	global $$name;
-	$str = '<input type="checkbox" name="' . htmlspecialchars($name) .'[]" value="' . htmlspecialchars($value) .'"';
-	if ( @in_array($value,$$name ) )
+	global $$_name;
+	$str = '<input type="checkbox" name="' . htmlspecialchars($_name) .'[]" value="' . htmlspecialchars($value) .'"';
+	if ( isset($$_name) && @in_array($value,$$_name ) )
 		$str .= ' checked';
 	$str .= '>';
 	return($str);
@@ -62,47 +62,66 @@ function mkcheckbox ($name, $value) {
 
 /* {{{ proto string mktext(string name, int size)
    Returns HTML format for a text entry line. */
-function mktext ($name, $size = 20) {
+function mktext ($_name, $size = 20, $max = 0) {
 	// needs register_globals = on
-	global $$name;
-	return('<input type="text" size="'. intval($size) .'" name="'. htmlspecialchars($name) .'" value="'. htmlspecialchars($$name) .'">');
+	global $$_name;
+	$size = intval($size);
+	$max  = intval($max);
+	$str = "size=\"$size\"";
+	if ($max)	$str .= " maxlength=\"$max\"";
+	if (isset($$_name))
+		return('<input type="text" '. $str .' name="'. htmlspecialchars($_name) .'" value="'. htmlspecialchars($$_name) .'">');
+	return('<input type="text" '. $str .' name="'. htmlspecialchars($_name) .'">');
 }
 /* }}} */
 
 /* {{{ proto string mkpass(string name)
    Returns HTML format for a password entry line. */
-function mkpass ($name) {
-	return('<input type="password" name="'. htmlspecialchars($name) .'">');
+function mkpass ($_name) {
+	return('<input type="password" name="'. htmlspecialchars($_name) .'">');
+}
+/* }}} */
+
+/* {{{ proto string mkhidden(string name)
+   Returns HTML format for a hidden form field. */
+function mkhidden ($_name) {
+	global $$_name;
+	if (isset($$_name))
+		return('<input type="hidden" name="'. htmlspecialchars($_name) .'" value="'. htmlspecialchars($$_name) .'">');
+	return('<input type="hidden" name="'. htmlspecialchars($_name) .'">');
 }
 /* }}} */
 
 /* {{{ proto string mktextarea(string name, int rows, int cols, string wrap_type)
    Returns HTML format for a text entry box. */
-function mktextarea ($name,$rows,$cols,$wrap) {
+function mktextarea ($_name,$rows,$cols,$wrap) {
 	// needs register_globals = on
-	global $$name;
-	$str = '<textarea name="' . htmlspecialchars($name) .'"';
+	global $$_name;
+	$str = '<textarea name="' . htmlspecialchars($_name) .'"';
 	if($rows > 0)
 		$str .= ' rows="' . $rows . '"';
 	if($cols > 0)
 		$str .= ' cols="' . $cols . '"';
 	if($wrap != '')
 		$str .= ' wrap="' . strtolower($wrap) . '"';
-	$str .= '>' . htmlspecialchars($$name) . '</textarea>';
+	$str .= '>';
+	if (isset($$_name))
+		 $str .= htmlspecialchars($$_name);
+	$str .= '</textarea>';
 	return($str);
 }
 /* }}} */
 
 /* {{{ proto string mkselect(string name, array options)
    Returns HTML format for a select box (dropdown). */
-function mkselect ($name, $options) {
+function mkselect ($_name, $options) {
 	// needs register_globals = on
-	global $$name;
-	$str  = "<select name=\"${name}\">\n";
+	global $$_name;
+	$str  = "<select name=\"${_name}\">\n";
 	$str .= "<option></option>\n";
 	while(list($cid, $content) = each($options)) {
 		$checked = '';
-		if($$name == $cid)
+		if(isset($$_name) && $$_name == $cid)
 			$checked = ' selected';
 		$str .= "<option value=\"${cid}\"${checked}>${content}</option>\n";
 	}
