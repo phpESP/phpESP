@@ -37,7 +37,7 @@ ORDER BY position";
 			$sql = "SELECT id FROM question_choice WHERE question_id='$qid'";
 			$cid_result = mysql_query($sql);
 			while(list($cid) = mysql_fetch_row($cid_result)) {
-				if(empty($HTTP_POST_VARS["${qid}_${cid}"])) {
+				if(!isset($HTTP_POST_VARS["${qid}_${cid}"])) {
 					$missing[$qid] = $content;
 					break;
 				}
