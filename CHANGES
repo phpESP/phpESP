@@ -2,6 +2,45 @@ p h p E S P   (php Easy Survey Package)
 ============================================================
 $Id$
 
+v1.5 final ==> v1.6 RC1
+=======================
+* NEW FEATURE: Ability to navigate (back/forward) a survey response.
+* NEW FEATURE: Ability to save/resume a survey response.
+* NEW FEATURE: Ability to view individual survey responses.
+* NEW FEATURE: Graphical interface for cross analysis.
+* NEW FEATURE: Response id, response time, and username included in CSV
+  export.
+* ADDED a new default group 'auto' to database, used for self
+  registered respondents.
+* ADDED two new fields to the 'access' table to enable navigation and
+  save/resume on authenticated surveys.
+* CHANGED 'thank you' redirection to use 'Location:' header when
+  possible.
+* CHANGED code to automatically determine the install location.
+* CHANGED database connection to a support function so it is no longer
+  in phpESP.ini.
+* CHANGED handling of '!other' fields for more consistent behavior.
+* CHANGED length of username fields from 16 to 64 characters in the
+  database.
+* CHANGED lib/espresponse.inc.  Re-written several times.
+* CHANGED render_survey() to survey_render() for consistency.
+* CHANGED support function DESLASH() to _stripslashes().
+* CHANGED support function XADDSLASHES() to _addslashes().
+* CHANGED the configuration file to have a '.php' extension to avoid
+  potential security problems.
+* CHANGED use of include() to require_once(), and removed 'if
+  defined()' check.
+* FIXED access control list when authentication is disabled.
+* FIXED bug with counting number of users per group.
+* FIXED dependencies on register_globals finally.
+* FIXED lots of warnings with E_ALL.
+* FIXED some HTML tags.  Lower case tag name and XHTML nits.
+* FIXED warnings when DEBUG is enabled when open_basedir is in effect.
+
+v1.5 RC3 ==> v1.5 final
+=======================
+* FIXED a typo in phpESP.ini.
+
 v1.5 RC2 ==> v1.5 RC3
 =====================
 * FIXED bug that was causing !other results to be lost on
