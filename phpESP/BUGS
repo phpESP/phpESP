@@ -5,3 +5,6 @@
 
 admin/include/funcs.inc:108:check_required()
 	possible to select an !other field, and not fill in the box
+
+* Data export files are dumped in /tmp and owned by the
+  webserver
