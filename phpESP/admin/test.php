@@ -98,6 +98,13 @@ ul,th {
   
   <tr><th>PHP Extensions</th></tr>
   <tr><td><ul>
+    <li>GD: <?php
+        check_extension('gd');
+        if (function_exists('gd_info')) {
+            $gdinfo = gd_info();
+            echo " -- ${gdinfo['GD Version']}";
+        }
+    ?></li>
     <li>GNU Gettext: <?php check_extension('gettext'); ?></li>
     <li>LDAP: <?php check_extension('ldap'); ?></li>
     <li>MySQL: <?php check_extension('mysql'); ?></li>
