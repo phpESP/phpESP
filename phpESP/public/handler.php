@@ -78,7 +78,7 @@
 
 	$msg = '';
 
-	$action = 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $HTTP_SERVER_VARS['PHP_SELF'];
+	$action = $ESPCONFIG['proto'] . $HTTP_SERVER_VARS['HTTP_HOST'] . $HTTP_SERVER_VARS['PHP_SELF'];
 	if (!empty($HTTP_SERVER_VARS['QUERY_STRING']))
 		$action .= "?" . $HTTP_SERVER_VARS['QUERY_STRING'];
 
