@@ -24,6 +24,8 @@
 			echo($GLOBALS['errmsg']);
 		return;
 	}
+    
+    esp_init_db();
 
 	if (empty($HTTP_POST_VARS['referer']))
 		$HTTP_POST_VARS['referer'] = '';
