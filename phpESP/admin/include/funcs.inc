@@ -206,9 +206,11 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		global $HTTP_POST_VARS;
 		@reset($HTTP_POST_VARS);
 
+		$userid = $HTTP_POST_VARS['userid'];
+
 		if(empty($rid)) {
 			// create a uniqe id for this response
-			$sql = "INSERT INTO survey_responses (survey_id,username) VALUES ( '${sid}','${REMOTE_USER}' )";
+			$sql = "INSERT INTO survey_responses (survey_id,username) VALUES ( '${sid}','${userid}' )";
 			$result = mysql_query($sql);
 			$rid = mysql_insert_id();
 		}
@@ -325,7 +327,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		$body  = "surveys.id = ${sid}\n";
 		$body .= "surveys.name = ${name}\n";
 		$body .= "survey_responses.id = $rid\n";
-		$body .= "survey_responses.username = ${REMOTE_USER}\n";
+		$body .= "survey_responses.username = ". $HTTP_POST_VARS['userid'] ."\n";
 
 		$answers = retrieve_values($sid,$rid);
 
