@@ -2,8 +2,8 @@
 PHPESP CHANGE LOG
 =================
 
-v1.6 final ==> v1.6.1
-=====================
+v1.6 final ==> v1.6.1 final
+===========================
 * FIXED redirects so that the server port is used.  (Reported by
   <rcoss AT dm.uba.ar>.)
 * FIXED CSV export bug on rank questions.  (Based on Patch by Paul
