@@ -324,6 +324,14 @@ function auth_change_manager_passwd($user,$old,$new) {
 }
 /* }}} */
 
+/* {{{ proto boolean auth_get_option(string option)
+   Returns the value of the given option. Valid options include:
+   { resume, navigate } */
+function auth_get_option($opt) {
+	return (isset($GLOBALS['auth_options'][$opt]) && $GLOBALS['auth_options'][$opt] == 'Y');
+}
+/* }}} */
+
 /* {{{ proto int auth_get_rid (int survey_id, string username, int response_id)
    Returns the RID to use for this user. */
 function auth_get_rid($sid, $username, $rid = 0) {
