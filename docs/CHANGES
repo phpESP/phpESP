@@ -4,6 +4,7 @@ PHPESP CHANGE LOG
 
 v1.6 RC1 ==> v1.6 RC2
 =====================
+* FIXED missing "help" link and title display on cross-tab interface. 
 * FIXED display of selected theme on general tab. (Noticed by Eric Bont
   <kanven AT fhi.nl>.
 
