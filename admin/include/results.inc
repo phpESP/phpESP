@@ -9,12 +9,6 @@
 
 	// see if a survey has been selected
 	if(!empty($sid)) {
-		if(!isset($totals))
-			$totals=1; // by default, show totals in results
-
-		if(!empty($cids))
-			$cids = split(" ",$cids); // turn space seperated list into array
-
 		if($test) {
 			echo("<p><b>Testing Survey...</b> (SID = $sid)</p>\n");
 		}
@@ -22,13 +16,9 @@
 ?>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
 <?php
-		// check to see if in "cross analysis" mode
-		if(empty($qid))
-			$ret = survey_results($sid,$totals); // no, regular results
-		else
-			$ret = survey_results($sid,$totals,$qid,$cids); // yes, cross analyze
-			
-		if($ret != '')
+		$ret = survey_results($sid,$precision,$totals,$qid,$cids);
+
+		if(!empty($ret))
 			echo("<font color=\"$cf_error_color\">$ret</font>\n");
 ?>
 </td></tr></table>
