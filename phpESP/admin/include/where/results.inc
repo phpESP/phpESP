@@ -7,12 +7,12 @@
 // <jflemer@alum.rpi.edu>
 
 	$bg = '';
-require ($ESPCONFIG['include_path']."where/crosstab.inc");
+	require ($ESPCONFIG['include_path']."where/crosstab.inc");
 	// see if a survey has been selected
-    $sid = '';
+	$sid = '';
 	if (!empty($HTTP_POST_VARS['sid']))
-        $sid = intval($HTTP_POST_VARS['sid']);
-    elseif (!empty($HTTP_GET_VARS['sid']))
+		$sid = intval($HTTP_POST_VARS['sid']);
+	elseif (!empty($HTTP_GET_VARS['sid']))
 		$sid = intval($HTTP_GET_VARS['sid']);
     
     if (!empty($sid)) {
