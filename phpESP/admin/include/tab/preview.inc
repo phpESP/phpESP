@@ -33,7 +33,7 @@ function other_check(name)
     }
   }
 }
-function saveOrder() {
+function validate() {
     return true;
 }
 
