@@ -126,7 +126,7 @@ function esp_getlocales()
             return $locales;
 
         while (($file = readdir($dir)) !== false) {
-            if (is_readable($ESPCONFIG['locale_path']."/$file/LC_MESSAGES/messages.mo"))
+            if (@is_readable($ESPCONFIG['locale_path']."/$file/LC_MESSAGES/messages.mo"))
                 array_push($locales, $file);
         }
         closedir($dir);
