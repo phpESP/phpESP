@@ -342,10 +342,20 @@ function response_select_named($sid, $rid) {
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
 	$result = mysql_query($sql);
 	while(list($qid,$cid,$rank) = mysql_fetch_row($result)) {
-		if($cid)
-			$values["${qid}_${cid}"]=$rank;
-		else
-			$values["$qid"]=$rank;
+		if($cid) {
+				$str1 = "${qid}_${cid}";
+				do {
+					$str2 = $str1;
+					$str1 = eregi_replace(
+					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]", 
+					" ", $str2);
+				} while ($str1 != $str2);
+				$qid = $str1;
+				$qid = strtoupper(eregi_replace(
+					"[^A-Z0-9]+", "_", trim($qid)));
+				$qid = ereg_replace('_$',"",$qid);
+		}
+		$values[$qid] = $rank;
 	}
 	mysql_free_result($result);
 
