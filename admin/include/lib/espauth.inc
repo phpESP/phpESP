@@ -117,7 +117,6 @@ function manage_auth($username, $password) {
 		}
 
 		// Get number of rows in $accres. 
-		$num = ; 
 		if (mysql_numrows( $accres ) > 0) { 
 			// A matching row was found - the user is authorized. 
 			$auth = TRUE; 
