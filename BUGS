@@ -1,0 +1,18 @@
+# $Id$
+
+// Written by James Flemer
+// [jflemer@acm.jhu.edu]
+
+admin/include/funcs.inc:108:check_required()
+	possible to select an !other field, and not fill in the box
+	
+admin/include/funcs.inc:149:retrieve_values()
+	does not include !other fields
+	
+admin/include/funcs.inc:329:email_values()
+	dependant on retrieve_values() [see above]
+	
+admin/include/funcs.inc:465:survey_results()
+	does not distinguish between !others
+	no clear way to create agregates for !others
+
