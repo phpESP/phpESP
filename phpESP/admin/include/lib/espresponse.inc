@@ -390,6 +390,9 @@ function response_select_named($sid, $rid) {
    Reads current form variables from HTTP_POST_VARS.
    Returns true if mail sent. */
 function response_send_email($sid, $rid) {
+	if (!$GLOBALS['ESPCONFIG']['allow_email']) {
+		return TRUE;
+	}
 
 	$sql = "SELECT name, email FROM survey WHERE id='${sid}'";
 	$result = mysql_query($sql);
