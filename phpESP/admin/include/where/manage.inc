@@ -12,12 +12,14 @@
 ?>
 <h2><?php echo(_('Management Interface')); ?></h2>
 <p><?php
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') 
-		echo(mkwarn(_('Superuser')));
-	else
-		echo(_('Username'));
-	echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>'); ?>
-</p>
+	if($GLOBALS['ESPCONFIG']['auth_design']) {
+		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') 
+			echo(mkwarn(_('Superuser')));
+		else
+			echo(_('Username'));
+		echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>'); 
+	}
+?></p>
 <table border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['active_bgcolor']); ?>" width="95%">
 	<tr>
 		<td>
@@ -40,6 +42,7 @@
 				<li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data to CSV')); ?></a></li>
 			</ul>
 
+<?php if($GLOBALS['ESPCONFIG']['auth_design']) { ?>
 			<ul>
 				<li><a href="<?php echo("${base}?where=passwd");   ?>"><?php echo(_('Change Your Password')); ?></a></li>
 <?php
@@ -54,15 +57,19 @@
 <?php	}
 	} ?>
 			</ul>
+<?php } /* AUTH_DESIGN */ ?>
 
 			<ul>
 <!--				<li><a href="<?php echo("${base}?where=TODO");    ?>"><?php echo(_('View the list of things still to do')); ?></a>
 					<?php echo(_('(development goals)')); ?></li> -->
 				<li><a href="<?php echo("${base}?where=guide");  ?>"><?php echo(_('View the User &amp; Administrator Guide')); ?></a></li>
 			</ul>
+
+<?php if($GLOBALS['ESPCONFIG']['auth_design']) { ?>
 			<ul>
 				<li><a href="<?php echo("${base}?where=logout");  ?>"><?php echo(_('Log out')); ?></a></li>
 			</ul>
+<?php } /* AUTH_DESIGN */ ?>
 			</td></tr></table>
 		</td>
 	</tr>
