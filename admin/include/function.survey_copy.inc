@@ -10,86 +10,96 @@ if(!defined('_FUNCTION_SURVEY_COPY')) {
 	
 	// creates an editable copy of a survey
 	
+	// helper function
+	function add_squotes (&$val, $key) {
+		$val = "'" . addcslashes($val,"\\'") . "'";
+	}
+
 	// void survey_copy(int $surveyId);
-	
-	function survey_copy ($sid) {
-		// see if the SID exists
-		$sql = "SELECT COUNT(*) FROM surveys WHERE id='${sid}'";
-		$result = mysql_query($sql);
-		$i = mysql_result($result,0,0);
-		mysql_free_result($result);
-		if(!$i)
-			return("Survey to copy does not exist. [ SID: $sid ]");
-	
-		// find the next available name for survey
-		// of the form <name>_copyN
-		$i='';
-		do {
-			$sql = "
-SELECT COUNT(*)
-  FROM surveys A, surveys B
- WHERE A.id='${sid}' AND
-       B.name=CONCAT(A.name,'_copy${i}')";
-	   		$result = mysql_query($sql);
-			$j = mysql_result($result,0,0);
-			mysql_free_result($result);
-		} while($j && ++$i);
-		
-		// copy the main survey part
-		$sql = "
-INSERT INTO surveys (name,title,thanks_page,email,subtitle,info,thank_head,thank_body)
-    SELECT CONCAT(S.name,'_copy${i}'),S.title,S.thanks_page,S.email,S.subtitle,S.info,S.thank_head,S.thank_body
-      FROM surveys S
-	 WHERE S.id='${sid}'";
-	 	if(!($result = mysql_query($sql)))
-			return("Error copying survey. [ ".mysql_error()." ]");
-		$newsid = mysql_insert_id();
+	function survey_copy($sid) {
+		$sql = "SELECT * FROM surveys WHERE id='${sid}'";
+		$result = @mysql_query($sql);
+		if(mysql_num_rows($result) != 1)
+			return(1);
+		$survey = mysql_fetch_array($result,MYSQL_ASSOC);
+		@mysql_free_result($result);
+
+		// clear the sid, clear the creation date, change the name, and clear the status
+		$survey['id'] = '';
+		$survey['created'] = '';
+		$survey['name'] .= '_copy';
+		$survey['status'] = 0;
+
+		// check for 'name' conflict, and resolve
+		$sql = "SELECT COUNT(*) FROM surveys WHERE name='". $survey['name'] ."'";
+		$i=0;
+		while(@mysql_result(@mysql_query($sql),0,0) > 0) {
+			$sql = "SELECT COUNT(*) FROM surveys WHERE name='". $survey['name'] . ++$i ."'";
+		}
+		if($i)
+			$survey['name'] .= $i;
+
+		// create new survey
+		array_walk($survey, 'add_squotes');
+		$sql  = "INSERT INTO surveys ";
+		$sql .= '('. join(',',array_keys($survey)) .') ';
+		$sql .= 'VALUES ( '. join(',',array_values($survey)) .' )';
+		$result = @mysql_query($sql);
+		if(!$result)
+			return(1);
+		$new_sid = mysql_insert_id();
 
 		// build an array for weather a question type has answer options
 		// used in copying questions
 		$has_answers = arr_has_answers();
 
-		// make copies of all the questions *with out* choices
-		// NOTE: This will break on 'parent_id' which is currently not used
-		$sql = "
-INSERT INTO survey_questions (survey_id,type_id,result_id,position,required,params,content)
-    SELECT '${newsid}',Q.type_id,Q.result_id,Q.position,Q.required,Q.params,Q.content
-      FROM survey_questions Q, question_types T
-	 WHERE S.survey_id='${sid} AND
-	       S.type_id=T.id AND
-		   T.has_answers = 0 AND
-	       NOT (S.status & '" . STATUS_DELETED ."')";
-		if(!($result = mysql_query($sql)))
-			return("Error copying survey. [ ".mysql_error()." ]");
-
-		// make copies of all the questions *with* choices
-		// NOTE: This will break on 'parent_id' which is currently not used
-		$sql = "
-SELECT Q.id
-  FROM survey_questions Q, question_types T
- WHERE S.survey_id='${sid} AND
-       S.type_id=T.id AND
-	   T.has_answers != 0 AND
-	   NOT (S.status & '" . STATUS_DELETED ."')";
+		// make copies of all the questions
+		$sql = "SELECT * FROM survey_questions WHERE survey_id='${sid}' ORDER by position,id";
 		$result = mysql_query($sql);
-		while(list($qid) = mysql_fetch_row($result)) {
-			$sql = "
-INSERT INTO survey_questions (survey_id,type_id,result_id,position,required,params,content)
-    SELECT '${newsid}',Q.type_id,Q.result_id,Q.position,Q.required,Q.params,Q.content
-      FROM survey_questions Q
-	 WHERE Q.id='${qid}";
-		 	$result2 = mysql_query($sql);
-			$newqid = mysql_insert_id();
+		$pos=10;
+		while($question = mysql_fetch_array($result,MYSQL_ASSOC)) {
+			// skip deleted question in copy
+			if($question['status'] & STATUS_DELETED)
+				continue;
+				
+			$tid = $question['type_id'];
+			$qid = $question['id'];
+
+			// fix some fields first
+			$question['id'] = '';
+			$question['survey_id'] = $new_sid;
+			$question['position'] = $pos;
+			$pos += 10;
+
+			// copy question to new survey
+			array_walk($question,'add_squotes');
+			$sql = "INSERT INTO survey_questions ";
+			$sql .= '('. join(',',array_keys($question)) .') ';
+			$sql .= 'VALUES ( '. join(',',array_values($question)) .' )';
+			if(!mysql_query($sql))
+				return(1);
+			$new_qid = mysql_insert_id();
 
 			// make copies of all the question choices (if exist)
-			$sql = "
-INSERT INTO question_choices (question_id,content,value)
-	SELECT '${newqid}',C.content,C.value
-	  FROM question_choices C
-	 WHERE C.question_id='${qid}'";
-			$result2 = mysql_query($sql);
+			if($has_answers[$tid]) {
+				$sql = "SELECT * FROM question_choices WHERE question_id='${qid}' ORDER by id";
+				$result2 = mysql_query($sql);
+				while($choice = mysql_fetch_array($result2,MYSQL_ASSOC)) {
+					$choice['id'] = '';
+					$choice['question_id'] = $new_qid;
+
+					array_walk($choice,'add_squotes');
+					$sql = "INSERT INTO question_choices ";
+					$sql .= '('. join(',',array_keys($choice)) .') ';
+					$sql .= 'VALUES ( '. join(',',array_values($choice)) .' )';
+					if(!mysql_query($sql))
+						return(1);
+				}
+				@mysql_free_result($result2);
+			}
 		}
-		mysql_free_result($result);
+		@mysql_free_result($result);
+
 		return;
 	} // end survey_copy(int $surveyId);
 
