@@ -1,9 +1,3 @@
--- MySQL dump 9.10
---
--- Host: bfs.itlab.musc.edu    Database: esp_test
--- ------------------------------------------------------
--- Server version	4.0.16-log
-
 --
 -- Table structure for table `access`
 --
