@@ -168,7 +168,7 @@
 <?php if($tab=='finish') {echo('&nbsp;'); return;} ?>
 <?php if($HTTP_SESSION_VARS['new_survey']) { ?>
 <?php echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')); ?><br>
-<input type="submit" name="where" value="Cancel">
+<input type="submit" name="where" value="Cancel" onclick='return cancelConfirm()'>
 <?php if($tab=='preview') { ?>
 	<input type="submit" name="tab" value="Finish">
 <?php 	return; } ?>
