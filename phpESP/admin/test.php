@@ -118,7 +118,7 @@ ul,th {
   <tr><th>phpESP Settings</th></tr>
   <tr><td><ul>
     <li>Expected ESP_BASE: <?php _pass(dirname(dirname(__FILE__)) .'/'); ?></li>
-    <li>Expected base_url: <?php _pass('http://' . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['REQUEST_URI'])) . '/'); ?></li>
+    <li>Expected base_url: <?php _pass($ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['REQUEST_URI'])) . '/'); ?></li>
     <li><b>Loading phpESP.ini.php ...</b><br />
       <?php require_once('phpESP.ini.php'); ?></li>
     <li>ESP_BASE: <?php
@@ -127,7 +127,7 @@ ul,th {
         else
             _fail(ESP_BASE);
     ?></li>
-    <li>base_url: <?php check_string($ESPCONFIG['base_url'], 'http://' . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['REQUEST_URI'])) . '/'); ?></li>
+    <li>base_url: <?php check_string($ESPCONFIG['base_url'], $ESPCONFIG['proto']. $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['REQUEST_URI'])) . '/'); ?></li>
     <li>Version: <?php _pass($ESPCONFIG['version']); ?></li>
     <li>Debug: <?php check_bool($ESPCONFIG['DEBUG'], false); ?></li>
   </ul></td></tr>
