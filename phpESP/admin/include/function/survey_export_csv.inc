@@ -37,7 +37,7 @@ function survey_export_csv($sid, $filename) {
 	$sql = "SELECT q.id, q.name, q.type_id
 		FROM question q
 		WHERE q.survey_id = $sid AND
-		q.deleted = 'N'
+		q.deleted = 'N' AND q.type_id < 50
 		ORDER BY position";
 	$result = mysql_query($sql);
 	$numcols = mysql_num_rows($result);

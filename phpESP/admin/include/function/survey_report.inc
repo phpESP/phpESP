@@ -76,14 +76,12 @@ function survey_report($sid, $details = 0, $format = '') {
 			continue;
 		}
 
-		++$i;
-
 		if($bg != '#ffffff')	$bg = '#ffffff';
 		else					$bg = '#eeeeee';
 
 ?>
 <tr bgcolor="<?php echo($bg); ?>">
- 	<td align="right"><?php echo($i); ?></td>
+ 	<td align="right"><?php if ($tid < 50) echo(++$i); ?></td>
 	<th align="right"><?php echo($qid); ?></th>
 	<td><?php echo($reqd); ?></td>
 	<td><?php echo($publ); ?></td>

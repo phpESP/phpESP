@@ -159,14 +159,14 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			continue;
 		}
 
-		++$i;
-
 		if($bg != '#eeeeee')	$bg = '#eeeeee';
 		else                	$bg = '#ffffff';
 ?>
 	<tr xbgcolor="<?php echo($bg); ?>">
  		<td>
-			<A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A>
+			<?php if ($tid < 50) { ?>
+			<A NAME="Q<?php echo(++$i); ?>"><?php echo($i); ?>.</A>
+			<?php } ?>
 			<?php echo($question["content"]); ?>
 
 			<blockquote>
