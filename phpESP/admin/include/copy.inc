@@ -8,7 +8,7 @@
 // <jflemer@eGrad2000.com>
 
 	function add_squotes (&$val, $key) {
-		$val = "'" . $val . "'";
+		$val = "'" . ereg_replace("'","\\'",$val) . "'";
 	}
 
 	function copy_survey ($sid) {
@@ -74,7 +74,6 @@
 			if(!mysql_query($sql))
 				return(1);
 			$new_qid = mysql_insert_id();
-			echo("<!-- NEW_QID: $new_qid -->");
 
 			// make copies of all the question choices (if exist)
 			if($has_answers[$tid]) {
@@ -88,7 +87,6 @@
 					$sql = "INSERT INTO question_choices ";
 					$sql .= '('. join(',',array_keys($choice)) .') ';
 					$sql .= 'VALUES ( '. join(',',array_values($choice)) .' )';
-					echo("<!-- SQL: $sql -->");
 					if(!mysql_query($sql))
 						return(1);
 				}
