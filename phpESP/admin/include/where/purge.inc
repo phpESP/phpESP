@@ -90,10 +90,11 @@ back.')); ?></p>
 	else
 		$bg = $ESPCONFIG['bgalt_color2'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
+    <tr bgcolor="<?php echo($bg); ?>">
 		<td colspan="8" align="center">
+			<input type="hidden" name="where" value="purge">
 			<input type="reset" name="reset" value="<?php echo(_('Clear Checkboxes')); ?>">
-			<input type="submit" name="where" value="<?php echo(_('Purge Surveys')); ?>">
+			<input type="submit" name="submit" value="<?php echo(_('Purge Surveys')); ?>">
 		</td>
 	</tr>
 </table>
