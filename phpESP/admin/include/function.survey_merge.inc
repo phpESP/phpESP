@@ -24,27 +24,25 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 	//                    int $questionId,
 	//                    int[] $choiceIds);
 	
-	function survey_merge($sids, $precision = 1, $showTotals = 1, $qid = '', $cids = '') {
-		if(!is_array($sids) || count($sids) < 1) {
-			$errmsg = "Error opening merging surveys. [ ID:${sids} ]";
+	function survey_merge($sids, $precision = 1, $showTotals = 1) {
+		// sanity check arguments
+		if(!is_array($sids)) {
+			$errmsg = "Error opening merging surveys. [ ID: ${sids} ]";
 			return($errmsg);
 		}
-		$sidstr = array_to_insql($sids);
-		$sid = $sids[0];
-		
+		$num = array_count($sids);
+		if($num < 1) {
+			$errmsg = "Error opening merging surveys. [ IDs: ".join(",",$sids)." ]";
+			return($errmsg);
+		}
+
+		// set defaults
 		if(empty($precision))	$precision  = 1;
 		if(empty($showTotals))	$showTotals = 1;
 		
-		// set up things differently for cross analysis
-		$cross = !empty($qid);
-		if($cross) {
-			$qids = merge_expand_qids(array($qid), $sids);
-			if(!empty($cids)) {
-				$cids = merge_expand_cids($cids, $qids);
-				$cidstr = array_to_insql($cids);
-			}
-		}
-
+		// convert arguments to alternate forms
+		$sidstr = array_to_insql($sids);
+		
 		// build associative array holding weather each question
 		// type has answer choices or not and the table the answers are in
 		$has_answers = array();
@@ -53,7 +51,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 				  FROM question_types 
 				 ORDER BY id';
 		if(!($result = mysql_query($sql))) {
-			$errmsg = "Error phpESP system tables corrupted. [ Table(s): question_types ]";
+			$errmsg = "Error phpESP system tables corrupted. [ Table(s): question_types ] [ ".mysql_error()."]";
 			return($errmsg);
 		}
 		while($row = mysql_fetch_row($result)) {
@@ -62,265 +60,296 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 		}
 		mysql_free_result($result);
 
-		// load survey title (and other globals)
+		// load survey title (and other globals) from 1st surveyId
+		$sid = $sids[0];
 		$sql = "SELECT * FROM surveys WHERE id=${sid}";
 		if(!($result = mysql_query($sql))) {
-			$errmsg = "Error opening selected survey. [ ID:${sid} R:" . mysql_num_rows($result) ."]";
+			$errmsg = "Error opening selected survey. [ ID:${sid} R:" . mysql_num_rows($result) ."] [ ".mysql_error()."]";
 			return($errmsg);
 		}
 		$survey = mysql_fetch_array($result, MYSQL_ASSOC);
 		mysql_free_result($result);
 
-		// load survey questions
-		$sql = "SELECT * 
-				  FROM survey_questions 
-				 WHERE survey_id=${sid} AND 
-				       status='' 
-				 ORDER BY position,id";
-		if(!($questions_result = mysql_query($sql))) {
-			$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ]";
-			return($errmsg);
-		}
-		
-		// find out more about the question we are cross analyzing on (if any)
-		if($cross) {
-			$sql = "SELECT type_id FROM survey_questions WHERE id=${qid}";
-			$result = mysql_query($sql);
-			$crossTable = $answer_table[mysql_result($result,0,0)];
-			mysql_free_result($result);
-			if(!in_array($crossTable, array('answers_single','answers_bool','answers_multiple'))) {
-				$errmsg = "Error cross-analyzing. Question not valid type. [ Table: ${crossTable} ]";
-				return($errmsg);
-			}
-		}
-
-	// find total number of survey responses
-	// and relevant response ID's
-		$sql = "";
-		if($cross) {
-			if(!empty($cidstr))
-				$sql = "SELECT A.response_id
-						  FROM ${crossTable} A,
-						       survey_responses R
-						 WHERE A.response_id=R.id AND
-						       R.complete='yes' AND
-						       A.question_id ${qidstr} AND
-				    		   A.choice_id ${cidstr}
-						 ORDER BY A.response_id";
-			else
-				$sql = "SELECT A.response_id
-						  FROM ${crossTable} A,
-						       survey_responses R
-						 WHERE A.response_id=R.id AND
-						       R.complete='yes' AND
-						       A.question_id ${qidstr} AND
-				    		   A.choice_id = 0
-						 ORDER BY A.response_id";
-		} else {
-			$sql = "SELECT R.id
-					  FROM survey_responses R
-					 WHERE R.survey_id ${sidstr} AND
-					       R.complete='yes'
-					 ORDER BY R.id";
-		}
+		// find total number of survey responses
+		$sql = "SELECT R.id
+				  FROM survey_responses R
+				 WHERE R.survey_id ${sidstr} AND
+					   R.complete='yes'";
 		if(!($result = mysql_query($sql))) {
-			$errmsg = "Error opening selected survey. [ ID:${sid} ] [ ".mysql_error()."]";
+			$errmsg = "Error opening selected surveys. [ ID: ${sidstr} ] [ ".mysql_error()."]";
 			return($errmsg);
 		}
 		$total = mysql_num_rows($result);
 		if($total < 1) {
-			$errmsg = "Error opening selected survey. No responses found for survey. [ ID:${sid} ]";
-//			return($errmsg);
-			echo("<!-- \$errmsg = '$errmsg' -->\n");
+			$errmsg = "Error opening selected surveys. No responses found for surveys. [ ID: ${sidstr} ] [ Total: ${total} ]";
+			return($errmsg);
 		}
-		
-		$rid = array();
+		// and the desired response id's
+		$rids = array();
 		while($row = mysql_fetch_row($result)) {
-			array_push($rid, $row[0]);
+			array_push($rids, $row[0]);
 		}
 		mysql_free_result($result);
-
-		// create a string suitable for inclusion in a SQL statement
-		// containing the desired Response IDs
-		// ex: "('304','311','317','345','365','370','403','439')"
-		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rid)) .")";
-
-		if(1) {
-			echo("<!--
-\$sid = $sid
-\$precision = $precision
-\$showTotals = $showTotals
-\$qid = $qid
-\$cids = $cids
-\$cross = $cross
-\$crossTable = $crossTable
-\$cidstr = $cidstr
-\$ridstr = $ridstr
--->");
+		$ridstr = array_to_insql($rids);
+		
+		// load survey questions
+		for($i=0; $i<$num; $i++) {
+			$sid = $sids[$i];
+			$sql = "SELECT * 
+					  FROM survey_questions 
+					 WHERE survey_id=${sid} AND 
+				    	   status='' 
+					 ORDER BY position,id";
+			$questions[$i] = mysql_query($sql);
+			if(!$questions[$i]) {
+				$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ] [ ".mysql_error()."]";
+				return($errmsg);
+			}
 		}
-?>
 
+?>
 <h2><?php echo($survey["title"]); ?></h2>
 <h3><?php echo($survey["subtitle"]); ?></h3>
 <blockquote><?php echo($survey["info"]); ?></blockquote>
-<?php
-		if($cross) {
-			echo("<blockquote>Cross analysis on QID: ${qid}</blockquote>\n");
-		}
-?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <?php
-		$i=0; // question number counter
-		while($question = mysql_fetch_array($questions_result)) {
-			// process each question
-			$qid = $question['id'];
-			$tid = $question['type_id'];
-			$table = $answer_table[$tid];
+		$q=0; // question number counter
+		while(1) {
+			// get next question from each of SIDs (lock-step)
+			$qids = array();
+			for($i=0; $i<$num; $i++) {
+				if(!($question[$i] = mysql_fetch_array($questions[$i],MYSQL_ASSOC))) {
+					for($j=0; $j<$num; $j++) {
+						mysql_free_result($questions[$j]);
+					}
+					echo("</table>\n");
+					return;
+				}
+				array_push($qids, $question[$i]['id']);
+			}
+			$qidstr = array_to_insql($qids);
+
+			// now -- we assume the surveys are identical, and there is a
+			// one-to-one relation between the questions of each
+			// we take the first element of the SIDs array to be the "master"		
+
+			$tid = $question[0]['type_id'];
+			$table = $answer_table[0][$tid];
 
 			if($tid == 99) {
 				echo("<tr><td><hr></td></tr>\n");
 				continue;
 			}
 
-			++$i;
+			++$q;
 			
-			if($bg != "#eeeeee")	$bg = "#eeeeee";
-			else                	$bg = "#ffffff";
+			if($bg != '#eeeeee')	$bg = '#eeeeee';
+			else                	$bg = '#ffffff';
 ?>
 	<tr xbgcolor="<?php echo($bg); ?>">
  		<td>
-			<A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A>
-			<?php echo($question["content"]); ?>
+			<A NAME="Q<?php echo($q); ?>"><?php echo($q); ?>.</A>
+			<?php echo($question[0]['content']); ?>
 
 			<blockquote>
 <?php
 			$counts = array();
 
+			switch($table) {
 // -------------------------------- answers_bool --------------------------------
-			if($table == "answers_bool") {
+			case 'answers_bool':
 				$sql = "SELECT A.choice_id, COUNT(A.response_id)
 						  FROM ${table} A
-						 WHERE A.question_id='${qid}' AND 
+						 WHERE A.question_id ${qidstr} AND 
 						       A.response_id ${ridstr} AND
 							   A.choice_id IN ('yes','no')
 						 GROUP BY A.choice_id";
-				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-				if($result = mysql_query($sql)) {
-					while(list($ccontent,$count) = mysql_fetch_row($result)) {
-						$counts[ucfirst($ccontent)] = $count;
-					}
-					mysql_free_result($result);
+				$result = mysql_query($sql);
+				while(list($ccontent,$count) = mysql_fetch_row($result)) {
+					$counts[ucfirst($ccontent)] = $count;
 				}
+				mysql_free_result($result);
 
-				if(empty($question["result_id"]))
-					$question["result_id"] = 1;	// default to percentages for yes/no
+				if(empty($question[0]['result_id']))
+					$question[0]['result_id'] = 1;	// default to percentages for yes/no
 
+				break;
 // -------------------------------- answers_single --------------------------------
 // -------------------------------- answers_multiple --------------------------------
-			} elseif($table == "answers_single" || $table == "answers_multiple") {
-				$sql = "SELECT C.content, COUNT(A.response_id) AS num
-						  FROM question_choices C,
-						       ${table} A
-						 WHERE C.question_id='${qid}' AND
-						       C.content NOT LIKE '!other%' AND
-							   A.question_id=C.question_id AND
-							   A.choice_id=C.id AND
-							   A.response_id ${ridstr}
-						 GROUP BY C.id";
-//						 ORDER BY C.id";
-				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-				if($result = mysql_query($sql)) {
-					while(list($ccontent,$count) = mysql_fetch_row($result)) {
-						$counts[$ccontent] = $count;
+			case: 'answers_single':
+			case: 'answers_multiple':
+				for($i=0; $i<$num; $i++) {
+					$sid = $sids[$i];
+					$qid = $questions[$i]['id'];
+					$sql = "SELECT id 
+					          FROM question_choices
+							 WHERE question_id=${qid} AND
+							       content NOT LIKE '!other%'
+							 ORDER BY id";
+					$result = mysql_query($sql);
+					$cids[$i] = array();
+					while(list($cid) = mysql_fetch_row($result)) {
+						array_push($cids[$i],$cid);
 					}
 					mysql_free_result($result);
 				}
-				// handle 'other...'
-				$sql = "SELECT A.answer, C.content
-						  FROM answers_other A, question_choices C
-						 WHERE A.question_id='${qid}' AND
-						       A.choice_id=C.id AND
-    						   A.response_id ${ridstr}
-						 ORDER BY C.id, A.answer";
-				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-				if($result = mysql_query($sql)) {
-					while(list($answer,$ccontent) = mysql_fetch_row($result)) {
-						$content = ereg_replace("!other=?", "", $ccontent);
-						if($content != '')	$content .= ": ";
-						$content .= htmlspecialchars($answer);
-						$counts[$content]++;
-					}
+				$content = array();
+				foreach($cids[0] as $cid) {
+					$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+					$result=mysql_query($sql);
+					array_push($content, mysql_result($result,0,0));
 					mysql_free_result($result);
 				}
-				if(empty($question["result_id"]))
-					$question["result_id"] = 1;	// default to percentages
-// -------------------------------- answers_text --------------------------------
-			} elseif($table == "answers_text") {
-				$sql = "SELECT A.answer, COUNT(A.response_id) AS num
-						  FROM ${table} A
-						 WHERE A.question_id='${qid}' AND
-    						   A.response_id ${ridstr}
-						 GROUP BY A.answer";
-				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-				if($result = mysql_query($sql)) {
-					while(list($text, $num) = mysql_fetch_row($result)) {
-						if(!empty($text))
-							$counts[htmlspecialchars($text)] = $num;
+				$cnum = array_count($content);
+				for($j=0; $j<$cnum; $j++) {
+					$mycids = array();
+					for($i=0; $i<$num; $i++) {
+						array_push($mycids, $cids[$i][$j])
 					}
-					mysql_free_result($result);
-				}
-				$question["result_id"] = 4;	// force "list" type response for text fields
-// -------------------------------- answers_rank --------------------------------
-			} elseif($table == "answers_rank") {
-				if($tid == 8) { //Rank
-					$sql = "SELECT C.content, AVG(A.rank) AS average
-							  FROM question_choices C, ${table} A
-							 WHERE C.question_id='${qid}' AND
-    							   A.question_id='${qid}' AND
-								   A.choice_id=C.id AND
-								   A.rank>0 AND
-								   A.response_id ${ridstr}
-							 GROUP BY C.id";
-					if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-					if($result = mysql_query($sql)) {
-						while(list($ccontent,$avg) = mysql_fetch_row($result)) {
-							$counts[$ccontent] = $avg;
-						}
-						mysql_free_result($result);
-					}
-					$question["result_id"] = 99;	// force to rank
-				} else {
-					$sql = "SELECT A.rank, COUNT(A.response_id) AS num
+					$mycidstr = array_to_insql($mycids[$j]);
+
+					$sql = "SELECT COUNT(*)
 							  FROM ${table} A
-							 WHERE A.question_id='${qid}' AND
-    							   A.response_id ${ridstr}
-							 GROUP BY A.rank";
-					if($result = mysql_query($sql)) {
-						while(list($rank, $num) = mysql_fetch_row($result)) {
-							if($rank == -1) { $rank = "N/A"; }
-							$counts[$rank] += $num;
+							 WHERE A.choice_id ${mycidstr} AND
+								   A.response_id ${ridstr}";
+					$result=mysql_query($sql);
+					$counts[$content[$j]] = mysql_result($result,0,0);
+					mysql_free_result($result);
+				}
+
+				// handle 'other...'
+				for($i=0; $i<$num; $i++) {
+					$sid = $sids[$i];
+					$qid = $questions[$i]['id'];
+					$sql = "SELECT id 
+					          FROM question_choices
+							 WHERE question_id=${qid} AND
+							       content LIKE '!other%'
+							 ORDER BY id";
+					$result = mysql_query($sql);
+					$cids[$i] = array();
+					while(list($cid) = mysql_fetch_row($result)) {
+						array_push($cids[$i],$cid);
+					}
+					mysql_free_result($result);
+				}
+				$content = array();
+				foreach($cids[0] as $cid) {
+					$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+					$result=mysql_query($sql);
+					$text = ereg_replace("!other=?", "", mysql_result($result,0,0));
+					if(!empty($text))
+						$text .= ': ';
+					array_push($content, $text);
+					mysql_free_result($result);
+				}
+				$cnum = array_count($content);
+				for($j=0; $j<$cnum; $j++) {
+					$mycids = array();
+					for($i=0; $i<$num; $i++) {
+						array_push($mycids, $cids[$i][$j])
+					}
+					$mycidstr = array_to_insql($mycids[$j]);
+
+					$sql = "SELECT A.answer, COUNT(A.response_id)
+							  FROM answers_other A
+							 WHERE A.choice_id ${mycidstr} AND
+								   A.response_id ${ridstr}";
+					$result=mysql_query($sql);
+					while(list($answer,$count) = mysql_fetch_row($result)) {
+						if(!empty($answer)) {
+							$text = $content[$j] . htmlspecialchars($answer);
+							$counts[$text] = $count;
+						}
+					}
+					mysql_free_result($result);
+				}
+
+				if(empty($question[0]['result_id']))
+					$question[0]['result_id'] = 1;	// default to percentages
+
+				break;					
+// -------------------------------- answers_text --------------------------------
+			case 'answers_text':
+				$sql = "SELECT A.answer, COUNT(A.response_id)
+						  FROM ${table} A
+						 WHERE A.question_id ${qidstr} AND 
+						       A.response_id ${ridstr}
+						 GROUP BY A.answer";
+				$result = mysql_query($sql);
+				while(list($text, $num) = mysql_fetch_row($result)) {
+					if(!empty($text))
+						$counts[htmlspecialchars($text)] = $num;
+				}
+				mysql_free_result($result);
+
+				$question[0]['result_id'] = 4;	// force "list" type response for text fields
+				
+				break;
+// -------------------------------- answers_rank --------------------------------
+			case 'answers_rank':
+				if($tid == 8) { //Rank
+					for($i=0; $i<$num; $i++) {
+						$sid = $sids[$i];
+						$qid = $questions[$i]['id'];
+						$sql = "SELECT id 
+					        	  FROM question_choices
+								 WHERE question_id=${qid}
+								 ORDER BY id";
+						$result = mysql_query($sql);
+						$cids[$i] = array();
+						while(list($cid) = mysql_fetch_row($result)) {
+							array_push($cids[$i],$cid);
 						}
 						mysql_free_result($result);
 					}
-					if(empty($question["result_id"]))
-						$question["result_id"] = 2;	// default to rank
+					$content = array();
+					foreach($cids[0] as $cid) {
+						$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+						$result=mysql_query($sql);
+						array_push($content, mysql_result($result,0,0));
+						mysql_free_result($result);
+					}
+					$cnum = array_count($content);
+					for($j=0; $j<$cnum; $j++) {
+						$mycids = array();
+						for($i=0; $i<$num; $i++) {
+							array_push($mycids, $cids[$i][$j])
+						}
+						$mycidstr = array_to_insql($mycids[$j]);
+
+						$sql = "SELECT AVG(A.rank)
+								  FROM ${table} A
+								 WHERE A.choice_id ${mycidstr} AND
+									   A.response_id ${ridstr} AND
+									   A.rank>0";
+						$result=mysql_query($sql);
+						$counts[$content[$j]] = mysql_result($result,0,0);
+						mysql_free_result($result);
+					}
+
+					$question[0]['result_id'] = 99;	// force to rank
+				} else {
+					// deprecated ... I am not going to write this
+					// code. If you need it email me or write it yourself.
 				}
+				break;
 			}
 // ---------------------------------------------------------------------------
-			switch($question["result_id"]) {
-				case "1":	// Percentages
+			switch($question[0]['result_id']) {
+				case '1':	// Percentages
 					mkrespercent($counts,$total,$precision,$showTotals);
 					break;
-				case "2":	// Rank
+				case '2':	// Rank
 					mkresrank($counts,$total,$precision,$showTotals);
 					break;
-				case "3":	// Count
+				case '3':	// Count
 					mkrescount($counts,$total,$precision,$showTotals);
 					break;
-				case "4":	// List
+				case '4':	// List
 					mkreslist($counts,$total,$precision,$showTotals);
 					break;
-				case "99":	// Average
+				case '99':	// Average
 					mkresavg($counts,$total,$precision,$showTotals);
 					break;
 			} // end switch
@@ -328,10 +357,9 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 			</blockquote>
 		</td>
 	</tr>
-<?php	} // end while ?>
+<?php	} // end while -- execution should never pass this point?>
 </table>
 <?php
-		mysql_free_result($questions_result);
 		return;
 	} // end function survey_results
 
