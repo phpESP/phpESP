@@ -5,17 +5,11 @@
 // Written by James Flemer
 // <jflemer@acm.jhu.edu>
 
-/* {{{ proto bool survey_export_csv(int survey_id, string filename)
-	Exports the results of a survey to a CSV file.
-	Returns true on success.
+/* {{{ proto array survey_generate_csv(int survey_id)
+	Exports the results of a survey to an array.
 	*/
-function survey_export_csv($sid, $filename) {
-	$umask = umask(0077);
-	$fh = fopen($filename, 'w');
-	umask($umask);
-	if(!$fh)
-		return 0;
-
+function survey_generate_csv($sid) {
+	$output = array();
 	$columns = array();
 	$types = array();
 	$arr = array();
@@ -74,7 +68,7 @@ function survey_export_csv($sid, $filename) {
 	
 	$num = 0;
 	
-	fputs($fh, join(',', $columns) . "\n");
+	array_push($output, $columns);
 
 	$sql = "SELECT id FROM response 
 		WHERE survey_id='$sid' AND complete='Y'
@@ -100,13 +94,35 @@ function survey_export_csv($sid, $filename) {
 				array_push($arr, $response[$columns[$i]]);
 			}
 		}
-		fputs($fh, join(',', $arr) . "\n");
+		array_push($output, $arr);
 	}
 	mysql_free_result($result);
+	
+	return $output;
+}
+/* }}} */
+
+/* {{{ proto bool survey_export_csv(int survey_id, string filename)
+	Exports the results of a survey to a CSV file.
+	Returns true on success.
+	*/
+function survey_export_csv($sid, $filename) {
+	$umask = umask(0077);
+	$fh = fopen($filename, 'w');
+	umask($umask);
+	if(!$fh)
+		return 0;
+	
+	$data = survey_generate_csv($sid);
+	
+	foreach ($data as $row) {
+		fputs($fh, join(',', $row) . "\n");
+	}
 	
 	fflush($fh);
 	fclose($fh);
 	
 	return 1;
 }
+/* }}} */
 ?>
