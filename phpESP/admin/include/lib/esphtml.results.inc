@@ -37,9 +37,9 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 		<td align="left">
 <?php
 		if($num) {
-			echo("&nbsp;<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
-			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$percent*2);
-			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
+			echo("&nbsp;<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."hbar_l.gif\" height=9 width=4>");
+			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."hbar.gif\" height=9 width=%d>",$percent*2);
+			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."hbar_r.gif\" height=9 width=4>");
 			printf("&nbsp;%.${precision}f%%",$percent);
 		}
 ?></td>
@@ -61,9 +61,9 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b><?php echo(_('TOTAL')); ?></b></td>
 		<td width="40%"><b>&nbsp;<?php
-			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
-			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$percent*2);
-			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
+			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."hbar_l.gif\" height=9 width=4>");
+			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."hbar.gif\" height=9 width=%d>",$percent*2);
+			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."hbar_r.gif\" height=9 width=4>");
 			printf("&nbsp;%.${precision}f%%",$percent); ?></b></td>
 		<td width="10%" align="right"><b><?php echo($total); ?></b></td>
 	</tr>
@@ -221,10 +221,10 @@ function mkresavg($counts,$total,$precision,$showTotals,$length) {
 		<td align="left" width="220" colspan="<?php echo($length+1); ?>">
 <?php
 		if($avg) {
-			echo('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'/hbar_l.gif" height="9" width="4">');
+			echo('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'hbar_l.gif" height="9" width="4">');
 			if (($j = $avg * $width - 11) > 0)
-				printf('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'/hbar.gif" height="9" width="%d">', $j);
-			echo('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'/hbar_r.gif" height="9" width="4">');
+				printf('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'hbar.gif" height="9" width="%d">', $j);
+			echo('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'hbar_r.gif" height="9" width="4">');
 		}
 ?>
 		</td>
