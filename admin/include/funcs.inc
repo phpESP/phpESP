@@ -160,6 +160,8 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 			$tmp = $qid;
 			$arr = array($cid);
 		}
+		if(!empty($tmp))
+			$values["$tmp"]=$arr;
 		mysql_free_result($result);
 
 		$sql = "SELECT question_id,choice_id,rank FROM answers_rank WHERE response_id='${rid}'";
