@@ -19,9 +19,9 @@ function response_check_required($sid, $section) {
 
 	$sql = "
 SELECT id,type_id,content
-FROM survey_questions
+FROM question
 ". survey_select_section_sql($sid,$section) ." AND
-   required='y'
+   required='Y'
 ORDER BY position";
 
 	$result = mysql_query($sql);
@@ -35,7 +35,7 @@ ORDER BY position";
 	
 	while(list($qid,$tid,$content) = mysql_fetch_row($result)) {
 		if($tid == 8) { // Rank
-			$sql = "SELECT id FROM question_choices WHERE question_id='${qid}'";
+			$sql = "SELECT id FROM question_choice WHERE question_id='${qid}'";
 			$cid_result = mysql_query($sql);
 			while(list($cid) = mysql_fetch_row($cid_result)) {
 				if(empty($HTTP_POST_VARS["${qid}_${cid}"])) {
@@ -69,49 +69,49 @@ ORDER BY position";
    Reads current form variables from HTTP_POST_VARS.
    Returns the ID for the response. */
 function response_insert($sid,$section,$rid) {
-	global $HTTP_POST_VARS;
+	global $HTTP_POST_VARS, $PHP_AUTH_USER;
 	@reset($HTTP_POST_VARS);
 
-	$userid = $HTTP_POST_VARS['userid'];
+	$userid = $PHP_AUTH_USER;
 
 	if(empty($rid)) {
 		// create a uniqe id for this response
-		$sql = "INSERT INTO survey_responses (survey_id,username) VALUES ( '${sid}','${userid}' )";
+		$sql = "INSERT INTO response (survey_id,username) VALUES ( '${sid}','${userid}' )";
 		$result = mysql_query($sql);
 		$rid = mysql_insert_id();
 	}
 
 	$sql  = "
-SELECT Q.id, Q.type_id, T.answer_table
-FROM survey_questions Q, question_types T
+SELECT Q.id, Q.type_id, T.response_table
+FROM question Q, question_type T
 ". survey_select_section_sql($sid,$section) ." AND
    Q.survey_id='${sid}' AND
-   Q.status=0 AND
+   Q.deleted='N' AND
    Q.type_id=T.id";
 
 	$q_result = mysql_query($sql);
 	while(list($qid, $tid, $table) = mysql_fetch_row($q_result)) {
 		$val = $HTTP_POST_VARS[$qid];
 		switch($table) {
-			case 'answers_bool':
+			case 'response_bool':
 				$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
 				$result = mysql_query($sql);
 				break;
-			case 'answers_text':
+			case 'response_text':
 				// only insert if non-empty content
 				if(ereg("[^ \t\n]",$val)) {
 					$sql  = "INSERT INTO ${table} ( response_id,question_id,answer ) VALUES ( '${rid}','${qid}','${val}' )";
 					$result = mysql_query($sql);
 				}
 				break;
-			case 'answers_single':
+			case 'response_single':
 				if(empty($val)) {
-					$sql = "SELECT id FROM question_choices WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
+					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
 					$c_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($c_result)) {
 						$other = $HTTP_POST_VARS["${qid}_${cid}"];
 						if(ereg("[^ \t\n]",$other)) {
-							$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+							$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 							$result = mysql_query($sql);
 							$val = $cid;
 							break;
@@ -123,7 +123,7 @@ FROM survey_questions Q, question_types T
 					$cid=$regs[1];
 					$other = $HTTP_POST_VARS["${qid}_${cid}"];
 					if(ereg("[^ \t\n]",$other)) {
-						$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
 						$val=$cid;
 					}
@@ -131,13 +131,13 @@ FROM survey_questions Q, question_types T
 				$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
 				$result = mysql_query($sql);
 				break;
-			case 'answers_multiple':
-				$sql = "SELECT id FROM question_choices WHERE question_id='${qid}' AND content LIKE '!other%'";
+			case 'response_multiple':
+				$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%'";
 				$c_result = mysql_query($sql);
 				while(list($cid) = mysql_fetch_row($c_result)) {
 					$other = $HTTP_POST_VARS["${qid}_${cid}"];
 					if(ereg("[^ \t\n]",$other)) {
-						$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
 						$val[] = $cid;
 					}
@@ -152,9 +152,9 @@ FROM survey_questions Q, question_types T
 					$result = mysql_query($sql);
 				}
 				break;
-			case 'answers_rank':
+			case 'response_rank':
 				if($tid == 8) { // Rank
-					$sql = "SELECT id FROM question_choices WHERE question_id='${qid}'";
+					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}'";
 					$cid_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($cid_result)) {
 						$val = $HTTP_POST_VARS[$qid ."_". $cid];
@@ -186,7 +186,7 @@ FROM survey_questions Q, question_types T
 /* {{{ proto bool response_commit(int response_id)
    Returns true on sucess. */
 function response_commit($rid) {
-	$sql = "UPDATE survey_responses SET complete='yes' WHERE id='${rid}'";
+	$sql = "UPDATE response SET complete='Y' WHERE id='${rid}'";
 	if(mysql_query($sql))
 		return(TRUE);
 	return(FALSE);
@@ -199,24 +199,24 @@ function response_commit($rid) {
 function response_select($sid, $rid) {
 	$values = array();
 
-	// --------------------- answers_bool ---------------------
-	$sql = "SELECT question_id,choice_id FROM answers_bool WHERE response_id='${rid}'";
+	// --------------------- response_bool ---------------------
+	$sql = "SELECT question_id,choice_id FROM response_bool WHERE response_id='${rid}'";
 	$result = mysql_query($sql);
 	while(list($qid,$cid) = mysql_fetch_row($result)) {
 		$values["$qid"]=$cid;
 	}
 	mysql_free_result($result);
 
-	// --------------------- answers_single ---------------------
-	$sql = "SELECT question_id,choice_id FROM answers_single WHERE response_id='${rid}'";
+	// --------------------- response_single ---------------------
+	$sql = "SELECT question_id,choice_id FROM response_single WHERE response_id='${rid}'";
 	$result = mysql_query($sql);
 	while(list($qid,$cid) = mysql_fetch_row($result)) {
 		$values["$qid"]=$cid;
 	}
 	mysql_free_result($result);
 
-	// --------------------- answers_multiple ---------------------
-	$sql = "SELECT question_id,choice_id FROM answers_multiple WHERE response_id='${rid}' ORDER BY question_id";
+	// --------------------- response_multiple ---------------------
+	$sql = "SELECT question_id,choice_id FROM response_multiple WHERE response_id='${rid}' ORDER BY question_id";
 	$result = mysql_query($sql);
 	$arr = array();
 	$tmp = '';
@@ -234,8 +234,8 @@ function response_select($sid, $rid) {
 		$values["$tmp"]=$arr;
 	mysql_free_result($result);
 
-	// --------------------- answers_rank ---------------------
-	$sql = "SELECT question_id,choice_id,rank FROM answers_rank WHERE response_id='${rid}'";
+	// --------------------- response_rank ---------------------
+	$sql = "SELECT question_id,choice_id,rank FROM response_rank WHERE response_id='${rid}'";
 	$result = mysql_query($sql);
 	while(list($qid,$cid,$rank) = mysql_fetch_row($result)) {
 		if($cid)
@@ -245,16 +245,16 @@ function response_select($sid, $rid) {
 	}
 	mysql_free_result($result);
 
-	// --------------------- answers_text ---------------------
-	$sql = "SELECT question_id,answer FROM answers_text WHERE response_id='${rid}'";
+	// --------------------- response_text ---------------------
+	$sql = "SELECT question_id,response FROM response_text WHERE response_id='${rid}'";
 	$result = mysql_query($sql);
 	while(list($qid,$cid) = mysql_fetch_row($result)) {
 		$values["$qid"]=$cid;
 	}
 	mysql_free_result($result);
 
-	// --------------------- answers_other ---------------------
-	$sql = "SELECT question_id,choice_id,answer FROM answers_other WHERE response_id='${rid}' ORDER BY question_id";
+	// --------------------- response_other ---------------------
+	$sql = "SELECT question_id,choice_id,response FROM response_other WHERE response_id='${rid}' ORDER BY question_id";
 	$result = mysql_query($sql);
 	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
 		$values["${qid}_${cid}"]=$answer;
@@ -271,10 +271,10 @@ function response_select($sid, $rid) {
    Reads current form variables from HTTP_POST_VARS.
    Returns true if mail sent. */
 function response_send_email($sid, $rid) {
-	global $HTTP_POST_VARS;
+	global $HTTP_POST_VARS, $PHP_AUTH_USER;
 	@reset($HTTP_POST_VARS);
 
-	$sql = "SELECT name,email FROM surveys WHERE id='${sid}'";
+	$sql = "SELECT name, email FROM survey WHERE id='${sid}'";
 	$result = mysql_query($sql);
 	list($name, $email) = mysql_fetch_row($result);
 	mysql_free_result($result);
@@ -282,21 +282,21 @@ function response_send_email($sid, $rid) {
 	if(empty($email))
 		return(FALSE);
 
-	$sql = "SELECT id FROM survey_questions WHERE survey_id='${sid}' AND status=0 ORDER BY position,id";
+	$sql = "SELECT id FROM question WHERE survey_id='${sid}' AND deleted='N' ORDER BY position,id";
 	$result = mysql_query($sql);
 
 	$subject = _('Response from survey:') ." $name [$rid]";
-	$body  = "surveys.id = ${sid}\n";
-	$body .= "surveys.name = ${name}\n";
-	$body .= "survey_responses.id = $rid\n";
-	$body .= "survey_responses.username = ". $HTTP_POST_VARS['userid'] ."\n";
+	$body  = "survey.id = ${sid}\n";
+	$body .= "survey.name = ${name}\n";
+	$body .= "response.id = $rid\n";
+	$body .= "response.username = ${PHP_AUTH_USER}\n";
 
 	$answers = response_select($sid,$rid);
 
 	$headers = "From: \"phpESP ". addslashes($VERSION) ."\" <phpesp\@${SERVER_NAME}>\n";
 	$headers .= "X-Sender: <phpesp\@${SERVER_NAME}>\n"; 
-	$headers .= "X-Mailer: phpESP\n"; // mailer
-	$headers .= "Return-Path: <${SERVER_ADMIN}\@${SERVER_NAME}>\n";  // Return path for errors
+	$headers .= "X-Mailer: phpESP\n";
+	$headers .= "Return-Path: <${SERVER_ADMIN}\@${SERVER_NAME}>\n";
 
 	while(list($qid,$var) = each($answers)) {
 		if(is_array($var)) {

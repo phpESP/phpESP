@@ -7,21 +7,21 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	$sql = "SELECT COUNT(*) FROM survey_questions WHERE survey_id='${survey_id}'
-	AND status='' AND type_id='99'";
+	$sql = "SELECT COUNT(*) FROM question WHERE survey_id='${survey_id}'
+	AND deleted='N' AND type_id='99'";
 	$result = mysql_query($sql);
 	$num_sections = 1 + mysql_result($result,0,0);
 
 	if(empty($section))
 		$section=1;
 ?>
-This is a preview of how the survey will look. In the preview the &quot;Next
+<?php echo(_('This is a preview of how the survey will look. In the preview the &quot;Next
 Page&quot; and &quot;Submit Survey&quot; are inactive.
 The survey will use the background color of the document in which it is
 embedded. If you have no further changes click <b>Finish</b> at the bottom of
-this page.
+this page.')); ?>
 <?php	if($num_sections > 1) { ?>
-<br><b>Section:</b>
+<br><b><?php echo(_('Section')); ?>:</b>
 <?php		for($i=0;$i<$num_sections;$i++) {	?>
 <input type="submit" name="section" value="<?php echo($i+1); ?>">
 <?php		}

@@ -12,7 +12,7 @@ if(!defined('_LIB_ESPMERGE')) {
    Returns an array of question ids spanning the given
    survey ids. */
 function merge_expand_qids($targetq, $surveys) {
-	$sql = "SELECT survey_id FROM survey_questions WHERE id ".array_to_insql($targetq);
+	$sql = "SELECT survey_id FROM question WHERE id ".array_to_insql($targetq);
 	$result = mysql_query($sql);
 	$targets = mysql_result($result, 0, 0);
 	mysql_free_result($result);
@@ -20,8 +20,8 @@ function merge_expand_qids($targetq, $surveys) {
 	$sidstr = array_to_insql($surveys);
 	$sql = "
 SELECT Q.survey_id, Q.id
-FROM survey_questions Q
-WHERE Q.survey_id ${$sidstr} AND status=0
+FROM question Q
+WHERE Q.survey_id ${$sidstr} AND deleted='N'
 ORDER BY Q.survey_id, Q.position, Q.id";
 	$result = mysql_query($sql);
 	foreach($surveys as $sid) {
@@ -59,7 +59,7 @@ function merge_expand_cids($targetc, $questions) {
 	$qidstr = array_to_insql($questions);
 	$sql = "
 SELECT C.question_id, C.id
-FROM question_choices C
+FROM question_choice C
 WHERE C.question_id ${$qidarr}
 ORDER BY C.question_id, C.id";
 	$result = mysql_query($sql);

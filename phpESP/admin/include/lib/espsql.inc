@@ -21,10 +21,10 @@ function array_to_insql($array) {
 function survey_num_sections($sid) {
 	$sql = "
 SELECT COUNT(*)
-FROM survey_questions
+FROM question
 WHERE survey_id='${sid}' AND
   type_id='99' AND
-  status=0";
+  deleted='N'";
 	$result = mysql_query($sql);
 	$count = mysql_result($result,0,0) + 1;
 	mysql_free_result($result);
@@ -38,10 +38,10 @@ WHERE survey_id='${sid}' AND
 function survey_select_section_sql($sid, $section) {
 	$sql = "
 SELECT position
-FROM survey_questions
+FROM question
 WHERE survey_id='${sid}' AND
    type_id='99' AND
-   status=0
+   deleted='N'
 ORDER BY position,id";
 	$result = mysql_query($sql);
 	$num_sections = mysql_num_rows($result) + 1;
@@ -49,7 +49,7 @@ ORDER BY position,id";
 	if($section > $num_sections)
 		return('');	// invalid section
 
-	$ret = array("survey_id='${sid}'", 'status=0');
+	$ret = array("survey_id='${sid}'", "deleted='N'");
 	if($section>1 && $num_sections>1)
 		array_push($ret, 'position>' . mysql_result($result,$section-2,0));
 	if($section<$num_sections && $num_sections>1)
@@ -65,7 +65,7 @@ ORDER BY position,id";
    question type has answer choices. */
 function esp_type_has_choices() {
 	$has_choices = array();
-	$sql = 'SELECT id, has_choices FROM question_types ORDER BY id';
+	$sql = 'SELECT id, has_choices FROM question_type ORDER BY id';
 	$result = mysql_query($sql);
 	while(list($tid,$answ) = mysql_fetch_row($result)) {
 		$has_choices[$tid]=$answ;
