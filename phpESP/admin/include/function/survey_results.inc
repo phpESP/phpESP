@@ -189,15 +189,15 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
                 echo("<!-- \$errmsg = '$errmsg' -->\n");
 	    }
 
-		$rid = array();
+		$rids = array();
 		while($row = mysql_fetch_row($result)) {
-			array_push($rid, $row[0]);
+			array_push($rids, $row[0]);
 		}
 		mysql_free_result($result);
 		// create a string suitable for inclusion in a SQL statement
 		// containing the desired Response IDs
 		// ex: "('304','311','317','345','365','370','403','439')"
-		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rid)) .")";
+		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rids)) .")";
 	}
     
     if (!empty($rid)) {
