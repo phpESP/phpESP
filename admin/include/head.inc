@@ -15,7 +15,7 @@
 	}
 ?>" width="460" height="80"></p> -->
       <p><font size="+2"><tt><?php for($i=0;$i<strlen($GLOBALS['ESPCONFIG']['name']);$i++) echo($GLOBALS['ESPCONFIG']['name'][$i] .' '); ?></tt></font></p>
-      <form method="post" name="phpesp" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
+      <form method="post" name="phpesp" onSubmit="saveOrder();" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <tbody>
         <tr align="center" valign="middle">
