@@ -161,6 +161,31 @@ SELECT C.id-$min AS 'from', C.id AS 'to'
 // ---------------------------------------------------------
 ?>
 <table border=0>
+<tr><td>
+	<p>If you are here, it means that you have been running the
+	development version of <tt>phpESP</tt> right? If you haven't
+	been, then you have no need to go to this page.</p>
+	<p>And ... you made it past the first step. Now below you
+	you will see some pretty ugly tables. Hopefully you will
+	see lots of numbers under the <b>Safe</b> category, and none under
+	the <b>Bad</b> category. If there are no <b>Bad QID's</b>
+	then you should be OK. Skim through the SQL at the bottom
+	and make sure it looks sane (ie. no negative numbers,
+	no changing of 0 -> 1 and 1 -> 0 on the same question, etc).
+	If it looks sane, copy it and run it on your database.</p>
+	<p><b>What to do if there are BAD QID's:</b><br>
+	Well that probably means you didn't run this right away.
+	It is probably still OK, but there is a chance that the
+	script will miss some values, or could potentially 
+	<b>corrupt</b> your results. So look at the SQL, see what it
+	is doing, look at the database and figure out if it is
+	safe to run. If you get here and are suck, then just
+	email me ... I don't think many people will end up here,
+	so I am not going to write an in depth conversion process
+	now. :-)<br>
+	-James</p>
+</td></tr>
+<tr><td><hr></td></tr>
 <tr><th align="left">Safe AID's</th></tr>
 <tr><td><?php echo(join(", ",$safe_aids)); ?>&nbsp;</td></tr>
 <tr><th align="left">Maybe Safe AID's</th></tr>
