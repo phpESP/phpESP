@@ -10,21 +10,24 @@
 	// clear the session
 	if(!empty($sid)) { 
 		if($test) {
+			echo("<p><b>Testing Survey...</b> (SID = $sid)</p>\n");
+		}
 ?>
-<p><b>Testing Survey...</b> (SID = <?php echo($sid); ?>)</p>
-<?php	} ?>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
 <?php survey_results($sid); ?>
 </td></tr></table>
 <?php
 		if($test) {
+			echo("<a href=\"$ME?where=test&sid=$sid\">Test Survey</a><br>\n");
+		}
 ?>
-<a href="<?php echo($ME); ?>?where=test&sid=<?php echo($sid); ?>">Test Survey</a><br>
-<?php	} ?>
 <a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
 <?php
 		return;
 	}
+
+// No SurveyId specified, so build a table of
+// surveys to choose from ...
 
 //	$sql = "SELECT * FROM surveys ORDER BY name";
 	$sql = "SELECT * FROM surveys ORDER BY id DESC";
