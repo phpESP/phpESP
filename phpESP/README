@@ -6,13 +6,15 @@
 // [jflemer@eGrad2000.com] (no longer valid)
 
 FILES:
-admin/:		administration interface and files
-images/:	gifs used for the packages
-public/:	public interface to taking surveys
-UPGRADE:	upgrade guide
-LICENSE:	the license, read this!
-phpESP.sql:	SQL script to initialize your mysql database for phpESP
-update.sql:	SQL script if you are upgrading (read the contents)
+admin/:			administration interface and files
+images/:		gifs used for the packages
+public/:		public interface to taking surveys
+UPGRADE:		upgrade guide
+LICENSE:		the license, read this!
+phpESP.sql:		SQL script to initialize your mysql database for phpESP
+update.sql:		SQL script if you are upgrading (read the contents)
+espauth.sql:	SQL script to create authentication tables 
+				(see README.AUTH)
 
 PREREQUISITES:
   * mysql installed and running
@@ -50,6 +52,9 @@ INSTALLING:
   help page on the admin site. Depending on where you installed phpESP the
   admin site should be at --
     http://127.0.0.1/[path-to-install-in-htdocs]/phpESP/admin/
+
+  Read the UPGRADE guide even if you are not upgrading. I put some more help
+  on new features in there (tho not much).
 
   If you have problems, questions, suggestion, patches, flames feel free to
   email me. (See top of this doc, or sourceforge to get my email address.)
