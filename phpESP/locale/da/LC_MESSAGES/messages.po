@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.3\n"
-"POT-Creation-Date: 2002-10-15 10:21-0400\n"
+"POT-Creation-Date: 2002-10-15 10:25-0400\n"
 "PO-Revision-Date: 2002-03-22 16:40-0500\n"
 "Last-Translator: Henrik <henrik@hornhaver.dk>\n"
 "Language-Team: da <jflemer@acm.jhu.edu>\n"
@@ -1544,8 +1544,10 @@ msgstr "Fejl ved afvikling af survey: Survey er ikke aktiveret."
 #
 #
 #
+#
 #~ msgid "Design Web Forms"
 #~ msgstr "Design Web formularer"
+#
 #
 #
 #
@@ -1554,8 +1556,10 @@ msgstr "Fejl ved afvikling af survey: Survey er ikke aktiveret."
 #
 #
 #
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Respons fra survey"
+#
 #
 #
 #
