@@ -28,7 +28,7 @@
 						$HTTP_SESSION_VARS['acl']['pall'],
 						$HTTP_SESSION_VARS['acl']['pdesign'])));
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM survey s WHERE s.id = '$sid' AND (s.owner = '".
+				FROM survey s WHERE s.id = '$sid' AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = '".
 				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms)";
 			$sql1 = "SELECT a.realm, a.maxlogin FROM access a, survey s
 				WHERE a.survey_id = '$sid' AND s.id=a.survey_id AND (s.owner = '".
@@ -101,6 +101,7 @@
 			$r .= "<option value=\"$g\">$g</option>";
 		}
 		$r .= '</select>';
+	}
 ?>
 <h2><?php echo(_('Survey Access')); ?></h2>
 
@@ -112,11 +113,15 @@
 Public surveys let anyone submit data.
 Private surveys are restricted by Respondent Groups.')); ?></p>
 
-<p><?php
-	echo(_('NOTE: This does not currently work on embedded forms.')); ?></p>
+<p><b><?php echo(_('Note')); ?>:</b>
+<?php echo(_('You must use') . 
+	' <tt>'. substr(strrchr($ESPCONFIG['handler_prefix'], '/'), 1) .
+	' &amp; '. substr(strrchr($ESPCONFIG['handler'], '/'), 1) . '</tt> ' .
+	_('when using private surveys.')); ?></p>
 </div>
 
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<?php if ($sid) { ?>
 <input type="hidden" name="where" value="access">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="op" value="a">
@@ -161,7 +166,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = 'SELECT id,name,title,owner,realm,public FROM survey ORDER BY id DESC';
+		$sql = 'SELECT id,name,title,owner,realm,public FROM survey WHERE NOT (status & ' .STATUS_DELETED. ') ORDER BY id DESC';
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
@@ -170,7 +175,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 					$HTTP_SESSION_VARS['acl']['pall'],
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,owner,realm,public
-			FROM survey WHERE (owner = '".
+			FROM survey WHERE NOT (status & " .STATUS_DELETED. ") AND (owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
