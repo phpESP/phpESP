@@ -70,9 +70,11 @@ if (!empty($server['HTTP_ACCEPT_LANGUAGE'])) {
     unset($_lang);
     unset($_langs);
 }
-putenv('LANG=' . $ESPCONFIG['lang']);
 setlocale(LC_ALL, $ESPCONFIG['lang']);
+setlocale(LC_MESSAGES, $ESPCONFIG['lang']);
 bindtextdomain('messages', $ESPCONFIG['locale_path']);
 textdomain('messages');
+@putenv('LANG=' . $ESPCONFIG['lang']);
+@putenv('LANGUAGE=' . $ESPCONFIG['lang']);
 
 ?>
