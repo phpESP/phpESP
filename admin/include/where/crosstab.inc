@@ -264,8 +264,8 @@
                 echo ("<td height=\"30\">\n");
                 echo ("<div align=\"center\"><strong>TOTALS</strong></div></td>\n");
 
+			    $grand_total = 0;
                 for ($f = 0; $f < $cids_col_count; $f++){
-			$grand_total = 0;
                         for ($g = 0; $g < $cids_row_count; $g++){
                                 if ($g == 0){
                                         $subtotal = $f;
