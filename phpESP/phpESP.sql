@@ -5,6 +5,14 @@
 -- # For eGrad2000.com
 -- # <jflemer@acm.jhu.edu>
 
+-- ## Database changes from 1.5 to 1.6
+-- ALTER TABLE respondent MODIFY COLUMN username CHAR(64) NOT NULL;
+-- ALTER TABLE designer   MODIFY COLUMN username CHAR(64) NOT NULL;
+-- ALTER TABLE access     ADD    COLUMN resume   ENUM('Y','N') NOT NULL DEFAULT 'N';
+-- ALTER TABLE access     ADD    COLUMN navigate ENUM('Y','N') NOT NULL DEFAULT 'N';
+-- ALTER TABLE response   MODIFY COLUMN username CHAR(64);
+-- INSERT INTO realm (name, title) VALUES ('auto', 'Self added users');
+
 -- ...............................................................
 -- ....................... USERS/GROUPS ..........................
 -- ...............................................................
@@ -19,7 +27,7 @@ CREATE TABLE realm (
 
 -- # table of respondents (people who enter data / take surveys)
 CREATE TABLE respondent (
-	username	CHAR(16) NOT NULL,
+	username	CHAR(64) NOT NULL,
 	password	CHAR(16) NOT NULL,
 	auth		CHAR(16) NOT NULL DEFAULT 'BASIC',
 	realm		CHAR(16) NOT NULL,
@@ -34,7 +42,7 @@ CREATE TABLE respondent (
 
 -- # table of designers (people who create forms / surveys)
 CREATE TABLE designer (
-	username	CHAR(16) NOT NULL,
+	username	CHAR(64) NOT NULL,
 	password	CHAR(16) NOT NULL,
 	auth		CHAR(16) NOT NULL DEFAULT 'BASIC',
 	realm		CHAR(16) NOT NULL,
@@ -56,7 +64,8 @@ CREATE TABLE designer (
 -- # create the _special_ superuser group
 -- # members of this group have superuser status
 INSERT INTO realm ( name, title )
-	VALUES ( 'superuser', 'ESP System Administrators' );
+	VALUES ( 'superuser', 'ESP System Administrators' ),
+		( 'auto', 'Self added users' );
 
 -- # default root account
 INSERT INTO designer (username, password, fname, lname, realm, pdesign, pstatus, pdata, pall, pgroup, puser, disabled)
@@ -128,6 +137,8 @@ CREATE TABLE access (
 	survey_id	INT UNSIGNED NOT NULL,
 	realm		CHAR(16),
 	maxlogin	INT UNSIGNED DEFAULT '0',
+        resume		ENUM('Y','N') NOT NULL DEFAULT 'N',
+        navigate	ENUM('Y','N') NOT NULL DEFAULT 'N',
 	PRIMARY KEY(id)
 );
 
@@ -142,7 +153,7 @@ CREATE TABLE response (
 	survey_id	INT UNSIGNED NOT NULL,
 	submitted	TIMESTAMP(14) NOT NULL DEFAULT '',
 	complete	ENUM('Y','N') NOT NULL DEFAULT 'N',
-	username	CHAR(16),
+	username	CHAR(64),
 	PRIMARY KEY (id)
 );
 
