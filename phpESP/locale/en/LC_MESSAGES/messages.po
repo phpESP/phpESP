@@ -1649,3 +1649,7 @@ msgstr ""
 # File: phpESP/public/signup.php, line: 156
 msgid "Confirm Password"
 msgstr ""
+#
+# File: phpESP/admin/test.php, line: 94
+msgid "%%%% Gettext Test Failed"
+msgstr "Passed"
