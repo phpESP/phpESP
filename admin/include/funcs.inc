@@ -16,7 +16,7 @@
     }
 
     if(get_magic_quotes_gpc()) {
-        function _addslashes($a)    { return(db_qstr($a)); }
+        function _addslashes($a)    { return(db_qstr(stripslashes($a))); }
         function _stripslashes($a)  { return(stripslashes($a)); }
     } else {
         function _addslashes($a)    { return(db_qstr($a)); }
