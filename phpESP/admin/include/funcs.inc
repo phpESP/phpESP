@@ -404,6 +404,8 @@ SELECT Q.id, Q.type_id, T.answer_table
 	require($PIECES."/function.survey_report".$EXT);
 	require($PIECES."/function.survey_copy".$EXT);
 	require($PIECES."/function.survey_purge".$EXT);
+//	require($PIECES."/library.merge_utils".$EXT);
+	require($PIECES."/function.survey_merge".$EXT);
 
 } // end if !defined(_FUNCS)
 
