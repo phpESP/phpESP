@@ -205,8 +205,12 @@ FROM question Q, question_type T
 				$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%'";
 				$c_result = mysql_query($sql);
 				while(list($cid) = mysql_fetch_row($c_result)) {
-                    if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
+                    if (!isset($HTTP_POST_VARS["${qid}_${cid}"]) || empty($HTTP_POST_VARS["${qid}_${cid}"]))
                         continue;
+                    if (!isset($HTTP_POST_VARS[$qid]))
+                        $HTTP_POST_VARS[$qid] = array($cid);
+                    else
+                        array_push($HTTP_POST_VARS[$qid], $cid);
 					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
@@ -258,7 +262,8 @@ FROM question Q, question_type T
 /* }}} */
 
 /* {{{ proto bool response_commit(int response_id)
-   Returns true on sucess. */
+   Marks a response as completed.  Returns true on success.
+ */
 function response_commit($rid) {
 	$sql = "UPDATE response SET complete='Y', submitted = NULL WHERE id='${rid}'";
 	if(mysql_query($sql))
@@ -267,9 +272,57 @@ function response_commit($rid) {
 }
 /* }}} */
 
+/* {{{ proto int response_key_cmp(mixed left, mixed right)
+   Key comparator for response keys (to handle numeric, and strings
+   composed of QID_CID).
+ */
+function response_key_cmp($l, $r) {
+    $lx = explode('_', $l);
+    $rx = explode('_', $r);
+    $lc = intval($lx[0]);
+    $rc = intval($rx[0]);
+    if ($lc == $rc) {
+        if (count($lx) > 1 && count($rx) > 1) {
+            $lc = intval($lx[1]);
+            $rc = intval($rx[1]);
+        } else if (count($lx) > 1) {
+            $lc++;
+        } else if (count($rx) > 1) {
+            $rc++;
+        }
+    }
+    if ($lc == $rc)
+        return 0;
+    return ($lc > $rc) ? 1 : -1;
+}
+/* }}} */
+
 /* {{{ proto array response_select(int survey_id, int response_id, array columns, array question_ids)
    Returns the values from the specific response in a sorted
-   array indexed by question_id. */
+   (associative) array indexed by question_id.
+   
+   The key in the associative array is the Question ID, or in the case
+   of "!other", or rank questions the Question ID concatenated with the
+   Choice ID ("${qid}_${cid").  The value for all types is an array. 
+   This array contains any columns requested by the parameter $col as
+   the first elements.  The last two elements are the response content,
+   and the content ID respectively.  (For multiple answer questions,
+   the value is an array of these arrays.)
+   
+   For example, for a boolean type question (ID #42) and a check box
+   type (ID #44), you might get something like:
+
+      $response_select = array(
+        '42' => array(_('No'), 'N'),
+        '44' => array(
+                  array('Blue', 102),
+                  array('Green', 104)
+                )
+        );
+
+   When in doubt, consult var_dump() as to the format of the returned
+   array.
+ */
 function response_select($sid, $rid, $col = null, $qids = null) {
 	$values = array();
 
@@ -300,18 +353,26 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
         $qid = array_shift($row);
-		$values["$qid"]=$row;
+        $val = array_pop($row);
+		$values[$qid] = $row;
+        array_push($values["$qid"], ($val == 'Y') ? _('Yes') : _('No'), $val);
 	}
 	mysql_free_result($result);
 
 	// --------------------- response_single ---------------------
-	$sql = "SELECT q.id $col,c.content
+	$sql = "SELECT q.id $col,c.content,c.id
 	FROM response_single a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids";
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
         $qid = array_shift($row);
-		$values["$qid"]=$row;
+        $c = count($row);
+        $val = $row[$c - 2];
+		if (ereg('^!other', $val))
+            $row[$c - 1] = 'other_' . $row[$c - 1];
+        else
+            settype($row[$c - 1], "int");
+		$values[$qid] = $row;
 	}
 	mysql_free_result($result);
 
@@ -319,14 +380,18 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 	$sql = "SELECT q.id $col,c.content,c.id
 	FROM response_multiple a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
-	ORDER BY a.question_id";
+	ORDER BY a.question_id,c.id";
 	$result = mysql_query($sql);
 	$arr = array();
 	$tmp = null;
 	while($row = mysql_fetch_row($result)) {
         $qid = array_shift($row);
-        $val = $row[count($row)-2];
-		if (ereg('^!other', $val)) continue;
+        $c = count($row);
+        $val = $row[$c - 2];
+		if (ereg('^!other', $val))
+            $row[$c - 1] = 'other_' . $row[$c - 1];
+        else
+            settype($row[$c - 1], "int");
 		if($tmp == $qid) {
 			$arr[] = $row;
 			continue;
@@ -344,38 +409,28 @@ function response_select($sid, $rid, $col = null, $qids = null) {
     unset($row);
 
 	// --------------------- response_other ---------------------
-	$sql = "SELECT q.id $col,c.content,c.id,a.response
+	$sql = "SELECT q.id,c.id $col,a.response
 	FROM response_other a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
-        ORDER BY a.question_id";
+        ORDER BY a.question_id,c.id";
         $result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
-        $ans = array_pop($row);
-        $cid = array_pop($row);
-        $val = array_pop($row);
         $qid = array_shift($row);
-		$val = ereg_replace("^!other=?", '', $val);
-        $row[count($row)] = $ans;
-		$row[count($row)] = $val;
-		$values["${qid}_$cid"] = $row;
-        array_pop($row);
-        array_pop($row);
-        $row[count($row)] = empty($val) ? $ans : "$val: $ans";
-        $row[count($row)] = $cid;
-		if (isset($values[$qid]) && is_array($values[$qid]))
-			$values[$qid][] = $row;
+        $cid = array_shift($row);
+        array_push($row, $row[count($row) - 1]);
+		$values["${qid}_${cid}"] = $row;
         }
         mysql_free_result($result);
 
         // --------------------- response_rank ---------------------
-	$sql = "SELECT CONCAT(q.id,'_',c.id) AS id $col,a.rank,c.content
+	$sql = "SELECT CONCAT(q.id,'_',c.id) AS id $col,c.content,a.rank
         FROM response_rank a, question q, question_choice c
-	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids";
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
+    ORDER BY a.question_id,c.id";
         $result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
         $qid = array_shift($row);
-        $cid = array_pop($row);
-        $row[count($row)-1] = array($cid, $row[count($row)-1]);
+        settype($row[count($row) - 1], "int");
 		$values[$qid] = $row;
         }
         mysql_free_result($result);
@@ -388,6 +443,8 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 	while($row = mysql_fetch_row($result)) {
         $qid = array_shift($row);
 		$values["$qid"]=$row;
+        $val = array_pop($values["$qid"]);
+        array_push($values["$qid"], $val, $val);
         }
         mysql_free_result($result);
 
@@ -399,118 +456,195 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 	while($row = mysql_fetch_row($result)) {
         $qid = array_shift($row);
 		$values["$qid"]=$row;
+        $val = array_pop($values["$qid"]);
+        array_push($values["$qid"], $val, $val);
         }
         mysql_free_result($result);
 
         // --------------------- return ---------------------
-        ksort($values);
+        uksort($values, 'response_key_cmp');
         return($values);
 }
 /* }}} */
 
+/* {{{ proto array response_select_human(int survey_id, int response_id, array question_ids)
+   A wrapper around response_select(), that returns an array of
+   key/value pairs more suitable for humans.
+ */
 function response_select_human($sid, $rid, $qids = null) {
-    $res = response_select($sid, $rid, 'content', $qids);
+    $res = response_select($sid, $rid, 'type_id,content', $qids);
     $hmn = array();
     reset($res);
-    $tmps = null;
+    $tmpk = null;
     $tmpv = array();
     while(list($qid, $arr) = each($res)) {
-        $sub = null;
+        $key = null;
+        $val = null;
         if (strstr($qid, '_')) {
             // rank or other
             list($qid, $sub) = explode('_', $qid);
-            if (!is_array($arr[1]))
+            if ($arr[0] != 8)
                 continue; // other
+
+            // rank
+            $key = $arr[1];
+            if ($arr[3] < 0)
+                $arr[3] = 'n/a';
+            else
+                $arr[3]++;
+            $val = $arr[2] . ' = ' . $arr[3];
+            if ($tmpk != $key) {
+                if (!empty($tmpk) || count($tmpv))
+                    array_push($hmn, array($tmpk, $tmpv));
+                $tmpk = null;
+                $tmpv = array();
+            }
+            $tmpk = $key;
+            array_push($tmpv, $val);
+            continue;
         }
+        if (!empty($tmpk) || count($tmpv))
+            array_push($hmn, array($tmpk, $tmpv));
         if (is_array($arr[0])) {
-            $val = array_map(create_function('$a','return $a[1];'), $arr);
-            $arr[0] = $arr[0][0];
+            // mutiple
+            $key = $arr[0][1];
+            $val = array();
+            foreach ($arr as $subarr) {
+                if (ereg("^!other", $subarr[2])) {
+                    $tmpv = preg_replace(array("/^!other=/","/^!other/"),
+                            array('', 'Other'), $subarr[2]);
+                    $tmp = preg_replace("/^other/", $qid, $subarr[3]);
+                    if (isset($res[$tmp]))
+                        $tmpv .= ': '. $res[$tmp][2];
+                    array_push($val, $tmpv);
+                } else {
+                    array_push($val, $subarr[2]);
+                }
+            }
         } else {
-            if (is_array($arr[1])) {
-                if ($tmps != null && $tmps != $arr[0]) {
-                    $hmn[] = array($tmps, $tmpv);
-                    $tmpv = array();
-	}
-                $tmps = $arr[0];
-                $tmpv[] = $arr[1][0] . ' = '. $arr[1][1];
-			continue;
+            $key = $arr[1];
+            if (ereg("^!other", $arr[2])) {
+                $val = preg_replace(array("/^!other=/","/^!other/"),
+                        array('', 'Other'), $arr[2]);
+                $tmp = preg_replace("/^other/", $qid, $arr[3]);
+                if (isset($res[$tmp]))
+                    $val .= ': '. $res[$tmp][2];
             } else {
-                if ($tmps != null) {
-                    $hmn[] = array($tmps, $tmpv);
-                    $tmps = null;
-                    $tmpv = array();
-		}
-                $val = $arr[1];
-	}
+                $val = $arr[2];
+            }
         }
-        $hmn[] = array($arr[0], $val);
+        $tmpk = null;
+        $tmpv = array();
+        $hmn[] = array($key, $val);
     }
     return $hmn;
 }
+/* }}} */
 
+/* {{{ proto array response_select_compact(int survey_id, int response_id, array question_ids)
+   A wrapper around response_select(), that returns an array of
+   key/value pairs more suitable for computer parsing.
+ */
 function response_select_compact($sid, $rid, $qids = null) {
-    $res = response_select($sid, $rid, null, $qids);
+    $res = response_select($sid, $rid, 'type_id', $qids);
     $cpq = array();
     reset($res);
     while(list($qid, $arr) = each($res)) {
         if (strstr($qid, '_')) {
             // rank or other
-            if (is_array($arr[0])) {
+            if ($arr[0] == 8) {
                 // rank
-                $cpq[] = array($qid, $arr[0][0], $arr[0][1]);
+                $cpq[] = array($qid, $arr[2], array($arr[1]));
             } else {
                 // other
-                $cpq[] = array($qid, $arr[0]);
-	}
+                $cpq[] = array($qid, $arr[1]);
+            }
         } elseif (is_array($arr[0])) {
+            // multiple
 	        $cpq[] = array($qid,
-                    array_map(create_function('$a','return array_shift($a);'), $arr),
-                    array_map(create_function('$a','return array_pop($a);'), $arr));
+                    array_map(create_function('$a', 'return $a[2];'), $arr),
+                    array_map(create_function('$b', 'return $b[1];'), $arr));
         } else {
-	        $cpq[] = array($qid, $arr[0]);
+            if ($arr[0] == 4 || $arr[0] == 6)
+    	        $cpq[] = array($qid, $arr[2], array($arr[1]));
+            else
+    	        $cpq[] = array($qid, $arr[2]);
         }
     }
     return $cpq;
 }
+/* }}} */
 
+/* {{{ proto array response_select_name(int survey_id, int response_id, array question_ids)
+   A wrapper around response_select(), that returns an array of
+   key/value pairs using the field name as the key.
+ */
 function response_select_name($sid, $rid, $qids = null) {
-    $res = response_select($sid, $rid, 'name', $qids);
+    $res = response_select($sid, $rid, 'type_id,name', $qids);
     $nam = array();
     reset($res);
     while(list($qid, $arr) = each($res)) {
+        $key = null;
+        $val = null;
         if (strstr($qid, '_')) {
             // rank or other
-            if (is_array($arr[1])) {
-                // rank
-                $str1 = $arr[1][0];
-				do {
-					$str2 = $str1;
-					$str1 = eregi_replace(
-					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
-					" ", $str2);
-				} while ($str1 != $str2);
-			    $str1 = strtoupper(eregi_replace(
-				    "[^A-Z0-9]+", "_", trim($str1)));
-			    $str1 = ereg_replace('_$',"",$str1);
-                $arr[0] .= "_$str1";
-                $nam[$arr[0]] = $arr[1][1];
-            } else {
-                // other
-                continue;
-	}
-        } elseif (is_array($arr[0])) {
-            // multiple
-	        $nam[$arr[0][0]] =
-                    array_map(create_function('$a','return $a[1];'), $arr);
+            list($qid, $sub) = explode('_', $qid);
+            if ($arr[0] != 8)
+                continue; // other
+
+            // rank
+            $str1 = $arr[2];
+            do {
+                $str2 = $str1;
+                $str1 = eregi_replace(
+                    "(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
+                    " ", $str2);
+            } while ($str1 != $str2);
+            $str1 = strtoupper(eregi_replace(
+                "[^A-Z0-9]+", "_", trim($str1)));
+            $str1 = ereg_replace('_$',"",$str1);
+            $arr[1] .= "_$str1";
+            $nam[$arr[1]] = $arr[3];
+            continue;
+        }
+        if (is_array($arr[0])) {
+            // mutiple
+            $key = $arr[0][1];
+            $val = array();
+            foreach ($arr as $subarr) {
+                if (ereg("^!other", $subarr[2])) {
+                    $tmpv = preg_replace(array("/^!other=/","/^!other/"),
+                            array('', 'Other'), $subarr[2]);
+                    $tmp = preg_replace("/^other/", $qid, $subarr[3]);
+                    if (isset($res[$tmp]))
+                        $tmpv .= ': '. $res[$tmp][2];
+                    array_push($val, $tmpv);
+                } else {
+                    array_push($val, $subarr[2]);
+                }
+            }
         } else {
-	        $nam[$arr[0]] = $arr[1];
-	}
-	}
+            $key = $arr[1];
+            if (ereg("^!other", $arr[2])) {
+                $val = preg_replace(array("/^!other=/","/^!other/"),
+                        array('', 'Other'), $arr[2]);
+                $tmp = preg_replace("/^other/", $qid, $arr[3]);
+                if (isset($res[$tmp]))
+                    $val .= ': '. $res[$tmp][2];
+            } else {
+                $val = $arr[2];
+            }
+        }
+        $nam[$key] = $val;
+    }
     return $nam;
 }
+/* }}} */
+
 /* {{{ proto bool response_send_email(int survey_id, int response_id)
-   Reads current form variables from HTTP_POST_VARS.
-   Returns true if mail sent. */
+   Retrieves the response from the database and sends an email with the
+   values.  Returns true if mail sent.
+ */
 function response_send_email($sid, $rid) {
 	if (!$GLOBALS['ESPCONFIG']['allow_email']) {
 		return true;
@@ -603,6 +737,9 @@ function response_send_email($sid, $rid) {
 }
 /* }}} */
 
+/* {{{ proto int response_select_max_pos(int survey_id, int response_id)
+   Returns the position of the last answered question in a response.
+ */
 function response_select_max_pos($sid, $rid) {
 	$max = 0;
 	
@@ -619,7 +756,12 @@ function response_select_max_pos($sid, $rid) {
 	}
         return $max;
 }
+/* }}} */
 
+/* {{{ proto int response_select_max_pos(int survey_id, int response_id)
+   Returns the number of the section in which questions have been
+   answered in a response.
+ */
 function response_select_max_sec($sid, $rid) {
 	$pos = response_select_max_pos($sid, $rid);
 	$sql = "SELECT COUNT(*)+1 FROM question q
@@ -632,7 +774,12 @@ function response_select_max_sec($sid, $rid) {
 	mysql_free_result($res);
 	return $max;
 }
+/* }}} */
 
+/* {{{ proto void response_import_sec(int survey_id, int response_id, int section, &array destination)
+   Populates the destination array with the answers from a given
+   section of a given response.
+ */
 function response_import_sec($sid, $rid, $sec, $varr = null) {
     if ($varr == null)
         $varr =& $GLOBALS['HTTP_POST_VARS'];
@@ -640,12 +787,18 @@ function response_import_sec($sid, $rid, $sec, $varr = null) {
     $ids = survey_get_sections($sid);
     if ($sec < 1 || !isset($ids[$sec - 1]))
         return;
-    $vals = response_select_compact($sid, $rid, $ids[$sec - 1]);
+    $vals = response_select($sid, $rid, 'content', $ids[$sec - 1]);
 
     reset($vals);
-    foreach ($vals as $arr) {
-        $varr[$arr[0]] = (count($arr) > 2) ? $arr[2] : $arr[1];
+    foreach ($vals as $id => $arr) {
+        if (isset($arr[0]) && is_array($arr[0])) {
+            // multiple
+            $varr[$id] = array_map('array_pop', $arr);
+        } else {
+            $varr[$id] = array_pop($arr);
+        }
     }    
 }
+/* }}} */
 
 ?>
