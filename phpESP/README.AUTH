@@ -1,0 +1,39 @@
+# $Id$
+
+// Written by James Flemer
+// [jflemer@acm.jhu.edu]
+
+---------------------------------------------------------------------
+AUTHENTICATION / LOGIN README:
+
+This is the first revision of authentication/authorization
+code. There are two new tables in the database (espauth.sql)
+but no user interface to them yet. There is a new handler,
+authhand.php, which does the appropriate things to login a
+user. And there is the auth function, auth.inc.
+
+To use auth functions ...
+o Import the two new tables:
+       mysql -uroot phpesp < espauth.sql
+  or something like that.
+
+o Add some rows to the access table.
+    * survey_id == the survey ID
+	* realm     == the HTTP Auth realm (shows up in box)
+	* uselogin  == set to 'y' to require a valid user
+	The start and end times are unused now.
+
+o Add some users.
+    * some obvious fields ...
+	* realm is unused now...
+	* acctype   == set to 1 to limit # of logins
+	* maxlogin  == max logins (if acctype == 1)
+	* numlogin  == number of logins to date
+
+o Make some surveys accessable only via authhand.php.
+
+o Send me bug reports. :-)
+
+o That's it.
+
+-James 
