@@ -17,7 +17,7 @@
 		echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
 ?>
 </td></tr></table>
-<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=report\">" . _('Go back to Report Menu') . "</a>\n"); ?>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=report\">" . _('Go back to Report Menu') . "</a>\n"); ?><br>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php
 		return;
