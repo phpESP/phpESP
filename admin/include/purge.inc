@@ -62,13 +62,15 @@
 <?php
 	while($survey = mysql_fetch_array($result)) {
 		if($survey['status'] & STATUS_DELETED) {
-			$stat = 'Deleted';
+			$stat = 'Archived';
 		} elseif($survey['status'] & STATUS_DONE) {
 			$stat = 'Ended';
 		} elseif($survey['status'] & STATUS_ACTIVE) {
 			$stat = 'Active';
+		} elseif($survey['status'] & STATUS_TEST) {
+			$stat = 'Testing';
 		} else {
-			$stat = 'new';
+			$stat = 'Editing';
 		}
 		
 		if($bg != "#ffffff")
