@@ -7,7 +7,6 @@ SOON:
 * expand the "Results" page into "Analysis"
   * including a nice form interface to the cross-analysis
 * "sub"-questions of other questions
-  (Roman, will this solve the SKIP problem?)
 * "forked" surveys (subsequent pages dependent on previous question)
 * question groups (questions that share a Q#)
 * check boxes with a fixed number (pick N items...)
@@ -19,9 +18,6 @@ SOON:
 
 LATER:
 * results (user vs. admin)
-* fix results math ;-)
-* add "parameters" to question types (?)
-  * Enable/Disable "N/A" on ratings
 * view results per submission
 * new GUI
 * better docs
@@ -30,7 +26,7 @@ NEVER: :)  Well OK, not never.
            I'll do this when I write a new template engine.
 * add LOCALE support
 
-JAVASCRIPTS:
+JAVASCRIPTS: (please contribute)
  * Automatically Check box (or radio button) next
    to an "!other" field when data is entered.
  * Limit number of check boxes checked to N.
