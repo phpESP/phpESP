@@ -39,7 +39,7 @@ v1.6.1 final ==> v1.7-dev
 * ADDED support for databases other than mySQL.  ADOdb now
   required by and shipping with phpESP.
 * ADDED new css tags for error/info text.
-* ADDED new help page (Based on a submission from Aaron Axelse).
+* ADDED new help page (Based on a submission from Aaron Axelsen).
 * ADDED javascript popup to warn users of the non-reversibilty of
   activating a survey.
 * ADDED javascript popup to warn users when canceling a new survey.
