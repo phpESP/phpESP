@@ -44,11 +44,7 @@
 			unset($HTTP_GET_VARS['sid']);
 			unset($HTTP_POST_VARS['sid']);
 			$HTTP_POST_VARS['userid'] = 'test';
-			$tmp_me = $ESPCONFIG['ME'];
-			$HTTP_SERVER_VARS['PHP_SELF'] = $ESPCONFIG['ME'].'?where=test';
 			include($ESPCONFIG['handler']);
-			/* restore stuff after the handler does it's job */
-			$ESPCONFIG['ME'] = $tmp_me;
 ?>
 </td></tr></table>
 <a href="<?php echo($ESPCONFIG['ME']); ?>?where=results&sid=<?php echo($sid); ?>&test=1"><?php echo(_('View Results')); ?></a><br>
