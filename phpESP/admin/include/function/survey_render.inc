@@ -79,21 +79,28 @@ function render_survey($sid, $section = 1, $message = '') {
 		$prec = &$question['precise'];
 		
 		if ($tid == 100) {
-			echo("<tr>\n");
-        		echo("	<td class=\"preQuestionBorder\">&nbsp;</td>\n");
-      			echo("</tr>\n");
-      			echo("<tr>\n");
-        		echo("<td height=\"35\" vAlign=\"top\">\n");
-                	echo("<table class=\"qnOuterTable\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\">\n");
-            		echo("<tr>\n");
-              		echo("	<td width=\"100%\" height=\"35\" valign=\"top\">\n");
-                        echo("<table class=\"qnInnerTable\" width=\"100%\" border=\"0\" cellpadding=\"10\" cellspacing=\"1\">\n");
-                  	echo("<tr>\n");
-                    	echo("	<td class=\"qnInner\" width=\"100%\" height=\"35\">".$question['content'] ."</td></tr>\n");
-                	echo("</table></td>\n");
-            		echo("</tr>\n");
-          		echo("</table></td>\n");
-      			echo("</tr>\n");
+
+?>
+<tr>
+    <td class="preQuestionBorder">&nbsp;</td>
+</tr>
+<tr>
+    <td height="35" vAlign="top">
+        <table class="qnOuterTable" width="100%" border="0" cellpadding="0" cellspacing="1">
+        <tr>
+            <td width="100%" height="35" valign="top">
+                <table class="qnInnerTable" width="100%" border="0" cellpadding="10" cellspacing="1">
+                <tr>
+        	        <td class="qnInner" width="100%" height="35"><?php echo $question['content']; ?></td>
+                </tr>
+                </table>
+            </td>
+        </tr>
+        </table>
+    </td>
+</tr>
+<?php
+
 			continue;
 		}
 
