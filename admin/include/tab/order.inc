@@ -62,8 +62,9 @@ function saveOrder() {
         <?php
         while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
             $result->MoveNext();
+            $position = $pos+1;
             if($tid != 99) {
-                echo('<option value="'.$qid.'">'.$content.'</option>');
+                echo('<option value="'.$qid.'">'.$position.'. '.substr($content,0, 200).'</option>');
             }
             else {
                 ++$sec;
