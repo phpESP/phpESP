@@ -34,7 +34,7 @@
 		}
 	}
 	
-	$sql = "SELECT id,name,title,status FROM surveys ORDER BY name";
+	$sql = "SELECT id,name,title,status FROM surveys ORDER BY id DESC";
 	$result = mysql_query($sql);
 
 ?>
