@@ -275,23 +275,23 @@
 			<input type="submit" name="delete" value="<?php echo(_('Delete')); ?>"></th>
 	</tr>--><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Design Web Forms') ."</th>\n");
+	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Design Surveys') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">". mkselect('pdesign',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Change Form Status') ."</th>\n");
+	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Change Survey Status') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">". mkselect('pstatus',array('Y' => _('Yes'), 'N' => _('No'))) .
 		'<!-- ('. _('Activate/End') .") --></td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Export Form Data') ."</th>\n");
+	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Export Survey Data') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">". mkselect('pdata',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Group Form Editor') ."</th>\n");
+	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Group Editor') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">". mkselect('pall',array('Y' => _('Yes'), 'N' => _('No'))) .
 		'<!-- ('. _('may edit <b>all</b> forms owned by this group') .") --></td>\n");
 ?>
