@@ -9,20 +9,18 @@ SOON:
 * "forked" surveys (subsequent pages dependant on previous question)
 * question groups (questions that share a Q#)
 * check boxes with a fixed number (pick N items...)
-* javascript '!other' helper
 * sub headings/text within survey
 * spell checking support (use spell checking from IMP?)
 * "Archive" managemnet
 * move text strings to seperate file (to ease LOCALE support)
-* javascript 'order' page
-* javascript conditional questions (sub questions)
 * delete button on questions tab
 * CSV export function
+* mergeing survey results
+* fix email functions
 
 LATER:
 * results (user vs. admin)
 * fix results math ;-)
-* results w/o Total's option
 * user login/verification etc.
 * add "parameters" to question types (?)
   * Enable/Disable "N/A" on ratings
@@ -33,3 +31,10 @@ LATER:
 NEVER: :)  Well OK, not never. 
            I'll do this when I write a new templating engine.
 * add LOCALE support
+
+JAVASCRIPTS:
+ * Automattically Check box (or radio button) next
+   to an "!other" field when data is entered.
+ * Limit number of check boxes checked to N.
+ * "Grey out" a field(s) when a box is/is not checked.
+ * Order page
