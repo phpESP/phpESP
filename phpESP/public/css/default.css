@@ -19,3 +19,23 @@
         text-align: center;
 }
 
+body#auth {
+    margin: 5px;
+}
+.login {
+    width: 480;
+}
+.login form {
+    float: left;
+}
+div.row {
+    clear: both;
+    padding-top: 10px;
+}
+
+div.row label {
+    float: left;
+    padding-right: 5px;
+    width: 100px;
+    text-align: right;
+}

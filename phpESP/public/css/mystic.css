@@ -180,9 +180,29 @@ body {
 	text-decoration: underline;
 }
 /* textbox and radio button colors - black answers in white boxes */
-INPUT, TEXTAREA, SELECT, OPTION {
+input, textarea, select, option {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: normal;
 	color: #000000;
 	background-color: #FFFFFF;
+}
+body#auth {
+    margin: 5px;
+}
+.login {
+    width: 480;
+}
+.login form {
+    float: left;
+}
+div.row {
+    clear: both;
+    padding-top: 10px;
+}
+
+div.row label {
+    float: left;
+    padding-right: 5px;
+    width: 100px;
+    text-align: right;
 }
