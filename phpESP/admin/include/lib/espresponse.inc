@@ -234,6 +234,7 @@ FROM ".$GLOBALS['ESPCONFIG']['question_table']." Q, ".$GLOBALS['ESPCONFIG']['que
 					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_other_table']." ( response_id,question_id,choice_id,response ) VALUES ( ${rid},${qid},${cid},${other} )";
+				        $result = execute_sql($sql);
 					}
 				}
 				db_close($c_result);
