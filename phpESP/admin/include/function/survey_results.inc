@@ -184,6 +184,10 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
+					if ($ccontent == 'Y')
+						$ccontent = _('Yes');
+					else
+						$ccontent = _('No');
 					$counts[$ccontent] = $count;
 				}
 				mysql_free_result($result);
@@ -249,6 +253,23 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 				mysql_free_result($result);
 			}
 			$question["result_id"] = 4;	// force "list" type response for text fields
+			break;
+// -------------------------------- response_date --------------------------------
+		case 'response_date':
+			$sql = "SELECT A.response, COUNT(A.response_id) AS num
+					  FROM ${table} A
+					 WHERE A.question_id='${qid}' AND
+    					   A.response_id ${ridstr}
+					 GROUP BY A.response";
+			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
+			if($result = mysql_query($sql)) {
+				while(list($text, $num) = mysql_fetch_row($result)) {
+					if(!empty($text))
+						$counts[htmlspecialchars($text)] = $num;
+				}
+				mysql_free_result($result);
+			}
+			$question["result_id"] = 4;	// force "list" type response for date fields
 			break;
 // -------------------------------- response_rank --------------------------------
 		case 'response_rank':
