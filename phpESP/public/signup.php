@@ -15,7 +15,7 @@
  */
 
   if (!defined('ESP_BASE'))
-    define('ESP_BASE', dirname(__FILE__) . '/../');
+    define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 
   require_once(ESP_BASE . '/admin/phpESP.ini.php');
   
