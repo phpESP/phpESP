@@ -274,12 +274,12 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 // -------------------------------- response_rank --------------------------------
 		case 'response_rank':
 			if($tid == 8) { //Rank
-				$sql = "SELECT C.content, AVG(A.rank) AS average
+				$sql = "SELECT C.content, AVG(A.rank+1) AS average
 						  FROM question_choice C, ${table} A
 						 WHERE C.question_id='${qid}' AND
     						   A.question_id='${qid}' AND
 							   A.choice_id=C.id AND
-							   A.rank>0 AND
+							   A.rank>=0 AND
 							   A.response_id ${ridstr}
 						 GROUP BY C.id";
 				if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
@@ -323,7 +323,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 				mkreslist($counts,$total,$precision,$showTotals);
 				break;
 			case "99":	// Average
-				mkresavg($counts,$total,$precision,$showTotals);
+				mkresavg($counts,$total,$precision,$showTotals,$question['length']);
 				break;
 		} // end switch
 ?>

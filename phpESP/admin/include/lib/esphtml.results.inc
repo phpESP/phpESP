@@ -185,21 +185,22 @@ function mkreslist($counts,$total,$precision,$showTotals) {
 
 /* {{{ proto void mkresavg(array weights, int total, int precision, bool show_totals) 
 	Builds HTML showing AVG results. */
-function mkresavg($counts,$total,$precision,$showTotals) {
-	$i=0;
+function mkresavg($counts,$total,$precision,$showTotals,$length) {
+	if (!$length)
+		$length = 5;
+	$width = 200 / $length;
 ?>
-<table border="0">
+<table border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td></td>
-		<td align="center" colspan="7"><?php echo(_('Average rank')); ?></td>
+		<td align="center" colspan="<?php echo($length+2); ?>"><?php echo(_('Average rank')); ?></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td align="right" width="44"><?php echo(_('1')); ?></td>
-		<td align="right" width="40"><?php echo(_('2')); ?></td>
-		<td align="right" width="40"><?php echo(_('3')); ?></td>
-		<td align="right" width="40"><?php echo(_('4')); ?></td>
-		<td align="right" width="36"><?php echo(_('5')); ?></td>
+		<?php
+			for ($i = 0; $i < $length; )
+				echo( "<td align=\"right\" width=\"$width\">". ++$i ."</td>\n");
+		?>
 		<td width="20"></td>
 		<td></td>
 	</tr>
@@ -211,20 +212,20 @@ function mkresavg($counts,$total,$precision,$showTotals) {
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<td align="right"><?php echo($content); ?></td>
-		<td align="left" width="220" colspan="6">
+		<td align="right"><?php echo($content); ?>&nbsp;</td>
+		<td align="left" width="220" colspan="<?php echo($length+1); ?>">
 <?php
 		if($avg) {
-			echo("&nbsp;<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
-			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$avg*40);
-			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
+			echo('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'/hbar_l.gif" height="9" width="4">');
+			if (($j = $avg * $width - 11) > 0)
+				printf('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'/hbar.gif" height="9" width="%d">', $j);
+			echo('<img src="'. $GLOBALS['ESPCONFIG']['image_path'] .'/hbar_r.gif" height="9" width="4">');
 		}
 ?>
 		</td>
 		<td align="right" width="60">(<?php printf("%.${precision}f",$avg); ?>)</td>
 	</tr>
 <?php
-		$i += $num;
 	} // end while
 ?>
 </table>
