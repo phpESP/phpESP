@@ -48,7 +48,7 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <li><a href="<?php echo("${base}?where=results"); ?>"><?php echo(_('View Results from a Survey')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=results&type=cross"); ?>"><?php echo(_('Cross Tabulate Survey Results')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=report");  ?>"><?php echo(_('View a Survey Report')); ?></a></li>
-                            <li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data to CSV')); ?></a></li>
+                            <li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data')); ?></a></li>
                         </ul>
 
                         <?php if($GLOBALS['ESPCONFIG']['auth_design']) { ?>

@@ -234,7 +234,7 @@ FROM ".$GLOBALS['ESPCONFIG']['question_table']." Q, ".$GLOBALS['ESPCONFIG']['que
 					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_other_table']." ( response_id,question_id,choice_id,response ) VALUES ( ${rid},${qid},${cid},${other} )";
-				        $result = execute_sql($sql);
+						$result = execute_sql($sql);
 					}
 				}
 				db_close($c_result);
@@ -464,6 +464,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
             $row = fetch_row($result);
         $qid = array_shift($row);
         settype($row[count($row) - 1], 'integer');
+		if($row[3]>=0)$row[3]++;
 		$values[$qid] = $row;
             $result->MoveNext();
         }
