@@ -71,17 +71,18 @@
 
 	/* load names and titles of all surveys available to
 	 * _this_ user */
-	$statusok = (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED);
+	$statusok = (STATUS_ACTIVE | STATUS_DONE);
+	$statusno = STATUS_DELETED;
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = "SELECT id,name,title,status,owner,realm FROM survey 
-		WHERE (status & $statusok) ORDER BY id DESC";
+		$sql = "SELECT id,name,title,owner,realm FROM survey 
+		WHERE NOT (status & $statusno) AND (status & $statusok) ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdata']));
-		$sql = "SELECT id,name,title,status,owner,realm
-			FROM survey WHERE (status & $statusok) AND (owner = '".
+		$sql = "SELECT id,name,title,owner,realm
+			FROM survey WHERE NOT (status & $statusno) AND (status & $statusok) AND (owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
