@@ -61,7 +61,7 @@ function render_survey($sid, $section = 1, $message = '') {
 <h2 class="surveyTitle"><?php echo($survey["title"]); ?></h2>
 <h3 class="surveySubtitle"><?php echo($survey["subtitle"]); ?></h3>
 <?php if($num_sections>1) { ?>
-	<font size="-1"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font>
+	<font size="-1" class="surveyPage"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font>
 <?php } ?>
 <blockquote class="addInfo"><?php echo($survey["info"]); ?></blockquote>
 <blockquote class="message"><?php echo($message); ?></blockquote>
@@ -324,7 +324,7 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 </table>
 <?php if($num_sections>1) { ?>
-	<font size="-1"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font><br>
+	<font size="-1" class="surveyPage"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font><br>
 <?php } ?>
 <?php
 	return;
