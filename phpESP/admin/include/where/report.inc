@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 	// see if a survey has been selected
 	if(!empty($HTTP_GET_VARS['sid'])) {

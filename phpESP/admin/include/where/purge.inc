@@ -4,8 +4,7 @@
 
 // Written by James Flemer
 // For eGrad2000.com
-// <jflemer@acm.jhu.edu>
-// <jflemer@eGrad2000.com>
+// <jflemer@alum.rpi.edu>
 
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
 		echo(mkerror(_('Only superusers allowed.'))."<br>\n");

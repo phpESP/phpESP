@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 // <jflemer@acm.rpi.edu>
 
 	$sql = 'SELECT username, fname, lname, realm, disabled, expiration FROM designer';

@@ -4,7 +4,7 @@
 
 //  phpESP Default Authentication Library
 //  By: Romans Jasins <roma@latnet.lv>
-//      James Flemer <jflemer@acm.jhu.edu>
+//      James Flemer <jflemer@alum.rpi.edu>
 
 if(!defined('_LIB_AUTH')) {
 	define('_LIB_AUTH', TRUE);

@@ -4,7 +4,7 @@
 
 //  phpESP LDAP Authentication Library
 //  By: Christopher Zorn <zorncj@musc.edu>
-//      James Flemer <jflemer@acm.jhu.edu>
+//      James Flemer <jflemer@alum.rpi.edu>
 
 if (!extension_loaded('ldap') && !ini_get('safe_mode') && !@dl('gettext.so')) {
 	echo('<b>The PHP ldap extension is not installed. Aborting.</b>');

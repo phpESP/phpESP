@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 if(!defined('_LIB_ESPSQL')) {
 	define('_LIB_ESPSQL', TRUE);

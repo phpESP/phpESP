@@ -4,8 +4,7 @@
 
 // Written by James Flemer
 // For eGrad2000.com
-// <jflemer@acm.jhu.edu>
-// <jflemer@eGrad2000.com>
+// <jflemer@alum.rpi.edu>
 
 	/* get the sid ... if any */
 	if(!empty($HTTP_GET_VARS['sid']))

@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 if(!defined('_FUNCTION_SURVEY_COPY')) {
  	define('_FUNCTION_SURVEY_COPY',TRUE);

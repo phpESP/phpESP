@@ -4,8 +4,7 @@
 
 // Written by James Flemer
 // For eGrad2000.com
-// <jflemer@acm.jhu.edu>
-// <jflemer@eGrad2000.com>
+// <jflemer@alum.rpi.edu>
 
 ?>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
