@@ -90,7 +90,7 @@ function survey_generate_csv($sid) {
 				break;
 			case 1: /* string */
 				if (isset($response[$columns[$i]])) {
-					$response[$columns[$i]] = ereg_replace("[\n\t]", ' ', $response[$columns[$i]]);
+					$response[$columns[$i]] = ereg_replace("[\r\n\t]", ' ', $response[$columns[$i]]);
 					$response[$columns[$i]] = ereg_replace('"', '""', $response[$columns[$i]]);
 					$response[$columns[$i]] = '"'. $response[$columns[$i]] .'"';
 				}
