@@ -122,6 +122,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	require($ESPCONFIG['include_path']."/function/survey_results".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/account_upload".$ESPCONFIG['extension']);
 
 } // end if !defined(_FUNCS)
 
