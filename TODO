@@ -5,8 +5,7 @@
 
 SOON:
 * add ability to make "sub"-questions of other questions
-* check email on multipage surveys
-* add more enforcing of policy (changing survey after it has been activated)
+* add ability to insert sub headings/text within survey
 * add spell checking support (use spell checking from IMP?)
 * add "Archive" managemnet
 
