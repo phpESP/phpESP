@@ -7,50 +7,21 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-#	global $HTTP_SERVER_VARS, $HTTP_POST_VARS, $HTTP_GET_VARS;
-	require($HTTP_SERVER_VARS['DOCUMENT_ROOT']. "/phpESP/admin/phpESP.ini");
+/* When using the authentication for responses you need to include
+ * part of the script *before* your template so that the
+ * HTTP Auth headers can be sent when needed.
+ *
+ * See the handler-prefix.php file for details.
+ */
+
+	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
 	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
-
-	if(isset($HTTP_GET_VARS['sid'])) {
-		echo(mkerror(_('Error processing survey: Security violation.')));
+	require($ESPCONFIG['handler_prefix']);
+	if(!defined('AUTHHAND-OK')) {
+		if (!empty($GLOBALS['errmsg']))
+			echo($GLOBALS['errmsg']);
 		return;
 	}
-	
-	if(isset($HTTP_GET_VARS['results']) || isset($HTTP_POST_VARS['results'])) {
-		echo(mkerror(_('Error processing survey: Security violation.')));
-		return;
-	}
-	
-	$sid = intval($sid);
-	if(empty($sid))
-		$sid = intval($HTTP_POST_VARS['sid']);
-
-	if(empty($sid)) {
-		echo(mkerror(_('Error processing survey: Survey not specified.')));
-		return;
-	}
-
-	if(empty($HTTP_POST_VARS['userid'])) {
-		// find remote user id (takes the first non-empty of the folowing)
-		//  1. a GET variable named 'userid'
-		//  2. the REMOTE_USER set by HTTP-Authintication
-		//  3. the query string
-		if (!empty($HTTP_GET_VARS['userid'])) {
-			$HTTP_POST_VARS['userid'] = $HTTP_GET_VARS['userid'];
-		} elseif(!empty($HTTP_SERVER_VARS['REMOTE_USER'])) {
-			$HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_USER'];
-		} elseif(!empty($HTTP_SERVER_VARS['QUERY_STRING'])) {
-			$HTTP_POST_VARS['userid'] = urldecode($HTTP_SERVER_VARS['QUERY_STRING']);
-		} else {
-			$HTTP_POST_VARS['userid'] = 'unknown';
-		}
-	}
-
-	if(empty($HTTP_POST_VARS['referer']))
-		$HTTP_POST_VARS['referer'] = $HTTP_SERVER_VARS['HTTP_REFERER'];
-
-	if(empty($HTTP_POST_VARS['sec']) || $HTTP_POST_VARS['sec'] < 1)
-		$HTTP_POST_VARS['sec'] = 1;
 
 	if(empty($HTTP_POST_VARS['rid']))
 		$HTTP_POST_VARS['rid'] = '';
@@ -101,7 +72,7 @@
 		}
 	}
 ?>
-<form method="post" action="<?php echo($HTTP_SERVER_VARS['PHP_SELF']); ?>">
+<form method="post" name="phpesp_response" action="<?php echo($HTTP_SERVER_VARS['PHP_SELF']); ?>">
 <input type="hidden" name="referer" value="<?php echo($HTTP_POST_VARS['referer']); ?>">
 <input type="hidden" name="userid" value="<?php echo($HTTP_POST_VARS['userid']); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
