@@ -306,7 +306,8 @@
 	the Management Interface, click <b>Change the Status of
 	an Existing Survey</b>. Find the survey you want to
 	activate. Make note of the survey ID (the left most
-	column).</p>
+	column) and the survey NAME(the column to the right of
+    the ID).</p>
 
 	<p>NOTE: At this point you must <b>activate</b> the
 	survey. This is a one way operation. After it has been
@@ -315,12 +316,20 @@
 	cleared by activating it.</p>
 
 	<p>Click on the <b>Activate</b> link for your survey.
-	At this point your survey is active. To insert the
-	survey into an existing page you must place a PHP tag
-	in the HTML for the page. Copy the text below and paste
-	it into the HTML of the page. (It is suggested that you
-	put this in the cell of a table.) Change the text
-	<tt><em>SID</em></tt> to the survey ID of your survey
+	At this point your survey is active. It can be accessed
+    directly from the URL below:</p>
+    <tt><?php echo($ESPCONFIG['autopub_url']."?name=SURVEYNAME"); ?></tt>
+    <p>
+    Replace SURVEYNAME with the name you gave your survey 
+    when it was created or with a SURVEYNAME(found on the 
+    status page).<p />
+    <p>
+    Another way to publish your survey is to insert the survey 
+    into an existing page.  You must place a PHP tag in the HTML 
+    for the page. Copy the text below and paste it into the HTML 
+    of the page. (It is suggested that you put this in the cell 
+    of a table.) Change the text <tt><em>SID</em></tt> to the survey 
+    ID of your survey
 	(found on the status page).</p>
 	<tt>&lt;?php $sid=<em>SID</em>; include('<?php echo($GLOBALS['ESPCONFIG']['handler']); ?>'); ?&gt;</tt>
 
