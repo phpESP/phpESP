@@ -7,6 +7,16 @@
 // Written by Romans Jasins
 // <roma@latnet.lv>
 
+    if(!isset($HTTP_GET_VARS['precision'])) {
+        $HTTP_GET_VARS['precision'] = "";
+    }
+    if(!isset($HTTP_GET_VARS['totals'])) {
+        $HTTP_GET_VARS['totals'] = "";
+    }
+    if(!isset($HTTP_GET_VARS['test'])) {
+        $HTTP_GET_VARS['test'] = "";
+    }
+
 	// see if surveys have been selected
 	if(!empty($HTTP_GET_VARS['sids'])) {
 		$sid = intval($HTTP_GET_VARS['sids']);
