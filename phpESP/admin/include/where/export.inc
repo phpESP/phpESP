@@ -6,9 +6,9 @@
 // <jflemer@acm.jhu.edu>
 
 if(!empty($HTTP_POST_VARS['sid']))
-	$sid = intval($HTTP_GET_VARS['sid']);
-elseif(!empty($HTTP_POST_VARS['sid']))
 	$sid = intval($HTTP_POST_VARS['sid']);
+elseif(!empty($HTTP_GET_VARS['sid']))
+	$sid = intval($HTTP_GET_VARS['sid']);
 else
 	$sid = '';
 $bg = '';
@@ -101,7 +101,7 @@ if(!$sid) {
 
 	/* check ACLs for permissions */
 	$srealm = auth_get_survey_realm($sid);
-	if($HTTP_GET_VARS['test']) {
+	if(isset($HTTP_GET_VARS['test'])) {
 		/* check ACL to see if user is allowed to test
 		 * _this_ survey */
 		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
@@ -143,7 +143,7 @@ if(!$sid) {
 	}
 
 	echo("<tr><td>");
-	if($HTTP_GET_VARS['test']) {
+	if(isset($HTTP_GET_VARS['test'])) {
 		echo("<p><b>". _('Testing Survey...') ."</b> (". _('SID') ." = $sid)</p>\n");
 	}
 	if($ret) {
