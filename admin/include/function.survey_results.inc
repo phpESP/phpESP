@@ -9,7 +9,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
  	define('_FUNCTION_SURVEY_RESULTS',TRUE);
 	
 	if(!defined('DEBUG'))
-		define('DEBUG',TRUE);
+		define('DEBUG',FALSE);
 
 	// builds HTML for the results for the survey 'sid'
 	// with the added limitation that the answer to
