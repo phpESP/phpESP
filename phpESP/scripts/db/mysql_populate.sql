@@ -24,7 +24,7 @@
 CREATE TABLE realm (
 	name		CHAR(16) NOT NULL,
 	title		CHAR(64) NOT NULL,
-	changed         TIMESTAMP(14) NOT NULL,
+	changed         TIMESTAMP(14) DEFAULT NULL,
 	PRIMARY KEY(name)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE respondent (
 	lname		CHAR(24),
 	email		CHAR(64),
 	disabled	ENUM('Y','N') NOT NULL DEFAULT 'N',
-	changed         TIMESTAMP(14) NOT NULL,
+	changed         TIMESTAMP(14) DEFAULT NULL,
 	expiration	TIMESTAMP(14),
 	PRIMARY KEY (username, realm)
 );
@@ -59,7 +59,7 @@ CREATE TABLE designer (
 	pgroup		ENUM('Y','N') NOT NULL DEFAULT 'N',
 	puser		ENUM('Y','N') NOT NULL DEFAULT 'N',
 	disabled	ENUM('Y','N') NOT NULL DEFAULT 'N',
-	changed         TIMESTAMP(14) NOT NULL,
+	changed         TIMESTAMP(14) DEFAULT NULL,
 	expiration	TIMESTAMP(14),
 	PRIMARY KEY(username, realm)
 );
@@ -94,7 +94,7 @@ CREATE TABLE survey (
 	thanks_page	CHAR(255),
 	thank_head	CHAR(255),
 	thank_body	TEXT,
-	changed         TIMESTAMP(14) NOT NULL,
+	changed         TIMESTAMP(14) DEFAULT NULL,
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
