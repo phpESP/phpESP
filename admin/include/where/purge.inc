@@ -93,7 +93,7 @@ back.')); ?></p>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td colspan="8" align="center">
 			<input type="reset" name="reset" value="<?php echo(_('Clear Checkboxes')); ?>">
-			<input type="submit" name="where" value="<?php echo(_('Purge')); ?>">
+			<input type="submit" name="where" value="<?php echo(_('Purge Surveys')); ?>">
 		</td>
 	</tr>
 </table>

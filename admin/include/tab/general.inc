@@ -70,7 +70,7 @@ edit individual fields.')); ?>
 			<font color="#ff0000"><em><?php echo _('Required'); ?></em></font><br>
 			<?php echo(_('Title of this survey.') .' '.
 			_('This appears at the top of every page of this survey.')
-			.' ('. _('free-form') .', '. _('including spaces') .')'); ?>
+			.' ('. _('free-form, including spaces') .')'); ?>
 		</td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
@@ -79,7 +79,7 @@ edit individual fields.')); ?>
 		<td>
 			<?php echo mktext('subtitle', 60, 128, $survey); ?><br>
 			<?php echo(_('Subtitle of this survey.') .' '.
-			_('Appears below the title.') .' ('. _('free-form') .', '. _('including spaces'). ')'); ?>
+			_('Appears below the title.') .' ('. _('free-form, including spaces'). ')'); ?>
 		</td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
@@ -87,8 +87,8 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Additional Info')); ?></b></td>
 		<td>
 			<?php echo mktextarea('info', 5, 60, 'virtual', $survey); ?><br>
-			<?php echo(_('Text to be displayed on this survey before any fields.')); ?>
-			(<?php echo(_('ie. instructions, background info, etc.')); ?>)
+			<?php echo(_('Text to be displayed on this survey before any fields.
+(i.e. instructions, background info, etc.)')); ?>
 		</td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
@@ -104,7 +104,7 @@ edit individual fields.')); ?>
 			<?php echo mktextarea('thank_body', 5, 60, 'virtual', $survey) .
                     '&nbsp;' . _('(body text)'); ?><br>
  			<?php echo(_('Heading (in bold) and body text for the &quot;Confirmation&quot; page
-					displayed after a user completes this survey.')); ?>
+displayed after a user completes this survey.')); ?>
 			<?php echo(_('(URL, if present, takes precedent over confirmation text.)')); ?>
 			</td>
 	</tr>

@@ -223,7 +223,7 @@ function manage_auth($username, $password) {
 		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
 			"<body><h1>401 ". _('Unauthorized') ."</h1>\n".
-			mkerror(_('Incorrect User ID or Password, or your account has been disabled.')) .
+			mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')) .
 			"</body>\n</html>\n");
 		exit;
 		return(false);
@@ -309,7 +309,7 @@ function auth_get_survey_realm($sid) {
    Returns true if user should be allowed to continue.
    Returns false (or exits) if access should be denied. */
 function auth_no_access($description) {
-	echo(mkerror(_('This account does not have permission') .' '. $description .'.'));
+	echo(mkerror(sprintf(_('This account does not have permission %s.'), $description)));
 	echo("\n<br>\n");
 	echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
 	return false;

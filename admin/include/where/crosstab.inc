@@ -2,7 +2,7 @@
 
  # $Id$
 
-/* The Cross Tabulation feature has been kept seperate from the rest of phpESP intentionally.
+/* The Cross Tabulation feature has been kept separate from the rest of phpESP intentionally.
    It provides an easier means of disabling it by commenting out the require line in results.inc
    and the function call (cross_tabulation()) plus it avoids cluttering survey_results...
 */
@@ -14,21 +14,21 @@
         if (empty($qid) && empty($cids)){
                 if (!empty($qidc) && !empty($qidr)){
                         if ($qidc == $qidr){
-                                $errmsg = mkerror(_('Error cross-tabulating. Please ensure that your column
-                                             and row selections are not of the same question.'));
+                                $errmsg = mkerror(_('Error cross-tabulating.').
+                                ' '. _('Please ensure that your column and row selections are not of the same question.'));
                         }
                         else {
                                 process($sid,$qidc,$qidr);
                         }
                 }
                 else if (!empty($qidc) || !empty($qidr)){
-                        $errmsg = mkerror(_('Error cross-tabulating. Please ensure you make both
-                                     a column and row selection.'));
+                        $errmsg = mkerror(_('Error cross-tabulating.').
+                        ' '. _('Please ensure you make both a column and row selection.'));
                 }
         }
         else {
-                $errmsg = mkerror(_('Error cross-tabulating. You are attempting to cross analyse
-                             and tabulate at the same time. This is not possible!'));
+                $errmsg = mkerror(_('Error cross-tabulating.'). ' '.
+                _('You are attempting to cross analyze and tabulate at the same time. This is not possible!'));
         }
         if (!empty($errmsg)){
                 echo($errmsg);

@@ -130,10 +130,9 @@ Public surveys let anyone submit data.
 Private surveys are restricted by Respondent Groups.')); ?></p>
 
 <p><b><?php echo(_('Note')); ?>:</b>
-<?php echo(_('You must use') .
-	' <tt>'. substr(strrchr($ESPCONFIG['handler_prefix'], '/'), 1) .
-	' &amp; '. substr(strrchr($ESPCONFIG['handler'], '/'), 1) . '</tt> ' .
-	_('when using private surveys.')); ?></p>
+<?php printf(_('You must use %s when using private surveys.'),
+	'<tt>'. substr(strrchr($ESPCONFIG['handler_prefix'], '/'), 1) .
+	' &amp; '. substr(strrchr($ESPCONFIG['handler'], '/'), 1) . '</tt>'); ?></p>
 </div>
 
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
