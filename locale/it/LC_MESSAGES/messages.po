@@ -1,5 +1,5 @@
 # phpESP
-# By James Flemer <jflemer@acm.jhu.edu>
+# By James Flemer <jflemer@alum.rpi.edu>
 # $Id$
 #
 #

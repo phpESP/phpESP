@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 /* {{{ proto array survey_generate_csv(int survey_id)
 	Exports the results of a survey to an array.

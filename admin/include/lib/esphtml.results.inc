@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 // void		mkrespercent(int[char*] counts, int total, bool showTotals);
 // void		mkresrank(int[char*] counts, int total, bool showTotals);

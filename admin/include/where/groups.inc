@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 // <jflemer@acm.rpi.edu>
 
 	/* load only accounts available to _this_ user */

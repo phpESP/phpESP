@@ -4,8 +4,7 @@
 
 // Written by James Flemer
 // For eGrad2000.com
-// <jflemer@acm.jhu.edu>
-// <jflemer@eGrad2000.com>
+// <jflemer@alum.rpi.edu>
 
 	if(empty($HTTP_SESSION_VARS['curr_q']))
 		$HTTP_SESSION_VARS['curr_q'] = 0;
