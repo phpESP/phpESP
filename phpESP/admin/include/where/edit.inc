@@ -7,22 +7,19 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	/* check user's ACL to see if they have rights to
-	 * edit/create _any_ survey */
-	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' && 
-		$HTTP_SESSION_VARS['acl']['screate'] != 'Y') {
-		if(!auth_no_access(_('to create or edit surveys')))
-			return;
-	}
-	
 	/* load names and titles of all surveys available to
 	 * _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y') {
-		$sql = 'SELECT id,name,title,owner FROM survey WHERE status=0 ORDER BY id DESC';
+	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+		$sql = 'SELECT s.id, s.name, s.title, s.owner, s.realm
+		FROM survey s WHERE s.status = 0 ORDER BY s.id DESC';
 	} else {
-		$sql = "SELECT id,name,title,owner FROM survey WHERE status=0 AND owner='".
-			$HTTP_SESSION_VARS['acl']['username'] ."' ORDER BY id DESC";
+		$realms = array_to_insql(
+			array_intersect(
+				$HTTP_SESSION_VARS['acl']['pall'],
+				$HTTP_SESSION_VARS['acl']['pdesign']));
+		$sql = "SELECT s.id, s.name, s.title, s.owner, s.realm
+			FROM survey s WHERE s.status = 0 AND (s.owner = '".
+			$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
 
@@ -35,9 +32,10 @@
 		<th align="left"><?php echo(_('Name')); ?></th>
 		<th align="left"><?php echo(_('Title')); ?></th>
 		<th align="left"><?php echo(_('Owner')); ?></th>
+		<th align="left"><?php echo(_('Group')); ?></th>
 	</tr>
 <?php
-	while(list($sid,$name,$title,$owner) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
 		else
@@ -46,12 +44,11 @@
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($sid); ?></td>
 		<td>
-			<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=tab&newid=${sid}"); ?>">
-				<?php echo($name); ?>
-			</a>
+			<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=tab&newid=${sid}"); ?>"><?php echo($name); ?></a>
 		</td>
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
+		<td><?php echo($realm); ?></td>
 	</tr>
 <?php
 	}

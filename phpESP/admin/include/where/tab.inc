@@ -33,54 +33,59 @@
 	 * when reg_glob is on, we can use $HTTP_SESSION_VARS uniformly
 	 * from here on, regardless of the INI settings.
 	 */
-	if(get_cfg_var('register_globals')) {
-		$HTTP_SESSION_VARS['survey_id'] = &$survey_id;
+	if(ini_get('register_globals')) {
+		$HTTP_SESSION_VARS['survey_id']  = &$survey_id;
 		$HTTP_SESSION_VARS['new_survey'] = &$new_survey;
-		$HTTP_SESSION_VARS['last_tab'] = &$last_tab;
-		$HTTP_SESSION_VARS['curr_q'] = &$curr_q;
+		$HTTP_SESSION_VARS['last_tab']   = &$last_tab;
+		$HTTP_SESSION_VARS['curr_q']     = &$curr_q;
 	}
 	
 	global $errstr;
 	
-	if($HTTP_GET_VARS['where'] == 'new') {
-		$HTTP_SESSION_VARS['survey_id'] = '';
+	if(@$HTTP_GET_VARS['where'] == 'new') {
+		$HTTP_SESSION_VARS['survey_id']  = '';
 		$HTTP_SESSION_VARS['new_survey'] = '';
-		$HTTP_SESSION_VARS['last_tab'] = '';
-		$HTTP_SESSION_VARS['curr_q'] = '';
+		$HTTP_SESSION_VARS['last_tab']   = '';
+		$HTTP_SESSION_VARS['curr_q']     = '';
 	}		
 	
 	if(!empty($HTTP_GET_VARS['newid'])) {
-		$HTTP_SESSION_VARS['survey_id'] = intval($HTTP_GET_VARS['newid']);
-		$HTTP_POST_VARS['tab'] = 'general';
-		$HTTP_SESSION_VARS['last_tab'] = '';
+		$HTTP_SESSION_VARS['survey_id']  = intval($HTTP_GET_VARS['newid']);
+		$HTTP_POST_VARS['tab']           = 'general';
+		$HTTP_SESSION_VARS['last_tab']   = '';
 		$HTTP_SESSION_VARS['new_survey'] = FALSE;
 	}
 
 	if(empty($HTTP_SESSION_VARS['survey_id'])) {
-		$HTTP_SESSION_VARS['survey_id'] = '';
+		$HTTP_SESSION_VARS['survey_id']  = '';
 		$HTTP_SESSION_VARS['new_survey'] = TRUE;
 	}
 
 	if(empty($HTTP_SESSION_VARS['new_survey']))
 		$HTTP_SESSION_VARS['new_survey'] = empty($HTTP_SESSION_VARS['survey_id']);
 		
+	/* check ACL to see if user is allowed to design
+	 * _this_ survey */
+	if(!empty($HTTP_SESSION_VARS['survey_id'])) {
+		$srealm = auth_get_survey_realm($HTTP_SESSION_VARS['survey_id']);
+		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+				!auth_is_owner($HTTP_SESSION_VARS['survey_id'], $HTTP_SESSION_VARS['acl']['username']) &&
+				!in_array($srealm, array_intersect(
+						$HTTP_SESSION_VARS['acl']['pdesign'],
+						$HTTP_SESSION_VARS['acl']['pall'])) &&
+				!auth_no_access(_('to access this form'))) {
+			return;
+		}
+	}
+
 	/* check user's ACL to see if they have rights to
 	 * edit/create _any_ survey */
-	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
-		if($HTTP_SESSION_VARS['acl']['screate'] != 'Y') {
-			if(!auth_no_access(_('to create or edit surveys')))
-				return;
-		}
-		
-		/* now check to see if they can access _this_
-		 * survey */
-		if($HTTP_SESSION_VARS['acl']['seeall'] != 'Y' &&
-				!$HTTP_SESSION_VARS['new_survey'] &&
-				!auth_is_owner($HTTP_SESSION_VARS['survey_id'],
-					$HTTP_SESSION_VARS['acl']['username']) &&
-				!auth_no_access(_('to access this survey')))
-			return;
+	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+			count($HTTP_SESSION_VARS['acl']['pdesign']) < 1 &&
+			!auth_no_access(_('to design forms'))) {
+		return;
 	}
+		
 
 	if(empty($ESPCONFIG['tabs'])) {
 		echo('<b>'. _('No tabs defined. Please check your ini settings.'). '</b>');
@@ -109,8 +114,8 @@
 
 	if(empty($tab)) {
 		foreach($ESPCONFIG['tabs'] as $tab) {
-			$x = $HTTP_POST_VARS["${tab}_x"];
-			$y = $HTTP_POST_VARS["${tab}_y"];
+			$x = @$HTTP_POST_VARS["${tab}_x"];
+			$y = @$HTTP_POST_VARS["${tab}_y"];
 			if(!empty($x) && !empty($y)) {
 				break;
 			}
@@ -144,11 +149,11 @@
       <input type="hidden" name="where" value="tab">
 	  <table border="0" cellspacing="0" cellpadding="0">
 		<tr>
-		  <td><input type="image" border="0" name="general"   src="<?php echo($ESPCONFIG['image_path']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" name="questions" src="<?php echo($ESPCONFIG['image_path']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" width="186" height="43"></td>
-		  <td><input type="image" border="0" name="order"     src="<?php echo($ESPCONFIG['image_path']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif"     width="126" height="43"></td>
-		  <td><input type="image" border="0" name="preview"   src="<?php echo($ESPCONFIG['image_path']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" name="finish"    src="<?php echo($ESPCONFIG['image_path']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif"   width="114" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_path']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_path']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" width="186" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_path']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif"     width="126" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_path']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_path']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif"   width="114" height="43"></td>
 		</tr>
 	  </table>
     </td>
