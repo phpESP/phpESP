@@ -208,13 +208,6 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
         survey_results_navbar($sid, $rid);
     }
 
-if (!empty($guicross)){
-?>
-<center>
-<a href="<?php echo($GLOBALS['ESPCONFIG']['base_url']."examples/analysis_help.php"); ?>" target="_blank">cross analysis help</a> | <a href="<?php echo($GLOBALS['ESPCONFIG']['base_url']."examples/tabulation_help.php"); ?>" target="_blank">cross tabulation help</a>
-</center>
-<?php
-}
 ?>
 <h2><?php echo($survey["title"]); ?></h2>
 <h3><?php echo($survey["subtitle"]); ?></h3>
