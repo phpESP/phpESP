@@ -79,7 +79,6 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 		$sql = "SELECT * 
 				  FROM question
 				 WHERE survey_id=${sid} AND 
-					   type_id != 99 AND
 					   deleted='N'
 				 ORDER BY position,id";
 		if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
@@ -124,6 +123,10 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 		if($tid == 99) {
 			echo("<tr><td><hr></td></tr>\n");
+			continue;
+		}
+		if($tid == 100) {
+			echo("<tr><td>". $question[0]['content'] ."</td></tr>\n");
 			continue;
 		}
 
