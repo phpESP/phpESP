@@ -14,6 +14,7 @@
 // string	mkradio(char *name, char *value);
 // string	mkcheckbox(char *name, char *value);
 // string	mktext(char *name);
+// string   mkhidden(char *name, char *$value)
 // string	mktextarea(char *name, int rows, int cols, char *wordwrap);
 // string	mkselect(char *name, char *options[]);
 // string	mkfile(char *name);
@@ -69,7 +70,7 @@ function mktext ($_name, $size = 20, $max = 0, $varr = null) {
 	$str = "size=\"$size\"";
 	if ($max)	$str .= " maxlength=\"$max\"";
 	if (isset($varr[$_name]))
-		return('<input type="text" '. $str .' name="'. htmlspecialchars($_name) .'" value="'. htmlspecialchars($varr[$_name]) .'" />');
+		return('<input type="text" '. $str .' name="'. htmlspecialchars($_name) .'" value="'. _stripslashes(htmlspecialchars($varr[$_name])) .'" />');
 	return('<input type="text" '. $str .' name="'. htmlspecialchars($_name) .'" />');
 }
 /* }}} */
@@ -87,7 +88,7 @@ function mkhidden ($_name, $varr = null) {
     if ($varr == null)
         $varr =& $GLOBALS['HTTP_POST_VARS'];
 	if (isset($varr[$_name]))
-		return('<input type="hidden" name="'. htmlspecialchars($_name) .'" value="'. htmlspecialchars($varr[$_name]) .'" />');
+		return('<input type="hidden" name="'. htmlspecialchars($_name) .'" value="'. _stripslashes(htmlspecialchars($varr[$_name])) .'" />');
 	return('<input type="hidden" name="'. htmlspecialchars($_name) .'" />');
 }
 /* }}} */
@@ -106,7 +107,7 @@ function mktextarea ($_name, $rows, $cols, $wrap, $varr = null) {
 		$str .= ' wrap="' . strtolower($wrap) . '"';
 	$str .= '>';
 	if (isset($varr[$_name]))
-		 $str .= htmlspecialchars($varr[$_name]);
+		 $str .= _stripslashes(htmlspecialchars($varr[$_name]));
 	$str .= '</textarea>';
 	return($str);
 }

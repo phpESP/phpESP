@@ -184,7 +184,7 @@ function survey_render($sid, $section = 1, $message = '') {
                     $cid = "${qid}_${cid}";
                     echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
                 	if (isset($GLOBALS['HTTP_POST_VARS'][$cid]))
-                        echo(' value="'. htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid]) .'"');
+                        echo(' value="'. _stripslashes(htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid])) .'"');
                     echo(" />");
 ?>
                             </td>
@@ -222,7 +222,7 @@ function survey_render($sid, $section = 1, $message = '') {
                     $cid = "${qid}_${cid}";
                     echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
                 	if (isset($GLOBALS['HTTP_POST_VARS'][$cid]))
-                        echo(' value="'. htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid]) .'"');
+                        echo(' value="'. _stripslashes(htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid])) .'"');
                     echo(" />");
 ?>
                             </td>
