@@ -12,6 +12,23 @@
  * in php.ini
  */
 
+// int		count_sections(int sid);
+// char*	section_range_sql(int sid, int section);
+// bool[]	arr_has_answers(void);
+// !exit	goto_thankyou(int sid, char* referer);
+// char*	check_required(int sid, int section);
+// char*->char*	retrieve_values(int sid, int section);
+// int		insert_values(int sid, int section, int rid);
+// bool		complete_response(int rid);
+// char*	email_values(int sid, int rid);
+// bool		survey_results(int sid, bool show_totals);
+// void		mkrespercent(int[char*] counts, int total);
+// void		mkresrank(int[char*] counts, int total);
+// void		mkrescount(int[char*] counts, int total);
+// void		mkreslist(int[char*] counts, int total);
+// void		mkresavg(int[char*] counts, int total);
+// void		clear_results(int sid);
+
 if(!defined('_FUNCS')) {
  	define('_FUNCS',TRUE);
 
@@ -253,7 +270,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 					if(ereg("other_([0-9]+)", $val, $regs)) {
 						$i=$regs[1];
 						$other = $HTTP_POST_VARS["${qid}_${i}"];
-						$sql = "INSERT INTO answers_other ( response_id,question_id,answer ) VALUES ( '${rid}','${qid}','${other}' )";
+						$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${i}','${other}' )";
 						$result = mysql_query($sql);
 					}
 					$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
@@ -266,7 +283,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 						if(ereg("other_([0-9]+)", $cid, $regs)) {
 							$i=$regs[1];
 							$other = $HTTP_POST_VARS["${qid}_${i}"];
-							$sql = "INSERT INTO answers_other ( response_id,question_id,answer ) VALUES ( '${rid}','${qid}','${other}' )";
+							$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${i}','${other}' )";
 							$result = mysql_query($sql);
 						}
 						$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${cid}' )";
@@ -347,7 +364,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	}
 
 	// builds HTML for the results for the survey 'sid'
-	function survey_results($sid) {
+	function survey_results($sid,$show_totals) {
 
 	// build associative array holding weather each question
 	// type has answer choices or not and the table the answers are in
@@ -417,21 +434,21 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 			if($table == "answers_bool") {
 				$sql = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
 				${table}.choice_id='yes' AND ${table}.response_id=survey_responses.id AND
-				survey_responses.complete='yes'"; 
+				survey_responses.complete='yes'";
 				$result = mysql_query($sql);
 				$counts['Yes'] = mysql_result($result,0,0);
 				mysql_free_result($result);
-				
+
 				$sql = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
 				${table}.choice_id='no' AND ${table}.response_id=survey_responses.id AND
-				survey_responses.complete='yes'"; 
+				survey_responses.complete='yes'";
 				$result = mysql_query($sql);
 				$counts['No'] = mysql_result($result,0,0);
 				mysql_free_result($result);
-				
+
 				if(empty($question["result_id"]))
 					$question["result_id"] = 1;	// default to percentages for yes/no
-					
+
 			} elseif($table == "answers_single" || $table == "answers_multiple") {
 				$sql = "SELECT id,content FROM question_choices WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
 				$result = mysql_query($sql);
@@ -472,10 +489,10 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 					$sql = "SELECT id,content FROM question_choices WHERE question_id='${qid}' ORDER BY id";
 					$cid_result = mysql_query($sql);
 					while(list($cid,$ccontent) = mysql_fetch_row($cid_result)) {
-						$sql  = "SELECT AVG(${table}.rank) FROM ${table},survey_responses 
-							WHERE ${table}.question_id='${qid}' 
-							AND ${table}.choice_id='${cid}' AND ${table}.rank>0 
-							AND ${table}.response_id=survey_responses.id 
+						$sql  = "SELECT AVG(${table}.rank) FROM ${table},survey_responses
+							WHERE ${table}.question_id='${qid}'
+							AND ${table}.choice_id='${cid}' AND ${table}.rank>0
+							AND ${table}.response_id=survey_responses.id
 							AND survey_responses.complete='yes'";
 						$rank_result = mysql_query($sql);
 						$counts[$ccontent] = mysql_result($rank_result,0,0);
@@ -502,19 +519,19 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 			}
 			switch($question["result_id"]) {
 				case "1":	// Percentages
-					mkrespercent($counts,$total);
+					mkrespercent($counts,$total,$use_totals);
 					break;
 				case "2":	// Rank
-					mkresrank($counts,$total);
+					mkresrank($counts,$total,$use_totals);
 					break;
 				case "3":	// Count
-					mkrescount($counts,$total);
+					mkrescount($counts,$total,$use_totals);
 					break;
 				case "4":	// List
-					mkreslist($counts,$total);
+					mkreslist($counts,$total,$use_totals);
 					break;
 				case "99":	// Average
-					mkresavg($counts,$total);
+					mkresavg($counts,$total,$use_totals);
 					break;
 			} // end switch
 ?>
@@ -528,7 +545,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	} // end function survey_results
 
 	// build HTML showing PERCENTAGE results
-	function mkrespercent($counts,$total) {
+	function mkrespercent($counts,$total,$use_totals) {
 		global $IMAGE_PATH;
 		$i=0;
 ?>
@@ -550,18 +567,20 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 <?php
 			$i += $num;
 		} // end while
+		if($use_totals) {
 ?>
 	<tr>
 		<td><b>TOTAL</b></td>
 		<td align="right"><b><?php if($i && !($i > $total)) printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.1d%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 	</tr>
+<?		} ?>
 </table>
 <?php
 	} // end function mkrespercent($counts,$total)
 
 	// build HTML showing RANK results
-	function mkresrank($counts,$total) {
+	function mkresrank($counts,$total,$use_totals) {
 ?>
 <table border="0">
 	<tr>
@@ -588,18 +607,20 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	</tr>
 <?php
 		} // end while
+		if($use_totals) {
 ?>
 	<tr>
 		<td colspan=2 align="left"><b>TOTAL</b></td>
 		<td align="right"><b><?php printf("%.1d%%",$pt); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 	</tr>
+<?		} ?>
 </table>
 <?php
 	} // end function mkresrank($counts,$total)
 
 	// build HTML showing COUNT results
-	function mkrescount($counts,$total) {
+	function mkrescount($counts,$total,$use_totals) {
 		$i=0;
 ?>
 <table border="0">
@@ -614,18 +635,20 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 <?php
 			$i += $num;
 		} // end while
+		if($use_totals) {
 ?>
 	<tr>
 		<td><b>TOTAL</b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 		<td align="right"><b>(<?php if($i) printf("%.1d",$i/$total*100.0); ?>%)</b></td>
 	</tr>
+<?		} ?>
 </table>
 <?php
 	} // end function mkrescount($counts,$total)
 
 	// build HTML showing LIST results
-	function mkreslist($counts,$total) {
+	function mkreslist($counts,$total,$use_totals) {
 ?>
 <table border="1">
 <?php while(list(,$text) = each($counts)) { ?>
@@ -638,7 +661,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	} // end function mkreslist($counts,$total)
 
 	// build HTML showing AVG results
-	function mkresavg($counts,$total) {
+	function mkresavg($counts,$total,$use_totals) {
 		global $IMAGE_PATH;
 		$i=0;
 ?>
@@ -680,7 +703,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 <?php
 	} // end function mkresavg($counts,$total)
 
-	// clear the results of a survey (non-reversable)	
+	// clear the results of a survey (non-reversable)
 	function clear_results($sid) {
 		$sql = "SELECT survey_questions.id,question_types.answer_table FROM survey_questions,question_types ".
 			"WHERE survey_id=$sid AND survey_questions.type_id=question_types.id";
@@ -694,7 +717,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		@mysql_free_result($result);
 		$sql = "DELETE FROM survey_responses WHERE survey_id=$sid";
 		mysql_query($sql);
-		
+
 		return;
 	}
 
