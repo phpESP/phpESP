@@ -1,15 +1,18 @@
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="98%" ALIGN="CENTER" BGCOLOR="<?php echo($GLOBALS['ESPCONFIG']['table_bgcolor']); ?>">
-  <TR>
-    <TD>
-<!--      <P><IMG SRC="<?php
+<?php # $Id$ ?>
+<table border="0" cellspacing="0" cellpadding="0" width="98%" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['table_bgcolor']); ?>">
+  <tbody>
+  <tr>
+    <td>
+<!--      <p><img src="<?php
 	if(!empty($GLOBALS['ESPCONFIG']['banner'])) {
 		echo($GLOBALS['ESPCONFIG']['banner']);
 	} else {
 		echo($GLOBALS['ESPCONFIG']['name'].".gif");
 	}
-?>" WIDTH="460" HEIGHT="80"></P> -->
-      <P><FONT SIZE="+2"><TT><?php for($i=0;$i<strlen($GLOBALS['ESPCONFIG']['name']);$i++) echo($GLOBALS['ESPCONFIG']['name'][$i] .' '); ?></TT></FONT></P>
-      <FORM METHOD="POST" NAME="phpesp" ACTION="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
-      <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%">
-        <TR ALIGN="CENTER" VALIGN="MIDDLE">
-          <TD>
+?>" width="460" height="80"></p> -->
+      <p><font size="+2"><tt><?php for($i=0;$i<strlen($GLOBALS['ESPCONFIG']['name']);$i++) echo($GLOBALS['ESPCONFIG']['name'][$i] .' '); ?></tt></font></p>
+      <form method="post" name="phpesp" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+        <tr align="center" valign="middle">
+          <td>
