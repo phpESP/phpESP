@@ -51,25 +51,48 @@
 		}
 	}
 
-	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv';
+	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv_full_header';
 	
-	// Try DBF first, default to CSV
-	if($type == 'dbf') {
-		$file = "$name.dbf";
-		if(extension_loaded('dbase')) {
-			echo mkerror(_('DBF download not yet implemented.'));
-		} else {
-			echo mkerror(_('The PHP dBase Extension is not installed.'));
-		}
-		return;
-	}
-	// CSV
-	header("Content-Transfer-Encoding: ascii");
-	header("Content-Disposition: attachment; filename=$name.csv");
-	header("Content-Type: text/comma-separated-values");
-	$output = survey_generate_csv($sid);
-	foreach ($output as $row ) {
-		echo(join(',', $row) . "\n");
-	}
+	// default to csv_full_header
+    switch($type) {
+        case 'spss':
+            //NOT FULLY IMPLEMENT YET
+            header("Content-Transfer-Encoding: ascii");
+            header("Content-Disposition: attachment; filename=$name.por");
+            header("Content-Type: application/txt");
+            $output = survey_generate_results($type, $sid);
+            //Do something with output
+            break;
+
+        case 'xml':
+            //NOT FULLY IMPLEMENT YET
+            header("Content-Transfer-Encoding: ascii");
+            header("Content-Disposition: attachment; filename=$name.xml");
+            header("Content-Type: text/xml");
+            $output = survey_generate_results($type, $sid);
+            //Do something with output
+            break;
+
+        case 'tab':
+            // TAB
+            header("Content-Transfer-Encoding: ascii");
+            header("Content-Disposition: attachment; filename=$name.txt");
+            header("Content-Type: text/tab-separated-values");
+            $output = survey_generate_results($type, $sid);
+            foreach ($output as $row ) {
+                echo(implode(chr(9), $row) . "\r\n");
+            }
+            break;
+            
+        default:	
+            // CSV, csv_full_header old method, csv_short_header new method
+            header("Content-Transfer-Encoding: ascii");
+            header("Content-Disposition: attachment; filename=$name.csv");
+            header("Content-Type: text/comma-separated-values");
+            $output = survey_generate_results($type, $sid);
+            foreach ($output as $row ) {
+                echo(implode(',', $row) . "\r\n");
+            }
+    }
 	return;
 ?>

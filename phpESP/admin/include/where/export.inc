@@ -16,6 +16,7 @@ else
 $bg = '';
 
 ?>
+</form>
 <h2><?php echo(_('Export Data')); ?></h2>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
@@ -80,12 +81,21 @@ if(!$sid) {
 		<td><?php echo($owner); ?></td>
 		<td><?php echo($realm); ?></td>
 		<td><?php echo($stat); ?></td>
-		<td><?php
-			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=csv&sid=$sid\">" . _('CSV') . "</a>"); ?>
-			(<?php
-			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=download&type=csv&sid=$sid\">" . _('download') . '</a>'); ?>)</td>
-		<td>&nbsp;<!-- <?php
-			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=dbf&sid=$sid\">" . _('DBF') . "</a>"); ?>  --></td>
+		<td style="font-size: xx-small; vertical-align: top;">
+    <form id="export<?php echo($sid) ?>" name="export<?php echo($sid) ?>" action="<?php echo($GLOBALS['ESPCONFIG']['ME']) ?>">
+        <select name="type">
+            <option value="csv_full_header" selected>CSV Full Headers</option>
+            <option value="csv_short_header">CSV Short Headers</option>
+            <option value="tab">Tab</option>
+        </select>
+        <input type="hidden" name="sid" value="<?php echo($sid) ?>">
+        <input type="hidden" name="where" value="">
+			<?php echo('<a href="javascript: exportSubmit(\'export\', document.export'.$sid.');" title="Save CSV Long Header (old method). Save the results for \''.$name.'\' to the survey in CSV Format (Comma Delimted File). Column Titles are based on question text.">' . _('Save On Server') . '</a>');
+            echo("\n");?>
+			| <?php
+			echo('<a href="javascript: exportSubmit(\'download\', document.export'.$sid.');" title="Download CSV Long Header (old method). Download the results for \''.$name.'\' to your computer in CSV Format (Comma Delimted File). Column Titles are based on the question text. Click this link and select \'Save\' when prompted by your browser.">' . _('Download') . '</a>'); ?>
+            </form>
+		</td>
 	</tr>
 <?php
 	}
@@ -127,21 +137,36 @@ if(!$sid) {
 		}
 	}
 
-	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv';
+	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv_full_header';
 
-	// Try DBF first, default to CSV
-	if($type == 'dbf') {
-		$file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.dbf";
-		if(extension_loaded('dbase')) {
-			$ret = survey_export_dbf($sid, $file);
-		} else {
-			$ret = 0;
-			echo("<tr><td>" . mkerror(_('The PHP dBase Extension is not installed.')) . "</td></tr>");
-		}
-	} else {
-		$file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.csv";
-		$ret = survey_export_csv($sid, $file);
+	// prepare file name, default to csv_full_headers
+    switch ($type) {
+        case 'tab': 
+            $file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.txt";
+            break;
+            
+        case 'xml':
+            //Not implemented yet
+            break;
+            
+        case 'spss':
+            //Not implemented yet
+            break;
+            
+        case 'dbf':
+            $file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.dbf";
+            if(extension_loaded('dbase')) {
+                $ret = survey_export_dbf($sid, $file);
+            } else {
+                $ret = 0;
+                echo("<tr><td>" . mkerror(_('The PHP dBase Extension is not installed.')) . "</td></tr>");
+            }
+            break;
+
+        default: //csv_full_header,csv_short_header
+            $file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.csv";
 	}
+	$ret = survey_export_results($type, $sid, $file);
 
 	echo("<tr><td>");
 	if(isset($HTTP_GET_VARS['test'])) {

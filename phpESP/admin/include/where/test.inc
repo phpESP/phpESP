@@ -101,6 +101,7 @@
 	$result = execute_sql($sql);
 
 ?>
+</form>
 <h2><?php echo(_('Test a Survey')); ?></h2>
 <?php echo(_('Pick Survey to Test')); ?>
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
@@ -131,9 +132,21 @@
 		<td><?php echo($realm); ?></td>
 		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=${sid}"); ?>"><?php echo(_('Test')); ?></a></td>
 		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&test=1&sid=${sid}"); ?>"><?php echo(_('Results')); ?></a></td>
-		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=csv&test=1&sid=${sid}"); ?>"><?php echo(_('CSV')); ?></a>
-		    (<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=download&type=csv&test=1&sid=${sid}"); ?>"><?php echo(_('download')); ?></a>)
-			<!-- / <a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=dbf&test=1&sid=${sid}"); ?>"><?php echo(_('DBF')); ?></a> -->
+		<td style="font-size: xx-small; vertical-align: top;">
+        <form id="export<?php echo($sid) ?>" name="export<?php echo($sid) ?>" action="<?php echo($GLOBALS['ESPCONFIG']['ME']) ?>">
+        <select name="type">
+            <option value="csv_full_header" selected>CSV Full Headers</option>
+            <option value="csv_short_header">CSV Short Headers</option>
+            <option value="tab">Tab</option>
+        </select>
+        <input type="hidden" name="test" value="1">
+        <input type="hidden" name="sid" value="<?php echo($sid) ?>">
+        <input type="hidden" name="where" value="">
+			<?php echo('<a href="javascript: exportSubmit(\'export\', document.export'.$sid.');" title="Save CSV Long Header (old method). Save the results for \''.$name.'\' to the survey in CSV Format (Comma Delimted File). Column Titles are based on question text.">' . _('Save On Server') . '</a>');
+            echo("\n");?>
+			| <?php
+			echo('<a href="javascript: exportSubmit(\'download\', document.export'.$sid.');" title="Download CSV Long Header (old method). Download the results for \''.$name.'\' to your computer in CSV Format (Comma Delimted File). Column Titles are based on the question text. Click this link and select \'Save\' when prompted by your browser.">' . _('Download') . '</a>'); ?>
+            </form>
 		</td>
 	</tr>
 <?php
