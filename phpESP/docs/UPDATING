@@ -61,5 +61,13 @@ If your database name is something other than 'phpesp' that name
 instead in the command line.  As always, you may execute the sql script
 with some other administration tool if you wish.
 
+If you update your mySQL installation from pre 4.1 to 4.1 or higher, you 
+will need to run the following update script to modify existing tables to
+support mySQL's new password hash.
+
+  $ mysql -u root -p phpesp < scripts/db/mysql4.x_upgrade.sql
+
+Once you move to mySQL 4.1 you cannot downgrade your mySQL back to 4.0 
+or below and expect phpESP to function.
 ----
 $Id$
