@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.3\n"
-"POT-Creation-Date: 2002-09-12 02:54-0400\n"
+"POT-Creation-Date: 2002-10-15 10:21-0400\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Cedric Levasseur <cedric.levasseur AT linux-at-business."
 "com>, and olivier sevin <cjanson AT ifrance.com>\n"
@@ -36,8 +36,8 @@ msgstr "Argument invalide."
 # File: phpESP/admin/include/function/survey_report.inc, line: 48
 # File: phpESP/admin/include/function/survey_results.inc, line: 61
 # File: phpESP/admin/include/function/survey_results.inc, line: 74
-# File: phpESP/admin/include/function/survey_results.inc, line: 120
-# File: phpESP/admin/include/function/survey_results.inc, line: 125
+# File: phpESP/admin/include/function/survey_results.inc, line: 124
+# File: phpESP/admin/include/function/survey_results.inc, line: 129
 msgid "Error opening survey."
 msgstr "Erreur lors de l'ouverture de l'étude"
 #
@@ -48,7 +48,7 @@ msgid "Error opening surveys."
 msgstr "Error lors de l'ouverture de l'étude"
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 64
-# File: phpESP/admin/include/function/survey_results.inc, line: 125
+# File: phpESP/admin/include/function/survey_results.inc, line: 129
 msgid "No responses found."
 msgstr "Aucune réponse trouvée."
 #
@@ -83,7 +83,7 @@ msgstr "sont obligatoires"
 # File: phpESP/admin/include/function/survey_render.inc, line: 144
 # File: phpESP/admin/include/function/survey_report.inc, line: 70
 # File: phpESP/admin/include/function/survey_report.inc, line: 72
-# File: phpESP/admin/include/function/survey_results.inc, line: 194
+# File: phpESP/admin/include/function/survey_results.inc, line: 199
 # File: phpESP/admin/include/where/admdesigner.inc, line: 269
 # File: phpESP/admin/include/where/admdesigner.inc, line: 279
 # File: phpESP/admin/include/where/admdesigner.inc, line: 284
@@ -98,7 +98,7 @@ msgstr "Oui"
 # File: phpESP/admin/include/function/survey_render.inc, line: 148
 # File: phpESP/admin/include/function/survey_report.inc, line: 70
 # File: phpESP/admin/include/function/survey_report.inc, line: 72
-# File: phpESP/admin/include/function/survey_results.inc, line: 196
+# File: phpESP/admin/include/function/survey_results.inc, line: 201
 # File: phpESP/admin/include/where/admdesigner.inc, line: 269
 # File: phpESP/admin/include/where/admdesigner.inc, line: 279
 # File: phpESP/admin/include/where/admdesigner.inc, line: 284
@@ -160,7 +160,7 @@ msgstr "Compte-rendu pour"
 # File: phpESP/admin/include/where/export.inc, line: 28
 # File: phpESP/admin/include/where/purge.inc, line: 49
 # File: phpESP/admin/include/where/report.inc, line: 67
-# File: phpESP/admin/include/where/results.inc, line: 100
+# File: phpESP/admin/include/where/results.inc, line: 117
 # File: phpESP/admin/include/where/status.inc, line: 136
 # File: phpESP/admin/include/where/test.inc, line: 107
 msgid "ID"
@@ -191,7 +191,7 @@ msgstr "Contenu"
 msgid "Error cross-analyzing. Question not valid type."
 msgstr "Erreur d'anlyse croisée. La question n'a pas un type valide."
 #
-# File: phpESP/admin/include/function/survey_results.inc, line: 147
+# File: phpESP/admin/include/function/survey_results.inc, line: 151
 msgid "Cross analysis on QID:"
 msgstr "Analyse croisée sur le QUID:"
 #
@@ -343,8 +343,8 @@ msgstr "Ce compte n'a pas la permission nécéssaire"
 # File: phpESP/admin/include/where/report.inc, line: 36
 # File: phpESP/admin/include/where/report.inc, line: 94
 # File: phpESP/admin/include/where/respondents.inc, line: 140
-# File: phpESP/admin/include/where/results.inc, line: 69
-# File: phpESP/admin/include/where/results.inc, line: 137
+# File: phpESP/admin/include/where/results.inc, line: 82
+# File: phpESP/admin/include/where/results.inc, line: 177
 # File: phpESP/admin/include/where/status.inc, line: 133
 # File: phpESP/admin/include/where/status.inc, line: 226
 # File: phpESP/admin/include/where/test.inc, line: 70
@@ -431,7 +431,7 @@ msgstr ""
 # File: phpESP/admin/include/where/export.inc, line: 29
 # File: phpESP/admin/include/where/purge.inc, line: 50
 # File: phpESP/admin/include/where/report.inc, line: 68
-# File: phpESP/admin/include/where/results.inc, line: 101
+# File: phpESP/admin/include/where/results.inc, line: 119
 # File: phpESP/admin/include/where/status.inc, line: 137
 # File: phpESP/admin/include/where/test.inc, line: 108
 msgid "Name"
@@ -467,7 +467,7 @@ msgstr "caractères alphanumériques uniquement"
 # File: phpESP/admin/include/where/purge.inc, line: 53
 # File: phpESP/admin/include/where/report.inc, line: 71
 # File: phpESP/admin/include/where/respondents.inc, line: 87
-# File: phpESP/admin/include/where/results.inc, line: 104
+# File: phpESP/admin/include/where/results.inc, line: 122
 # File: phpESP/admin/include/where/status.inc, line: 140
 # File: phpESP/admin/include/where/test.inc, line: 111
 msgid "Group"
@@ -485,7 +485,7 @@ msgstr "Groupe possédant l'étude."
 # File: phpESP/admin/include/where/export.inc, line: 30
 # File: phpESP/admin/include/where/purge.inc, line: 51
 # File: phpESP/admin/include/where/report.inc, line: 69
-# File: phpESP/admin/include/where/results.inc, line: 102
+# File: phpESP/admin/include/where/results.inc, line: 120
 # File: phpESP/admin/include/where/status.inc, line: 138
 # File: phpESP/admin/include/where/test.inc, line: 109
 msgid "Title"
@@ -554,7 +554,7 @@ msgstr "Nom du fichier de l'étude."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 124
 msgid "Select a theme (css) to use with this survey."
-msgstr "Choisissez le thème (css) à utiliser pour votre Etude"
+msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 128
 msgid "Confirmation Heading"
@@ -724,7 +724,7 @@ msgstr "quand vous utilisez des études privées"
 # File: phpESP/admin/include/where/export.inc, line: 31
 # File: phpESP/admin/include/where/purge.inc, line: 52
 # File: phpESP/admin/include/where/report.inc, line: 70
-# File: phpESP/admin/include/where/results.inc, line: 103
+# File: phpESP/admin/include/where/results.inc, line: 121
 # File: phpESP/admin/include/where/status.inc, line: 139
 # File: phpESP/admin/include/where/test.inc, line: 110
 msgid "Owner"
@@ -894,8 +894,8 @@ msgstr "Administration des comptes des personnes étudiées"
 # File: phpESP/admin/include/where/download.inc, line: 47
 # File: phpESP/admin/include/where/export.inc, line: 112
 # File: phpESP/admin/include/where/export.inc, line: 124
-# File: phpESP/admin/include/where/results.inc, line: 25
-# File: phpESP/admin/include/where/results.inc, line: 37
+# File: phpESP/admin/include/where/results.inc, line: 29
+# File: phpESP/admin/include/where/results.inc, line: 41
 # File: phpESP/admin/include/where/status.inc, line: 98
 # File: phpESP/admin/include/where/test.inc, line: 34
 msgid "to access this survey"
@@ -956,7 +956,7 @@ msgstr "Seul les administrateurs sont autorisés"
 #
 # File: phpESP/admin/include/where/debug_dump.inc, line: 9
 msgid "No survey specified."
-msgstr "Pas d\'Etude spécifiée"
+msgstr ""
 #
 # File: phpESP/admin/include/where/designers.inc, line: 81
 msgid "Manage Web Form Designer Accounts"
@@ -989,7 +989,7 @@ msgstr "Argument invalide."
 #
 # File: phpESP/admin/include/where/download.inc, line: 58
 msgid "DBF download not yet implemented."
-msgstr "Téléchargement DBF pas encore effectué"
+msgstr ""
 #
 # File: phpESP/admin/include/where/download.inc, line: 60
 # File: phpESP/admin/include/where/export.inc, line: 138
@@ -1033,7 +1033,7 @@ msgstr "CSV"
 # File: phpESP/admin/include/where/export.inc, line: 83
 # File: phpESP/admin/include/where/test.inc, line: 133
 msgid "download"
-msgstr "Télécharger"
+msgstr ""
 #
 # File: phpESP/admin/include/where/export.inc, line: 85
 # File: phpESP/admin/include/where/test.inc, line: 134
@@ -1043,14 +1043,14 @@ msgstr "DBF"
 # File: phpESP/admin/include/where/export.inc, line: 115
 # File: phpESP/admin/include/where/export.inc, line: 147
 # File: phpESP/admin/include/where/merge.inc, line: 12
-# File: phpESP/admin/include/where/results.inc, line: 28
+# File: phpESP/admin/include/where/results.inc, line: 32
 # File: phpESP/admin/include/where/test.inc, line: 53
 msgid "Testing Survey..."
 msgstr "étude en test"
 #
 # File: phpESP/admin/include/where/export.inc, line: 115
 # File: phpESP/admin/include/where/export.inc, line: 147
-# File: phpESP/admin/include/where/results.inc, line: 28
+# File: phpESP/admin/include/where/results.inc, line: 32
 # File: phpESP/admin/include/where/test.inc, line: 53
 msgid "SID"
 msgstr "SID"
@@ -1307,19 +1307,24 @@ msgstr "Ajouter une nouvelle personne enquêtée"
 msgid "Bulk Upload Respondents"
 msgstr "Ajouter une nouvelle personne enquêtée"
 #
-# File: phpESP/admin/include/where/results.inc, line: 66
+# File: phpESP/admin/include/where/results.inc, line: 79
 msgid "Test Survey"
 msgstr "Tester l'étude"
 #
-# File: phpESP/admin/include/where/results.inc, line: 96
+# File: phpESP/admin/include/where/results.inc, line: 109
 msgid "View Survey Results"
 msgstr "Voir les résultats de l'étude"
 #
-# File: phpESP/admin/include/where/results.inc, line: 97
+# File: phpESP/admin/include/where/results.inc, line: 110
 msgid "Pick Survey to View"
 msgstr "Choisissez l'étude à consulter"
 #
-# File: phpESP/admin/include/where/results.inc, line: 105
+# File: phpESP/admin/include/where/results.inc, line: 118
+#, fuzzy
+msgid "Respondent"
+msgstr "Réponse"
+#
+# File: phpESP/admin/include/where/results.inc, line: 123
 #, fuzzy
 msgid "Resp"
 msgstr "Réponse"
@@ -1551,6 +1556,7 @@ msgstr "Erreur lors du traitement de l'étude: étude non spécificiée"
 # File: phpESP/public/handler.php, line: 55
 msgid "Error processing survey: Survey is not active."
 msgstr "Erreur lors du traitement de l'étude: L'étude n'est pas activée"
+#
 #
 #
 #
