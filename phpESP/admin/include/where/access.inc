@@ -53,9 +53,9 @@
 			$op = '';
 
 		if (!empty($HTTP_POST_VARS['realm']))
-			$arealm = XADDSLASHES($HTTP_POST_VARS['realm']);
+			$arealm = _addslashes($HTTP_POST_VARS['realm']);
 		elseif (!empty($HTTP_GET_VARS['realm']))
-			$arealm = XADDSLASHES($HTTP_GET_VARS['realm']);
+			$arealm = _addslashes($HTTP_GET_VARS['realm']);
 
 		if (isset($HTTP_POST_VARS['resume']))
 			$resume = 'Y';

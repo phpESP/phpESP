@@ -72,7 +72,7 @@
 	} else {
 		foreach($fields as $f) {
             if(!empty($HTTP_POST_VARS[$f]))
-			    $HTTP_POST_VARS[$f] = DESLASH($HTTP_POST_VARS[$f]);
+			    $HTTP_POST_VARS[$f] = _stripslashes($HTTP_POST_VARS[$f]);
             else
                 $HTTP_POST_VARS[$f] = '';
 		}

@@ -24,8 +24,8 @@
 	/* delete user */
 	if(isset($HTTP_POST_VARS['delete'])) {
 		unset($HTTP_POST_VARS['submit']);
-		$u = XADDSLASHES($HTTP_POST_VARS['u']);
-		$r = XADDSLASHES($HTTP_POST_VARS['r']);
+		$u = _addslashes($HTTP_POST_VARS['u']);
+		$r = _addslashes($HTTP_POST_VARS['r']);
 		/* check acl */
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 			in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
@@ -45,19 +45,19 @@
 
 	/* submitted */
 	if(isset($HTTP_POST_VARS['submit'])) {
-		$u         = XADDSLASHES($HTTP_POST_VARS['u']);
-		$r         = XADDSLASHES($HTTP_POST_VARS['r']);
-		$password  = XADDSLASHES($HTTP_POST_VARS['password']);
-		$fname     = XADDSLASHES($HTTP_POST_VARS['fname']);
-		$lname     = XADDSLASHES($HTTP_POST_VARS['lname']);
-		$email     = XADDSLASHES($HTTP_POST_VARS['email']);
-		$pdesign   = XADDSLASHES($HTTP_POST_VARS['pdesign']);
-		$pstatus   = XADDSLASHES($HTTP_POST_VARS['pstatus']);
-		$pdata     = XADDSLASHES($HTTP_POST_VARS['pdata']);
-		$pall      = XADDSLASHES($HTTP_POST_VARS['pall']);
-		$pgroup    = XADDSLASHES($HTTP_POST_VARS['pgroup']);
-		$puser     = XADDSLASHES($HTTP_POST_VARS['puser']);
-		$disabled  = XADDSLASHES($HTTP_POST_VARS['disabled']);
+		$u         = _addslashes($HTTP_POST_VARS['u']);
+		$r         = _addslashes($HTTP_POST_VARS['r']);
+		$password  = _addslashes($HTTP_POST_VARS['password']);
+		$fname     = _addslashes($HTTP_POST_VARS['fname']);
+		$lname     = _addslashes($HTTP_POST_VARS['lname']);
+		$email     = _addslashes($HTTP_POST_VARS['email']);
+		$pdesign   = _addslashes($HTTP_POST_VARS['pdesign']);
+		$pstatus   = _addslashes($HTTP_POST_VARS['pstatus']);
+		$pdata     = _addslashes($HTTP_POST_VARS['pdata']);
+		$pall      = _addslashes($HTTP_POST_VARS['pall']);
+		$pgroup    = _addslashes($HTTP_POST_VARS['pgroup']);
+		$puser     = _addslashes($HTTP_POST_VARS['puser']);
+		$disabled  = _addslashes($HTTP_POST_VARS['disabled']);
 
 		if(!empty($HTTP_POST_VARS['ex_year']) ||
 				!empty($HTTP_POST_VARS['ex_month']) ||
@@ -151,8 +151,8 @@
 			return;
 		}
 	} else if(isset($HTTP_GET_VARS['u']) && isset($HTTP_GET_VARS['r'])) {
-		$u = XADDSLASHES($HTTP_GET_VARS['u']);
-		$r = XADDSLASHES($HTTP_GET_VARS['r']);
+		$u = _addslashes($HTTP_GET_VARS['u']);
+		$r = _addslashes($HTTP_GET_VARS['r']);
 	} else {
 		$u = '';
 		$r = '';

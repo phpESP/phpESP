@@ -24,8 +24,8 @@
 	/* delete user */
 	if(isset($HTTP_POST_VARS['delete'])) {
 		unset($HTTP_POST_VARS['submit']);
-		$u = XADDSLASHES($HTTP_POST_VARS['u']);
-		$r = XADDSLASHES($HTTP_POST_VARS['r']);
+		$u = _addslashes($HTTP_POST_VARS['u']);
+		$r = _addslashes($HTTP_POST_VARS['r']);
 		/* check acl */
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 			in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
@@ -45,13 +45,13 @@
 
 	/* submitted */
 	if(isset($HTTP_POST_VARS['submit'])) {
-		$u         = XADDSLASHES($HTTP_POST_VARS['u']);
-		$r         = XADDSLASHES($HTTP_POST_VARS['r']);
-		$password  = XADDSLASHES($HTTP_POST_VARS['password']);
-		$fname     = XADDSLASHES($HTTP_POST_VARS['fname']);
-		$lname     = XADDSLASHES($HTTP_POST_VARS['lname']);
-		$email     = XADDSLASHES($HTTP_POST_VARS['email']);
-		$disabled  = XADDSLASHES($HTTP_POST_VARS['disabled']);
+		$u         = _addslashes($HTTP_POST_VARS['u']);
+		$r         = _addslashes($HTTP_POST_VARS['r']);
+		$password  = _addslashes($HTTP_POST_VARS['password']);
+		$fname     = _addslashes($HTTP_POST_VARS['fname']);
+		$lname     = _addslashes($HTTP_POST_VARS['lname']);
+		$email     = _addslashes($HTTP_POST_VARS['email']);
+		$disabled  = _addslashes($HTTP_POST_VARS['disabled']);
 
 		if(!empty($HTTP_POST_VARS['ex_year']) ||
 				!empty($HTTP_POST_VARS['ex_month']) ||
@@ -134,8 +134,8 @@
 			return;
 		}
 	} else if(isset($HTTP_GET_VARS['u']) && isset($HTTP_GET_VARS['r'])) {
-		$u = XADDSLASHES($HTTP_GET_VARS['u']);
-		$r = XADDSLASHES($HTTP_GET_VARS['r']);
+		$u = _addslashes($HTTP_GET_VARS['u']);
+		$r = _addslashes($HTTP_GET_VARS['r']);
 	} else {
 		$u = '';
 		$r = '';
