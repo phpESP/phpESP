@@ -257,25 +257,47 @@ SELECT Q.id, Q.type_id, T.answer_table
 					$result = mysql_query($sql);
 					break;
 				case 'answers_single':
+					if(empty($val)) {
+						$sql = "SELECT id FROM question_choices WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
+						$c_result = mysql_query($sql);
+						while(list($cid) = mysql_fetch_row($c_result)) {
+							$other = $HTTP_POST_VARS["${qid}_${cid}"];
+							if(ereg("[^ \t]",$other)) {
+								$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+								$result = mysql_query($sql);
+								$val = $cid;
+								break;
+							}
+						}
+						mysql_free_result($c_result);
+					}
 					if(ereg("other_([0-9]+)", $val, $regs)) {
-						$i=$regs[1];
-						$other = $HTTP_POST_VARS["${qid}_${i}"];
-						$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${i}','${other}' )";
+						$cid=$regs[1];
+						$other = $HTTP_POST_VARS["${qid}_${cid}"];
+						$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
+						$val=$cid;
 					}
 					$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
 					$result = mysql_query($sql);
 					break;
 				case 'answers_multiple':
+					$sql = "SELECT id FROM question_choices WHERE question_id='${qid}' AND content LIKE '!other%'";
+					$c_result = mysql_query($sql);
+					while(list($cid) = mysql_fetch_row($c_result)) {
+						$other = $HTTP_POST_VARS["${qid}_${cid}"];
+						if(ereg("[^ \t]",$other)) {
+							$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+							$result = mysql_query($sql);
+							$val[] = $cid;
+						}
+					}
+					mysql_free_result($c_result);
 					if(empty($val))
 						break;
 					foreach($val as $cid) {
-						if(ereg("other_([0-9]+)", $cid, $regs)) {
-							$i=$regs[1];
-							$other = $HTTP_POST_VARS["${qid}_${i}"];
-							$sql = "INSERT INTO answers_other ( response_id,question_id,choice_id,answer ) VALUES ( '${rid}','${qid}','${i}','${other}' )";
-							$result = mysql_query($sql);
-						}
+						if(ereg("other_[0-9]+", $cid))
+							continue;
 						$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${cid}' )";
 						$result = mysql_query($sql);
 					}
