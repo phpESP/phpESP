@@ -18,9 +18,9 @@
 
 	/* sid selected for testing */
 	if(!empty($sid)) {
-		$sql = "SELECT status,owner,realm FROM survey WHERE id=${sid}";
+		$sql = "SELECT status,owner,realm,theme FROM survey WHERE id=${sid}";
 		$result = mysql_query($sql);
-		list($status,$owner,$realm) = mysql_fetch_row($result);
+		list($status,$owner,$realm,$theme) = mysql_fetch_row($result);
 		mysql_free_result($result);
 
 		/* check ACL to see if user is allowed to test
@@ -39,16 +39,14 @@
 			/* cleared for testing ... was that enough tests? */
 ?>
 </form>
-<?php // lets make the css style available during the testing.
-      // this should really go into the head section.....but should still work
-	$sql = "SELECT theme FROM survey where id = '${sid}'";
-	if ($result = mysql_query($sql)) {
-                if (mysql_num_rows($result) > 0) {
-                        list($css_file) = mysql_fetch_row($result);
-                        mysql_free_result($result);
-                	echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$css_file."\"  type=\"text/css\">\n");
-		}
-        }
+<?php
+
+			/* make the css style available during the testing.
+			 * this should really go into the head section ...
+			 * but should still work */
+			if (!empty($theme))
+				echo('<link rel="stylesheet" href="' .
+						$GLOBALS['ESPCONFIG']['survey_css_dir'].$theme . '" type="text/css">');
 ?>
 <b><?php echo(_('Testing Survey...')); ?></b> (<?php echo(_('SID')." = $sid"); ?>)
 <p>
@@ -61,6 +59,8 @@
 			$HTTP_POST_VARS['userid'] = 'test';
 			define('AUTHHAND-PREFIX', TRUE);
 			define('AUTHHAND-OK', TRUE);
+			$HTTP_POST_VARS['sec'] = empty($HTTP_POST_VARS['sec']) ? 1 : intval($HTTP_POST_VARS['sec']);
+			$HTTP_POST_VARS['rid'] = empty($HTTP_POST_VARS['rid']) ? 0 : intval($HTTP_POST_VARS['rid']);
 			include($ESPCONFIG['handler']);
 			#undefine('AUTHHAND-PREFIX');
 			#undefine('AUTHHAND-OK');
