@@ -41,7 +41,11 @@
 				return;
 			}
 		}
-
+if (isset($HTTP_GET_VARS['type'])) {
+	if ($HTTP_GET_VARS['type'] == "cross") {
+		echo('<h2>'. _('Cross Tabulation') ."</h2>\n");
+	}
+}
 ?>
 <font size="+2">
 <a href="<?php echo($GLOBALS['ESPCONFIG']['ME']."?where=help"); ?>" target="_blank">Help</a>
