@@ -78,6 +78,8 @@ survey, and will have to activate it before use.')); ?>
 			$stat = _('Ended');
 		} elseif($status & STATUS_ACTIVE) {
 			$stat = _('Active');
+		} elseif($status & STATUS_TEST) {
+			$stat = _('Testing');
 		} else {
 			$stat = _('Editing');
 		}
