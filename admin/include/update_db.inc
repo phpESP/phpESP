@@ -93,7 +93,7 @@
 
 			// constraint: question type required
 			if(empty($type_id)) {
-				echo(mkwarn('Sorry, you mush select a type for this question.'));
+				echo(mkwarn('Sorry, you must select a type for this question.'));
 				$tab = 'questions';
 				$dont_clear = 1;
 				return;
