@@ -217,6 +217,7 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 						$disabled = _addslashes($row[13]);
 					else
 						$disabled = '';
+					/* validate email address.  */
                     if($email != '') {
 					    if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
 						    "([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$", $email)) {
