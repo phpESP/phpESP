@@ -1,8 +1,34 @@
+## Written by James Flemer
+## <jflemer@acm.jhu.edu>
+## <jflemer@eGrad2000.com>
+ 
+## This file uses Apache mod_auth to restric access to the
+## management pages. This is just an *example*! Please
+## configure it to fit your layout. For more information,
+## please consult the Apache user's guide:
+##       http://www.apache.org/docs/
+
 AuthType Basic
 AuthName "Restricted Directory"
 
+
+## The AuthUserFile directive sets the name of a textual file
+## containing the list of users and passwords for user
+## authentication. Filename is the path to the user file. If it is
+## not absolute (i.e., if it doesn't begin with a slash), it is
+## treated as relative to the ServerRoot. 
+
 #AuthUserFile htdocs/<path-to-phpESP>/admin/.htpasswd
 AuthUserFile htdocs/phpESP/admin/.htpasswd
+
+
+## The AuthGroupFile directive sets the name of a textual file
+## containing the list of user groups for user authentication.
+## Filename is the path to the group file. If it is not absolute
+## (i.e., if it doesn't begin with a slash), it is treated as
+## relative to the ServerRoot. 
+
 #AuthGroupFile htdocs/<path-to-phpESP>/admin/.htgroup
 AuthGroupFile htdocs/phpESP/admin/.htgroup
+
 require group admin
