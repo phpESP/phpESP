@@ -5,6 +5,8 @@ PHPESP CHANGE LOG
 v1.5 RC2 ==> v1.6 RC3
 =====================
 * NEW FEATURE: System test script.
+* FIXED compatibility with older PHP versions and settype(). 
+  (Submitted by Emmett Bearden <chadb AT beardendesigns.com>.)
 * FIXED bug with querying the database before it was opened.  (Noticed
   by James P. Dugal <jpd AT louisiana.edu>.)
 
