@@ -19,29 +19,30 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 	// the standard (original) results display is created
 	
 	// void crossanalysis(int $surveyId, 
+	//                    int $precision,
 	//                    bool $showTotals, 
 	//                    int $questionId,
 	//                    int[] $choiceIds);
 	
-	function survey_results($sid, $show_totals = 1, $qid = -1, $cid = array()) {
-		echo('<!-- $Id$ -->'."\n");
+	function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '') {
+		if(empty($precision))	$precision  = 1;
+		if(empty($showTotals))	$showTotals = 1;
+	
+		if(!empty($cids))
+			$cids = split(" ",$cids); // turn space seperated list into array
 
 		// set up things differently for cross analysis
-		$cross = 0;
-		if($qid > 0) {
-			$cross = 1;
-				
+		$cross = !empty($qid);
+		if($cross) {
 			// create a string suitable for inclusion in a SQL statement
 			// containing the desired Choice IDs
 			// ex: "('123','124','125')"
-			if(is_array($cid) && count($cid)>0) {
-				$cidstr = "IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $cid) . ")");
+			if(is_array($cids) && count($cids)>0) {
+				$cidstr = "IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $cids) . ")");
 			} else {
-				$cidstr = "blank";
+				$cidstr = '';
 			}
 		}
-
-		if(DEBUG)	echo("<!-- \$cidstr = $cidstr -->\n");
 
 		// build associative array holding weather each question
 		// type has answer choices or not and the table the answers are in
@@ -66,7 +67,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 			$errmsg = "Error opening selected survey. [ ID:${sid} R:" . mysql_num_rows($result) ."]";
 			return($errmsg);
 		}
-		$survey = mysql_fetch_array($result);
+		$survey = mysql_fetch_array($result, MYSQL_ASSOC);
 		mysql_free_result($result);
 
 		// load survey questions
@@ -84,7 +85,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 	// and relevant response ID's
 		$sql = "";
 		if($cross) {
-			if($cidstr != "blank") {
+			if(!empty($cidstr))
 				$sql = "SELECT A.response_id
 						  FROM answers_single A,
 						       survey_responses R
@@ -93,7 +94,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						       A.question_id='${qid}' AND
 				    		   A.choice_id ${cidstr}
 						 ORDER BY A.response_id";
-			} else {
+			else
 				$sql = "SELECT A.response_id
 						  FROM answers_single A,
 						       survey_responses R
@@ -102,31 +103,6 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						       A.question_id='${qid}' AND
 				    		   A.choice_id = 0
 						 ORDER BY A.response_id";
-/*			
-				$sql = "SELECT AA.response_id
-						  FROM answers_single AA,
-							   survey_responses RR
-						 WHERE AA.response_id=RR.id AND
-							   RR.complete='yes' AND
-							   AA.question_id='${qid}'";
-				$ridstr = '';
-				if($result = mysql_query($sql)) {
-					$rid = array();
-					while($row = mysql_fetch_row($result)) {
-						array_push($rid, $row[0]);
-					}
-					$ridstr = ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $rid) . ")");
-					mysql_free_result($result);
-				}
-				$sql = "SELECT R.id
-						  FROM survey_responses R
-						 WHERE R.survey_id='${sid}' AND
-						       R.complete='yes' AND
-							   R.id NOT IN ${ridstr}
-						 ORDER BY R.id";
-*/
-				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-			}
 		} else {
 			$sql = "SELECT R.id
 					  FROM survey_responses R
@@ -135,13 +111,14 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 					 ORDER BY R.id";
 		}
 		if(!($result = mysql_query($sql))) {
-			$errmsg = "Error opening selected survey. No responses found for survey. [ ID:${sid} ]";
+			$errmsg = "Error opening selected survey. [ ID:${sid} ] [ ".mysql_error()."]";
 			return($errmsg);
 		}
 		$total = mysql_num_rows($result);
 		if($total < 1) {
 			$errmsg = "Error opening selected survey. No responses found for survey. [ ID:${sid} ]";
-			return($errmsg);
+//			return($errmsg);
+			echo("<!-- \$errmsg = '$errmsg' -->\n");
 		}
 		
 		$rid = array();
@@ -153,12 +130,20 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 		// create a string suitable for inclusion in a SQL statement
 		// containing the desired Response IDs
 		// ex: "('304','311','317','345','365','370','403','439')"
-		$ridstr = ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $rid) . ")");
+		$ridstr = "IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $rid) . ")");
 
-		
-		if(DEBUG)	echo("<!-- \$ridstr = $ridstr -->\n");
-
-		$i=0;
+		if(1) {
+			echo("<!--
+\$sid = $sid
+\$precision = $precision
+\$showTotals = $showTotals
+\$qid = $qid
+\$cids = $cids
+\$cross = $cross
+\$cidstr = $cidstr
+\$ridstr = $ridstr
+-->");
+		}
 ?>
 
 <h2><?php echo($survey["title"]); ?></h2>
@@ -171,6 +156,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <?php
+		$i=0; // question number counter
 		while($question = mysql_fetch_array($questions_result)) {
 			// process each question
 			$qid = $question['id'];
@@ -201,7 +187,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				$sql = "SELECT A.choice_id, COUNT(A.response_id)
 						  FROM ${table} A
 						 WHERE A.question_id='${qid}' AND 
-						       A.response_id IN ${ridstr} AND
+						       A.response_id ${ridstr} AND
 							   A.choice_id IN ('yes','no')
 						 GROUP BY A.choice_id";
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
@@ -225,7 +211,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						       C.content NOT LIKE '!other%' AND
 							   A.question_id=C.question_id AND
 							   A.choice_id=C.id AND
-							   A.response_id IN ${ridstr}
+							   A.response_id ${ridstr}
 						 GROUP BY C.id";
 //						 ORDER BY C.id";
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
@@ -240,7 +226,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						  FROM answers_other A, question_choices C
 						 WHERE A.question_id='${qid}' AND
 						       A.choice_id=C.id AND
-    						   A.response_id IN ${ridstr}
+    						   A.response_id ${ridstr}
 						 GROUP BY C.id, A.answer";
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 				if($result = mysql_query($sql)) {
@@ -259,7 +245,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				$sql = "SELECT A.answer, COUNT(A.response_id) AS num
 						  FROM ${table} A
 						 WHERE A.question_id='${qid}' AND
-    						   A.response_id IN $ridstr
+    						   A.response_id ${ridstr}
 						 GROUP BY A.answer";
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 				if($result = mysql_query($sql)) {
@@ -279,7 +265,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
     							   A.question_id='${qid}' AND
 								   A.choice_id=C.id AND
 								   A.rank>0 AND
-								   A.response_id IN $ridstr
+								   A.response_id ${ridstr}
 							 GROUP BY C.id";
 					if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 					if($result = mysql_query($sql)) {
@@ -293,7 +279,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 					$sql = "SELECT A.rank, COUNT(A.response_id) AS num
 							  FROM ${table} A
 							 WHERE A.question_id='${qid}' AND
-    							   A.response_id IN $ridstr
+    							   A.response_id ${ridstr}
 							 GROUP BY A.rank";
 					if($result = mysql_query($sql)) {
 						while(list($rank, $num) = mysql_fetch_row($result)) {
@@ -309,19 +295,19 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 // ---------------------------------------------------------------------------
 			switch($question["result_id"]) {
 				case "1":	// Percentages
-					mkrespercent($counts,$total,$show_totals);
+					mkrespercent($counts,$total,$precision,$showTotals);
 					break;
 				case "2":	// Rank
-					mkresrank($counts,$total,$show_totals);
+					mkresrank($counts,$total,$precision,$showTotals);
 					break;
 				case "3":	// Count
-					mkrescount($counts,$total,$show_totals);
+					mkrescount($counts,$total,$precision,$showTotals);
 					break;
 				case "4":	// List
-					mkreslist($counts,$total,$show_totals);
+					mkreslist($counts,$total,$precision,$showTotals);
 					break;
 				case "99":	// Average
-					mkresavg($counts,$total,$show_totals);
+					mkresavg($counts,$total,$precision,$showTotals);
 					break;
 			} // end switch
 ?>
