@@ -48,7 +48,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				 ORDER BY id';
 		if(!($result = mysql_query($sql))) {
 			$errmsg = "Error phpESP system tables corrupted. [ Table(s): question_types ]";
-			return(1);
+			return($errmsg);
 		}
 		while($row = mysql_fetch_row($result)) {
 			$has_answers[$row[0]]=$row[1];
@@ -60,7 +60,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 		$sql = "SELECT * FROM surveys WHERE id='${sid}'";
 		if(!($result = mysql_query($sql))) {
 			$errmsg = "Error opening selected survey. [ ID:${sid} R:" . mysql_num_rows($result) ."]";
-			return(1);
+			return($errmsg);
 		}
 		$survey = mysql_fetch_array($result);
 		mysql_free_result($result);
@@ -73,21 +73,18 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				 ORDER BY position,id";
 		if(!($questions_result = mysql_query($sql))) {
 			$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ]";
-			return(1);
+			return($errmsg);
 		}
 
 	// find total number of survey responses
 	// and relevant response ID's
 		$sql = "";
 		if($cross) {
-			$sql = "SELECT R.id
-					  FROM answers_single A,
-				    	   survey_responses R
-					 WHERE R.survey_id='${sid}' AND
-				    	   R.complete = 'yes' AND
-					       A.question_id='${qid}' AND
+			$sql = "SELECT A.response_id
+					  FROM answers_single A
+					 WHERE A.question_id='${qid}' AND
 				    	   A.choice_id IN ${cidstr}
-					 ORDER BY R.id";
+					 ORDER BY A.response_id";
 		} else {
 			$sql = "SELECT R.id
 					  FROM survey_responses R
@@ -97,9 +94,14 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 		}
 		if(!($result = mysql_query($sql))) {
 			$errmsg = "Error opening selected survey. No responses found for survey. [ ID:${sid} ]";
-			return(1);
+			return($errmsg);
 		}
 		$total = mysql_num_rows($result);
+		if($total < 1) {
+			$errmsg = "Error opening selected survey. No responses found for survey. [ ID:${sid} ]";
+			return($errmsg);
+		}
+		
 		$rid = array();
 		while($row = mysql_fetch_row($result)) {
 			array_push($rid, $row[0]);
@@ -283,6 +285,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 </table>
 <?php
 		mysql_free_result($questions_result);
+		return;
 	} // end function survey_results
 
 } // end _FUNCTION_SURVEY_RESULTS
