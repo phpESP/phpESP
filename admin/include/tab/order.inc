@@ -8,70 +8,12 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	$url = $ESPCONFIG['ME'] .'?where=tab&tab=order';
-
-    if(isset($HTTP_POST_VARS['src']))
-    	$src = intval($HTTP_POST_VARS['src']);
-    else
-        $src = 0;
-    if (isset($HTTP_POST_VARS['dst']))
-    	$dst = intval($HTTP_POST_VARS['dst']);
-    else
-        $dst = 0;
-	$sid = $HTTP_SESSION_VARS['survey_id'];
-
-	if(isset($HTTP_POST_VARS['addbreak'])) {
-		$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=$sid";
-		$pos = get_one($sql);
-
-		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." (survey_id,type_id,position,content)
-				VALUES ($sid, 99, $pos, 'break')";
-		execute_sql($sql);
-	} elseif ($src > 0) {
-		--$src;
-		--$dst;
-
-		$sql = "SELECT id, position FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-				WHERE survey_id=$sid AND deleted='N'
-				ORDER BY position";
-		$result = execute_sql($sql);
-		$max = record_count($result);
-		if ($src < $max) {
-            $result->Move($src);
-			$qid = $result->fields[0];
-			if ($dst < 0) {
-				// remove
-				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET deleted='Y' WHERE id=$qid AND survey_id=$sid";
-				execute_sql($sql);
-			} elseif (0 <= $dst && $dst < $max && $src != $dst) {
-				// move
-				if ($max - 1 > $dst) {
-					if ($src < $dst)
-						// move down
-						++$dst;
-                        $result->Move($dst);
-            $position = $result->fields[1]+1;
-					$dst = $result->fields[1];
-					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$position
-							WHERE survey_id=$sid AND position >= $dst";
-					execute_sql($sql);
-				} else {
-                    $result->Move($max-1);
-					$dst = $result->fields[1] + 1;
-				}
-				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$dst WHERE id=$qid AND survey_id=$sid";
-				execute_sql($sql);
-			}
-		}
-		db_close($result);
-	}
-
-	$sql = "SELECT id,type_id,position,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-			WHERE survey_id=$sid AND deleted='N'
-			ORDER BY position";
-	$result = execute_sql($sql);
-	$max = record_count($result);
-	$sec = $num = 0;
+$sid = $HTTP_SESSION_VARS['survey_id'];
+$sql = "SELECT id,type_id,position,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+WHERE survey_id=$sid AND deleted='N'
+ORDER BY position";
+$result = execute_sql($sql);
+$max = record_count($result);
 ?>
 <?php echo(_('Change the order that questions are
 presented by choosing the desired position from the
@@ -79,75 +21,63 @@ list.')); ?>
 <hr>
 <script language="javascript">
 <!-- // comment
-  function swap(src, dst) {
-    document.phpesp.src.value=src;
-    document.phpesp.dst.value=dst+1;
-    document.phpesp.submit();
-  }
-  function remove(src) {
-    document.phpesp.src.value=src;
-    document.phpesp.dst.value=-1;
-    document.phpesp.submit();
-  }
-  function editq(num) {
-    if (document.phpesp.elements[1].name == 'tab') {
-        document.phpesp.elements[1].value='Questions';
-    }
+function move(f,bDir,sName) {
+    var el = f.elements[sName]
+    var idx = el.selectedIndex
+    if (idx==-1) 
+    alert("You must first select the item to reorder.")
     else {
-      for (i = 1; i <= document.phpesp.elements.length; i++) {
-	if (document.phpesp.elements[i].name == 'tab') {
-	  document.phpesp.elements[i].value='Questions';
-	  break;
-	}
-      }
-    }
-    document.phpesp.q.value=num;
-    document.phpesp.submit();
-	return false;
-  }
+        var nxidx = idx+( bDir? -1 : 1)
+        if (nxidx<0) nxidx=el.length-1
+        if (nxidx>=el.length) nxidx=0
+        var oldVal = el[idx].value
+        var oldText = el[idx].text
+        el[idx].value = el[nxidx].value
+        el[idx].text = el[nxidx].text
+        el[nxidx].value = oldVal
+        el[nxidx].text = oldText
+        el.selectedIndex = nxidx
+   }
+}
+
+function saveOrder() {
+        var orderList = "";
+        for (var i=0; i < document.phpesp.questions.length; i++){
+                orderList = orderList + document.phpesp.questions.options[i].value;
+                if (i + 1 != document.phpesp.questions.length){
+                        orderList = orderList + "|";
+                }
+        }
+        document.phpesp.questions_order.value = orderList;
+}
+
 // comment -->
 </script>
 <input type="hidden" name="tab" value="">
-<input type="hidden" name="src" value="">
-<input type="hidden" name="dst" value="">
-<input type="hidden" name="q"   value="">
+<input type="hidden" name="questions_order" value="">
 <table>
-<?php
-	while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
-        $result->MoveNext();
-		$num++;
-		$select = '';
-		for ( $i = 0; $i < $max; ) {
-			$i++;
-			if( $i == $num )
-				$select .= "<option value=\"$i\" selected=\"selected\">$i</option>\n";
-			else
-				$select .= "<option value=\"$i\">$i</option>\n";
-		}
-?>
-	<tr>
-		<td>
-		<select name="pos<?php echo($num); ?>" size="1" onchange="javascript:swap(<?php echo($num); ?>, this.form.pos<?php echo($num); ?>.selectedIndex);">
-<?php echo($select); ?>
-		</select>
-		</td>
-		<td>
-<?php
-			if($tid != 99)
-				echo($content);
-			else {
-				++$sec;
-				echo('<b>'._('----- Section Break -----').'</b>');
+        <tr>
+        <td>
+    <select name="questions" size="<?php echo($max)?>">
+        <?php
+        while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
+            $result->MoveNext();
+            if($tid != 99) {
+                echo('<option value="'.$qid.'">'.$content.'</option>');
+            }
+            else {
+                ++$sec;
+                echo('<option value="'.$qid.'"><b>'._('----- Section Break -----').'</b></option>\n');
 			}
-?>
-		</td>
-		<td><input type="button" value="<?php echo(_('Remove')); ?>" onclick="javascript:remove(<?php echo($num); ?>);"></td>
-		<td><?php if($tid != 99) { ?><input type="button" value="<?php echo(_('Edit')); ?>" onclick="javascript:editq(<?php echo($num-$sec); ?>);"><?php } ?></td>
-	</tr>
-<?php
-		}
+        }
 		db_close($result);
-?>
+        ?>
+        </select>
+		</td>
+        <td>
+        <input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')"> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" value="Remove" name="remove">
+        </td>
+        </tr>
 </table>
 <hr>
 <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>">

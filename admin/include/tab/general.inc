@@ -31,7 +31,13 @@
 <?php echo(_('The information on this tab applies to the whole survey.
 Fill out this page then go to the <b>Fields</b> tab to
 edit individual fields.')); ?>
-
+<script language="javascript">
+<!--
+function saveOrder() {
+    return true;
+}
+-->
+</script>
 <hr>
 <table width="95%" border="0" cellspacing="0" cellpadding="0">
 	<tr valign="top">
