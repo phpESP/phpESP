@@ -34,6 +34,8 @@ function render_survey($sid, $section = 1, $message = '') {
 	$num_sections = count($sections);
 	if($section-- > $num_sections)
 		return(false);	// invalid section
+
+    $section_questions = survey_get_section_questions($sid);
 	
 // load survey questions
 	$sec_sql = array_to_insql($sections[$section]);
@@ -49,7 +51,7 @@ function render_survey($sid, $section = 1, $message = '') {
 // find out what question number we are on $i
 	$i=0;
 	for($j=0;$j<$section;$j++)
-		$i += count($sections[$j]);
+		$i += count($section_questions[$j]);
 ?>
 <table class="headerGraphic">
 <tr>
