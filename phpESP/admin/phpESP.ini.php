@@ -96,7 +96,7 @@ $ESPCONFIG['bgalt_color2']      = '#EEEEEE';
  *******************************************************************/
 
 // Enable debugging code (BOOLEAN)
-$ESPCONFIG['DEBUG'] = true;
+$ESPCONFIG['DEBUG'] = false;
 
 // Name of application
 $ESPCONFIG['name'] = 'phpESP';
