@@ -46,7 +46,7 @@ function response_check_required($sid, $section) {
 		if ($tid == 10 && $HTTP_POST_VARS[$qid] === '0') { // Numeric
 			continue;
         }
-		if(empty($HTTP_POST_VARS[$qid]))
+		if(empty($HTTP_POST_VARS[$qid]) && $HTTP_POST_VARS[$qid] != '0')
 			$missing[$qid] = $content;
 	}
 	db_close($result);
