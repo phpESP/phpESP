@@ -27,7 +27,7 @@
 		$HTTP_POST_VARS['rid'] = '';
 	
 	if (empty($HTTP_POST_VARS['sec']))
-		$HTTP_POST_VARS['sec'] = 0;
+		$HTTP_POST_VARS['sec'] = 1;
 	else
 		$HTTP_POST_VARS['sec'] = intval($HTTP_POST_VARS['sec']);
 
