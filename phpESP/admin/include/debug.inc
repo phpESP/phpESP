@@ -2,8 +2,8 @@
 	$arr = array();
 	
 	array_push($arr, array('SID', session_id()));
-	if (file_exists(session_save_path()."/sess_".session_id()))
-		array_push($arr, array('SESSION', implode('', file(session_save_path()."/sess_".session_id()))));
+	if (@file_exists(session_save_path()."/sess_".session_id()))
+		array_push($arr, array('SESSION', implode('', @file(session_save_path()."/sess_".session_id()))));
 	
 	if(isset($HTTP_SESSION_VARS['acl'])) {
 		array_push($arr, 'ACL');
