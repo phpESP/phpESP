@@ -104,7 +104,8 @@ function esp_setlocale($lang)
     global $ESPCONFIG;
 
     setlocale(LC_ALL, $lang);
-    setlocale(LC_MESSAGES, $lang);
+    if (defined('LC_MESSAGES'))
+        setlocale(LC_MESSAGES, $lang);
     bindtextdomain('messages', $ESPCONFIG['locale_path']);
     textdomain('messages');
     @putenv('LANG=' . $lang);
