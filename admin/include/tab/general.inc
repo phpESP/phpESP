@@ -71,6 +71,17 @@ add/edit individual survey questions.')); ?>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
 	<tr valign="top">
+		<td><b><?php echo(_('Public')); ?></b></td>
+		<td>
+			<select name="public">
+			<option value="Y"<?php if($survey['public'] != 'N') echo(' selected="selected"'); ?>><?php echo(_('Yes')); ?></option>
+			<option value="N"<?php if($survey['public'] == 'N') echo(' selected="selected"'); ?>><?php echo(_('No')); ?></option>
+			</select><br>
+			<?php echo(_('Public surveys do not require a respondent to login before taking a survey.')); ?>
+		</td>
+	</tr>
+	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
+	<tr valign="top">
 		<td><b><?php echo(_('Email')); ?></b></td>
 		<td>
 			<input type="text" name="email" size="30" value="<?php echo(htmlspecialchars($survey['email'])); ?>"><br>
