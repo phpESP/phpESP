@@ -94,6 +94,9 @@ function clearTextInputs() {
 
         }
 }
+function saveOrder() {
+    return true;
+}
 // comment -->
 </script>
 <center>

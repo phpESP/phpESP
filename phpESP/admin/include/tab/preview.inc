@@ -33,6 +33,11 @@ function other_check(name)
     }
   }
 }
+function saveOrder() {
+    return true;
+}
+
+
 // End -->
 </script>
 <?php echo(_('This is a preview of how this survey will look.
