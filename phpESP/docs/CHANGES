@@ -43,6 +43,7 @@ v1.6.1 final ==> v1.7-dev
 * ADDED javascript popup to warn users of the non-reversibilty of
   activating a survey.
 * ADDED javascript popup to warn users when canceling a new survey.
+* ADDED check for web server running in unsupported(CGI, etc..), mode.
 
 v1.6 final ==> v1.6.1 final
 ===========================
