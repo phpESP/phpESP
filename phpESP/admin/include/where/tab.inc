@@ -42,6 +42,13 @@
 	
 	global $errstr;
 	
+	if($HTTP_GET_VARS['where'] == 'new') {
+		$HTTP_SESSION_VARS['survey_id'] = '';
+		$HTTP_SESSION_VARS['new_survey'] = '';
+		$HTTP_SESSION_VARS['last_tab'] = '';
+		$HTTP_SESSION_VARS['curr_q'] = '';
+	}		
+	
 	if(!empty($HTTP_GET_VARS['newid'])) {
 		$HTTP_SESSION_VARS['survey_id'] = intval($HTTP_GET_VARS['newid']);
 		$HTTP_POST_VARS['tab'] = 'general';
