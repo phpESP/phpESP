@@ -4,6 +4,8 @@
 #
 
 SOON:
+* expand the "Results" page into "Analysis"
+  * including a nice form interface to the cross-analysis
 * "sub"-questions of other questions
   (Roman, will this solve the SKIP problem?)
 * "forked" surveys (subsequent pages dependant on previous question)
@@ -38,3 +40,4 @@ JAVASCRIPTS:
  * Limit number of check boxes checked to N.
  * "Grey out" a field(s) when a box is/is not checked.
  * Order page
+ * Numeric only text fields (Denis HAVLIK <denis@mandrakesoft.com>)
