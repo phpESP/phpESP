@@ -108,7 +108,7 @@ $ESPCONFIG['DEBUG'] = false;
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '1.7-dev';
+$ESPCONFIG['version'] = '1.8-dev';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';
