@@ -71,8 +71,9 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 
 	// find total number of survey responses
 	// and relevant response ID's
+		$sql = "";
 		if($cross) {
-			$sql = "SELECT A.response_id
+			$sql = "SELECT R.id
 					  FROM answers_single A,
 				    	   survey_responses R
 					 WHERE R.survey_id='${sid}' AND
@@ -80,9 +81,8 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 					       A.question_id='${qid}' AND
 				    	   A.choice_id IN ${cidstr}";
 		} else {
-			$sql = "SELECT A.response_id
-					  FROM answers_single A,
-				    	   survey_responses R
+			$sql = "SELECT R.id
+					  FROM survey_responses R
 					 WHERE R.survey_id='${sid}' AND
 					       R.complete='yes'";
 		}
@@ -98,6 +98,9 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 		// containing the desired Response IDs
 		// ex: "('123','124','125')"
 		$ridstr = ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $rid) . ")");
+
+		#DEBUG
+		echo("<!-- \$ridstr = '$ridstr' -->\n");
 
 		$i=0;
 ?>
@@ -156,17 +159,18 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 					$question["result_id"] = 1;	// default to percentages for yes/no
 
 			} elseif($table == "answers_single" || $table == "answers_multiple") {
-				$sql = "SELECT id,content FROM question_choices WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
+				$sql = "SELECT C.content, COUNT(A.response_id) AS num
+						  FROM question_choices C,
+						       ${table} A
+						 WHERE C.question_id='${qid}' AND
+						       C.content NOT LIKE '!other%' AND
+							   A.question_id=C.question_id AND
+							   A.choice_id=C.id AND
+							   A.response_id IN ${ridstr}
+						 GROUP BY C.content";
+//						 ORDER BY C.id";
 				$result = mysql_query($sql);
-				while(list($cid,$ccontent) = mysql_fetch_row($result)) {
-					$sql2 ="SELECT COUNT(*)
-							  FROM ${table} A
-							 WHERE A.question_id='${qid}' AND 
-						    	   A.choice_id='no' AND
-						    	   A.response_id IN ${ridstr}";
-					$result2 = mysql_query($sql2);
-					$count = mysql_result($result2,0,0);
-					mysql_free_result($result2);
+				while(list($ccontent,$count) = mysql_fetch_row($result)) {
 					$counts[$ccontent] = $count;
 				}
 				mysql_free_result($result);
