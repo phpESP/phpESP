@@ -21,19 +21,19 @@
 	$sid = $HTTP_SESSION_VARS['survey_id'];
 
 	if(isset($HTTP_POST_VARS['addbreak'])) {
-		$sql = "SELECT MAX(position)+1 FROM question WHERE survey_id='$sid'";
+		$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id='$sid'";
 		$result = mysql_query($sql);
 		$pos = mysql_result($result, 0, 0);
 		mysql_free_result($result);
 
-		$sql = "INSERT INTO question (survey_id,type_id,position,content)
+		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." (survey_id,type_id,position,content)
 				VALUES ('$sid', 99, '$pos', 'break')";
 		mysql_query($sql);
 	} elseif ($src > 0) {
 		--$src;
 		--$dst;
 
-		$sql = "SELECT id,position FROM question
+		$sql = "SELECT id,position FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 				WHERE survey_id='$sid' AND deleted='N'
 				ORDER BY position";
 		$result = mysql_query($sql);
@@ -45,7 +45,7 @@
 
 			if ($dst < 0) {
 				// remove
-				$sql = "UPDATE question SET deleted='Y' WHERE id='$qid' AND survey_id='$sid'";
+				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET deleted='Y' WHERE id='$qid' AND survey_id='$sid'";
 				mysql_query($sql);
 			} elseif (0 <= $dst && $dst < $max && $src != $dst) {
 				// move
@@ -54,20 +54,20 @@
 						// move down
 						++$dst;
 					$dst = mysql_result($result, $dst, 1);
-					$sql = "UPDATE question SET position=position+1
+					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=position+1
 							WHERE survey_id='$sid' AND position >= '$dst'";
 					mysql_query($sql);
 				} else {
 					$dst = mysql_result($result, $max-1, 1) + 1;
 				}
-				$sql = "UPDATE question SET position='$dst' WHERE id='$qid' AND survey_id='$sid'";
+				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position='$dst' WHERE id='$qid' AND survey_id='$sid'";
 				mysql_query($sql);
 			}
 		}
 		mysql_free_result($result);
 	}
 
-	$sql = "SELECT id,type_id,position,content FROM question
+	$sql = "SELECT id,type_id,position,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			WHERE survey_id='$sid' AND deleted='N'
 			ORDER BY position";
 	$result = mysql_query($sql);

@@ -21,7 +21,7 @@ function survey_purge($sids) {
 	}
 
 	// make a list of question IDs
-	$sql = "SELECT id FROM question WHERE survey_id ${sidstr}";
+	$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id ${sidstr}";
 	$result = mysql_query($sql);
 	$qids = array();
 	while(list($qid) = mysql_fetch_row($result)) {
@@ -34,24 +34,24 @@ function survey_purge($sids) {
 	// start with the survey results
 	$tables = array('response_bool','response_date','response_multiple','response_other','response_rank','response_single','response_text');
 	foreach($tables as $table) {
-		$sql = "DELETE FROM ${table} WHERE question_id ${qidstr}";
+		$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." WHERE question_id ${qidstr}";
 		$result = mysql_query($sql);
 	}
 
 	// then responses
-	$sql = "DELETE FROM response WHERE survey_id ${sidstr}";
+	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['response_table']." WHERE survey_id ${sidstr}";
 	mysql_query($sql);
 
 	// then question choices
-	$sql = "DELETE FROM question_choice WHERE question_id ${qidstr}";
+	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id ${qidstr}";
 	mysql_query($sql);
 
 	// then questions
-	$sql = "DELETE FROM question WHERE survey_id ${sidstr}";
+	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id ${sidstr}";
 	mysql_query($sql);
 
 	// and finally the survey(s)
-	$sql = "DELETE FROM survey WHERE id ${sidstr}";
+	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id ${sidstr}";
 	mysql_query($sql);
 
 	return;

@@ -23,7 +23,7 @@
 		return;
 	}
 
-	$sql = "SELECT status FROM survey WHERE	id='".$HTTP_SESSION_VARS['survey_id']."'";
+	$sql = "SELECT status FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE	id='".$HTTP_SESSION_VARS['survey_id']."'";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result) < 1) {
 		mysql_free_result($result);
@@ -35,7 +35,7 @@
 	$status = mysql_result($result,0,0);
 	mysql_free_result($result);
 	$status |= STATUS_DELETED;
-	$sql = "UPDATE survey SET status='${status}' WHERE id='".$HTTP_SESSION_VARS['survey_id']."'";
+	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status='${status}' WHERE id='".$HTTP_SESSION_VARS['survey_id']."'";
 	mysql_query($sql);
 	$HTTP_SESSION_VARS['survey_id']    = '';
 	$HTTP_SESSION_VARS['survey_realm'] = '';

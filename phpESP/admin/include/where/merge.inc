@@ -41,11 +41,11 @@
 	$statusok = (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED);
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y')
-		$sql = "SELECT id,name,title,owner FROM survey
+		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 			WHERE (status & $statusok)
 			ORDER BY id DESC";
 	else
-		$sql = "SELECT id,name,title,owner FROM survey WHERE owner='".
+		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE owner='".
 			$HTTP_SESSION_VARS['acl']['username'] ."'
 			AND (status & $statusok)
 			ORDER BY id DESC";

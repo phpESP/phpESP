@@ -22,7 +22,7 @@ function array_to_insql($array) {
 function survey_num_sections($sid) {
 	$sql = "
 SELECT COUNT(*) + 1
-FROM question
+FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 WHERE survey_id='${sid}' AND
   type_id='99' AND
   deleted='N'";
@@ -39,7 +39,7 @@ function survey_get_sections($sid, $field = 'id') {
 	if (empty($field))
 		$field = 'id';
 
-	$sql = "SELECT $field, type_id FROM question
+	$sql = "SELECT $field, type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			WHERE survey_id = $sid AND deleted = 'N'
 			ORDER BY position";
 	if (!($result = mysql_query($sql)))
@@ -67,7 +67,7 @@ function survey_get_section_questions($sid, $field = 'id') {
 	if (empty($field))
 		$field = 'id';
 
-	$sql = "SELECT $field, type_id FROM question
+	$sql = "SELECT $field, type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			WHERE survey_id = $sid AND deleted = 'N'
 			ORDER BY position";
 	if (!($result = mysql_query($sql)))
@@ -97,9 +97,12 @@ function survey_get_section_questions($sid, $field = 'id') {
 function survey_select_section_sql($sid, $section, $table = '') {
 	if(!empty($table))
 		$table .= '.';
+//	$sql = "
+//SELECT position
+//FROM question
 	$sql = "
 SELECT position
-FROM question
+FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 WHERE survey_id='${sid}' AND
    type_id='99' AND
    deleted='N'
@@ -126,7 +129,7 @@ ORDER BY position,id";
    question type has answer choices. */
 function esp_type_has_choices() {
 	$has_choices = array();
-	$sql = 'SELECT id, has_choices FROM question_type ORDER BY id';
+	$sql = 'SELECT id, has_choices FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' ORDER BY id';
 	$result = mysql_query($sql);
 	while(list($tid,$answ) = mysql_fetch_row($result)) {
 		if($answ == 'Y')
@@ -143,7 +146,7 @@ function esp_type_has_choices() {
    Returns an associative array of bools indicating the
    table the responses are stored in. */
 function esp_type_response_table() {
-	$sql = 'SELECT id, response_table FROM question_type ORDER BY id';
+	$sql = 'SELECT id, response_table FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' ORDER BY id';
 	$result = mysql_query($sql);
 	$response_table = array();
 	while(list($tid,$answ) = mysql_fetch_row($result)) {

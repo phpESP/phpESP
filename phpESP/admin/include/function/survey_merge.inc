@@ -38,7 +38,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 	// load survey title (and other globals) from 1st surveyId
 	$sid = $sids[0];
-	$sql = "SELECT * FROM survey WHERE id=${sid}";
+	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
 	if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 	if(!($result = mysql_query($sql))) {
 		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."] [ ".mysql_error()."]";
@@ -49,7 +49,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 	// find total number of survey responses
 	$sql = "SELECT R.id
-			  FROM response R
+			  FROM ".$GLOBALS['ESPCONFIG']['response_table']." R
 			 WHERE R.survey_id ${sidstr} AND
 				   R.complete='Y'";
 	if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
@@ -76,7 +76,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 	for($i=0; $i<$num; $i++) {
 		$sid = $sids[$i];
 		$sql = "SELECT *
-				  FROM question
+				  FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 				 WHERE survey_id=${sid} AND
 					   deleted='N'
 				 ORDER BY position,id";
@@ -147,7 +147,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 // -------------------------------- response_bool --------------------------------
 		case 'response_bool':
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
-					  FROM ${table} A
+					  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE A.question_id ${qidstr} AND
 						   A.response_id ${ridstr}
 					 GROUP BY A.choice_id";
@@ -172,7 +172,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				$sid = $sids[$i];
 				$qid = $question[$i]['id'];
 				$sql = "SELECT id
-					      FROM question_choice
+					      FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
 						 WHERE question_id=${qid} AND
 							   content NOT LIKE '!other%'
 						 ORDER BY id";
@@ -186,7 +186,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			}
 			$content = array();
 			foreach($cids[0] as $cid) {
-				$sql = "SELECT content FROM question_choice WHERE id=${cid}";
+				$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE id=${cid}";
 				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				array_push($content, mysql_result($result,0,0));
@@ -201,7 +201,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				$mycidstr = array_to_insql($mycids);
 
 				$sql = "SELECT COUNT(*)
-						  FROM ${table} A
+						  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 						 WHERE A.choice_id ${mycidstr} AND
 							   A.response_id ${ridstr}";
 				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
@@ -215,7 +215,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				$sid = $sids[$i];
 				$qid = $question[$i]['id'];
 				$sql = "SELECT id
-					      FROM question_choice
+					      FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
 						 WHERE question_id ${qidstr} AND
 							   content LIKE '!other%'
 						 ORDER BY id";
@@ -229,7 +229,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			}
 			$content = array();
 			foreach($cids[0] as $cid) {
-				$sql = "SELECT content FROM question_choice WHERE id=${cid}";
+				$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE id=${cid}";
 				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				$text = ereg_replace("!other=?", "", mysql_result($result,0,0));
@@ -247,7 +247,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				$mycidstr = array_to_insql($mycids);
 
 				$sql = "SELECT A.response, COUNT(A.response_id)
-						  FROM response_other A
+						  FROM ".$GLOBALS['ESPCONFIG']['response_other_table']." A
 						 WHERE A.choice_id ${mycidstr} AND
 							   A.response_id ${ridstr}
 						 GROUP BY A.response";
@@ -269,7 +269,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 // -------------------------------- response_text --------------------------------
 		case 'response_text':
 			$sql = "SELECT A.response, COUNT(A.response_id)
-					  FROM ${table} A
+					  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE A.question_id ${qidstr} AND
 						   A.response_id ${ridstr}
 					 GROUP BY A.response";
@@ -291,7 +291,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 					$sid = $sids[$i];
 					$qid = $question[$i]['id'];
 					$sql = "SELECT id
-					          FROM question_choice
+					          FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
 							 WHERE question_id ${qidstr}
 							 ORDER BY id";
 					if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
@@ -304,7 +304,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				}
 				$content = array();
 				foreach($cids[0] as $cid) {
-					$sql = "SELECT content FROM question_choice WHERE id=${cid}";
+					$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice']." WHERE id=${cid}";
 					if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					array_push($content, mysql_result($result,0,0));
@@ -319,7 +319,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 					$mycidstr = array_to_insql($mycids);
 
 					$sql = "SELECT AVG(A.rank)
-							  FROM ${table} A
+							  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 							 WHERE A.choice_id ${mycidstr} AND
 								   A.response_id ${ridstr} AND
 								   A.rank>0";

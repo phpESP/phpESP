@@ -40,7 +40,7 @@ function survey_generate_csv($sid) {
 	);
 
 	$sql = "SELECT q.id, q.name, q.type_id
-		FROM question q
+		FROM ".$GLOBALS['ESPCONFIG']['question_table']." q
 		WHERE q.survey_id = $sid AND
 		q.deleted = 'N' AND q.type_id < 50
 		ORDER BY position";
@@ -50,7 +50,7 @@ function survey_generate_csv($sid) {
 		if ($type == 8) {
 			/* rate */
 			$sql = "SELECT CONCAT(q.name, ' ', c.content)
-			FROM question q, question_choice c
+			FROM ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
 			WHERE q.id = $qid AND q.id = c.question_id";
 			$result2 = mysql_query($sql);
 			$numcols += mysql_num_rows($result2) - 1;
@@ -81,7 +81,7 @@ function survey_generate_csv($sid) {
 
 	array_push($output, $columns);
 
-	$sql = "SELECT r.id,r.submitted,r.username FROM response r
+	$sql = "SELECT r.id,r.submitted,r.username FROM ".$GLOBALS['ESPCONFIG']['response_table']." r
 		WHERE r.survey_id='$sid' AND r.complete='Y'
 		ORDER BY r.submitted";
 	$result = mysql_query($sql);

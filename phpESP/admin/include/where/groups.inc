@@ -16,7 +16,7 @@
 	
 	$errstr = '';
 	if(!empty($HTTP_POST_VARS['r']) && !empty($HTTP_POST_VARS['t'])) {
-		$sql = "INSERT INTO realm (name, title)
+		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm_table']." (name, title)
 		VALUES ('". _addslashes($HTTP_POST_VARS['r']) ."', '".
 		_addslashes($HTTP_POST_VARS['t']) ."')";
 		if(!mysql_query($sql))
@@ -26,22 +26,22 @@
 		if($HTTP_GET_VARS['del'] == 'superuser') {
 			$errstr = _('Error deleting group.');
 		} else {
-			$sql = "SELECT count(d.username) FROM designer d WHERE d.realm='". _addslashes($HTTP_GET_VARS['del']) ."'";
+			$sql = "SELECT count(d.username) FROM ".$GLOBALS['ESPCONFIG']['designer_table']." d WHERE d.realm='". _addslashes($HTTP_GET_VARS['del']) ."'";
 			$result = mysql_query($sql);
 			$count = mysql_result($result, 0, 0);
 			mysql_free_result($result);
 			if ($count > 0) {
 				$errstr = _('Group is not empty.');
 			} else {
-				$sql = "DELETE FROM realm WHERE name='". _addslashes($HTTP_GET_VARS['del']) ."'";
+				$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['realm_table']." WHERE name='". _addslashes($HTTP_GET_VARS['del']) ."'";
 				if(!mysql_query($sql))
 					$errstr = _('Error deleting group.');
 			}
 		}
 	}
 
-	$sql = 'SELECT r.name, r.title, count(d.username) FROM realm r LEFT JOIN designer d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
-	$sql2 = 'SELECT count(d.username) FROM realm r LEFT JOIN respondent d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
+	$sql = 'SELECT r.name, r.title, count(d.username) FROM '.$GLOBALS['ESPCONFIG']['realm_table'].' r LEFT JOIN '.$GLOBALS['ESPCONFIG']['designer_table'].' d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
+	$sql2 = 'SELECT count(d.username) FROM '.$GLOBALS['ESPCONFIG']['realm_table'].' r LEFT JOIN '.$GLOBALS['ESPCONFIG']['respondent_table'].' d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
 	$result = mysql_query($sql);
 	$result2 = mysql_query($sql2);
 	

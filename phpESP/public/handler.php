@@ -41,7 +41,7 @@
 	}
 
 	// else draw the survey
-	$sql = "SELECT status, name FROM survey WHERE id='${sid}'";
+	$sql = "SELECT status, name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
 	$result = mysql_query($sql);
     if ($result && mysql_num_rows($result) > 0)
     	list ($status, $name) = mysql_fetch_row($result);

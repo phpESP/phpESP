@@ -32,7 +32,7 @@
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 			in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM designer WHERE username='$u' AND realm='$r'";
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username='$u' AND realm='$r'";
 			if(!mysql_query($sql) || mysql_affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
@@ -96,13 +96,13 @@
 			$r = '';
 
 		/* new user */
-		$sql = "SELECT * FROM designer WHERE username='$u' AND realm='$r'";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username='$u' AND realm='$r'";
 		$result = mysql_query($sql);
 		if(!$result || mysql_num_rows($result) < 1) {
 			if(empty($u) || empty($r) || empty($password)) {
 				$errstr .= mkerror(_('Username, Password, and Group are required.'));
 			} else {
-				$sql = "INSERT INTO designer
+				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
 					(username,realm,password)
 					VALUES ('$u','$r',PASSWORD('$password'))";
 				if(!mysql_query($sql)) {
@@ -126,7 +126,7 @@
 			}
 			if (!empty($password))
 				$password = "password=PASSWORD('$password'),";
-			$sql = "UPDATE designer SET
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET
 				$password
 				fname='$fname',
 				lname='$lname',
@@ -170,7 +170,7 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM designer WHERE username='$u' AND realm='$r'";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username='$u' AND realm='$r'";
 		$result = mysql_query($sql);
 		if($arr = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			foreach(array(
@@ -221,7 +221,7 @@
 		$r = '<select name="r"><option></option>';
 		$groups = array();
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-			$sql = "SELECT name FROM realm";
+			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 			$result = mysql_query($sql);
 			while( list($g) = mysql_fetch_row($result) ) {
 				array_push($groups, $g);
