@@ -77,7 +77,7 @@ if(!defined('_FUNCS_HTML')) {
 			$str .= ' cols="' . $cols . '"';
 		if($wrap != '')
 			$str .= ' wrap="' . strtolower($wrap) . '"';
-		$str .= '>' . $$name . '</textarea>';
+		$str .= '>' . htmlspecialchars($$name) . '</textarea>';
 		return($str);
 	}
 
