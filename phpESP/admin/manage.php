@@ -39,6 +39,7 @@
 			'username'  => 'none',
 			'pdesign'   => array('none'),
 			'pdata'     => array('none'),
+			'pstatus'   => array('none'),
 			'pall'      => array('none'),
 			'pgroup'    => array('none'),
 			'puser'     => array('none'),
