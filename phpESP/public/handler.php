@@ -14,7 +14,7 @@
  * See the handler-prefix.php file for details.
  */
 
-	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
+	require('/var/www/phpESP/admin/phpESP.ini');
 	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 	require($ESPCONFIG['handler_prefix']);
 	if(!defined('AUTHHAND-OK')) {
@@ -84,6 +84,23 @@
 	if (!empty($HTTP_SERVER_VARS['QUERY_STRING']))
 		$action .= "?" . $HTTP_SERVER_VARS['QUERY_STRING'];
 ?>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- // Begin // This should really go into <HEAD> tag
+
+function other_check(name)
+{
+other = name.split("_");
+
+  var f = document.phpesp_response;
+  for (var i=0; i<=f.elements.length; i++) {
+    if (f.elements[i].value == "other_"+other[1]) {
+      f.elements[i].checked=true;
+      break;
+    }
+  }
+}
+// End -->
+</SCRIPT>
 <form method="post" name="phpesp_response" action="<?php echo($action); ?>">
 <input type="hidden" name="referer" value="<?php echo($HTTP_POST_VARS['referer']); ?>">
 <input type="hidden" name="userid" value="<?php echo($HTTP_POST_VARS['userid']); ?>">

@@ -174,7 +174,7 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 						<tr>
 							<td><?php echo(mkradio($qid,"other_$cid")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_$cid")); ?></td>
+							<td><?php echo($other_text."<input type=\"text\" size=\"20\" name=\"".$qid."_".$cid."\" onKeyPress=\"other_check(this.name)\"></td>");?>
 						</tr>
 <?php
 					$j++;
@@ -201,7 +201,8 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,"other_$cid")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_$cid")); ?></td>
+							<td><?php echo($other_text."<input type=\"text\" size=\"20\" name=\"".$qid."_".$cid."\" onKeyPress=\"other_check(this.name)\"></td>");?>
+
 						</tr>
 <?php
 					$j++;
