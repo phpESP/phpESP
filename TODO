@@ -20,8 +20,6 @@ LATER:
  * better docs
 
 JAVASCRIPTS: (please contribute)
- * Automatically Check box (or radio button) next
-   to an "!other" field when data is entered.
  * Limit number of check boxes checked to N.
  * "Grey out" a field(s) when a box is/is not checked.
  * Numeric only text fields (Denis HAVLIK <denis at mandrakesoft.com>)

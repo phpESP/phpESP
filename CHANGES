@@ -14,6 +14,8 @@ v1.4 final ==> v1.5 RC1
 * NEW FEATURE: Display of number of responses to surveys
   when listing of surveys.
   (Gary Ashton-Jones <gashtonjones at f2network.com.au>)
+* NEW FEATURE: Javascript auto checks radio/checkbox 
+  when data is entered into !other text fields.
 * FIXED JavaScript behavior for IE on OS X.
 * CHANGED results to show all question choices even if
   count is zero.
