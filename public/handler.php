@@ -15,6 +15,21 @@
 		return;
 	}
 	
+	if(empty($HTTP_POST_VARS['userid'])) {
+		// find remote user id (takes the first non-empty of the folowing)
+		//  1. a GET variable named 'userid'
+		//  2. the REMOTE_USER set by HTTP-Authintication
+		//  3. the query string
+		if (!empty($HTTP_GET_VARS['userid'])) {
+			$userid = $HTTP_GET_VARS['userid'];
+		} elseif(!empty($REMOTE_USER)) {
+			$userid = $REMOTE_USER;
+		} elseif(!empty($QUERY_STRING)) {
+			$userid = urldecode($QUERY_STRING);
+		}
+		$HTTP_POST_VARS['userid'] = $userid;
+	}
+
 	if(empty($HTTP_POST_VARS['referer']))
 		$referer = $HTTP_REFERER;
 
@@ -68,6 +83,7 @@
 ?>
 <form method="post" action="<?php echo($PHP_SELF); ?>">
 <input type="hidden" name="referer" value="<?php echo($referer); ?>">
+<input type="hidden" name="userid" value="<?php echo($userid); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="rid" value="<?php echo($rid); ?>">
 <input type="hidden" name="sec" value="<?php echo($sec); ?>">
