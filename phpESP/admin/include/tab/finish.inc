@@ -18,6 +18,11 @@
 	}
 
 ?>
+<script language="javascript">
+function saveOrder() {
+    return true;
+}
+</script>
 <br>
 <b><?php echo(_('Survey Design Completed')); ?></b>
 <div align="left">

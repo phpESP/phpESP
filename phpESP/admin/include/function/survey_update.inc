@@ -319,9 +319,41 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			return(1);
 
 		case "order":
-			// it updates the DB itself
-			return(1);
-	}
+            if(isset($HTTP_POST_VARS['questions_order']))
+                $questions_order = $HTTP_POST_VARS['questions_order'];
+
+            $sid = $survey_id;
+
+            if (isset($HTTP_POST_VARS['questions_order'])) {
+                $sql = "SELECT id, position FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+                WHERE survey_id=$sid AND deleted='N'
+                ORDER BY position";
+                $result = execute_sql($sql);
+                $max = record_count($result);
+                $order = split('\|', $questions_order);
+                for($i = 0; $i < count($order); $i++) {
+                    $sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$i WHERE id=$order[$i] AND survey_id=$sid";
+                    execute_sql($sql);
+                }
+            }
+            if (isset($HTTP_POST_VARS['remove'])) {
+                if(isset($HTTP_POST_VARS['questions'])) {
+                    $qid = intval($HTTP_POST_VARS['questions']); 
+                    $sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET deleted='Y' WHERE id=$qid AND survey_id=$sid";
+                    execute_sql($sql);
+                } 
+            }
+            if(isset($HTTP_POST_VARS['addbreak'])) {
+                $sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=$sid";
+                $pos = get_one($sql);
+
+                $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." (survey_id,type_id,position,content)
+                VALUES ($sid, 99, $pos, 'break')";
+                execute_sql($sql);
+            }
+            db_close($result);
+            return(1);
+        }
 	return(1);
 }
 /* }}} */
