@@ -122,7 +122,7 @@ if(!$sid) {
 		}
 	}
 
-	$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : 'csv';
+	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv';
 	
 	// Try DBF first, default to CSV
 	if($type == 'dbf') {
