@@ -7,59 +7,100 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	// clear the session
-	@session_unset();
-	@session_destroy();
-	
-	$sid = XADDSLASHES($HTTP_GET_VARS['sid']);
+	$sid = intval($HTTP_GET_VARS['sid']);
 
+	/* operation selected ... */
 	if(!empty($HTTP_GET_VARS['op'])) {
-		$sql = "SELECT status FROM survey WHERE id='${sid}'";
-		$old_status = mysql_result(mysql_query($sql),0,0);
-		$err = 0;
-		$sql = '';
-		$status = $old_status;
-		// trying to perform some operation
-		switch(strtolower($HTTP_GET_VARS['op'])) {
-			case 'c':	// Clear
-				if($HTTP_GET_VARS['god']) {
+		$sql = "SELECT status,owner FROM survey WHERE id='${sid}'";
+		$result = mysql_query($sql);
+		if((list($old_status, $owner) = mysql_fetch_row($result))) {
+			$access = FALSE;
+			$err = FALSE;
+			$status = $old_status;
+			// trying to perform some operation
+			switch(strtolower($HTTP_GET_VARS['op'])) {
+				case 'c':	// Clear
+					/* only _superuser_s can do this */
+					if($HTTP_SESSION_VARS['acl']['superuser']) {
+						$access = TRUE;
+					}
 					$status = 0;
 					break;
+				case 't':	// test
+					/* only the owner or a SeeAll user with create
+					 * permissions can do this */
+					if($owner == $HTTP_SESSION_VARS['acl']['username'] ||
+						($HTTP_SESSION_VARS['acl']['seeall'] &&
+							$HTTP_SESSION_VARS['acl']['screate'])) {
+						$access = TRUE;
+					}
+					$status = $old_status | STATUS_TEST;
+					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
+						$err = TRUE;
+					break;
+				case 'm':	// Edit
+					/* only the owner or a SeeAll user with create
+					 * permissions can do this */
+					if($owner == $HTTP_SESSION_VARS['acl']['username'] ||
+						($HTTP_SESSION_VARS['acl']['seeall'] &&
+							$HTTP_SESSION_VARS['acl']['screate'])) {
+						$access = TRUE;
+					}
+					$status = $old_status & ~STATUS_TEST;
+					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
+						$err = TRUE;
+					else
+						clear_results($sid);
+					break;
+				case 'a':	// activate
+					/* only the owner or a SeeAll user with activate
+					 * permissions can do this */
+					if($HTTP_SESSION_VARS['acl']['sactivate'] == 'Y' &&
+						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
+							$HTTP_SESSION_VARS['acl']['seeall'])) {
+						$access = TRUE;
+					}
+					$status = $old_status | STATUS_ACTIVE;
+					if($old_status & ( STATUS_DELETED | STATUS_DONE ) )
+						$err = TRUE;
+					else
+						clear_results($sid);
+					break;
+				case 'e':	// End
+					/* only the owner or a SeeAll user with end
+					 * permissions can do this */
+					if($HTTP_SESSION_VARS['acl']['send'] == 'Y' &&
+						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
+							$HTTP_SESSION_VARS['acl']['seeall'])) {
+						$access = TRUE;
+					}
+					$status = $old_status | STATUS_DONE;
+					if($old_status & STATUS_DELETED )
+						$err = TRUE;
+					break;
+				case 'd':	// Delete
+					/* only the owner or a SeeAll user with delete
+					 * permissions can do this */
+					if($HTTP_SESSION_VARS['acl']['sdelete'] == 'Y' &&
+						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
+							$HTTP_SESSION_VARS['acl']['seeall'])) {
+						$access = TRUE;
+					}
+					$status = $old_status | STATUS_DELETED;
+					break;
+			}
+			/* superuser overrides all */
+			if($HTTP_SESSION_VARS['acl']['sdelete'] == 'Y')
+				$access = TRUE;
+			$sql = "UPDATE survey SET status='${status}' WHERE id='${sid}'";
+			if($access || auth_no_access(_('to access this survey'))) {
+				if(!$err) {
+					mysql_query($sql);
+				} else {
+					mkwarn(_('Can not set survey status.'));
+					mkerror(_('STATUS') .': '. $old_status);
 				}
-			case 't':	// test
-				$status = $old_status | STATUS_TEST;
-				if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
-					$err = 1;
-				break;
-			case 'm':	// Edit
-				$status = $old_status & ~STATUS_TEST;
-				if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
-					$err = 1;
-				else
-					clear_results($sid);
-				break;
-			case 'a':	// activate
-				$status = $old_status | STATUS_ACTIVE;
-				if($old_status & ( STATUS_DELETED | STATUS_DONE ) )
-					$err = 1;
-				else
-					clear_results($sid);
-				break;
-			case 'e':	// End
-				$status = $old_status | STATUS_DONE;
-				if($old_status & STATUS_DELETED )
-					$err = 1;
-				break;
-			case 'd':	// Delete
-				$status = $old_status | STATUS_DELETED;
-				break;
-		}
-		$sql = "UPDATE survey SET status='${status}' WHERE id='${sid}'";
-		if(!$err && !empty($sql))
-			mysql_query($sql);
-		else {
-			mkwarn(_('Can not set survey status.'));
-			mkerror(_('STATUS') .': '. $old_status);
+			}
 		}
 	}
 ?>
@@ -88,20 +129,27 @@ archived survey.')); ?></p>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
-		<td><b><?php echo(_('ID')); ?></b></td>
-		<td><b><?php echo(_('Name')); ?></b></td>
-		<td><b><?php echo(_('Title')); ?></b></td>
-		<td><b><?php echo(_('Status')); ?></b></td>
+		<th align="left"><?php echo(_('ID')); ?></th>
+		<th align="left"><?php echo(_('Name')); ?></th>
+		<th align="left"><?php echo(_('Title')); ?></th>
+		<th align="left"><?php echo(_('Owner')); ?></th>
+		<th align="left"><?php echo(_('Status')); ?></th>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 	</tr>
 <?php
-	$sql = 'SELECT id,name,title,status FROM survey ORDER BY id DESC';
+	if($HTTP_SESSION_VARS['acl']['superuser'] ||
+		$HTTP_SESSION_VARS['acl']['seeall'])
+		$sql = 'SELECT id,name,title,status,owner FROM survey ORDER BY id DESC';
+	else
+		$sql = "SELECT id,name,title,status,owner FROM survey WHERE owner='".
+			$HTTP_SESSION_VARS['acl']['username'] ."' ORDER BY id DESC";
+		
 	$result = mysql_query($sql);
 
-	while(list($sid,$name,$title,$status) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$status,$owner) = mysql_fetch_row($result)) {
 		$stat = _('Editing');
 		$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=t&sid=${sid}\">". _('Test') ."</a>";
 		$act  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=a&sid=${sid}\">". _('Activate') ."</a>";
@@ -126,15 +174,27 @@ archived survey.')); ?></p>
 			$done = '&nbsp;';
 		}
 		
-		if($bg != '#ffffff')
-			$bg = '#ffffff';
+		/* whack things back to permissions set by ACL 
+		 * for everyone _not_ superuser */
+		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
+			if($HTTP_SESSION_VARS['acl']['sactivate'] != 'Y')
+				$act = '&nbsp;';
+			if($HTTP_SESSION_VARS['acl']['send'] != 'Y')
+				$done = '&nbsp;';
+			if($HTTP_SESSION_VARS['acl']['sdelete'] != 'Y')
+				$del = '&nbsp;';
+		}
+				
+		if($bg != $ESPCONFIG['bgalt_color1'])
+			$bg = $ESPCONFIG['bgalt_color1'];
 		else
-			$bg = '#eeeeee';
+			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($sid); ?></td>
 		<td><?php echo($name); ?></td>
 		<td><?php echo($title); ?></td>
+		<td><?php echo($owner); ?></td>
 		<td><?php echo($stat); ?></td>
 		<td><?php echo($test); ?></td>
 		<td><?php echo($act); ?></td>

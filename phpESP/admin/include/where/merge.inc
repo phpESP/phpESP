@@ -7,25 +7,46 @@
 
 	// see if surveys have been selected
 	if(!empty($HTTP_GET_VARS['sids'])) {
+		$sid = intval($HTTP_GET_VARS['sids']);
 		if($HTTP_GET_VARS['test']) {
 			echo("<p><b>". _('Testing Survey...') .'</b> ('. _('SIDS') ." = ". $HTTP_GET_VARS['sids'] .")</p>\n");
 		}
+
+		/* check ACLs for permissions ...
+		 * XXX only check the first of the SIDS for ownership */
+		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
+				auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) ||
+				($HTTP_GET_VARS['test'] && 
+					$HTTP_SESSION_VARS['acl']['seeall'] == 'Y') ||
+				auth_no_access('to access this survey')) {
 ?>
 <table bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" border="1" width="95%"><tr><td>
 <?php
-		$ret = survey_merge(split(" ",$HTTP_GET_VARS['sids']),$HTTP_GET_VARS['precision'],$HTTP_GET_VARS['totals']);
-		if(!empty($ret))
-			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
+			$ret = survey_merge(split(" ",$HTTP_GET_VARS['sids']),$HTTP_GET_VARS['precision'],$HTTP_GET_VARS['totals']);
+			if(!empty($ret))
+				echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
 ?>
 </td></tr></table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php
+		}
 		return;
 	}
 	
 	// otherwise:
 	// build a table of surveys to choose from ...
-	$sql = "SELECT id,name,title,status FROM survey WHERE NOT (status & '".STATUS_DELETED."') ORDER BY name,id";
+	/* check with ACL for allowed surveys */
+	$statusok = (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED);
+	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
+		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y')
+		$sql = "SELECT id,name,title,owner FROM survey 
+			WHERE (status & $statusok)
+			ORDER BY id DESC";
+	else
+		$sql = "SELECT id,name,title,owner FROM survey WHERE owner='".
+			$HTTP_SESSION_VARS['acl']['username'] ."' 
+			AND (status & $statusok)
+			ORDER BY id DESC";
 	$result = mysql_query($sql);
 
 ?>
@@ -99,7 +120,7 @@ function BumpUp(box)  {
 	<tr>
 		<td align="center">
 		<select multiple size="10" name="list1">
-			<?php while(list($sid, $name, $title) = mysql_fetch_row($result)) { ?>
+			<?php while(list($sid, $name, $title, $owner) = mysql_fetch_row($result)) { ?>
 			<option value="<?php echo($sid); ?>"><?php echo($name); ?></option>
 			<?php } mysql_free_result($result); ?>
 		</select>

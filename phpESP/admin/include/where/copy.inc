@@ -7,9 +7,28 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
+	/* check user's ACL to see if they have rights to
+	 * edit/create _any_ survey */
+	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' && 
+		$HTTP_SESSION_VARS['acl']['screate'] != 'Y') {
+		if(!auth_no_access(_('to create or edit surveys')))
+			return;
+	}
+	
+	/* if survey has been selected ... */
 	if(!empty($HTTP_GET_VARS['sid'])) {
-		if(!survey_copy($HTTP_GET_VARS['sid'])) {
-			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">". _('Error copying survey.') ."</font><br>\n");
+		$sid = intval($HTTP_GET_VARS['sid']);
+		/* check ACL to see if user is allowed to copy
+		 * _this_ survey */
+		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+				$HTTP_SESSION_VARS['acl']['seeall'] != 'Y' &&
+				!auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) &&
+				!auth_no_access(_('to access this survey')))
+			return;
+			
+		/* copy the survey */
+		if(!survey_copy($sid)) {
+			echo(mkerror(_('Error copying survey.') ." ($sid)"));
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
 			return;
 		}
@@ -18,13 +37,22 @@
 window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 //-->
 </script>
-<?php 
+<?php
 		echo("<noscript><a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a></noscript>\n");
 		return;
 	}
 
-	$sql = 'SELECT id,name,title,status FROM survey ORDER BY id DESC';
+	/* load names and titles of all surveys available to
+	 * _this_ user */
+	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
+		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y') {
+		$sql = 'SELECT id,name,title,status,owner FROM survey ORDER BY id DESC';
+	} else {
+		$sql = "SELECT id,name,title,status,owner FROM survey WHERE owner='".
+			$HTTP_SESSION_VARS['acl']['username'] ."' ORDER BY id DESC";
+	}
 	$result = mysql_query($sql);
+
 ?>
 <h2><?php echo(_('Copy Survey')); ?></h2>
 <?php echo(_('
@@ -33,13 +61,14 @@ status of a newly created survey. You will be able to edit the
 survey, and will have to activate it before use.')); ?>
 <table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
-		<td><b><?php echo(_('ID')); ?></b></td>
-		<td><b><?php echo(_('Name')); ?></b></td>
-		<td><b><?php echo(_('Title')); ?></b></td>
-		<td><b><?php echo(_('Status')); ?></b></td>
+		<th align="left"><?php echo(_('ID')); ?></th>
+		<th align="left"><?php echo(_('Name')); ?></th>
+		<th align="left"><?php echo(_('Title')); ?></th>
+		<th align="left"><?php echo(_('Status')); ?></th>
+		<th align="left"><?php echo(_('Owner')); ?></th>
 	</tr>
 <?php
-	while(list($sid,$name,$title,$status) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$status,$owner) = mysql_fetch_row($result)) {
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
 		} elseif($status & STATUS_DONE) {
@@ -60,6 +89,7 @@ survey, and will have to activate it before use.')); ?>
 		<td><?php echo($name); ?></td>
 		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=copy&sid=${sid}"); ?>"><?php echo($title); ?></a></td>
 		<td><?php echo($stat); ?></td>
+		<td><?php echo($owner); ?></td>
 	</tr>
 <?php
 	}

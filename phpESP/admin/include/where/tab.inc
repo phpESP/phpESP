@@ -63,6 +63,24 @@
 
 	if(empty($HTTP_SESSION_VARS['new_survey']))
 		$HTTP_SESSION_VARS['new_survey'] = empty($HTTP_SESSION_VARS['survey_id']);
+		
+	/* check user's ACL to see if they have rights to
+	 * edit/create _any_ survey */
+	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
+		if($HTTP_SESSION_VARS['acl']['screate'] != 'Y') {
+			if(!auth_no_access(_('to create or edit surveys')))
+				return;
+		}
+		
+		/* now check to see if they can access _this_
+		 * survey */
+		if($HTTP_SESSION_VARS['acl']['seeall'] != 'Y' &&
+				!$HTTP_SESSION_VARS['new_survey'] &&
+				!auth_is_owner($HTTP_SESSION_VARS['survey_id'],
+					$HTTP_SESSION_VARS['acl']['username']) &&
+				!auth_no_access(_('to access this survey')))
+			return;
+	}
 
 	if(empty($ESPCONFIG['tabs'])) {
 		echo('<b>'. _('No tabs defined. Please check your ini settings.'). '</b>');

@@ -5,6 +5,12 @@
 // Written by James Flemer
 // <jflemer@acm.jhu.edu>
 
+	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
+		echo(mkerror(_('Only superusers allowed.'))."<br>\n");
+		echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
+		return;
+	}
+
 	$o_now    = XADDSLASHES($HTTP_POST_VARS['o_now']);
 	$o_count  = XADDSLASHES($HTTP_POST_VARS['o_count']);
 	$o_maxcid = XADDSLASHES($HTTP_POST_VARS['o_maxcid']);
