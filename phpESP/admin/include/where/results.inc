@@ -72,6 +72,9 @@
         $qid = intval($HTTP_GET_VARS['qid']);
         if(!empty($HTTP_GET_VARS['cids']))
         $cids = _addslashes($HTTP_GET_VARS['cids']);
+        if (!empty($HTTP_POST_VARS['cids'])) {   
+            $cids = $HTTP_POST_VARS['cids'];     
+        }
         if (!empty($HTTP_POST_VARS['qid']))
         $qid = intval($HTTP_POST_VARS['qid']);
 
