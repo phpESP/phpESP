@@ -137,6 +137,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
             // do not allow questions in the same survey to have the same name.
             // applies to questions with a deleted flag of 'N' only.
             if($HTTP_POST_VARS['name'] != $HTTP_POST_VARS['name_dupcheck']) {
+                $found = 0;
                 $qn_names = array();
                 $sql = "SELECT name FROM question WHERE survey_id= '${survey_id}' AND deleted = 'N'";
                 $result = mysql_query($sql);
