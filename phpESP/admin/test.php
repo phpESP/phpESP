@@ -118,7 +118,7 @@ function check_version()
     <li>GNU Gettext test: <?php
         $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'en';
         include($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
-        check_string(_('%%%% Gettext Test Failed'), 'Passed'); ?>
+        check_string(_('%%%% Gettext Test Failed'), 'Passed'); ?></li>
   </ul></td></tr>
 
   <tr><th>PHP Session Test</th></tr>
