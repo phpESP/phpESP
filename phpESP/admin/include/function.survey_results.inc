@@ -46,7 +46,10 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 		$sql = 'SELECT id,has_answers,answer_table
 				  FROM question_types 
 				 ORDER BY id';
-		$result = mysql_query($sql);
+		if(!($result = mysql_query($sql))) {
+			$errmsg = "Error phpESP system tables corrupted. [ Table(s): question_types ]";
+			return(1);
+		}
 		while($row = mysql_fetch_row($result)) {
 			$has_answers[$row[0]]=$row[1];
 			$answer_table[$row[0]]=$row[2];
@@ -55,8 +58,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 
 		// load survey title (and other globals)
 		$sql = "SELECT * FROM surveys WHERE id='${sid}'";
-		$result = mysql_query($sql);
-		if(mysql_num_rows($result) != 1) {
+		if(!($result = mysql_query($sql))) {
 			$errmsg = "Error opening selected survey. [ ID:${sid} R:" . mysql_num_rows($result) ."]";
 			return(1);
 		}
@@ -69,8 +71,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				 WHERE survey_id='${sid}' AND 
 				       status='' 
 				 ORDER BY position,id";
-		$questions_result = mysql_query($sql);
-		if(mysql_num_rows($questions_result) < 1) {
+		if(!($questions_result = mysql_query($sql)) {
 			$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ]";
 			return(1);
 		}
@@ -94,7 +95,10 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 					       R.complete='yes'
 					 ORDER BY R.id";
 		}
-		$result = mysql_query($sql);
+		if(!($result = mysql_query($sql))) {
+			$errmsg = "Error opening selected survey. No responses found for survey. [ ID:${sid} ]";
+			return(1);
+		}
 		$total = mysql_num_rows($result);
 		$rid = array();
 		while($row = mysql_fetch_row($result)) {
@@ -147,23 +151,16 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 
 // -------------------------------- answers_bool --------------------------------
 			if($table == "answers_bool") {
-				$sql = "SELECT COUNT(*)
+				$sql = "SELECT A.choice_id, COUNT(A.response_id)
 						  FROM ${table} A
 						 WHERE A.question_id='${qid}' AND 
-						       A.choice_id='yes' AND
 						       A.response_id IN ${ridstr}";
-				$result = mysql_query($sql);
-				$counts['Yes'] = mysql_result($result,0,0);
-				mysql_free_result($result);
-
-				$sql = "SELECT COUNT(*)
-						  FROM ${table} A
-						 WHERE A.question_id='${qid}' AND 
-						       A.choice_id='no' AND
-						       A.response_id IN ${ridstr}";
-				$result = mysql_query($sql);
-				$counts['No'] = mysql_result($result,0,0);
-				mysql_free_result($result);
+				if($result = mysql_query($sql)) {
+					while(list($ccontent,$count) = mysql_fetch_row($result)) {
+						$counts[ucfirst($ccontent)] = $count;
+					}
+					mysql_free_result($result);
+				}
 
 				if(empty($question["result_id"]))
 					$question["result_id"] = 1;	// default to percentages for yes/no
@@ -182,11 +179,12 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						 GROUP BY C.id";
 //						 ORDER BY C.id";
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-				$result = mysql_query($sql);
-				while(list($ccontent,$count) = mysql_fetch_row($result)) {
-					$counts[$ccontent] = $count;
+				if($result = mysql_query($sql)) {
+					while(list($ccontent,$count) = mysql_fetch_row($result)) {
+						$counts[$ccontent] = $count;
+					}
+					mysql_free_result($result);
 				}
-				mysql_free_result($result);
 				// handle 'other...'
 				$sql = "SELECT A.answer, C.content, COUNT(A.response_id) AS num
 						  FROM answers_other A, question_choices C
@@ -212,12 +210,13 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
     						   A.response_id IN $ridstr
 						 GROUP BY A.answer";
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-				$result = mysql_query($sql);
-				while(list($text, $num) = mysql_fetch_row($result)) {
-					if(!empty($text))
-						$counts[$text] = $num;
+				if($result = mysql_query($sql)) {
+					while(list($text, $num) = mysql_fetch_row($result)) {
+						if(!empty($text))
+							$counts[$text] = $num;
+					}
+					mysql_free_result($result);
 				}
-				mysql_free_result($result);
 				$question["result_id"] = 4;	// force "list" type response for text fields
 // -------------------------------- answers_rank --------------------------------
 			} elseif($table == "answers_rank") {
@@ -231,9 +230,11 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 								   A.response_id IN $ridstr
 							 GROUP BY C.id";
 					if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
-					$result = mysql_query($sql);
-					while(list($ccontent,$avg) = mysql_fetch_row($result)) {
-						$counts[$ccontent] = $avg;
+					if($result = mysql_query($sql)) {
+						while(list($ccontent,$avg) = mysql_fetch_row($result)) {
+							$counts[$ccontent] = $avg;
+						}
+						mysql_free_result($result);
 					}
 					$question["result_id"] = 99;	// force to rank
 				} else {
@@ -242,12 +243,13 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 							 WHERE A.question_id='${qid}' AND
     							   A.response_id IN $ridstr
 							 GROUP BY A.rank";
-					$result = mysql_query($sql);
-					while(list($rank, $num) = mysql_fetch_row($result)) {
-						if($rank == -1) { $rank = "N/A"; }
-						$counts[$rank] += $num;
+					if($result = mysql_query($sql)) {
+						while(list($rank, $num) = mysql_fetch_row($result)) {
+							if($rank == -1) { $rank = "N/A"; }
+							$counts[$rank] += $num;
+						}
+						mysql_free_result($result);
 					}
-					mysql_free_result($result);
 					if(empty($question["result_id"]))
 						$question["result_id"] = 2;	// default to rank
 				}
