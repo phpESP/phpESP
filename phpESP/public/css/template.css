@@ -76,7 +76,7 @@
 }
 .mainTable {
 	background-color: orange;
-	background-image: url((URL));
+/*	background-image: url();*/
 	background-repeat: repeat-y;
 	cell-sapcing: 0;
 	width: 100%;
