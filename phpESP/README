@@ -3,13 +3,6 @@ phpESP (php Easy Survey Package)
 Written by James Flemer <jflemer@alum.rpi.edu>
 [Originally for eGrad2000.com]
 
-****** IMPORTANT ******
-This is a developmental release.  Do not use this on your production phpESP database.
-We are now using ADODB and have made significant changes to the database API which 
-may cause unknown data corruption.  Please create a fresh phpESP database instance and
-help us workout any remaining bugs.
-******IMPORTANT ******
-
 phpESP is a package for PHP that provides an easy to use web-based
 interface to designing surveys, deploying them on your web site, and
 exporting data.  It features multiple users and user groups, with data
