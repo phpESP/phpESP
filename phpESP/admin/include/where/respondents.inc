@@ -82,7 +82,7 @@
 		$f = "&s=f";
 		$l = "&s=l";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 	
 	$bg = $ESPCONFIG['bgalt_color2'];
 ?>
@@ -97,7 +97,8 @@
 		<th align="left">&nbsp;</th>
 	</tr>
 <?php
-	while(list($u, $fname, $lname, $r, $d, $e) = mysql_fetch_row($result)) {
+	while(list($u, $fname, $lname, $r, $d, $e) = fetch_row($result)) {
+        $result->MoveNext();
 		if($d == 'N')
 			$d = '&nbsp;';
 		else

@@ -52,14 +52,14 @@
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y')
 		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
-			WHERE (status & $statusok)
+			WHERE ".db_bin("status", $statusok) ."
 			ORDER BY id DESC";
 	else
-		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE owner='".
-			$HTTP_SESSION_VARS['acl']['username'] ."'
-			AND (status & $statusok)
+		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE owner=".
+			$HTTP_SESSION_VARS['acl']['username'] ."
+			AND ".db_bin("status",$statusok)."
 			ORDER BY id DESC";
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
 ?>
 <SCRIPT LANGUAGE="JavaScript">
@@ -132,9 +132,11 @@ function BumpUp(box)  {
 	<tr>
 		<td align="center">
 		<select multiple size="10" name="list1">
-			<?php while(list($sid, $name, $title, $owner) = mysql_fetch_row($result)) { ?>
+			<?php while(list($sid, $name, $title, $owner) = fetch_row($result)) { 
+                    $result->MoveNext()
+                    ?>
 			<option value="<?php echo($sid); ?>"><?php echo($name); ?></option>
-			<?php } mysql_free_result($result); ?>
+			<?php } db_close($result); ?>
 		</select>
 		</td>
 		<td align="center">

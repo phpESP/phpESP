@@ -39,11 +39,11 @@
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 			in_array($r, $HTTP_SESSION_VARS['acl']['puser']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username='$u' AND realm='$r'";
-			if(!mysql_query($sql) || mysql_affected_rows() < 1) {
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
+			if(!execute_sql($sql) || affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
-					mysql_error() .')');
+					ErrorMsg() .')');
 			}
 		}
 		if(empty($errstr)) {
@@ -51,7 +51,6 @@
 			return;
 		}
 	}
-
 	/* submitted */
 	if(isset($HTTP_POST_VARS['submit'])) {
 		$u         = _addslashes($HTTP_POST_VARS['u']);
@@ -98,44 +97,44 @@
         if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
             in_array($r, $HTTP_SESSION_VARS['acl']['puser']) ||
             auth_no_access(_('to access this group'))) {
-            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username='$u' AND realm='$r'";
-            $result = mysql_query($sql);
-            if(mysql_num_rows($result) < 1) {
+            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
+            $result = execute_sql($sql);
+            if(record_count($result) < 1) {
             	if(empty($u) || empty($r) || empty($password)) {
             		$errstr .= mkerror(_('Username, Password, and Group are required.'));
             	} else {
             		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['respondent_table']."
-            			(username,realm,password)
-            			VALUES ('$u','$r',PASSWORD('$password'))";
-            		if(!mysql_query($sql)) {
+            			(username,realm,password,changed)
+            			VALUES ($u,$r,".db_crypt($password).", ".sys_time_stamp().")";
+            		if(!execute_sql($sql)) {
             			$u = '';
             			$r = '';
             			$errstr .= mkerror(_('Error adding account.') .' ('.
-            				mysql_error() .')');
+            				ErrorMsg() .')');
             		}
             	}
             }
-            mysql_free_result($result);
+            db_close($result);
             
             /* change user data */
             if(!empty($u) && !empty($r)) {
             	if(empty($disabled))
             		$disabled = 'N';
             	if (!empty($password))
-            		$password = "password=PASSWORD('$password'),";
+            		$password = "password=".db_crypt($password).",";
             	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['respondent_table']." SET
             		$password
-            		fname='$fname',
-            		lname='$lname',
-            		email='$email',
-            		disabled='$disabled',
-            		changed=now(),
-            		expiration='$expiration'
-            	WHERE username='$u' AND realm='$r'";
-            	if(!mysql_query($sql)) {
+            		fname=$fname,
+            		lname=$lname,
+            		email=$email,
+            		disabled=$disabled,
+            		changed=".sys_time_stamp().",
+            		expiration=$expiration
+                    WHERE username=$u AND realm=$r";
+            	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
             		$errstr .= mkerror(_('Cannot change account data.') .' ('.
-            			mysql_error() .')');
+            			ErrorMsg() .')');
             	}
             }
         }
@@ -155,9 +154,9 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username='$u' AND realm='$r'";
-		$result = mysql_query($sql);
-		if($arr = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
+		$result = execute_sql($sql,"","ADODB_FETCH_ASSOC");
+		if($arr = fetch_row($result)) {
 			foreach(array(
 				'username', 'fname', 'lname', 'email',
 				'realm', 'disabled', 'expiration') as $col)
@@ -175,8 +174,9 @@
 			}
 		} else {
 			$errstr .= mkerror(_('Account not found.') .' ('.
-				mysql_error() .')');
+				ErrorMsg() .')');
 		}
+        db_close($result);
 	}
 
 ?>
@@ -206,11 +206,12 @@
 		$groups = array();
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
-			$result = mysql_query($sql);
-			while( list($g) = mysql_fetch_row($result) ) {
+			$result = execute_sql($sql);
+			while( list($g) = fetch_row($result)) {
 				array_push($groups, $g);
+                $result->MoveNext();
 			}
-			mysql_free_result($result);
+			db_close($result);
 		} else {
 			$groups =& $HTTP_SESSION_VARS['acl']['puser'];
 		}

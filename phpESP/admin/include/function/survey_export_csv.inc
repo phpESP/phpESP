@@ -44,17 +44,19 @@ function survey_generate_csv($sid) {
 		WHERE q.survey_id = $sid AND
 		q.deleted = 'N' AND q.type_id < 50
 		ORDER BY position";
-	$result = mysql_query($sql);
-	$numcols += mysql_num_rows($result);
-	while( list( $qid, $col, $type ) = mysql_fetch_row($result) ) {
+	$result = execute_sql($sql);
+	$numcols += record_count($result);
+	while( list( $qid, $col, $type ) = fetch_row($result) ) {
+        $result->MoveNext();
 		if ($type == 8) {
 			/* rate */
-			$sql = "SELECT CONCAT(q.name, ' ', c.content)
+			$sql = "SELECT ".$GLOBALS['ESPCONFIG']['adodb_conn']->Concat("q.name", "' '", "c.content")."
 			FROM ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
 			WHERE q.id = $qid AND q.id = c.question_id";
-			$result2 = mysql_query($sql);
-			$numcols += mysql_num_rows($result2) - 1;
-			while( list($col) = mysql_fetch_row($result2) ) {
+			$result2 = execute_sql($sql);
+			$numcols += record_count($result2) - 1;
+			while( list($col) = fetch_row($result2) ) {
+                $result2->MoveNext();
 				$str1 = $col;
 				do {
 					$str2 = $str1;
@@ -69,36 +71,34 @@ function survey_generate_csv($sid) {
 				array_push($columns, $col);
 				array_push($types, $id_to_csv_map[$type]);
 			}
-			mysql_free_result($result2);
+			db_close($result2);
 		} else {
 			array_push($columns, $col);
 			array_push($types, $id_to_csv_map[$type]);
 		}
 	}
-	mysql_free_result($result);
+	db_close($result);
 
 	$num = 0;
 
 	array_push($output, $columns);
-
 	$sql = "SELECT r.id,r.submitted,r.username FROM ".$GLOBALS['ESPCONFIG']['response_table']." r
-		WHERE r.survey_id='$sid' AND r.complete='Y'
+		WHERE r.survey_id=$sid AND r.complete='Y'
 		ORDER BY r.submitted";
-	$result = mysql_query($sql);
-	while($row = mysql_fetch_row($result)) {
+	$result = execute_sql($sql);
+	while($row = fetch_row($result)) {
+        $result->MoveNext();
 		// get the response
 		$response = response_select_name($sid, $row[0]);
-
 		$arr = array();
         array_push($arr, $row[0]);
         array_push($arr, $row[1]);
         array_push($arr, $row[2]);
-
 		// merge it
 		for($i = 3; $i < $numcols; $i++) {
-			if (isset($response[$columns[$i]]) &&
-					is_array($response[$columns[$i]]))
+			if (isset($response[$columns[$i]]) && is_array($response[$columns[$i]])) {
 				$response[$columns[$i]] = join(',', $response[$columns[$i]]);
+            }
 			switch ($types[$i]) {
 			case 2: /* special */
 				break;
@@ -116,17 +116,18 @@ function survey_generate_csv($sid) {
 				}
 				/* fall through */
 			case 0: /* number */
-				if (isset($response[$columns[$i]]))
+				if (isset($response[$columns[$i]])) {
 					array_push($arr, $response[$columns[$i]]);
-				else
+                }
+				else {
 					array_push($arr, '');
+                }
 				break;
 			}
 		}
 		array_push($output, $arr);
 	}
-	mysql_free_result($result);
-
+	db_close($result);
 	return $output;
 }
 /* }}} */

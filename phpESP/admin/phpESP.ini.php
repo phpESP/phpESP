@@ -34,11 +34,17 @@ $ESPCONFIG['db_user'] = 'phpesp';
 $ESPCONFIG['db_pass'] = 'phpesp';
 $ESPCONFIG['db_name'] = 'phpesp';
 
+// ADODB 
+$ESPCONFIG['adodb_path'] = '/usr/share/adodb/';
+$ESPCONFIG['adodb_database_type'] = 'mysql';
+$ESPCONFIG['adodb_dbpersist'] = 'true';
+$ESPCONFIG['adodb_pathto_db'] = "/var/www/phpESP/scripts/db/esp.dbm";
+
 // Allow phpESP to send email (BOOLEAN)
 $ESPCONFIG['allow_email'] = true;
 
 // Send human readable email, rather than machine readable (BOOLEAN)
-$ESPCONFIG['human_email'] = false;
+$ESPCONFIG['human_email'] = true;
 
 // Use authentication for designer interface (BOOLEAN)
 $ESPCONFIG['auth_design'] = true;
@@ -90,7 +96,7 @@ $ESPCONFIG['bgalt_color2']      = '#EEEEEE';
  *******************************************************************/
 
 // Enable debugging code (BOOLEAN)
-$ESPCONFIG['DEBUG'] = false;
+$ESPCONFIG['DEBUG'] = true;
 
 // Name of application
 $ESPCONFIG['name'] = 'phpESP';

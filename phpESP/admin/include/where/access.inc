@@ -21,9 +21,9 @@
 	if ($sid) {
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = '$sid'";
+				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid";
 			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM ".$GLOBALS['ESPCONFIG']['access_table']." a
-				WHERE a.survey_id = '$sid' ORDER BY a.realm";
+				WHERE a.survey_id = $sid ORDER BY a.realm";
 		} else {
 			$realms = array_to_insql(
 				array_intersect(
@@ -32,20 +32,20 @@
 						$HTTP_SESSION_VARS['acl']['pall'],
 						$HTTP_SESSION_VARS['acl']['pdesign'])));
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = '$sid' AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = '".
-				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms)";
+				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = ".
+				$HTTP_SESSION_VARS['acl']['username'] ." || s.realm $realms)";
 			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['survey_table']." s
-				WHERE a.survey_id = '$sid' AND s.id=a.survey_id AND (s.owner = '".
-				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms) ORDER BY a.realm";
+				WHERE a.survey_id = $sid AND s.id=a.survey_id AND (s.owner = ".
+				$HTTP_SESSION_VARS['acl']['username'] ." || s.realm $realms) ORDER BY a.realm";
 		}
-		$result = mysql_query($sql);
-		if (mysql_num_rows($result) < 1) {
+		$result = execute_sql($sql);
+		if (record_count($result) < 1) {
 			$sid = 0;
 		}
 	}
 	if ($sid) {
-		list($name,$title,$owner,$realm,$public) = mysql_fetch_row($result);
-		mysql_free_result($result);
+		list($name,$title,$owner,$realm,$public) = fetch_row($result);
+		db_close($result);
 
 		if (!empty($HTTP_POST_VARS['op']))
 			$op = $HTTP_POST_VARS['op'];
@@ -63,11 +63,13 @@
 			$resume = 'Y';
 		else
 			$resume = 'N';
+	    $resume = _addslashes($resume);	
 		
 		if (isset($HTTP_POST_VARS['navigate']))
 			$navigate = 'Y';
 		else
 			$navigate = 'N';
+	    $navigate = _addslashes($navigate);
 		
 		if (!empty($HTTP_POST_VARS['max']))
 			$max = intval($HTTP_POST_VARS['max']);
@@ -81,19 +83,19 @@
 				$errstr = mkerror(_('Please select a group.'));
 			} else {
 				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['access_table']." (survey_id, realm, maxlogin, resume, navigate)
-						VALUES ('$sid', '$arealm', '$max', '$resume', '$navigate')";
-				mysql_query($sql);
+						VALUES ($sid, $arealm, $max, $resume, $navigate)";
+				execute_sql($sql);
 			}
 		} elseif ($op == 'r') {
-			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['access_table']." WHERE survey_id = '$sid' AND realm = '$arealm'";
-			mysql_query($sql);
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['access_table']." WHERE survey_id = $sid AND realm = $arealm";
+			execute_sql($sql);
 		} elseif ($op == 'v') {
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET public = 'N' WHERE id = '$sid'";
-			mysql_query($sql);
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET public = 'N' WHERE id = $sid";
+			execute_sql($sql);
 			$sid = 0;
 		} elseif ($op == 'p') {
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET public = 'Y' WHERE id = '$sid'";
-			mysql_query($sql);
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET public = 'Y' WHERE id = $sid";
+			execute_sql($sql);
 			$sid = 0;
 		}
 	}
@@ -107,11 +109,12 @@
 		$groups = array();
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
-			$result = mysql_query($sql);
-			while( list($g) = mysql_fetch_row($result) ) {
+			$result = execute_sql($sql);
+			while( list($g) = fetch_row($result) ) {
 				array_push($groups, $g);
+                $result->MoveNext();
 			}
-			mysql_free_result($result);
+			db_close($result);
 		} else {
 			$groups =& $HTTP_SESSION_VARS['acl']['pgroup'];
 		}
@@ -156,8 +159,10 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 		<th align="left"><?php echo(_('Back/Forward')); ?></th>
 		<td>&nbsp;</td></tr>
 <?php
-		$result = mysql_query($sql1);
-		while ( list($arealm, $amax, $aresume, $anavigate) = mysql_fetch_row($result) ) { ?>
+		$result = execute_sql($sql1);
+		while ( list($arealm, $amax, $aresume, $anavigate) = fetch_row($result) ) { 
+            $result->MoveNext();
+            ?>
 	<tr><td><?php echo($arealm); ?></td>
 		<td><?php echo($amax); ?></td>
 		<td><?php echo(($aresume == 'Y') ? _('Yes') : _('No')); ?></td>
@@ -190,7 +195,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = 'SELECT id,name,title,owner,realm,public FROM '.$GLOBALS['ESPCONFIG']['survey_table'].' WHERE NOT (status & ' .STATUS_DELETED. ') ORDER BY id DESC';
+		$sql = "SELECT id,name,title,owner,realm,public FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status",STATUS_DELETED)." ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
@@ -199,12 +204,12 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 					$HTTP_SESSION_VARS['acl']['pall'],
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,owner,realm,public
-			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & " .STATUS_DELETED. ") AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status",STATUS_DELETED)." AND (owner = ".
+			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
-
-	while(list($sid,$name,$title,$owner,$realm,$public) = mysql_fetch_row($result)) {
+	$result = execute_sql($sql);
+	while(list($sid,$name,$title,$owner,$realm,$public) = fetch_row($result)) {
+        $result->MoveNext();
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
 		else

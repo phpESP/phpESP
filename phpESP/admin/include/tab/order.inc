@@ -20,58 +20,62 @@
         $dst = 0;
 	$sid = $HTTP_SESSION_VARS['survey_id'];
 
+        print "dst: $dst ";
 	if(isset($HTTP_POST_VARS['addbreak'])) {
-		$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id='$sid'";
-		$result = mysql_query($sql);
-		$pos = mysql_result($result, 0, 0);
-		mysql_free_result($result);
+		$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=$sid";
+		$pos = get_one($sql);
 
 		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." (survey_id,type_id,position,content)
-				VALUES ('$sid', 99, '$pos', 'break')";
-		mysql_query($sql);
+				VALUES ($sid, 99, $pos, 'break')";
+		execute_sql($sql);
 	} elseif ($src > 0) {
 		--$src;
 		--$dst;
 
-		$sql = "SELECT id,position FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-				WHERE survey_id='$sid' AND deleted='N'
+		$sql = "SELECT id, position FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+				WHERE survey_id=$sid AND deleted='N'
 				ORDER BY position";
-		$result = mysql_query($sql);
-
-		$max = mysql_num_rows($result);
-
+                print "select: $sql<br>";
+		$result = execute_sql($sql);
+print_r($result->fields);
+		$max = record_count($result);
 		if ($src < $max) {
-			$qid = mysql_result($result, $src, 0);
-
+            $result->Move($src);
+			$qid = $result->fields[0];
 			if ($dst < 0) {
 				// remove
-				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET deleted='Y' WHERE id='$qid' AND survey_id='$sid'";
-				mysql_query($sql);
+				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET deleted='Y' WHERE id=$qid AND survey_id=$sid";
+				execute_sql($sql);
 			} elseif (0 <= $dst && $dst < $max && $src != $dst) {
 				// move
 				if ($max - 1 > $dst) {
 					if ($src < $dst)
 						// move down
 						++$dst;
-					$dst = mysql_result($result, $dst, 1);
-					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=position+1
-							WHERE survey_id='$sid' AND position >= '$dst'";
-					mysql_query($sql);
+                        $result->Move($dst);
+            $position = $result->fields[1]+1;
+					$dst = $result->fields[1];
+					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$position
+							WHERE survey_id=$sid AND position >= $dst";
+					execute_sql($sql);
+                    print "down:$sql<br>";
 				} else {
-					$dst = mysql_result($result, $max-1, 1) + 1;
+                    $result->Move($max-1);
+					$dst = $result->fields[1] + 1;
 				}
-				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position='$dst' WHERE id='$qid' AND survey_id='$sid'";
-				mysql_query($sql);
+				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$dst WHERE id=$qid AND survey_id=$sid";
+				execute_sql($sql);
+                print "moveup: $sql<br>";
 			}
 		}
-		mysql_free_result($result);
+		db_close($result);
 	}
 
 	$sql = "SELECT id,type_id,position,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-			WHERE survey_id='$sid' AND deleted='N'
+			WHERE survey_id=$sid AND deleted='N'
 			ORDER BY position";
-	$result = mysql_query($sql);
-	$max = mysql_num_rows($result);
+	$result = execute_sql($sql);
+	$max = record_count($result);
 	$sec = $num = 0;
 ?>
 <?php echo(_('Change the order that questions are
@@ -114,7 +118,8 @@ list.')); ?>
 <input type="hidden" name="q"   value="">
 <table>
 <?php
-	while( list($qid, $tid, $pos, $content) = mysql_fetch_row($result)) {
+	while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
+        $result->MoveNext();
 		$num++;
 		$select = '';
 		for ( $i = 0; $i < $max; ) {
@@ -146,7 +151,7 @@ list.')); ?>
 	</tr>
 <?php
 		}
-		mysql_free_result($result);
+		db_close($result);
 ?>
 </table>
 <hr>

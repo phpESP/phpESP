@@ -14,18 +14,18 @@
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = 'SELECT s.id, s.name, s.title, s.owner, s.realm
-		FROM '.$GLOBALS['ESPCONFIG']['survey_table'].' s WHERE s.status = 0 ORDER BY s.id DESC';
+		$sql = "SELECT s.id, s.name, s.title, s.owner, s.realm
+		FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.status = 0 ORDER BY s.id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT s.id, s.name, s.title, s.owner, s.realm
-			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.status = 0 AND (s.owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms) ORDER BY id DESC";
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.status = 0 AND (s.owner = ".
+			$HTTP_SESSION_VARS['acl']['username'] ." || s.realm $realms) ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
 ?>
 <h2><?php echo(_('Edit a Survey')); ?></h2>
@@ -39,7 +39,8 @@
 		<th align="left"><?php echo(_('Group')); ?></th>
 	</tr>
 <?php
-	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$owner,$realm) = fetch_row($result)) {
+        $result->MoveNext();
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
 		else
@@ -56,7 +57,7 @@
 	</tr>
 <?php
 	}
-	mysql_free_result($result);
+	db_close($result);
 ?>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

@@ -27,7 +27,7 @@
 
 		/* copy the survey */
 		if(!survey_copy($sid)) {
-			echo(mkerror(_('Error copying survey.') ." (". mysql_error() .")") . "<br>\n");
+			echo(mkerror(_('Error copying survey.') ." (". ErrorMsg() .")") . "<br>\n");
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
 			return;
 		}
@@ -51,10 +51,10 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,status,owner,realm
-			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & ". STATUS_DELETED .") AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & ". STATUS_DELETED .") AND (owner = ".
+			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 	$bg = '';
 
 ?>
@@ -73,7 +73,8 @@ survey, and will have to activate it before use.')); ?>
 		<th align="left"><?php echo(_('Group')); ?></th>
 	</tr>
 <?php
-	while(list($sid,$name,$title,$status,$owner,$realm) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$status,$owner,$realm) = fetch_row($result)) {
+        $result->MoveNext();
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
 		} elseif($status & STATUS_DONE) {
@@ -101,7 +102,7 @@ survey, and will have to activate it before use.')); ?>
 	</tr>
 <?php
 	}
-	mysql_free_result($result);
+	db_close($result);
 ?>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

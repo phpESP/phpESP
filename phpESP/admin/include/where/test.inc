@@ -20,9 +20,9 @@
 	/* sid selected for testing */
 	if(!empty($sid)) {
 		$sql = "SELECT status,owner,realm,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
-		$result = mysql_query($sql);
-		list($status,$owner,$realm,$theme) = mysql_fetch_row($result);
-		mysql_free_result($result);
+		$result = execute_sql($sql);
+		list($status,$owner,$realm,$theme) = fetch_row($result);
+		db_close($result);
 
 		/* check ACL to see if user is allowed to test
 		 * _this_ survey */
@@ -71,7 +71,7 @@
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <form>
 <?php
-			mysql_free_result($result);
+			db_close($result);
 			return;
 		}
 	}
@@ -85,7 +85,7 @@
 	$statusok = STATUS_TEST;
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 		$sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
-		WHERE (status & $statusok) AND NOT (status & $statusbad)
+		WHERE ".db_bin("status",$statusok) ." AND NOT ".db_bin("status", $statusbad)."
 		ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
@@ -94,11 +94,11 @@
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
-			WHERE (status & $statusok) AND NOT (status & $statusbad) AND
-			(owner = '". $HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms)
+			WHERE ".db_bin("status",$statusok) ."AND NOT ".db_bin("status",$statusbad) ."AND
+			(owner = ". $HTTP_SESSION_VARS['acl']['username'] ." || realm $realms)
 			ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
 ?>
 <h2><?php echo(_('Test a Survey')); ?></h2>
@@ -115,7 +115,8 @@
 		<th align="left"><?php echo(_('Export')); ?></th>
 	</tr>
 <?php
-	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$owner,$realm) = fetch_row($result)) {
+        $result->MoveNext();
 
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];

@@ -21,14 +21,14 @@ function array_to_insql($array) {
    Returns the number of sections in the survey. */
 function survey_num_sections($sid) {
 	$sql = "
-SELECT COUNT(*) + 1
-FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-WHERE survey_id='${sid}' AND
+        SELECT COUNT(*) + 1
+        FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+        WHERE survey_id=${sid} AND
   type_id='99' AND
   deleted='N'";
-	$result = mysql_query($sql);
-	$count = mysql_result($result,0,0);
-	mysql_free_result($result);
+	$result = execute_sql($sql);
+	$count = $result->fields[0];
+	db_close($result);
 	return($count);
 }
 /* }}} */
@@ -42,11 +42,12 @@ function survey_get_sections($sid, $field = 'id') {
 	$sql = "SELECT $field, type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			WHERE survey_id = $sid AND deleted = 'N'
 			ORDER BY position";
-	if (!($result = mysql_query($sql)))
+	if (!($result = execute_sql($sql)))
 		return array();
 	$ret = array();
 	$sec = array();
-	while (list($key, $type) = mysql_fetch_row($result)) {
+    while (list($key, $type) = fetch_row($result)) {
+        $result->MoveNext();
 		if ($type != 99) {
 			array_push($sec, $key);
 		} else {
@@ -55,7 +56,7 @@ function survey_get_sections($sid, $field = 'id') {
 		}
 	}
 	array_push($ret, $sec);
-	mysql_free_result($result);
+	db_close($result);
 	return $ret;
 }
 /* }}} */
@@ -70,11 +71,12 @@ function survey_get_section_questions($sid, $field = 'id') {
 	$sql = "SELECT $field, type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			WHERE survey_id = $sid AND deleted = 'N'
 			ORDER BY position";
-	if (!($result = mysql_query($sql)))
+	if (!($result = execute_sql($sql)))
 		return array();
 	$ret = array();
 	$sec = array();
-	while (list($key, $type) = mysql_fetch_row($result)) {
+    while (list($key, $type) = fetch_row($result)) {
+        $result->MoveNext();
         if ($type != 100) {
 	    	if ($type != 99) {
 		    	array_push($sec, $key);
@@ -85,7 +87,7 @@ function survey_get_section_questions($sid, $field = 'id') {
         }
 	}
 	array_push($ret, $sec);
-	mysql_free_result($result);
+	db_close($result);
 	return $ret;
 }
 /* }}} */
@@ -97,29 +99,27 @@ function survey_get_section_questions($sid, $field = 'id') {
 function survey_select_section_sql($sid, $section, $table = '') {
 	if(!empty($table))
 		$table .= '.';
-//	$sql = "
-//SELECT position
-//FROM question
-	$sql = "
-SELECT position
-FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-WHERE survey_id='${sid}' AND
+	$sql = "SELECT position FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+        WHERE survey_id=${sid} AND
    type_id='99' AND
    deleted='N'
-ORDER BY position,id";
-	$result = mysql_query($sql);
-	$num_sections = mysql_num_rows($result) + 1;
+        ORDER BY position,id";
+	$result = execute_sql($sql);
+	$num_sections = record_count($result) + 1;
 
 	if($section > $num_sections)
 		return('');	// invalid section
 
 	$ret = array("${table}survey_id='${sid}'", "${table}deleted='N'");
-	if($section>1 && $num_sections>1)
-		array_push($ret, "${table}position>" . mysql_result($result,$section-2,0));
-	if($section<$num_sections && $num_sections>1)
-		array_push($ret, "${table}position<" . mysql_result($result,$section-1,0));
-
-	mysql_free_result($result);
+	if($section>1 && $num_sections>1) {
+        $result->Move($section-2);
+		array_push($ret, "${table}position>" . $result->fields[0]);
+    }
+	if($section<$num_sections && $num_sections>1) {
+        $result->Move($section-1);
+		array_push($ret, "${table}position<" . $result->fields[0]);
+    }
+	db_close($result);
 	return('WHERE ' . join(' AND ',$ret) . ' ');
 }
 /* }}} */
@@ -130,14 +130,15 @@ ORDER BY position,id";
 function esp_type_has_choices() {
 	$has_choices = array();
 	$sql = 'SELECT id, has_choices FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' ORDER BY id';
-	$result = mysql_query($sql);
-	while(list($tid,$answ) = mysql_fetch_row($result)) {
+	$result = execute_sql($sql);
+    while(list($tid,$answ) = fetch_row($result)) {
+        $result->MoveNext();
 		if($answ == 'Y')
 			$has_choices[$tid]=1;
 		else
 			$has_choices[$tid]=0;
 	}
-	mysql_free_result($result);
+	db_close($result);
 	return($has_choices);
 }
 /* }}} */
@@ -147,12 +148,13 @@ function esp_type_has_choices() {
    table the responses are stored in. */
 function esp_type_response_table() {
 	$sql = 'SELECT id, response_table FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' ORDER BY id';
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 	$response_table = array();
-	while(list($tid,$answ) = mysql_fetch_row($result)) {
+    while(list($tid,$answ) = fetch_row($result)) {
+        $result->MoveNext();
 		$response_table[$tid]=$answ;
 	}
-	mysql_free_result($result);
+	db_close($result);
 	return($response_table);
 }
 /* }}} */

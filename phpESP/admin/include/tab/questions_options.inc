@@ -17,9 +17,9 @@
 
 	// this type of question has answer options
 	if ($updated && $curr_q) {
-		$sql = "SELECT id,content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='${curr_q_id}' ORDER BY id";
-		$result = mysql_query($sql);
-		$c = mysql_num_rows($result);
+		$sql = "SELECT id,content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=${curr_q_id} ORDER BY id";
+		$result = execute_sql($sql);
+		$c = record_count($result);
 	} else {
 		if (isset($HTTP_POST_VARS['num_choices']))
 			$c = intval($HTTP_POST_VARS['num_choices']);
@@ -45,7 +45,8 @@ Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
 <?php
 		for($i=1; $i<$num_choices+1; ++$i) {
 			if ($updated && $curr_q) {
-				list($choice_id, $choice_content) = mysql_fetch_row($result);
+				list($choice_id, $choice_content) = fetch_row($result);
+                $result->MoveNext();
 			} else {
 				if ($curr_q) {
 					$choice_id      = intval($HTTP_POST_VARS["choice_id_$i"]);

@@ -16,34 +16,31 @@
 	
 	$errstr = '';
 	if(!empty($HTTP_POST_VARS['r']) && !empty($HTTP_POST_VARS['t'])) {
-		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm_table']." (name, title)
-		VALUES ('". _addslashes($HTTP_POST_VARS['r']) ."', '".
-		_addslashes($HTTP_POST_VARS['t']) ."')";
-		if(!mysql_query($sql))
-			$errstr = _('Error adding group.') . ' (' . mysql_error() .')';
+        $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm_table']." (name, title, changed)
+        VALUES (". _addslashes($HTTP_POST_VARS['r']) .", ".
+        _addslashes($HTTP_POST_VARS['t']).", ". sys_time_stamp().")";
+		if(!execute_sql($sql))
+			$errstr = _('Error adding group.') . ' (' . ErrorMsg() .')';
 	}
 	if(!empty($HTTP_GET_VARS['del'])) {
 		if($HTTP_GET_VARS['del'] == 'superuser') {
 			$errstr = _('Error deleting group.');
 		} else {
-			$sql = "SELECT count(d.username) FROM ".$GLOBALS['ESPCONFIG']['designer_table']." d WHERE d.realm='". _addslashes($HTTP_GET_VARS['del']) ."'";
-			$result = mysql_query($sql);
-			$count = mysql_result($result, 0, 0);
-			mysql_free_result($result);
+			$sql = "SELECT count(d.username) FROM ".$GLOBALS['ESPCONFIG']['designer_table']." d WHERE d.realm=". _addslashes($HTTP_GET_VARS['del']);
+			$count = get_one($sql);
 			if ($count > 0) {
 				$errstr = _('Group is not empty.');
 			} else {
-				$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['realm_table']." WHERE name='". _addslashes($HTTP_GET_VARS['del']) ."'";
-				if(!mysql_query($sql))
+				$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['realm_table']." WHERE name=". _addslashes($HTTP_GET_VARS['del']);
+				if(!execute_sql($sql))
 					$errstr = _('Error deleting group.');
 			}
 		}
 	}
-
-	$sql = 'SELECT r.name, r.title, count(d.username) FROM '.$GLOBALS['ESPCONFIG']['realm_table'].' r LEFT JOIN '.$GLOBALS['ESPCONFIG']['designer_table'].' d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
+	$sql = 'SELECT r.name, r.title, count(d.username) FROM '.$GLOBALS['ESPCONFIG']['realm_table'].' r LEFT JOIN '.$GLOBALS['ESPCONFIG']['designer_table'].' d ON r.name=d.realm GROUP BY r.name, r.title ORDER BY r.name';
 	$sql2 = 'SELECT count(d.username) FROM '.$GLOBALS['ESPCONFIG']['realm_table'].' r LEFT JOIN '.$GLOBALS['ESPCONFIG']['respondent_table'].' d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
-	$result = mysql_query($sql);
-	$result2 = mysql_query($sql2);
+	$result = execute_sql($sql);
+	$result2 = execute_sql($sql2);
 	
 	$i = 0;
 	$bg = $ESPCONFIG['bgalt_color2'];
@@ -60,8 +57,10 @@
 		<td>&nbsp;</td>
 	</tr>
 <?php
-	while(list($realm, $title, $count) = mysql_fetch_row($result)) {
-		$count += mysql_result($result2, $i++, 0);
+	while(list($realm, $title, $count) = fetch_row($result)) {
+        $result->MoveNext();
+        $result2->Move($i++);
+		$count += $result2->fields[0];
 
 		if ($bg == $ESPCONFIG['bgalt_color1'])
 			$bg =& $ESPCONFIG['bgalt_color2'];
@@ -78,8 +77,8 @@
 	</tr>
 <?php
 	}
-	mysql_free_result($result);
-	mysql_free_result($result2);
+	db_close($result);
+	db_close($result2);
 	
 	if ($bg == $ESPCONFIG['bgalt_color1'])
 		$bg =& $ESPCONFIG['bgalt_color2'];

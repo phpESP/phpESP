@@ -20,30 +20,31 @@ function survey_report($sid, $details = 0, $format = '') {
 	$sql = 'SELECT id,has_choices,response_table
 			  FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].'
 			 ORDER BY id';
-	if(!($result = mysql_query($sql))) {
+	if(!($result = execute_sql($sql))) {
 		$errmsg = _('Error system table corrupt.') ." [ ". _('Table') .": question_type ]";
 		return($errmsg);
 	}
-	while($row = mysql_fetch_row($result)) {
+	while($row = fetch_row($result)) {
+        $result->MoveNext();
 		$has_choices[$row[0]]=$row[1];
 		$response_table[$row[0]]=$row[2];
 	}
-	mysql_free_result($result);
+	db_close($result);
 
 	// load survey title (and other globals)
-	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='$sid'";
-	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."]";
+	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=$sid";
+	if(!($result = execute_sql($sql,"",ADODB_FETCH_ASSOC))) {
+		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . record_count($result) ."]";
 		return($errmsg);
 	}
-	$survey = mysql_fetch_array($result, MYSQL_ASSOC);
-	mysql_free_result($result);
+	$survey = fetch_row($result);
+	db_close($result);
 
 	// load survey questions
 	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-			 WHERE survey_id='$sid' AND deleted='N'
+			 WHERE survey_id=$sid AND deleted='N'
 			 ORDER BY position";
-	if(!($questions_result = mysql_query($sql))) {
+	if(!($questions_result = execute_sql($sql,"",ADODB_FETCH_ASSOC))) {
 		$errmsg = _('Error opening survey.') .' '. _('No questions found.') ." [ ID:${sid} ]";
 		return($errmsg);
 	}
@@ -61,7 +62,8 @@ function survey_report($sid, $details = 0, $format = '') {
 </tr>
 <?php
 	$i = 0;
-	while($question = mysql_fetch_array($questions_result, MYSQL_ASSOC)) {
+	while($question = fetch_row($questions_result)) {
+        $questions_result->MoveNext();
 		// process each question
 		$qid   = &$question['id'];
 		$tid   = &$question['type_id'];
@@ -92,8 +94,9 @@ function survey_report($sid, $details = 0, $format = '') {
 			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
 					 WHERE question_id = $qid
 					 ORDER BY id";
- 			$choices_result = mysql_query($sql);
-			while($choice = mysql_fetch_array($choices_result, MYSQL_ASSOC)) {
+ 			$choices_result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+			while($choice = fetch_row($choices_result)) {
+                $choices_result->MoveNext();
 ?>
 <tr bgcolor="<?php echo($bg); ?>"><th align="left"></th>
 	<td></td>
@@ -104,10 +107,10 @@ function survey_report($sid, $details = 0, $format = '') {
 </tr>
 <?php
 			}
-			mysql_free_result($choices_result);
+			db_close($choices_result);
 		} // end if has_choices
 	} // end while
-	mysql_free_result($questions_result);
+	db_close($questions_result);
 ?>
 </table>
 <?php

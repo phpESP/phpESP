@@ -18,7 +18,7 @@
 		$sid = intval($HTTP_GET_VARS['sid']);
     
     if (!empty($sid)) {
-		$srealm = auth_get_survey_realm($sid);
+		$srealm = auth_get_survey_realm(_addslashes($sid));
 		if(!empty($HTTP_GET_VARS['test'])) {
 			/* check ACL to see if user is allowed to test
 			 * _this_ survey */
@@ -131,17 +131,17 @@ if (isset($HTTP_GET_VARS['type'])) {
 	$statusno = STATUS_DELETED;
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 		$sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
-		WHERE NOT (status & $statusno) AND (status & $statusok) ORDER BY id DESC";
+		WHERE NOT ".db_bin("status", $statusno)." AND ".db_bin("status", $statusok)." ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdata']));
 		$sql = "SELECT id,name,title,owner,realm
-			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & $statusno) AND (status & $statusok) AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status", $statusno)." AND ".db_bin("status", $statusok)." AND (owner = ".
+			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
     if (empty($HTTP_GET_VARS['type'])) {
 ?>
@@ -174,15 +174,16 @@ if (isset($HTTP_GET_VARS['type'])) {
 	</tr>
 <?php
     $count = 0;
-	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {	
+	while(list($sid,$name,$title,$owner,$realm) = fetch_row($result)) {	
+        $result->MoveNext();
 		//let's see how many respondents we have for each survey.
         //angek: let's not include incomplete surveys in the count.
         // this occurs for multipage surveys as each page completed
         // is submitted and stored.
         $sql2 = "SELECT count(*) FROM ".$GLOBALS['ESPCONFIG']['response_table']." WHERE survey_id = $sid AND complete = 'Y'";
-		$result2 = mysql_query($sql2);
-		list($resp) = mysql_fetch_row($result2);
-    	mysql_free_result($result2);
+		$result2 = execute_sql($sql2);
+		list($resp) = fetch_row($result2);
+    	db_close($result2);
 
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
@@ -195,9 +196,9 @@ if (isset($HTTP_GET_VARS['type'])) {
 	if (empty($HTTP_GET_VARS['type'])) {
         	// grab all the rid values for the particular survey
         	$sql = "SELECT R.id FROM ".$GLOBALS['ESPCONFIG']['response_table']." R ".
-                	"WHERE R.survey_id = '${sid}' AND R.complete = 'Y' ".
+                	"WHERE R.survey_id = ${sid} AND R.complete = 'Y' ".
                 	"ORDER BY R.id";
-        	$rid_result = mysql_query($sql);
+        	$rid_result = execute_sql($sql);
         	$count++;
 	}
 ?>
@@ -209,7 +210,8 @@ if (isset($HTTP_GET_VARS['type'])) {
             <option value=""></option>
 <?php
         $i = 0;
-        while (list($rid) = mysql_fetch_row($rid_result)) {
+        while (list($rid) = fetch_row($rid_result)) {
+            $rid_result->MoveNext();
 ?>
             <option value="<?php echo $rid; ?>"><?php echo ++$i; ?></option>
 <?php
@@ -240,7 +242,7 @@ if (isset($HTTP_GET_VARS['type'])) {
 	</tr>
 <?php
 	}
-	mysql_free_result($result);
+	db_close($result);
 ?>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

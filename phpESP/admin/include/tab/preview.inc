@@ -10,11 +10,11 @@
 
 	$sid = _addslashes($HTTP_SESSION_VARS['survey_id']);
 
-	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id='${sid}'
+	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=${sid}
 	AND deleted='N' AND type_id='99'";
-	$result = mysql_query($sql);
-	$num_sections = 1 + mysql_result($result,0,0);
-	mysql_free_result($result);
+	$result = execute_sql($sql);
+	$num_sections = 1 + $result->fields[0];
+	db_close($result);
 
 	if(empty($HTTP_POST_VARS['section']))
 		$HTTP_POST_VARS['section']=1;
@@ -54,11 +54,11 @@ this page.')); ?>
 <hr>
 <?php // lets make the css style available during the preview.
       // this should really go into the head section.....but should still work
-        $sql = "SELECT theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." where id = '${sid}'";
-        if ($result = mysql_query($sql)) {
-                if (mysql_num_rows($result) > 0) {
-                        list($css_file) = mysql_fetch_row($result);
-                        mysql_free_result($result);
+        $sql = "SELECT theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." where id = ${sid}";
+        if ($result = execute_sql($sql)) {
+                if (record_count($result) > 0) {
+                        list($css_file) = fetch_row($result);
+                        db_close($result);
                         echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['css_url'].$css_file."\"  type=\"text/css\">\n");                }
         }
 ?>

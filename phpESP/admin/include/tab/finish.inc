@@ -10,11 +10,11 @@
 
 	$HTTP_SESSION_VARS['new_survey'] = false;
 	$survey_name = "";
-    $sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '". $HTTP_SESSION_VARS['survey_id']. "'";
-    if ($result = mysql_query($sql)) {
-	    if (mysql_num_rows($result) > 0)
-		    $survey_name = mysql_result($result, 0, 0);
-		mysql_free_result($result);
+    $sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = ". $HTTP_SESSION_VARS['survey_id'];
+    if ($result = execute_sql($sql)) {
+	    if (record_count($result) > 0)
+		    $survey_name = $result->fields[0];
+		db_close($result);
 	}
 
 ?>

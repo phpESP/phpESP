@@ -25,16 +25,17 @@
 	}
 	require_once($CONFIG);
 	
-	esp_init_db();
+    esp_init_adodb();
 	
 	session_register('acl');
 	if(get_cfg_var('register_globals')) {
 		$HTTP_SESSION_VARS['acl'] = &$acl;
 	}
 	if($ESPCONFIG['auth_design']) {
-		if(!manage_auth(
-				_addslashes(@$HTTP_SERVER_VARS['PHP_AUTH_USER']),
-				_addslashes(@$HTTP_SERVER_VARS['PHP_AUTH_PW'])))
+
+        $raw_password = @$HTTP_SERVER_VARS['PHP_AUTH_PW'];
+        $password = _addslashes($raw_password);
+		if(!manage_auth((@$HTTP_SERVER_VARS['PHP_AUTH_USER']), $password, $raw_password))
 			exit;
 	} else {
 		$HTTP_SESSION_VARS['acl'] = array (

@@ -29,9 +29,9 @@
 SELECT s.id,s.name,s.title,s.status,s.owner,s.realm,COUNT(q.id) as count
 FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s LEFT JOIN ".$GLOBALS['ESPCONFIG']['question_table']." q ON
 	s.id = q.survey_id AND q.deleted = 'N'
-GROUP BY s.id
+GROUP BY s.id, s.name, s.title, s.status, s.owner, s.realm
 ORDER BY s.id DESC";
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
 	$bg = $ESPCONFIG['bgalt_color2'];
 ?>
@@ -59,7 +59,8 @@ back.')); ?></p>
 		<th align="left"><?php echo(_('Status')); ?></th>
 	</tr>
 <?php
-	while(list($sid,$name,$title,$status,$owner,$realm,$qnum) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$status,$owner,$realm,$qnum) = fetch_row($result)) {
+        $result->MoveNext();
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
 		} elseif($status & STATUS_DONE) {

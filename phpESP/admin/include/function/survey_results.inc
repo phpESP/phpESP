@@ -20,21 +20,22 @@ function survey_results_navbar($sid, $curr_rid) {
 		WHERE R.survey_id='${sid}' AND
 		R.complete = 'Y'
 		ORDER BY R.id";
-	$result = mysql_query($sql);
-	$total = mysql_num_rows($result);
+	$result = execute_sql($sql);
+	$total = record_count($result);
 	if ($total < 1)
 		return;
 
 	$rids = array();
 	$i = 0;
 	$curr_pos = -1;
-	while ($row = mysql_fetch_row($result)) {
+	while ($row = fetch_row($result)) {
+        $result->MoveNext();
 		array_push($rids, $row[0]);
 		if ($row[0] == $curr_rid)
 			$curr_pos = $i;
 		$i++;
 	}
-	mysql_free_result($result);
+	db_close($result);
 
 	$prev_rid = ($curr_pos > 0) ? $rids[$curr_pos - 1] : null;
 	$next_rid = ($curr_pos < $total - 1) ? $rids[$curr_pos + 1] : null;
@@ -107,25 +108,26 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	$sql = 'SELECT id,has_choices,response_table
 			  FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].'
 			 ORDER BY id';
-	if(!($result = mysql_query($sql))) {
+	if(!($result = execute_sql($sql))) {
         $errmsg = sprintf('%s [ %s: question_type ]',
                 _('Error system table corrupt.'), _('Table'));
 		return($errmsg);
 	}
-	while($row = mysql_fetch_row($result)) {
+	while($row = fetch_row($result)) {
+        $result->MoveNext();
 		$has_choices[$row[0]]=$row[1];
 		$response_table[$row[0]]=$row[2];
 	}
-	mysql_free_result($result);
+	db_close($result);
 
 	// load survey title (and other globals)
 	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
-	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."]";
+	if(!($result = execute_sql($sql,"",ADODB_FETCH_ASSOC))) {
+		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . record_count($result) ."]";
 		return($errmsg);
 	}
-	$survey = mysql_fetch_array($result, MYSQL_ASSOC);
-	mysql_free_result($result);
+	$survey = fetch_row($result);
+	db_close($result);
 
 	// load survey questions
 	$sql = "SELECT *
@@ -133,7 +135,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			 WHERE survey_id='${sid}' AND
 				   deleted='N'
 			 ORDER BY position,id";
-	if(!($questions_result = mysql_query($sql))) {
+	if(!($questions_result = execute_sql($sql,"",ADODB_FETCH_ASSOC))) {
 		$errmsg = _('Error opening survey.') .' '. _('No questions found.') ." [ ID:${sid} ]";
 		return($errmsg);
 	}
@@ -141,12 +143,13 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	// find out more about the question we are cross analyzing on (if any)
 	if($cross) {
         $sql = "SELECT type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id=${qid}";
-		$result = mysql_query($sql);
-        while($content = mysql_fetch_array($result, MYSQL_ASSOC)){
+		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+        while($content = fetch_row($result)){
+            $result->MoveNext();
             $crossTable = $response_table[$content['type_id']];
             $q_content = $content['type_id'];
         }
-		mysql_free_result($result);
+		db_close($result);
 		if(!in_array($crossTable, array('response_single','response_bool','response_multiple'))) {
 			$errmsg = _('Error cross-analyzing. Question not valid type.') .' [ '. _('Table') .": ${crossTable} ]";
 			return($errmsg);
@@ -186,11 +189,11 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 					       R.complete='Y'
 				     ORDER BY R.id";
 	    }
-	    if(!($result = mysql_query($sql))) {
-		    $errmsg = _('Error opening survey.') ." [ ID:${sid} ] [ ".mysql_error()."]";
+	    if(!($result = execute_sql($sql))) {
+		    $errmsg = _('Error opening survey.') ." [ ID:${sid} ] [ ".ErrorMsg()."]";
 		    return($errmsg);
 	    }
-	    $total = mysql_num_rows($result);
+	    $total = record_count($result);
 	    if($total < 1) {
 		    $errmsg = _('Error opening survey.') .' '. _('No responses found.') ." [ ID:${sid} ]";
 			    return($errmsg);
@@ -199,10 +202,11 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	    }
 
 		$rids = array();
-		while($row = mysql_fetch_row($result)) {
+		while($row = fetch_row($result)) {
+            $result->MoveNext();
 			array_push($rids, $row[0]);
 		}
-		mysql_free_result($result);
+		db_close($result);
 		// create a string suitable for inclusion in a SQL statement
 		// containing the desired Response IDs
 		// ex: "('304','311','317','345','365','370','403','439')"
@@ -226,7 +230,8 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <?php
 	$i=0; // question number counter
-	while($question = mysql_fetch_array($questions_result)) {
+	while($question = fetch_row($questions_result)) {
+        $questions_result->MoveNext();
 		// process each question
 		$qid = $question['id'];
 		$tid = $question['type_id'];
@@ -301,15 +306,16 @@ switch ($table) {
 						   A.choice_id != ''
 					 GROUP BY A.choice_id";
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = mysql_query($sql)) {
-				while(list($ccontent,$count) = mysql_fetch_row($result)) {
+			if($result = execute_sql($sql)) {
+				while(list($ccontent,$count) = fetch_row($result)) {
+                    $result->MoveNext();
 					if ($ccontent == 'Y')
 						$ccontent = _('Yes');
 					else
 						$ccontent = _('No');
 					$counts[$ccontent] = $count;
 				}
-				mysql_free_result($result);
+				db_close($result);
 			}
 
 			if(empty($question["result_id"]))
@@ -323,10 +329,12 @@ switch ($table) {
         $sql = "SELECT C.content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
                 WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
                 ORDER BY C.id";
-        if ($result = mysql_query($sql)) {
-            for ($j = 0; $j < mysql_num_rows($result); $j++)
-                $counts[mysql_result($result, $j, 0)] = 0;
-            mysql_free_result($result);
+        if ($result = execute_sql($sql)) {
+            for ($j = 0; $j < record_count($result); $j++) {
+                $result->Move($j);
+                $counts[$result->fields[0]] = 0;
+            }
+            db_close($result);
         }
 
 			$sql = "SELECT C.content, COUNT(A.response_id) AS num
@@ -337,13 +345,14 @@ switch ($table) {
 						   A.question_id=C.question_id AND
 						   A.choice_id=C.id AND
 						   A.response_id ${ridstr}
-					 GROUP BY C.id";
+					 GROUP BY C.id, C.content";
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = mysql_query($sql)) {
-				while(list($ccontent,$count) = mysql_fetch_row($result)) {
+			if($result = execute_sql($sql)) {
+				while(list($ccontent,$count) = fetch_row($result)) {
+                    $result->MoveNext();
 					$counts[$ccontent] = $count;
 				}
-				mysql_free_result($result);
+				db_close($result);
 			}
 
 			// handle 'other...'
@@ -354,14 +363,15 @@ switch ($table) {
     					   A.response_id ${ridstr}
 					 ORDER BY C.id, A.response";
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = mysql_query($sql)) {
-				while(list($answer,$ccontent) = mysql_fetch_row($result)) {
+			if($result = execute_sql($sql)) {
+				while(list($answer,$ccontent) = fetch_row($result)) {
+                    $result->MoveNext();
 					$content = preg_replace(array('/^!other=/', '/^!other/'),
                             array('', 'Other:'), $ccontent);
 					$content .= ' ' . htmlspecialchars($answer);
 					$counts[$content] = (isset($counts[$content]) ? $counts[$content] : 0)+1;
 				}
-				mysql_free_result($result);
+				db_close($result);
 			}
 			if(empty($question["result_id"]))
 				$question["result_id"] = 1;	// default to percentages
@@ -374,12 +384,13 @@ switch ($table) {
     					   A.response_id ${ridstr}
 					 GROUP BY A.response";
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = mysql_query($sql)) {
-				while(list($text, $num) = mysql_fetch_row($result)) {
+			if($result = execute_sql($sql)) {
+				while(list($text, $num) = fetch_row($result)) {
+                    $result->MoveNext();
 					if(!empty($text))
 						$counts[htmlspecialchars($text)] = $num;
 				}
-				mysql_free_result($result);
+				db_close($result);
 			}
 			$question["result_id"] = 4;	// force "list" type response for text fields
 			break;
@@ -391,12 +402,13 @@ switch ($table) {
     					   A.response_id ${ridstr}
 					 GROUP BY A.response";
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = mysql_query($sql)) {
-				while(list($text, $num) = mysql_fetch_row($result)) {
+			if($result = execute_sql($sql)) {
+				while(list($text, $num) = fetch_row($result)) {
+                    $result->MoveNext();
 					if(!empty($text))
 						$counts[htmlspecialchars($text)] = $num;
 				}
-				mysql_free_result($result);
+				db_close($result);
 			}
 			$question["result_id"] = 4;	// force "list" type response for date fields
 			break;
@@ -406,10 +418,12 @@ switch ($table) {
                 $sql = "SELECT C.content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
                         WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
                         ORDER BY C.id";
-                if ($result = mysql_query($sql)) {
-                    for ($j = 0; $j < mysql_num_rows($result); $j++)
-                        $counts[mysql_result($result, $j, 0)] = null;
-                    mysql_free_result($result);
+                if ($result = execute_sql($sql)) {
+                    for ($j = 0; $j < record_count($result); $j++) {
+                        $result->Move($j);
+                        $counts[$result->fields[0]] = null;
+                    }
+                    db_close($result);
                 }
 				$sql = "SELECT C.content, AVG(A.rank+1) AS average
 						  FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C, ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
@@ -418,13 +432,14 @@ switch ($table) {
 							   A.choice_id=C.id AND
 							   A.rank>=0 AND
 							   A.response_id ${ridstr}
-						 GROUP BY C.id";
+						 GROUP BY C.id, C.content";
 				if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-				if($result = mysql_query($sql)) {
-					while(list($ccontent,$avg) = mysql_fetch_row($result)) {
+				if($result = execute_sql($sql)) {
+					while(list($ccontent,$avg) = fetch_row($result)) {
+                        $result->MoveNext();
 						$counts[$ccontent] = $avg;
 					}
-					mysql_free_result($result);
+					db_close($result);
 				}
 				$question["result_id"] = 99;	// force to rank
 			} else {
@@ -433,12 +448,13 @@ switch ($table) {
 						 WHERE A.question_id='${qid}' AND
     						   A.response_id ${ridstr}
 						 GROUP BY A.rank";
-				if($result = mysql_query($sql)) {
-					while(list($rank, $num) = mysql_fetch_row($result)) {
+				if($result = execute_sql($sql)) {
+					while(list($rank, $num) = fetch_row($result)) {
+                        $result->MoveNext();
 						if($rank == -1) { $rank = "N/A"; }
 						$counts[_($rank)] += $num;
 					}
-					mysql_free_result($result);
+					db_close($result);
 				}
 				if(empty($question["result_id"]))
 					$question["result_id"] = 2;	// default to rank
@@ -473,7 +489,7 @@ switch ($table) {
 <?php } // end while ?>
 </table>
 <?php
-	mysql_free_result($questions_result);
+	db_close($questions_result);
 	return;
 }
 /* }}} */

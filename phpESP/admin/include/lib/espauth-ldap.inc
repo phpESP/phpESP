@@ -33,52 +33,51 @@ function survey_auth($sid, $username, $password) {
 	$GLOBALS['auth_options'] = array();
 
     // make sure database is opened
-    esp_init_db();
+    esp_init_adodb();
 
 	// Formulate the query and check whether survey requires authentication
-	$sql = "SELECT realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid' AND public = 'N'";
+	$sql = "SELECT realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = $sid AND public = 'N'";
 
 	// Execute the query and put results in $accres
-	$accres = mysql_query( $sql );
+    $accres = execute_sql($sql);
 	if(!$accres) {
 		$GLOBALS['errmsg'] = mkerror(_('Unable to execute query for access.'));
 		return(false);
 	}
 
 	// Get number of rows in $accres.
-	if(mysql_num_rows($accres) < 1) {
+	if(record_count($accres) < 1) {
 		// no matching rows ... no authorization required
-		mysql_free_result($accres);
 		return(true);
 	}
 
-	$realm = mysql_result($accres, 0, 0);
-	mysql_free_result($accres);
+    $realm = $accres->fields[0];
+    db_close($accres);
 
 	// A matching row was found - the survey requires authentication.
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
 		$sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
 			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['respondent_table']." r
-			WHERE a.survey_id = '$sid' AND
-				r.username = '$username' AND
-				r.password = PASSWORD('$password') AND
+			WHERE a.survey_id = $sid AND
+				r.username = "._addslashes($username)." AND
+				r.password = ".db_crypt($password) ." AND
 				r.realm = a.realm AND
 				r.disabled = 'N' AND
-				(r.expiration = '0' OR r.expiration > NOW())";
+				(r.expiration = '0' OR r.expiration > ".sys_time_stamp().")";
 
 		// Execute the query and put results in $usrres
-		$usrres = mysql_query( $sql );
+		$usrres = execute_sql( $sql );
 		if(!$usrres) {
 			$GLOBALS['errmsg'] = mkerror(_('Unable to execute query respondents.' ));
 			return(false);
 		}
 
-		if (mysql_num_rows( $usrres ) > 0) {
+    if (record_count( $usrres ) > 0) {
 			// A matching row was found - the user is authorized.
 			$auth = true;
-			list($maxlogin, $arealm, $aresume, $anavigate) = mysql_fetch_row($usrres);
-			mysql_free_result($usrres);
+			list($maxlogin, $arealm, $aresume, $anavigate) = $usrres->fields;
+			db_close($usrres);
 			$GLOBALS['auth_options'] = array('resume' => $aresume, 'navigate' => $anavigate);
 		}
 	}
@@ -93,14 +92,12 @@ function survey_auth($sid, $username, $password) {
 
 	if ( $maxlogin > 0 ) {
 		// see if user is over the MAX # of responses
-		$sql = "SELECT COUNT(*) < '$maxlogin' FROM ".$GLOBALS['ESPCONFIG']['response_table']." WHERE
-		survey_id = '${sid}' AND
+		$sql = "SELECT COUNT(*) < $maxlogin FROM ".$GLOBALS['ESPCONFIG']['response_table']." WHERE
+		survey_id = ${sid} AND
 		complete = 'Y' AND
-		username = '$username'";
+		username = "._addslashes($username);
 
-		$numres = mysql_query( $sql );
-		$auth = mysql_result($numres, 0, 0);
-		mysql_free_result($numres);
+		$auth = get_one($sql);
 	}
 	if( !$auth ) {
 		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
@@ -116,7 +113,9 @@ function survey_auth($sid, $username, $password) {
    Returns true if the supplied username/password is allowed
    access to the management interface. This sets/clears
    access control related session variables. */
-function manage_auth($username, $password) {
+function manage_auth($username, $password, $raw_password="") {
+    $ldap_password = $raw_password;
+
 	// see if session is expired, or has been logged out
 	if(isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
 	   isset($GLOBALS['HTTP_SESSION_VARS']['acl']['expired'])) {
@@ -132,10 +131,8 @@ function manage_auth($username, $password) {
 			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['username']) &&
 			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['password']) &&
 			$GLOBALS['HTTP_SESSION_VARS']['acl']['username'] == $username) {
-		$sql = "SELECT PASSWORD('$password') = '". $GLOBALS['HTTP_SESSION_VARS']['acl']['password'] ."'";
-		$result = mysql_query($sql);
-		$auth = mysql_result($result, 0, 0);
-		mysql_free_result($result);
+		$sql = "SELECT ".db_crypt($password) ."= ". $GLOBALS['HTTP_SESSION_VARS']['acl']['password'];
+		$auth = get_one($sql);
 		if($auth)
 			return(true);
 	}
@@ -160,7 +157,7 @@ function manage_auth($username, $password) {
 			if (@ldap_count_entries($ds,$search_result)==1) {
 				$user_info = ldap_get_entries($ds, $search_result);
 				// Bind with username and password
-				$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $password);
+				$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $ldap_password);
 				if ($auth_bind) {
 					$auth_ldap_accept = true;
 				}
@@ -169,51 +166,50 @@ function manage_auth($username, $password) {
 		ldap_close($ds);
 
 		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
-			username = '$username' AND
-			password = PASSWORD('$password') AND
+			username = "._addslashes($username)." AND
+			password = ".db_crypt($password)." AND
 			disabled = 'N' AND
-			(expiration = '0' OR expiration > NOW())";
-
+			(expiration = '0' OR expiration > ". sys_time_stamp().")";
 		// Execute the query and put results in $accres
-		$accres = mysql_query( $sql );
+		$accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC);
 		if(!$accres) {
 			header( 'HTTP/1.0 503 '. _('Service Unavailable'));
 			echo('<html><head><title>'. _('Service Unavailable') .
 				'</title></head><body><h1>HTTP 503 '.
 				_('Service Unavailable') .'</h1>'.
-				mkerror(_('Unable to load ACL.') .' ('. mysql_error() .')') .
+				mkerror(_('Unable to load ACL.') .' ('. ErrorMsg() .')') .
 				'</body></html>');
 			return(false);
 		}
 
 		// Get number of rows in $accres.
-		if (mysql_numrows( $accres ) > 0) {
+		if (record_count( $accres ) > 0) {
 			// A matching row was found - the user is authorized.
 			$auth = true;
 		} else if ($auth_ldap_accept) {
 			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
-					username = '$username' AND
+					username = "._addslashes($username)." AND
 					disabled = 'N' AND
-					(expiration = '0' OR expiration > NOW())";
+					(expiration = '0' OR expiration > ". sys_time_stamp().")";
 
  		    // Execute the query and put results in $accres
-		    $accres = mysql_query($sql);
-			if (mysql_num_rows($accres) < 1) {
+		    $accres = execute_sql($sql, "", ADODB_FETCH_ASSOC);
+			if (record_count($accres) < 1) {
 				// Create the group
-				$user_sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm']." (name, title) VALUES ('$username','$username')";
-                mysql_query($user_sql);
+				$user_sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm_table']." (name, title, changed) VALUES ("._addslashes($username).", "._addslashes($username).", ". sys_time_stamp().")";
+                execute_sql($user_sql);
 
 				$user_sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
 							(username,password,auth,realm,fname,
 							pdesign,pstatus,pdata,pall,
-							pgroup,puser,disabled)
-							VALUES ('$username',PASSWORD('$password'),
-									'BASIC','$username','$username',
-									'Y','Y','Y','Y','N','N','N')";
+							pgroup,puser,disabled,expiration,changed)
+							VALUES ('$username',".db_crypt($password).",
+									'BASIC',"._addslashes($username).", "._addslashes($username).",
+									'Y','Y','Y','Y','N','N','N','0',".sys_time_stamp().")";
 			} else {
-				$user_sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET password = PASSWORD('$password') WHERE username = '$username'";
+				$user_sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET password = ".db_crypt($password) ." WHERE username = "._addslashes($username);
 			}
-			if (mysql_query($user_sql)) {
+			if (execute_sql($user_sql)) {
 				$auth = true;
 			}
 		}
@@ -242,15 +238,16 @@ function manage_auth($username, $password) {
 	foreach($fields as $f) {
 		$$f = array();
 	}
-	while( $arr = mysql_fetch_array($accres, MYSQL_ASSOC) ) {
-		if($arr['realm'] == 'superuser')
+    while( !$accres->EOF ) {
+		if($accres->fields['realm'] == 'superuser')
 			$acl['superuser'] = 'Y';
 		foreach($fields as $f) {
-			if($arr[$f] == 'Y')
-				array_push($$f, $arr['realm']);
+			if($accres->fields[$f] == 'Y')
+				array_push($$f, $accres->fields['realm']);
 		}
+        $accres->MoveNext();
 	}
-	mysql_free_result($accres);
+	db_close($accres);
 
 	foreach($fields as $f) {
 		$acl[$f] =& $$f;
@@ -285,11 +282,11 @@ function manage_logout() {
    Returns true if user owns the survey. */
 function auth_is_owner($sid, $user) {
 	$val = false;
-	$sql = "SELECT s.owner = '$user' FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id='$sid'";
-	$result = mysql_query($sql);
-	if(!(list($val) = mysql_fetch_row($result)))
+	$sql = "SELECT s.owner = $user FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id=$sid";
+    $result = execute_sql($sql);
+	if(!(list($val) = fetch_row($result)))
 		$val = false;
-	mysql_free_result($result);
+    db_close($result);
 	return $val;
 }
 /* }}} */
@@ -298,10 +295,10 @@ function auth_is_owner($sid, $user) {
    Returns the realm of the survey. */
 function auth_get_survey_realm($sid) {
 	$val = '';
-	$sql = "SELECT s.realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id='$sid'";
-	$result = mysql_query($sql);
-	list($val) = mysql_fetch_row($result);
-	mysql_free_result($result);
+	$sql = "SELECT s.realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id=$sid";
+    $result = execute_sql($sql);
+	list($val) = fetch_row($result);
+    db_close($result);
 	return $val;
 }
 /* }}} */
@@ -323,9 +320,9 @@ function auth_no_access($description) {
    or if there is an error, return false. Return true if
    password changed. */
 function auth_change_manager_passwd($user,$old,$new) {
-	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET password=PASSWORD('$new')
-		WHERE username='$user' AND password=PASSWORD('$old')";
-	return(mysql_query($sql) && mysql_affected_rows() > 0);
+	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET password=".db_crypt($new) ."
+		WHERE username="._addslashes($user)." AND password=".db_crypt($old);
+        return(execute_sql($sql) && affected_rows() > 0);
 }
 /* }}} */
 
@@ -343,30 +340,29 @@ function auth_get_rid($sid, $username, $rid = 0) {
 	$rid = intval($rid);
 	if (isset($rid) && $rid != 0) {
 		// check for valid rid
-		$sql = "SELECT (r.username = '$username' && r.complete = 'N') AS valid
+		$sql = "SELECT (r.username = "._addslashes($username)." && r.complete = 'N') AS valid
 			FROM ".$GLOBALS['ESPCONFIG']['response_table']." r
-			WHERE r.id = '$rid' AND
-			r.survey_id = '$sid'";
-		$res = mysql_query($sql);
+			WHERE r.id = $rid AND
+			r.survey_id = $sid";
+		$res = execute_sql($sql);
 		$valid = FALSE;
-		if ($res && mysql_num_rows($res) > 0 && mysql_result($res, 0, 0))
+        if ($res && record_count($res) > 0 && $res->fields[0])
 			$valid = TRUE;
 		if ($res)
-			mysql_free_result($res);
+			db_close($res);
 		return ($valid) ? $rid : '';
 	} elseif (auth_get_option('resume')) {
 		// find latest in progress rid
 		$sql = "SELECT r.id FROM ".$GLOBALS['ESPCONFIG']['response_table']." r
-			WHERE r.survey_id = '$sid' AND
+			WHERE r.survey_id = $sid AND
 			r.complete = 'N' AND
-			r.username = '$username'
-			ORDER BY submitted DESC
-			LIMIT 1";
-		$res = mysql_query($sql);
-		if ($res && mysql_num_rows($res) > 0)
-			$rid = mysql_result($res, 0, 0);
+			r.username = "._addslashes($username)."
+			ORDER BY submitted DESC";
+		$res = execute_sql($sql,1);
+        if ($res && record_count($res) > 0)
+			$rid = $res->fields[0];
 		if ($res)
-			mysql_free_result($res);
+			db_close($res);
 		return ($rid != 0) ? $rid : '';
 	} else {
 		return '';

@@ -17,16 +17,15 @@ function survey_render($sid, $section = 1, $message = '') {
 
 	if(empty($section))
 		$section = 1;
-
 	$has_choices = esp_type_has_choices();
 
 // load survey title (and other globals)
-	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
-	$result = mysql_query($sql);
-	if(mysql_num_rows($result) != 1)
+	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
+	$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+	if(record_count($result) != 1)
 		return(false);
-	$survey = mysql_fetch_array($result,MYSQL_ASSOC);
-	mysql_free_result($result);
+	$survey = fetch_row($result);
+	db_close($result);
 
 	$sections = survey_get_sections($sid);
 	$num_sections = count($sections);
@@ -38,13 +37,13 @@ function survey_render($sid, $section = 1, $message = '') {
 // load survey questions
 	$sec_sql = array_to_insql($sections[$section]);
 	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id $sec_sql ORDER BY position,id";
-	$questions_result = mysql_query($sql);
-	if(mysql_num_rows($questions_result) < 1)
+	$questions_result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+	if(record_count($questions_result) < 1)
 		return(false);
 
 // check to see if there are required questions
 	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id $sec_sql AND required='Y'";
-	$has_required = mysql_result(mysql_query($sql),0,0);
+	$has_required = get_one($sql);
 
 // find out what question number we are on $i
 	$i=0;
@@ -69,7 +68,8 @@ function survey_render($sid, $section = 1, $message = '') {
 <?php } ?>
 <table class="mainTable">
 <?php
-	while($question = mysql_fetch_array($questions_result,MYSQL_ASSOC)) {
+	while($question = fetch_row($questions_result)) {
+        $questions_result->MoveNext();
 		// process each question
 		$qid  = &$question['id'];
 		$tid  = &$question['type_id'];
@@ -104,11 +104,11 @@ function survey_render($sid, $section = 1, $message = '') {
 
 		++$i;
 		if($has_choices[$tid]) {
-			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='$qid' AND content NOT LIKE '!other%' ORDER BY id";
-			$choices_result = mysql_query($sql);
-			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='$qid' AND content LIKE '!other%' ORDER BY id";
-			$others_result = mysql_query($sql);
-			$others = mysql_num_rows($others_result);
+			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=$qid AND content NOT LIKE '!other%' ORDER BY id";
+			$choices_result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=$qid AND content LIKE '!other%' ORDER BY id";
+			$others_result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+			$others = record_count($others_result);
 		} else { $choices_result = ''; }
 ?>
 <tbody>
@@ -163,14 +163,17 @@ function survey_render($sid, $section = 1, $message = '') {
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
 					<tbody>
-<?php			while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
+<?php			while($choice = fetch_row($choices_result)) {	
+                    $choices_result->MoveNext();
+                    ?>
 						<tr>
 							<td><?php echo(mkradio($qid,$choice['id'])); ?></td>
 							<td><?php echo($choice['content']); ?></td>
 						</tr>
 <?php			}
 				$j=0;
-				while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {
+				while($other = fetch_row($others_result)) {
+                    $others_result->MoveNext();
 					$cid = $other['id'];
 					$other_text = preg_replace(
 							array("/^!other=/","/^!other/"),
@@ -201,14 +204,17 @@ function survey_render($sid, $section = 1, $message = '') {
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
 					<tbody>
-<?php			while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
+<?php			while($choice = fetch_row($choices_result)) {
+                    $choices_result->MoveNext();
+                    ?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,$choice['id'])); ?></td>
 							<td><?php echo($choice['content']); ?></td>
 						</tr>
 <?php			}
 				$j=0;
-				while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {
+				while($other = fetch_row($others_result)) {
+                    $others_result->MoveNext();
 					$cid = $other['id'];
 					$other_text = preg_replace(
 							array("/^!other=/","/^!other/"),
@@ -239,7 +245,8 @@ function survey_render($sid, $section = 1, $message = '') {
 			case '6':	// dropdown box
 				$options = array();
 ?>
-<?php				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
+<?php				while($choice = fetch_row($choices_result)) {
+                        $choices_result->MoveNext();
 					$options[$choice['id']] = $choice['content'];
 				}
 ?>
@@ -285,7 +292,8 @@ function survey_render($sid, $section = 1, $message = '') {
 ?>
 						</tr>
 <?php
-				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
+				while($choice = fetch_row($choices_result)) {
+                    $choices_result->MoveNext();
 					$cid = $choice['id'];
 					$str = "${qid}_$cid";
 ?>
