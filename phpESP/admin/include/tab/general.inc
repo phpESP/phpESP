@@ -18,7 +18,7 @@
 		$survey = mysql_fetch_array($result,MYSQL_ASSOC);
 		mysql_free_result($result);
 	} else {
-		$fields = array('name','realm','title','subtitle','email','thank_head','thank_body','info','public');
+		$fields = array('name','realm','title','subtitle','email','theme','thank_head','thank_body','info','public');
 		foreach ($fields as $f) {
 			$survey[$f] = DESLASH($HTTP_POST_VARS[$f]);
 		}
@@ -99,6 +99,27 @@ edit individual fields.')); ?>
 			<input type="text" name="email" size="30" value="<?php echo(htmlspecialchars($survey['email'])); ?>"><br>
 			<?php echo(_('Sends a copy of each submission to address (or leave blank for no email backup).')); ?></td>
 	</tr>
+	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
+        <tr valign="top">
+                <td><b><?php echo(_('Survey Theme')); ?></b></td>
+                <td><?php
+			$GLOBALS['theme'] =& $survey['theme'];
+			$themes_array = array();
+			chdir($ESPCONFIG['survey_css']);
+			$dir = dir(".");
+			$dir->rewind();
+			while ($file=$dir->read()) {
+				if (stristr($file,".css")) {
+					$pos = strrpos($file, ".");
+					$name = substr($file, 0,$pos);
+					$themes_array[$file] = $name;
+				}
+			}
+			$dir->close();
+		?>
+			<?php echo(mkselect('theme',$themes_array)) ?><br>
+                        <?php echo(_('Select a theme (css) to use with this survey.')); ?></td>
+        </tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
 	<tr valign="top">
 		<td><b><?php echo(_('Confirmation Heading')); ?></b></td>

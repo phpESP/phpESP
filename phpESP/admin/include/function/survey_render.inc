@@ -51,18 +51,23 @@ function render_survey($sid, $section = 1, $message = '') {
 	for($j=0;$j<$section;$j++)
 		$i += count($sections[$j]);
 ?>
-<h2><?php echo($survey["title"]); ?></h2>
-<h3><?php echo($survey["subtitle"]); ?></h3>
+<table class="headerGraphic">
+<tr>
+	<td class="image"></td>
+</tr>
+</table>
+<h2 class="surveyTitle"><?php echo($survey["title"]); ?></h2>
+<h3 class="surveySubtitle"><?php echo($survey["subtitle"]); ?></h3>
 <?php if($num_sections>1) { ?>
 	<font size="-1"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font>
 <?php } ?>
-<blockquote><?php echo($survey["info"]); ?></blockquote>
-<blockquote><?php echo($message); ?></blockquote>
+<blockquote class="addInfo"><?php echo($survey["info"]); ?></blockquote>
+<blockquote class="message"><?php echo($message); ?></blockquote>
 <?php if($has_required) { ?>
-	<p><font size="-1"><?php echo(_('Questions marked with a')); ?> 
+	<p class="reqQuestion"><font size="-1"><?php echo(_('Questions marked with a')); ?> 
 	<font color="#FF0000">*</font> <?php echo(_('are required.')); ?></font></p>
 <?php } ?>
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<table class="mainTable">
 <?php
 	while($question = mysql_fetch_array($questions_result,MYSQL_ASSOC)) {
 		// process each question
@@ -72,8 +77,21 @@ function render_survey($sid, $section = 1, $message = '') {
 		$prec = &$question['precise'];
 		
 		if ($tid == 100) {
-			echo("<tr><td colspan=\"2\" valign=\"TOP\" align=\"LEFT\">". 
-					$question['content'] ."</td></tr>\n");
+			echo("<tr>\n");
+        		echo("	<td class=\"preQuestionBorder\">&nbsp;</td>\n");
+      			echo("</tr>\n");
+      			echo("<tr>\n");
+        		echo("<td height=\"35\" vAlign=\"top\">\n");
+                	echo("<table class=\"qnOuterTable\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\">\n");
+            		echo("<tr>\n");
+              		echo("	<td width=\"100%\" height=\"35\" valign=\"top\">\n");
+                        echo("<table class=\"qnInnerTable\" width=\"100%\" border=\"0\" cellpadding=\"10\" cellspacing=\"1\">\n");
+                  	echo("<tr>\n");
+                    	echo("	<td class=\"qnInner\" width=\"100%\" height=\"35\">".$question['content'] ."</td></tr>\n");
+                	echo("</table></td>\n");
+            		echo("</tr>\n");
+          		echo("</table></td>\n");
+      			echo("</tr>\n");
 			continue;
 		}
 
@@ -86,32 +104,46 @@ function render_survey($sid, $section = 1, $message = '') {
 			$others = mysql_num_rows($others_result);
 		} else { $choices_result = ''; }
 ?>
-	<tr>
-		<td valign="TOP" align="RIGHT">
-			<?php if($question['required']=='Y') { echo('<font color="#FF0000">*</font>'); } ?><A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A>
-		</td>
-		<td valign="TOP" align="LEFT">
-				<?php echo($question['content']); ?>
-
-				<blockquote>
+<tbody>
+<tr>
+        <td class="preQuestionBorder" >&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="62" vAlign=top>
+                <table class="qnOuterTable" width="100%" cellspacing="1">
+            <tr>
+              <td width="100%" height="60" valign="top">
+                 <table class="qnInnerTable" width="100%" cellPadding="10"  cellSpacing="1">
+                  <tr>
+                    <td class="qnInnerTd" rowspan="2">
+			<?php if($question['required']=='Y') { echo('<font color="#FF0000">*</font>'); } ?><A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A></td>
+		    <td class="qnInner">
+			<?php echo($question['content']); ?>
+		    </td>
+                  </tr>
+                  <tr>
+                    <td class="qnType">
+                      <blockquote>
 <?php
 		switch($tid) {
 			case '1':	// Yes/No
 ?>
-					<table border="0" cellspacing="0" cellpadding="0">
-						<tr>
-							<td><?php echo(mkradio($qid,'Y')); ?></td>
-							<td><?php echo(_('Yes')); ?></td>
-						</tr>
-						<tr>
-							<td><?php echo(mkradio($qid,'N')); ?></td>
-							<td><?php echo(_('No')); ?></td>
-						</tr>
-					</table>
+				<table cellSpacing="0" cellPadding="0">
+                        	<tbody>
+                          	<tr>
+                            		<td><?php echo(mkradio($qid,'Y')); ?></td>
+                            		<td><?php echo(_('Yes')); ?></td>
+                          	</tr>
+                          	<tr>
+                            		<td><?php echo(mkradio($qid,'N')); ?></td>
+                            		<td><?php echo(_('No')); ?></td>
+                          	</tr>
+                        	</tbody>
+                      		</table>
 <?php
 				break;
 			case '2':	// single text line
-?>
+?>					
 					<?php echo(mktext($qid, $size, $prec)); ?>
 <?php
 				break;
@@ -123,6 +155,7 @@ function render_survey($sid, $section = 1, $message = '') {
 			case '4':	// radio
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
+					<tbody>
 <?php			while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
 						<tr>
 							<td><?php echo(mkradio($qid,$choice['id'])); ?></td>
@@ -145,12 +178,14 @@ function render_survey($sid, $section = 1, $message = '') {
 					$j++;
 				}
 ?>
+					</tbody>
 					</table>
 <?php
 				break;
 			case '5':	// check boxes
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
+					<tbody>
 <?php			while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,$choice['id'])); ?></td>
@@ -170,12 +205,14 @@ function render_survey($sid, $section = 1, $message = '') {
 					$j++;
 				}
 ?>
+					</tbody>
 					</table>
 <?php
 				break;
 			case '6':	// dropdown box
-				$options = array();
-				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
+				$options = array(); 
+?>
+<?php				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
 					$options[$choice['id']] = $choice['content'];
 				}
 ?>
@@ -185,6 +222,7 @@ function render_survey($sid, $section = 1, $message = '') {
 			case '7':	// rating
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
+					<tbody>
 						<tr>
 							<td width="60"><?php echo(mkradio($qid,1)); ?> <?php echo(_('1')); ?></td>
 							<td width="60"><?php echo(mkradio($qid,2)); ?> <?php echo(_('2')); ?></td>
@@ -193,12 +231,14 @@ function render_survey($sid, $section = 1, $message = '') {
 							<td width="60"><?php echo(mkradio($qid,5)); ?> <?php echo(_('5')); ?></td>
 							<td width="60"><?php echo(mkradio($qid,'N/A')); ?> <?php echo(_('N/A')); ?></td>
 						</tr>
+					</tbody>
 					</table>
 <?php
 				break;
 			case '8':	// ranking
 ?>
 					<table border="0" cellspacing="1" cellpadding="0">
+						<tbody>
 						<tr>
 							<td></td>
 <?php
@@ -241,6 +281,7 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 						</tr>
 <?php			} ?>
+					</tbody>
 					</table>
 <?php
 				break;
@@ -260,9 +301,13 @@ function render_survey($sid, $section = 1, $message = '') {
 		}
 		// end of select
 ?>
-				</blockquote>
-		</td>
-	</tr>
+		</blockquote>
+                         </td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table></td>
+      </tr></tbody>
 <?php
 	}
 	// end of questions
