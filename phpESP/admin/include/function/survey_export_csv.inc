@@ -107,16 +107,26 @@
                                 /* check box */
                                 $tempresult=array();
                                 foreach ($response[$columns2[$i]] as $checkboxdata) {
-                                    array_push($tempresult,$checkboxdata[2]);
+                                    if($checkboxdata[2]=="!other"){
+                                        list(,$c)=split("_", $checkboxdata[3]);
+                                        array_push($tempresult,"Other: ".$response[$columns2[$i].'_'.$c][2]);
+
+                                    }else{
+                                        array_push($tempresult,$checkboxdata[2]);
+                                    }
                                 }
                                 $thisresult=implode(",",$tempresult);
                             }elseif(isset($response[$columns2[$i]][0]) && $response[$columns2[$i]][0]==8 ){
                                 /* rating */
                                 $thisresult=$response[$columns2[$i]][3]; //db has these as 0 to N-1, lets add 1
-                                if($thisresult>=0) $thisresult++;
                             }elseif(isset($response[$columns2[$i]][0]) && ($response[$columns2[$i]][0]==4 || $response[$columns2[$i]][0]=6)){
                                 /* radio or dropdown*/
-                                $thisresult=$response[$columns2[$i]][2];
+                                if($response[$columns2[$i]][2]=="!other"){
+                                    list(,$c)=split("_", $response[$columns2[$i]][3]);
+                                    $thisresult="Other: ".$response[$columns2[$i].'_'.$c][2];
+                                }else{
+                                    $thisresult=$response[$columns2[$i]][2];
+                                }
                             }else{
                                 $thisresult=$response[$columns2[$i]][3];
                             }
@@ -135,6 +145,8 @@
                                     * regex below.
                                     */
                                     $thisresult = ereg_replace("[\r\n\t]", ' ', $thisresult);
+                                    $thisresult = ereg_replace('"', '""', $thisresult);
+                                    $thisresult = '"'. $thisresult .'"';
                                 }
                                 /* fall through */
                             case 0: /* number */
