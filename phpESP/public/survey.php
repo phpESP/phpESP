@@ -1,10 +1,14 @@
 <?php
+# $Id$
+
+// Matthew Gregg
+// <greggmc at musc.edu>
 
 	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
 
 	$_name = '';
 	$_title = '';
-    $_css = '';
+	$_css = '';
 	if (isset($HTTP_GET_VARS['name'])) {
 		$_name = XADDSLASHES($HTTP_GET_VARS['name']);
 		unset($HTTP_GET_VARS['name']);
