@@ -4,8 +4,7 @@
 
 // Written by James Flemer
 // For eGrad2000.com
-// <jflemer@acm.jhu.edu>
-// <jflemer@eGrad2000.com>
+// <jflemer@alum.rpi.edu>
 
 // account_upload written by Matthew Gregg
 // <greggmc@musc.edu>

@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 if(!empty($HTTP_POST_VARS['sid']))
 	$sid = intval($HTTP_POST_VARS['sid']);

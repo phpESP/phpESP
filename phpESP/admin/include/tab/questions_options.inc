@@ -4,8 +4,7 @@
 
 // Written by James Flemer
 // For eGrad2000.com
-// <jflemer@acm.jhu.edu>
-// <jflemer@eGrad2000.com>
+// <jflemer@alum.rpi.edu>
 
 	// do not need to import session vars here
 	// it is done by questions.inc before this code executes

@@ -5,7 +5,7 @@
 // Download patch submitted by Matthew Gregg
 // <greggmc@musc.edu>
 // Modified by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 	$sid = -1;
 	if (!empty($HTTP_GET_VARS['sid']))

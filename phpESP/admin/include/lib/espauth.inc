@@ -3,7 +3,7 @@
 # $Id$
 
 //  phpESP Authentication Library Chooser
-//  By: James Flemer <jflemer@acm.jhu.edu>
+//  By: James Flemer <jflemer@alum.rpi.edu>
 
 	$auth_type = $GLOBALS['ESPCONFIG']['auth_type'];
 	if (empty($auth_type))

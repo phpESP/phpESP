@@ -3,7 +3,7 @@
 -- # Table structures for phpESP
 -- # Written by James Flemer
 -- # For eGrad2000.com
--- # <jflemer@acm.jhu.edu>
+-- # <jflemer@alum.rpi.edu>
 
 -- ## Database changes from 1.5 to 1.6
 -- ALTER TABLE respondent MODIFY COLUMN username CHAR(64) NOT NULL;

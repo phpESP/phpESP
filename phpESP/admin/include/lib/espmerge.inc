@@ -3,7 +3,7 @@
 # $Id$
 
 // Written by James Flemer
-// <jflemer@acm.jhu.edu>
+// <jflemer@alum.rpi.edu>
 
 if(!defined('_LIB_ESPMERGE')) {
  	define('_LIB_ESPMERGE',TRUE);
