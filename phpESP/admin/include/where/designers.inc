@@ -114,10 +114,21 @@
 		$bg =& $ESPCONFIG['bgalt_color1'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<th colspan="5">
-			<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=admdesigner"); ?>">
-				<?php echo(_('Add a new Designer')); ?>
-			</a>
+		<th colspan="5" align="center">
+			<table border="0" cellpadding="4">
+				<tr>
+					<th>
+					<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=admdesigner"); ?>">
+						<?php echo(_('Add a new Designer')); ?>
+					</a>
+					</th>
+					<th>
+					<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=upload&account_type=designers"); ?>">
+						<?php echo(_('Bulk Upload Designers')); ?>
+					</a>
+					</th>
+				</tr>
+			</table>
 		</th>
 	</tr>
 </table>
