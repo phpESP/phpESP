@@ -16,7 +16,10 @@
 ?>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
 <?php
-		$ret = survey_results($sid,$precision,$totals,$qid,$cids);
+		if(is_array($sid))
+			$ret = survey_merge($sid,$precision,$totals);
+		else
+			$ret = survey_results($sid,$precision,$totals,$qid,$cids);
 
 		if(!empty($ret))
 			echo("<font color=\"$cf_error_color\">$ret</font>\n");
