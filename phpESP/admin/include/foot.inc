@@ -1,4 +1,8 @@
-<?php # $Id$ ?>
+<?php
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
+?>
           </td>
         </tr>
         </tbody>

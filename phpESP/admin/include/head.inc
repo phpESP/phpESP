@@ -1,4 +1,8 @@
-<?php # $Id$ ?>
+<?php
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
+?>
 <table border="0" cellspacing="0" cellpadding="0" width="98%" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['table_bgcolor']); ?>">
   <tbody>
   <tr>

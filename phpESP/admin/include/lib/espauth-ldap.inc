@@ -1,6 +1,8 @@
 <?php
 
-# $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
 //  phpESP LDAP Authentication Library
 //  By: Christopher Zorn <zorncj@musc.edu>

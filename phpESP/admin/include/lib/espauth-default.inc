@@ -1,6 +1,8 @@
 <?php
 
-# $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
 //  phpESP Default Authentication Library
 //  By: Romans Jasins <roma@latnet.lv>
