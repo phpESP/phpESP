@@ -8,10 +8,17 @@ SOON:
 * add ability to insert sub headings/text within survey
 * add spell checking support (use spell checking from IMP?)
 * add "Archive" managemnet
+* move text strings to seperate file (to ease LOCALE support)
+* javascript 'order' page
+* javascript conditional questions (sub questions)
+* delete button on questions tab
+* CSV export function
 
 LATER:
 * add "parameters" to question types (?)
 * add ability to view results per submission
+* new GUI
+* better docs
 
 NEVER: :)
 * add LOCALE support
