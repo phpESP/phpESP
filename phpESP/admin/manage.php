@@ -24,6 +24,9 @@
 	if(!empty($cf_style_sheet)) {
 		echo('<LINK href="'. $cf_style_sheet .'" rel="stylesheet" type="text/css">'."\n");
 	}
+	if(!empty($cf_charset)) {
+		echo('<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset='. $cf_charset ."\">\n");
+	}
 ?>
 </HEAD>
 <BODY BGCOLOR="<?php echo($cf_main_bgcolor); ?>"

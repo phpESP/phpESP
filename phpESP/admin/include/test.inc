@@ -26,8 +26,8 @@
 			include($cf_handler);
 ?>
 </td></tr></table>
-<a href="<?php echo($ME); ?>?where=results&sid=<?php echo($sid); ?>&test=1">View Results</a><br>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo($tmp); ?>?where=results&sid=<?php echo($sid); ?>&test=1">View Results</a><br>
+<a href="<?php echo($tmp); ?>?where=manage">Go back to Management Interface</a>
 <form>
 <?php
 			return;
@@ -66,7 +66,7 @@ Pick Survey to Test
 		<td><?php echo($survey['name']); ?></td>
 		<td><?php echo($survey['title']); ?></td>
 		<td><a href="<?php echo($ME); ?>?where=test&sid=<?php echo($survey['id']); ?>">Test</a></td>
-		<td><a href="<?php echo($ME); ?>?where=results&sid=<?php echo($survey['id']); ?>">Results</a></td>
+		<td><a href="<?php echo($ME); ?>?where=results&test=1&sid=<?php echo($survey['id']); ?>">Results</a></td>
 	</tr>
 <?php
 	}

@@ -1,13 +1,13 @@
-# $Id$
-#
-# Table structures for phpESP
-# Written by James Flemer
-# For eGrad2000.com
-# <jflemer@acm.jhu.edu>
-# <jflemer@egrad2000.com>
-#
+-- # $Id$
+-- #
+-- # Table structures for phpESP
+-- # Written by James Flemer
+-- # For eGrad2000.com
+-- # <jflemer@acm.jhu.edu>
+-- # <jflemer@egrad2000.com>
+-- #
 
-# types of questions
+-- # types of questions
 CREATE TABLE question_types ( 
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name		CHAR(64) NOT NULL,
@@ -16,14 +16,14 @@ CREATE TABLE question_types (
 	PRIMARY KEY (id)
 );
 
-# types of results
+-- # types of results
 CREATE TABLE result_types (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name		CHAR(64) NOT NULL,
 	PRIMARY KEY (id)
 );
 
-# table of different surveys available
+-- # table of different surveys available
 CREATE TABLE surveys (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	created		TIMESTAMP(14) NOT NULL DEFAULT '',
@@ -40,7 +40,7 @@ CREATE TABLE surveys (
 	UNIQUE(name)
 );
 
-# table of the questions for all the surveys
+-- # table of the questions for all the surveys
 CREATE TABLE survey_questions (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	survey_id	INT UNSIGNED NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE survey_questions (
 	PRIMARY KEY (id)
 );
 
-# table of the choices (possible answers) of each question
+-- # table of the choices (possible answers) of each question
 CREATE TABLE question_choices (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	question_id	INT UNSIGNED NOT NULL,
@@ -64,9 +64,9 @@ CREATE TABLE question_choices (
 	PRIMARY KEY (id)
 );
 
-# answer_* SUBMITTED BY USER (below this line)
+-- # answer_* SUBMITTED BY USER (below this line)
 
-# answers to boolean questions (yes/no)
+-- # answers to boolean questions (yes/no)
 CREATE TABLE answers_bool (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id	INT UNSIGNED NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE answers_bool (
 	PRIMARY KEY(response_id,question_id)
 );
 
-# answers to single answer questions (radio, boolean, rate) (chose one of n)
+-- # answers to single answer questions (radio, boolean, rate) (chose one of n)
 CREATE TABLE answers_single (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id	INT UNSIGNED NOT NULL,
@@ -82,8 +82,8 @@ CREATE TABLE answers_single (
 	PRIMARY KEY(response_id,question_id)
 );
 
-# answers to questions where multiple responses are allowed
-# (checkbox, select multiple)
+-- # answers to questions where multiple responses are allowed
+-- # (checkbox, select multiple)
 CREATE TABLE answers_multiple (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	response_id	INT UNSIGNED NOT NULL,
@@ -92,16 +92,16 @@ CREATE TABLE answers_multiple (
 	PRIMARY KEY(id)
 );
 
-# answers to rank questions
+-- # answers to rank questions
 CREATE TABLE answers_rank (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id	INT UNSIGNED NOT NULL,
 	choice_id	INT UNSIGNED NOT NULL,
-	rank		INT UNSIGNED NOT NULL,
+	rank		INT NOT NULL,
 	PRIMARY KEY(response_id,question_id,choice_id)
 );
 
-# answers to any fill in the blank or essay question
+-- # answers to any fill in the blank or essay question
 CREATE TABLE answers_text (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id INT UNSIGNED NOT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE answers_text (
 	PRIMARY KEY (response_id,question_id)
 );
 
-# answers to any Other: ___ questions
+-- # answers to any Other: ___ questions
 CREATE TABLE answers_other (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	response_id	INT UNSIGNED NOT NULL,
@@ -118,8 +118,8 @@ CREATE TABLE answers_other (
 	PRIMARY KEY (id)
 );
 
-# this table holds info to distinguish one servey response from another
-# (plus timestamp, and username if known)
+-- # this table holds info to distinguish one servey response from another
+-- # (plus timestamp, and username if known)
 CREATE TABLE survey_responses (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	survey_id	INT UNSIGNED NOT NULL,
@@ -129,19 +129,21 @@ CREATE TABLE survey_responses (
 	PRIMARY KEY (id)
 );
 
-# populate the types of questions
+-- # populate the types of questions
 INSERT INTO question_types VALUES ('1','Yes/No',0,'answers_bool');
 INSERT INTO question_types VALUES ('2','Single Line Text Entry',0,'answers_text');
 INSERT INTO question_types VALUES ('3','Essay (Multiline)',0,'answers_text');
 INSERT INTO question_types VALUES ('4','Radio Buttons',1,'answers_single');
 INSERT INTO question_types VALUES ('5','Check Boxes',1,'answers_multiple');
 INSERT INTO question_types VALUES ('6','Dropdown Box',1,'answers_single');
-INSERT INTO question_types VALUES ('7','Ranking',0,'answers_rank');
+-- INSERT INTO question_types VALUES ('7','Rating',0,'answers_rank');
+INSERT INTO question_types VALUES ('8','Rate (scale 1..5)',1,'answers_rank');
 INSERT INTO question_types VALUES ('99','Page Break',0,'');
 
 
-# populate the types of results
+-- # populate the types of results
 INSERT INTO result_types VALUES ('1','Percentages');
-INSERT INTO result_types VALUES ('2','Rank');
+INSERT INTO result_types VALUES ('2','Ordered');
 INSERT INTO result_types VALUES ('3','Count');
 INSERT INTO result_types VALUES ('4','List');
+INSERT INTO result_types VALUES ('5','Average Rank');

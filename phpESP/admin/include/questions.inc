@@ -12,13 +12,6 @@
 	session_register("curr_q");		// curr_q is session variable
 	// q is form variable
 
-	if(!$dont_clear) {
-		if(isset($q) && !empty($q))
-			$curr_q = $q;
-		if(stristr($curr_q,'new'))
-			$curr_q = 0;
-	}
-
 	// build array of question IDs
 	$sql = "SELECT id FROM survey_questions WHERE survey_id='${survey_id}' AND status='' AND type_id!=99 ORDER BY position";
 	$result = mysql_query($sql);
@@ -26,6 +19,20 @@
 	$q_ids = array();
 	for($i=0;$i<$total_num_q;$i++) {
 		array_push($q_ids,mysql_result($result,$i,0));
+	}
+
+	if($extra_choices && empty($q)) {
+		$q=1;
+		while($q_ids[$q-1] != $id && $q <= $total_num_q) {
+			$q++;
+		}
+	}
+
+	if(!$dont_clear) {
+		if(isset($q) && !empty($q))
+			$curr_q = $q;
+		if(stristr($curr_q,'new'))
+			$curr_q = 0;
 	}
 
 	$fields = array('type_id','result_id','parent_id','required','params','content');
@@ -111,7 +118,7 @@
 </table>
 <?php
 	// has answer options ... so show that part of the form
-	if($curr_q == "New" || mysql_result(mysql_query("SELECT has_answers FROM question_types WHERE id='${type_id}'"),0,0)) {
+	if($curr_q == "New" || empty($type_id) || mysql_result(mysql_query("SELECT has_answers FROM question_types WHERE id='${type_id}'"),0,0)) {
 		include($PIECES."/question_options".$EXT);
 	}
 ?>

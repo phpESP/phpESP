@@ -1,0 +1,71 @@
+# $Id$
+
+// Written by James Flemer
+// [jflemer@acm.jhu.edu]
+
+---------------------------------------------------------------------
+UPGRADE GUIDE: [v1.2beta1 to v1.2beta2]
+
+No database changes! But there was a bug in v1.1beta1!
+If you were running v1.1beta1 read this CAREFULLY:
+
+There is one critical issue which will probably effect you.
+When I first added the ability to store more than one
+!other question, I inadvertantly stored the wrong ID.
+So ... The current values in the 'choice_id' column of
+'answers_other' do not correctly correspond to the *real*
+choice ID. They do however distinguish between the other
+'!other's for that question. The problem is that the
+results display will label them wrong.
+
+Before upgrading you need to run two SQL queries by
+hand and save the results:
+  SELECT NOW()+0, COUNT(id), MAX(choice_id) FROM answers_other;
+  SELECT MAX(id) FROM question_choices;
+
+Then when you upgrade go to:
+  http://127.0.0.1/phpESP/admin/manage.php?upgradeother
+
+This node will do some intelligent guessing and calculation
+and output a SQL script that *should* fix all the problems.
+It does not however do any of the updates itself, it is up to
+you to look at the script and sanity check it, then run it
+by hand.
+
+If you are upgrading and have questions please email me. -James
+
+---------------------------------------------------------------------
+UPGRADE GUIDE: [v1.1 to v1.2beta1]
+There is one database change. See update.sql.
+
+As usual, you should backup your INI and merge any changes
+back into the new one. Also you will have to update the paths
+to where you have things (in the INI and the handler).
+
+If you have questions email me.
+
+---------------------------------------------------------------------
+UPGRADE GUIDE: [v1.0 to v1.1]
+
+For the most part, this version does not require changes. The major
+change is the change from rank questions to rating questions. If you
+have any surveys with Rank questions you will have to change them, so
+don't do the upgrade while you have active surveys.
+
+You need to backup your INI file, then extract the new version over the
+old version, then change the path in the handler back to where you have
+phpESP installed. The INI file has not changed any, so you can just copy
+your old one back over the new one. The handler *has* changed so you will
+need to keep the new one, but change the path to the config file.
+
+There are small database changes with this version. I have included a
+'update.sql' script that will alter your existing database, and
+preserve your data. The only issue is that the 'Rank' question gets
+deleted, so editing,testing,taking,results from surveys with those
+types of questions will be effected. I haven't completly tested how
+each is handled, but you should be able to use active ones, and view
+the results. If you edit them, you will have to delete any questions of
+that type.
+
+If you have questions about the upgrade process, email me.
+--James

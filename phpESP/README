@@ -3,18 +3,22 @@
 // Written by James Flemer
 // For eGrad2000.com
 // [jflemer@acm.jhu.edu]
-// [jflemer@eGrad2000.com]
+// [jflemer@eGrad2000.com] (no longer valid)
 
 FILES:
 admin/:		administration interface and files
 images/:	gifs used for the packages
 public/:	public interface to taking surveys
+UPGRADE:	upgrade guide
+LICENSE:	the license, read this!
 phpESP.sql:	SQL script to initialize your mysql database for phpESP
+update.sql:	SQL script if you are upgrading (read the contents)
 
 PREREQUISITES:
   * mysql installed and running
   * web server with PHP4 installed and configured for .php files
     (I built and tested with Apache/1.3.12 + PHP4.0.1pl2)
+  * read the license
 
 INSTALLING:
 
@@ -30,6 +34,9 @@ INSTALLING:
   Edit the file [install-root]/admin/phpESP.ini and set the paths according to
   where you installed phpESP, and the path to it on your website. Set the
   database info.
+  
+  Edit the file [install-root]/public/handler.php and set the path
+  to where the phpESP.ini is.
 
   Edit the [install-root]/admin/.htaccess file to set the access permission for
   the administration side. Or just set the path to use the current auth method.

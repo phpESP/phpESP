@@ -30,6 +30,7 @@
 		for($i=1;$i<$num_choices+1;++$i) {
 			if($curr_q == "New") { $choice_id=''; $choice_content=''; }
 			else { list($choice_id,$choice_content) = mysql_fetch_row($result); }
+			if($dont_clear) { $choice_id=''; $choice_content=${"choice_content_$i"}; }
 ?>
 	<tr>
 		<td valign=middle align="right"><b><?php echo($i); ?>.</b></td>
