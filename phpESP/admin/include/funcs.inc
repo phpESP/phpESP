@@ -86,6 +86,17 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		return;
 	}
 
+    function goto_saved($url) {
+?>
+<p>Your progress has been saved.  You may return at any
+time to complete this survey.  To do so, simply bookmark
+the link below.  You may be prompted for your email address
+(username) and password to complete the survey.</p>
+<a href="<?php echo $url; ?>">Resume survey</a>
+<?php
+        return;
+    }
+
 	// clear the results of a survey (non-reversable)
 	function clear_results($sid) {
 		$sql = "SELECT id FROM question WHERE survey_id='${sid}'";
@@ -108,21 +119,21 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		return;
 	}
 
-	require($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/lib/esphtml.forms".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/lib/esphtml.results".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/lib/espmerge".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/lib/espresponse".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/lib/espsql".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_copy".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_merge".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_purge".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_render".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_report".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_results".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
-	require($ESPCONFIG['include_path']."/function/account_upload".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/lib/esphtml.forms".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/lib/esphtml.results".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/lib/espmerge".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/lib/espresponse".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/lib/espsql".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_copy".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_merge".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_purge".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_render".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_report".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_results".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
+	require_once($ESPCONFIG['include_path']."/function/account_upload".$ESPCONFIG['extension']);
 
 } // end if !defined(_FUNCS)
 
