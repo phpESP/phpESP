@@ -62,6 +62,7 @@ function survey_report($sid, $details = 0, $format = '') {
 	<th align="left" colspan=2><?php echo(_('Content')); ?></th>
 </tr>
 <?php
+	$i = 0;
 	while($question = mysql_fetch_array($questions_result, MYSQL_ASSOC)) {
 		// process each question
 		$qid = $question['id'];
