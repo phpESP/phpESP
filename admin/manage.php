@@ -7,18 +7,23 @@
 // <jflemer@alum.rpi.edu>
 
 	session_start();
+	
+	if (!defined('ESP_BASE'))
+		define('ESP_BASE', dirname(__FILE__) . '/../');
 
- 	$CONFIG = '/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini.php';
+ 	$CONFIG = ESP_BASE . '/admin/phpESP.ini.php';
 
 	if(!file_exists($CONFIG)) {
-		echo('<b>Unable to open INI file. Aborting.</b>');
+		echo("<b>FATAL: Unable to open $CONFIG. Aborting.</b>");
 		exit;
 	}
 	if(!extension_loaded('mysql')) {
-		echo('<b>Mysql extension not loaded. Aborting.</b>');
+		echo('<b>FATAL: Mysql extension not loaded. Aborting.</b>');
 		exit;
 	}
-	include($CONFIG);
+	require_once($CONFIG);
+	
+	esp_init_db();
 	
 	session_register('acl');
 	if(get_cfg_var('register_globals')) {
@@ -26,8 +31,8 @@
 	}
 	if($ESPCONFIG['auth_design']) {
 		if(!manage_auth(
-				XADDSLASHES(@$HTTP_SERVER_VARS['PHP_AUTH_USER']),
-				XADDSLASHES(@$HTTP_SERVER_VARS['PHP_AUTH_PW'])))
+				_addslashes(@$HTTP_SERVER_VARS['PHP_AUTH_USER']),
+				_addslashes(@$HTTP_SERVER_VARS['PHP_AUTH_PW'])))
 			exit;
 	} else {
 		$HTTP_SESSION_VARS['acl'] = array (
