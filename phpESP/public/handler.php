@@ -112,7 +112,7 @@
 		}
 	}
     
-    if ($ESPCONFIG['auth_response'] && auth_get_option('resume'))
+    if ($ESPCONFIG['auth_response'] && auth_get_option('resume') && $HTTP_POST_VARS['rid']>0)
         response_import_sec($sid, $HTTP_POST_VARS['rid'], $HTTP_POST_VARS['sec']);
 	
 ?>
