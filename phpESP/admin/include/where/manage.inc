@@ -44,10 +44,12 @@
 				<li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data to CSV')); ?></a></li>
 			</ul>
 
-<?php if($GLOBALS['ESPCONFIG']['auth_design']) { ?>
+<?php if($GLOBALS['ESPCONFIG']['auth_design']) {
+	if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap') { ?>
 			<ul>
 				<li><a href="<?php echo("${base}?where=passwd");   ?>"><?php echo(_('Change Your Password')); ?></a></li>
 <?php
+	}
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 		count($HTTP_SESSION_VARS['acl']['puser']) > 0 ||
 		count($HTTP_SESSION_VARS['acl']['pgroup']) > 0) {
