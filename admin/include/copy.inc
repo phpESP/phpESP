@@ -135,7 +135,7 @@ be able to edit the survey, and will have to activate it before use.
 		} elseif($survey['status'] & STATUS_ACTIVE) {
 			$stat = 'Active';
 		} else {
-			$stat = 'new';
+			$stat = 'Editing';
 		}
 		
 		if($bg != "#ffffff")
