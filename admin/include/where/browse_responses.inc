@@ -2,6 +2,9 @@
 
 # $Id$
 
+## XXX: This should be moved to the lib/ or function/ directory.
+## -James
+
 	/* {{{ proto void navigate_responses(int sid, int rid)
 	   Builds Previous/Next Navigation allowing easy navigation
 	   through individual survey responses. */ 
@@ -16,7 +19,7 @@
 		if ($total < 1) {
 			$errmsg = _('Error opening survey.').''._('No responses found.')."[ID:${sid}]";
 			return ($errmsq);
-			if ($GLOBALS['ESP_CONFIG']['DEBUG'])
+			if ($GLOBALS['ESPCONFIG']['DEBUG'])
 				echo ("<!-- \$errmsg = '$errmsg' -->\n");
 		}
 		else {
@@ -32,7 +35,7 @@
 
 			//let's create the dynamic links now
 			$arrcount = sizeof($ridarray);
-			$count = 0;
+			$counter = 0;
 			echo "<input type=\"hidden\" name=\"sid\" value=\"$sid\">";
 			echo "<input type=\"hidden\" name=\"rid\" value=\"\">";
 			echo "<input type=\"hidden\" name=\"where\" value=\"results\">";
@@ -75,7 +78,7 @@
 			echo "</center>";
 		}
 ?>
-		<script language = "JavaScript">
+		<script language="JavaScript">
 		<!--
 			function processRequest(rids){
 				document.phpesp.rid.value=rids;
@@ -83,7 +86,7 @@
 			}
 		//-->
 		</script>
-	<?php
+<?php
 	}
 	/* }}} */	
-	?>
+?>
