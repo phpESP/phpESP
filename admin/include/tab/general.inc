@@ -50,7 +50,7 @@ edit individual fields.')); ?>
 		<td><?php
 			$GLOBALS['realm'] =& $survey['realm'];
 			$realms = array();
-			if($HTTP_SESSION_VARS['acl']['superuser']) {
+			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 				$sql = "SELECT name FROM realm";
 				$rr = mysql_query($sql);
 				while(list($r) = mysql_fetch_row($rr))
