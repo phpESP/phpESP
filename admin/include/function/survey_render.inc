@@ -72,7 +72,7 @@ function render_survey($sid, $section = 1, $message = '') {
 		$prec = &$question['precise'];
 		
 		if ($tid == 100) {
-			echo("<tr><td></td><td valign=\"TOP\" align=\"LEFT\">". 
+			echo("<tr><td colspan=\"2\" valign=\"TOP\" align=\"LEFT\">". 
 					$question['content'] ."</td></tr>\n");
 			continue;
 		}
