@@ -95,6 +95,9 @@
 <h2><?php echo(_('Upload Account Information')); ?></h2>
 <p><?php echo(_('All fields are required')) ?></p>
 <?php if(!empty($errstr)) echo("<p>$errstr</p>\n"); ?>
+<font size="+2">
+<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" target="_blank"><?php echo(_('Help')); ?></a>
+</font>
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>">
 <form enctype="multipart/form-data" method="Post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>">
 <?php 
