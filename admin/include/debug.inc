@@ -3,10 +3,8 @@
 
 function windowOpener(windowTitle,errMsg) {
   msgWindow=window.open("","displayWindow","menubar=no,alwaysRaised=yes,dependent=yes,width=600,height=500,scrollbars=yes,resizable=yes");
-  msgWindow.document.write
-      ("<HTML><HEAD><TITLE>"+windowTitle+"</TITLE></HEAD>");
-  msgWindow.document.write
-      ("<BODY><PRE>"+errMsg+"</PRE></BODY></HTML>");
+  msgWindow.document.write("<HTML><HEAD><TITLE>"+windowTitle+"</TITLE></HEAD>");
+  msgWindow.document.write("<BODY><PRE>"+errMsg+"</PRE></BODY></HTML>");
 }
 
 function debugWindow () {
@@ -18,7 +16,8 @@ function debugWindow () {
  	echo("+ \"\\nACL:\\n\"\n");
 	if(isset($HTTP_SESSION_VARS['acl'])) {
 		foreach ($HTTP_SESSION_VARS['acl'] as $key => $value) {
-			echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
+			if(is_array($value)) { $v = '[ '. implode(' ', $value) .' ]'; } else { $v = $value; }
+			echo("+ \"" . addcslashes("$key => $v","\0..\31\\\"") ."\\n\"\n");
 		}
 	}
 	
@@ -51,4 +50,4 @@ function debugWindow () {
 }
 // End -->
 </SCRIPT>
-<input type="button" value="debug" onClick="debugWindow()">	
+<form name="debug"><input type="button" value="debug" onClick="debugWindow()"></form>
