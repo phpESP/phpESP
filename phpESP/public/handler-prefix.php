@@ -67,10 +67,11 @@ if(!defined('AUTHHAND-PREFIX')) {
 	}
 
 	if(empty($HTTP_POST_VARS['userid'])) {
-		// find remote user id (takes the first non-empty of the folowing)
+		// find remote user id (takes the first non-empty of the following)
 		//  1. a GET variable named 'userid'
-		//  2. the REMOTE_USER set by HTTP-Authintication
+		//  2. the REMOTE_USER set by HTTP-Authentication
 		//  3. the query string
+		//  4. the remote ip address
 		if (!empty($HTTP_GET_VARS['userid'])) {
 			$HTTP_POST_VARS['userid'] = $HTTP_GET_VARS['userid'];
 		} elseif(!empty($HTTP_SERVER_VARS['REMOTE_USER'])) {
@@ -78,7 +79,7 @@ if(!defined('AUTHHAND-PREFIX')) {
 		} elseif(!empty($HTTP_SERVER_VARS['QUERY_STRING'])) {
 			$HTTP_POST_VARS['userid'] = urldecode($HTTP_SERVER_VARS['QUERY_STRING']);
 		} else {
-			$HTTP_POST_VARS['userid'] = 'unknown';
+			$HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_ADDR'];
 		}
 	}
 
