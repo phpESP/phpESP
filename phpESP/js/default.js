@@ -6,4 +6,11 @@ function activateConfirm() {
     return false;
 }
 
+function cancelConfirm() {
+    if (confirm("Warning! This survey has not been saved.  Canceling now will remove any changes.")) {
+	return true;
+    }
+    return false;
+}
+
 -->
