@@ -34,7 +34,11 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 			// create a string suitable for inclusion in a SQL statement
 			// containing the desired Choice IDs
 			// ex: "('123','124','125')"
-			$cidstr = ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $cid) . ")");
+			if(is_array($cid) && count($cid)>0) {
+				$cidstr = "IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $cid) . ")");
+			} else {
+				$cidstr = "blank";
+			}
 		}
 
 		if(DEBUG)	echo("<!-- \$cidstr = $cidstr -->\n");
@@ -80,11 +84,49 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 	// and relevant response ID's
 		$sql = "";
 		if($cross) {
-			$sql = "SELECT A.response_id
-					  FROM answers_single A
-					 WHERE A.question_id='${qid}' AND
-				    	   A.choice_id IN ${cidstr}
-					 ORDER BY A.response_id";
+			if($cidstr != "blank") {
+				$sql = "SELECT A.response_id
+						  FROM answers_single A,
+						       survey_responses R
+						 WHERE A.response_id=R.id AND
+						       R.complete='yes' AND
+						       A.question_id='${qid}' AND
+				    		   A.choice_id ${cidstr}
+						 ORDER BY A.response_id";
+			} else {
+				$sql = "SELECT A.response_id
+						  FROM answers_single A,
+						       survey_responses R
+						 WHERE A.response_id=R.id AND
+						       R.complete='yes' AND
+						       A.question_id='${qid}' AND
+				    		   A.choice_id = 0
+						 ORDER BY A.response_id";
+/*			
+				$sql = "SELECT AA.response_id
+						  FROM answers_single AA,
+							   survey_responses RR
+						 WHERE AA.response_id=RR.id AND
+							   RR.complete='yes' AND
+							   AA.question_id='${qid}'";
+				$ridstr = '';
+				if($result = mysql_query($sql)) {
+					$rid = array();
+					while($row = mysql_fetch_row($result)) {
+						array_push($rid, $row[0]);
+					}
+					$ridstr = ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $rid) . ")");
+					mysql_free_result($result);
+				}
+				$sql = "SELECT R.id
+						  FROM survey_responses R
+						 WHERE R.survey_id='${sid}' AND
+						       R.complete='yes' AND
+							   R.id NOT IN ${ridstr}
+						 ORDER BY R.id";
+*/
+				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
+			}
 		} else {
 			$sql = "SELECT R.id
 					  FROM survey_responses R
