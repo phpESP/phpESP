@@ -7,9 +7,6 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	@session_unset();
-	@session_destroy();
-	
 	$base =& $GLOBALS['ESPCONFIG']['ME'];
 
 ?>
