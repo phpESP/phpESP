@@ -531,7 +531,7 @@ function response_send_email($sid, $rid) {
 		$answers = response_select($sid,$rid);
 
 	$headers = "From: \"phpESP ".
-		addslashes($GLOBALS['ESPCONFIG']['VERSION']) .
+		addslashes($GLOBALS['ESPCONFIG']['version']) .
 		"\" <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n";
 	$headers .= "X-Sender: <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n"; 
 	$headers .= "X-Mailer: phpESP\n";
