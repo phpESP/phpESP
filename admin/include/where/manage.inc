@@ -11,7 +11,10 @@
 
 ?>
 <h2><?php echo(_('Management Interface')); ?></h2>
-<p><?php echo(_('Username') .': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>'); ?></p>
+<p><?php echo(($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') ?
+			mkwarn(_('Superuser')) :
+			_('Username'));
+		echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>'); ?></p>
 <table border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['active_bgcolor']); ?>" width="95%">
 	<tr>
 		<td>
