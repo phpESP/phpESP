@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2003-02-26 00:00-0500\n"
 "Last-Translator: Sipke Overbeeke <sipke@8a.nl>\n"
 "Language-Team: nl_NL <jflemer@alum.rpi.edu>\n"
@@ -1704,25 +1704,25 @@ msgstr ""
 msgid "File to upload"
 msgstr "Kan ACL niet laden."
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1777,12 +1777,15 @@ msgid "Confirm Password"
 msgstr "Bevestig Nieuw Wachtwoord"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Totaal"
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "zijn verplict."
+#
 #
 #
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
@@ -1790,28 +1793,35 @@ msgstr "Bevestig Nieuw Wachtwoord"
 #~ "Incorrecte login naam of wachtwoord, of je account is uitgeschakeld."
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "free-form"
+#
 #
 #
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "Bijv. instructies, achtergrond info, etc."
 #
 #
+#
 #~ msgid "Required?"
 #~ msgstr "Vereist?"
+#
 #
 #
 #~ msgid "to access this menu"
 #~ msgstr "om toegang te krijgen tot dit menu"
 #
 #
+#
 #~ msgid "Purge"
 #~ msgstr "Verwijder"
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
 #
 #
 #~ msgid "to design forms"
@@ -1821,8 +1831,10 @@ msgstr "Bevestig Nieuw Wachtwoord"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Bevestigings kop"
+#
 #
 #
 #
@@ -1839,6 +1851,7 @@ msgstr "Bevestig Nieuw Wachtwoord"
 #
 #
 #
+#
 #~ msgid "Max Logins"
 #~ msgstr "Maximaal aantal Logins"
 #
@@ -1847,8 +1860,10 @@ msgstr "Bevestig Nieuw Wachtwoord"
 #
 #
 #
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Respons van vragenlijst:"
+#
 #
 #
 #
@@ -1865,8 +1880,10 @@ msgstr "Bevestig Nieuw Wachtwoord"
 #
 #
 #
+#
 #~ msgid "NOTE: This does not currently work on embedded forms."
 #~ msgstr "LET OP: Dit werkt op dit moment niet bij geneste formulieren."
+#
 #
 #
 #

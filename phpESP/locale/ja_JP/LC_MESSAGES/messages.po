@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-09-26 19:00+0900\n"
 "Last-Translator: IYODA Atsushi <iyoda@users.sourceforge.net>\n"
 "Language-Team: ja_JP <jflemer@alum.rpi.edu>\n"
@@ -1651,25 +1651,25 @@ msgstr ""
 msgid "File to upload"
 msgstr "ACLをロードすることができません"
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1722,28 +1722,35 @@ msgid "Confirm Password"
 msgstr "もっかい"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Total"
+#
 #
 #
 #~ msgid "are required."
 #~ msgstr "マークの質問は必須項目です。"
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "フリーフォーム"
+#
 #
 #
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ie.手順、背景情報など"
 #
 #
+#
 #~ msgid "Required?"
 #~ msgstr "必須項目"
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "「プライベート」にする場合は"
+#
 #
 #
 #~ msgid "STATUS"
@@ -1752,8 +1759,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "確認表題"
+#
 #
 #
 #
