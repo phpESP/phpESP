@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.3\n"
-"POT-Creation-Date: 2002-10-15 10:21-0400\n"
+"POT-Creation-Date: 2002-10-15 10:25-0400\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Cedric Levasseur <cedric.levasseur AT linux-at-business."
 "com>, and olivier sevin <cjanson AT ifrance.com>\n"
@@ -1556,6 +1556,7 @@ msgstr "Erreur lors du traitement de l'étude: étude non spécificiée"
 # File: phpESP/public/handler.php, line: 55
 msgid "Error processing survey: Survey is not active."
 msgstr "Erreur lors du traitement de l'étude: L'étude n'est pas activée"
+#
 #
 #
 #
