@@ -16,7 +16,6 @@ if(!defined('_FUNCTION_SURVEY_UPDATE')) {
    sets global $errstr with an error message. */
 function survey_update(&$survey_id, &$tab, $old_tab) {
 	global $HTTP_POST_VARS, $HTTP_SERVER_VARS, $errstr;
-	@reset($HTTP_POST_VARS);
 
 	// do not need update
 	if(empty($old_tab))
@@ -27,6 +26,10 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 	// new survey
 	if(empty($survey_id)) {
+		$HTTP_POST_VARS['name'] = eregi_replace(
+			"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name']) );
+		$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
+
 		// need to fill out at least some info on 1st tab before proceeding
 		if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])) {
 			$tab = "general";
@@ -35,15 +38,15 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		}
 
 		// create a new survey in the database
-		$fields = array('name','title','subtitle','email','thank_head','thank_body','info','public');
+		$fields = array('name','realm','title','subtitle','email','thank_head','thank_body','info');
 		foreach($fields as $f) {
-			if(!empty($HTTP_POST_VARS[$f])) {
+			if(isset($HTTP_POST_VARS[$f])) {
 				array_push($f_arr,$f);
 				array_push($v_arr,"'".XADDSLASHES($HTTP_POST_VARS[$f])."'");
 			}
 		}
 		array_push($f_arr,'owner');
-		array_push($v_arr,"'".XADDSLASHES($HTTP_SERVER_VARS['PHP_AUTH_USER'])."'");
+		array_push($v_arr,"'".$GLOBALS['HTTP_SESSION_VARS']['acl']['username']."'");
 		$sql = "INSERT INTO survey (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) . ")";
 
 		$result = @mysql_query ($sql);
@@ -64,13 +67,18 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 	switch($old_tab) {
 		// coming from the general tab ...
 		case "general":
-			if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])) {
+			$HTTP_POST_VARS['name'] = eregi_replace(
+				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name']) );
+			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
+
+			if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])
+					|| empty($HTTP_POST_VARS['realm'])) {
 				$tab = "general";
-				$errstr = _('Sorry, please fill out the name and title before proceeding.');
+				$errstr = _('Sorry, please fill out the name, group, and title before proceeding.');
 				return(0);
 			}
 
-			$fields = array('name','title','subtitle','email','thank_head','thank_body','info','public');
+			$fields = array('name','realm','title','subtitle','email','thank_head','thank_body','info');
 			$sql = "SELECT name FROM survey WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
 			$name = mysql_result($result,0,0);
@@ -105,8 +113,32 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		// coming from the questions tab ...
 		case "questions":
 			// if the question box is empty ... ignore everything else
-			if(empty($HTTP_POST_VARS['content']))
+			if(empty($HTTP_POST_VARS['content']) && empty($HTTP_POST_VARS['name']))
 				return(1);
+			
+			if(empty($HTTP_POST_VARS['content'])) {
+				$tab = 'questions';
+				$dont_clear = 1;
+				$errstr = _('Please enter text for this question.');
+				return(0);
+			}
+
+			// constraint: fieldname must be not empty
+			//   generate it from the content if empty
+			//   validate/repair fieldname
+			if(empty($HTTP_POST_VARS['name'])) {
+				$str1 = $HTTP_POST_VARS['content'];
+				do {
+					$str2 = $str1;
+					$str1 = eregi_replace(
+					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]", 
+					" ", $str2);
+				} while ($str1 != $str2);
+				$HTTP_POST_VARS['name'] = $str1;
+			}
+			$HTTP_POST_VARS['name'] = strtoupper(substr( eregi_replace(
+				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name'])), 0, 10));
+			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
 
 			// constraint: question type required
 			if(empty($HTTP_POST_VARS['type_id'])) {
@@ -116,14 +148,14 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				return(0);
 			}
 
-			$has_choices = esp_type_has_choices();
-
-			$qid = XADDSLASHES($HTTP_POST_VARS['id']);	# curr_q_id
-			if($qid == _('New Question'))
+			// constraint: qid must be int or empty
+			if($HTTP_POST_VARS['id'] == _('New Field'))
 				$qid = '';
+			$qid = intval($HTTP_POST_VARS['id']);	# curr_q_id
 
 			// constraint: can not change between question w/ answer choices and one w/o
-			if($qid != '') {
+			$has_choices = esp_type_has_choices();
+			if(!empty($qid)) {
 				$sql =  "SELECT Q.type_id FROM question Q WHERE Q.survey_id='${survey_id}' AND Q.id='${qid}'"; 
 				$result = mysql_query($sql);
 				$old_type_id = mysql_result($result,0,0);
@@ -137,48 +169,57 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				}
 			}
 			
-			// constraint: check for mutually exclusive Question Type-Result Type pairs
-			if(empty($HTTP_POST_VARS['result_id']))
-				$HTTP_POST_VARS['result_id'] = 1; // default to percentages
-			if($HTTP_POST_VARS['type_id'] == 2 || $HTTP_POST_VARS['type_id'] == 3) {  // single line or essay
-				$HTTP_POST_VARS['result_id'] = 4; // require list type results
-			} elseif($HTTP_POST_VARS['result_id'] == 4) { // list
-				$HTTP_POST_VARS['result_id'] = 1;	// only single line or essay can use a list result
-			} elseif($HTTP_POST_VARS['type_id'] == 7 && $HTTP_POST_VARS['result_id'] == 2) { // rating question & ranking result
-				$HTTP_POST_VARS['result_id'] = 1; // too confusing, so force to percentages
-			} elseif($HTTP_POST_VARS['type_id'] == 8) { // rank question
-				$HTTP_POST_VARS['result_id'] = 5;	// force to average rank
-			}
+			// constraint: length must be int
+			$HTTP_POST_VARS['length']  = intval($HTTP_POST_VARS['length']) or 0;
 			
+			// constraint: precise must be int
+			$HTTP_POST_VARS['precise'] = intval($HTTP_POST_VARS['precise']) or 0;
+			
+			// defaults for length field
+			if(empty($HTTP_POST_VARS['length'])) {
+				$arr = array(
+					0,		// 0: unused
+					0,		// 1: Yes/No
+					20,		// 2: Text Box  (width)
+					5,		// 3: Essay Box (height)
+					10,		// 4: Radio Buttons
+					10,		// 5: Check Boxes
+					0,		// 6: Dropdown Box
+					0,		// 7: Rating
+					0,		// 8: Rate
+					0,		// 9: Date
+					10		// 10: Numeric
+					); 
+				$HTTP_POST_VARS['length'] = $arr[$HTTP_POST_VARS['type_id']];
+			}
+
 			// UPDATE row in the DB for the current question
 			if($qid != '') {
-				$fields = array('type_id','result_id','parent_id','required','private','content','deleted');
+				$fields = array('name','type_id','length','precise','required','content');
 				foreach($fields as $f) {
-					if(!empty($HTTP_POST_VARS[$f]))
+					if(isset($HTTP_POST_VARS[$f]))
 						array_push($f_arr,$f."='".XADDSLASHES($HTTP_POST_VARS[$f])."'");
 				}
 				$sql = "UPDATE question SET " . join(', ',$f_arr) . " WHERE id='${qid}'";
 
 			// INSERT row in the DB for new question
 			} else {
-				$fields = array('type_id','result_id','position','parent_id','required','private','content');
-				if(empty($HTTP_POST_VARS['position']) || $HTTP_POST_VARS['position'] == 0) {
-					// set the position to the end
-					$sql = "SELECT MAX(position) FROM question WHERE survey_id='${survey_id}'";
-					$result = mysql_query($sql);
-					$HTTP_POST_VARS['position'] = mysql_result($result,0,0) + 10;
-					mysql_free_result($result);
-				}
-				$f_arr = array('survey_id');
-				$v_arr = array("'".$survey_id."'");
+				// set the position to the end
+				$sql = "SELECT MAX(position)+1 FROM question WHERE survey_id='${survey_id}'";
+				$result = mysql_query($sql);
+				$HTTP_POST_VARS['position'] = mysql_result($result,0,0);
+				mysql_free_result($result);
+
+				$HTTP_POST_VARS['survey_id'] = $survey_id;
+
+				$fields = array('survey_id','name','type_id','length','precise','required','content','position');
 				foreach($fields as $f) {
-					if(!empty($HTTP_POST_VARS[$f])) {
-						array_push($f_arr,$f);
-						array_push($v_arr,"'".XADDSLASHES($HTTP_POST_VARS[$f])."'");
+					if(isset($HTTP_POST_VARS[$f])) {
+						array_push($f_arr, $f);
+						array_push($v_arr, "'". XADDSLASHES($HTTP_POST_VARS[$f]) ."'");
 					}
 				}
-				
-				$sql  = "INSERT INTO question (" . join(', ',$f_arr) . ") VALUES (" . join(', ',$v_arr) .")";
+				$sql = "INSERT INTO question (" . join(', ',$f_arr) . ") VALUES (" . join(', ',$v_arr) .")";
 			}
 			$result = mysql_query($sql);
 			if($qid == '')
@@ -196,7 +237,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				$count = 0;
 				for($i=1;$i<$HTTP_POST_VARS['num_choices']+1;$i++) {
 					$sql='';
-					$choice_id = XADDSLASHES($HTTP_POST_VARS["choice_id_${i}"]);
+					$choice_id      = XADDSLASHES($HTTP_POST_VARS["choice_id_${i}"]);
 					$choice_content = XADDSLASHES($HTTP_POST_VARS["choice_content_${i}"]);
 					// each of the submitted choices
 					if($choice_id=='' && $choice_content!='') {
