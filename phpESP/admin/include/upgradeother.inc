@@ -17,7 +17,7 @@
 		mysql_free_result($result);
 	}
 
-	if(!isset($submit) || $o_now<1 || $o_maxcid<1 || $c_maxid<1) { ?>
+	if(!isset($submit) || $o_now == '' || $o_maxcid == '' || $c_maxid == '') { ?>
 <input type="hidden" name="where" value="upgradeother">
 <table border=0>
 <tr><td colspan=3>
@@ -42,7 +42,7 @@
     <td><input type="text" name="o_count" size="20" value="<?php echo($o_count); ?>"></td>
     <td><input type="text" name="o_maxcid" size="20" value="<?php echo($o_maxcid); ?>"></td></tr>
 <tr><th colspan=3 align="left">Second Query</th></tr>
-<tr><th>MAX(choice_id)</th><th></th><th></th></tr>
+<tr><th>MAX(id)</th><th></th><th></th></tr>
 <tr><td><input type="text" name="c_maxid" size="20" value="<?php echo($c_maxid); ?>"></td><td></td><td></td></tr>
 <tr><th colspan=3><input type="submit" name="submit" value="Go"></th></tr>
 <tr><td colspan=3><hr></td></tr>
