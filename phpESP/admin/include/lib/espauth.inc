@@ -250,5 +250,16 @@ function auth_no_access($description) {
 }
 /* }}} */
 
+/* {{{ proto boolean auth_change_manager_passwd(string user, string old, string new)
+   Change a managers password. If old password does not match
+   or if there is an error, return FALSE. Return TRUE if 
+   password changed. */
+function auth_change_manager_passwd($user,$old,$new) {
+	$sql = "UPDATE manager SET password=PASSWORD('$new')
+		WHERE username='$user' AND password=PASSWORD('$old')";
+	return(mysql_query($sql) && mysql_affected_rows() > 0);
+}
+/* }}} */
+
 } // end _LIB_AUTH
 ?>
