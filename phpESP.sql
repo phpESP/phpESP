@@ -74,6 +74,10 @@ CREATE TABLE manager (
 	users		ENUM('Y','N') NOT NULL DEFAULT 'N',
 	managers	ENUM('Y','N') NOT NULL DEFAULT 'N',
 	superuser	ENUM('Y','N') NOT NULL DEFAULT 'N',
+	disabled	ENUM('Y','N') NOT NULL DEFAULT 'N',
+	created		TIMESTAMP(14) NOT NULL DEFAULT '',
+	changed		TIMESTAMP(14) NOT NULL DEFAULT '',
+	expiration	TIMESTAMP(14),
 	PRIMARY KEY(username)
 );
 
@@ -81,17 +85,18 @@ INSERT INTO manager VALUES ('root','esp','ESP','Superuser','','',
   'Y','Y','Y','Y','Y','Y','Y','Y');
 
 -- # access table
-CREATE TABLE survey_access ( 
+CREATE TABLE access ( 
 	survey_id	INT UNSIGNED NOT NULL,
 	realm		CHAR(64) NOT NULL,
-	uselogin	ENUM('Y','N') NOT NULL DEFAULT 'N',
+	restricted	ENUM('Y','N') NOT NULL DEFAULT 'N',
+	maxresponses INT UNSIGNED NOT NULL DEFAULT '0',
 	start_time	TIMESTAMP(14),
 	end_time	TIMESTAMP(14),
 	PRIMARY KEY (survey_id)
 );
 
 -- # access table
-CREATE TABLE survey_group ( 
+CREATE TABLE usergroup ( 
 	survey_id	INT UNSIGNED NOT NULL,
 	sgroup		CHAR(64) NOT NULL,
 	PRIMARY KEY(survey_id,sgroup)
