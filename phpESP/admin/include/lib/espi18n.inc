@@ -57,7 +57,7 @@ function esp_setlocale_ex($str = null)
 
     $lang = null;
 
-    if ($str == null)
+    if ($str == null && isset($server['HTTP_ACCEPT_LANGUAGE']))
         $str = $server['HTTP_ACCEPT_LANGUAGE'];
 
     if (!empty($str)) {
