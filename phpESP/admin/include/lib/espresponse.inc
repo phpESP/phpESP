@@ -348,7 +348,7 @@ function response_select_named($sid, $rid) {
 	ORDER BY a.question_id";
 	$result = mysql_query($sql);
 	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
-		$cid = ereg_replace("!other=?", '', $cid);
+		$cid = ereg_replace("^!other=?", '', $cid);
 		if (!empty($cid))
 			$cid .= ': ';
 		if (is_array($values[$qid]))
