@@ -34,6 +34,16 @@ this page.')); ?>
 <input type="hidden" name="where" value="tab">
 <input type="hidden" name="old_tab" value="preview">
 <hr>
+<?php // lets make the css style available during the preview.
+      // this should really go into the head section.....but should still work
+        $sql = "SELECT theme FROM survey where id = '${sid}'";
+        if ($result = mysql_query($sql)) {
+                if (mysql_num_rows($result) > 0) {
+                        list($css_file) = mysql_fetch_row($result);
+                        mysql_free_result($result);
+                        echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$css_file."\"  type=\"text/css\">\n");                }
+        }
+?>
 <table border="1" cellpadding="2" bgcolor="#FFFFFF">
 	<tr>
 		<td>

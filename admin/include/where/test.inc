@@ -35,6 +35,17 @@
 			/* cleared for testing ... was that enough tests? */
 ?>
 </form>
+<?php // lets make the css style available during the testing.
+      // this should really go into the head section.....but should still work
+	$sql = "SELECT theme FROM survey where id = '${sid}'";
+	if ($result = mysql_query($sql)) {
+                if (mysql_num_rows($result) > 0) {
+                        list($css_file) = mysql_fetch_row($result);
+                        mysql_free_result($result);
+                	echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$css_file."\"  type=\"text/css\">\n");
+		}
+        }
+?>
 <b><?php echo(_('Testing Survey...')); ?></b> (<?php echo(_('SID')." = $sid"); ?>)
 <p>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
