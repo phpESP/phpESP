@@ -24,6 +24,7 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 	while(list($content,$num) = each($counts)) {
 		if($num>0) { $percent = $num/$total*100.0; }
 		else { $percent = 0; }
+		if($percent > 100) { $percent = 100; }
 
 		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
@@ -33,21 +34,24 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($content); ?></td>
 		<td align="left">
-<?php	
+<?php
 		if($num) {
 			echo("&nbsp;<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
 			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$percent*2);
 			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
 			printf("&nbsp;%.${precision}f%%",$percent);
 		}
-?>
-		</td>
+?></td>
 		<td align="right">(<?php echo($num); ?>)</td>
 	</tr>
 <?php
 		$i += $num;
 	} // end while
 	if($showTotals) {
+		if($i>0) { $percent = $i/$total*100.0; }
+		else { $percent = 0; }
+		if($percent > 100) { $percent = 100; }
+
 		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
@@ -55,11 +59,11 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b><?php echo(_('TOTAL')); ?></b></td>
-		<td width="40%"><b>&nbsp;<?php if($i && !($i > $total))
+		<td width="40%"><b>&nbsp;<?php
 			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
-			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$i/$total*200.0);
+			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$percent*2);
 			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
-			printf("&nbsp;%.${precision}f%%",$i/$total*100.0); ?></b></td>
+			printf("&nbsp;%.${precision}f%%",$percent); ?></b></td>
 		<td width="10%" align="right"><b><?php echo($total); ?></b></td>
 	</tr>
 <?	} ?>
