@@ -15,6 +15,7 @@
 // string	mktext(char *name);
 // string	mktextarea(char *name, int rows, int cols, char *wordwrap);
 // string	mkselect(char *name, char *options[]);
+// string	mkfile(char *name);
 
 if(!defined('_LIB_ESPHTML_FORMS')) {
 	define('_LIB_ESPHTML_FORMS',TRUE);
@@ -127,6 +128,13 @@ function mkselect ($_name, $options) {
 	}
 	$str .= "</select>\n";
 	return($str);
+}
+/* }}} */
+
+/* {{{ proto string mkfile(string name)
+   Returns HTML format for a file selection button. */
+function mkfile ($_name) {
+	return('<input type="file" name="'.htmlspecialchars($_name) .'">');
 }
 /* }}} */
 
