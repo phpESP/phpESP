@@ -1,7 +1,8 @@
 =================
 PHPESP CHANGE LOG
 =================
-v1.7.1 =>
+v1.7.1 => 1.7.2
+* FIXED missing javascript funtion
 
 v1.7 ==> 1.7.1
 * FIXED mysql create scripts support mySQL > 4.0
