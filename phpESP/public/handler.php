@@ -57,7 +57,7 @@
 
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
-	if($results) {
+	if(defined($results) && $results) {
 		// small security issue here, anyone could pick a QID to crossanalyze
 		survey_results($sid,$precision,$totals,$qid,$cids);
 		return;
