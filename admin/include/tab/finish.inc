@@ -10,7 +10,7 @@
 
 	$HTTP_SESSION_VARS['new_survey'] = false;
 	$survey_name = "";
-    $sql = "SELECT name FROM survey WHERE id = '". $HTTP_SESSION_VARS['survey_id']. "'";
+    $sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '". $HTTP_SESSION_VARS['survey_id']. "'";
     if ($result = mysql_query($sql)) {
 	    if (mysql_num_rows($result) > 0)
 		    $survey_name = mysql_result($result, 0, 0);

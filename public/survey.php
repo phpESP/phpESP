@@ -33,7 +33,7 @@
 	}
 
 	if (!empty($_name)) {
-        	$_sql = "SELECT id,title,theme FROM survey WHERE name = '$_name'";
+        	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = '$_name'";
         	if ($_result = mysql_query($_sql)) {
             		if (mysql_num_rows($_result) > 0)
                 		list($sid, $_title, $_css) = mysql_fetch_row($_result);
@@ -48,7 +48,7 @@
 	include($ESPCONFIG['handler_prefix']);
 
 	if (empty($_name) && isset($sid) && $sid) {
-        $_sql = "SELECT title,theme FROM survey WHERE id = '$sid'";
+        $_sql = "SELECT title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid'";
         if ($_result = mysql_query($_sql)) {
             if (mysql_num_rows($_result) > 0){
                 list($_title, $_css) = mysql_fetch_row($_result);

@@ -22,9 +22,12 @@
 		survey_purge($sids);
 	}
 
+//	$sql = "
+//SELECT s.id,s.name,s.title,s.status,s.owner,s.realm,COUNT(q.id) as count
+//FROM survey s LEFT JOIN question q ON
 	$sql = "
 SELECT s.id,s.name,s.title,s.status,s.owner,s.realm,COUNT(q.id) as count
-FROM survey s LEFT JOIN question q ON
+FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s LEFT JOIN ".$GLOBALS['ESPCONFIG']['question_table']." q ON
 	s.id = q.survey_id AND q.deleted = 'N'
 GROUP BY s.id
 ORDER BY s.id DESC";

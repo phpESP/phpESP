@@ -24,7 +24,7 @@
         $HTTP_POST_VARS['type_id'] = '';
 
 	// build array of question IDs
-	$sql = "SELECT id FROM question
+	$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 	WHERE survey_id='$sid' AND deleted='N' AND type_id != 99
 	ORDER BY position";
 	$result = mysql_query($sql);
@@ -57,7 +57,7 @@
 	if($updated && $total_num_q > 0 && $curr_q) {
 		// survey questions exist already
 		// load values from DB
-		$sql = "SELECT * FROM question WHERE id='${curr_q_id}' AND deleted='N' ORDER BY position";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id='${curr_q_id}' AND deleted='N' ORDER BY position";
 		$result = mysql_query($sql);
 		$question = mysql_fetch_array($result,MYSQL_ASSOC);
 		mysql_free_result($result);
@@ -124,7 +124,7 @@ function clearTextInputs() {
 			<td align="center"><?php echo(mktext('name',12)); ?></td>
 			<td align="center"><?php
 				if($updated && empty($HTTP_POST_VARS['type_id'])) $HTTP_POST_VARS['type_id'] = 2;
-				$sql = 'SELECT id, type FROM question_type WHERE id != 99';
+				$sql = 'SELECT id, type FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' WHERE id != 99';
 				$result = mysql_query($sql);
 				$arr = array();
 				while(list($key, $val) = mysql_fetch_row($result)) {
@@ -159,7 +159,7 @@ function clearTextInputs() {
 	if($curr_q == 0 ||
             empty($HTTP_POST_VARS['type_id']) ||
 			mysql_result(mysql_query("SELECT has_choices
-					FROM question_type
+					FROM ".$GLOBALS['ESPCONFIG']['question_type_table']."
 					WHERE id='" . $HTTP_POST_VARS['type_id'] ."'"),0,0)=='Y') {
 		include($GLOBALS['ESPCONFIG']['include_path']."/tab/questions_options".$GLOBALS['ESPCONFIG']['extension']);
 	}

@@ -15,14 +15,14 @@
 	 * _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 		$sql = 'SELECT s.id, s.name, s.title, s.owner, s.realm
-		FROM survey s WHERE s.status = 0 ORDER BY s.id DESC';
+		FROM '.$GLOBALS['ESPCONFIG']['survey_table'].' s WHERE s.status = 0 ORDER BY s.id DESC';
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT s.id, s.name, s.title, s.owner, s.realm
-			FROM survey s WHERE s.status = 0 AND (s.owner = '".
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.status = 0 AND (s.owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);

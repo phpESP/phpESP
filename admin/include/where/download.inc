@@ -15,7 +15,7 @@
 	else if(!empty($HTTP_POST_VARS['sid']))
 		$sid = intval($HTTP_POST_VARS['sid']);
 
-	$sql = "SELECT name FROM survey WHERE id = $sid";
+	$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = $sid";
 	$result = mysql_query($sql);
 	if (mysql_num_rows($result) < 1) {
 		mysql_free_result($result);

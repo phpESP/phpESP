@@ -38,7 +38,7 @@
 
 
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-			$sql = "SELECT name FROM realm";
+			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 			$result = mysql_query($sql);
 			while (list($row) = mysql_fetch_row($result)) {
 				array_push($group_acl, $row);

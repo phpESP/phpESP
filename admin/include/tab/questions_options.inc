@@ -17,7 +17,7 @@
 
 	// this type of question has answer options
 	if ($updated && $curr_q) {
-		$sql = "SELECT id,content FROM question_choice WHERE question_id='${curr_q_id}' ORDER BY id";
+		$sql = "SELECT id,content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='${curr_q_id}' ORDER BY id";
 		$result = mysql_query($sql);
 		$c = mysql_num_rows($result);
 	} else {

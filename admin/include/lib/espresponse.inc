@@ -15,7 +15,7 @@
 function response_check_required($sid, $section) {
 	global $HTTP_POST_VARS;
 
-    $sql = "SELECT id,type_id,content FROM question
+    $sql = "SELECT id,type_id,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
     ". survey_select_section_sql($sid,$section) ." AND
     required='Y' AND deleted='N' AND type_id < 98
     ORDER BY position";
@@ -31,7 +31,7 @@ function response_check_required($sid, $section) {
 
 	while(list($qid,$tid,$content) = mysql_fetch_row($result)) {
 		if($tid == 8) { // Rank
-			$sql = "SELECT id FROM question_choice WHERE question_id='$qid'";
+			$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='$qid'";
 			$cid_result = mysql_query($sql);
 			while(list($cid) = mysql_fetch_row($cid_result)) {
 				if(!isset($HTTP_POST_VARS["${qid}_${cid}"])) {
@@ -85,7 +85,7 @@ function response_delete($sid, $rid, $sec = null) {
 
 	/* delete values */
 	foreach (array('bool', 'single', 'multiple', 'rank', 'text', 'other', 'date') as $tbl) {
-		$sql = "DELETE FROM response_$tbl WHERE response_id = '$rid' $qids";
+		$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['response_'.$tbl.'_table']." WHERE response_id = '$rid' $qids";
 		$res = mysql_query($sql);
 	}
 }
@@ -102,7 +102,7 @@ function response_delete_all($sid) {
 
 	/* delete values */
 	foreach (array('bool', 'single', 'multiple', 'rank', 'text', 'other', 'date') as $tbl) {
-		$sql = "DELETE FROM response_$tbl WHERE question_id $qids";
+		$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['response_'.$tbl.'_table']." WHERE question_id $qids";
 		$res = mysql_query($sql);
 	}
         /* ensure responses from testing status are also deleted */
@@ -124,14 +124,14 @@ function response_insert($sid,$section,$rid) {
 
 	if(empty($rid)) {
 		// create a uniqe id for this response
-		$sql = "INSERT INTO response (survey_id,username) VALUES ( '${sid}','${userid}' )";
+		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_table']." (survey_id,username) VALUES ( '${sid}','${userid}' )";
 		$result = mysql_query($sql);
 		$rid = mysql_insert_id();
 	}
 
 	$sql  = "
 SELECT Q.id, Q.type_id, T.response_table
-FROM question Q, question_type T
+FROM ".$GLOBALS['ESPCONFIG']['question_table']." Q, ".$GLOBALS['ESPCONFIG']['question_type_table']." T
 ". survey_select_section_sql($sid,$section,'Q') ." AND
    Q.survey_id='${sid}' AND
    Q.deleted='N' AND Q.type_id < 50 AND
@@ -155,7 +155,7 @@ FROM question Q, question_type T
 
 		switch($table) {
 			case 'response_bool':
-				$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
+				$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
                 		if (!empty($val))
     					$result = mysql_query($sql);
 				break;
@@ -167,7 +167,7 @@ FROM question Q, question_type T
 
 				if(ereg("[^ \t\n]",$bareval)) {
                     			$val = addslashes($bareval);
-					$sql  = "INSERT INTO ${table} ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
+					$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
 					$result = mysql_query($sql);
 				}
 				break;
@@ -175,20 +175,20 @@ FROM question Q, question_type T
 				// only insert if non-empty content
 				if(($bareval = ereg_replace("[^0-9]*([0-9]+)/([0-9]+)/([0-9]+).*", '\3-\1-\2', $bareval))) {
                     			$val = addslashes($bareval);
-					$sql  = "INSERT INTO ${table} ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
+					$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
 					$result = mysql_query($sql);
 				}
 				break;
 			case 'response_single':
 				if(empty($bareval)) {
-					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
+					$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
 					$c_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($c_result)) {
                         			if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
                             				continue;
 						$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 						if(ereg("[^ \t\n]",$other)) {
-							$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+							$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_other_table']." ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 							$result = mysql_query($sql);
 							$val = $cid;
 							break;
@@ -202,16 +202,16 @@ FROM question Q, question_type T
                         			break; // out of the case
 					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
-						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+						$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_othertype_table']." ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
 						$val=$cid;
 					}
 				}
-				$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
+				$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
 				$result = mysql_query($sql);
 				break;
 			case 'response_multiple':
-				$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%'";
+				$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='${qid}' AND content LIKE '!other%'";
 				$c_result = mysql_query($sql);
 				while(list($cid) = mysql_fetch_row($c_result)) {
                     		if (!isset($HTTP_POST_VARS["${qid}_${cid}"]) || empty($HTTP_POST_VARS["${qid}_${cid}"]))
@@ -222,7 +222,7 @@ FROM question Q, question_type T
                         		array_push($HTTP_POST_VARS[$qid], $cid);
 					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
-						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
+						$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_other_table']." ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
 					}
 				}
@@ -233,13 +233,13 @@ FROM question Q, question_type T
 					$cid = _addslashes($cid);
 					if(ereg("other_[0-9]+", $cid))
 						continue;
-					$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${cid}' )";
+					$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${cid}' )";
 					$result = mysql_query($sql);
 				}
 				break;
 			case 'response_rank':
 				if($tid == 8) { // Rank
-					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}'";
+					$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='${qid}'";
 					$cid_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($cid_result)) {
                         			if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
@@ -249,7 +249,7 @@ FROM question Q, question_type T
 							$rank = -1;
 						else
 							$rank = intval($val);
-						$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id,rank ) ";
+						$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,choice_id,rank ) ";
 						$sql .= "VALUES ( '${rid}','${qid}','${cid}','${rank}' )";
 						mysql_query($sql);
 					}
@@ -260,7 +260,7 @@ FROM question Q, question_type T
 					$rank = -1;
 				else
 					$rank = intval($bareval);
-				$sql  = "INSERT INTO ${table} ( response_id,question_id,rank ) VALUES ( '${rid}','${qid}','${rank}' )";
+				$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,rank ) VALUES ( '${rid}','${qid}','${rank}' )";
 				$result = mysql_query($sql);
 				break;
 		}
@@ -274,7 +274,7 @@ FROM question Q, question_type T
    Marks a response as completed.  Returns true on success.
  */
 function response_commit($rid) {
-	$sql = "UPDATE response SET complete='Y', submitted = NULL WHERE id='${rid}'";
+	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['response_table']." SET complete='Y', submitted = NULL WHERE id='${rid}'";
 	if(mysql_query($sql))
 		return(true);
 	return(false);
@@ -357,7 +357,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 
 	// --------------------- response_bool ---------------------
 	$sql = "SELECT q.id $col,a.choice_id
-	FROM response_bool a, question q
+	FROM ".$GLOBALS['ESPCONFIG']['response_bool_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q
 	WHERE a.response_id='${rid}' AND a.question_id=q.id $qids";
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
@@ -370,7 +370,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 
 	// --------------------- response_single ---------------------
 	$sql = "SELECT q.id $col,c.content,c.id
-	FROM response_single a, question q, question_choice c
+	FROM ".$GLOBALS['ESPCONFIG']['response_single_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids";
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
@@ -387,7 +387,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 
 	// --------------------- response_multiple ---------------------
 	$sql = "SELECT q.id $col,c.content,c.id
-	FROM response_multiple a, question q, question_choice c
+	FROM ".$GLOBALS['ESPCONFIG']['response_multiple_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
 	ORDER BY a.question_id,c.id";
 	$result = mysql_query($sql);
@@ -419,7 +419,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 
 	// --------------------- response_other ---------------------
 	$sql = "SELECT q.id,c.id $col,a.response
-	FROM response_other a, question q, question_choice c
+	FROM ".$GLOBALS['ESPCONFIG']['response_other_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
         ORDER BY a.question_id,c.id";
         $result = mysql_query($sql);
@@ -433,7 +433,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 
         // --------------------- response_rank ---------------------
 	$sql = "SELECT CONCAT(q.id,'_',c.id) AS id $col,c.content,a.rank
-        FROM response_rank a, question q, question_choice c
+        FROM ".$GLOBALS['ESPCONFIG']['response_rank_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
     ORDER BY a.question_id,c.id";
         $result = mysql_query($sql);
@@ -446,7 +446,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 
         // --------------------- response_text ---------------------
 	$sql = "SELECT q.id $col,a.response
-        FROM response_text a, question q
+        FROM ".$GLOBALS['ESPCONFIG']['response_text_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q
 	WHERE a.response_id='${rid}' AND a.question_id=q.id $qids";
         $result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
@@ -459,7 +459,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 
         // --------------------- response_date ---------------------
 	$sql = "SELECT q.id $col,a.response
-        FROM response_date a, question q
+        FROM ".$GLOBALS['ESPCONFIG']['response_date_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q
 	WHERE a.response_id='${rid}' AND a.question_id=q.id $qids";
         $result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
@@ -659,7 +659,7 @@ function response_send_email($sid, $rid) {
 		return true;
 	}
 
-	$sql = "SELECT name, email FROM survey WHERE id='${sid}'";
+	$sql = "SELECT name, email FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
 	$result = mysql_query($sql);
 	list($name, $email) = mysql_fetch_row($result);
 	mysql_free_result($result);
@@ -687,7 +687,7 @@ function response_send_email($sid, $rid) {
         );
 	if (isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'])) {
 	$userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
-        $sql = "SELECT * FROM respondent WHERE username = '" . addslashes($userid) . "'";
+        $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username = '" . addslashes($userid) . "'";
         $result = mysql_query($sql);
         if ($result && mysql_num_rows($result)) {
             $tmp = mysql_fetch_array($result, MYSQL_ASSOC);
@@ -753,7 +753,7 @@ function response_select_max_pos($sid, $rid) {
 	$max = 0;
 	
 	foreach (array('bool', 'single', 'multiple', 'rank', 'text', 'other', 'date') as $tbl) {
-		$sql = "SELECT MAX(q.position) FROM response_$tbl a, question q
+		$sql = "SELECT MAX(q.position) FROM ".$GLOBALS['ESPCONFIG']['response_'.$tbl.'_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q
 				WHERE a.response_id = '$rid' AND
 					q.id = a.question_id AND
 					q.survey_id = '$sid' AND
@@ -773,7 +773,7 @@ function response_select_max_pos($sid, $rid) {
  */
 function response_select_max_sec($sid, $rid) {
 	$pos = response_select_max_pos($sid, $rid);
-	$sql = "SELECT COUNT(*)+1 FROM question q
+	$sql = "SELECT COUNT(*)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." q
 			WHERE q.survey_id = '$sid' AND
 				q.type_id = 99 AND
 				q.position < '$pos' AND
