@@ -8,9 +8,13 @@
 // <jflemer@eGrad2000.com>
 
 	/* get the sid ... if any */
-	$sid = intval($HTTP_GET_VARS['sid']);
+	if(!empty($HTTP_GET_VARS['sid']))
+	    $sid = intval($HTTP_GET_VARS['sid']);
+
 	if(!empty($HTTP_POST_VARS['sid']))
 		$sid = intval($HTTP_POST_VARS['sid']);
+
+    $bg = '';
 
 	/* sid selected for testing */
 	if(!empty($sid)) {
