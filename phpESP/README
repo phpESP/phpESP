@@ -60,7 +60,7 @@ INSTALLING:
   it to somewhere in the htdocs tree as index.php or
   whatever you wish. This is used to access the
   administrative interface to phpESP. All users who will be
-  creating survyes will need access to this URL.
+  creating surveys will need access to this URL.
 
   Edit the files [install-root]/public/handler*.php and set
   the path to where the phpESP.ini is.

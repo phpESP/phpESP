@@ -34,20 +34,25 @@ Deploying Surveys:
 After a survey is made (and tested), you can deploy it. This
 is as simple as going to
     * Change the Status of a Survey
-and clicking on ``Activate''. You also have to have the
-survey embedded on some web page of course, otherwise
-people won't be able to access it. When you finished
-creating a survey, a string of PHP code was shown that must
-be inserted where you want the survey to be embedded.
-Please make sure the HTML file you put that code in has a
-``.php'' extension!
+and clicking on ``Activate''. There are two options for the 
+deployment of a survey: one is to embed it in a customized
+HTML page, or to use the automatic template (which is very
+plain and simple). To use the automatic template, simply use
+the URL that was given to you on the ``Finish'' tab. If you
+want to have the survey embedded on some custom web page
+insert the PHP tag that was given on the ``Finish'' tab in
+the desired place in your HTML file. Please make sure the 
+HTML file you put that code in has a ``.php'' extension!
 
 Retrieving Data:
 ----------------
 For any survey that is in Testing, Active or Ended you can
 go to
     * Export Data to CSV
-and download a copy of the data from your survey.
+and download a copy of the data from your survey. The
+``download'' option will allow you to save the data on the
+computer your web browser is running on, otherwise the data
+is save to a file on the web server.
 
 Other Actions:
 --------------

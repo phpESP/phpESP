@@ -4,31 +4,27 @@
 #
 
 SOON:
-* expand the "Results" page into "Analysis"
-  * including a nice form interface to the cross-analysis
-* "sub"-questions of other questions
-* "forked" surveys (subsequent pages dependent on previous question)
-* question groups (questions that share a Q#)
-* check boxes with a fixed number (pick N items...)
-* sub headings/text within survey
-* spell checking support (use spell checking from IMP?)
-* "Archive" management
-* merging survey results
-* fix email functions
+ * new GUI
+ * themes for management interface
+ * themes for surveys
+ * expand the "Results" page into "Analysis"
+   * including a nice form interface to the cross-analysis
+ * "sub"-questions of other questions
+ * "forked" surveys (subsequent pages dependent on previous question)
+ * question groups (questions that share a Q#)
+ * check boxes with a fixed number (pick N items...)
+ * spell checking support (use spell checking from IMP?)
+ * "Archive" management
+ * merging survey results
+ * fix email functions
 
 LATER:
-* results (user vs. admin)
-* view results per submission
-* new GUI
-* better docs
-
-NEVER: :)  Well OK, not never. 
-           I'll do this when I write a new template engine.
-* add LOCALE support
+ * view results per submission
+ * better docs
 
 JAVASCRIPTS: (please contribute)
  * Automatically Check box (or radio button) next
    to an "!other" field when data is entered.
  * Limit number of check boxes checked to N.
  * "Grey out" a field(s) when a box is/is not checked.
- * Numeric only text fields (Denis HAVLIK <denis@mandrakesoft.com>)
+ * Numeric only text fields (Denis HAVLIK <denis at mandrakesoft.com>)
