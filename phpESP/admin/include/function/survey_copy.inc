@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_FUNCTION_SURVEY_COPY')) {
- 	define('_FUNCTION_SURVEY_COPY',TRUE);
-
 /* {{{ proto void add_squotes(string* value, string key)
    Adds single quotes to value. */
 function add_squotes (&$val, $key) {
@@ -103,5 +100,4 @@ function survey_copy($sid) {
 }
 /* }}} */
 
-} // end _FUNCTION_SURVEY_COPY
 ?>

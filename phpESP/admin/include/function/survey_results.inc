@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_FUNCTION_SURVEY_RESULTS')) {
- 	define('_FUNCTION_SURVEY_RESULTS',TRUE);
-
 require ($ESPCONFIG['include_path']."where/browse_responses.inc");
 
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
@@ -372,5 +369,4 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 }
 /* }}} */
 
-} // end _FUNCTION_SURVEY_RESULTS
 ?>

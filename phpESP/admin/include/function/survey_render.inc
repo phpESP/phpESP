@@ -6,9 +6,6 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_FUNCTION_SURVEY_RENDER')) {
-	define('_FUNCTION_SURVEY_RENDER',TRUE);
-
 /* {{{ proto bool survey_render(int survey_id, int section, string message)
    Reads current form variables from HTTP_POST_VARS.
    Builds HTML for the survey (prefixed w/ message). */
@@ -330,5 +327,4 @@ function survey_render($sid, $section = 1, $message = '') {
 }
 /* }}} */
 
-} // end _FUNCTION_SURVEY_RENDER
 ?>

@@ -16,9 +16,6 @@
 // string	mkselect(char *name, char *options[]);
 // string	mkfile(char *name);
 
-if(!defined('_LIB_ESPHTML_FORMS')) {
-	define('_LIB_ESPHTML_FORMS',TRUE);
-
 /* {{{ proto string mkwarn(string message)
    Returns HTML format for an warning message. */
 function mkwarn ($msg) {
@@ -149,5 +146,4 @@ function mksubmit($_name, $_value = null) {
 }
 /* }}} */
 
-} // end _LIB_ESPHTML_FORMS
 ?>
