@@ -21,7 +21,7 @@
 			array_push($arr, $v);
 			foreach ($$v as $key => $val) {
 				if(is_array($val))
-					$val = '[ '. implode(' ', $val) .' ]';
+					$val = '[ '. @implode(' ', $val) .' ]';
 				array_push($arr, array($key, $val));
 			}
 		}
@@ -33,7 +33,7 @@
 			$str .= '<tr><td bgcolor="#ccccff">' .
 					htmlspecialchars($key[0]) . '</td>';
 			$str .= '<td bgcolor="#cccccc">' .
-					htmlspecialchars($key[1]) . "</td></tr>\n";
+					@htmlspecialchars($key[1]) . "</td></tr>\n";
 		} else {
 			$str .= '<tr><th align="left" colspan="2" bgcolor="#ccccff">' .
 					htmlspecialchars($key) . "</th></tr>\n";
