@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="98%" ALIGN="CENTER" BGCOLOR="<?php echo($GLOBALS['ESPCONFIG']['table_bgcolor']); ?>">
   <TR>
     <TD>
