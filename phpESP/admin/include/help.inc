@@ -15,6 +15,7 @@
 	<li><a href="#new"><font size="+2">Creating a new survey</font></a></li>
 	<li><a href="#test"><font size="+2">Testing a survey</font></a></li>
 	<li><a href="#types"><font size="+2">Response Types Examples</font></a></li>
+	<li><a href="#results"><font size="+2">Result Types Examples</font></a></li>
 	<li><a href="#edit"><font size="+2">Editing a survey</font></a></li>
 	<li><a href="#status"><font size="+2">Putting a survey into production use</font></a></li>
 </ul>
@@ -54,7 +55,11 @@
 		href="#types">Examples</a>.]</p>
 
 		<p>Choose the format for the results to be displayed in a report from the <b>result
-		type</b> field.</p>
+		type</b> field. [Click here to see <a
+		href="#results">Examples</a>.] Note: Both single line text and essay question types
+		are forced to a <b>list</b> answer type; list is invalid for all other question
+		types. A rating is forced to a average rank result. The default result type is
+		percentages.</p>
 		
 		<p>If you chose a response type that has answer options, fill in one answer
 		per line on the bottom half of the form. If you need more lines, fill in
@@ -129,7 +134,8 @@
 		<input type="radio" name="radio">Option 1<br>
 		<input type="radio" name="radio">Option 2<br>
 	</li>
-	<li>Ranking<br>
+<!-- depreciated
+	<li>Rating<br>
 		<table border=0 cellspacing=0 cellpadding=0>
 		<tr>
 			<td width=60><input type="radio" name="rank">1</td>
@@ -141,6 +147,7 @@
 		</tr>
 		</table>
 	</li>
+-->
 	<li>Single Line Text Entry<br>
 		<input type="text" size=30>
 	</li>
@@ -148,6 +155,259 @@
 		<input type="radio" name="bool">Yes<br>
 		<input type="radio" name="bool">No
 	</li>
+	<li>Rate (scale 1..5)<br>
+		Rate the following colors: (1=Least Favorite, 5=Most Favorite)
+        <blockquote>
+                <table border="0" cellspacing="1" cellpadding="0">
+                        <tr>
+                                <td></td>
+                                <td width="40" align="center" bgcolor="#eeeeee">1</td>
+                                <td width="40" align="center" bgcolor="#dddddd">2</td>
+                                <td width="40" align="center" bgcolor="#eeeeee">3</td>
+                                <td width="40" align="center" bgcolor="#dddddd">4</td>
+                                <td width="40" align="center" bgcolor="#eeeeee">5</td>
+                                <td width="40" align="center" bgcolor="#dddddd">N/A</td>
+                        </tr>
+                        <tr>
+                                <td>Red</td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_124" value="1"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_124" value="2"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_124" value="3"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_124" value="4"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_124" value="5"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_124" value="N/A"></td>
+                        </tr>
+                        <tr>
+                                <td>Blue</td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_125" value="1"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_125" value="2"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_125" value="3"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_125" value="4"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_125" value="5"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_125" value="N/A"></td>
+                        </tr>
+                        <tr>
+                                <td>White</td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_126" value="1"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_126" value="2"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_126" value="3"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_126" value="4"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_126" value="5"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_126" value="N/A"></td>
+                        </tr>
+                        <tr>
+                                <td>Black</td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_127" value="1"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_127" value="2"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_127" value="3"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_127" value="4"></td>
+                                <td width="40" align="center" bgcolor="#eeeeee"><input type="radio" name="118_127" value="5"></td>
+                                <td width="40" align="center" bgcolor="#dddddd"><input type="radio" name="118_127" value="N/A"></td>
+                        </tr>
+                </table>
+        </blockquote>
+	</li>
+	</ul>
+	<p><a href="#top">Back to Top</a></p>
+</li>
+<li><a name="results"><h3>Result Types</h3></a>
+	<ul>
+	<li>Percentages (default for most question types)<br>
+                        How well do you like the new office?
+                        <blockquote>
+<table border="0">
+        <tr>
+                <td>1</td>
+                <td align="left">
+                </td>
+                <td align="right" width="60">(0)</td>
+        </tr>
+        <tr>
+                <td>2</td>
+                <td align="left">
+&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=100><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;50%                </td>
+                <td align="right" width="60">(2)</td>
+        </tr>
+        <tr>
+                <td>3</td>
+                <td align="left">
+                </td>
+                <td align="right" width="60">(0)</td>
+        </tr>
+        <tr>
+                <td>4</td>
+                <td align="left">
+                </td>
+                <td align="right" width="60">(0)</td>
+        </tr>
+        <tr>
+                <td>5</td>
+                <td align="left">
+&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=50><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;25%         </td>
+                <td align="right" width="60">(1)</td>
+        </tr>
+        <tr>
+                <td>N/A</td>
+                <td align="left">
+&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=50><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;25%         </td>
+                <td align="right" width="60">(1)</td>
+        </tr>
+        <tr>
+                <td><b>TOTAL</b></td>
+                <td align="right"><b>&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=200><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;100%</b></td>
+                <td align="right"><b>4</b></td>
+        </tr>
+</table></blockquote>
+	</li>
+	<li>Count<br>
+                        What color is the sky?
+                        <blockquote>
+<table border="0">
+        <tr>
+                <td>Blue</td>
+                <td align="right" width="60">4</td>
+                <td align="right" width="60">(50%)</td>
+        </tr>
+        <tr>
+                <td>Green</td>
+                <td align="right" width="60">1</td>
+                <td align="right" width="60">(13%)</td>
+        </tr>
+        <tr>
+                <td>Yellow</td>
+                <td align="right" width="60">1</td>
+                <td align="right" width="60">(13%)</td>
+        </tr>
+        <tr>
+                <td>Red</td>
+                <td align="right" width="60">2</td>
+                <td align="right" width="60">(25%)</td>
+        </tr>
+        <tr>
+                <td><b>TOTAL</b></td>
+                <td align="right"><b>8</b></td>
+                <td align="right"><b>(100%)</b></td>
+        </tr>
+</table>
+                        </blockquote>
+	</li>
+	<li>List (mandatory for text/essay questions)<br>
+                        What is your name?
+                        <blockquote>
+<table border="1">
+        <tr>
+                <td>Jane</td>
+        </tr>
+        <tr>
+                <td>John</td>
+        </tr>
+        <tr>
+                <td>Snur</td>
+        </tr>
+        <tr>
+                <td>Foo Bar</td>
+        </tr>
+</table>
+                        </blockquote>
+	</li>
+	<li>Ordered<br>
+                       How often do you eat fish?
+                        <blockquote>
+<table border="0">
+        <tr>
+                <td align="right"><b>Rank</b></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+        </tr>
+        <tr>
+                <td align="right"><b>1</b></td>
+                <td>Three times a week</td>
+                <td align="right" width="60">33%</td>
+                <td align="right" width="60">(4)</td>
+        </tr>
+        <tr>
+                <td align="right"><b>2</b></td>
+                <td>Twice a week</td>
+                <td align="right" width="60">25%</td>
+                <td align="right" width="60">(3)</td>
+        </tr>
+        <tr>
+                <td align="right"><b>3</b></td>
+                <td>Once a week</td>
+                <td align="right" width="60">16%</td>
+                <td align="right" width="60">(2)</td>
+        </tr>
+        <tr>
+                <td align="right"><b>4</b></td>
+                <td>Yes</td>
+                <td align="right" width="60">16%</td>
+                <td align="right" width="60">(2)</td>
+        </tr>
+        <tr>
+                <td align="right"><b>5</b></td>
+                <td>Never</td>
+                <td align="right" width="60">8%</td>
+                <td align="right" width="60">(1)</td>
+        </tr>
+        <tr>
+                <td colspan=2 align="left"><b>TOTAL</b></td>
+                <td align="right"><b>100%</b></td>
+                <td align="right"><b>12</b></td>
+        </tr>
+</table>
+						</blockquote>	
+	</li>
+	<li>Average Rank (mandatory for rank questions)<br>
+                       Rate the following colors: (1=Least Favorite, 5=Most
+					   Favorite)
+                        <blockquote>
+<table border="0">
+        <tr>
+                <td></td>
+                <td align="center" colspan="7">Average rank</td>
+        </tr>
+        <tr>
+                <td></td>
+                <td align="right" width="44">1</td>
+                <td align="right" width="40">2</td>
+                <td align="right" width="40">3</td>
+                <td align="right" width="40">4</td>
+                <td align="right" width="36">5</td>
+                <td width="20"></td>
+                <td></td>
+        </tr>
+        <tr>
+                <td>Red</td>
+                <td align="left" width="220" colspan="6">
+&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
+                                width=86><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4>         </td>
+                <td align="right" width="60">(2.17)</td>
+        </tr>
+        <tr>
+                <td>Blue</td>
+                <td align="left" width="220" colspan="6">
+&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
+                                width=100><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4>                </td>
+                <td align="right" width="60">(2.50)</td>
+        </tr>
+        <tr>
+                <td>White</td>
+                <td align="left" width="220" colspan="6">
+&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
+                                width=150><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4>                </td>
+                <td align="right" width="60">(3.75)</td>
+        </tr>
+        <tr>
+                <td>Black</td>
+                <td align="left" width="220" colspan="6">
+&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
+                                width=200><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4>                </td>
+                <td align="right" width="60">(5.00)</td>
+        </tr>
+</table>
+                        </blockquote>
+	  </li>
 	</ul>
 	<p><a href="#top">Back to Top</a></p>
 </li>
