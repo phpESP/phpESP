@@ -58,24 +58,24 @@
 		exit;
 	}
 ?>
-<HTML>
+<html>
 <!-- $Id$ -->
-<HEAD>
-	<TITLE><?php echo($ESPCONFIG['title']); ?></TITLE>
+<head>
+	<title><?php echo($ESPCONFIG['title']); ?></title>
 <?php
 	if(!empty($ESPCONFIG['style_sheet'])) {
-		echo("<LINK href=\"". $ESPCONFIG['style_sheet'] ."\" rel=\"stylesheet\" type=\"text/css\">\n");
+		echo("<link href=\"". $ESPCONFIG['style_sheet'] ."\" rel=\"stylesheet\" type=\"text/css\" />\n");
 	}
 	if(!empty($ESPCONFIG['charset'])) {
-		echo('<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset='. $ESPCONFIG['charset'] ."\">\n");
+		echo('<meta http-equiv="Content-Type" content="text/html; charset='. $ESPCONFIG['charset'] ."\" />\n");
 	}
 ?>
-</HEAD>
-<BODY <?php
-	echo('BGCOLOR="'. $ESPCONFIG['main_bgcolor'] .'"');
-	if(!empty($ESPCONFIG['link_color']))  echo(' LINK="'.  $ESPCONFIG['link_color']  .'"');
-	if(!empty($ESPCONFIG['vlink_color'])) echo(' VLINK="'. $ESPCONFIG['vlink_color'] .'"');
-	if(!empty($ESPCONFIG['alink_color'])) echo(' ALINK="'. $ESPCONFIG['alink_color'] .'"'); ?>>
+</head>
+<body <?php
+	echo('bgcolor="'. $ESPCONFIG['main_bgcolor'] .'"');
+	if(!empty($ESPCONFIG['link_color']))  echo(' link="'.  $ESPCONFIG['link_color']  .'"');
+	if(!empty($ESPCONFIG['vlink_color'])) echo(' vlink="'. $ESPCONFIG['vlink_color'] .'"');
+	if(!empty($ESPCONFIG['alink_color'])) echo(' alink="'. $ESPCONFIG['alink_color'] .'"'); ?>>
 <?php
 	if($ESPCONFIG['DEBUG']) {
 		include($ESPCONFIG['include_path']."/debug".$ESPCONFIG['extension']);
@@ -90,6 +90,6 @@
 		include($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']);
 
 ?>
-</BODY>
-</HTML>
+</body>
+</html>
 <?php exit; ?>
