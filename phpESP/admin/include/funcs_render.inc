@@ -85,10 +85,7 @@ if(!defined('_FUNCS_RENDER')) {
 ?>
 	<tr>
 		<td valign="TOP" align="RIGHT">
-<?php if($question['required']=='Y') { ?>
-			<font color="#FF0000">*</font>
-<?php } ?>
-			<A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A>
+			<?php if($question['required']=='Y') { echo('<font color="#FF0000">*</font>'); } ?><A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A>
 		</td>
 		<td valign="TOP" align="LEFT">
 				<?php echo($question['content']); ?>
