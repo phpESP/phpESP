@@ -23,7 +23,7 @@ if(!defined('_FUNCS_RENDER')) {
 		$result = mysql_query($sql);
 		if(mysql_num_rows($result) != 1)
 			return(1);
-		$survey = mysql_fetch_array($result);
+		$survey = mysql_fetch_array($result,MYSQL_ASSOC);
 		mysql_free_result($result);
 
 	// section:
@@ -67,7 +67,7 @@ if(!defined('_FUNCS_RENDER')) {
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <?php
 
-		while($question = mysql_fetch_array($questions_result)) {
+		while($question = mysql_fetch_array($questions_result,MYSQL_ASSOC)) {
 			// process each question
 			$qid = $question['id'];
 			$tid = $question['type_id'];
@@ -123,7 +123,7 @@ if(!defined('_FUNCS_RENDER')) {
 				case '4':	// radio
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
-<?php				while($choice = mysql_fetch_array($choices_result)) {	?>
+<?php				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
 						<tr>
 							<td><?php echo(mkradio($qid,$choice['id'])); ?></td>
 							<td><?php echo($choice['content']); ?></td>
@@ -141,7 +141,7 @@ if(!defined('_FUNCS_RENDER')) {
 				case '5':	// check boxes
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
-<?php				while($choice = mysql_fetch_array($choices_result)) {	?>
+<?php				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,$choice['id'])); ?></td>
 							<td><?php echo($choice['content']); ?></td>
@@ -158,14 +158,14 @@ if(!defined('_FUNCS_RENDER')) {
 					break;
 				case '6':	// dropdown box
 					$options = array();
-					while($choice = mysql_fetch_array($choices_result)) {
+					while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
 						$options[$choice['id']] = $choice['content'];
 					}
 ?>
 					<?php echo(mkselect($qid,$options)); ?>
 <?php
 					break;
-				case '7':	// ranking
+				case '7':	// rating
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
 						<tr>
@@ -176,6 +176,37 @@ if(!defined('_FUNCS_RENDER')) {
 							<td width="60"><?php echo(mkradio($qid,5)); ?> 5</td>
 							<td width="60"><?php echo(mkradio($qid,'N/A')); ?> N/A</td>
 						</tr>
+					</table>
+<?php
+					break;
+				case '8':	// ranking
+?>
+					<table border="0" cellspacing="1" cellpadding="0">
+						<tr>
+							<td></td>
+							<td width="40" align="center" bgcolor="#eeeeee">1</td>
+							<td width="40" align="center" bgcolor="#dddddd">2</td>
+							<td width="40" align="center" bgcolor="#eeeeee">3</td>
+							<td width="40" align="center" bgcolor="#dddddd">4</td>
+							<td width="40" align="center" bgcolor="#eeeeee">5</td>
+							<td width="40" align="center" bgcolor="#dddddd">N/A</td>
+						</tr>
+<?php
+					while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
+						$cid = $choice['id'];
+						$str = $qid . "_" . $cid;
+						
+?>
+						<tr>
+							<td align="right"><?php echo($choice['content']); ?></td>
+							<td width="40" align="center" bgcolor="#eeeeee"><?php echo(mkradio($str,1)); ?></td>
+							<td width="40" align="center" bgcolor="#dddddd"><?php echo(mkradio($str,2)); ?></td>
+							<td width="40" align="center" bgcolor="#eeeeee"><?php echo(mkradio($str,3)); ?></td>
+							<td width="40" align="center" bgcolor="#dddddd"><?php echo(mkradio($str,4)); ?></td>
+							<td width="40" align="center" bgcolor="#eeeeee"><?php echo(mkradio($str,5)); ?></td>
+							<td width="40" align="center" bgcolor="#dddddd"><?php echo(mkradio($str,'N/A')); ?></td>
+						</tr>
+<?php				} ?>
 					</table>
 <?php
 					break;
@@ -190,6 +221,9 @@ if(!defined('_FUNCS_RENDER')) {
 		// end of questions
 ?>
 </table>
+<?php if($num_sections>1) { ?>
+	<font size="-1">Page <?php echo($section); ?> of <?php echo($num_sections); ?></font><br>
+<?php } ?>
 <?php
 		return;
 	}
