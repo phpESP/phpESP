@@ -8,13 +8,24 @@
 // <jflemer@eGrad2000.com>
 
 	// clear the session
-	if(!empty($sid)) { 
+	if(!empty($sid)) {
+		if(empty($totals))
+			$totals=1; // by default, show totals in results
+		if(!empty($cids))
+			$cids = split(" ",$cids); // turn space seperated list into array
+
 		if($test) {
 			echo("<p><b>Testing Survey...</b> (SID = $sid)</p>\n");
 		}
 ?>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
-<?php survey_results($sid); ?>
+<?php
+		// check to see if in "cross analysis" mode
+		if(empty($qid))
+			survey_results($sid,$totals); // no, regular results
+		else
+			survey_results($sid,$totals,$qid,$cids); // yes, cross analyze
+?>
 </td></tr></table>
 <?php
 		if($test) {
