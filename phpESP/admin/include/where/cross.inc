@@ -25,6 +25,7 @@
 		mysql_free_result($result);
         	echo ("<table width=\"90%\" border=\"0\">\n");
                 echo ("<tbody>\n");
+		$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
        		while(list($content,$num) = each($counts)) {
 			if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
                         	$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
