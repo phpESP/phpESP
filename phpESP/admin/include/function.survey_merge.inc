@@ -92,7 +92,8 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 			$sql = "SELECT * 
 					  FROM survey_questions 
 					 WHERE survey_id=${sid} AND 
-				    	   status='' 
+					       type_id != 99 AND
+					       status=''
 					 ORDER BY position,id";
 			if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 			$questions[$i] = mysql_query($sql);
