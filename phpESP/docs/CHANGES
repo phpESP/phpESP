@@ -2,6 +2,10 @@
 PHPESP CHANGE LOG
 =================
 
+v1.7-rc1 ==> v1.7-rc2
+=========================
+* FIXED quoting problem with array_to_insql function.
+
 v1.7-dev ==> v1.7-rc1
 =========================
 * FIXED !other Checkbox questions not recording.
