@@ -40,7 +40,7 @@ function survey_auth($sid,$username,$password) {
 		// Formulate the query check whether user is authorized
 		$sql = "SELECT * FROM user WHERE 
 		username = '$username' AND 
-		password = '$password' AND
+		password = PASSWORD('$password') AND
 		disabled = 'N' AND
 		(expiration = '0' OR expiration > NOW())"; 
 
@@ -93,26 +93,37 @@ function survey_auth($sid,$username,$password) {
    access to the management interface. This sets/clears
    access control related session variables. */
 function manage_auth($username, $password) {
+	// see if session is expired, or has been logged out
+	if(isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
+	   isset($GLOBALS['HTTP_SESSION_VARS']['acl']['expired'])) {
+		if($GLOBALS['HTTP_SESSION_VARS']['acl']['expired']-- > 0) {
+			$username = ''; $password = '';
+		}
+	}
 /**/
 	// see if they have already logged in.
 	if (!empty($username) &&
-		!empty($password) &&
-		isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
-		isset($GLOBALS['HTTP_SESSION_VARS']['acl']['username']) &&
-		isset($GLOBALS['HTTP_SESSION_VARS']['acl']['password']) &&
-		$GLOBALS['HTTP_SESSION_VARS']['acl']['username'] == $username &&
-		$GLOBALS['HTTP_SESSION_VARS']['acl']['password'] == $password)
+			!empty($password) &&
+			isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
+			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['username']) &&
+			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['password']) &&
+			$GLOBALS['HTTP_SESSION_VARS']['acl']['username'] == $username) {
+		$sql = "SELECT PASSWORD('${password}')";
+		$result = mysql_query($sql);
+		$auth = (mysql_result($result, 0, 0) == $password);
+		mysql_free_result($result);
+		if($auth)
 			return(TRUE);
+	}
 /**/
 	
 	$auth = FALSE; // default to unauthorized
-	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
 
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
 		$sql = "SELECT * FROM manager WHERE 
 		username = '${username}' AND 
-		password = '${password}' AND
+		password = PASSWORD('${password}') AND
 		disabled = 'N' AND
 		(expiration = '0' OR expiration > NOW())"; 
 
@@ -151,6 +162,91 @@ function manage_auth($username, $password) {
 	// would be the ideal place to do so...
 
 	return(TRUE);
+}
+/* }}} */
+
+/* {{{ proto void manage_logout()
+   Clears the current ACL, and will cause HTTP-Auth
+   to be redisplayed. This is not fool proof; common browsers
+   will continue to retry cached username & password for 
+   HTTP-Auth. So if the browser is not closed after logout,
+   it still may be possible to get back in w/o knowing a
+   valid username & password. */
+function manage_logout() {
+	// clear existing ACL, and set the expired flag
+	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array('expired' => 2);
+}
+/* }}} */
+
+/* {{{ proto string where_auth(string where)
+   Checks the requested location against current ACL. On
+   failure (unauthorized) directs to a "unauthorized" page.
+   Otherwise returns esp_where(). *
+function where_auth($where) {
+	$access = $GLOBALS['HTTP_SESSION_VARS']['acl'];
+
+	if(empty($where))
+		$where = 'index';
+	$where = strtolower(ereg_replace(' +','_',$where));
+	if(!ereg('^[A-Za-z0-9_]+$',$where))	// Valid chars are [A-Za-z0-9_]
+		$where = 'index';
+	if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']))
+		$where = 'index';
+	
+	switch($where) {
+		// requires 'screate':
+		case 'new':
+		// requires 'sactivate':
+		// requires 'send':
+		// requires 'sdelete':
+
+		case 'adduser':
+		case 'cancel':
+		case 'copy':
+		case 'edit':
+		case 'help':
+		case 'index':
+		case 'logout':
+		case 'manage':
+		case 'merge':
+		case 'purge':
+		case 'readme':
+		case 'report':
+		case 'reset':
+		case 'results':
+		case 'status':
+		case 'tab':
+		case 'test':
+		case 'todo':
+		case 'upgrade':
+		case 'users':
+	}
+
+	return($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']);
+}
+/* }}} */
+
+/* {{{ proto boolean auth_is_owner(int surveyId, string user)
+   Returns TRUE if user owns the survey. */
+function auth_is_owner($sid, $user) {
+	$sql = "SELECT s.owner='$user' FROM survey s WHERE s.id='$sid'";
+	$result = mysql_query($sql);
+	$val = mysql_result($result, 0, 0);
+	mysql_free_result($result);
+	return $val;
+}
+/* }}} */
+
+
+/* {{{ proto boolean auth_no_access(string description)
+   Handle a user trying to access an unauthorised area.
+   Returns TRUE if user should be allowed to continue.
+   Returns FALSE (or exits) if access should be denied. */
+function auth_no_access($description) {
+	echo(mkerror(_('This account does not have permission') .' '. $description .'.'));
+	echo("\n<br>\n");
+	echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
+	return FALSE;
 }
 /* }}} */
 
