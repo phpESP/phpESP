@@ -93,6 +93,7 @@
 				echo(mkwarn('Sorry, you must select a type for this question.'));
 				$tab = 'questions';
 				$dont_clear = 1;
+				$curr_q = 0;
 				return;
 			}
 
