@@ -2,7 +2,12 @@
 PHPESP CHANGE LOG
 =================
 
-v1.5 RC2 ==> v1.6 RC3
+v1.6 RC3 ==> v1.6 RC4
+=====================
+* LANGUAGE: Translation into Sweedish (sv_SE)
+  (Mats Landstedt <mats.landstedt AT tuesday.se>)
+
+v1.6 RC2 ==> v1.6 RC3
 =====================
 * NEW FEATURE: System test script.
 * FIXED compatibility with older PHP versions and settype(). 
