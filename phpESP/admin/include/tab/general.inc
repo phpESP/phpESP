@@ -35,9 +35,8 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Name')); ?></b></td>
 		<td>
-			<input type="text" size="20" name="name" maxlength="64" value="<?php
-				if(isset($survey['name'])) echo(htmlspecialchars($survey['name'])); ?>">
-			<font color="#ff0000"><em>Required</em></font><br>
+			<?php echo mktext('name', 20, 64, $survey); ?>
+			<font color="#ff0000"><em><?php echo _('Required'); ?></em></font><br>
 			<?php echo(
 			_('Survey filename.') .' '.
 			_('This is used for all further access to this survey.')
@@ -47,7 +46,6 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Owner')); ?></b></td>
 		<td><?php
-			$HTTP_POST_VARS['realm'] =& $survey['realm'];
 			$realms = array();
 			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 				$sql = "SELECT name FROM realm";
@@ -61,16 +59,15 @@ edit individual fields.')); ?>
 			}
 
 			echo(htmlspecialchars($HTTP_SESSION_VARS['acl']['username']) . "&nbsp;/&nbsp;");
-			echo(mkselect('realm',$realms) . "  <font color=\"#ff0000\"><em>Required</em></font><br>\n");
+			echo(mkselect('realm',$realms, $survey) . "  <font color=\"#ff0000\"><em>". _('Required') ."</em></font><br>\n");
 			echo(_('User and Group that owns this survey.')); ?></td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
 	<tr valign="top">
 		<td><b><?php echo(_('Title')); ?></b></td>
 		<td>
-			<input type="text" size=60 maxlength=60 name="title" value="<?php
-				if(isset($survey['title'])) echo(htmlspecialchars($survey['title'])); ?>">
-			<font color="#ff0000"><em>Required</em></font><br>
+			<?php echo mktext('title', 60, 60, $survey); ?>
+			<font color="#ff0000"><em><?php echo _('Required'); ?></em></font><br>
 			<?php echo(_('Title of this survey.') .' '.
 			_('This appears at the top of every page of this survey.')
 			.' ('. _('free-form') .', '. _('including spaces') .')'); ?>
@@ -80,8 +77,7 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Subtitle')); ?></b></td>
 		<td>
-			<input type="text" size=60 maxlength=128 name="subtitle" value="<?php
-			if(isset($survey['subtitle'])) echo(htmlspecialchars($survey['subtitle'])); ?>"><br>
+			<?php echo mktext('subtitle', 60, 128, $survey); ?><br>
 			<?php echo(_('Subtitle of this survey.') .' '.
 			_('Appears below the title.') .' ('. _('free-form') .', '. _('including spaces'). ')'); ?>
 		</td>
@@ -90,7 +86,7 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Additional Info')); ?></b></td>
 		<td>
-			<textarea rows=5 cols=60 name="info" wrap="VIRTUAL"><?php if(isset($survey['info'])) echo($survey['info']); ?></textarea><br>
+			<?php echo mktextarea('info', 5, 60, 'virtual', $survey); ?><br>
 			<?php echo(_('Text to be displayed on this survey before any fields.')); ?>
 			(<?php echo(_('ie. instructions, background info, etc.')); ?>)
 		</td>
@@ -99,17 +95,14 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Confirmation Page')); ?></b></td>
 		<td>
-			<input type="text" name="thanks_page" size="60" maxlength="255" value="<?php
-				if(isset($survey['thank_head'])) echo(htmlspecialchars($survey['thanks_page'])); ?>">
-			<?php echo(_('(URL)')); ?><br>
+			<?php echo mktext('thanks_page', 60, 255, $survey) .'&nbsp;'.
+                    _('(URL)'); ?><br>
 			<?php echo(_('The URL to which a user is redirected after completing this survey.')); ?>
 			<br><b><?php echo(_('OR')); ?></b><br>
-			<input type="text" name="thank_head" size="30" value="<?php
-				if(isset($survey['thank_head'])) echo(htmlspecialchars($survey['thank_head'])); ?>">
-			<?php echo(_('(heading text)')); ?><br>
-			<textarea rows=5 cols=60 name="thank_body" wrap="VIRTUAL"><?php
-				if(isset($survey['thank_body'])) echo($survey['thank_body']); ?></textarea>
-			<?php echo(_('(body text)')); ?><br>
+			<?php echo mktext('thank_head', 30, 0, $survey) .'&nbsp;'.
+                    _('(heading text)'); ?><br>
+			<?php echo mktextarea('thank_body', 5, 60, 'virtual', $survey) .
+                    '&nbsp;' . _('(body text)'); ?><br>
  			<?php echo(_('Heading (in bold) and body text for the &quot;Confirmation&quot; page
 					displayed after a user completes this survey.')); ?>
 			<?php echo(_('(URL, if present, takes precedent over confirmation text.)')); ?>
@@ -119,7 +112,7 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Email')); ?></b></td>
 		<td>
-			<input type="text" name="email" size="30" value="<?php if(isset($survey['email'])) echo(htmlspecialchars($survey['email'])); ?>"><br>
+            <?php echo mktext('email', 30, 0, $survey); ?><br>
 			<?php echo(_('Sends a copy of each submission to address (or leave blank for no email backup).')); ?></td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
@@ -138,7 +131,7 @@ edit individual fields.')); ?>
 				}
 				$dir->close();
 
-			echo(mkselect('theme',$themes_array) . '<br>' .
+			echo(mkselect('theme',$themes_array, $survey) . '<br>' .
             		_('Select a theme (css) to use with this survey.')); ?></td>
         </tr>
 <!--
