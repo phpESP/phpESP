@@ -94,7 +94,7 @@ function clearTextInputs() {
 
         }
 }
-function saveOrder() {
+function validate() {
     return true;
 }
 // comment -->
