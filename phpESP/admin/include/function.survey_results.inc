@@ -9,7 +9,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
  	define('_FUNCTION_SURVEY_RESULTS',TRUE);
 	
 	if(!defined('DEBUG'))
-		define('DEBUG',FALSE);
+		define('DEBUG',TRUE);
 
 	// builds HTML for the results for the survey 'sid'
 	// with the added limitation that the answer to
@@ -235,19 +235,19 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 					mysql_free_result($result);
 				}
 				// handle 'other...'
-				$sql = "SELECT A.answer, C.content, COUNT(A.response_id) AS num
+				$sql = "SELECT A.answer, C.content
 						  FROM answers_other A, question_choices C
 						 WHERE A.question_id='${qid}' AND
 						       A.choice_id=C.id AND
     						   A.response_id ${ridstr}
-						 GROUP BY C.id, A.answer";
+						 ORDER BY C.id, A.answer";
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 				if($result = mysql_query($sql)) {
-					while(list($answer,$ccontent,$num) = mysql_fetch_row($result)) {
+					while(list($answer,$ccontent) = mysql_fetch_row($result)) {
 						$content = ereg_replace("!other=?", "", $ccontent);
 						if($content != '')	$content .= ": ";
 						$content .= htmlspecialchars($answer);
-						$counts[$content] += $num;
+						$counts[$content]++;
 					}
 					mysql_free_result($result);
 				}
