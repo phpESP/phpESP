@@ -9,6 +9,8 @@ v1.5 RC2 ==> v1.6 RC3
   (Submitted by Emmett Bearden <chadb AT beardendesigns.com>.)
 * FIXED bug with querying the database before it was opened.  (Noticed
   by James P. Dugal <jpd AT louisiana.edu>.)
+* FIXED gettext support, again.  Hopefully for the last time.
+* ADDED redirector to admin page in main phpESP directory.
 * LANGUAGE: Translation into Japanese (ja)
   (IYODA Atsushi <iyoda AT users.sourceforge.net>)
 
