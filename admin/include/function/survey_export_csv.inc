@@ -10,8 +10,17 @@
 	*/
 function survey_generate_csv($sid) {
 	$output = array();
-	$columns = array();
-	$types = array();
+	$columns = array(
+            'RESPONSE',
+            'SUBMITTED',
+            'USERNAME',
+        );
+	$types = array(
+            0,
+            0,
+            1,
+        );
+    $numcols = 3;
 	$arr = array();
 
 	$id_to_csv_map = array(
@@ -34,7 +43,7 @@ function survey_generate_csv($sid) {
 		q.deleted = 'N' AND q.type_id < 50
 		ORDER BY position";
 	$result = mysql_query($sql);
-	$numcols = mysql_num_rows($result);
+	$numcols += mysql_num_rows($result);
 	while( list( $qid, $col, $type ) = mysql_fetch_row($result) ) {
 		if ($type == 8) {
 			/* rate */
@@ -70,18 +79,21 @@ function survey_generate_csv($sid) {
 
 	array_push($output, $columns);
 
-	$sql = "SELECT id FROM response
-		WHERE survey_id='$sid' AND complete='Y'
-		ORDER BY submitted";
+	$sql = "SELECT r.id,r.submitted,r.username FROM response r
+		WHERE r.survey_id='$sid' AND r.complete='Y'
+		ORDER BY r.submitted";
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
 		// get the response
-		$response = response_select_named($sid, $row[0]);
+		$response = response_select_name($sid, $row[0]);
 
 		$arr = array();
+        array_push($arr, $row[0]);
+        array_push($arr, $row[1]);
+        array_push($arr, $row[2]);
 
 		// merge it
-		for($i = 0; $i < $numcols; $i++) {
+		for($i = 3; $i < $numcols; $i++) {
 			if (isset($response[$columns[$i]]) &&
 					is_array($response[$columns[$i]]))
 				$response[$columns[$i]] = join(',', $response[$columns[$i]]);
@@ -92,7 +104,7 @@ function survey_generate_csv($sid) {
 				if (isset($response[$columns[$i]])) {
                     /* Excel seems to allow "\n" inside a quoted string, but
                      * "\r\n" is used as a record separator and so "\r" may
-                     * not occur within a cell. So one would like to preserve
+                     * not occur within a cell. So if one would like to preserve
                      * new-lines in a response, remove the "\n" from the
                      * regex below.
                      */
