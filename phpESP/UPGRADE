@@ -18,7 +18,7 @@ your old one back over the new one. The handler *has* changed so you will
 need to keep the new one, but change the path to the config file.
 
 There are small database changes with this version. I have included a
-'upgrade.sql' script that will alter your existing database, and
+'update.sql' script that will alter your existing database, and
 preserve your data. The only issue is that the 'Rank' question gets
 deleted, so editing,testing,taking,results from surveys with those
 types of questions will be effected. I haven't completly tested how
