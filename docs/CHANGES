@@ -1,6 +1,8 @@
 =================
 PHPESP CHANGE LOG
 =================
+v1.7 ==>
+* ADDED password check/upgrade for mySQL > 4.0
 
 v1.7-rc1 ==> v1.7-rc2
 =========================
