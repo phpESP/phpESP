@@ -142,7 +142,7 @@ function manage_auth($username, $password) {
 
 		if ($ds) {
 			$search_result = ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
-			if ($search_result) {
+			if (ldap_count_entries($ds,$search_result)==1) {
 				$user_info = ldap_get_entries($ds, $search_result);
 				// Bind with username and password
 				$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $password);
