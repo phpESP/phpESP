@@ -133,8 +133,7 @@ if(!defined('_FUNCS_RENDER')) {
 ?>
 						<tr>
 							<td><?php echo(mkradio($qid,"other_${cid}")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_${cid}",
-							"onFocus=\"this.form.elements['${qid}[]'][${j}].checked=true;\"")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_${cid}")); ?></td>
 						</tr>
 <?php
 						$j++;
@@ -146,23 +145,20 @@ if(!defined('_FUNCS_RENDER')) {
 				case '5':	// check boxes
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
-<?php
-					$j=0;
-					while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
+<?php				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {	?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,$choice['id'])); ?></td>
 							<td><?php echo($choice['content']); ?></td>
 						</tr>
-<?php					$j++;
-					}
+<?php				}
+					$j=0;
 					while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {	
 						$cid = $other['id'];
 						$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
 ?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,"other_${cid}")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_${cid}",
-							"onFocus=\"this.form.elements['${qid}[]'][${j}].checked=true;\"")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_${cid}")); ?></td>
 						</tr>
 <?php
 						$j++;
