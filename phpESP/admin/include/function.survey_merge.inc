@@ -8,29 +8,17 @@
 if(!defined('_FUNCTION_SURVEY_MERGE')) {
  	define('_FUNCTION_SURVEY_MERGE',TRUE);
 	
-	if(!defined('DEBUG'))
-		define('DEBUG',FALSE);
+	function array_to_insql($array) {
+		return("IN (".ereg_replace("([^,]+)","'\\1'",join(",",$array)).")");
+	}
 
-	// builds HTML for the results for the survey 'sid'
-	// with the added limitation that the answer to
-	// $questionId is an element of the array $choiceIds
-	
-	// if $questionId is not specified (or less than 0)
-	// the standard (original) results display is created
-	
-	// void crossanalysis(int $surveyId, 
-	//                    int $precision,
-	//                    bool $showTotals, 
-	//                    int $questionId,
-	//                    int[] $choiceIds);
-	
 	function survey_merge($sids, $precision = 1, $showTotals = 1) {
 		// sanity check arguments
 		if(!is_array($sids)) {
 			$errmsg = "Error opening merging surveys. [ ID: ${sids} ]";
 			return($errmsg);
 		}
-		$num = array_count($sids);
+		$num = count($sids);
 		if($num < 1) {
 			$errmsg = "Error opening merging surveys. [ IDs: ".join(",",$sids)." ]";
 			return($errmsg);
@@ -156,8 +144,8 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 			$counts = array();
 
 			switch($table) {
-// -------------------------------- answers_bool --------------------------------
 			case 'answers_bool':
+// -------------------------------- answers_bool --------------------------------
 				$sql = "SELECT A.choice_id, COUNT(A.response_id)
 						  FROM ${table} A
 						 WHERE A.question_id ${qidstr} AND 
@@ -165,8 +153,8 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 							   A.choice_id IN ('yes','no')
 						 GROUP BY A.choice_id";
 				$result = mysql_query($sql);
-				while(list($ccontent,$count) = mysql_fetch_row($result)) {
-					$counts[ucfirst($ccontent)] = $count;
+				while(list($text,$count) = mysql_fetch_row($result)) {
+					$counts[ucfirst($text)] = $count;
 				}
 				mysql_free_result($result);
 
@@ -174,10 +162,11 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					$question[0]['result_id'] = 1;	// default to percentages for yes/no
 
 				break;
-// -------------------------------- answers_single --------------------------------
+
+// -------------------------------- answers_single ----------------------------------
 // -------------------------------- answers_multiple --------------------------------
-			case: 'answers_single':
-			case: 'answers_multiple':
+			case 'answers_single':
+			case 'answers_multiple':
 				for($i=0; $i<$num; $i++) {
 					$sid = $sids[$i];
 					$qid = $questions[$i]['id'];
@@ -200,11 +189,11 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					array_push($content, mysql_result($result,0,0));
 					mysql_free_result($result);
 				}
-				$cnum = array_count($content);
+				$cnum = count($content);
 				for($j=0; $j<$cnum; $j++) {
 					$mycids = array();
 					for($i=0; $i<$num; $i++) {
-						array_push($mycids, $cids[$i][$j])
+						array_push($mycids, $cids[$i][$j]);
 					}
 					$mycidstr = array_to_insql($mycids[$j]);
 
@@ -243,11 +232,11 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					array_push($content, $text);
 					mysql_free_result($result);
 				}
-				$cnum = array_count($content);
+				$cnum = count($content);
 				for($j=0; $j<$cnum; $j++) {
 					$mycids = array();
 					for($i=0; $i<$num; $i++) {
-						array_push($mycids, $cids[$i][$j])
+						array_push($mycids, $cids[$i][$j]);
 					}
 					$mycidstr = array_to_insql($mycids[$j]);
 
@@ -310,11 +299,11 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 						array_push($content, mysql_result($result,0,0));
 						mysql_free_result($result);
 					}
-					$cnum = array_count($content);
+					$cnum = count($content);
 					for($j=0; $j<$cnum; $j++) {
 						$mycids = array();
 						for($i=0; $i<$num; $i++) {
-							array_push($mycids, $cids[$i][$j])
+							array_push($mycids, $cids[$i][$j]);
 						}
 						$mycidstr = array_to_insql($mycids[$j]);
 
@@ -357,7 +346,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 			</blockquote>
 		</td>
 	</tr>
-<?php	} // end while -- execution should never pass this point?>
+<?php	} // end while -- execution should never pass this point ?>
 </table>
 <?php
 		return;
