@@ -44,9 +44,9 @@
 				<li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data to CSV')); ?></a></li>
 			</ul>
 
+			<ul>
 <?php if($GLOBALS['ESPCONFIG']['auth_design']) {
 	if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap') { ?>
-			<ul>
 				<li><a href="<?php echo("${base}?where=passwd");   ?>"><?php echo(_('Change Your Password')); ?></a></li>
 <?php
 	}
