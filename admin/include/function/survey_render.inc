@@ -197,9 +197,9 @@ function render_survey($sid, $section = 1, $message = '') {
 							<td></td>
 <?php
 				$bg = '#eeeeee';
-				for ($i = 0; $i < $size; $i++) {
+				for ($j = 0; $j < $size; $j++) {
 ?>
-							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo($i+1); ?></td>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo($j+1); ?></td>
 <?php
 					if ($bg == '#eeeeee')   $bg = '#dddddd';
 					else                    $bg = '#eeeeee';
@@ -220,9 +220,9 @@ function render_survey($sid, $section = 1, $message = '') {
 							<td align="right"><?php echo($choice['content']); ?></td>
 <?php
 					$bg = '#eeeeee';
-					for ($i = 0; $i < $size; $i++) {
+					for ($j = 0; $j < $size; $j++) {
 ?>					
-							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,$i)); ?></td>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,$j)); ?></td>
 <?php
 						if ($bg == '#eeeeee')   $bg = '#dddddd';
 						else                    $bg = '#eeeeee';
