@@ -12,13 +12,13 @@
  *
  * So, create your template file with this as the *first*
  * line:
- *   <?php $sid=<SID>; include('.../phpESP/public/authhand-prefix.php'); ?>
+ *   <?php $sid=<SID>; include('.../phpESP/public/handler-prefix.php'); ?>
  * then where you want to include the actual survey use this
  * line:
- *   <?php inlcude('.../phpESP/public/authhand-suffix.php'); ?>
+ *   <?php inlcude('.../phpESP/public/handler.php'); ?>
  *
  * For example, here is a very small template:
- *   <?php $sid=42; include('phpESP/public/authhand-prefix.php'); ?>
+ *   <?php $sid=42; include('phpESP/public/handler-prefix.php'); ?>
  *   <html>
  *   <head><title>Speednaked.com</title></head>
  *   <body>
@@ -26,7 +26,7 @@
  *   <tr><td colspan="2"><img src="speednaked-banner.png"
  *       border="0" width="800" height="42"></td></tr>
  *   <tr><td><?php inlcude('speednaked-sidebar.php'); ?></td>
- *       <td><?php include('phpESP/public/authhand-suffix.php'); ?>
+ *       <td><?php include('phpESP/public/handler.php'); ?>
  *       </td>
  *   </tr>
  *   <tr><td colspan="2"><p align="right"><font size="-2">
@@ -38,11 +38,14 @@
  */
 
 if(!defined('AUTHHAND-PREFIX')) {
-	define('AUTHHAND-PREFIX', TRUE);
+	define('AUTHHAND-PREFIX', true);
 	// undefine('AUTHHAND-OK');
 
-	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini.php');
-	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
+	if (!defined('ESP_BASE'))
+		define('ESP_BASE', dirname(__FILE__) . '/../');
+
+	require_once(ESP_BASE . '/admin/phpESP.ini.php');
+	require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 
 	$GLOBALS['errmsg'] = '';
 
@@ -123,6 +126,6 @@ if(!defined('AUTHHAND-PREFIX')) {
 		$HTTP_POST_VARS['sec'] = (intval($HTTP_POST_VARS['sec']) > 0) ?
 				intval($HTTP_POST_VARS['sec']) : 1;
 
-	define('AUTHHAND-OK', TRUE);
+	define('AUTHHAND-OK', true);
 } /* !defined('AUTHHAND-PREFIX') */
 ?>
