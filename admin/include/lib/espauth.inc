@@ -42,7 +42,7 @@ function survey_auth($sid,$username,$password) {
 		username = '$username' AND 
 		password = '$password' AND
 		disabled = 'N' AND
-		expiration > NOW()"; 
+		(expiration = '0' OR expiration > NOW())"; 
 
 		// Execute the query and put results in $usrres 
 		$usrres = mysql_query( $sql );
@@ -93,10 +93,17 @@ function survey_auth($sid,$username,$password) {
    access to the management interface. This sets/clears
    access control related session variables. */
 function manage_auth($username, $password) {
+/**/
 	// see if they have already logged in.
-	if($GLOBALS['HTTP_SESSION_VARS']['acl']['username'] = $username &&
-			$GLOBALS['HTTP_SESSION_VARS']['acl']['password'] = $password)
-		return(TRUE);
+	if (!empty($username) &&
+		!empty($password) &&
+		isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
+		isset($GLOBALS['HTTP_SESSION_VARS']['acl']['username']) &&
+		isset($GLOBALS['HTTP_SESSION_VARS']['acl']['password']) &&
+		$GLOBALS['HTTP_SESSION_VARS']['acl']['username'] == $username &&
+		$GLOBALS['HTTP_SESSION_VARS']['acl']['password'] == $password)
+			return(TRUE);
+/**/
 	
 	$auth = FALSE; // default to unauthorized
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
@@ -107,7 +114,7 @@ function manage_auth($username, $password) {
 		username = '${username}' AND 
 		password = '${password}' AND
 		disabled = 'N' AND
-		expiration > NOW()"; 
+		(expiration = '0' OR expiration > NOW())"; 
 
 		// Execute the query and put results in $accres 
 		$accres = mysql_query( $sql );
@@ -129,7 +136,11 @@ function manage_auth($username, $password) {
 	if ( ! $auth ) { 
 		header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' ); 
 		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
-		mkerror(_('Incorrect User ID or Password, or your account has been disabled.'));
+		echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
+			"<body><h1>401 ". _('Unauthorized') ."</h1>\n".
+			mkerror(_('Incorrect User ID or Password, or your account has been disabled.')) .
+			"</body>\n</html>\n");
+		exit;
 		return(FALSE);
 	}
 	
