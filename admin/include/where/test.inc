@@ -22,7 +22,7 @@
 		$result = mysql_query($sql);
 		list($status,$owner,$realm) = mysql_fetch_row($result);
 		mysql_free_result($result);
-		
+
 		/* check ACL to see if user is allowed to test
 		 * _this_ survey */
 		$realms = array_intersect(
@@ -34,7 +34,7 @@
 				!auth_no_access(_('to access this survey'))) {
 			return;
 		}
-		if (($status & STATUS_TEST) && 
+		if (($status & STATUS_TEST) &&
 			!($status & (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE))) {
 			/* cleared for testing ... was that enough tests? */
 ?>
@@ -74,16 +74,16 @@
 			return;
 		}
 	}
-	
+
 	/* no survey selected ... show a menu to choose from */
-	
+
 	/* check with ACL for allowed surveys */
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	$statusbad = (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE);
 	$statusok = STATUS_TEST;
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = "SELECT id,name,title,owner,realm FROM survey 
+		$sql = "SELECT id,name,title,owner,realm FROM survey
 		WHERE (status & $statusok) AND NOT (status & $statusbad)
 		ORDER BY id DESC";
 	} else {
@@ -92,7 +92,7 @@
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,owner,realm
-			FROM survey 
+			FROM survey
 			WHERE (status & $statusok) AND NOT (status & $statusbad) AND
 			(owner = '". $HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms)
 			ORDER BY id DESC";

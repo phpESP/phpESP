@@ -8,11 +8,11 @@
 
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
-	
+
 	$errstr = '';
 	$u = '';
 	$r = '';
-	
+
 	/* abort */
 	if(isset($HTTP_POST_VARS['cancel'])) {
 		unset($HTTP_POST_VARS['submit']);
@@ -20,7 +20,7 @@
 		include(esp_where('designers'));
 		return;
 	}
-	
+
 	/* delete user */
 	if(isset($HTTP_POST_VARS['delete'])) {
 		unset($HTTP_POST_VARS['submit']);
@@ -89,10 +89,10 @@
 			$ex_month   = '';
 			$ex_day     = '';
 		}
-		
+
 		if($r == 'superuser' && $HTTP_SESSION_VARS['acl']['superuser'] != 'Y')
 			$r = '';
-		
+
 		/* new user */
 		$sql = "SELECT * FROM designer WHERE username='$u' AND realm='$r'";
 		$result = mysql_query($sql);
@@ -112,7 +112,7 @@
 			}
 		}
 		mysql_free_result($result);
-		
+
 		/* change user data */
 		if(!empty($u) && !empty($r)) {
 			if(empty($pdesign))
@@ -145,7 +145,7 @@
 					mysql_error() .')');
 			}
 		}
-		
+
 		if(empty($errstr)) {
 			include(esp_where('designers'));
 			return;
@@ -186,7 +186,7 @@
 				$ex_year  = '';
 				$ex_month = '';
 				$ex_day   = '';
-			}			
+			}
 		} else {
 			$errstr .= mkerror(_('Account not found.') .' ('.
 				mysql_error() .')');
@@ -255,10 +255,10 @@
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Expiration') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". 
-		mktext('ex_year',4,4) .' '. 
-		mktext('ex_month',2,2) .' '. 
-		mktext('ex_day',2,2) .' ('. 
+	echo("<td bgcolor=\"$bg1\">".
+		mktext('ex_year',4,4) .' '.
+		mktext('ex_month',2,2) .' '.
+		mktext('ex_day',2,2) .' ('.
 			_('year') .' '.
 			_('month') .' '.
 			_('day'). ")</td>\n");

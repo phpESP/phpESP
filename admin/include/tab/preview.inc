@@ -36,7 +36,7 @@ other = name.split("_");
 // End -->
 </SCRIPT>
 <?php echo(_('This is a preview of how the survey will look.
-In the preview the &quot;Next Page&quot; and 
+In the preview the &quot;Next Page&quot; and
 &quot;Submit Survey&quot; are inactive.
 The survey will use the background color of the
 document in which it is embedded. If you have no

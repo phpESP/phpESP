@@ -24,7 +24,7 @@
  *   <head><title>Speednaked.com</title></head>
  *   <body>
  *   <table border="0" width="800">
- *   <tr><td colspan="2"><img src="speednaked-banner.png" 
+ *   <tr><td colspan="2"><img src="speednaked-banner.png"
  *       border="0" width="800" height="42"></td></tr>
  *   <tr><td><?php inlcude('speednaked-sidebar.php'); ?></td>
  *       <td><?php include('phpESP/public/authhand-suffix.php'); ?>
@@ -35,23 +35,23 @@
  *   </table>
  *   </body>
  *   </html>
- *   
+ *
  */
 
 if(!defined('AUTHHAND-PREFIX')) {
 	define('AUTHHAND-PREFIX', TRUE);
 	// undefine('AUTHHAND-OK');
-	
+
 	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
 	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
-	
+
 	$GLOBALS['errmsg'] = '';
 
 	if(isset($HTTP_GET_VARS['sid'])) {
 		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
 		return;
 	}
-	
+
 	if(isset($HTTP_GET_VARS['results']) || isset($HTTP_POST_VARS['results'])) {
 		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
 		return;
@@ -95,9 +95,9 @@ if(!defined('AUTHHAND-PREFIX')) {
 			// check for authorization on the survey
 			include($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
             $espuser = ''; $esppass = '';
-            isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) && 
+            isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) &&
                     $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
-            isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) && 
+            isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) &&
                     $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
 			if(!survey_auth($sid,
                     isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) ?

@@ -12,7 +12,7 @@ if(!defined('_FUNCTION_SURVEY_UPDATE')) {
 
 /* {{{ proto bool survey_update(int* survey_id, string* tab, string old_tab)
    Reads current form variables from HTTP_POST_VARS.
-   Returns an true on sucess, else returns false and 
+   Returns an true on sucess, else returns false and
    sets global $errstr with an error message. */
 function survey_update(&$survey_id, &$tab, $old_tab) {
 	global $HTTP_POST_VARS, $HTTP_SERVER_VARS, $errstr;
@@ -116,7 +116,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			// if the question box is empty ... ignore everything else
 			if(empty($HTTP_POST_VARS['content']) && empty($HTTP_POST_VARS['name']))
 				return(1);
-			
+
 			if(empty($HTTP_POST_VARS['content'])) {
 				$tab = 'questions';
 				$dont_clear = 1;
@@ -132,7 +132,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				do {
 					$str2 = $str1;
 					$str1 = eregi_replace(
-					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]", 
+					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
 					" ", $str2);
 				} while ($str1 != $str2);
 				$HTTP_POST_VARS['name'] = $str1;
@@ -157,7 +157,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			// constraint: can not change between question w/ answer choices and one w/o
 			$has_choices = esp_type_has_choices();
 			if(!empty($qid)) {
-				$sql =  "SELECT Q.type_id FROM question Q WHERE Q.survey_id='${survey_id}' AND Q.id='${qid}'"; 
+				$sql =  "SELECT Q.type_id FROM question Q WHERE Q.survey_id='${survey_id}' AND Q.id='${qid}'";
 				$result = mysql_query($sql);
 				$old_type_id = mysql_result($result,0,0);
 				mysql_free_result($result);
@@ -169,13 +169,13 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 					return(0);
 				}
 			}
-			
+
 			// constraint: length must be int
 			$HTTP_POST_VARS['length']  = intval($HTTP_POST_VARS['length']) or 0;
-			
+
 			// constraint: precise must be int
 			$HTTP_POST_VARS['precise'] = intval($HTTP_POST_VARS['precise']) or 0;
-			
+
 			// defaults for length field
 			if(empty($HTTP_POST_VARS['length']) && $HTTP_POST_VARS['type_id'] < 50) {
 				$arr = array(
@@ -208,7 +208,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 					0,		// 8: Rate (use N/A)
 					0,		// 9: Date
 					0		// 10: Numeric (decimal)
-					); 
+					);
 				$HTTP_POST_VARS['precise'] = $arr[$HTTP_POST_VARS['type_id']];
 			}
 

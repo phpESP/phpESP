@@ -9,7 +9,7 @@
 
 	if(!empty($HTTP_GET_VARS['sid']))
 		$sid = intval($HTTP_GET_VARS['sid']);
-	
+
 	$bg = '';
 
 	/* operation selected ... */
@@ -174,7 +174,7 @@ archived survey.')); ?></li>
 		$act  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=a&sid=${sid}\">". _('Activate') ."</a>";
 		$done = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=e&sid=${sid}\">". _('End') ."</a>";
 		$del  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=d&sid=${sid}\">". _('Archive') ."</a>";
-		
+
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
 			$test = $act = $done = $del = '&nbsp;';
@@ -192,8 +192,8 @@ archived survey.')); ?></li>
 		} else {
 			$done = '&nbsp;';
 		}
-		
-		/* whack things back to permissions set by ACL 
+
+		/* whack things back to permissions set by ACL
 		 * for everyone _not_ superuser */
 		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
 				!in_array($realm, $realms)) {
@@ -201,7 +201,7 @@ archived survey.')); ?></li>
 			$done = '&nbsp;';
 			$del  = '&nbsp;';
 		}
-				
+
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
 		else

@@ -19,7 +19,7 @@ $bg = '';
 <table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 <?php
 
-/* If the Survey ID is not given, then build 
+/* If the Survey ID is not given, then build
  * a menu of available surveys to chose from.
  */
 if(!$sid) {
@@ -38,7 +38,7 @@ if(!$sid) {
 	 * _this_ user */
 	$statusok = (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED);
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = "SELECT id,name,title,status,owner,realm FROM survey 
+		$sql = "SELECT id,name,title,status,owner,realm FROM survey
 		WHERE (status & $statusok) ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
@@ -53,7 +53,7 @@ if(!$sid) {
 
 	while(list($sid,$name,$title,$status,$owner,$realm) = mysql_fetch_row($result)) {
 		$stat = _('Editing');
-		
+
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
 			continue;
@@ -64,7 +64,7 @@ if(!$sid) {
 		} elseif($status & STATUS_TEST) {
 			$stat = _('Testing');
 		}
-						
+
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
 		else
@@ -92,7 +92,7 @@ if(!$sid) {
 <?php
 	return;
 	}
-	
+
 	/* sid supplied ... continue */
 	$sql = "SELECT name FROM survey WHERE id = $sid";
 	$result = mysql_query($sql);
@@ -127,7 +127,7 @@ if(!$sid) {
 	}
 
 	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv';
-	
+
 	// Try DBF first, default to CSV
 	if($type == 'dbf') {
 		$file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.dbf";
@@ -153,5 +153,5 @@ if(!$sid) {
 	}
 	echo("</td></tr></table>\n");
 	echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
-	
+
 ?>

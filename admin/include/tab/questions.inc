@@ -11,7 +11,7 @@
 		$HTTP_SESSION_VARS['curr_q'] = 0;
     if(empty($HTTP_POST_VARS['id']))
         $HTTP_POST_VARS['id'] = 0;
-	
+
 	$curr_q =& $HTTP_SESSION_VARS['curr_q'];
 	$sid =& $HTTP_SESSION_VARS['survey_id'];
    	$id = intval($HTTP_POST_VARS['id']);
@@ -26,7 +26,7 @@
 	while(list($qi) = mysql_fetch_row($result))
 		array_push($q_ids, $qi);
 	mysql_free_result($result);
-	
+
 	// update failed, stay on same question
 	if(!$updated || isset($HTTP_POST_VARS['extra_choices'])) {
 		for ( $q = 0; $q < $total_num_q && $q_ids[$q] != $id ; $q++);
@@ -72,7 +72,7 @@
 		}
 	} else {
 		foreach($fields as $f) {
-            if(!empty($HTTP_POST_VARS[$f])) 
+            if(!empty($HTTP_POST_VARS[$f]))
 			    $$f = DESLASH($HTTP_POST_VARS[$f]);
             else
                 $$f = '';
@@ -86,7 +86,7 @@ function clearTextInputs() {
 	while (document.phpesp.elements["choice_content_" + i]) {
 		document.phpesp.elements["choice_content_" + i].value = "";
 		i++;
-		
+
         }
 }
 // comment -->
@@ -102,7 +102,7 @@ function clearTextInputs() {
 	<input type="submit" name="q" value="<?php echo(_('New Field')); ?>">
 	<hr>
 	<b><?php
-		if(!$curr_q) { 
+		if(!$curr_q) {
 			echo(_('New Field'));
 		} else {
 			echo(_('Field')." $curr_q");
@@ -129,11 +129,11 @@ function clearTextInputs() {
 				echo(mkselect('type_id',$arr));
 			?></td>
 			<td align="center"><?php
-				if(empty($GLOBALS['length'])) $GLOBALS['length'] = 0; 
+				if(empty($GLOBALS['length'])) $GLOBALS['length'] = 0;
 				echo(mktext("length",6));
 			?></td>
 			<td align="center"><?php
-				if(empty($GLOBALS['precise'])) $GLOBALS['precise'] = 0; 
+				if(empty($GLOBALS['precise'])) $GLOBALS['precise'] = 0;
 				echo(mktext("precise",6));
 			?></td>
 			<td align="center"><?php
@@ -152,7 +152,7 @@ function clearTextInputs() {
 	</table>
 <?php
 	// has answer options ... so show that part of the form
-	if($curr_q == 0 || 
+	if($curr_q == 0 ||
 			empty($type_id) ||
 			mysql_result(mysql_query("SELECT has_choices
 					FROM question_type

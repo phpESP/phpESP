@@ -89,7 +89,7 @@ INSTALLING:
   free to join the phpesp-general mailing list. You can
   join from the following URL:
   http://lists.sourceforge.net/lists/listinfo/phpesp-general
-  
+
   If you have patches or want to help develop, please join
   the phpesp-devel mailing list. You can join from the following
   URL:
@@ -100,7 +100,7 @@ UPGRADING:
   If you are using a version older than v1.3, it is
   recommended you install this new version in a separate
   database.
-  
+
   If you are upgrading from v1.3, you must execute the
   following SQL statement in order to make use of the new
   "Section Text" question type:

@@ -15,7 +15,7 @@
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
 	if(isset($HTTP_GET_VARS['account_type']))
 		$account_type = XADDSLASHES($HTTP_GET_VARS['account_type']);
-	else	
+	else
 		$account_type = "respondents";
 
 	$errstr = '';
@@ -28,7 +28,7 @@
 		unset($HTTP_POST_VARS['submit']);
 		if(isset($HTTP_POST_VARS['account_type']))
 			$account_type = XADDSLASHES($HTTP_POST_VARS['account_type']);
-		else	
+		else
 			$account_type = "respondents";
 
 		$upload_type	= XADDSLASHES($HTTP_POST_VARS['upload_type']);
@@ -76,10 +76,10 @@
         		        	else
                        				$bg =& $ESPCONFIG['bgalt_color1'];
 					$exception_table .= "<tr valign=\"top\" bgcolor=\"$bg\">\n";
-					foreach($row as $col) { 
-						$exception_table .= "<td>".sprintf(_("%s"),$col)."</td>\n";	
-			
-					} 		
+					foreach($row as $col) {
+						$exception_table .= "<td>".sprintf(_("%s"),$col)."</td>\n";
+
+					}
 				}
 				$exception_table .= "</tr>\n</table>";
 			}
@@ -100,7 +100,7 @@
 </font>
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>">
 <form enctype="multipart/form-data" method="Post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>">
-<?php 
+<?php
 		echo("<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\" align=\"center\" bgcolor=\"".$ESPCONFIG['active_bgcolor']."\">\n");
 ?>
 <input type="hidden" name="where" value="upload">
