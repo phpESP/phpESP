@@ -60,12 +60,12 @@ function mkcheckbox ($name, $value) {
 }
 /* }}} */
 
-/* {{{ proto string mktext(string name)
+/* {{{ proto string mktext(string name, int size)
    Returns HTML format for a text entry line. */
-function mktext ($name) {
+function mktext ($name, $size = 20) {
 	// needs register_globals = on
 	global $$name;
-	return('<input type="text" name="'. htmlspecialchars($name) .'" value="'. htmlspecialchars($$name) .'">');
+	return('<input type="text" size="'. intval($size) .'" name="'. htmlspecialchars($name) .'" value="'. htmlspecialchars($$name) .'">');
 }
 /* }}} */
 
