@@ -44,21 +44,26 @@
         	unset($_result);
 		}
 
-    // call the handler-prefix once $sid is set to handle
-    // authentication / authorization
-	include($ESPCONFIG['handler_prefix']);
+        // To make all results public uncomment the next line.
+        //$results = 1;
+        // See the FAQ for more instructions.
 
-	if (empty($_name) && isset($sid) && $sid) {
-        $_sql = "SELECT title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid'";
-        if ($_result = execute_sql($_sql)) {
-            if (record_count($_result) > 0){
-                list($_title, $_css) = fetch_row($_result);
+        // call the handler-prefix once $sid is set to handle
+        // authentication / authorization
+
+        include($ESPCONFIG['handler_prefix']);
+
+        if (empty($_name) && isset($sid) && $sid) {
+            $_sql = "SELECT title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid'";
+            if ($_result = execute_sql($_sql)) {
+                if (record_count($_result) > 0){
+                    list($_title, $_css) = fetch_row($_result);
+                }
+                db_close($_result);
             }
-            db_close($_result);
+            unset($_sql);
+            unset($_result);
         }
-        unset($_sql);
-        unset($_result);
-	}
 
 ?>
 <html>
