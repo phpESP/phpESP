@@ -1,13 +1,11 @@
-# phpESP -- TODO list
-#
-# $Id$
-#
+================
+PHPESP TODO LIST
+================
 
 SOON:
  * new GUI
  * themes for management interface
  * expand the "Results" page into "Analysis"
-   * including a nice form interface to the cross-analysis
  * "sub"-questions of other questions
  * "forked" surveys (subsequent pages dependent on previous question)
  * question groups (questions that share a Q#)
@@ -15,11 +13,10 @@ SOON:
  * spell checking support (use spell checking from IMP?)
  * "Archive" management
 
-LATER:
- * view results per submission
- * better docs
-
 JAVASCRIPTS: (please contribute)
  * Limit number of check boxes checked to N.
  * "Grey out" a field(s) when a box is/is not checked.
  * Numeric only text fields (Denis HAVLIK <denis at mandrakesoft.com>)
+
+----
+$Id$
