@@ -20,7 +20,6 @@
         $dst = 0;
 	$sid = $HTTP_SESSION_VARS['survey_id'];
 
-        print "dst: $dst ";
 	if(isset($HTTP_POST_VARS['addbreak'])) {
 		$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=$sid";
 		$pos = get_one($sql);
@@ -35,9 +34,7 @@
 		$sql = "SELECT id, position FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 				WHERE survey_id=$sid AND deleted='N'
 				ORDER BY position";
-                print "select: $sql<br>";
 		$result = execute_sql($sql);
-print_r($result->fields);
 		$max = record_count($result);
 		if ($src < $max) {
             $result->Move($src);
@@ -58,14 +55,12 @@ print_r($result->fields);
 					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$position
 							WHERE survey_id=$sid AND position >= $dst";
 					execute_sql($sql);
-                    print "down:$sql<br>";
 				} else {
                     $result->Move($max-1);
 					$dst = $result->fields[1] + 1;
 				}
 				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$dst WHERE id=$qid AND survey_id=$sid";
 				execute_sql($sql);
-                print "moveup: $sql<br>";
 			}
 		}
 		db_close($result);
