@@ -56,13 +56,13 @@
 			unset($HTTP_GET_VARS['sid']);
 			unset($HTTP_POST_VARS['sid']);
 			$HTTP_POST_VARS['userid'] = 'test';
-			define('AUTHHAND-PREFIX', true);
-			define('AUTHHAND-OK', true);
+			define('ESP-HANDLER-PREFIX', true);
+			define('ESP-AUTH-OK', true);
 			$HTTP_POST_VARS['sec'] = empty($HTTP_POST_VARS['sec']) ? 1 : intval($HTTP_POST_VARS['sec']);
 			$HTTP_POST_VARS['rid'] = empty($HTTP_POST_VARS['rid']) ? 0 : intval($HTTP_POST_VARS['rid']);
 			include($ESPCONFIG['handler']);
-			#undefine('AUTHHAND-PREFIX');
-			#undefine('AUTHHAND-OK');
+			//undefine('ESP-HANDLER-PREFIX');
+			//undefine('ESP-AUTH-OK');
 ?>
 </td></tr></table>
 <a href="<?php echo($ESPCONFIG['ME']); ?>?where=results&sid=<?php echo($sid); ?>&test=1"><?php echo(_('View Results')); ?></a><br>
