@@ -58,8 +58,10 @@
 			$where = "index";
 		if(!file_exists($PIECES."/".$where.$EXT))
 			$where = "index";
+		if(!file_exists($PIECES."/index".$EXT))
+			echo("<b>I can not find your includes ... check your ini settings</b>");
 	}
-
+	
 	if(file_exists($PIECES."/head".$EXT))
 		include($PIECES."/head".$EXT);
 
