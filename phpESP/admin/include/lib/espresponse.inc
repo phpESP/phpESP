@@ -139,16 +139,25 @@ FROM question Q, question_type T
 
 	$q_result = mysql_query($sql);
 	while(list($qid, $tid, $table) = mysql_fetch_row($q_result)) {
-        $bareval = isset($HTTP_POST_VARS[$qid]) ? _stripslashes($HTTP_POST_VARS[$qid]) : '';
+		if (isset($HTTP_POST_VARS[$qid])) {
+			if (is_array($HTTP_POST_VARS[$qid]))
+				$bareval = array_map('_stripslashes', $HTTP_POST_VARS[$qid]);
+			else
+				$bareval = _stripslashes($HTTP_POST_VARS[$qid]);
+		}
+		else
+			$bareval = '';
+
 		if (is_string($bareval))
 			$val = addslashes($bareval);
-        else
-            $val = '';
+        	else
+            		$val = '';
+
 		switch($table) {
 			case 'response_bool':
 				$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
-                if (!empty($val))
-    				$result = mysql_query($sql);
+                		if (!empty($val))
+    					$result = mysql_query($sql);
 				break;
 			case 'response_text':
 				// only insert if non-empty content
@@ -157,7 +166,7 @@ FROM question Q, question_type T
 				}
 
 				if(ereg("[^ \t\n]",$bareval)) {
-                    $val = addslashes($bareval);
+                    			$val = addslashes($bareval);
 					$sql  = "INSERT INTO ${table} ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
 					$result = mysql_query($sql);
 				}
@@ -165,7 +174,7 @@ FROM question Q, question_type T
 			case 'response_date':
 				// only insert if non-empty content
 				if(($bareval = ereg_replace("[^0-9]*([0-9]+)/([0-9]+)/([0-9]+).*", '\3-\1-\2', $bareval))) {
-                    $val = addslashes($bareval);
+                    			$val = addslashes($bareval);
 					$sql  = "INSERT INTO ${table} ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
 					$result = mysql_query($sql);
 				}
@@ -175,8 +184,8 @@ FROM question Q, question_type T
 					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
 					$c_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($c_result)) {
-                        if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
-                            continue;
+                        			if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
+                            				continue;
 						$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 						if(ereg("[^ \t\n]",$other)) {
 							$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
@@ -189,8 +198,8 @@ FROM question Q, question_type T
 				}
 				if(ereg("other_([0-9]+)", $bareval, $regs)) {
 					$cid=$regs[1];
-                    if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
-                        break; // out of the case
+                    			if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
+                        			break; // out of the case
 					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
@@ -205,12 +214,12 @@ FROM question Q, question_type T
 				$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%'";
 				$c_result = mysql_query($sql);
 				while(list($cid) = mysql_fetch_row($c_result)) {
-                    if (!isset($HTTP_POST_VARS["${qid}_${cid}"]) || empty($HTTP_POST_VARS["${qid}_${cid}"]))
-                        continue;
-                    if (!isset($HTTP_POST_VARS[$qid]))
-                        $HTTP_POST_VARS[$qid] = array($cid);
-                    else
-                        array_push($HTTP_POST_VARS[$qid], $cid);
+                    		if (!isset($HTTP_POST_VARS["${qid}_${cid}"]) || empty($HTTP_POST_VARS["${qid}_${cid}"]))
+                        		continue;
+                    		if (!isset($HTTP_POST_VARS[$qid]))
+                        		$HTTP_POST_VARS[$qid] = array($cid);
+                    		else
+                        		array_push($HTTP_POST_VARS[$qid], $cid);
 					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
@@ -233,8 +242,8 @@ FROM question Q, question_type T
 					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}'";
 					$cid_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($cid_result)) {
-                        if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
-                            continue;
+                        			if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
+                            				continue;
 						$val = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 						if(strtolower($val) == "n/a")
 							$rank = -1;
