@@ -69,7 +69,7 @@ function render_survey($sid, $section = 1, $message = '') {
 		$qid  = &$question['id'];
 		$tid  = &$question['type_id'];
 		$size = &$question['length'];
-		$prec = &$question['precision'];
+		$prec = &$question['precise'];
 
 		++$i;
 		if($has_choices[$tid]) {
@@ -111,7 +111,7 @@ function render_survey($sid, $section = 1, $message = '') {
 				break;
 			case '3':	// essay
 ?>
-					<?php echo(mktextarea($qid, $size, $prec, 'VIRTUAL')); ?>
+					<?php echo(mktextarea($qid, $prec, $size, 'VIRTUAL')); ?>
 <?php
 				break;
 			case '4':	// radio
@@ -133,7 +133,7 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 						<tr>
 							<td><?php echo(mkradio($qid,"other_$cid")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_$cid", $size, $prec)); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_$cid")); ?></td>
 						</tr>
 <?php
 					$j++;
@@ -158,7 +158,7 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,"other_$cid")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_$cid", $size, $prec)); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_$cid")); ?></td>
 						</tr>
 <?php
 					$j++;
@@ -195,12 +195,21 @@ function render_survey($sid, $section = 1, $message = '') {
 					<table border="0" cellspacing="1" cellpadding="0">
 						<tr>
 							<td></td>
-							<td width="40" align="center" bgcolor="#eeeeee">1</td>
-							<td width="40" align="center" bgcolor="#dddddd">2</td>
-							<td width="40" align="center" bgcolor="#eeeeee">3</td>
-							<td width="40" align="center" bgcolor="#dddddd">4</td>
-							<td width="40" align="center" bgcolor="#eeeeee">5</td>
-							<td width="40" align="center" bgcolor="#dddddd">N/A</td>
+<?php
+				$bg = '#eeeeee';
+				for ($i = 0; $i < $size; $i++) {
+?>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo($i+1); ?></td>
+<?php
+					if ($bg == '#eeeeee')   $bg = '#dddddd';
+					else                    $bg = '#eeeeee';
+				}
+				if ($prec) {
+?>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(_('N/A')); ?></td>
+<?php
+				}
+?>
 						</tr>
 <?php
 				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
@@ -209,12 +218,21 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 						<tr>
 							<td align="right"><?php echo($choice['content']); ?></td>
-							<td width="40" align="center" bgcolor="#eeeeee"><?php echo(mkradio($str,1)); ?></td>
-							<td width="40" align="center" bgcolor="#dddddd"><?php echo(mkradio($str,2)); ?></td>
-							<td width="40" align="center" bgcolor="#eeeeee"><?php echo(mkradio($str,3)); ?></td>
-							<td width="40" align="center" bgcolor="#dddddd"><?php echo(mkradio($str,4)); ?></td>
-							<td width="40" align="center" bgcolor="#eeeeee"><?php echo(mkradio($str,5)); ?></td>
-							<td width="40" align="center" bgcolor="#dddddd"><?php echo(mkradio($str,'N/A')); ?></td>
+<?php
+					$bg = '#eeeeee';
+					for ($i = 0; $i < $size; $i++) {
+?>					
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,$i)); ?></td>
+<?php
+						if ($bg == '#eeeeee')   $bg = '#dddddd';
+						else                    $bg = '#eeeeee';
+					}
+					if ($prec) {
+?>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,'N/A')); ?></td>
+<?php
+					}
+?>
 						</tr>
 <?php			} ?>
 					</table>
