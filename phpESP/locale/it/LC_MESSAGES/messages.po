@@ -1,0 +1,1541 @@
+# phpESP
+# By James Flemer <jflemer@acm.jhu.edu>
+# $Id$
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpESP-1.5\n"
+"POT-Creation-Date: 2002-10-15 10:25-0400\n"
+"PO-Revision-Date: 2002-02-18 13:29-0500\n"
+"Last-Translator: <info@cawi.it>\n"
+"Language-Team: it <info@cawi.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+#
+# File: phpESP/admin/include/funcs.inc, line: 45
+# File: phpESP/admin/include/where/tab.inc, line: 133
+msgid "Unable to open include file. Check INI settings. Aborting."
+msgstr ""
+"Non abilitato ad aprire il file incluso. Controlla INI settaggi. Il "
+"programma verrà terminato."
+#
+# File: phpESP/admin/include/function/survey_copy.inc, line: 32
+msgid "copy"
+msgstr "copia"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 22
+# File: phpESP/admin/include/function/survey_merge.inc, line: 27
+msgid "Invalid argument."
+msgstr "Argomento non valido"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 45
+# File: phpESP/admin/include/function/survey_report.inc, line: 37
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 61
+# File: phpESP/admin/include/function/survey_results.inc, line: 74
+# File: phpESP/admin/include/function/survey_results.inc, line: 124
+# File: phpESP/admin/include/function/survey_results.inc, line: 129
+msgid "Error opening survey."
+msgstr "Errore di apertura indagine."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 58
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+msgid "Error opening surveys."
+msgstr "Errore di apertura indagine"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 64
+# File: phpESP/admin/include/function/survey_results.inc, line: 129
+msgid "No responses found."
+msgstr "Risposte non trovate."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 64
+msgid "Total"
+msgstr "Totale"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 74
+msgid "No questions found."
+msgstr "Domande non trovate."
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 64
+# File: phpESP/admin/include/function/survey_render.inc, line: 327
+msgid "Page"
+msgstr "Pagina"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 64
+# File: phpESP/admin/include/function/survey_render.inc, line: 327
+msgid "of"
+msgstr "di"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 69
+msgid "Questions marked with a"
+msgstr "Domande segnate con "
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 70
+msgid "are required."
+msgstr "sono richiesti."
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 144
+# File: phpESP/admin/include/function/survey_report.inc, line: 70
+# File: phpESP/admin/include/function/survey_report.inc, line: 72
+# File: phpESP/admin/include/function/survey_results.inc, line: 199
+# File: phpESP/admin/include/where/admdesigner.inc, line: 269
+# File: phpESP/admin/include/where/admdesigner.inc, line: 279
+# File: phpESP/admin/include/where/admdesigner.inc, line: 284
+# File: phpESP/admin/include/where/admdesigner.inc, line: 290
+# File: phpESP/admin/include/where/admdesigner.inc, line: 295
+# File: phpESP/admin/include/where/admdesigner.inc, line: 301
+# File: phpESP/admin/include/where/admdesigner.inc, line: 306
+# File: phpESP/admin/include/where/admrespondent.inc, line: 245
+msgid "Yes"
+msgstr "Si"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 148
+# File: phpESP/admin/include/function/survey_report.inc, line: 70
+# File: phpESP/admin/include/function/survey_report.inc, line: 72
+# File: phpESP/admin/include/function/survey_results.inc, line: 201
+# File: phpESP/admin/include/where/admdesigner.inc, line: 269
+# File: phpESP/admin/include/where/admdesigner.inc, line: 279
+# File: phpESP/admin/include/where/admdesigner.inc, line: 284
+# File: phpESP/admin/include/where/admdesigner.inc, line: 290
+# File: phpESP/admin/include/where/admdesigner.inc, line: 295
+# File: phpESP/admin/include/where/admdesigner.inc, line: 301
+# File: phpESP/admin/include/where/admdesigner.inc, line: 306
+# File: phpESP/admin/include/where/admrespondent.inc, line: 245
+msgid "No"
+msgstr "No"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 237
+msgid "1"
+msgstr "1"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 238
+msgid "2"
+msgstr "2"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 239
+msgid "3"
+msgstr "3"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 240
+msgid "4"
+msgstr "4"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 241
+msgid "5"
+msgstr "5"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 242
+# File: phpESP/admin/include/function/survey_render.inc, line: 265
+msgid "N/A"
+msgstr "Non disponibile"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 25
+# File: phpESP/admin/include/function/survey_results.inc, line: 49
+msgid "Error system table corrupt."
+msgstr "Errore tabella di sistema corrotta"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 25
+# File: phpESP/admin/include/function/survey_results.inc, line: 49
+# File: phpESP/admin/include/function/survey_results.inc, line: 85
+msgid "Table"
+msgstr "Tabella"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 52
+msgid "Report for"
+msgstr "Rapporto per"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 52
+# File: phpESP/admin/include/function/survey_report.inc, line: 58
+# File: phpESP/admin/include/function/survey_update.inc, line: 295
+# File: phpESP/admin/include/where/access.inc, line: 134
+# File: phpESP/admin/include/where/access.inc, line: 159
+# File: phpESP/admin/include/where/copy.inc, line: 67
+# File: phpESP/admin/include/where/edit.inc, line: 34
+# File: phpESP/admin/include/where/export.inc, line: 28
+# File: phpESP/admin/include/where/purge.inc, line: 49
+# File: phpESP/admin/include/where/report.inc, line: 67
+# File: phpESP/admin/include/where/results.inc, line: 117
+# File: phpESP/admin/include/where/status.inc, line: 136
+# File: phpESP/admin/include/where/test.inc, line: 107
+msgid "ID"
+msgstr "ID"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 57
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 175
+msgid "#"
+msgstr "#"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 59
+msgid "Req'd"
+msgstr "Richiesto"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 60
+# File: phpESP/admin/include/where/access.inc, line: 91
+# File: phpESP/admin/include/where/access.inc, line: 139
+# File: phpESP/admin/include/where/access.inc, line: 164
+# File: phpESP/admin/include/where/access.inc, line: 198
+msgid "Public"
+msgstr "Pubblico"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+msgid "Content"
+msgstr "Contenuto"
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 85
+msgid "Error cross-analyzing. Question not valid type."
+msgstr "Errore di analisi incrociate. Domanda di tipo non valido."
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 151
+msgid "Cross analysis on QID:"
+msgstr "Analisi incrociate su QID:"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 37
+# File: phpESP/admin/include/function/survey_update.inc, line: 78
+msgid "Sorry, please fill out the name, group, and title before proceeding."
+msgstr ""
+"Spiacente, per piacere riempire il nome, gruppo, e titolo prima di "
+"continuare."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 56
+msgid "Sorry, name already in use. Pick a new name."
+msgstr "Spiacente, nome gia' in uso. Scegli un nuovo nome."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 96
+msgid "Sorry, that name is already in use."
+msgstr "Spiacente, questo nome e' gia' in uso."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 109
+# File: phpESP/admin/include/function/survey_update.inc, line: 250
+# File: phpESP/admin/include/function/survey_update.inc, line: 286
+msgid "Warning, error encountered."
+msgstr "Attenzione, incontrato errore."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 123
+msgid "Please enter text for this question."
+msgstr "Per piacere introduci il testo per questa domanda."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 148
+msgid "Sorry, you must select a type for this question."
+msgstr "Spiacentee, devi scegliere un tipo per questa domanda."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 153
+# File: phpESP/admin/include/tab/questions.inc, line: 38
+# File: phpESP/admin/include/tab/questions.inc, line: 102
+# File: phpESP/admin/include/tab/questions.inc, line: 106
+msgid "New Field"
+msgstr "Nuovo campo"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 168
+msgid ""
+"Sorry, you cannot change between those types of question. Create a new "
+"question instead."
+msgstr ""
+"Spiacente, non puoi cambiare tra questi tipi di domande. Creare invece una "
+"nuova domanda."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 294
+msgid "Sorry, you need at least one answer option for this question type."
+msgstr ""
+"Spiacente, hai bisogno di almeno una opzione di risposta per questa tipo di "
+"domanda."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 25
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 30
+msgid "Unable to execute query for access."
+msgstr "Incapace di eseguire la richiesta di accesso"
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 54
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 59
+msgid "Unable to execute query respondents."
+msgstr "Incapace di eseguire la richiesta dei rispondenti."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 69
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 87
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 156
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 157
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 158
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 74
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 92
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 210
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 211
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 212
+msgid "Unauthorized"
+msgstr "Non autorizzato"
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 70
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 75
+msgid ""
+"Incorrect User ID or Password, or your account has been disabled/expired."
+msgstr ""
+"Non coretto User ID o Password, o la tua account e stata disadilitata/"
+"scaduta."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 88
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 93
+msgid ""
+"Your account has been disabled or you have already completed this survey."
+msgstr ""
+"La tua account e stata disabilitata o hai gia' completato questa indagine."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 137
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 138
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 140
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 165
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 166
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 168
+msgid "Service Unavailable"
+msgstr "Servizio non disponibile."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 141
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 169
+msgid "Unable to load ACL."
+msgstr "Incapace di caricare ACL."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 155
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 209
+# File: phpESP/admin/include/where/manage.inc, line: 13
+msgid "Management Interface"
+msgstr "Interfaccia di gestione."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 159
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 213
+msgid "Incorrect User ID or Password, or your account has been disabled."
+msgstr ""
+"Non corretta User ID o Password, o la tua account è stata disabilitata. "
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 245
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 299
+msgid "This account does not have permission"
+msgstr "Questa account non ha permessi"
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 247
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 301
+# File: phpESP/admin/include/tab/finish.inc, line: 46
+# File: phpESP/admin/include/where/access.inc, line: 128
+# File: phpESP/admin/include/where/access.inc, line: 152
+# File: phpESP/admin/include/where/access.inc, line: 218
+# File: phpESP/admin/include/where/admdesigner.inc, line: 316
+# File: phpESP/admin/include/where/admrespondent.inc, line: 255
+# File: phpESP/admin/include/where/copy.inc, line: 30
+# File: phpESP/admin/include/where/copy.inc, line: 39
+# File: phpESP/admin/include/where/copy.inc, line: 104
+# File: phpESP/admin/include/where/debug_dump.inc, line: 5
+# File: phpESP/admin/include/where/debug_dump.inc, line: 11
+# File: phpESP/admin/include/where/designers.inc, line: 141
+# File: phpESP/admin/include/where/edit.inc, line: 61
+# File: phpESP/admin/include/where/export.inc, line: 18
+# File: phpESP/admin/include/where/export.inc, line: 91
+# File: phpESP/admin/include/where/export.inc, line: 155
+# File: phpESP/admin/include/where/groups.inc, line: 48
+# File: phpESP/admin/include/where/groups.inc, line: 89
+# File: phpESP/admin/include/where/guide.inc, line: 11
+# File: phpESP/admin/include/where/guide.inc, line: 21
+# File: phpESP/admin/include/where/merge.inc, line: 30
+# File: phpESP/admin/include/where/merge.inc, line: 139
+# File: phpESP/admin/include/where/passwd.inc, line: 21
+# File: phpESP/admin/include/where/passwd.inc, line: 58
+# File: phpESP/admin/include/where/purge.inc, line: 12
+# File: phpESP/admin/include/where/purge.inc, line: 45
+# File: phpESP/admin/include/where/purge.inc, line: 101
+# File: phpESP/admin/include/where/readme.inc, line: 11
+# File: phpESP/admin/include/where/readme.inc, line: 21
+# File: phpESP/admin/include/where/report.inc, line: 36
+# File: phpESP/admin/include/where/report.inc, line: 94
+# File: phpESP/admin/include/where/respondents.inc, line: 140
+# File: phpESP/admin/include/where/results.inc, line: 82
+# File: phpESP/admin/include/where/results.inc, line: 177
+# File: phpESP/admin/include/where/status.inc, line: 133
+# File: phpESP/admin/include/where/status.inc, line: 226
+# File: phpESP/admin/include/where/test.inc, line: 70
+# File: phpESP/admin/include/where/test.inc, line: 141
+# File: phpESP/admin/include/where/todo.inc, line: 6
+# File: phpESP/admin/include/where/todo.inc, line: 16
+# File: phpESP/admin/include/where/upload.inc, line: 122
+msgid "Go back to Management Interface"
+msgstr "Vai giu nella interfaccia di gestione"
+#
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 62
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 119
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 158
+msgid "TOTAL"
+msgstr "TOTALE"
+#
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 84
+msgid "Rank"
+msgstr "Riga"
+#
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 175
+msgid "Response"
+msgstr "Risposta"
+#
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 200
+msgid "Average rank"
+msgstr "Riga media"
+#
+# File: phpESP/admin/include/lib/espresponse.inc, line: 57
+msgid "You are missing the following required questions:"
+msgstr "Stai saltando la seguente domanda richiesta:"
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 21
+msgid "Survey Design Completed"
+msgstr "Questionario completato."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 23
+msgid "You have completed this survey design."
+msgstr "Hai completato questo questionario."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 25
+msgid ""
+"To insert this survey into your web page, copy the text\n"
+"below, and paste it into the HTML of your page."
+msgstr ""
+"Per inserire questa indagine nella tua pagine web, copia il testo sotto, e "
+"incollalo nella HTML della tua pagina."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 33
+msgid ""
+"Once activated you can also access the survey directly\n"
+"from the following URL."
+msgstr ""
+"Una volta attivato puoi anche accedere all' indagine direttamente dal "
+"seguente URL."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 39
+msgid ""
+"You must activate this survey before you can collect\n"
+"results. Once a survey is active, you may no longer make any\n"
+"changes to it. You may activate this survey by choosing\n"
+"<b>Change the Status of an Existing Survey</b> from the\n"
+"Management Interface."
+msgstr ""
+"Devi attivare questa indagine prima di raccogliere risultati. Una volta che "
+"l'indagine è attivata, non si potranno più effettuare cambiamenti. Puoi "
+"attivare questa indagine scegliendo <b>Cambia lo stato di un esistente "
+"indagine</B> dalla interfaccia di gestione."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 30
+msgid ""
+"The information on this tab applies to the whole survey.\n"
+"Fill out this page then go to the <b>Fields</b> tab to\n"
+"edit individual fields."
+msgstr ""
+"Le informazioni in queste linguette si applicano all'intera indagine.Riempi "
+"questa pagina poi vai nel <b>Campo</b>tab per correggere campi individuali."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 37
+# File: phpESP/admin/include/where/access.inc, line: 135
+# File: phpESP/admin/include/where/access.inc, line: 160
+# File: phpESP/admin/include/where/copy.inc, line: 68
+# File: phpESP/admin/include/where/edit.inc, line: 35
+# File: phpESP/admin/include/where/export.inc, line: 29
+# File: phpESP/admin/include/where/purge.inc, line: 50
+# File: phpESP/admin/include/where/report.inc, line: 68
+# File: phpESP/admin/include/where/results.inc, line: 119
+# File: phpESP/admin/include/where/status.inc, line: 137
+# File: phpESP/admin/include/where/test.inc, line: 108
+msgid "Name"
+msgstr "Nome"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 43
+msgid "Survey filename."
+msgstr "Nome indagine."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 44
+msgid "This is used for all further access to this survey."
+msgstr "Questo e usato per tutti i futuri acessi a questa indagine."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 45
+msgid "no spaces"
+msgstr "no spazi"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 45
+msgid "alpha-numeric only"
+msgstr "solo caratteri alfanumerici"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 49
+# File: phpESP/admin/include/where/access.inc, line: 138
+# File: phpESP/admin/include/where/access.inc, line: 141
+# File: phpESP/admin/include/where/access.inc, line: 163
+# File: phpESP/admin/include/where/admdesigner.inc, line: 217
+# File: phpESP/admin/include/where/admrespondent.inc, line: 193
+# File: phpESP/admin/include/where/copy.inc, line: 72
+# File: phpESP/admin/include/where/designers.inc, line: 88
+# File: phpESP/admin/include/where/edit.inc, line: 38
+# File: phpESP/admin/include/where/export.inc, line: 32
+# File: phpESP/admin/include/where/groups.inc, line: 52
+# File: phpESP/admin/include/where/purge.inc, line: 53
+# File: phpESP/admin/include/where/report.inc, line: 71
+# File: phpESP/admin/include/where/respondents.inc, line: 87
+# File: phpESP/admin/include/where/results.inc, line: 122
+# File: phpESP/admin/include/where/status.inc, line: 140
+# File: phpESP/admin/include/where/test.inc, line: 111
+msgid "Group"
+msgstr "gruppo"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 65
+msgid "Group that owns this survey."
+msgstr "Gruppo che possiede questa indagine."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 69
+# File: phpESP/admin/include/where/access.inc, line: 136
+# File: phpESP/admin/include/where/access.inc, line: 161
+# File: phpESP/admin/include/where/copy.inc, line: 69
+# File: phpESP/admin/include/where/edit.inc, line: 36
+# File: phpESP/admin/include/where/export.inc, line: 30
+# File: phpESP/admin/include/where/purge.inc, line: 51
+# File: phpESP/admin/include/where/report.inc, line: 69
+# File: phpESP/admin/include/where/results.inc, line: 120
+# File: phpESP/admin/include/where/status.inc, line: 138
+# File: phpESP/admin/include/where/test.inc, line: 109
+msgid "Title"
+msgstr "Titolo "
+#
+# File: phpESP/admin/include/tab/general.inc, line: 74
+msgid "Title of the survey."
+msgstr "Titolo dell' indagine"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 75
+msgid "This appears at the top of every page of the survey."
+msgstr "Questo appare all'apice di ogni pagina dell' indagine."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 76
+# File: phpESP/admin/include/tab/general.inc, line: 86
+msgid "free-form"
+msgstr "forma libera"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 76
+# File: phpESP/admin/include/tab/general.inc, line: 86
+msgid "including spaces"
+msgstr "includendo spazi"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 81
+msgid "Subtitle"
+msgstr "Sottotitolo"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 85
+msgid "Subtitle of the survey."
+msgstr "Sottotitolo dell' indagine."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 86
+msgid "Appears below the title."
+msgstr "Appare sotto il titolo."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 91
+msgid "Additional Info"
+msgstr "Informazioni aggiuntive"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 94
+msgid "Text to be displayed on the survey before any fields."
+msgstr "Testo che apparirà nell' indagine prima di ogni campo."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 95
+msgid "ie. instructions, background info, etc."
+msgstr "ie. istruzioni, informazioni di sfondo, etc."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 100
+# File: phpESP/admin/include/where/admdesigner.inc, line: 252
+# File: phpESP/admin/include/where/admrespondent.inc, line: 228
+msgid "Email"
+msgstr "Email"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 103
+msgid ""
+"Sends a copy of each submission to address (or leave blank for no email "
+"backup)."
+msgstr ""
+"Spedidci una copia di ogni presentazione all' indirizzo (o lascia vuoto per "
+"non inviare nessuna email di backup)."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 107
+msgid "Survey Theme"
+msgstr "Tema dell' indagine"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 124
+msgid "Select a theme (css) to use with this survey."
+msgstr "Scegli un tema (css) da utilizzare con questa indagine."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 128
+msgid "Confirmation Heading"
+msgstr "Conferma intestazione "
+#
+# File: phpESP/admin/include/tab/general.inc, line: 132
+msgid ""
+"Heading on the &quot;Confirmation&quot; page (appearing after a user "
+"completes a survey). This is displayed in bold."
+msgstr ""
+"Intestazione nel &quot;Confirmation&quot; pagina (appare dopo che un utente "
+"completa un indagine). Questo appare in grasetto."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 136
+msgid "Confirmation Text"
+msgstr "Conferma testo"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 140
+msgid ""
+"Body text on the &quot;Confirmation&quot; page. This is displayed below the "
+"Confirmation Heading."
+msgstr ""
+"Corpo del testo in &quot;Confirmation&quot; pagina. Questo appare sotto l' "
+"intestazione di conferma"
+#
+# File: phpESP/admin/include/tab/order.inc, line: 76
+msgid ""
+"Change the order that questions are\n"
+"presented by choosing the desired position from the\n"
+"list."
+msgstr ""
+"Cambia l'ordine della presentazione delle domande scegliendo la posizione "
+"desiderata dalla lista. "
+#
+# File: phpESP/admin/include/tab/order.inc, line: 139
+msgid "----- Section Break -----"
+msgstr "Sezione interrotta"
+#
+# File: phpESP/admin/include/tab/order.inc, line: 143
+msgid "Remove"
+msgstr "Rimuovere"
+#
+# File: phpESP/admin/include/tab/order.inc, line: 144
+# File: phpESP/admin/include/where/status.inc, line: 191
+msgid "Edit"
+msgstr "Correggere"
+#
+# File: phpESP/admin/include/tab/order.inc, line: 152
+msgid "Add Section Break"
+msgstr "Sezione aggiunta interotta"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 38
+msgid ""
+"This is a preview of how the survey will look.\n"
+"In the preview the &quot;Next Page&quot; and\n"
+"&quot;Submit Survey&quot; are inactive.\n"
+"The survey will use the background color of the\n"
+"document in which it is embedded. If you have no\n"
+"further changes click <b>Finish</b> at the bottom of\n"
+"this page."
+msgstr ""
+"Questa è antrprima di come l'indagine apparirà. Nell'anteprima la &quot,"
+"Prossima pagina&quot; e &quot; Indagine&quot; sono disabilitate. L'indagine "
+"userà i colori di backround del documento in cui è inserito. Se non hai "
+"ulteriori cambiamenti clicca <b>Fine</b> al fondo di questa pagina. "
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 46
+msgid "Section"
+msgstr "Sezione"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 70
+msgid "Next Page"
+msgstr "Prossima pagina"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 72
+msgid "Submit Survey"
+msgstr "Indagine sottoposta."
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 97
+msgid ""
+"Edit this field, or click the number of the field you would like to edit:"
+msgstr ""
+"Correggi questo campo, o clicca il numero del campo che vorresti correggere:"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 108
+msgid "Field"
+msgstr "Campo"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 113
+msgid "Field Name"
+msgstr "Nome del campo"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 114
+msgid "Type"
+msgstr "Tipo"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 115
+msgid "Length"
+msgstr "Lunghezza"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 116
+msgid "Precision"
+msgstr "Precisione"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 117
+msgid "Required?"
+msgstr "Richiesta?"
+#
+# File: phpESP/admin/include/tab/questions_options.inc, line: 33
+msgid ""
+"Enter the possible answers (if applicable). Enter\n"
+"<tt>!other</tt> on an line by itself to create a\n"
+"fill-in-the-blank answer at the end of this question.\n"
+"Any blank lines will be suppressed."
+msgstr ""
+"Introduci le possibili risposte (se applicabile). Introduci <tt>!altrimenti</"
+"tt> in una linea stessa per creare a fill nella risposta vuota alla fine "
+"della domanda. Tutte le linee vuote veranno eliminate."
+#
+# File: phpESP/admin/include/tab/questions_options.inc, line: 63
+msgid "Add another answer line"
+msgstr "Aggiungi un altra linea di risposta."
+#
+# File: phpESP/admin/include/where/access.inc, line: 68
+msgid "Please select a group."
+msgstr "Per piacere seleziona un gruppo."
+#
+# File: phpESP/admin/include/where/access.inc, line: 89
+# File: phpESP/admin/include/where/access.inc, line: 195
+msgid "Private"
+msgstr "Privato"
+#
+# File: phpESP/admin/include/where/access.inc, line: 111
+msgid "Survey Access"
+msgstr "Acesso all' indagine"
+#
+# File: phpESP/admin/include/where/access.inc, line: 117
+msgid ""
+"This lets you control who has access to fill out a form.\n"
+"Public surveys let anyone submit data.\n"
+"Private surveys are restricted by Respondent Groups."
+msgstr ""
+"Questo lascia controllare chi ha acesso di riempire una forma. Le indagie "
+"pubbliche permettono a tutti di inviare dati. Le indagini private sono "
+"ristrette dal Gruppo di Rispondenti."
+#
+# File: phpESP/admin/include/where/access.inc, line: 121
+msgid "Note"
+msgstr "Note"
+#
+# File: phpESP/admin/include/where/access.inc, line: 122
+msgid "You must use"
+msgstr "Devi utilizzarlo"
+#
+# File: phpESP/admin/include/where/access.inc, line: 125
+msgid "when using private surveys."
+msgstr "quando si utilizzano indagini personali."
+#
+# File: phpESP/admin/include/where/access.inc, line: 137
+# File: phpESP/admin/include/where/access.inc, line: 162
+# File: phpESP/admin/include/where/copy.inc, line: 71
+# File: phpESP/admin/include/where/edit.inc, line: 37
+# File: phpESP/admin/include/where/export.inc, line: 31
+# File: phpESP/admin/include/where/purge.inc, line: 52
+# File: phpESP/admin/include/where/report.inc, line: 70
+# File: phpESP/admin/include/where/results.inc, line: 121
+# File: phpESP/admin/include/where/status.inc, line: 139
+# File: phpESP/admin/include/where/test.inc, line: 110
+msgid "Owner"
+msgstr "Propietario"
+#
+# File: phpESP/admin/include/where/access.inc, line: 141
+msgid "Max Logins"
+msgstr "Numero massimo di accessi."
+#
+# File: phpESP/admin/include/where/access.inc, line: 150
+# File: phpESP/admin/include/where/groups.inc, line: 86
+msgid "Add"
+msgstr "Aggiungi"
+#
+# File: phpESP/admin/include/where/access.inc, line: 196
+msgid "Make Public"
+msgstr "Fai pubblico"
+#
+# File: phpESP/admin/include/where/access.inc, line: 199
+msgid "Make Private"
+msgstr "Fai privato"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 32
+# File: phpESP/admin/include/where/admrespondent.inc, line: 32
+msgid "to access this group"
+msgstr "per accedere a questo gruppo"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 36
+# File: phpESP/admin/include/where/admrespondent.inc, line: 36
+msgid "Cannot delete account."
+msgstr "Non e possibile cancellare account"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 101
+# File: phpESP/admin/include/where/admrespondent.inc, line: 95
+msgid "Username, Password, and Group are required."
+msgstr "Usename, Password, e Gruppo sono richiesti."
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 109
+# File: phpESP/admin/include/where/admrespondent.inc, line: 103
+msgid "Error adding account."
+msgstr "Errore accordando account."
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 144
+# File: phpESP/admin/include/where/admrespondent.inc, line: 127
+msgid "Cannot change account data."
+msgstr "Non è possibile cambiare la data dell'account. "
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 191
+# File: phpESP/admin/include/where/admrespondent.inc, line: 167
+msgid "Account not found."
+msgstr "Account non trovata."
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 197
+msgid "Designer Account Administration"
+msgstr "Disignare amministratore dell account"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 203
+# File: phpESP/admin/include/where/admrespondent.inc, line: 179
+# File: phpESP/admin/include/where/designers.inc, line: 85
+# File: phpESP/admin/include/where/manage.inc, line: 19
+# File: phpESP/admin/include/where/passwd.inc, line: 34
+# File: phpESP/admin/include/where/respondents.inc, line: 84
+msgid "Username"
+msgstr "Username"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 212
+# File: phpESP/admin/include/where/admrespondent.inc, line: 188
+msgid "Password"
+msgstr "Password"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 242
+# File: phpESP/admin/include/where/admrespondent.inc, line: 218
+# File: phpESP/admin/include/where/designers.inc, line: 86
+# File: phpESP/admin/include/where/respondents.inc, line: 85
+msgid "First Name"
+msgstr "Nome"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 247
+# File: phpESP/admin/include/where/admrespondent.inc, line: 223
+# File: phpESP/admin/include/where/designers.inc, line: 87
+# File: phpESP/admin/include/where/respondents.inc, line: 86
+msgid "Last Name"
+msgstr "Cognome"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 257
+# File: phpESP/admin/include/where/admrespondent.inc, line: 233
+msgid "Expiration"
+msgstr "Scadenza"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 262
+# File: phpESP/admin/include/where/admrespondent.inc, line: 238
+msgid "year"
+msgstr "anno"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 263
+# File: phpESP/admin/include/where/admrespondent.inc, line: 239
+msgid "month"
+msgstr "mese "
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 264
+# File: phpESP/admin/include/where/admrespondent.inc, line: 240
+msgid "day"
+msgstr "giorno"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 268
+# File: phpESP/admin/include/where/admrespondent.inc, line: 244
+msgid "Disabled"
+msgstr "Disabilitato"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 273
+# File: phpESP/admin/include/where/admdesigner.inc, line: 310
+# File: phpESP/admin/include/where/admrespondent.inc, line: 249
+msgid "Update"
+msgstr "Aggiornare"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 274
+# File: phpESP/admin/include/where/admdesigner.inc, line: 311
+# File: phpESP/admin/include/where/admrespondent.inc, line: 250
+msgid "Cancel"
+msgstr "Cancellare"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 275
+# File: phpESP/admin/include/where/admdesigner.inc, line: 312
+# File: phpESP/admin/include/where/admrespondent.inc, line: 251
+# File: phpESP/admin/include/where/groups.inc, line: 71
+msgid "Delete"
+msgstr "Cancella"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 278
+msgid "Design Surveys"
+msgstr "Questionario"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 283
+msgid "Change Survey Status"
+msgstr "Cambia stati dell' indagine"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 285
+msgid "Activate/End"
+msgstr "Attivato/Fine"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 289
+msgid "Export Survey Data"
+msgstr "Esportazione dati indagine"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 294
+msgid "Group Editor"
+msgstr "Gruppo di controllo"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 296
+msgid "may edit <b>all</b> forms owned by this group"
+msgstr "per correggere<b>all</b>forme propie del gruppo"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 300
+msgid "Administer Group Members"
+msgstr "Membri Gruppo di Amministrazione"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 305
+msgid "Administer Group Respondents"
+msgstr "Gruppo di Amministrazione dei Rispondenti"
+#
+# File: phpESP/admin/include/where/admrespondent.inc, line: 173
+msgid "Respondent Account Administration"
+msgstr "Account di Amministrazione dei Rispondenti"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 23
+# File: phpESP/admin/include/where/download.inc, line: 36
+# File: phpESP/admin/include/where/download.inc, line: 47
+# File: phpESP/admin/include/where/export.inc, line: 112
+# File: phpESP/admin/include/where/export.inc, line: 124
+# File: phpESP/admin/include/where/results.inc, line: 29
+# File: phpESP/admin/include/where/results.inc, line: 41
+# File: phpESP/admin/include/where/status.inc, line: 98
+# File: phpESP/admin/include/where/test.inc, line: 34
+msgid "to access this survey"
+msgstr "per accedere a l'indagine"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 29
+msgid "Error copying survey."
+msgstr "Errore copiando indagine."
+#
+# File: phpESP/admin/include/where/copy.inc, line: 60
+msgid "Copy Survey"
+msgstr "Copia l'indagine"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 61
+msgid ""
+"\n"
+"Choose a survey of which to make a copy. The copy will have the same\n"
+"status of a newly created survey. You will be able to edit the\n"
+"survey, and will have to activate it before use."
+msgstr ""
+"\n"
+"Scegli un indagine della quale fare una copia. La copia avrà lo stesso stato "
+"di una indagine appena creata. Puoi correggere l'indagine, e devi attivarla "
+"prima di uttilizzarla."
+#
+# File: phpESP/admin/include/where/copy.inc, line: 70
+# File: phpESP/admin/include/where/export.inc, line: 33
+# File: phpESP/admin/include/where/purge.inc, line: 55
+# File: phpESP/admin/include/where/status.inc, line: 141
+msgid "Status"
+msgstr "Stato"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 77
+# File: phpESP/admin/include/where/export.inc, line: 58
+# File: phpESP/admin/include/where/purge.inc, line: 60
+# File: phpESP/admin/include/where/status.inc, line: 179
+msgid "Archived"
+msgstr "Archiviato"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 81
+# File: phpESP/admin/include/where/export.inc, line: 63
+# File: phpESP/admin/include/where/purge.inc, line: 64
+# File: phpESP/admin/include/where/status.inc, line: 186
+msgid "Active"
+msgstr "Attivo"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 83
+# File: phpESP/admin/include/where/export.inc, line: 55
+# File: phpESP/admin/include/where/purge.inc, line: 68
+# File: phpESP/admin/include/where/status.inc, line: 172
+msgid "Editing"
+msgstr "Editing"
+#
+# File: phpESP/admin/include/where/debug_dump.inc, line: 3
+# File: phpESP/admin/include/where/purge.inc, line: 11
+msgid "Only superusers allowed."
+msgstr "Permesso solo all' amministratore"
+#
+# File: phpESP/admin/include/where/debug_dump.inc, line: 9
+msgid "No survey specified."
+msgstr "Nessuna indagine specificata."
+#
+# File: phpESP/admin/include/where/designers.inc, line: 81
+msgid "Manage Web Form Designer Accounts"
+msgstr "Gestione del Designer degli Accounts Web"
+#
+# File: phpESP/admin/include/where/designers.inc, line: 82
+# File: phpESP/admin/include/where/respondents.inc, line: 81
+msgid "Click on a username to edit, or click on add new user below."
+msgstr ""
+"Clicca nell' username per modificare, o clicca sotto per aggiungere un nuovo "
+"utente."
+#
+# File: phpESP/admin/include/where/designers.inc, line: 96
+# File: phpESP/admin/include/where/respondents.inc, line: 95
+msgid "disabled"
+msgstr "Disabilitato"
+#
+# File: phpESP/admin/include/where/designers.inc, line: 128
+msgid "Add a new Designer"
+msgstr "Aggiungi un nuovo Designer"
+#
+# File: phpESP/admin/include/where/designers.inc, line: 133
+msgid "Bulk Upload Designers"
+msgstr "Upload massivo dei Designers"
+#
+# File: phpESP/admin/include/where/download.inc, line: 20
+msgid "Invalid survey ID."
+msgstr "Invalido ID indagine."
+#
+# File: phpESP/admin/include/where/download.inc, line: 58
+msgid "DBF download not yet implemented."
+msgstr "DBF download non ancora completata."
+#
+# File: phpESP/admin/include/where/download.inc, line: 60
+# File: phpESP/admin/include/where/export.inc, line: 138
+msgid "The PHP dBase Extension is not installed."
+msgstr "L'estensione del PHP dBase non è installato."
+#
+# File: phpESP/admin/include/where/edit.inc, line: 30
+msgid "Edit a Survey"
+msgstr "Modifica un indagine"
+#
+# File: phpESP/admin/include/where/edit.inc, line: 31
+msgid "Pick Survey to Edit"
+msgstr "Scegli l'indagine per modificarla."
+#
+# File: phpESP/admin/include/where/export.inc, line: 17
+msgid "Export Data"
+msgstr "Esportazione Dati"
+#
+# File: phpESP/admin/include/where/export.inc, line: 34
+msgid "Format"
+msgstr "Formatto"
+#
+# File: phpESP/admin/include/where/export.inc, line: 61
+# File: phpESP/admin/include/where/purge.inc, line: 62
+# File: phpESP/admin/include/where/status.inc, line: 183
+msgid "Ended"
+msgstr "Fine"
+#
+# File: phpESP/admin/include/where/export.inc, line: 65
+# File: phpESP/admin/include/where/purge.inc, line: 66
+# File: phpESP/admin/include/where/status.inc, line: 189
+msgid "Testing"
+msgstr "Testing"
+#
+# File: phpESP/admin/include/where/export.inc, line: 81
+# File: phpESP/admin/include/where/test.inc, line: 132
+msgid "CSV"
+msgstr "CSV"
+#
+# File: phpESP/admin/include/where/export.inc, line: 83
+# File: phpESP/admin/include/where/test.inc, line: 133
+msgid "download"
+msgstr "download"
+#
+# File: phpESP/admin/include/where/export.inc, line: 85
+# File: phpESP/admin/include/where/test.inc, line: 134
+msgid "DBF"
+msgstr "DBF"
+#
+# File: phpESP/admin/include/where/export.inc, line: 115
+# File: phpESP/admin/include/where/export.inc, line: 147
+# File: phpESP/admin/include/where/merge.inc, line: 12
+# File: phpESP/admin/include/where/results.inc, line: 32
+# File: phpESP/admin/include/where/test.inc, line: 53
+msgid "Testing Survey..."
+msgstr "Testing indagine..."
+#
+# File: phpESP/admin/include/where/export.inc, line: 115
+# File: phpESP/admin/include/where/export.inc, line: 147
+# File: phpESP/admin/include/where/results.inc, line: 32
+# File: phpESP/admin/include/where/test.inc, line: 53
+msgid "SID"
+msgstr "SID"
+#
+# File: phpESP/admin/include/where/export.inc, line: 150
+msgid "Survey exported as:"
+msgstr "Esportazione indagine come:"
+#
+# File: phpESP/admin/include/where/export.inc, line: 152
+msgid "Error exporting survey as:"
+msgstr "Errore esportando l'indagine come:"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 11
+msgid "to access this menu"
+msgstr "per accedere a questo menu"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 21
+msgid "Error adding group."
+msgstr "Errore di aggiunta gruppo"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 25
+# File: phpESP/admin/include/where/groups.inc, line: 36
+msgid "Error deleting group."
+msgstr "Errore di cancellazione gruppo"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 32
+msgid "Group is not empty."
+msgstr "Gruppo non vuoto"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 46
+# File: phpESP/admin/include/where/manage.inc, line: 60
+msgid "Manage Groups"
+msgstr "Gruppi di amministrazione"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 53
+msgid "Description"
+msgstr "Descrizione"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 54
+msgid "Members"
+msgstr "Membri"
+#
+# File: phpESP/admin/include/where/guide.inc, line: 18
+msgid "User's guide not found."
+msgstr "Guida utenti non trovata."
+#
+# File: phpESP/admin/include/where/logout.inc, line: 14
+msgid "Log back in."
+msgstr "Log back in."
+#
+# File: phpESP/admin/include/where/manage.inc, line: 17
+msgid "Superuser"
+msgstr "Amministratore"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 26
+msgid "Choose a function"
+msgstr "Scegli una funzione"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 33
+msgid "Create a New Survey"
+msgstr "Crea una nuova indagine"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 34
+msgid "Edit an Existing Survey"
+msgstr "Controlla una indagine esistente"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 35
+# File: phpESP/admin/include/where/test.inc, line: 103
+msgid "Test a Survey"
+msgstr "Collauda un indagine"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 36
+msgid "Copy an Existing Survey"
+msgstr "Copia un' indagine esistente"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 37
+msgid "Change the Status of a Survey"
+msgstr "Cambia lo stato di un indagine"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 38
+msgid "(active/end/delete)"
+msgstr "(attivo/fine/cancella)"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 40
+msgid "Change Access To a Survey"
+msgstr "Cambia Acesso a un indagine"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 40
+msgid "Limit Respondents."
+msgstr "Numero massimo dei rispondenti."
+#
+# File: phpESP/admin/include/where/manage.inc, line: 42
+msgid "View Results from a Survey"
+msgstr "Vedi Risultati dall' indagine"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 43
+msgid "View a Survey Report"
+msgstr "Vedi Report di un' indagine"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 44
+msgid "Export Data to CSV"
+msgstr "Esporta dati da CSV"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 50
+msgid "Change Your Password"
+msgstr "Cambia la tua Password"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 57
+msgid "Manage Designer Accounts"
+msgstr "Accounts del Designer di Gestione"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 58
+# File: phpESP/admin/include/where/respondents.inc, line: 80
+msgid "Manage Respondent Accounts"
+msgstr "Accounts della Gestione dei rispondenti"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 67
+msgid "View the list of things still to do"
+msgstr "Vista della lista delle cose ancora da fare"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 68
+msgid "(development goals)"
+msgstr "(sviluppo degli obbiettivi)"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 69
+msgid "View the User &amp; Administrator Guide"
+msgstr "Vista dell Utente &amp; Guia dell' amministratore"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 74
+msgid "Log out"
+msgstr "Disconetitti"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 12
+msgid "SIDS"
+msgstr "SIDS"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 74
+msgid "Error!"
+msgstr "Errore!"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 75
+msgid "You need to select at least two surveys!"
+msgstr "Hai bisogno di scegliere almeno due indagini!"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 112
+msgid "Merge Survey Results"
+msgstr "Assemblare i risultati dell' indagine"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 113
+msgid "Pick Surveys to Merge"
+msgstr "Scegli l'indagine per assemblare"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 116
+msgid "List of Surveys"
+msgstr "Lista delle indagini"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 118
+msgid "Surveys to Merge"
+msgstr "Indagine da assemblare"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 11
+# File: phpESP/admin/include/where/passwd.inc, line: 54
+msgid "Change Password"
+msgstr "Cambia Password"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 20
+msgid "Your password has been successfully changed."
+msgstr "La tua password e stata con sucesso cambiata"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 24
+msgid "Password not set, check your old password."
+msgstr "Password non fissata, controlla la tua vecchia password."
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 27
+msgid "New passwords do not match or are blank."
+msgstr "Nuova passwords non accopiata o vuota."
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 39
+msgid "Old Password"
+msgstr "Vecchia password"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 44
+msgid "New Password"
+msgstr "Nuova password"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 49
+msgid "Confirm New Password"
+msgstr "Conferma la nuova Password"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 34
+msgid "Purge Surveys"
+msgstr "Ripulire Indagini."
+#
+# File: phpESP/admin/include/where/purge.inc, line: 36
+msgid ""
+"\n"
+"This page is not directly on the main menu because it is\n"
+"dangerous. This <b>completely</b> removes everything about a\n"
+"survey from the database <b>forever</b>. All question info,\n"
+"general info, results, etc. are purged from the database. Do\n"
+"not do anything here that you are not completely certain\n"
+"about. There is no confirmation, there is no turning\n"
+"back."
+msgstr ""
+"\n"
+"Questa pagina non è direttamente nel menu principale perchè e pericolosa. "
+"Questo <b>completly</b> rimuove qualsiasi cosa di un ingagine dal database "
+"<b>forever</b>. Tutte le domande informazioni, informazioni generali, "
+"risultati, etc. sono ripuliti dal database. Non fare nulla qui, di cui non "
+"sei completamente certo. Non ci sono  conferme, non si puo' tornare indietro."
+#
+# File: phpESP/admin/include/where/purge.inc, line: 54
+msgid "# Q's"
+msgstr "#Q's"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 96
+msgid "Clear Checkboxes"
+msgstr "Pulisci le Caselle di Controllo"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 97
+msgid "Purge"
+msgstr "Pulisci"
+#
+# File: phpESP/admin/include/where/readme.inc, line: 18
+msgid "README not found."
+msgstr "README non trovato"
+#
+# File: phpESP/admin/include/where/report.inc, line: 22
+# File: phpESP/admin/include/where/tab.inc, line: 76
+msgid "to access this form"
+msgstr "per accedere a questo questionario"
+#
+# File: phpESP/admin/include/where/report.inc, line: 35
+msgid "Go back to Report Menu"
+msgstr "Torna al Report Menu"
+#
+# File: phpESP/admin/include/where/report.inc, line: 63
+msgid "View Form Report"
+msgstr "Guarda il Form Report"
+#
+# File: phpESP/admin/include/where/report.inc, line: 64
+msgid "Pick Form to View"
+msgstr "Prendi un questionario per Vederlo"
+#
+# File: phpESP/admin/include/where/respondents.inc, line: 127
+msgid "Add a new Respondent"
+msgstr "Aggiungi un nuovo Rispondente"
+#
+# File: phpESP/admin/include/where/respondents.inc, line: 132
+msgid "Bulk Upload Respondents"
+msgstr "Carica una grande quantità di Rispondenti"
+#
+# File: phpESP/admin/include/where/results.inc, line: 79
+msgid "Test Survey"
+msgstr "Verifica la Indagine"
+#
+# File: phpESP/admin/include/where/results.inc, line: 109
+msgid "View Survey Results"
+msgstr "Guarda i Risultati dell'Indagine"
+#
+# File: phpESP/admin/include/where/results.inc, line: 110
+msgid "Pick Survey to View"
+msgstr "Seleziona Indagine per Guardarla"
+#
+# File: phpESP/admin/include/where/results.inc, line: 118
+#, fuzzy
+msgid "Respondent"
+msgstr "Risposta"
+#
+# File: phpESP/admin/include/where/results.inc, line: 123
+msgid "Resp"
+msgstr "Rispondente"
+#
+# File: phpESP/admin/include/where/status.inc, line: 102
+msgid "Can not set survey status."
+msgstr "Non posso settare lo stato dell'Indagine"
+#
+# File: phpESP/admin/include/where/status.inc, line: 103
+msgid "STATUS"
+msgstr "Stato"
+#
+# File: phpESP/admin/include/where/status.inc, line: 109
+msgid "Survey Status"
+msgstr "Stato dell'Indagine"
+#
+# File: phpESP/admin/include/where/status.inc, line: 113
+msgid ""
+"<b>Test</b> transitions a survey into testing mode. At which point you may\n"
+"perform a live test by taking the survey, and viewing the results. You will "
+"not\n"
+"be able to make any further changes to the survey once you have switched to\n"
+"test mode."
+msgstr ""
+"<b>Test</b> una indagine va nel modo verifica. A quel punto puoi eseguire "
+"una verifica dal vivo scegliendo l'indagine, e guardando i risultati. Quando "
+"passi al modo Verifica non potrai introdurre ulteriori cambiamento "
+"all'indagine."
+#
+# File: phpESP/admin/include/where/status.inc, line: 118
+msgid ""
+"<b>Activate</b> transitions a survey into active mode. In this mode the\n"
+"survey is open for production use, and may be put online. This will clear "
+"any\n"
+"results from testing mode (if any). No further editing of survey is\n"
+"allowed."
+msgstr ""
+"<b>Activate</b> una indagine va nel modo attivo. In questo modo l'indagine è "
+"aperta per l'immissione dei questionari, e puoi metterla online. Questo "
+"pulira' tutti i dati, se ve ne sono, del modo test. Non sono permessi "
+"ulteriori cambiamenti nell'indagine."
+#
+# File: phpESP/admin/include/where/status.inc, line: 123
+msgid ""
+"<b>End</b> transitions a survey into ended mode. In this mode, no edits are\n"
+"possible, no users may take the survey (it is inactive), but results are "
+"still\n"
+"viewable from the results menu."
+msgstr ""
+"<b>Fine</b> una indagine va nel modo finito. In questo modo non sono "
+"possibili correzioni, gli utenti non possono rispondere all'indagine (è "
+"inattiva), ma i risultati sono ancora guardabili dal menu results."
+#
+# File: phpESP/admin/include/where/status.inc, line: 127
+msgid ""
+"<b>Archive</b> removes this survey. It is still stored in the database, but\n"
+"no further interaction is allowed. You may <b>not</b> view the results of "
+"an\n"
+"archived survey."
+msgstr ""
+"<b>Archive</b> rimuove questa indagine. Sara' memorizzata nel database, ma "
+"non saranno permesse ulteriori interazioni. Tu puoi b>not</b> guardare i "
+"risultati di una indagine archiviata."
+#
+# File: phpESP/admin/include/where/status.inc, line: 173
+# File: phpESP/admin/include/where/test.inc, line: 130
+msgid "Test"
+msgstr "Test"
+#
+# File: phpESP/admin/include/where/status.inc, line: 174
+msgid "Activate"
+msgstr "Attiva"
+#
+# File: phpESP/admin/include/where/status.inc, line: 175
+msgid "End"
+msgstr "Fine"
+#
+# File: phpESP/admin/include/where/status.inc, line: 176
+msgid "Archive"
+msgstr "Archivia"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 85
+msgid "to design forms"
+msgstr "al design questionari "
+#
+# File: phpESP/admin/include/where/tab.inc, line: 91
+msgid "No tabs defined. Please check your INI settings."
+msgstr ""
+"Non sono definiti tabs. Controlla per cortesia il tuo settaggio di INI."
+#
+# File: phpESP/admin/include/where/tab.inc, line: 143
+# File: phpESP/admin/include/where/upload.inc, line: 99
+msgid "Help"
+msgstr "Aiuto"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 152
+msgid "General"
+msgstr "Generale"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 153
+msgid "Questions"
+msgstr "Domande"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+msgid "Order"
+msgstr "Ordine"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 155
+msgid "Preview"
+msgstr "Anteprima"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 156
+msgid "Finish"
+msgstr "Finito"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 169
+msgid ""
+"Click cancel to cancel this survey, or click continue to proceed to the next "
+"tab."
+msgstr ""
+"Click cancel per cancellare questa indagine, oppure click continue per "
+"procedere alla prossima tab."
+#
+# File: phpESP/admin/include/where/tab.inc, line: 176
+msgid ""
+"The survey title and other general fields are on the <b>General</b> tab.\n"
+"Individual survey questions are added and modified on the <b>Questions</b> "
+"tab.\n"
+"Questions may be re-ordered or deleted from the <b>Order</b> tab.\n"
+"You may see a preview of your survey at any time, by going to the "
+"<b>Preview</b>\n"
+"tab. If you have no further changes click <b>Finish</b> to go back to the\n"
+"Management Interface."
+msgstr ""
+"Il titolo dell'Indagine e altri campi generali sono nel <b>General</b> tab. "
+"Le domande dell'indagine vengono aggiunte o modificate nel <b>Questions</b> "
+"tab. Le domande possono essere cancellate o cambiate di ordine nel <b>Order</"
+"b> tab. Tu puoi vedere un'anteprima della tua indagine in ogni momento col "
+"<b>Preview</b> tab. Se non hai altri cambiamenti click su <b>Finish</b> per "
+"tornare all'Interfaccia di Gestione."
+#
+# File: phpESP/admin/include/where/tab.inc, line: 182
+msgid "Click here to open the Help window."
+msgstr "Click qui per aprire la finestra di Help."
+#
+# File: phpESP/admin/include/where/test.inc, line: 69
+msgid "View Results"
+msgstr "Guarda i Risultati"
+#
+# File: phpESP/admin/include/where/test.inc, line: 104
+msgid "Pick Survey to Test"
+msgstr "Prendi un'indagine per testarla"
+#
+# File: phpESP/admin/include/where/test.inc, line: 114
+msgid "Export"
+msgstr "Esporta"
+#
+# File: phpESP/admin/include/where/test.inc, line: 131
+msgid "Results"
+msgstr "Risultati"
+#
+# File: phpESP/admin/include/where/todo.inc, line: 13
+msgid "Todo list not found."
+msgstr "Lista Todo non trovata."
+#
+# File: phpESP/admin/include/where/upload.inc, line: 61
+msgid "An error occurred during upload.  Rows that failed are listed below."
+msgstr ""
+"Incontrato un errore nel caricamento. Le Righe che hanno dato problemi sono "
+"elencate sotto."
+#
+# File: phpESP/admin/include/where/upload.inc, line: 68
+# File: phpESP/admin/include/where/upload.inc, line: 80
+msgid "%s"
+msgstr "%s"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 87
+msgid ""
+"An error occurred during upload.  Please check the format of your text file."
+msgstr ""
+"Incontrato un errore durante il caricamento. Controlla per cortesia il "
+"formato del tuo file di testo."
+#
+# File: phpESP/admin/include/where/upload.inc, line: 91
+msgid "An error occurred during upload.  Please complete all form fields."
+msgstr ""
+"Incontrato un errore durante il caricamento. Completa per cortesia tutti i "
+"campi del questionario."
+#
+# File: phpESP/admin/include/where/upload.inc, line: 95
+msgid "Upload Account Information"
+msgstr "Caricamento Informazioni Account"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 96
+msgid "All fields are required"
+msgstr "Sono obbligatori tutti i campi"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 109
+msgid "File Type"
+msgstr "Tipo File"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 110
+msgid "Tab Delimited"
+msgstr "Delimitato da Tab"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 111
+msgid "File to upload"
+msgstr "File da caricare"
+#
+# File: phpESP/public/handler-prefix.php, line: 51
+# File: phpESP/public/handler-prefix.php, line: 56
+msgid "Error processing survey: Security violation."
+msgstr "Errore elaborando l'indagine: violazione di Sicurezza."
+#
+# File: phpESP/public/handler-prefix.php, line: 66
+msgid "Error processing survey: Survey not specified."
+msgstr "Errore elaborando l'indagine: non e' specificata l'Indagine."
+#
+# File: phpESP/public/handler.php, line: 50
+# File: phpESP/public/handler.php, line: 55
+msgid "Error processing survey: Survey is not active."
+msgstr "Errore elaborando l'indagine: Indagine non attiva."
