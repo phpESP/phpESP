@@ -20,7 +20,7 @@
 		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','public');
 	   	foreach ($fields as $f) {
             if(!empty($HTTP_POST_VARS[$f]))
-	    	    $survey[$f] = DESLASH($HTTP_POST_VARS[$f]);
+	    	    $survey[$f] = _stripslashes($HTTP_POST_VARS[$f]);
             else
                 $survey[$f] = '';
         }
@@ -127,7 +127,7 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Theme')); ?></b></td>
                 <td><?php
 			$themes_array = array();
-			$dir = dir($ESPCONFIG['survey_css']);
+			$dir = dir($ESPCONFIG['css_path']);
 				$dir->rewind();
 				while ($file=$dir->read()) {
 					if (stristr($file,".css")) {
