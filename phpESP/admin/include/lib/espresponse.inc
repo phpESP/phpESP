@@ -380,7 +380,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 		if (ereg('^!other', $val))
             $row[$c - 1] = 'other_' . $row[$c - 1];
         else
-            settype($row[$c - 1], "int");
+            settype($row[$c - 1], 'integer');
 		$values[$qid] = $row;
 	}
 	mysql_free_result($result);
@@ -400,7 +400,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
 		if (ereg('^!other', $val))
             $row[$c - 1] = 'other_' . $row[$c - 1];
         else
-            settype($row[$c - 1], "int");
+            settype($row[$c - 1], 'integer');
 		if($tmp == $qid) {
 			$arr[] = $row;
 			continue;
@@ -439,7 +439,7 @@ function response_select($sid, $rid, $col = null, $qids = null) {
         $result = mysql_query($sql);
 	while($row = mysql_fetch_row($result)) {
         $qid = array_shift($row);
-        settype($row[count($row) - 1], "int");
+        settype($row[count($row) - 1], 'integer');
 		$values[$qid] = $row;
         }
         mysql_free_result($result);
