@@ -131,7 +131,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	    if($total < 1) {
 		    $errmsg = _('Error opening survey.') .' '. _('No responses found.') ." [ ID:${sid} ]";
 			    return($errmsg);
-            if ($GLOBALS['ESP_CONFIG']['DEBUG'])
+            if ($GLOBALS['ESPCONFIG']['DEBUG'])
                 echo("<!-- \$errmsg = '$errmsg' -->\n");
 	    }
 
