@@ -13,76 +13,79 @@ if(!defined('_LIB_AUTH')) {
    Returns TRUE if the supplied username/password is allowed
    access to the survey. */
 function survey_auth($sid,$username,$password) {
+	// Default to _unauthorized_
+	$auth = FALSE;
+
 	// Formulate the query and check whether survey requires authentication
-	$sql = "SELECT * FROM access WHERE survey_id='${sid}' AND restricted='Y'";
+	$sql = "SELECT realm FROM survey WHERE id = '$sid' AND public = 'N'";
 
 	// Execute the query and put results in $accres 
 	$accres = mysql_query( $sql );
 	if(!$accres) {
-		mkerror(_('Unable to execute query for access.'));
+		echo(mkerror(_('Unable to execute query for access.')));
 		return(FALSE);
 	}
 
 	// Get number of rows in $accres. 
-	if(mysql_num_rows( $accres ) < 1) {
+	if(mysql_num_rows($accres) < 1) {
 		// no matching rows ... no authorization required
 		mysql_free_result($accres);
 		return(TRUE);
 	}
 	
-	$access = mysql_fetch_array($accres, MYSQL_ASSOC);
+	$realm = mysql_result($accres, 0, 0);
 	mysql_free_result($accres);
-
-	$auth = FALSE; // default to unauthorized
 
 	// A matching row was found - the survey requires authentication. 
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
-		$sql = "SELECT * FROM user WHERE 
-		username = '$username' AND 
-		password = PASSWORD('$password') AND
-		disabled = 'N' AND
-		(expiration = '0' OR expiration > NOW())"; 
+		$sql = "SELECT a.maxlogin, a.realm
+			FROM access a, respondent r
+			WHERE a.survey_id = '$sid' AND
+				r.username = '$username' AND
+				r.realm = a.realm AND
+				r.disabled = 'N' AND
+				(r.expiration = '0' OR r.expiration > NOW())"; 
 
 		// Execute the query and put results in $usrres 
 		$usrres = mysql_query( $sql );
 		if(!$usrres) {
-			mkerror(_('Unable to execute query users.' )); 
+			echo(mkerror(_('Unable to execute query respondents.' )));
 			return(FALSE);
 		}
 
-		if (mysql_numrows( $usrres ) > 0) { 
+		if (mysql_num_rows( $usrres ) > 0) { 
 			// A matching row was found - the user is authorized. 
 			$auth = TRUE; 
-			$user = mysql_fetch_array($usrres,MYSQL_ASSOC);
+			$maxlogin = mysql_result($usrres, 0, 0);
 			mysql_free_result($usrres);
 		}
 	}
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) { 
-		header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' ); 
+		header( "WWW-Authenticate: Basic realm=\"$realm\"" ); 
 		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
-		mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
+		echo(mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')));
 		return(FALSE);
 	}
 
-	if ( $access['maxresponses'] > 0 ) {
+	if ( $maxlogin > 0 ) {
 		// see if user is over the MAX # of responses
-		$sql = "SELECT COUNT(*) FROM response WHERE
+		$sql = "SELECT COUNT(*) < '$maxlogin' FROM response WHERE
 		survey_id = '${sid}' AND
 		complete = 'Y' AND
 		username = '$username'";
 		
 		$numres = mysql_query( $sql );
-		$numresponses = mysql_result($numres, 0, 0);
+		$auth = mysql_result($numres, 0, 0);
 		mysql_free_result($numres);
-		if($numresponses >= $access['maxresponses']) {
-			header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' ); 
-			header( 'HTTP/1.0 401 '. _('Unauthorized')); 
-			mkerror(_('Your account has been disabled or you have already completed this survey.'));
-			return(FALSE);
-		}
+	}
+	if( !$auth ) {
+		header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' ); 
+		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
+		echo(mkerror(_('Your account has been disabled or you have already completed this survey.')));
+		return(FALSE);
 	}
 	return(TRUE);
 }
@@ -100,37 +103,42 @@ function manage_auth($username, $password) {
 			$username = ''; $password = '';
 		}
 	}
-/**/
-	// see if they have already logged in.
+
+	// see if ACL is cached
 	if (!empty($username) &&
 			!empty($password) &&
 			isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
 			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['username']) &&
 			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['password']) &&
 			$GLOBALS['HTTP_SESSION_VARS']['acl']['username'] == $username) {
-		$sql = "SELECT PASSWORD('${password}')";
+		$sql = "SELECT PASSWORD('$password') = '". $GLOBALS['HTTP_SESSION_VARS']['acl']['password'] ."'";
 		$result = mysql_query($sql);
-		$auth = (mysql_result($result, 0, 0) == $password);
+		$auth = mysql_result($result, 0, 0);
 		mysql_free_result($result);
 		if($auth)
 			return(TRUE);
 	}
-/**/
 	
 	$auth = FALSE; // default to unauthorized
+	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
 
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
-		$sql = "SELECT * FROM manager WHERE 
-		username = '${username}' AND 
-		password = PASSWORD('${password}') AND
-		disabled = 'N' AND
-		(expiration = '0' OR expiration > NOW())"; 
+		$sql = "SELECT * FROM designer WHERE 
+			username = '$username' AND
+			password = PASSWORD('$password') AND
+			disabled = 'N' AND
+			(expiration = '0' OR expiration > NOW())"; 
 
 		// Execute the query and put results in $accres 
 		$accres = mysql_query( $sql );
 		if(!$accres) {
-			mkerror(_('Unable to execute query users.' )); 
+			header( 'HTTP/1.0 503 '. _('Service Unavailable'));
+			echo('<html><head><title>'. _('Service Unavailable') .
+				'</title></head><body><h1>HTTP 503 '.
+				_('Service Unavailable') .'</h1>'.
+				mkerror(_('Unable to load ACL.') .' ('. mysql_error() .')') . 
+				'</body></html>');
 			return(FALSE);
 		}
 
@@ -138,8 +146,6 @@ function manage_auth($username, $password) {
 		if (mysql_numrows( $accres ) > 0) { 
 			// A matching row was found - the user is authorized. 
 			$auth = TRUE; 
-			$access = mysql_fetch_array($accres,MYSQL_ASSOC);
-			mysql_free_result($accres);
 		}
 	}
 
@@ -155,8 +161,32 @@ function manage_auth($username, $password) {
 		return(FALSE);
 	}
 	
-	// set session variables
-	$GLOBALS['HTTP_SESSION_VARS']['acl'] = $access;
+	// All tests passed ... create ACL array, 
+	// and stick it in the session
+	$acl = array(
+		'username'  => $username,
+		'superuser' => 'N',
+		'home' => '/tmp'
+	);
+	$fields = array('pdesign', 'pstatus', 'pdata', 'pall', 'pgroup', 'puser');
+	foreach($fields as $f) {
+		$$f = array();
+	}
+	while( $arr = mysql_fetch_array($accres, MYSQL_ASSOC) ) {
+		if($arr['realm'] == 'superuser')
+			$acl['superuser'] = 'Y';
+		foreach($fields as $f) {
+			if($arr[$f] == 'Y')
+				array_push($$f, $arr['realm']);
+		}
+	}
+	mysql_free_result($accres);
+	
+	foreach($fields as $f) {
+		$acl[$f] =& $$f;
+	}
+	
+	$GLOBALS['HTTP_SESSION_VARS']['acl'] =& $acl;
 	
 	// if one were to want login accounting (logs) this
 	// would be the ideal place to do so...
@@ -178,65 +208,30 @@ function manage_logout() {
 }
 /* }}} */
 
-/* {{{ proto string where_auth(string where)
-   Checks the requested location against current ACL. On
-   failure (unauthorized) directs to a "unauthorized" page.
-   Otherwise returns esp_where(). *
-function where_auth($where) {
-	$access = $GLOBALS['HTTP_SESSION_VARS']['acl'];
-
-	if(empty($where))
-		$where = 'index';
-	$where = strtolower(ereg_replace(' +','_',$where));
-	if(!ereg('^[A-Za-z0-9_]+$',$where))	// Valid chars are [A-Za-z0-9_]
-		$where = 'index';
-	if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']))
-		$where = 'index';
-	
-	switch($where) {
-		// requires 'screate':
-		case 'new':
-		// requires 'sactivate':
-		// requires 'send':
-		// requires 'sdelete':
-
-		case 'adduser':
-		case 'cancel':
-		case 'copy':
-		case 'edit':
-		case 'help':
-		case 'index':
-		case 'logout':
-		case 'manage':
-		case 'merge':
-		case 'purge':
-		case 'readme':
-		case 'report':
-		case 'reset':
-		case 'results':
-		case 'status':
-		case 'tab':
-		case 'test':
-		case 'todo':
-		case 'upgrade':
-		case 'users':
-	}
-
-	return($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']);
-}
-/* }}} */
-
 /* {{{ proto boolean auth_is_owner(int surveyId, string user)
    Returns TRUE if user owns the survey. */
 function auth_is_owner($sid, $user) {
-	$sql = "SELECT s.owner='$user' FROM survey s WHERE s.id='$sid'";
+	$val = FALSE;
+	$sql = "SELECT s.owner = '$user' FROM survey s WHERE s.id='$sid'";
 	$result = mysql_query($sql);
-	$val = mysql_result($result, 0, 0);
+	if(!(list($val) = mysql_fetch_row($result)))
+		$val = FALSE;
 	mysql_free_result($result);
 	return $val;
 }
 /* }}} */
 
+/* {{{ proto string auth_get_survey_realm(int surveyId)
+   Returns the realm of the survey. */
+function auth_get_survey_realm($sid) {
+	$val = '';
+	$sql = "SELECT s.realm FROM survey s WHERE s.id='$sid'";
+	$result = mysql_query($sql);
+	list($val) = mysql_fetch_row($result);
+	mysql_free_result($result);
+	return $val;
+}
+/* }}} */
 
 /* {{{ proto boolean auth_no_access(string description)
    Handle a user trying to access an unauthorised area.
@@ -255,7 +250,7 @@ function auth_no_access($description) {
    or if there is an error, return FALSE. Return TRUE if 
    password changed. */
 function auth_change_manager_passwd($user,$old,$new) {
-	$sql = "UPDATE manager SET password=PASSWORD('$new')
+	$sql = "UPDATE designer SET password=PASSWORD('$new')
 		WHERE username='$user' AND password=PASSWORD('$old')";
 	return(mysql_query($sql) && mysql_affected_rows() > 0);
 }
