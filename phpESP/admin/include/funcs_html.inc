@@ -107,7 +107,7 @@ if(!defined('_FUNCS_HTML')) {
 		<td><?php echo($content); ?></td>
 		<td align="left">
 <?php		if($num)
-				printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.1d%%",$percent*2, $percent);
+				printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.2f%%",$percent*2, $percent);
 ?>
 		</td>
 		<td align="right" width="60">(<?php echo($num); ?>)</td>
@@ -119,7 +119,7 @@ if(!defined('_FUNCS_HTML')) {
 ?>
 	<tr>
 		<td><b>TOTAL</b></td>
-		<td align="right"><b><?php if($i && !($i > $total)) printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.1d%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
+		<td align="right"><b><?php if($i && !($i > $total)) printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.2f%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 	</tr>
 <?		} ?>
@@ -150,7 +150,7 @@ if(!defined('_FUNCS_HTML')) {
 	<tr>
 		<td align="right"><b><?php echo(++$i); ?></b></td>
 		<td><?php echo($content); ?></td>
-		<td align="right" width="60"><?php if($p) printf("%.1d%%",$p); ?></td>
+		<td align="right" width="60"><?php if($p) printf("%.2f%%",$p); ?></td>
 		<td align="right" width="60">(<?php echo($num); ?>)</td>
 	</tr>
 <?php
@@ -159,7 +159,7 @@ if(!defined('_FUNCS_HTML')) {
 ?>
 	<tr>
 		<td colspan=2 align="left"><b>TOTAL</b></td>
-		<td align="right"><b><?php printf("%.1d%%",$pt); ?></b></td>
+		<td align="right"><b><?php printf("%.2f%%",$pt); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 	</tr>
 <?		} ?>
@@ -178,7 +178,7 @@ if(!defined('_FUNCS_HTML')) {
 	<tr>
 		<td><?php echo($content); ?></td>
 		<td align="right" width="60"><?php echo($num); ?></td>
-		<td align="right" width="60">(<?php if($num) printf("%.1d",$num/$total*100.0); ?>%)</td>
+		<td align="right" width="60">(<?php if($num) printf("%.2f",$num/$total*100.0); ?>%)</td>
 	</tr>
 <?php
 			$i += $num;
@@ -188,7 +188,7 @@ if(!defined('_FUNCS_HTML')) {
 	<tr>
 		<td><b>TOTAL</b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
-		<td align="right"><b>(<?php if($i) printf("%.1d",$i/$total*100.0); ?>%)</b></td>
+		<td align="right"><b>(<?php if($i) printf("%.2f",$i/$total*100.0); ?>%)</b></td>
 	</tr>
 <?		} ?>
 </table>
