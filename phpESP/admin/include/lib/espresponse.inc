@@ -265,6 +265,94 @@ function response_select($sid, $rid) {
 }
 /* }}} */
 
+/* {{{ proto array response_select_named(int survey_id, int response_id)
+   Returns the values from the specific response in a sorted
+   associative array indexed by question_id. */
+function response_select_named($sid, $rid) {
+	$values = array();
+
+	// --------------------- response_bool ---------------------
+	$sql = "SELECT q.content,a.choice_id
+	FROM response_bool a, question q
+	WHERE a.response_id='${rid}' AND a.question_id=q.id";
+	$result = mysql_query($sql);
+	while(list($qid,$cid) = mysql_fetch_row($result)) {
+		$values["$qid"]=$cid;
+	}
+	mysql_free_result($result);
+
+	// --------------------- response_single ---------------------
+	$sql = "SELECT q.content,c.content 
+	FROM response_single a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
+	$result = mysql_query($sql);
+	while(list($qid,$cid) = mysql_fetch_row($result)) {
+		$values["$qid"]=$cid;
+	}
+	mysql_free_result($result);
+
+	// --------------------- response_multiple ---------------------
+	$sql = "SELECT q.content,c.content 
+	FROM response_multiple a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
+	ORDER BY a.question_id";
+	$result = mysql_query($sql);
+	$arr = array();
+	$tmp = '';
+	while(list($qid,$cid) = mysql_fetch_row($result)) {
+		if($tmp == $qid) {
+			array_push($arr, $cid);
+			continue;
+		}
+		if(!empty($tmp))
+			$values["$tmp"]=$arr;
+		$tmp = $qid;
+		$arr = array($cid);
+	}
+	if(!empty($tmp))
+		$values["$tmp"]=$arr;
+	mysql_free_result($result);
+
+	// --------------------- response_rank ---------------------
+	$sql = "SELECT q.content,c.content 
+	FROM response_rank a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
+	$result = mysql_query($sql);
+	while(list($qid,$cid,$rank) = mysql_fetch_row($result)) {
+		if($cid)
+			$values["${qid}_${cid}"]=$rank;
+		else
+			$values["$qid"]=$rank;
+	}
+	mysql_free_result($result);
+
+	// --------------------- response_text ---------------------
+	$sql = "SELECT q.content,a.response
+	FROM response_text a, question q
+	WHERE a.response_id='${rid}' AND a.question_id=q.id";
+	$result = mysql_query($sql);
+	while(list($qid,$cid) = mysql_fetch_row($result)) {
+		$values["$qid"]=$cid;
+	}
+	mysql_free_result($result);
+
+	// --------------------- response_other ---------------------
+	$sql = "SELECT q.content,c.content,a.response
+	FROM response_other a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
+	ORDER BY a.question_id";
+	$result = mysql_query($sql);
+	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
+		$values["${qid}_${cid}"]=$answer;
+	}
+	mysql_free_result($result);
+
+	// --------------------- return ---------------------
+	ksort($values);
+	return($values);
+}
+/* }}} */
+
 /* {{{ proto bool response_send_email(int survey_id, int response_id)
    Reads current form variables from HTTP_POST_VARS.
    Returns true if mail sent. */
