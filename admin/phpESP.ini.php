@@ -6,7 +6,7 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-if (!defined('ESP_BASE')) define('ESP_BASE', dirname(__FILE__) . '/../');
+if (!defined('ESP_BASE')) define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 if (isset($_SERVER))  $server =& $_SERVER;
 else                  $server =& $HTTP_SERVER_VARS;
 
