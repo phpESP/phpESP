@@ -1,8 +1,0 @@
-# $Id$
-# Just incase people install this in a public location
-# at least remote users won't be able to steal DB
-# passwords.
-<Files "phpESP.ini">
-Order Deny,Allow
-Deny from all
-</Files>
