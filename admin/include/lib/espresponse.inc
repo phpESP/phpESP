@@ -106,7 +106,7 @@ function response_delete_all($sid) {
 		$res = mysql_query($sql);
 	}
         /* ensure responses from testing status are also deleted */
-        $sql = "DELETE FROM response WHERE survey_id=${sid}";
+        $sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['response_table']." WHERE survey_id=${sid}";
         mysql_query($sql);
 }
 /* }}} */
