@@ -93,7 +93,8 @@ FROM question Q, question_type T
 
 	$q_result = mysql_query($sql);
 	while(list($qid, $tid, $table) = mysql_fetch_row($q_result)) {
-		$val = XADDSLASHES($HTTP_POST_VARS[$qid]);
+		if (is_string($HTTP_POST_VARS[$qid]))
+			$val = XADDSLASHES($HTTP_POST_VARS[$qid]);
 		switch($table) {
 			case 'response_bool':
 				$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
@@ -156,9 +157,10 @@ FROM question Q, question_type T
 					}
 				}
 				mysql_free_result($c_result);
-				if(empty($val))
+				if(count($HTTP_POST_VARS[$qid]) < 1)
 					break;
-				foreach($val as $cid) {
+				foreach($HTTP_POST_VARS[$qid] as $cid) {
+					$cid = XADDSLASHES($cid);
 					if(ereg("other_[0-9]+", $cid))
 						continue;
 					$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${cid}' )";
@@ -325,6 +327,7 @@ function response_select_named($sid, $rid) {
 	$arr = array();
 	$tmp = '';
 	while(list($qid,$cid) = mysql_fetch_row($result)) {
+		if (ereg('^!other', $cid)) continue;
 		if($tmp == $qid) {
 			array_push($arr, $cid);
 			continue;
@@ -336,6 +339,23 @@ function response_select_named($sid, $rid) {
 	}
 	if(!empty($tmp))
 		$values["$tmp"]=$arr;
+	mysql_free_result($result);
+
+	// --------------------- response_other ---------------------
+	$sql = "SELECT q.name,c.content,a.response
+	FROM response_other a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
+	ORDER BY a.question_id";
+	$result = mysql_query($sql);
+	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
+		$cid = ereg_replace("!other=?", '', $cid);
+		if (!empty($cid))
+			$cid .= ': ';
+		if (isset($values[$qid]))
+			array_push($values[$qid], "$cid$answer");
+		else
+			$values[$qid] = "$cid$answer";
+	}
 	mysql_free_result($result);
 
 	// --------------------- response_rank ---------------------
@@ -368,17 +388,6 @@ function response_select_named($sid, $rid) {
 	$result = mysql_query($sql);
 	while(list($qid,$cid) = mysql_fetch_row($result)) {
 		$values["$qid"]=$cid;
-	}
-	mysql_free_result($result);
-
-	// --------------------- response_other ---------------------
-	$sql = "SELECT q.name,c.content,a.response
-	FROM response_other a, question q, question_choice c
-	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
-	ORDER BY a.question_id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
-		$values["${qid}_${cid}"]=$answer;
 	}
 	mysql_free_result($result);
 
