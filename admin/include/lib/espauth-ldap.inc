@@ -22,7 +22,7 @@
 /* {{{ proto bool survey_auth(int survey_id, string username, string password)
    Returns true if the supplied username/password is allowed
    access to the survey. */
-function survey_auth($sid, $username, $password) {
+function survey_auth($sid, $username, $password, $css, $title) {
 	// Default to _unauthorized_
 	$auth = false;
 	if (isset($GLOBALS['HTTP_GET_VARS']['auth_options']) || isset($GLOBALS['HTTP_POST_VARS']['auth_options'])) {
@@ -87,11 +87,30 @@ function survey_auth($sid, $username, $password) {
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) {
-		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
-		header( 'HTTP/1.0 401 '. _('Unauthorized'));
-		$GLOBALS['errmsg'] = mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
-		return(false);
-	}
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            header( "WWW-Authenticate: Basic realm=\"$realm\"" );
+            header( 'HTTP/1.0 401 '. _('Unauthorized'));
+            $GLOBALS['errmsg'] = mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
+            return(false);
+        }
+        elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            if (isset($GLOBALS['_GET']['name'])) {
+                $survey_name = $GLOBALS['_GET']['name'];
+            }
+            elseif (isset($GLOBALS['HTTP_POST_VARS']['name'])) {
+                $survey_name = $GLOBALS['HTTP_POST_VARS']['name'];
+            }
+
+            $error_message = "";
+            if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
+                $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
+            }
+            echo show_login($survey_name, $error_message, $css, $title);
+            exit;
+            return(false);
+        }
+    }
+
 
 	if ( $maxlogin > 0 ) {
 		// see if user is over the MAX # of responses
@@ -103,11 +122,19 @@ function survey_auth($sid, $username, $password) {
 		$auth = get_one($sql);
 	}
 	if( !$auth ) {
-		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
-		header( 'HTTP/1.0 401 '. _('Unauthorized'));
-		$GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
-		return(false);
-	}
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            header( "WWW-Authenticate: Basic realm=\"$realm\"" );
+            header( 'HTTP/1.0 401 '. _('Unauthorized'));
+            $GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
+            return(false);
+        }
+        elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            echo show_login();
+            exit;
+            return(false);
+        }
+    }
+
 	return(true);
 }
 /* }}} */
@@ -223,15 +250,22 @@ function manage_auth($username, $password, $raw_password="") {
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) {
-		header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' );
-		header( 'HTTP/1.0 401 '. _('Unauthorized'));
-		echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
-			"<body><h1>401 ". _('Unauthorized') ."</h1>\n".
-			mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')) .
-			"</body>\n</html>\n");
-		exit;
-		return(false);
-	}
+         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+             header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' );
+             header( 'HTTP/1.0 401 '. _('Unauthorized'));
+             echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
+             "<body><h1>401 ". _('Unauthorized') ."</h1>\n".
+             mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')) .
+             "</body>\n</html>\n");
+             exit;
+             return(false);
+         }
+         elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+             echo show_login();
+             exit;
+             return(false);
+         }
+    }
 
 	// All tests passed ... create ACL array,
 	// and stick it in the session
@@ -280,6 +314,8 @@ function manage_logout() {
 	session_unset();
 	$acl = array('expired' => 2);
 	session_register('acl');
+    session_register('username');
+    session_register('raw_password');
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array('expired' => 2);
 }
 /* }}} */

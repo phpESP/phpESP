@@ -44,7 +44,7 @@
 	} else {
 		if(empty($HTTP_POST_VARS['q']))
 			$HTTP_POST_VARS['q'] = $curr_q;
-		if($HTTP_POST_VARS['q'] == _('New Field'))
+		if($HTTP_POST_VARS['q'] == _('New Question'))
 			$HTTP_POST_VARS['q'] = 0;
 		if($HTTP_POST_VARS['q']<0 || $HTTP_POST_VARS['q']>$total_num_q)
 			$HTTP_POST_VARS['q'] = 1;
@@ -100,23 +100,23 @@ function validate() {
 <center>
 	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>">
 	<p>
-	<?php echo(_('Edit this field, or click the number of the field you would like to edit:')); ?>
+	<?php echo(_('Edit this question, or click the number of the qield you would like to edit:')); ?>
 	</p>
 <?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
 	<input type="submit" name="q" value="<?php echo($i); ?>">
 <?php } ?>
-	<input type="submit" name="q" value="<?php echo(_('New Field')); ?>">
+	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>">
 	<hr>
 	<b><?php
 		if(!$curr_q) {
-			echo(_('New Field'));
+			echo(_('New Question'));
 		} else {
 			echo(_('Field')." $curr_q");
 		} ?></b>
 	<table border="0">
 		<tr>
 			<th>&nbsp;</th>
-			<th><?php echo(_('Field Name')); ?></th>
+			<th><?php echo(_('Question Name')); ?></th>
 			<th><?php echo(_('Type')); ?></th>
 			<th><?php echo(_('Length')); ?></th>
 			<th><?php echo(_('Precision')); ?></th>
@@ -172,4 +172,4 @@ function validate() {
 <?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
 	<input type="submit" name="q" value="<?php echo($i); ?>">
 <?php } ?>
-	<input type="submit" name="q" value="<?php echo(_('New Field')); ?>">
+	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>">

@@ -102,13 +102,43 @@
     if($ESPCONFIG['auth_response']) {
         // check for authorization on the survey
         require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
-        $espuser = ''; $esppass = '';
-        if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']))
-            $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
-        if (isset($HTTP_SERVER_VARS['PHP_AUTH_PW']))
-            $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            $espuser = ''; $esppass = '';
+            if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']))
+                $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
+            if (isset($HTTP_SERVER_VARS['PHP_AUTH_PW']))
+                $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
+        }
+        elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            session_start();
+            if (!isset($HTTP_POST_VARS['username'])) {
+                $HTTP_POST_VARS['username'] = "";
+            }
+            if (!isset($HTTP_POST_VARS['password'])) {
+                $HTTP_POST_VARS['password'] = "";
+            }
+            if (!isset($HTTP_SESSION_VARS['esoyser'])) {
+                session_register('espuser');
+            }
+            if (!isset($HTTP_SESSION_VARS['esppas'])) {
+                session_register('esppass');
+            }
 
-        if(!survey_auth($sid, $espuser, _addslashes($esppass)))
+            if ($HTTP_POST_VARS['username'] != "") {
+                $espuser = $HTTP_POST_VARS['username'];
+            }
+            elseif ($HTTP_SESSION_VARS['espuser'] != "") {
+                $espuser = $HTTP_SESSION_VARS['espuser'];
+            }
+            if ($HTTP_POST_VARS['password'] != "") {
+                    $esppass = $HTTP_POST_VARS['password'];
+            }
+            elseif ($HTTP_SESSION_VARS['esppass'] != "") {
+                    $esppass = $HTTP_SESSION_VARS['esppass'];
+            }
+        }
+
+        if(!survey_auth($sid, $espuser, _addslashes($esppass), $_css, $_title))
             return;
 
         if (auth_get_option('resume')) {
