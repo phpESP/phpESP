@@ -140,6 +140,11 @@ ul,th {
         $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'en';
         include($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
         check_string(_('%%%% Gettext Test Failed'), 'Passed'); ?></li>
+    <li>Catalog Open Test: <?php
+        $ret = fopen($ESPCONFIG['locale_path'] . '/en/LC_MESSAGES/messages.mo', 'r');
+        check_bool($ret !== false, true);
+        fclose($ret);
+    ?></li>
   </ul></td></tr>
 
   <tr><th>PHP Session Test</th></tr>
