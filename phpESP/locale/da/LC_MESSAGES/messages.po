@@ -1,0 +1,1276 @@
+# phpESP.
+# By: James Flemer
+# <jflemer@acm.jhu.edu>
+# $Id$
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: phpESP-1.3\n"
+"POT-Creation-Date: 2001-11-19 21:15-0500\n"
+"PO-Revision-Date: 2002-03-22 16:40-0500\n"
+"Last-Translator: Henrik <henrik@hornhaver.dk>\n"
+"Language-Team: da <jflemer@acm.jhu.edu>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: phpESP/public/handler.php:42
+#: phpESP/public/handler.php:47
+msgid "Error processing survey: Survey is not active."
+msgstr "Fejl ved afvikling af survey: Survey er ikke aktiveret."
+
+#: phpESP/public/handler-prefix.php:51
+#: phpESP/public/handler-prefix.php:56
+msgid "Error processing survey: Security violation."
+msgstr "Fejl ved afvikling af survey: Survey blokering"
+
+#: phpESP/public/handler-prefix.php:65
+msgid "Error processing survey: Survey not specified."
+msgstr "Fejl ved afvikling af survey: Survey er ikke specificeret"
+
+#: phpESP/admin/include/funcs.inc:45
+#: phpESP/admin/include/where/tab.inc:133
+msgid "Unable to open include file. Check INI settings. Aborting."
+msgstr "Ikke i stand til at åbne include fil. Kontroller INI opsætning. Afslutter"
+
+#: phpESP/admin/include/where/admdesigner.inc:32
+#: phpESP/admin/include/where/admrespondent.inc:32
+msgid "to access this group"
+msgstr "adgang til denne gruppe."
+
+#: phpESP/admin/include/where/admdesigner.inc:36
+#: phpESP/admin/include/where/admrespondent.inc:36
+msgid "Cannot delete account."
+msgstr "Kan ikke slette konto."
+
+#: phpESP/admin/include/where/admdesigner.inc:101
+#: phpESP/admin/include/where/admrespondent.inc:95
+msgid "Username, Password, and Group are required."
+msgstr "Brugernavn,adgangskode og gruppe kræves."
+
+#: phpESP/admin/include/where/admdesigner.inc:109
+#: phpESP/admin/include/where/admrespondent.inc:103
+msgid "Error adding account."
+msgstr "Fejl ved oprettelse af konto. "
+
+#: phpESP/admin/include/where/admdesigner.inc:144
+#: phpESP/admin/include/where/admrespondent.inc:127
+msgid "Cannot change account data."
+msgstr "Kan ikke ændre konto oplysninger."
+
+#: phpESP/admin/include/where/admdesigner.inc:191
+#: phpESP/admin/include/where/admrespondent.inc:167
+msgid "Account not found."
+msgstr "Konto ikke fundet."
+
+#: phpESP/admin/include/where/admdesigner.inc:197
+msgid "Designer Account Administration"
+msgstr ""
+
+#: phpESP/admin/include/where/admdesigner.inc:203
+#: phpESP/admin/include/where/admrespondent.inc:179
+#: phpESP/admin/include/where/designers.inc:79
+#: phpESP/admin/include/where/respondents.inc:78
+#: phpESP/admin/include/where/passwd.inc:34
+#: phpESP/admin/include/where/manage.inc:19
+msgid "Username"
+msgstr "Brugernavn"
+
+#: phpESP/admin/include/where/admdesigner.inc:212
+#: phpESP/admin/include/where/admrespondent.inc:188
+msgid "Password"
+msgstr "Adgangsord"
+
+#: phpESP/admin/include/where/admdesigner.inc:217
+#: phpESP/admin/include/where/admrespondent.inc:193
+#: phpESP/admin/include/where/designers.inc:82
+#: phpESP/admin/include/where/export.inc:28
+#: phpESP/admin/include/where/respondents.inc:81
+#: phpESP/admin/include/where/access.inc:128
+#: phpESP/admin/include/where/access.inc:131
+#: phpESP/admin/include/where/access.inc:153
+#: phpESP/admin/include/where/groups.inc:52
+#: phpESP/admin/include/where/test.inc:96
+#: phpESP/admin/include/where/status.inc:135
+#: phpESP/admin/include/where/results.inc:98
+#: phpESP/admin/include/where/report.inc:71
+#: phpESP/admin/include/where/purge.inc:53
+#: phpESP/admin/include/where/edit.inc:35
+#: phpESP/admin/include/where/copy.inc:71
+#: phpESP/admin/include/tab/general.inc:46
+msgid "Group"
+msgstr "Gruppe"
+
+#: phpESP/admin/include/where/admdesigner.inc:242
+#: phpESP/admin/include/where/admrespondent.inc:218
+#: phpESP/admin/include/where/designers.inc:80
+#: phpESP/admin/include/where/respondents.inc:79
+msgid "First Name"
+msgstr "Fornavn"
+
+#: phpESP/admin/include/where/admdesigner.inc:247
+#: phpESP/admin/include/where/admrespondent.inc:223
+#: phpESP/admin/include/where/designers.inc:81
+#: phpESP/admin/include/where/respondents.inc:80
+msgid "Last Name"
+msgstr "Efternavn"
+
+#: phpESP/admin/include/where/admdesigner.inc:252
+#: phpESP/admin/include/where/admrespondent.inc:228
+#: phpESP/admin/include/tab/general.inc:97
+msgid "Email"
+msgstr "Email"
+
+#: phpESP/admin/include/where/admdesigner.inc:257
+#: phpESP/admin/include/where/admrespondent.inc:233
+msgid "Expiration"
+msgstr "Udløbsdato"
+
+#: phpESP/admin/include/where/admdesigner.inc:262
+#: phpESP/admin/include/where/admrespondent.inc:238
+msgid "year"
+msgstr "år"
+
+#: phpESP/admin/include/where/admdesigner.inc:263
+#: phpESP/admin/include/where/admrespondent.inc:239
+msgid "month"
+msgstr "måned"
+
+#: phpESP/admin/include/where/admdesigner.inc:264
+#: phpESP/admin/include/where/admrespondent.inc:240
+msgid "day"
+msgstr "dag"
+
+#: phpESP/admin/include/where/admdesigner.inc:268
+#: phpESP/admin/include/where/admrespondent.inc:244
+msgid "Disabled"
+msgstr "Deaktiveret"
+
+#: phpESP/admin/include/where/admdesigner.inc:269
+#: phpESP/admin/include/where/admdesigner.inc:279
+#: phpESP/admin/include/where/admdesigner.inc:284
+#: phpESP/admin/include/where/admdesigner.inc:290
+#: phpESP/admin/include/where/admdesigner.inc:295
+#: phpESP/admin/include/where/admdesigner.inc:301
+#: phpESP/admin/include/where/admdesigner.inc:306
+#: phpESP/admin/include/where/admrespondent.inc:245
+#: phpESP/admin/include/tab/questions.inc:121
+#: phpESP/admin/include/function/survey_results.inc:188
+#: phpESP/admin/include/function/survey_report.inc:69
+#: phpESP/admin/include/function/survey_report.inc:71
+#: phpESP/admin/include/function/survey_render.inc:98
+msgid "Yes"
+msgstr "Ja"
+
+#: phpESP/admin/include/where/admdesigner.inc:269
+#: phpESP/admin/include/where/admdesigner.inc:279
+#: phpESP/admin/include/where/admdesigner.inc:284
+#: phpESP/admin/include/where/admdesigner.inc:290
+#: phpESP/admin/include/where/admdesigner.inc:295
+#: phpESP/admin/include/where/admdesigner.inc:301
+#: phpESP/admin/include/where/admdesigner.inc:306
+#: phpESP/admin/include/where/admrespondent.inc:245
+#: phpESP/admin/include/tab/questions.inc:122
+#: phpESP/admin/include/function/survey_results.inc:190
+#: phpESP/admin/include/function/survey_report.inc:69
+#: phpESP/admin/include/function/survey_report.inc:71
+#: phpESP/admin/include/function/survey_render.inc:102
+msgid "No"
+msgstr "Nej"
+
+#: phpESP/admin/include/where/admdesigner.inc:273
+#: phpESP/admin/include/where/admdesigner.inc:310
+#: phpESP/admin/include/where/admrespondent.inc:249
+msgid "Update"
+msgstr "Opdater"
+
+#: phpESP/admin/include/where/admdesigner.inc:274
+#: phpESP/admin/include/where/admdesigner.inc:311
+#: phpESP/admin/include/where/admrespondent.inc:250
+msgid "Cancel"
+msgstr "Fortryd"
+
+#: phpESP/admin/include/where/admdesigner.inc:275
+#: phpESP/admin/include/where/admdesigner.inc:312
+#: phpESP/admin/include/where/admrespondent.inc:251
+#: phpESP/admin/include/where/groups.inc:71
+msgid "Delete"
+msgstr "Slet"
+
+#: phpESP/admin/include/where/admdesigner.inc:278
+msgid "Design Web Forms"
+msgstr "Design Web formularer"
+
+#: phpESP/admin/include/where/admdesigner.inc:283
+msgid "Change Form Status"
+msgstr "Skift formular status"
+
+#: phpESP/admin/include/where/admdesigner.inc:285
+msgid "Activate/End"
+msgstr "Aktiver/Afslut"
+
+#: phpESP/admin/include/where/admdesigner.inc:289
+msgid "Export Form Data"
+msgstr "Eksporter fra data"
+
+#: phpESP/admin/include/where/admdesigner.inc:294
+msgid "Group Form Editor"
+msgstr "Gruppe formular redigering"
+
+#: phpESP/admin/include/where/admdesigner.inc:296
+msgid "may edit <b>all</b> forms owned by this group"
+msgstr "kan redigere <b>alle</b> formularer ejet af denne gruppe"
+
+#: phpESP/admin/include/where/admdesigner.inc:300
+msgid "Administer Group Members"
+msgstr "Administrator gruppe medlemmer"
+
+#: phpESP/admin/include/where/admdesigner.inc:305
+msgid "Administer Group Respondents"
+msgstr "Administrator gruppe brugere"
+
+#: phpESP/admin/include/where/admdesigner.inc:316
+#: phpESP/admin/include/where/admrespondent.inc:255
+#: phpESP/admin/include/where/designers.inc:124
+#: phpESP/admin/include/where/export.inc:14
+#: phpESP/admin/include/where/export.inc:85
+#: phpESP/admin/include/where/export.inc:147
+#: phpESP/admin/include/where/guide.inc:11
+#: phpESP/admin/include/where/guide.inc:21
+#: phpESP/admin/include/where/respondents.inc:123
+#: phpESP/admin/include/where/access.inc:119
+#: phpESP/admin/include/where/access.inc:142
+#: phpESP/admin/include/where/access.inc:208
+#: phpESP/admin/include/where/passwd.inc:21
+#: phpESP/admin/include/where/passwd.inc:58
+#: phpESP/admin/include/where/groups.inc:48
+#: phpESP/admin/include/where/groups.inc:89
+#: phpESP/admin/include/where/todo.inc:6
+#: phpESP/admin/include/where/todo.inc:16
+#: phpESP/admin/include/where/test.inc:55
+#: phpESP/admin/include/where/test.inc:125
+#: phpESP/admin/include/where/status.inc:128
+#: phpESP/admin/include/where/status.inc:221
+#: phpESP/admin/include/where/results.inc:64
+#: phpESP/admin/include/where/results.inc:123
+#: phpESP/admin/include/where/report.inc:36
+#: phpESP/admin/include/where/report.inc:93
+#: phpESP/admin/include/where/readme.inc:11
+#: phpESP/admin/include/where/readme.inc:21
+#: phpESP/admin/include/where/purge.inc:12
+#: phpESP/admin/include/where/purge.inc:45
+#: phpESP/admin/include/where/purge.inc:101
+#: phpESP/admin/include/where/merge.inc:30
+#: phpESP/admin/include/where/merge.inc:139
+#: phpESP/admin/include/where/edit.inc:58
+#: phpESP/admin/include/where/copy.inc:30
+#: phpESP/admin/include/where/copy.inc:39
+#: phpESP/admin/include/where/copy.inc:103
+#: phpESP/admin/include/tab/finish.inc:33
+#: phpESP/admin/include/lib/espauth.inc:244
+msgid "Go back to Management Interface"
+msgstr "Retur til administrator side"
+
+#: phpESP/admin/include/where/admrespondent.inc:173
+msgid "Respondent Account Administration"
+msgstr "Bruger konto administration"
+
+#: phpESP/admin/include/where/designers.inc:75
+msgid "Manage Web Form Designer Accounts"
+msgstr "Administrer web formular designer konti"
+
+#: phpESP/admin/include/where/designers.inc:76
+#: phpESP/admin/include/where/respondents.inc:75
+msgid "Click on a username to edit, or click on add new user below."
+msgstr "Klik på brugernavnet for at redigere, eller klik herunder på Tilføj ny bruger."
+
+#: phpESP/admin/include/where/designers.inc:90
+#: phpESP/admin/include/where/respondents.inc:89
+msgid "disabled"
+msgstr "deaktiveret"
+
+#: phpESP/admin/include/where/designers.inc:119
+msgid "Add a new Designer"
+msgstr "Tilføj en ny designer"
+
+#: phpESP/admin/include/where/export.inc:13
+msgid "Export Data"
+msgstr "Eksporter data"
+
+#: phpESP/admin/include/where/export.inc:24
+#: phpESP/admin/include/where/access.inc:124
+#: phpESP/admin/include/where/access.inc:149
+#: phpESP/admin/include/where/test.inc:92
+#: phpESP/admin/include/where/status.inc:131
+#: phpESP/admin/include/where/results.inc:94
+#: phpESP/admin/include/where/report.inc:67
+#: phpESP/admin/include/where/purge.inc:49
+#: phpESP/admin/include/where/edit.inc:31
+#: phpESP/admin/include/where/copy.inc:66
+#: phpESP/admin/include/function/survey_update.inc:269
+#: phpESP/admin/include/function/survey_report.inc:51
+#: phpESP/admin/include/function/survey_report.inc:57
+msgid "ID"
+msgstr "ID"
+
+#: phpESP/admin/include/where/export.inc:25
+#: phpESP/admin/include/where/access.inc:125
+#: phpESP/admin/include/where/access.inc:150
+#: phpESP/admin/include/where/test.inc:93
+#: phpESP/admin/include/where/status.inc:132
+#: phpESP/admin/include/where/results.inc:95
+#: phpESP/admin/include/where/report.inc:68
+#: phpESP/admin/include/where/purge.inc:50
+#: phpESP/admin/include/where/edit.inc:32
+#: phpESP/admin/include/where/copy.inc:67
+#: phpESP/admin/include/tab/general.inc:34
+msgid "Name"
+msgstr "Navn"
+
+#: phpESP/admin/include/where/export.inc:26
+#: phpESP/admin/include/where/access.inc:126
+#: phpESP/admin/include/where/access.inc:151
+#: phpESP/admin/include/where/test.inc:94
+#: phpESP/admin/include/where/status.inc:133
+#: phpESP/admin/include/where/results.inc:96
+#: phpESP/admin/include/where/report.inc:69
+#: phpESP/admin/include/where/purge.inc:51
+#: phpESP/admin/include/where/edit.inc:33
+#: phpESP/admin/include/where/copy.inc:68
+#: phpESP/admin/include/tab/general.inc:66
+msgid "Title"
+msgstr "Titel"
+
+#: phpESP/admin/include/where/export.inc:27
+#: phpESP/admin/include/where/access.inc:127
+#: phpESP/admin/include/where/access.inc:152
+#: phpESP/admin/include/where/test.inc:95
+#: phpESP/admin/include/where/status.inc:134
+#: phpESP/admin/include/where/results.inc:97
+#: phpESP/admin/include/where/report.inc:70
+#: phpESP/admin/include/where/purge.inc:52
+#: phpESP/admin/include/where/edit.inc:34
+#: phpESP/admin/include/where/copy.inc:70
+msgid "Owner"
+msgstr "Ejer"
+
+#: phpESP/admin/include/where/export.inc:29
+#: phpESP/admin/include/where/status.inc:136
+#: phpESP/admin/include/where/purge.inc:55
+#: phpESP/admin/include/where/copy.inc:69
+msgid "Status"
+msgstr "Status"
+
+#: phpESP/admin/include/where/export.inc:30
+msgid "Format"
+msgstr "Formater"
+
+#: phpESP/admin/include/where/export.inc:51
+#: phpESP/admin/include/where/status.inc:167
+#: phpESP/admin/include/where/purge.inc:68
+#: phpESP/admin/include/where/copy.inc:82
+msgid "Editing"
+msgstr "Redigerer"
+
+#: phpESP/admin/include/where/export.inc:54
+#: phpESP/admin/include/where/status.inc:174
+#: phpESP/admin/include/where/purge.inc:60
+#: phpESP/admin/include/where/copy.inc:76
+msgid "Archived"
+msgstr "Arkiveret"
+
+#: phpESP/admin/include/where/export.inc:57
+#: phpESP/admin/include/where/status.inc:178
+#: phpESP/admin/include/where/purge.inc:62
+msgid "Ended"
+msgstr "Afsluttet"
+
+#: phpESP/admin/include/where/export.inc:59
+#: phpESP/admin/include/where/status.inc:181
+#: phpESP/admin/include/where/purge.inc:64
+#: phpESP/admin/include/where/copy.inc:80
+msgid "Active"
+msgstr "Aktiv"
+
+#: phpESP/admin/include/where/export.inc:61
+#: phpESP/admin/include/where/status.inc:184
+#: phpESP/admin/include/where/purge.inc:66
+msgid "Testing"
+msgstr "Testes"
+
+#: phpESP/admin/include/where/export.inc:77
+#: phpESP/admin/include/where/test.inc:117
+msgid "CSV"
+msgstr "CVS"
+
+#: phpESP/admin/include/where/export.inc:79
+#: phpESP/admin/include/where/test.inc:118
+msgid "DBF"
+msgstr "DBF"
+
+#: phpESP/admin/include/where/export.inc:106
+#: phpESP/admin/include/where/export.inc:118
+#: phpESP/admin/include/where/test.inc:30
+#: phpESP/admin/include/where/status.inc:95
+#: phpESP/admin/include/where/results.inc:23
+#: phpESP/admin/include/where/results.inc:35
+#: phpESP/admin/include/where/copy.inc:23
+msgid "to access this survey"
+msgstr "for at åbne denne survey"
+
+#: phpESP/admin/include/where/export.inc:109
+#: phpESP/admin/include/where/export.inc:139
+#: phpESP/admin/include/where/test.inc:38
+#: phpESP/admin/include/where/results.inc:26
+#: phpESP/admin/include/where/merge.inc:12
+msgid "Testing Survey..."
+msgstr "Tester survey..."
+
+#: phpESP/admin/include/where/export.inc:109
+#: phpESP/admin/include/where/export.inc:139
+#: phpESP/admin/include/where/test.inc:38
+#: phpESP/admin/include/where/results.inc:26
+msgid "SID"
+msgstr "SID"
+
+#: phpESP/admin/include/where/export.inc:130
+msgid "PHP: dBase Module not installed"
+msgstr "PHP: dBase modul ikke installeret"
+
+#: phpESP/admin/include/where/export.inc:142
+msgid "Survey exported as:"
+msgstr "Survey er eksporteret som:"
+
+#: phpESP/admin/include/where/export.inc:144
+msgid "Error exporting survey as:"
+msgstr "Fej ved eksport af survey som:"
+
+#: phpESP/admin/include/where/guide.inc:18
+msgid "User's guide not found."
+msgstr "Bruger vejledning ikke fundet"
+
+#: phpESP/admin/include/where/respondents.inc:74
+#: phpESP/admin/include/where/manage.inc:56
+msgid "Manage Respondent Accounts"
+msgstr "Administrer bruger konti"
+
+#: phpESP/admin/include/where/respondents.inc:118
+msgid "Add a new Respondent"
+msgstr "Tilføj ny bruger"
+
+#: phpESP/admin/include/where/access.inc:63
+msgid "Please select a group."
+msgstr "Væl venligst en gruppe."
+
+#: phpESP/admin/include/where/access.inc:84
+#: phpESP/admin/include/where/access.inc:185
+msgid "Private"
+msgstr "Privat"
+
+#: phpESP/admin/include/where/access.inc:86
+#: phpESP/admin/include/where/access.inc:129
+#: phpESP/admin/include/where/access.inc:154
+#: phpESP/admin/include/where/access.inc:188
+#: phpESP/admin/include/function/survey_report.inc:59
+msgid "Public"
+msgstr "Offentlig"
+
+#: phpESP/admin/include/where/access.inc:105
+msgid "Survey Access"
+msgstr "Adgang til survey"
+
+#: phpESP/admin/include/where/access.inc:113
+msgid "This lets you control who has access to fill out a form.\nPublic surveys let anyone submit data.\nPrivate surveys are restricted by Respondent Groups."
+msgstr "Her kan du kontrollere adgangen til at udfylde en formular.\nOffentlige surveys tillader alle at deltage.\nPrivate surveys er begrænset af bruger grupper."
+
+#: phpESP/admin/include/where/access.inc:116
+msgid "NOTE: This does not currently work on embedded forms."
+msgstr "Bemærk: Dette understøttes ikke i indlejrede (embedded) formularer."
+
+#: phpESP/admin/include/where/access.inc:131
+msgid "Max Logins"
+msgstr "Maksimalt antal login"
+
+#: phpESP/admin/include/where/access.inc:140
+#: phpESP/admin/include/where/groups.inc:86
+msgid "Add"
+msgstr "Tilføj"
+
+#: phpESP/admin/include/where/access.inc:186
+msgid "Make Public"
+msgstr "Offentliggør"
+
+#: phpESP/admin/include/where/access.inc:189
+msgid "Make Private"
+msgstr "Gør privat"
+
+#: phpESP/admin/include/where/passwd.inc:11
+#: phpESP/admin/include/where/passwd.inc:54
+msgid "Change Password"
+msgstr "Skift adgangskode"
+
+#: phpESP/admin/include/where/passwd.inc:20
+msgid "Your password has been sucessfully changed."
+msgstr "Din adgangskode er blevet ændret."
+
+#: phpESP/admin/include/where/passwd.inc:24
+msgid "Password not set, check your old password."
+msgstr "Adgangskode er ikke anført. kontroller gammel adgangskode."
+
+#: phpESP/admin/include/where/passwd.inc:27
+msgid "New passwords do not match or are blank."
+msgstr "Ny adgangskode passer ikke - eller er blank."
+
+#: phpESP/admin/include/where/passwd.inc:39
+msgid "Old Password"
+msgstr "Gammel adgangskode"
+
+#: phpESP/admin/include/where/passwd.inc:44
+msgid "New Password"
+msgstr "Ny adgangskode"
+
+#: phpESP/admin/include/where/passwd.inc:49
+msgid "Confirm New Password"
+msgstr "Bekræft ny adgangskode"
+
+#: phpESP/admin/include/where/groups.inc:11
+msgid "to access this menu"
+msgstr "for at åbne denne menu"
+
+#: phpESP/admin/include/where/groups.inc:21
+msgid "Error adding group."
+msgstr "Fej ved tilføjelse af gruppe."
+
+#: phpESP/admin/include/where/groups.inc:25
+#: phpESP/admin/include/where/groups.inc:36
+msgid "Error deleting group."
+msgstr "Fejl ved sletning af gruppe"
+
+#: phpESP/admin/include/where/groups.inc:32
+msgid "Group is not empty."
+msgstr ""
+
+#: phpESP/admin/include/where/groups.inc:46
+#: phpESP/admin/include/where/manage.inc:58
+msgid "Manage Groups"
+msgstr "Administrer grupper"
+
+#: phpESP/admin/include/where/groups.inc:53
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: phpESP/admin/include/where/groups.inc:54
+msgid "Members"
+msgstr "Medlemmer"
+
+#: phpESP/admin/include/where/todo.inc:13
+msgid "Todo list not found."
+msgstr "Todo liste er ikke fundet."
+
+#: phpESP/admin/include/where/test.inc:54
+msgid "View Results"
+msgstr "Vis resultater"
+
+#: phpESP/admin/include/where/test.inc:88
+#: phpESP/admin/include/where/manage.inc:35
+msgid "Test a Survey"
+msgstr "Test en survey"
+
+#: phpESP/admin/include/where/test.inc:89
+msgid "Pick Survey to Test"
+msgstr "Vælg survey til test"
+
+#: phpESP/admin/include/where/test.inc:99
+msgid "Export"
+msgstr "Eksporter"
+
+#: phpESP/admin/include/where/test.inc:115
+#: phpESP/admin/include/where/status.inc:168
+msgid "Test"
+msgstr "Test"
+
+#: phpESP/admin/include/where/test.inc:116
+msgid "Results"
+msgstr "Resultater"
+
+#: phpESP/admin/include/where/tab.inc:76
+#: phpESP/admin/include/where/report.inc:22
+msgid "to access this form"
+msgstr "for at åbne denne formular"
+
+#: phpESP/admin/include/where/tab.inc:85
+msgid "to design forms"
+msgstr "for at designe formularer"
+
+#: phpESP/admin/include/where/tab.inc:91
+msgid "No tabs defined. Please check your ini settings."
+msgstr "Ingen faneblade defineret. Kontroller venligst INI opsætning."
+
+#: phpESP/admin/include/where/tab.inc:143
+msgid "Help"
+msgstr "Hjælp"
+
+#: phpESP/admin/include/where/tab.inc:152
+msgid "General"
+msgstr "Generelt"
+
+#: phpESP/admin/include/where/tab.inc:153
+msgid "Questions"
+msgstr "Spørgsmål"
+
+#: phpESP/admin/include/where/tab.inc:154
+msgid "Order"
+msgstr "Rækkefølge"
+
+#: phpESP/admin/include/where/tab.inc:155
+msgid "Preview"
+msgstr "Vis"
+
+#: phpESP/admin/include/where/tab.inc:156
+msgid "Finish"
+msgstr "Afslut"
+
+#: phpESP/admin/include/where/tab.inc:169
+msgid "Click cancel to cancel this survey, or click continue to proceed to the next tab."
+msgstr "Klik på Fortryd for at afbryde denne survey eller klik på Fortsæt for at gå videre til næste faneblad."
+
+#: phpESP/admin/include/where/tab.inc:181
+msgid "The survey title and other general fields are on the <b>General</b> tab.\nIndividual survey questions are added and modified on the <b>Questions</b> tab.\nQuestions may be re-ordered or deleted from the <b>Order</b> tab.\nYou may see a preview of your survey at any time, by going to the <b>Preview</b>\ntab. If you have no further changes click <b>Finish</b> to go back to the\nManagement Interface."
+msgstr "Survey titel og andre generelle felter er under <b>Generelt</b> faneblad.\nDe enkelte survey spørgsmål tilføjes og redigeres under <b>Spørgsmål</b> fanebladet.\nSpørgsmål kan arrangeres under <b>Rækkefølge faneblad\nDu kan til enhver tid se en survey under <b>Vis</b> fanebladet. Hvis du ikke har yderligere rettelser klik på <b>Afslut</b> for at gå tilbage til \nAdministrator siden."
+
+#: phpESP/admin/include/where/tab.inc:182
+msgid "Click here to open the Help window."
+msgstr "Klik her for at åbne Hjælp (engelsk)."
+
+#: phpESP/admin/include/where/status.inc:99
+msgid "Can not set survey status."
+msgstr "Kan ikke sætte status for survey."
+
+#: phpESP/admin/include/where/status.inc:100
+msgid "STATUS"
+msgstr "STATUS"
+
+#: phpESP/admin/include/where/status.inc:106
+msgid "Survey Status"
+msgstr "Survey status"
+
+#: phpESP/admin/include/where/status.inc:112
+msgid "<b>Test</b> transitions a survey into testing mode. At which point you may\nperform a live test by taking the survey, and viewing the results. You will not\nbe able to make any further changes to the survey once you have switched to\ntest mode."
+msgstr "<b>Test</b> sætter en survey i testmode, hvorfra du kan tage en rigtig test af din survey og se resultatet. Du kan herefter ikke ænde yderligere i din survey."
+
+#: phpESP/admin/include/where/status.inc:117
+msgid "<b>Activate</b> transitions a survey into active more. In this mode the\nsurvey is open for production use, and may be put online. This will clear any\nresults from testing mode (if any). No further editing of survey is\nallowed."
+msgstr "<b>Aktiver</b> sætter en survey i aktiv mode. Når surveyen er aktiveret er den åbnet for brug og kan lægges online. Dette vil slette resultaterne fra test mode (hvis der er nogle).\nIngen yderligere redigering af survey er tilladt."
+
+#: phpESP/admin/include/where/status.inc:121
+msgid "<b>End</b> transitions a survey into ended mode. In this mode, no edits are\npossible, no users may take the survey (it is inactive), but results are still\nviewable from the results menu."
+msgstr "<b>Afslut</b> sætter een survey i afsluttet mode. Ingen rettelser kan foretages og ingen brugere kan tage survey, men resultaterne er stadig tilgængelige."
+
+#: phpESP/admin/include/where/status.inc:125
+msgid "<b>Archive</b> removes this survey. It is still stored in the database, but\nno further interaction is allowed. You may <b>not</b> view the results of an\narchived survey."
+msgstr "<b>Arkiver</b> fjerner survey. Den er stadig gemt i databasen, \nmen kan ikke længere håndteres, du kan dog se resultaterne."
+
+#: phpESP/admin/include/where/status.inc:169
+msgid "Activate"
+msgstr "Aktiver"
+
+#: phpESP/admin/include/where/status.inc:170
+msgid "End"
+msgstr "Afslut"
+
+#: phpESP/admin/include/where/status.inc:171
+msgid "Archive"
+msgstr "Arkiver"
+
+#: phpESP/admin/include/where/status.inc:186
+#: phpESP/admin/include/tab/order.inc:128
+msgid "Edit"
+msgstr "Rediger"
+
+#: phpESP/admin/include/where/results.inc:61
+msgid "Test Survey"
+msgstr "Test survey"
+
+#: phpESP/admin/include/where/results.inc:90
+msgid "View Survey Results"
+msgstr "Vis survey resultater"
+
+#: phpESP/admin/include/where/results.inc:91
+msgid "Pick Survey to View"
+msgstr "Vælg en survey til fremvisning"
+
+#: phpESP/admin/include/where/report.inc:35
+msgid "Go back to Report Menu"
+msgstr "Gå tilbage til Rapport menuen"
+
+#: phpESP/admin/include/where/report.inc:63
+msgid "View Form Report"
+msgstr "Vis formular rapport"
+
+#: phpESP/admin/include/where/report.inc:64
+msgid "Pick Form to View"
+msgstr "Vælg en form til fremvisning"
+
+#: phpESP/admin/include/where/readme.inc:18
+msgid "README not found."
+msgstr "README ikke fundet."
+
+#: phpESP/admin/include/where/purge.inc:11
+msgid "Only superusers allowed."
+msgstr "Kun tilladt for superbrugere."
+
+#: phpESP/admin/include/where/purge.inc:34
+msgid "Purge Surveys"
+msgstr "Purge surveys"
+
+#: phpESP/admin/include/where/purge.inc:43
+msgid "\nThis page is not directly on the main menu because it is\ndangerous. This <b>completely</b> removes everything about a\nsurvey from the database <b>forever</b>. All question info,\ngeneral info, results, etc. are purged from the database. Do\nnot do anything here that you are not completely certain\nabout. There is no confirmation, there is no turning\nback."
+msgstr ""
+
+#: phpESP/admin/include/where/purge.inc:54
+msgid "# Q's"
+msgstr "Sp. nummer"
+
+#: phpESP/admin/include/where/purge.inc:96
+msgid "Clear Checkboxes"
+msgstr "Ryd checkbokse"
+
+#: phpESP/admin/include/where/purge.inc:97
+msgid "Purge"
+msgstr "Ryd"
+
+#: phpESP/admin/include/where/merge.inc:12
+msgid "SIDS"
+msgstr "SIDS"
+
+#: phpESP/admin/include/where/merge.inc:74
+msgid "Error!"
+msgstr "Fejl!"
+
+#: phpESP/admin/include/where/merge.inc:75
+msgid "You need to select at least two surveys!"
+msgstr "Du skal have mindst to surveys"
+
+#: phpESP/admin/include/where/merge.inc:112
+msgid "Merge Survey Results"
+msgstr "Flet survey resultater"
+
+#: phpESP/admin/include/where/merge.inc:113
+msgid "Pick Surveys to Merge"
+msgstr "Vælg survey til fletning"
+
+#: phpESP/admin/include/where/merge.inc:116
+msgid "List of Surveys"
+msgstr "Liste over surveys"
+
+#: phpESP/admin/include/where/merge.inc:118
+msgid "Surveys to Merge"
+msgstr "Surveys til fletning"
+
+#: phpESP/admin/include/where/manage.inc:13
+#: phpESP/admin/include/lib/espauth.inc:155
+msgid "Management Interface"
+msgstr "Administrator side"
+
+#: phpESP/admin/include/where/manage.inc:17
+msgid "Superuser"
+msgstr "Superbruger"
+
+#: phpESP/admin/include/where/manage.inc:26
+msgid "Choose a function"
+msgstr "Vælg en funktion"
+
+#: phpESP/admin/include/where/manage.inc:33
+msgid "Create a Survey"
+msgstr "Opret en survey"
+
+#: phpESP/admin/include/where/manage.inc:34
+msgid "Edit an Existing Survey"
+msgstr "Rediger en bestående survey"
+
+#: phpESP/admin/include/where/manage.inc:36
+msgid "Copy an Existing Survey"
+msgstr "Kopier en bestående survey"
+
+#: phpESP/admin/include/where/manage.inc:37
+msgid "Change the Status of a Survey"
+msgstr "Ret status på en survey"
+
+#: phpESP/admin/include/where/manage.inc:38
+msgid "(active/end/delete)"
+msgstr "(aktiver/afslut/slet)"
+
+#: phpESP/admin/include/where/manage.inc:40
+msgid "Change Access To a Survey"
+msgstr "Ret adgangen til en survey"
+
+#: phpESP/admin/include/where/manage.inc:40
+msgid "Limit Respondents."
+msgstr "Begræns brugere"
+
+#: phpESP/admin/include/where/manage.inc:42
+msgid "View Results from a Survey"
+msgstr "Vis resultater fra en survey"
+
+#: phpESP/admin/include/where/manage.inc:43
+msgid "View a Survey Report"
+msgstr "Vis en survey rapport"
+
+#: phpESP/admin/include/where/manage.inc:44
+msgid "Export Data to CSV"
+msgstr "Eksporter data til CVS"
+
+#: phpESP/admin/include/where/manage.inc:49
+msgid "Change Your Password"
+msgstr "Ret din adgangskode"
+
+#: phpESP/admin/include/where/manage.inc:55
+msgid "Manage Designer Accounts"
+msgstr "Administrator designer konti"
+
+#: phpESP/admin/include/where/manage.inc:65
+msgid "View the list of things still to do"
+msgstr "Vis TODO liste"
+
+#: phpESP/admin/include/where/manage.inc:66
+msgid "(development goals)"
+msgstr "(udviklingsmål)"
+
+#: phpESP/admin/include/where/manage.inc:67
+msgid "View the User &amp; Administrator Guide"
+msgstr "Vis bruger &amp; administrator vejledning"
+
+#: phpESP/admin/include/where/manage.inc:72
+msgid "Log out"
+msgstr "Log ud"
+
+#: phpESP/admin/include/where/logout.inc:14
+msgid "Log back in."
+msgstr "Log in igen"
+
+#: phpESP/admin/include/where/edit.inc:27
+msgid "Edit a Survey"
+msgstr "Rediger en survey"
+
+#: phpESP/admin/include/where/edit.inc:28
+msgid "Pick Survey to Edit"
+msgstr "Vælg survey til redigering"
+
+#: phpESP/admin/include/where/copy.inc:29
+msgid "Error copying survey."
+msgstr "Fejl ved kopiering af survey"
+
+#: phpESP/admin/include/where/copy.inc:59
+msgid "Copy Survey"
+msgstr "Survey kopieret"
+
+#: phpESP/admin/include/where/copy.inc:63
+msgid "\nChose a survey to make a copy of. The copy will have the same\nstatus of a newly created survey. You will be able to edit the\nsurvey, and will have to activate it before use."
+msgstr "\nVælg en survey til kopiering. Kopien vil have samme \nstatus som en ny survey. Du vil kunne redigere denne kopi og du skal aktivere den før dine brugere kan få adgang."
+
+#: phpESP/admin/include/tab/questions_options.inc:33
+msgid "Enter the possible answers (if applicable). Enter\n<tt>!other</tt> on an line by itself to create a\nfill-in-the-blank answer at the end of this question.\nAny blank lines will be suppressed."
+msgstr "Indtast mulige svar (hvis nogle). Indtast \n<tt>!other</tt> på en linie for sig selv hvi du vil oprette et nfill-in-the-blank svar i slutningen af dette spørgsmål.\nAlle blanke linier vil blive undertrykket."
+
+#: phpESP/admin/include/tab/questions_options.inc:55
+msgid "Add another answer line"
+msgstr "Tilføj yderligere en svar linie"
+
+#: phpESP/admin/include/tab/questions.inc:36
+#: phpESP/admin/include/tab/questions.inc:81
+#: phpESP/admin/include/tab/questions.inc:85
+#: phpESP/admin/include/tab/questions.inc:146
+#: phpESP/admin/include/function/survey_update.inc:152
+msgid "New Field"
+msgstr "Nyt felt"
+
+#: phpESP/admin/include/tab/questions.inc:76
+msgid "Edit this field, or click the number of the field you would like to edit:"
+msgstr "Rediger dette felt eller klik på feltnummeret på dte felt du vil redigere:"
+
+#: phpESP/admin/include/tab/questions.inc:87
+msgid "Field"
+msgstr "Felt"
+
+#: phpESP/admin/include/tab/questions.inc:92
+msgid "Field Name"
+msgstr "Felt navn"
+
+#: phpESP/admin/include/tab/questions.inc:93
+msgid "Type"
+msgstr "Type"
+
+#: phpESP/admin/include/tab/questions.inc:94
+msgid "Length"
+msgstr "Længde"
+
+#: phpESP/admin/include/tab/questions.inc:95
+msgid "Precision"
+msgstr "Nøjagtighed"
+
+#: phpESP/admin/include/tab/questions.inc:96
+msgid "Required?"
+msgstr "Obligatorisk?"
+
+#: phpESP/admin/include/tab/preview.inc:27
+msgid "This is a preview of how the survey will look.\nIn the preview the &quot;Next Page&quot; and \n&quot;Submit Survey&quot; are inactive.\nThe survey will use the background color of the\ndocument in which it is embedded. If you have no\nfurther changes click <b>Finish</b> at the bottom of\nthis page."
+msgstr "Dette viser hvordan den færdige survey vil se ud\nVis er &quot;Next Page&quot; and \n&quot;Submit Survey&quot; deaktiveret.\nSurvey'en vil have samme baggrundsfarve som det dokument en placeres i. Hvis du ikke har yderligere\nrettelser, så klik på <b>Afslut</b> i bunden af denne side."
+
+#: phpESP/admin/include/tab/preview.inc:29
+msgid "Section"
+msgstr "Sektion"
+
+#: phpESP/admin/include/tab/preview.inc:43
+msgid "Next Page"
+msgstr "Næste side"
+
+#: phpESP/admin/include/tab/preview.inc:45
+msgid "Submit Survey"
+msgstr "Bekræft survey"
+
+#: phpESP/admin/include/tab/order.inc:72
+msgid "Change the order that questions are\npresented by choosing the desired position from the\nlist."
+msgstr "Ret på spørgsmålenes rækkefølge\nved at vælge ønsket postion fra listen."
+
+#: phpESP/admin/include/tab/order.inc:123
+msgid "----- Section Break -----"
+msgstr "---- Side skift ----"
+
+#: phpESP/admin/include/tab/order.inc:127
+msgid "Remove"
+msgstr "Fjern"
+
+#: phpESP/admin/include/tab/order.inc:136
+msgid "Add Section Break"
+msgstr "Tilføj sideskift"
+
+#: phpESP/admin/include/tab/general.inc:29
+msgid "The information on this tab applies to the whole survey.\nFill out this page then go to the <b>Fields</b> tab to\nedit individual fields."
+msgstr "Informationerne under dette faneblad gælder hele din survey.\nUdfyld denne side og gå til <b>Felter</b> for at \nredigere enkelte felter."
+
+#: phpESP/admin/include/tab/general.inc:40
+msgid "Survey filename."
+msgstr "Survey filnavn"
+
+#: phpESP/admin/include/tab/general.inc:41
+msgid "This is used for all further access to this survey."
+msgstr "Denne bruges for al yderligere adgang til denne survey."
+
+#: phpESP/admin/include/tab/general.inc:42
+msgid "no spaces"
+msgstr "ingen mellemrum"
+
+#: phpESP/admin/include/tab/general.inc:42
+msgid "alpha-numeric only"
+msgstr "kun alfa-numerisk"
+
+#: phpESP/admin/include/tab/general.inc:62
+msgid "Group that owns this survey."
+msgstr "Gruppe, der ejer denne survey."
+
+#: phpESP/admin/include/tab/general.inc:71
+msgid "Title of the survey."
+msgstr "Titel på survey"
+
+#: phpESP/admin/include/tab/general.inc:72
+msgid "This appears at the top of every page of the survey."
+msgstr "Dette optræder i toppen af alle sider i denne survey."
+
+#: phpESP/admin/include/tab/general.inc:73
+#: phpESP/admin/include/tab/general.inc:83
+msgid "free-form"
+msgstr "free-form"
+
+#: phpESP/admin/include/tab/general.inc:73
+#: phpESP/admin/include/tab/general.inc:83
+msgid "including spaces"
+msgstr "inklusive mellemrum"
+
+#: phpESP/admin/include/tab/general.inc:78
+msgid "Subtitle"
+msgstr "Undertitel"
+
+#: phpESP/admin/include/tab/general.inc:82
+msgid "Subtitle of the survey."
+msgstr "Surveys undertitel."
+
+#: phpESP/admin/include/tab/general.inc:83
+msgid "Appears below the title."
+msgstr "Optræder under titlen."
+
+#: phpESP/admin/include/tab/general.inc:88
+msgid "Additional Info"
+msgstr "Yderligere information"
+
+#: phpESP/admin/include/tab/general.inc:91
+msgid "Text to be displayed on the survey before any fields."
+msgstr "Tekst, der skal vises i survey før andre felter."
+
+#: phpESP/admin/include/tab/general.inc:92
+msgid "ie. instructions, background info, etc."
+msgstr "det vil sige instruktioner, informationer osv."
+
+#: phpESP/admin/include/tab/general.inc:100
+msgid "Sends a copy of each sumbission to address (or leave blank for no email backup)."
+msgstr "Send en kopi af alle bekræftede surveys til adressen (eller "
+
+#: phpESP/admin/include/tab/general.inc:104
+msgid "Confirmation Heading"
+msgstr "Hoved til bekræftelse"
+
+#: phpESP/admin/include/tab/general.inc:108
+msgid "Heading on the &quot;Confirmation&quot; page (appearing after a user completes a survey). This is displayed in bold."
+msgstr "Heading på &quot;Bekræftelses&quot; side (optræder efter en bruger har fuldført en survey). Denne tekst vises i <b>fed</b>."
+
+#: phpESP/admin/include/tab/general.inc:112
+msgid "Confirmation Text"
+msgstr "Bekræftelses tekst"
+
+#: phpESP/admin/include/tab/general.inc:116
+msgid "Body text on the &quot;Confirmation&quot; page. This is displayed below the Confirmation Heading."
+msgstr "Body tekst i the &quot;Bekræftelses&quot; side. Dette vises under Bekræftelsens hoved."
+
+#: phpESP/admin/include/tab/finish.inc:14
+msgid "Survey Design Completed"
+msgstr ""
+
+#: phpESP/admin/include/tab/finish.inc:16
+msgid "You have completed this survey design."
+msgstr "Du har færdiggjort denne surveys design"
+
+#: phpESP/admin/include/tab/finish.inc:19
+msgid "To insert this survey into your web page, copy the text\nbelow, and paste it into the HTML of your page."
+msgstr "For at indsætte denne survey på din webside, \nskal du kopiere teksten herunder og indsætte den i \nHTML koden på din side"
+
+#: phpESP/admin/include/tab/finish.inc:30
+msgid "You must activate this survey before you can collect\nresults. Once a survey is active, you may no longer make any\nchanges to it. You may activate this survey by chosing\n<b>Change the Status of an Existing Survey</b> from the\nMangement Interface."
+msgstr "Du skal aktivere denne survey før du kan indsamle \nresultater. Når først en survey er aktiv, kan du ikke \nlængere redigere den. Du kan aktivere survey ved at vælge \n<b>Skift status</b> på en eksisterende survey fra Administrator siden."
+
+#: phpESP/admin/include/lib/espauth.inc:25
+msgid "Unable to execute query for access."
+msgstr "Ikke i stand til at give adgang"
+
+#: phpESP/admin/include/lib/espauth.inc:54
+msgid "Unable to execute query respondents."
+msgstr "Ikke i stand til at åbne for brugere."
+
+#: phpESP/admin/include/lib/espauth.inc:69
+#: phpESP/admin/include/lib/espauth.inc:87
+#: phpESP/admin/include/lib/espauth.inc:156
+#: phpESP/admin/include/lib/espauth.inc:157
+#: phpESP/admin/include/lib/espauth.inc:158
+msgid "Unauthorized"
+msgstr "Uautoriseret"
+
+#: phpESP/admin/include/lib/espauth.inc:70
+msgid "Incorrect User ID or Password, or your account has been disabled/expired."
+msgstr "Forkert bruger ID eller adgangskode - eller din konto er spærret/udløbet."
+
+#: phpESP/admin/include/lib/espauth.inc:88
+msgid "Your account has been disabled or you have already completed this survey."
+msgstr "Din konto er blevet spærret eller du har allerede gennemgået denne survey."
+
+#: phpESP/admin/include/lib/espauth.inc:137
+#: phpESP/admin/include/lib/espauth.inc:138
+#: phpESP/admin/include/lib/espauth.inc:140
+msgid "Service Unavailable"
+msgstr "Service ikke tilgængelig"
+
+#: phpESP/admin/include/lib/espauth.inc:141
+msgid "Unable to load ACL."
+msgstr "Ikke i stand til at hente ACL"
+
+#: phpESP/admin/include/lib/espauth.inc:159
+msgid "Incorrect User ID or Password, or your account has been disabled."
+msgstr "Forkert bruger ID eller adgangskode eller din konto er spærret."
+
+#: phpESP/admin/include/lib/espauth.inc:242
+msgid "This account does not have permission"
+msgstr "Denne konto har ikke tilladelse"
+
+#: phpESP/admin/include/lib/espresponse.inc:55
+msgid "You are missing the following required questions:"
+msgstr "Du har glemt følgende obligatoriske spørgsmål:"
+
+#: phpESP/admin/include/lib/espresponse.inc:409
+msgid "Response from survey:"
+msgstr "Respons fra survey"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:61
+#: phpESP/admin/include/lib/esphtml.results.inc:117
+#: phpESP/admin/include/lib/esphtml.results.inc:155
+msgid "TOTAL"
+msgstr "TOTAL"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:82
+msgid "Rank"
+msgstr "Rang"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:171
+#: phpESP/admin/include/function/survey_report.inc:56
+msgid "#"
+msgstr "Nr."
+
+#: phpESP/admin/include/lib/esphtml.results.inc:171
+msgid "Response"
+msgstr "Response"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:194
+msgid "Average rank"
+msgstr "Gennemsnits rang"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:198
+#: phpESP/admin/include/function/survey_render.inc:183
+msgid "1"
+msgstr "1"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:199
+#: phpESP/admin/include/function/survey_render.inc:184
+msgid "2"
+msgstr "2"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:200
+#: phpESP/admin/include/function/survey_render.inc:185
+msgid "3"
+msgstr "3"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:201
+#: phpESP/admin/include/function/survey_render.inc:186
+msgid "4"
+msgstr "4"
+
+#: phpESP/admin/include/lib/esphtml.results.inc:202
+#: phpESP/admin/include/function/survey_render.inc:187
+msgid "5"
+msgstr "5"
+
+#: phpESP/admin/include/function/survey_update.inc:36
+msgid "Sorry, please fill out the name and title before proceeding."
+msgstr "Beklager, udfyld venligst navn og titel før du fortsætter."
+
+#: phpESP/admin/include/function/survey_update.inc:55
+msgid "Sorry, name already in use. Pick a new name."
+msgstr "Desværre, navnet er allerede i brug. Anvend et andet navn"
+
+#: phpESP/admin/include/function/survey_update.inc:77
+msgid "Sorry, please fill out the name, group, and title before proceeding."
+msgstr "Desværre, udfyld navn, gruppe og titel før du fortsætter."
+
+#: phpESP/admin/include/function/survey_update.inc:95
+msgid "Sorry, that name is already in use."
+msgstr "Desværre, navnet er allerede i brug."
+
+#: phpESP/admin/include/function/survey_update.inc:108
+#: phpESP/admin/include/function/survey_update.inc:231
+#: phpESP/admin/include/function/survey_update.inc:260
+msgid "Warning, error encountered."
+msgstr "Advarlsel, der er opstået en fejl."
+
+#: phpESP/admin/include/function/survey_update.inc:122
+msgid "Please enter text for this question."
+msgstr "Indtast venligst tekst til dette spørgsmål."
+
+#: phpESP/admin/include/function/survey_update.inc:147
+msgid "Sorry, you must select a type for this question."
+msgstr "Desværre, du skal vælge en type for dette spørgsmål."
+
+#: phpESP/admin/include/function/survey_update.inc:167
+msgid "Sorry, you cannot change between those types of question. Create a new question instead."
+msgstr "Desværre, du kan ikke ændre type på spørgsmål . Opret et nyt spørgsmål med anden type i stedet."
+
+#: phpESP/admin/include/function/survey_update.inc:268
+msgid "Sorry, you need at least one answer option for this question type."
+msgstr "Desværre, der skal være mindst et svar til denne type spørgsmål."
+
+#: phpESP/admin/include/function/survey_results.inc:48
+#: phpESP/admin/include/function/survey_report.inc:24
+msgid "Error system table corrupt."
+msgstr "Fejl, system tabel er ødelagt."
+
+#: phpESP/admin/include/function/survey_results.inc:48
+#: phpESP/admin/include/function/survey_results.inc:84
+#: phpESP/admin/include/function/survey_report.inc:24
+msgid "Table"
+msgstr "Tabel"
+
+#: phpESP/admin/include/function/survey_results.inc:60
+#: phpESP/admin/include/function/survey_results.inc:73
+#: phpESP/admin/include/function/survey_results.inc:119
+#: phpESP/admin/include/function/survey_results.inc:124
+#: phpESP/admin/include/function/survey_report.inc:36
+#: phpESP/admin/include/function/survey_report.inc:47
+#: phpESP/admin/include/function/survey_merge.inc:45
+msgid "Error opening survey."
+msgstr "Fejl ved åbnim af survey"
+
+#: phpESP/admin/include/function/survey_results.inc:73
+#: phpESP/admin/include/function/survey_report.inc:47
+#: phpESP/admin/include/function/survey_merge.inc:88
+msgid "No questions found."
+msgstr "Ingen spørgsmål fundet"
+
+#: phpESP/admin/include/function/survey_results.inc:84
+msgid "Error cross-analyzing. Question not valid type."
+msgstr "Fejl ved kryds-analyse. Spørgsmål er ikke af korrekt type."
+
+#: phpESP/admin/include/function/survey_results.inc:124
+#: phpESP/admin/include/function/survey_merge.inc:64
+msgid "No responses found."
+msgstr "Ingensvar fundet"
+
+#: phpESP/admin/include/function/survey_results.inc:145
+msgid "Cross analysis on QID:"
+msgstr "Kryds-analyse på QID"
+
+#: phpESP/admin/include/function/survey_report.inc:51
+msgid "Report for"
+msgstr "Rapport for"
+
+#: phpESP/admin/include/function/survey_report.inc:58
+msgid "Req'd"
+msgstr "Ønsket"
+
+#: phpESP/admin/include/function/survey_report.inc:60
+msgid "Content"
+msgstr "Indhold"
+
+#: phpESP/admin/include/function/survey_render.inc:57
+#: phpESP/admin/include/function/survey_render.inc:248
+msgid "Page"
+msgstr "Side"
+
+#: phpESP/admin/include/function/survey_render.inc:57
+#: phpESP/admin/include/function/survey_render.inc:248
+msgid "of"
+msgstr "af"
+
+#: phpESP/admin/include/function/survey_render.inc:62
+msgid "Questions marked with a"
+msgstr "Spørgsmål mærket med en"
+
+#: phpESP/admin/include/function/survey_render.inc:63
+msgid "are required."
+msgstr "er obligatoriske"
+
+#: phpESP/admin/include/function/survey_render.inc:188
+msgid "N/A"
+msgstr "N/A"
+
+#: phpESP/admin/include/function/survey_merge.inc:22
+#: phpESP/admin/include/function/survey_merge.inc:27
+msgid "Invalid argument."
+msgstr "forkert argument."
+
+#: phpESP/admin/include/function/survey_merge.inc:58
+#: phpESP/admin/include/function/survey_merge.inc:63
+#: phpESP/admin/include/function/survey_merge.inc:88
+msgid "Error opening surveys."
+msgstr "Fejl ved åbning af survey."
+
+#: phpESP/admin/include/function/survey_merge.inc:64
+msgid "Total"
+msgstr "Total"
+
+#: phpESP/admin/include/function/survey_copy.inc:32
+msgid "copy"
+msgstr "kopiering"
