@@ -79,6 +79,18 @@
 		}
 	}
 ?>
+<script language="javascript">
+<!-- // comment
+function clearTextInputs() {
+	var i = 1;
+	while (document.phpesp.elements["choice_content_" + i]) {
+		document.phpesp.elements["choice_content_" + i].value = "";
+		i++;
+		
+        }
+}
+// comment -->
+</script>
 <center>
 	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>">
 	<p>
