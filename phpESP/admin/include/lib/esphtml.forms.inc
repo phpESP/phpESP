@@ -69,6 +69,12 @@ function mktext ($name) {
 }
 /* }}} */
 
+/* {{{ proto string mkpass(string name)
+   Returns HTML format for a password entry line. */
+function mkpass ($name) {
+	return('<input type="password" name="'. htmlspecialchars($name) .'">');
+}
+/* }}} */
 
 /* {{{ proto string mktextarea(string name, int rows, int cols, string wrap_type)
    Returns HTML format for a text entry box. */
