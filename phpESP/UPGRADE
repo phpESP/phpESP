@@ -11,6 +11,12 @@ change is the change from rank questions to rating questions. If you
 have any surveys with Rank questions you will have to change them, so
 don't do the upgrade while you have active surveys.
 
+You need to backup your INI file, then extract the new version over the
+old version, then change the path in the handler back to where you have
+phpESP installed. The INI file has not changed any, so you can just copy
+your old one back over the new one. The handler *has* changed so you will
+need to keep the new one, but change the path to the config file.
+
 There are small database changes with this version. I have included a
 'upgrade.sql' script that will alter your existing database, and
 preserve your data. The only issue is that the 'Rank' question gets
