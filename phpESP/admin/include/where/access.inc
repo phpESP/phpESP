@@ -31,10 +31,10 @@
 					array_merge(
 						$HTTP_SESSION_VARS['acl']['pall'],
 						$HTTP_SESSION_VARS['acl']['pdesign'])));
-			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = ".
-				_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms)";
-			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['survey_table']." s
+                $sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
+				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid AND NOT (status & " .STATUS_DELETED. ") AND                (s.owner = "._addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms)";
+			    $sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate 
+                FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['survey_table']." s
 				WHERE a.survey_id = $sid AND s.id=a.survey_id AND (s.owner = ".
 				_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms) ORDER BY a.realm";
 		}
@@ -129,7 +129,7 @@
 			}
 			db_close($result);
 		} else {
-			$groups =& $HTTP_SESSION_VARS['acl']['pgroup'];
+			$groups =& $HTTP_SESSION_VARS['acl']['pdesign'];
 		}
 		foreach($groups as $g) {
 			$r .= "<option value=\"$g\">$g</option>";
