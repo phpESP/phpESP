@@ -6,68 +6,94 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-/* NOTE: In order for these to work you must have:
- *    register_globals = On
- * in php.ini
- */
+	if (!defined('STATUS_ACTIVE')) {
+	    define('STATUS_ACTIVE',  0x01);
+	    define('STATUS_DONE',    0x02);
+	    define('STATUS_DELETED', 0x04);
+	    define('STATUS_TEST',    0x08);
+	}
 
-// bool[]	arr_has_answers(void);
-// !exit	goto_thankyou(int sid, char* referer);
-// char*	check_required(int sid, int section);
-// char*->char*	retrieve_values(int sid, int section);
-// int		insert_values(int sid, int section, int rid);
-// bool		complete_response(int rid);
-// char*	email_values(int sid, int rid);
-// void		clear_results(int sid);
-
-if(!defined('_FUNCS')) {
- 	define('_FUNCS',TRUE);
-	
 	if(get_magic_quotes_gpc()) {
-		function XADDSLASHES($a) { return($a); }
-		function DESLASH($a)     { return(stripslashes($a)); }
+		function _addslashes($a)    { return($a); }
+		function _stripslashes($a)  { return(stripslashes($a)); }
 	} else {
-		function XADDSLASHES($a) { return(addslashes($a)); }
-		function DESLASH($a)     { return($a); }
+		function _addslashes($a)    { return(addslashes($a)); }
+		function _stripslashes($a)  { return($a); }
 	}
 	set_magic_quotes_runtime(0);
 
-	function esp_where($where) {
+	function esp_where($where = null) {
+		$cfg =& $GLOBALS['ESPCONFIG'];
 		if(empty($where))
 			$where = 'index';
 		$where = strtolower(ereg_replace(' +','_',$where));
 		if(!ereg('^[A-Za-z0-9_]+$',$where))	// Valid chars are [A-Za-z0-9_]
 			$where = 'index';
-		if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']))
+		if(!file_exists($cfg['include_path'].'/where/'.$where.$cfg['extension']))
 			$where = 'index';
-		if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension'])) {
+		if(!file_exists($cfg['include_path'].'/where/'.$where.$cfg['extension'])) {
 			echo('<b>'. _('Unable to open include file. Check INI settings. Aborting.'). '</b>');
 			exit;
 		}
-		return($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']);
+		return($cfg['include_path'].'/where/'.$where.$cfg['extension']);
+	}
+
+	function esp_init_db() {
+		$_ext = 'mysql.so';
+		if (substr(PHP_OS, 0, 3) == 'WIN') {
+			$_ext = 'php_mysql.dll';
+		}
+		if (!extension_loaded('mysql') && !ini_get('safe_mode')
+			&& ini_get('enable_dl') && !@dl($_ext)) {
+			echo "<b>FATAL: Unable to load the PHP mysql extension ($_ext). Aborting.</b>";
+			exit;
+		}
+		unset($_ext);
+	
+		$cfg =& $GLOBALS['ESPCONFIG'];
+		$cfg['db_conn'] = @mysql_connect(
+				$cfg['db_host'], $cfg['db_user'], $cfg['db_pass']);
+		if ($cfg['db_conn'] !== false) {
+		    if (mysql_select_db($cfg['db_name'], $cfg['db_conn']) === false) {
+		        mysql_close($cfg['db_conn']);
+		        $cfg['db_conn'] = false;
+		    }
+		}
+		if ($cfg['db_conn'] === false) {
+		    header('HTTP/1.0 503 '. _('Service Unavailable'));
+		    echo('<html><head><title>HTTP 503 '. _('Service Unavailable') .'</title></head>');
+		    echo('<body><h1>HTTP 503 '. _('Service Unavailable') .'</h1>');
+		    echo(mkerror(_('Connection to database failed. Please check configuration.')));
+		    if ($cfg['DEBUG'])
+		        echo("<br>\n". mkerror(mysql_errno().": ".mysql_error()));
+		    echo('</body></html>');
+		    exit;
+		}
 	}
 	
 	// redirect to thank you page for survey ID 'sid'
 	// exits PHP!
 	function goto_thankyou($sid,$referer) {
-		$thank_body = $GLOBALS['ESPCONFIG']['thank_body'];
-		$thank_head = $GLOBALS['ESPCONFIG']['thank_head'];
-		$sql = "SELECT theme,thanks_page,thank_head,thank_body FROM survey WHERE id='${sid}'";
+		$sql = "SELECT thanks_page,thank_head,thank_body FROM survey WHERE id='${sid}'";
 		$result = mysql_query($sql);
-		list($theme,$thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
+		list($thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
 		mysql_free_result($result);
-		if (!empty($theme)){
-			echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$theme."\"  type=\"text/css\">\n");
-		}
-		if((empty($thank_head)  && empty($thank_body)) && !empty($thank_url)) {
+		if(!empty($thank_url)) {
+			if(!headers_sent()) {
+				header("Location: $thank_url");
+				exit;
+			}
 ?>
 <script language="JavaScript">
 <!--
 window.location="<?php echo($thank_url); ?>"
 //-->
 </script>
-<noscript><h2>Thank You for completing this survey.</h2>
-Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
+<noscript>
+<h2 class="thankhead">Thank You for completing this survey.</h2>
+<blockquote class="thankbody">Please click
+<a class="returnlink" href="<?php echo($thank_url); ?>">here</a>
+to continue.</blockquote>
 </noscript>
 <?php
 			exit;
@@ -87,36 +113,16 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 
     function goto_saved($url) {
 ?>
-<p>Your progress has been saved.  You may return at any
+<blockquote class="thankbody">
+<?php echo
+_('Your progress has been saved.  You may return at any
 time to complete this survey.  To do so, simply bookmark
-the link below.  You may be prompted for your email address
-(username) and password to complete the survey.</p>
-<a href="<?php echo $url; ?>">Resume survey</a>
+the link below.  You may be prompted for your username
+and password to complete the survey.') ?></blockquote>
+<a class="returnlink" href="<?php echo $url; ?>"><?php echo _('Resume survey'); ?></a>
 <?php
         return;
     }
-
-	// clear the results of a survey (non-reversable)
-	function clear_results($sid) {
-		$sql = "SELECT id FROM question WHERE survey_id='${sid}'";
-		$result = mysql_query($sql);
-		$qids = array();
-		while(list($qid) = mysql_fetch_row($result)) {
-			array_push($qids, $qid);
-		}
-		mysql_free_result($result);
-		$qidstr = 'question_id ' . array_to_insql($qids);
-	
-		$tables = array('response_bool','response_multiple','response_other','response_rank','response_single','response_text');
-		foreach($tables as $table) {
-			$sql = "DELETE FROM ${table} WHERE ${qidstr}";
-			$result = mysql_query($sql);
-		}
-		$sql = "DELETE FROM response WHERE survey_id=${sid}";
-		mysql_query($sql);
-
-		return;
-	}
 
 	require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['include_path']."/lib/esphtml.forms".$ESPCONFIG['extension']);
@@ -133,7 +139,5 @@ the link below.  You may be prompted for your email address
 	require_once($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['include_path']."/function/account_upload".$ESPCONFIG['extension']);
-
-} // end if !defined(_FUNCS)
 
 ?>
