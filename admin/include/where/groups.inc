@@ -39,8 +39,11 @@
 	}
 
 	$sql = 'SELECT r.name, r.title, count(d.username) FROM realm r LEFT JOIN designer d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
+	$sql2 = 'SELECT count(d.username) FROM realm r LEFT JOIN respondent d ON r.name=d.realm GROUP BY r.name ORDER BY r.name';
 	$result = mysql_query($sql);
+	$result2 = mysql_query($sql2);
 	
+	$i = 0;
 	$bg = $ESPCONFIG['bgalt_color2'];
 ?>
 <h2><?php echo(_('Manage Groups')); ?></h2>
@@ -56,6 +59,7 @@
 	</tr>
 <?php
 	while(list($realm, $title, $count) = mysql_fetch_row($result)) {
+		$count += mysql_result($result2, $i++, 0);
 
 		if ($bg == $ESPCONFIG['bgalt_color1'])
 			$bg =& $ESPCONFIG['bgalt_color2'];
@@ -73,6 +77,7 @@
 <?php
 	}
 	mysql_free_result($result);
+	mysql_free_result($result2);
 	
 	if ($bg == $ESPCONFIG['bgalt_color1'])
 		$bg =& $ESPCONFIG['bgalt_color2'];
