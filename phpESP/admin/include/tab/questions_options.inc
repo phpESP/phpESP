@@ -60,6 +60,6 @@ Any blank lines will be suppressed.')); ?>
 <?php	} ?>
 	<tr>
 		<td>&nbsp;</td>
-		<td><input type="submit" name="extra_choices" value="<?php echo(_('Add another answer line')); ?>"></td>
+		<td><input type="submit" name="extra_choices" value="<?php echo(_('Add another answer line')); ?>"> <input type="button" name="clear" value="Clear all answer lines" onClick="clearTextInputs()"> </td>
 	</tr>
 </table>
