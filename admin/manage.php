@@ -9,7 +9,7 @@
 
 	session_start();
 
- 	$CONFIG = '/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini';
+ 	$CONFIG = '/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini.php';
 
 	if(!file_exists($CONFIG)) {
 		echo('<b>Unable to open INI file. Aborting.</b>');

@@ -14,7 +14,7 @@
  * See the handler-prefix.php file for details.
  */
 
-	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
+	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini.php');
 	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 	require($ESPCONFIG['handler_prefix']);
 	if(!defined('AUTHHAND-OK')) {

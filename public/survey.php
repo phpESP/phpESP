@@ -4,7 +4,7 @@
 // Matthew Gregg
 // <greggmc at musc.edu>
 
-	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
+	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini.php');
 
 	$_name = '';
 	$_title = '';

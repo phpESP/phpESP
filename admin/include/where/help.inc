@@ -168,7 +168,7 @@
 <li><h3><a name="themes">Creating and Assigning Survey Themes</h3></a>
 	<p>All themes (css style sheets) are contained within the css
 	directory which is, by default, located in the public directory
-	of this package (and its path is definable in the phpESP.ini file).
+	of this package (and its path is definable in the phpESP.ini.php file).
 	Please ensure that all your css files are
 	contained within this directory. In this directory you will find
 	the <b>template.css</b>. To create a new theme simply copy the
