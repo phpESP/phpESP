@@ -38,7 +38,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 			// containing the desired Choice IDs
 			// ex: "('123','124','125')"
 			if(is_array($cids) && count($cids)>0) {
-				$cidstr = "IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $cids) . ")");
+				$cidstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $cids)) .")";
 			} else {
 				$cidstr = '';
 			}
@@ -80,6 +80,18 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 			$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ]";
 			return($errmsg);
 		}
+		
+		// find out more about the question we are cross analyzing on (if any)
+		if($cross) {
+			$sql = "SELECT type_id FROM survey_questions WHERE id=${qid}";
+			$result = mysql_query($sql);
+			$crossTable = $answer_table[mysql_result($result,0,0)];
+			mysql_free_result($result);
+			if(!in_array($crossTable, array('answers_single','answers_bool','answers_multiple'))) {
+				$errmsg = "Error cross-analyzing. Question not valid type. [ Table: ${crossTable} ]";
+				return($errmsg);
+			}
+		}
 
 	// find total number of survey responses
 	// and relevant response ID's
@@ -87,7 +99,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 		if($cross) {
 			if(!empty($cidstr))
 				$sql = "SELECT A.response_id
-						  FROM answers_single A,
+						  FROM ${crossTable} A,
 						       survey_responses R
 						 WHERE A.response_id=R.id AND
 						       R.complete='yes' AND
@@ -96,7 +108,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						 ORDER BY A.response_id";
 			else
 				$sql = "SELECT A.response_id
-						  FROM answers_single A,
+						  FROM ${crossTable} A,
 						       survey_responses R
 						 WHERE A.response_id=R.id AND
 						       R.complete='yes' AND
@@ -130,7 +142,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 		// create a string suitable for inclusion in a SQL statement
 		// containing the desired Response IDs
 		// ex: "('304','311','317','345','365','370','403','439')"
-		$ridstr = "IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $rid) . ")");
+		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rid)) .")";
 
 		if(1) {
 			echo("<!--
@@ -140,6 +152,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 \$qid = $qid
 \$cids = $cids
 \$cross = $cross
+\$crossTable = $crossTable
 \$cidstr = $cidstr
 \$ridstr = $ridstr
 -->");
