@@ -31,11 +31,19 @@
 				<li><a href="<?php echo("${base}?where=results"); ?>"><?php echo(_('View the Results of a Survey')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=merge");   ?>"><?php echo(_('Merge the results from two Surveys')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=report");  ?>"><?php echo(_('View a survey report')); ?></a></li>
+			</ul>
+			<ul>
 				<li><a href="<?php echo("${base}?where=passwd");  ?>"><?php echo(_('Change your password')); ?></a></li>
+				<li><a href="<?php echo("${base}?where=managers");?>"><?php echo(_('Manage Designer Accounts')); ?></a></li>
+				<li><a href="<?php echo("${base}?where=users");   ?>"><?php echo(_('Manage Respondent Accounts')); ?></a></li>
+			</ul>
+			<ul>
 				<li><a href="<?php echo("${base}?where=TODO");    ?>"><?php echo(_('View the list of things still to do')); ?></a>
 					<?php echo(_('(development goals)')); ?></li>
 				<li><a href="<?php echo("${base}?where=README");  ?>"><?php echo(_('View the README')); ?></a>
 					<?php echo(_('(help)')); ?></li>
+			</ul>
+			<ul>
 				<li><a href="<?php echo("${base}?where=logout");  ?>"><?php echo(_('Log out')); ?></a></li>
 			</ul>
 			</td></tr></table>
