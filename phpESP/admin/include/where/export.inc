@@ -5,9 +5,13 @@
 // Written by James Flemer
 // <jflemer@acm.jhu.edu>
 
-$sid = intval($HTTP_GET_VARS['sid']);
 if(!empty($HTTP_POST_VARS['sid']))
+	$sid = intval($HTTP_GET_VARS['sid']);
+elseif(!empty($HTTP_POST_VARS['sid']))
 	$sid = intval($HTTP_POST_VARS['sid']);
+else
+	$sid = '';
+$bg = '';
 
 ?>
 <h2><?php echo(_('Export Data')); ?></h2>
