@@ -45,6 +45,8 @@ if (!function_exists('gettext')) {
     function textdomain() {return null;}
     function _($s) {return($s);}
 
+    $ESPCONFIG['gettext'] = false;
+
 //	function dcngettext($d,...) {return null;}
 //	function dngettext() {return null;}
 //	function ngettext(...) {return null;}	
