@@ -9,12 +9,8 @@ FILES:
 admin/:			administration interface and files
 images/:		gifs used for the packages
 public/:		public interface to taking surveys
-UPGRADE:		upgrade guide
 LICENSE:		the license, read this!
 phpESP.sql:		SQL script to initialize your mysql database for phpESP
-update.sql:		SQL script if you are upgrading (read the contents)
-espauth.sql:	SQL script to create authentication tables 
-				(see README.AUTH)
 
 PREREQUISITES:
   * mysql installed and running
@@ -23,40 +19,45 @@ PREREQUISITES:
   * read the license
 
 INSTALLING:
+  You may install this package in any place you wish,
+  however the recommended location is in:
+    /usr/local/lib/php/contrib/phpESP
+  By doing so, you can avoid editing so many files to point
+  them at the rest of the files.
 
-  Unpack the archive somewhere in your htdocs dir. (now referred to
-  [install-root])
+  Unpack the archive in the directory that you choose.
+  (From now on  referred to as the [install-root].) Now
+  you  need to place a few files somewhere inside your
+  htdocs tree. Symlink (or copy) the [install-root]/images
+  directory to somewhere in the htdocs tree.
+
+  Edit the file [install-root]/admin/phpESP.ini and set the
+  paths according to where you installed phpESP, and the
+  path to the images on your web site. Set the database
+  info.
+
+  Edit the file [install-root]/admin/manage.php and set the
+  path to where the phpESP.ini is.  Then symlink (or copy)
+  it to somewhere in the htdocs tree as index.php or
+  whatever you wish. 
+
+  Edit the file [install-root]/public/handler*.php and set
+  the path to where the phpESP.ini is.
 
   Create a new mysql database, and a mysql user with
   select,insert,update,delete privileges on the database.
 
-  From a privileged mysql account import the file [install-root]/phpESP.sql to
-  initialize the survey database.
+  From a privileged mysql account import the file
+  [install-root]/phpESP.sql to initialize the survey
+  database.
 
-  Edit the file [install-root]/admin/phpESP.ini and set the paths according to
-  where you installed phpESP, and the path to it on your website. Set the
-  database info.
-  
-  Edit the file [install-root]/public/handler.php and set the path
-  to where the phpESP.ini is.
+  Load the admin site in your browser, and go! Further docs
+  provided from the help page on the admin site. The
+  default login is root/esp. I suggest you change the
+  password for this account right away.
 
-  Edit the [install-root]/admin/.htaccess file to set the access permission for
-  the administration side. Or just set the path to use the current auth method.
-  By default the .htpasswd file contains one user 'root' with a password of
-  'esp'. CHANGE THE DEFAULT, by running:
-     /usr/local/apache/bin/htpasswd .htpasswd root
-  from the admin directory. (Substitute your path to apache
-  above if different.)
-
-  Load the admin site in your browser, and go! Further docs provided from the
-  help page on the admin site. Depending on where you installed phpESP the
-  admin site should be at --
-    http://127.0.0.1/[path-to-install-in-htdocs]/phpESP/admin/
-
-  Read the UPGRADE guide even if you are not upgrading. I put some more help
-  on new features in there (tho not much).
-
-  If you have problems, questions, suggestion, patches, flames feel free to
-  email me. (See top of this doc, or sourceforge to get my email address.)
+  If you have problems, questions, suggestion, patches,
+  flames feel free to email me. (See top of this doc, or
+  SourceForge to get my email address.)
 
 --James
