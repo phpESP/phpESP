@@ -200,7 +200,9 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 				if($result = mysql_query($sql)) {
 					while(list($answer,$ccontent,$num) = mysql_fetch_row($result)) {
-						$content = ereg_replace("!other=?", "", $ccontent) . $answer;
+						$content = ereg_replace("!other=?", "", $ccontent);
+						if($content != '')	$content .= ": ";
+						$content .= $answer;
 						$counts[$content] += $num;
 					}
 					mysql_free_result($result);
