@@ -138,7 +138,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				$HTTP_POST_VARS['name'] = $str1;
 			}
 			$HTTP_POST_VARS['name'] = strtoupper(substr( eregi_replace(
-				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name'])), 0, 10));
+				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name'])), 0, 30));
 			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
 
 			// constraint: question type required
