@@ -153,7 +153,6 @@ FROM question Q, question_type T
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
-						$val[] = $cid;
 					}
 				}
 				mysql_free_result($c_result);
