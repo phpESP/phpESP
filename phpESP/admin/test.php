@@ -68,6 +68,19 @@ function check_version()
 <html>
 <head>
 <title>phpESP System Information</title>
+<style type="text/css">
+<!--
+ul,th {
+        font-family : Verdana, Arial, Helvetica, Geneva, sans-serif;
+        font-size : 9px;
+        font-weight : bold;
+        font-variant : normal;
+        font-style : normal;
+}
+
+
+-->
+</style>
 </head>
 <body>
 <table><tbody align="left">
