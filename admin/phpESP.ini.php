@@ -41,7 +41,7 @@ $ESPCONFIG['db_pass'] = 'phpesp';
 $ESPCONFIG['db_name'] = 'phpesp';
 
 // ADODB 
-$ESPCONFIG['adodb_path'] = '/usr/share/adodb/';
+$ESPCONFIG['adodb_path'] = ESP_BASE . 'admin/include/lib/adodb/';
 $ESPCONFIG['adodb_database_type'] = 'mysql';
 $ESPCONFIG['adodb_dbpersist'] = 'true';
 $ESPCONFIG['adodb_pathto_db'] = "/var/www/phpESP/scripts/db/esp.dbm";
