@@ -144,7 +144,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		$result = mysql_query($sql);
         while($content = mysql_fetch_array($result, MYSQL_ASSOC)){
             $crossTable = $response_table[$content['type_id']];
-            $q_content = $content['content'];
+            $q_content = $content['type_id'];
         }
 		mysql_free_result($result);
 		if(!in_array($crossTable, array('response_single','response_bool','response_multiple'))) {
