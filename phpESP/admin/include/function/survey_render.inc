@@ -171,13 +171,21 @@ function survey_render($sid, $section = 1, $message = '') {
 				while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {
 					$cid = $other['id'];
 					$other_text = preg_replace(
-							array("/\!other=(.*)/","/\!other/"),
-							array("\\1 ","Other: "),
+							array("/^!other=/","/^!other/"),
+							array('','Other:'),
 							$other['content']);
 ?>
 						<tr>
 							<td><?php echo(mkradio($qid,"other_$cid")); ?></td>
-							<td><?php echo($other_text."<input type=\"text\" size=\"20\" name=\"".$qid."_".$cid."\" onKeyPress=\"other_check(this.name)\"></td>");?>
+							<td>
+<?php
+                    $cid = "${qid}_${cid}";
+                    echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
+                	if (isset($GLOBALS['HTTP_POST_VARS'][$cid]))
+                        echo(' value="'. htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid]) .'"');
+                    echo(" />");
+?>
+                            </td>
 						</tr>
 <?php
 					$j++;
@@ -200,11 +208,22 @@ function survey_render($sid, $section = 1, $message = '') {
 				$j=0;
 				while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {
 					$cid = $other['id'];
-					$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
+					$other_text = preg_replace(
+							array("/^!other=/","/^!other/"),
+							array('','Other:'),
+							$other['content']);
 ?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,"other_$cid")); ?></td>
-							<td><?php echo($other_text."<input type=\"text\" size=\"20\" name=\"".$qid."_".$cid."\" onKeyPress=\"other_check(this.name)\"></td>");?>
+							<td>
+<?php
+                    $cid = "${qid}_${cid}";
+                    echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
+                	if (isset($GLOBALS['HTTP_POST_VARS'][$cid]))
+                        echo(' value="'. htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid]) .'"');
+                    echo(" />");
+?>
+                            </td>
 
 						</tr>
 <?php
