@@ -74,7 +74,9 @@ if(!$sid) {
 		<td><?php echo($realm); ?></td>
 		<td><?php echo($stat); ?></td>
 		<td><?php
-			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=csv&sid=$sid\">" . _('CSV') . "</a>"); ?></td>
+			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=csv&sid=$sid\">" . _('CSV') . "</a>"); ?>
+			(<?php
+			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=download&type=csv&sid=$sid\">" . _('download') . '</a>'); ?>)</td>
 		<td>&nbsp;<!-- <?php
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=dbf&sid=$sid\">" . _('DBF') . "</a>"); ?>  --></td>
 	</tr>
@@ -120,14 +122,16 @@ if(!$sid) {
 		}
 	}
 
-	// default to CSV
-	if($HTTP_GET_VARS['type'] == 'dbf' || $HTTP_POST_VARS['type'] == 'dbf') {
+	$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : 'csv';
+	
+	// Try DBF first, default to CSV
+	if($type == 'dbf') {
 		$file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.dbf";
 		if(extension_loaded('dbase')) {
 			$ret = survey_export_dbf($sid, $file);
 		} else {
 			$ret = 0;
-			echo("<tr><td>" . mkerror(_('PHP: dBase Module not installed')) . "</td></tr>");
+			echo("<tr><td>" . mkerror(_('The PHP dBase Extension is not installed.')) . "</td></tr>");
 		}
 	} else {
 		$file = $HTTP_SESSION_VARS['acl']['home'] . "/$name.csv";
