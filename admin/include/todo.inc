@@ -3,7 +3,7 @@
 # $Id$
 
 echo("<DIV ALIGN=LEFT><PRE>");
-include($PIECES."/TODO");
+include($PIECES."/../../TODO");
 echo("</PRE></DIV>");
 
 ?>
