@@ -14,7 +14,7 @@
  * See the handler-prefix.php file for details.
  */
 
-	require('/var/www/phpESP/admin/phpESP.ini');
+	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
 	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 	require($ESPCONFIG['handler_prefix']);
 	if(!defined('AUTHHAND-OK')) {
@@ -51,7 +51,7 @@
 		return;
 	}
 	if(!($status & STATUS_ACTIVE)) {
-		if(!($test && ($status & STATUS_TEST))) {
+		if(!(isset($test) && $test && ($status & STATUS_TEST))) {
 			echo(mkerror(_('Error processing survey: Survey is not active.')));
 			return;
 		}
