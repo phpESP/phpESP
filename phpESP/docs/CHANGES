@@ -9,6 +9,8 @@ v1.7-dev ==> v1.7-rc1
   <beachbum_boy AT users.sourceforge.net>).
 * ADDED a check for unsupported web server 
   configuration(sapi, cgi, etc..) 
+* FIXED CSV export so duplicate question names and question 
+  answers are supported. 
 
 v1.6.1 final ==> v1.7-dev
 =========================
