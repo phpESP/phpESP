@@ -167,7 +167,7 @@ function manage_auth($username, $password, $raw_password="") {
 	// All tests passed ... create ACL array,
 	// and stick it in the session
 	$acl = array(
-		'username'  => $username,
+		'username'  => _addslashes($username),
 		'superuser' => 'N',
 		'home' => '/tmp'
 	);
