@@ -12,18 +12,9 @@
 -- # 
 -- # To execute this script via the mysql CLI, run:
 -- #   mysql -u root -p phpesp < mysql_populate.sql
--- # If you used an name other than "phpesp", use it in place of
--- # "phpesp" in the command line.
-
+-- # If you used a database name other than "phpesp", use it in place
+-- # of "phpesp" in the command line.
 -- #
-
--- ## Database changes from 1.5 to 1.6
--- ALTER TABLE respondent MODIFY COLUMN username CHAR(64) NOT NULL;
--- ALTER TABLE designer   MODIFY COLUMN username CHAR(64) NOT NULL;
--- ALTER TABLE access     ADD    COLUMN resume   ENUM('Y','N') NOT NULL DEFAULT 'N';
--- ALTER TABLE access     ADD    COLUMN navigate ENUM('Y','N') NOT NULL DEFAULT 'N';
--- ALTER TABLE response   MODIFY COLUMN username CHAR(64);
--- INSERT INTO realm (name, title) VALUES ('auto', 'Self added users');
 
 -- ...............................................................
 -- ....................... USERS/GROUPS ..........................
