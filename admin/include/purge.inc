@@ -17,7 +17,23 @@
 		}
 	}
 
-	$sql = "SELECT id,name,title,status FROM surveys ORDER BY id DESC";
+	$sql ="
+SELECT S.id,COUNT(*)
+  FROM surveys S, survey_questions Q
+ WHERE S.id=Q.survey_id AND Q.status=0
+ GROUP BY S.id
+ ORDER BY S.id DESC";
+ 	$result = mysql_query($sql);
+	while(list($sid,$num) = mysql_fetch_row($result)) {
+		$qnum[$sid] = $num;
+	}
+	mysql_free_result($result);
+
+	$sql = "
+SELECT S.id,S.name,S.title,S.status
+  FROM surveys S
+ GROUP BY S.id
+ ORDER BY S.id DESC";
 	$result = mysql_query($sql);
 
 ?>
@@ -38,6 +54,7 @@
 		<td><b>ID</b></td>
 		<td><b>Name</b></td>
 		<td><b>Title</b></td>
+		<td><b># Q's</b></td>
 		<td><b>Status</b></td>
 	</tr>
 <?php
@@ -54,6 +71,9 @@
 			$stat = 'Editing';
 		}
 		
+		if(!($num=$qnum[$sid]))
+			$num = 0;
+		
 		if($bg != "#ffffff")
 			$bg = "#ffffff";
 		else
@@ -64,13 +84,14 @@
 		<td><?php echo($sid); ?></td>
 		<td><?php echo($name); ?></td>
 		<td><?php echo($title); ?></td>
+		<td><?php echo($num); ?></td>
 		<td><?php echo($stat); ?></td>
 	</tr>
 <?php
 	}
 ?>
 	<tr bgcolor="#dddddd">
-		<td colspan="5" align="center">
+		<td colspan="6" align="center">
 			<input type="reset" name="reset" value="Clear Checkboxes">
 			<input type="submit" name="where" value="Purge">
 		</td>
