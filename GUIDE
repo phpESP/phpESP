@@ -52,15 +52,17 @@ go to
 and download a copy of the data from your survey. The
 ``download'' option will allow you to save the data on the
 computer your web browser is running on, otherwise the data
-is save to a file on the web server.
+is saved to a file on the web server (typically in the /tmp
+directory). It is recommended that you use the ``download''
+option.
 
 Other Actions:
 --------------
 You can also make copies of surveys, which is very handy if
 you want to change a survey that has already left the
-Edit/Test phase. Copying just copies the survey, none of
-the collected data is copied. A copy of a survey is placed
-in ``Editing'' mode.
+Edit/Test phase. Copying copies the survey questions, none 
+of the collected data is copied. A copy of a survey is 
+placed in ``Editing'' mode.
 
 You can test a survey, which just lets you collect data and
 make sure it works as desired.
