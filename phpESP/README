@@ -1,109 +1,28 @@
-p h p E S P   (php Easy Survey Package)
-============================================================
-$Id$
-
+phpESP (php Easy Survey Package)
+========================================================================
 Written by James Flemer <jflemer@alum.rpi.edu>
 [Originally for eGrad2000.com]
 
-phpESP is a package for PHP that provides an easy to use
-web-based interface to designing surveys, deploying them on
-your web site, and exporting data. It features multiple
-users and user groups, with data isolation and hiding
-between groups. It is suitable for use by a single person,
-a  department, or an entire organization. The surveys
-created by phpESP can be easily embedded into existing HTML
-templates with one or two new lines.
+phpESP is a package for PHP that provides an easy to use web-based
+interface to designing surveys, deploying them on your web site, and
+exporting data.  It features multiple users and user groups, with data
+isolation and hiding between groups.  It is suitable for use by a
+single person, a department, or an entire organization.  The surveys
+created by phpESP can be easily embedded into existing HTML templates
+with one or two new lines.
 
-============================================================
-FILES:
-admin/:        administration interface and files
-images/:       gifs used by the package
-public/:       public interface to taking surveys
-locale/:       language files
-GUIDE:         users guide
-LICENSE:       the license, read this!
-phpESP.sql:    SQL script to initialize your mysql database for phpESP
+-----
+FILES
+-----
+admin/        Administration interface and support files
+docs/         Documentation files
+images/       Image files
+public/       Public interface to taking surveys
+locale/       Language files
+LICENSE       The license, please read this.
 
-PREREQUISITES:
-  * mysql installed and running
-  * web server with PHP4 installed and configured for .php files
-    suggested: Apache 1.3+ with PHP 4.1+ (module, *not* CGI)
-  * read the license
+For installation instructions please read the INSTALL file in the docs/
+directory.
 
-INSTALLING:
-  If you are upgrading from a previous version, please
-  read the UPGRADING section below.
-
-  You may install this package in any place you wish,
-  however the recommended location is in:
-    /usr/local/lib/php/contrib/phpESP
-  By doing so, you can avoid editing pathnames in the
-  sources.
-
-  Unpack the archive in the directory that you choose.
-  (From now on  referred to as the [install-root].) Do
-  *not* unpack phpESP inside your htdocs (or personal
-  public_html directory etc), doing so means that your
-  config file will be readable by anyone on the web (it
-  will have your database password in it). Now you need to
-  place a few files somewhere inside your htdocs tree.
-  Symlink (or copy) the [install-root]/images directory to
-  somewhere in the htdocs tree.
-
-  Edit the file [install-root]/admin/phpESP.ini and set the
-  paths according to where you installed phpESP, and the
-  path to the images on your web site. Set the database
-  info.
-
-  Edit the file [install-root]/admin/manage.php and set the
-  path to where the phpESP.ini is.  Then symlink (or copy)
-  it to somewhere in the htdocs tree as index.php or
-  whatever you wish. This is used to access the
-  administrative interface to phpESP. All users who will be
-  creating surveys will need access to this URL.
-
-  Edit the files [install-root]/public/handler*.php and set
-  the path to where the phpESP.ini is.
-
-  Edit the file [install-root]/public/survey.php and set the
-  path to where phpESP.ini is.
-
-  Create a new mysql database, and a mysql user with
-  select,insert,update,delete privileges on the database.
-
-  From a privileged mysql account import the file
-  [install-root]/phpESP.sql to initialize the survey
-  database. To do this from the command line do the
-  following:
-    $ mysql -uroot -p phpesp < [install-root]/phpESP.sql
-  Where "root" is a privileged mysql account, and "phpesp"
-  is the name of the database you created in the previous
-  step.
-
-  Load the admin site in your browser, and go! Further docs
-  provided from the help page on the admin site. The
-  default login is root/esp. I suggest you change the
-  password for this account right away.
-
-  If you have problems, questions, suggestion, flames feel
-  free to join the phpesp-general mailing list. You can
-  join from the following URL:
-  http://lists.sourceforge.net/lists/listinfo/phpesp-general
-
-  If you have patches or want to help develop, please join
-  the phpesp-devel mailing list. You can join from the following
-  URL:
-  http://lists.sourceforge.net/lists/listinfo/phpesp-devel
-
-UPGRADING:
-  Upgrading from versions before v1.3 is not recommended.
-  If you are using a version older than v1.3, it is
-  recommended you install this new version in a separate
-  database.
-
-  If you are upgrading from v1.3, you must execute the
-  following SQL statement in order to make use of the new
-  "Section Text" question type:
-    INSERT INTO question_type VALUES ('100','Section Text','N','');
-
---James
+---
+$Id$
