@@ -7,6 +7,19 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
+// void		mkwarn(char *warning);
+// void		mkerror(char *error);
+// void		mkradio(char *name, char *value);
+// void		mkcheckbox(char *name, char *value);
+// void		mktext(char *name);
+// void		mktextarea(char *name, int rows, int cols, bool wordwrap);
+// void		mkselect(char *name, char *options[]);
+// void		mkrespercent(int[char*] counts, int total);
+// void		mkresrank(int[char*] counts, int total);
+// void		mkrescount(int[char*] counts, int total);
+// void		mkreslist(int[char*] counts, int total);
+// void		mkresavg(int[char*] counts, int total);
+
 if(!defined('_FUNCS_HTML')) {
 	define('_FUNCS_HTML',TRUE);
 
@@ -76,6 +89,165 @@ if(!defined('_FUNCS_HTML')) {
 		$str .= "</select>\n";
 		return($str);
 	}
+
+	// build HTML showing PERCENTAGE results
+	function mkrespercent($counts,$total,$use_totals) {
+		global $IMAGE_PATH;
+		$i=0;
+?>
+<table border="0">
+<?php
+		while(list($content,$num) = each($counts)) {
+			if($num>0) { $percent = $num/$total*100.0; }
+			else { $percent = 0; }
+?>
+	<tr>
+		<td><?php echo($content); ?></td>
+		<td align="left">
+<?php		if($num)
+				printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.1d%%",$percent*2, $percent);
+?>
+		</td>
+		<td align="right" width="60">(<?php echo($num); ?>)</td>
+	</tr>
+<?php
+			$i += $num;
+		} // end while
+		if($use_totals) {
+?>
+	<tr>
+		<td><b>TOTAL</b></td>
+		<td align="right"><b><?php if($i && !($i > $total)) printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.1d%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
+		<td align="right"><b><?php echo($total); ?></b></td>
+	</tr>
+<?		} ?>
+</table>
+<?php
+	} // end function mkrespercent($counts,$total)
+
+	// build HTML showing RANK results
+	function mkresrank($counts,$total,$use_totals) {
+?>
+<table border="0">
+	<tr>
+		<td align="right"><b>Rank</b></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+<?php
+		arsort($counts);
+		$i=0; $pt=0;
+		while(list($content,$num) = each($counts)) {
+			if($num)
+				$p = $num/$total*100.0;
+			else
+				$p = 0;
+			$pt += $p;
+?>
+	<tr>
+		<td align="right"><b><?php echo(++$i); ?></b></td>
+		<td><?php echo($content); ?></td>
+		<td align="right" width="60"><?php if($p) printf("%.1d%%",$p); ?></td>
+		<td align="right" width="60">(<?php echo($num); ?>)</td>
+	</tr>
+<?php
+		} // end while
+		if($use_totals) {
+?>
+	<tr>
+		<td colspan=2 align="left"><b>TOTAL</b></td>
+		<td align="right"><b><?php printf("%.1d%%",$pt); ?></b></td>
+		<td align="right"><b><?php echo($total); ?></b></td>
+	</tr>
+<?		} ?>
+</table>
+<?php
+	} // end function mkresrank($counts,$total)
+
+	// build HTML showing COUNT results
+	function mkrescount($counts,$total,$use_totals) {
+		$i=0;
+?>
+<table border="0">
+<?php
+		while(list($content,$num) = each($counts)) {
+?>
+	<tr>
+		<td><?php echo($content); ?></td>
+		<td align="right" width="60"><?php echo($num); ?></td>
+		<td align="right" width="60">(<?php if($num) printf("%.1d",$num/$total*100.0); ?>%)</td>
+	</tr>
+<?php
+			$i += $num;
+		} // end while
+		if($use_totals) {
+?>
+	<tr>
+		<td><b>TOTAL</b></td>
+		<td align="right"><b><?php echo($total); ?></b></td>
+		<td align="right"><b>(<?php if($i) printf("%.1d",$i/$total*100.0); ?>%)</b></td>
+	</tr>
+<?		} ?>
+</table>
+<?php
+	} // end function mkrescount($counts,$total)
+
+	// build HTML showing LIST results
+	function mkreslist($counts,$total,$use_totals) {
+?>
+<table border="1">
+<?php while(list(,$text) = each($counts)) { ?>
+	<tr>
+		<td><?php echo($text); ?></td>
+	</tr>
+<? } ?>
+</table>
+<?php
+	} // end function mkreslist($counts,$total)
+
+	// build HTML showing AVG results
+	function mkresavg($counts,$total,$use_totals) {
+		global $IMAGE_PATH;
+		$i=0;
+?>
+<table border="0">
+	<tr>
+		<td></td>
+		<td align="center" colspan="7">Average rank</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td align="right" width="44">1</td>
+		<td align="right" width="40">2</td>
+		<td align="right" width="40">3</td>
+		<td align="right" width="40">4</td>
+		<td align="right" width="36">5</td>
+		<td width="20"></td>
+		<td></td>
+	</tr>
+<?php
+		while(list($content,$avg) = each($counts)) {
+			if($avg>5) { $avg = 5; }
+			if($avg<0) { $avg = 0; }
+?>
+	<tr>
+		<td align="right"><?php echo($content); ?></td>
+		<td align="left" width="220" colspan="6">
+<?php		if($avg)
+				printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9
+				width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>",$avg*40);
+?>
+		</td>
+		<td align="right" width="60">(<?php printf("%.2f",$avg); ?>)</td>
+	</tr>
+<?php
+			$i += $num;
+		} // end while
+?>
+</table>
+<?php
+	} // end function mkresavg($counts,$total)
 
 }	// end _FUNCS_HTML
 
