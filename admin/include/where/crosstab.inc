@@ -197,6 +197,7 @@ if (!defined('ESP_BASE'))
 	$cids_row_count = sizeof($cids_row);
 
         foreach ($cids_row as $yy){
+                $total_row = 0;
         	foreach ($cids_col as $xx){
                 	$sql1 = "SELECT count(*) FROM $tbl[0] r1, $tbl[1] r2
                                  WHERE (r1.question_id = '${qids[0]}' AND r1.choice_id = '${xx}')
@@ -209,7 +210,6 @@ if (!defined('ESP_BASE'))
                         }
 		}
                 array_push($row_totals,$total_row);
-                $total_row = 0;
 	}                
 
                 // let's build the cross-tabulation results table
@@ -267,6 +267,7 @@ if (!defined('ESP_BASE'))
                 echo ("<div align=\"center\"><strong>TOTALS</strong></div></td>\n");
 
                 for ($f = 0; $f < $cids_col_count; $f++){
+			$grand_total = 0;
                         for ($g = 0; $g < $cids_row_count; $g++){
                                 if ($g == 0){
                                         $subtotal = $f;
