@@ -33,6 +33,17 @@
 	text-align: center;
 	vertical-align: default;
 }
+.surveyPage {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        font-variant: small-caps;
+        text-transform: none;
+        color: #CC0000;
+        text-decoration: none;
+        text-align: center;
+}	
 .addInfo {
 	font-family: "Courier New", Courier, mono;
 	font-size: medium;

@@ -36,6 +36,17 @@
 	text-align: center;
 	vertical-align: default;
 }
+.surveyPage {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+#       font-variant: small-caps;
+        text-transform: none;
+        color: #000000;
+        text-decoration: none;
+        text-align: center;
+}
 /* information below subtitle - normal font */
 .addInfo {
 	font-family: "Times New Roman", Times New Roman, mono;
