@@ -179,8 +179,9 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 							   A.question_id=C.question_id AND
 							   A.choice_id=C.id AND
 							   A.response_id IN ${ridstr}
-						 GROUP BY C.content";
+						 GROUP BY C.id";
 //						 ORDER BY C.id";
+				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 				$result = mysql_query($sql);
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
 					$counts[$ccontent] = $count;
@@ -192,12 +193,15 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						 WHERE A.question_id='${qid}' AND
 						       A.choice_id=C.id AND
     						   A.response_id IN ${ridstr}
-						 GROUP BY A.answer, C.content";
-				while(list($answer,$ccontent,$num) = mysql_fetch_row($result)) {
-					$content = ereg_replace("!other=?", "", $ccontent) . $answer;
-					$counts[$content] += $num;
+						 GROUP BY C.id, A.answer";
+				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
+				if($result = mysql_query($sql)) {
+					while(list($answer,$ccontent,$num) = mysql_fetch_row($result)) {
+						$content = ereg_replace("!other=?", "", $ccontent) . $answer;
+						$counts[$content] += $num;
+					}
+					mysql_free_result($result);
 				}
-				mysql_free_result($result);
 				if(empty($question["result_id"]))
 					$question["result_id"] = 1;	// default to percentages
 // -------------------------------- answers_text --------------------------------
