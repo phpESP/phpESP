@@ -7,12 +7,15 @@
 
 if(!defined('_FUNCTION_SURVEY_MERGE')) {
  	define('_FUNCTION_SURVEY_MERGE',TRUE);
+
+	define('DEBUG_MERGE',1);
 	
 	function array_to_insql($array) {
 		return("IN (".ereg_replace("([^,]+)","'\\1'",join(",",$array)).")");
 	}
 
 	function survey_merge($sids, $precision = 1, $showTotals = 1) {
+		echo('<!-- $Id$ -->'."\n");
 		// sanity check arguments
 		if(!is_array($sids)) {
 			$errmsg = "Error opening merging surveys. [ ID: ${sids} ]";
@@ -38,6 +41,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 		$sql = 'SELECT id,has_answers,answer_table
 				  FROM question_types 
 				 ORDER BY id';
+		if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 		if(!($result = mysql_query($sql))) {
 			$errmsg = "Error phpESP system tables corrupted. [ Table(s): question_types ] [ ".mysql_error()."]";
 			return($errmsg);
@@ -51,6 +55,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 		// load survey title (and other globals) from 1st surveyId
 		$sid = $sids[0];
 		$sql = "SELECT * FROM surveys WHERE id=${sid}";
+		if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 		if(!($result = mysql_query($sql))) {
 			$errmsg = "Error opening selected survey. [ ID:${sid} R:" . mysql_num_rows($result) ."] [ ".mysql_error()."]";
 			return($errmsg);
@@ -63,6 +68,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 				  FROM survey_responses R
 				 WHERE R.survey_id ${sidstr} AND
 					   R.complete='yes'";
+		if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 		if(!($result = mysql_query($sql))) {
 			$errmsg = "Error opening selected surveys. [ ID: ${sidstr} ] [ ".mysql_error()."]";
 			return($errmsg);
@@ -88,6 +94,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					 WHERE survey_id=${sid} AND 
 				    	   status='' 
 					 ORDER BY position,id";
+			if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 			$questions[$i] = mysql_query($sql);
 			if(!$questions[$i]) {
 				$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ] [ ".mysql_error()."]";
@@ -113,17 +120,20 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					echo("</table>\n");
 					return;
 				}
+				if(DEBUG_MERGE)	echo("<!-- \$i = $i; \$question[\$i]['id'] = ".$question[$i]['id']." -->\n");
 				array_push($qids, $question[$i]['id']);
 			}
 			$qidstr = array_to_insql($qids);
+			if(DEBUG_MERGE)	echo("<!-- \$qidstr = $qidstr -->\n");
 
 			// now -- we assume the surveys are identical, and there is a
 			// one-to-one relation between the questions of each
 			// we take the first element of the SIDs array to be the "master"		
 
 			$tid = $question[0]['type_id'];
-			$table = $answer_table[0][$tid];
-
+			$table = $answer_table[$tid];
+			if(DEBUG_MERGE)	echo("<!-- \$table = $table -->\n");
+			
 			if($tid == 99) {
 				echo("<tr><td><hr></td></tr>\n");
 				continue;
@@ -152,6 +162,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 						       A.response_id ${ridstr} AND
 							   A.choice_id IN ('yes','no')
 						 GROUP BY A.choice_id";
+				if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 				$result = mysql_query($sql);
 				while(list($text,$count) = mysql_fetch_row($result)) {
 					$counts[ucfirst($text)] = $count;
@@ -169,12 +180,13 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 			case 'answers_multiple':
 				for($i=0; $i<$num; $i++) {
 					$sid = $sids[$i];
-					$qid = $questions[$i]['id'];
+					$qid = $question[$i]['id'];
 					$sql = "SELECT id 
 					          FROM question_choices
 							 WHERE question_id=${qid} AND
 							       content NOT LIKE '!other%'
 							 ORDER BY id";
+					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result = mysql_query($sql);
 					$cids[$i] = array();
 					while(list($cid) = mysql_fetch_row($result)) {
@@ -185,6 +197,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 				$content = array();
 				foreach($cids[0] as $cid) {
 					$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					array_push($content, mysql_result($result,0,0));
 					mysql_free_result($result);
@@ -195,12 +208,13 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					for($i=0; $i<$num; $i++) {
 						array_push($mycids, $cids[$i][$j]);
 					}
-					$mycidstr = array_to_insql($mycids[$j]);
+					$mycidstr = array_to_insql($mycids);
 
 					$sql = "SELECT COUNT(*)
 							  FROM ${table} A
 							 WHERE A.choice_id ${mycidstr} AND
 								   A.response_id ${ridstr}";
+					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					$counts[$content[$j]] = mysql_result($result,0,0);
 					mysql_free_result($result);
@@ -209,12 +223,13 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 				// handle 'other...'
 				for($i=0; $i<$num; $i++) {
 					$sid = $sids[$i];
-					$qid = $questions[$i]['id'];
+					$qid = $question[$i]['id'];
 					$sql = "SELECT id 
 					          FROM question_choices
-							 WHERE question_id=${qid} AND
+							 WHERE question_id ${qidstr} AND
 							       content LIKE '!other%'
 							 ORDER BY id";
+					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result = mysql_query($sql);
 					$cids[$i] = array();
 					while(list($cid) = mysql_fetch_row($result)) {
@@ -225,6 +240,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 				$content = array();
 				foreach($cids[0] as $cid) {
 					$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					$text = ereg_replace("!other=?", "", mysql_result($result,0,0));
 					if(!empty($text))
@@ -238,12 +254,13 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					for($i=0; $i<$num; $i++) {
 						array_push($mycids, $cids[$i][$j]);
 					}
-					$mycidstr = array_to_insql($mycids[$j]);
+					$mycidstr = array_to_insql($mycids);
 
 					$sql = "SELECT A.answer, COUNT(A.response_id)
 							  FROM answers_other A
 							 WHERE A.choice_id ${mycidstr} AND
 								   A.response_id ${ridstr}";
+					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					while(list($answer,$count) = mysql_fetch_row($result)) {
 						if(!empty($answer)) {
@@ -265,10 +282,11 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 						 WHERE A.question_id ${qidstr} AND 
 						       A.response_id ${ridstr}
 						 GROUP BY A.answer";
+				if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 				$result = mysql_query($sql);
-				while(list($text, $num) = mysql_fetch_row($result)) {
+				while(list($text, $count) = mysql_fetch_row($result)) {
 					if(!empty($text))
-						$counts[htmlspecialchars($text)] = $num;
+						$counts[htmlspecialchars($text)] = $count;
 				}
 				mysql_free_result($result);
 
@@ -280,11 +298,12 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 				if($tid == 8) { //Rank
 					for($i=0; $i<$num; $i++) {
 						$sid = $sids[$i];
-						$qid = $questions[$i]['id'];
+						$qid = $question[$i]['id'];
 						$sql = "SELECT id 
 					        	  FROM question_choices
-								 WHERE question_id=${qid}
+								 WHERE question_id ${qidstr}
 								 ORDER BY id";
+						if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 						$result = mysql_query($sql);
 						$cids[$i] = array();
 						while(list($cid) = mysql_fetch_row($result)) {
@@ -295,6 +314,7 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					$content = array();
 					foreach($cids[0] as $cid) {
 						$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+						if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 						$result=mysql_query($sql);
 						array_push($content, mysql_result($result,0,0));
 						mysql_free_result($result);
@@ -305,13 +325,14 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 						for($i=0; $i<$num; $i++) {
 							array_push($mycids, $cids[$i][$j]);
 						}
-						$mycidstr = array_to_insql($mycids[$j]);
+						$mycidstr = array_to_insql($mycids);
 
 						$sql = "SELECT AVG(A.rank)
 								  FROM ${table} A
 								 WHERE A.choice_id ${mycidstr} AND
 									   A.response_id ${ridstr} AND
 									   A.rank>0";
+						if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 						$result=mysql_query($sql);
 						$counts[$content[$j]] = mysql_result($result,0,0);
 						mysql_free_result($result);
