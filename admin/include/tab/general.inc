@@ -36,7 +36,7 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Name')); ?></b></td>
 		<td>
-			<input type="text" size="20" name="name" maxlength="20" value="<?php
+			<input type="text" size="20" name="name" maxlength="64" value="<?php
 				if(isset($survey['name'])) echo(htmlspecialchars($survey['name'])); ?>">
 			<font color="#ff0000"><em>Required</em></font><br>
 			<?php echo(
