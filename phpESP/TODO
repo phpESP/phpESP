@@ -6,7 +6,6 @@
 SOON:
  * new GUI
  * themes for management interface
- * themes for surveys
  * expand the "Results" page into "Analysis"
    * including a nice form interface to the cross-analysis
  * "sub"-questions of other questions
@@ -15,8 +14,6 @@ SOON:
  * check boxes with a fixed number (pick N items...)
  * spell checking support (use spell checking from IMP?)
  * "Archive" management
- * merging survey results
- * fix email functions
 
 LATER:
  * view results per submission
