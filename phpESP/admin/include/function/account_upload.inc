@@ -99,14 +99,15 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 					else
 						$disabled = '';
 					/* validate email address.  */
-					if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
-						"([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$", $email)) {
-						array_push($exceptions, array("$username", "$password",
-							"$realm", "$fname", "$lname", "$email",
-							"$expir", "$disabled",  "Invalid Email Addr."));
-						continue;
-					}
-
+                    if ($email != '') {
+					    if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
+					    	"([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$", $email)) {
+					    	array_push($exceptions, array("$username", "$password",
+					    		"$realm", "$fname", "$lname", "$email",
+					    		"$expir", "$disabled",  "Invalid Email Addr."));
+					    	continue;
+					    }
+                    }
 					if($expir) {
 						$year = substr($expir, 0, 4);
 						$month = substr($expir, 4, 2);
@@ -216,13 +217,15 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 						$disabled = _addslashes($row[13]);
 					else
 						$disabled = '';
-					if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
-						"([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$", $email)) {
-						array_push($exceptions, array("$username", "$password",
-							"$realm", "$fname", "$lname", "$email", "$pdesign",
-							"$pstatus", "$pdata", "$pall", "$pgroup", "$puser",
-							"$expir", "$disabled",  "Invalid Email Addr."));
-						continue;
+                    if($email != '') {
+					    if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
+						    "([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$", $email)) {
+						    array_push($exceptions, array("$username", "$password",
+							    "$realm", "$fname", "$lname", "$email", "$pdesign",
+							    "$pstatus", "$pdata", "$pall", "$pgroup", "$puser",
+							    "$expir", "$disabled",  "Invalid Email Addr."));
+						    continue;
+                        }
 					}
 					if(!in_array($pdesign, $bool_validate))
 						$pdesign = 'Y';
