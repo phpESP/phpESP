@@ -14,7 +14,7 @@
 		}
 		
 ?>
-<table bgcolor="#ffffff" border="1" width="95%"><tr><td>
+<table bgcolor="<?php echo($cf_active_bgcolor); ?>" border="1" width="95%"><tr><td>
 <?php
 		if(is_array($sid))
 			$ret = survey_merge($sid,$precision,$totals);
