@@ -11,15 +11,18 @@
 	// it is done by questions.inc before this code executes
 
 	// this type of question has answer options
-	$sql="SELECT id,content FROM question_choice WHERE question_id='${curr_q_id}' ORDER BY id";
-	$result=mysql_query($sql);
-	if($curr_q == 0) {
-		$c=$GLOBALS['ESPCONFIG']['default_num_choices'];
-	} else {
+	if ($updated && $curr_q) {
+		$sql = "SELECT id,content FROM question_choice WHERE question_id='${curr_q_id}' ORDER BY id";
+		$result = mysql_query($sql);
 		$c = mysql_num_rows($result);
+	} else {
+		if (isset($HTTP_POST_VARS['num_choices']))
+			$c = intval($HTTP_POST_VARS['num_choices']);
+		else
+			$c = $GLOBALS['ESPCONFIG']['default_num_choices'];
 	}
 	if(isset($HTTP_POST_VARS['extra_choices']))
-		$num_choices = max($c,$HTTP_POST_VARS['num_choices']) + 1;
+		$num_choices = max($c, $HTTP_POST_VARS['num_choices']) + 1;
 	else
 		$num_choices = $c;
 ?>
@@ -35,10 +38,15 @@ Any blank lines will be suppressed.')); ?>
 		</td>
 	</tr>
 <?php
-		for($i=1;$i<$num_choices+1;++$i) {
-			if($curr_q == 0) { $choice_id=''; $choice_content=''; }
-			else { list($choice_id,$choice_content) = mysql_fetch_row($result); }
-			if(!$updated) { $choice_id=''; $choice_content=${"choice_content_$i"}; }
+		for($i=1; $i<$num_choices+1; ++$i) {
+			if ($updated && $curr_q) {
+				list($choice_id, $choice_content) = mysql_fetch_row($result);
+			} elseif ($curr_q) {
+					$choice_id      = intval($HTTP_POST_VARS["choice_id_$i"]);
+					$choice_content = $HTTP_POST_VARS["choice_content_$i"];
+			} else {
+					$choice_id = $choice_content = '';
+			}
 ?>
 	<tr>
 		<td valign=middle align="right"><b><?php echo($i); ?>.</b></td>
