@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
 "POT-Creation-Date: 2003-02-22 15:45-0500\n"
-"PO-Revision-Date: 2002-02-18 13:29-0500\n"
+"PO-Revision-Date: 2003-02-26 00:00-0500\n"
 "Last-Translator: Sipke Overbeeke <sipke@8a.nl>\n"
 "Language-Team: nl <jflemer@alum.rpi.edu>\n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,8 @@ msgstr ""
 # File: phpESP/admin/include/where/tab.inc, line: 132
 msgid "Unable to open include file. Check INI settings. Aborting."
 msgstr ""
-"kna het include file niet openen. Bekijk de INI instellingen. Bewerking "
-"wordt beeindigd."
+"kna het include file niet openen. Bekijk de INI instellingen. "
+"Bewerking wordt beeindigd."
 #
 # File: phpESP/admin/include/funcs.inc, line: 63
 # File: phpESP/admin/include/funcs.inc, line: 64
@@ -34,9 +34,8 @@ msgid "Service Unavailable"
 msgstr "Service niet beschikbaar"
 #
 # File: phpESP/admin/include/funcs.inc, line: 66
-#, fuzzy
 msgid "Connection to database failed. Please check configuration."
-msgstr "Geen tabs gedefinieerd. Bekijk je INI instellingen."
+msgstr "Connectie met de database is mislukt. Kijk uw configuratie na."
 #
 # File: phpESP/admin/include/funcs.inc, line: 118
 msgid ""
@@ -45,11 +44,14 @@ msgid ""
 "the link below.  You may be prompted for your username\n"
 "and password to complete the survey."
 msgstr ""
+"Uw voortgang is opgeslagen. U kunt op elk moment terugkomen om deze "
+"vragenlijst af te maken. Hiervoor dient u terug te gaan naar "
+"onderstaande link (u kunt deze in uw Bookmarks opnemen). Het kan zijn "
+"dat u wordt gevraagd om uw gebruikersnaam en password."
 #
 # File: phpESP/admin/include/funcs.inc, line: 122
-#, fuzzy
 msgid "Resume survey"
-msgstr "Test vragenlijst"
+msgstr "Ga verder met de vragenlijst"
 #
 # File: phpESP/admin/include/function/survey_copy.inc, line: 29
 msgid "copy"
@@ -223,18 +225,16 @@ msgid "Content"
 msgstr "Inhoud"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 49
-#, fuzzy
 msgid "Previous"
-msgstr "Preview"
+msgstr "Vorige"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 56
-#, fuzzy
 msgid "Next"
-msgstr "Volgende"
+msgstr "Kopieer"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 60
 msgid "Navigate Individual Respondent Submissions"
-msgstr ""
+msgstr "Ongeldig argument."
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 140
 msgid "Error cross-analyzing. Question not valid type."
@@ -289,31 +289,33 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_update.inc, line: 294
 msgid "Sorry, you need at least one answer option for this question type."
 msgstr ""
-"Sorry, je moet in ieder geval een antwoord mogelijkheid ingeven voor dit "
-"soort vragen."
+"Sorry, je moet in ieder geval een antwoord mogelijkheid ingeven voor "
+"dit soort vragen."
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 21
 # File: phpESP/admin/include/where/crosstab.inc, line: 21
 msgid ""
 "Error cross-tabulating. Please ensure that your column\n"
-"                                             and row selections are not of "
-"the same question."
-msgstr ""
+"                                             and row selections are "
+"not of the same question."
+msgstr "Fout bij het openen van de vragenlijst."
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 29
 # File: phpESP/admin/include/where/crosstab.inc, line: 29
 msgid ""
 "Error cross-tabulating. Please ensure you make both\n"
 "                                     a column and row selection."
-msgstr ""
+msgstr "Fout bij het openen van de vragenlijsten."
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 34
 # File: phpESP/admin/include/where/crosstab.inc, line: 34
 msgid ""
 "Error cross-tabulating. You are attempting to cross analyse\n"
-"                             and tabulate at the same time. This is not "
-"possible!"
+"                             and tabulate at the same time. This is "
+"not possible!"
 msgstr ""
+"Fout bij kruis-tabel uitrekenen. U probeert een kruistabel te maken en "
+"te berekenen op hetzelfde moment, dit is niet mogelijk!"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 17
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 27
@@ -348,7 +350,8 @@ msgstr "Niet toegestaan"
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 75
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 85
 msgid ""
-"Incorrect User ID or Password, or your account has been disabled/expired."
+"Incorrect User ID or Password, or your account has been "
+"disabled/expired."
 msgstr ""
 "Incorrecte login naam of wachtwoord, of je account is uitgeschakeld of "
 "verlopen."
@@ -356,7 +359,8 @@ msgstr ""
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 93
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 103
 msgid ""
-"Your account has been disabled or you have already completed this survey."
+"Your account has been disabled or you have already completed this "
+"survey."
 msgstr "Je account is uigeschakeld of je hebt deze vragenlijst al ingevuld."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 146
@@ -640,8 +644,8 @@ msgid ""
 "Heading (in bold) and body text for the &quot;Confirmation&quot; page\n"
 "\t\t\t\t\tdisplayed after a user completes this survey."
 msgstr ""
-"Kop op de &quot;bevestigings&quot; pagina (verschijnt als een gebruiker de "
-"vragenlijst heeft ingevuld). Dit wordt vet weergegeven."
+"Kop op de &quot;bevestigings&quot; pagina (verschijnt als een "
+"gebruiker de vragenlijst heeft ingevuld). Dit wordt vet weergegeven."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 115
 msgid "(URL, if present, takes precedent over confirmation text.)"
@@ -656,11 +660,11 @@ msgstr "E-mail"
 # File: phpESP/admin/include/tab/general.inc, line: 123
 #, fuzzy
 msgid ""
-"Sends a copy of each submission to address (or leave blank for no email "
-"backup)."
+"Sends a copy of each submission to address (or leave blank for no "
+"email backup)."
 msgstr ""
-"Verzend een kopie van elke ingevulde vragenlijst naar e-mail adres (of vul "
-"niet in voor geen e-mail backup)."
+"Verzend een kopie van elke ingevulde vragenlijst naar e-mail adres (of "
+"vul niet in voor geen e-mail backup)."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 127
 msgid "Theme"
@@ -681,7 +685,8 @@ msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 154
 msgid ""
-"Allow survey respondents to go forward and back between survey sections."
+"Allow survey respondents to go forward and back between survey "
+"sections."
 msgstr ""
 #
 # File: phpESP/admin/include/tab/order.inc, line: 75
@@ -754,9 +759,11 @@ msgstr "Verzend antwoorden"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 96
 msgid ""
-"Edit this field, or click the number of the field you would like to edit:"
+"Edit this field, or click the number of the field you would like to "
+"edit:"
 msgstr ""
-"Wijzig dit veld, of klik op het nummer van het veld dat je wilt wijzigen:"
+"Wijzig dit veld, of klik op het nummer van het veld dat je wilt "
+"wijzigen:"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 107
 msgid "Field"
@@ -1016,7 +1023,8 @@ msgstr "Groeps Formulier Editor"
 # File: phpESP/admin/include/where/admdesigner.inc, line: 296
 msgid "may edit <b>all</b> forms owned by this group"
 msgstr ""
-"mag <b>alle</b> formulieren veranderen die door deze groep worden bezeten"
+"mag <b>alle</b> formulieren veranderen die door deze groep worden "
+"bezeten"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 300
 msgid "Administer Group Members"
@@ -1059,7 +1067,8 @@ msgid ""
 "survey, and will have to activate it before use."
 msgstr ""
 "\n"
-"Kies een vragenlijst om een kopie van te maken. De kopie heeft dezelfde \n"
+"Kies een vragenlijst om een kopie van te maken. De kopie heeft "
+"dezelfde \n"
 "status als een nieuwe vragenlijst. Je kan de vragenlijst veranderen\n"
 " en moet deze activeren voor gebruik."
 #
@@ -1408,11 +1417,12 @@ msgid ""
 msgstr ""
 "\n"
 "Deze pagina staat niet direct in het hoofdmenu omdat hij\n"
-"gevaarlijk is. Dit verwijdert alles over een vragenlijst <b>compleet</b> \n"
+"gevaarlijk is. Dit verwijdert alles over een vragenlijst "
+"<b>compleet</b> \n"
 "uit de database. Dit is <b>onomkeerbaar</b>. Alle informatie over de "
 "vragen,\n"
-"algemene informatie, resultaten, etc. worden uit de database verwijdert. "
-"Doe\n"
+"algemene informatie, resultaten, etc. worden uit de database "
+"verwijdert. Doe\n"
 "niets als je niet compleet zeker bent.\n"
 "Er wordt niet om bevestiging gevraagd en het is niet omkeerbaar."
 #
@@ -1513,14 +1523,16 @@ msgstr "Vragenlijst Status"
 #
 # File: phpESP/admin/include/where/status.inc, line: 112
 msgid ""
-"<b>Test</b> transitions a survey into testing mode. At which point you may\n"
-"perform a live test by taking the survey, and viewing the results. You will "
-"not\n"
-"be able to make any further changes to the survey once you have switched to\n"
+"<b>Test</b> transitions a survey into testing mode. At which point you "
+"may\n"
+"perform a live test by taking the survey, and viewing the results. You "
+"will not\n"
+"be able to make any further changes to the survey once you have "
+"switched to\n"
 "test mode."
 msgstr ""
-"<b>Test</b> zorgt ervoor dat een vragenlijst in de test fase komt. Je kan de "
-"vragenlijst dan testen\n"
+"<b>Test</b> zorgt ervoor dat een vragenlijst in de test fase komt. Je "
+"kan de vragenlijst dan testen\n"
 "door de vragenlijst in te vullen, en de resultaten te bekijken. Je kan "
 "geen \n"
 "be wijzigingen meer aanbrengen in de vragenlijst als die in de\n"
@@ -1529,42 +1541,46 @@ msgstr ""
 # File: phpESP/admin/include/where/status.inc, line: 117
 #, fuzzy
 msgid ""
-"<b>Activate</b> transitions a survey into active mode. In this mode the\n"
-"survey is open for production use, and may be put online. This will clear "
-"any\n"
+"<b>Activate</b> transitions a survey into active mode. In this mode "
+"the\n"
+"survey is open for production use, and may be put online. This will "
+"clear any\n"
 "results from testing mode (if any). No further editing of survey is\n"
 "allowed."
 msgstr ""
-"<b>Activate</b> transitions a survey into active more. In this mode the\n"
-"survey is open for production use, and may be put online. This will clear "
-"any\n"
+"<b>Activate</b> transitions a survey into active more. In this mode "
+"the\n"
+"survey is open for production use, and may be put online. This will "
+"clear any\n"
 "results from testing mode (if any). No further editing of survey is\n"
 "allowed."
 #
 # File: phpESP/admin/include/where/status.inc, line: 122
 msgid ""
-"<b>End</b> transitions a survey into ended mode. In this mode, no edits are\n"
-"possible, no users may take the survey (it is inactive), but results are "
-"still\n"
+"<b>End</b> transitions a survey into ended mode. In this mode, no "
+"edits are\n"
+"possible, no users may take the survey (it is inactive), but results "
+"are still\n"
 "viewable from the results menu."
 msgstr ""
-"<b>Beeindig</b> zorgt ervoor dat de vragenlijst gepubliceerd wordt. Je kan "
-"in deze modus\n"
-"geen wijzigingen meer aanbrengen, gebruikers kunnen de vragenlijst niet "
-"invullen (hij is inactief), maar resultaten zijn te bekijken\n"
+"<b>Beeindig</b> zorgt ervoor dat de vragenlijst gepubliceerd wordt. Je "
+"kan in deze modus\n"
+"geen wijzigingen meer aanbrengen, gebruikers kunnen de vragenlijst "
+"niet invullen (hij is inactief), maar resultaten zijn te bekijken\n"
 "in het resultaten menu."
 #
 # File: phpESP/admin/include/where/status.inc, line: 126
 msgid ""
-"<b>Archive</b> removes this survey. It is still stored in the database, but\n"
-"no further interaction is allowed. You may <b>not</b> view the results of "
-"an\n"
+"<b>Archive</b> removes this survey. It is still stored in the "
+"database, but\n"
+"no further interaction is allowed. You may <b>not</b> view the results "
+"of an\n"
 "archived survey."
 msgstr ""
-"<b>Opslaan</b> verwijdert de vragenlijst. Het is dan nog opgeslagen in de "
-"database, maar\n"
-"er kan nikst meer worden gewijzigd. Je kan de resulteten van een opgeslagen "
-"vragenlijst <b>niet</b> bekijken."
+"<b>Opslaan</b> verwijdert de vragenlijst. Het is dan nog opgeslagen in "
+"de database, maar\n"
+"er kan nikst meer worden gewijzigd. Je kan de resulteten van een "
+"opgeslagen vragenlijst <b>niet</b> bekijken."
 #
 # File: phpESP/admin/include/where/status.inc, line: 172
 # File: phpESP/admin/include/where/test.inc, line: 129
@@ -1619,31 +1635,34 @@ msgstr "Finish"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 168
 msgid ""
-"Click cancel to cancel this survey, or click continue to proceed to the next "
-"tab."
+"Click cancel to cancel this survey, or click continue to proceed to "
+"the next tab."
 msgstr ""
-"Klik annuleer om deze vragenlijst te annuleren, of klik doorgaan om verder "
-"te gaan naar de volgende tab."
+"Klik annuleer om deze vragenlijst te annuleren, of klik doorgaan om "
+"verder te gaan naar de volgende tab."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 175
 msgid ""
-"The survey title and other general fields are on the <b>General</b> tab.\n"
-"Individual survey questions are added and modified on the <b>Questions</b> "
+"The survey title and other general fields are on the <b>General</b> "
 "tab.\n"
+"Individual survey questions are added and modified on the "
+"<b>Questions</b> tab.\n"
 "Questions may be re-ordered or deleted from the <b>Order</b> tab.\n"
 "You may see a preview of your survey at any time, by going to the "
 "<b>Preview</b>\n"
-"tab. If you have no further changes click <b>Finish</b> to go back to the\n"
+"tab. If you have no further changes click <b>Finish</b> to go back to "
+"the\n"
 "Management Interface."
 msgstr ""
-"De vragenlijst titel en andere algemene velden zijn op het <b>Algemeen</b> "
-"tab.\n"
+"De vragenlijst titel en andere algemene velden zijn op het "
+"<b>Algemeen</b> tab.\n"
 "Individuele vragenlijst vragen worden toegevoegd en gewijzigd onder de "
 "<b>Vragen</b> tab.\n"
-"Vragen mogen worden gerangschikt of gewijzigd onder de <b>volgode</b> tab.\n"
+"Vragen mogen worden gerangschikt of gewijzigd onder de <b>volgode</b> "
+"tab.\n"
 "Je kan op elk moment een preview zien , onder het <b>Preview</b>\n"
-"tab. Als je geen verdere wijzigingen wil aanbrengen klik dan op <b>Finish</"
-"b> om terug te gaan naar het\n"
+"tab. Als je geen verdere wijzigingen wil aanbrengen klik dan op "
+"<b>Finish</b> om terug te gaan naar het\n"
 "Management Interface."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 181
@@ -1681,7 +1700,8 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/upload.inc, line: 86
 msgid ""
-"An error occurred during upload.  Please check the format of your text file."
+"An error occurred during upload.  Please check the format of your text "
+"file."
 msgstr ""
 #
 # File: phpESP/admin/include/where/upload.inc, line: 90
@@ -1733,7 +1753,8 @@ msgstr ""
 # File: phpESP/public/handler-prefix.php, line: 68
 msgid "Error processing survey: Survey not specified."
 msgstr ""
-"Fout bij het verwerken van de vragenlijst: geen vragenlijst gespecificeerd."
+"Fout bij het verwerken van de vragenlijst: geen vragenlijst "
+"gespecificeerd."
 #
 # File: phpESP/public/handler.php, line: 50
 # File: phpESP/public/handler.php, line: 55
