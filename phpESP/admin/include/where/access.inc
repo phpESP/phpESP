@@ -21,7 +21,7 @@
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
 				FROM survey s WHERE s.id = '$sid'";
-			$sql1 = "SELECT a.realm, a.maxlogin FROM access a
+			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM access a
 				WHERE a.survey_id = '$sid' ORDER BY a.realm";
 		} else {
 			$realms = array_to_insql(
@@ -33,7 +33,7 @@
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
 				FROM survey s WHERE s.id = '$sid' AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = '".
 				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms)";
-			$sql1 = "SELECT a.realm, a.maxlogin FROM access a, survey s
+			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM access a, survey s
 				WHERE a.survey_id = '$sid' AND s.id=a.survey_id AND (s.owner = '".
 				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms) ORDER BY a.realm";
 		}
@@ -58,17 +58,29 @@
 		elseif (!empty($HTTP_GET_VARS['realm']))
 			$arealm = XADDSLASHES($HTTP_GET_VARS['realm']);
 
+		if (isset($HTTP_POST_VARS['resume']))
+			$resume = 'Y';
+		else
+			$resume = 'N';
+		
+		if (isset($HTTP_POST_VARS['navigate']))
+			$navigate = 'Y';
+		else
+			$navigate = 'N';
+		
 		if (!empty($HTTP_POST_VARS['max']))
 			$max = intval($HTTP_POST_VARS['max']);
-		elseif (!empty($HTTP_POST_VARS['max']))
+		elseif (!empty($HTTP_GET_VARS['max']))
 			$max = intval($HTTP_GET_VARS['max']);
+		else
+			$max = 0;
 
 		if ($op == 'a') {
 			if (empty($HTTP_POST_VARS['realm'])) {
 				$errstr = mkerror(_('Please select a group.'));
 			} else {
-				if (!$max) $max = 0;
-				$sql = "INSERT INTO access (survey_id, realm, maxlogin) VALUES ('$sid', '$arealm', '$max')";
+				$sql = "INSERT INTO access (survey_id, realm, maxlogin, resume, navigate)
+						VALUES ('$sid', '$arealm', '$max', '$resume', '$navigate')";
 				mysql_query($sql);
 			}
 		} elseif ($op == 'r') {
@@ -131,22 +143,32 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="op" value="a">
 <table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('ID')); ?></th><td><?php echo($sid); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Name')); ?></th><td><?php echo($name); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Title')); ?></th><td><?php echo($title); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Owner')); ?></th><td><?php echo($owner); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Group')); ?></th><td><?php echo($realm); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Public')); ?></th><td><?php echo($public); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><td colspan="3"><hr></td></tr>
-	<tr><th align="left"><?php echo(_('Group')); ?></th><th align="left"><?php echo(_('Max Logins')); ?></th><td>&nbsp;</td></tr>
+	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('ID')); ?></th><td colspan="5"><?php echo($sid); ?></td></tr>
+	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Name')); ?></th><td colspan="5"><?php echo($name); ?></tr>
+	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Title')); ?></th><td colspan="5"><?php echo($title); ?></tr>
+	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Owner')); ?></th><td colspan="5"><?php echo($owner); ?></tr>
+	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Group')); ?></th><td colspan="5"><?php echo($realm); ?></tr>
+	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Public')); ?></th><td colspan="5"><?php echo($public); ?></tr>
+	<tr bgcolor="#dddddd"><td colspan="6"><hr></td></tr>
+	<tr><th align="left"><?php echo(_('Group')); ?></th>
+		<th align="left"><?php echo(_('Max Responses')); ?></th>
+		<th align="left"><?php echo(_('Save/Restore')); ?></th>
+		<th align="left"><?php echo(_('Back/Forward')); ?></th>
+		<td>&nbsp;</td></tr>
 <?php
 		$result = mysql_query($sql1);
-		while ( list($arealm, $amax) = mysql_fetch_row($result) ) { ?>
-	<tr><td><?php echo($arealm); ?></td><td><?php echo($amax); ?></td>
-		<td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=r&realm=" . urlencode($arealm)); ?>">Remove</a></td></tr>
+		while ( list($arealm, $amax, $aresume, $anavigate) = mysql_fetch_row($result) ) { ?>
+	<tr><td><?php echo($arealm); ?></td>
+		<td><?php echo($amax); ?></td>
+		<td><?php echo(($aresume == 'Y') ? _('Yes') : _('No')); ?></td>
+		<td><?php echo(($anavigate == 'Y') ? _('Yes') : _('No')); ?></td>
+		<td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=r&realm=" . urlencode($arealm)); ?>">
+		<?php echo(_('Remove')); ?></a></td></tr>
 <?php	} ?>
 	<tr><td><?php echo($r); ?></td>
 		<td><input type="text" name="max" size="5"></td>
+		<td><input type="checkbox" name="resume" /></td>
+		<td><input type="checkbox" name="navigate" /></td>
 		<td><input type="submit" value="<?php echo(_('Add')); ?>"></td></tr>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
@@ -162,9 +184,6 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 		<th align="left"><?php echo(_('Owner')); ?></th>
 		<th align="left"><?php echo(_('Group')); ?></th>
 		<th align="left"><?php echo(_('Public')); ?></th>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 	</tr>
 <?php
@@ -207,9 +226,6 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 		<td><?php echo($realm); ?></td>
 		<td><?php echo($public); ?></td>
 		<td><?php echo($op); ?></td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
 	</tr>
 <?php
 	}
