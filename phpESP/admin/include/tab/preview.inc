@@ -7,18 +7,24 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	$sql = "SELECT COUNT(*) FROM question WHERE survey_id='${survey_id}'
+	$sid = XADDSLASHES($HTTP_SESSION_VARS['survey_id']);
+
+	$sql = "SELECT COUNT(*) FROM question WHERE survey_id='${sid}'
 	AND deleted='N' AND type_id='99'";
 	$result = mysql_query($sql);
 	$num_sections = 1 + mysql_result($result,0,0);
+	mysql_free_result($result);
 
-	if(empty($section))
-		$section=1;
+	if(empty($HTTP_POST_VARS['section']))
+		$HTTP_POST_VARS['section']=1;
 ?>
-<?php echo(_('This is a preview of how the survey will look. In the preview the &quot;Next
-Page&quot; and &quot;Submit Survey&quot; are inactive.
-The survey will use the background color of the document in which it is
-embedded. If you have no further changes click <b>Finish</b> at the bottom of
+<?php echo(_(
+'This is a preview of how the survey will look.
+In the preview the &quot;Next Page&quot; and 
+&quot;Submit Survey&quot; are inactive.
+The survey will use the background color of the
+document in which it is embedded. If you have no
+further changes click <b>Finish</b> at the bottom of
 this page.')); ?>
 <?php	if($num_sections > 1) { ?>
 <br><b><?php echo(_('Section')); ?>:</b>
@@ -33,12 +39,13 @@ this page.')); ?>
 	<tr>
 		<td>
 <?php
-	$preview = 1;
-	render_survey($survey_id,$section);
+	render_survey($sid,$HTTP_POST_VARS['section']);
+	if($HTTP_POST_VARS['section'] != $num_sections) {
+		echo('<input type="button" value="'. _('Next Page') .'">');
+	} else {
+		echo('<input type="button" value="'. _('Submit Survey') .'">');
+	}
 ?>
-<?php if($section != $num_sections) { ?><input type="button" value="Next Page">
-<?php } else { ?><input type="button" value="Submit Survey">
-<?php } ?>
 		</td>
 	</tr>
 </table>

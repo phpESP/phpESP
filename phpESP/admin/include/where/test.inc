@@ -8,10 +8,15 @@
 // <jflemer@eGrad2000.com>
 
 	// clear the session
+	@session_unset();
 	@session_destroy();
+	
+	$sid = intval($HTTP_GET_VARS['sid']);
+	if(!empty($HTTP_POST_VARS['sid']))
+		$sid = intval($HTTP_POST_VARS['sid']);
 
 	if(!empty($sid)) {
-		$sql = "SELECT status FROM surveys WHERE id=${sid}";
+		$sql = "SELECT status FROM survey WHERE id=${sid}";
 		$status = mysql_result(mysql_query($sql),0,0);
 		if(($status & STATUS_TEST) && !($status & (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE))) {
 ?>
@@ -20,27 +25,31 @@
 <p>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
 <?php
-			$test=1;
-			$tmp = $PHP_SELF;
-			$PHP_SELF .= '?where=test';
-			include($cf_handler);
+			$test=TRUE;
+			unset($HTTP_GET_VARS['sid']);
+			unset($HTTP_POST_VARS['sid']);
+			$HTTP_POST_VARS['userid'] = 'test';
+			$tmp = $ESPCONFIG['ME'];
+			$HTTP_SERVER_VARS['PHP_SELF'] = $ESPCONFIG['ME'].'?where=test';
+			include($ESPCONFIG['handler']);
+			$ESPCONFIG['ME'] = $tmp;
 ?>
 </td></tr></table>
-<a href="<?php echo($tmp); ?>?where=results&sid=<?php echo($sid); ?>&test=1"><?php echo(_('View Results')); ?></a><br>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<a href="<?php echo($ESPCONFIG['ME']); ?>?where=results&sid=<?php echo($sid); ?>&test=1"><?php echo(_('View Results')); ?></a><br>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <form>
 <?php
 			return;
 		}
 	}
 	
-	$sql = 'SELECT id,name,title,status FROM surveys ORDER BY name';
+	$sql = 'SELECT id,name,title,status FROM survey ORDER BY name';
 	$result = mysql_query($sql);
 
 ?>
 <h2><?php echo(_('Test a Survey')); ?></h2>
 <?php echo(_('Pick Survey to Test')); ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($cf_active_bgcolor); ?>" width="95%">
+<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<td><b><?php echo(_('ID')); ?></b></td>
 		<td><b><?php echo(_('Name')); ?></b></td>
@@ -55,20 +64,20 @@
 			($status & (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE)))
 				continue;
 
-		if($bg != '#ffffff')
-			$bg = '#ffffff';
+		if($bg != $ESPCONFIG['bgalt_color1'])
+			$bg = $ESPCONFIG['bgalt_color1'];
 		else
-			$bg = '#eeeeee';
+			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($sid); ?></td>
 		<td><?php echo($name); ?></td>
 		<td><?php echo($title); ?></td>
-		<td><a href="<?php echo("${ME}?where=test&sid=${sid}"); ?>"><?php echo(_('Test')); ?></a></td>
-		<td><a href="<?php echo("${ME}?where=results&test=1&sid=${sid}"); ?>"><?php echo(_('Results')); ?></a></td>
+		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=${sid}"); ?>"><?php echo(_('Test')); ?></a></td>
+		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&test=1&sid=${sid}"); ?>"><?php echo(_('Results')); ?></a></td>
 	</tr>
 <?php
 	}
 ?>
 </table>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

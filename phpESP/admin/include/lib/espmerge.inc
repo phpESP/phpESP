@@ -12,7 +12,7 @@ if(!defined('_LIB_ESPMERGE')) {
    Returns an array of question ids spanning the given
    survey ids. */
 function merge_expand_qids($targetq, $surveys) {
-	$sql = "SELECT survey_id FROM question WHERE id ".array_to_insql($targetq);
+	$sql = "SELECT survey_id FROM question WHERE id ". array_to_insql($targetq);
 	$result = mysql_query($sql);
 	$targets = mysql_result($result, 0, 0);
 	mysql_free_result($result);
@@ -50,7 +50,7 @@ ORDER BY Q.survey_id, Q.position, Q.id";
    Returns an array of choice ids spanning the given
    question ids. */
 function merge_expand_cids($targetc, $questions) {
-	$sql = "SELECT question_id FROM question_choices WHERE id ".array_to_insql($targetc);
+	$sql = "SELECT question_id FROM question_choice WHERE id ". array_to_insql($targetc);
 	$result = mysql_query($sql);
 	$targetq = mysql_result($result, 0, 0);
 	mysql_free_result($result);

@@ -22,7 +22,7 @@ function survey_purge($sids) {
 	}
 
 	// make a list of question IDs
-	$sql = "SELECT id FROM survey_question WHERE survey_id ${sidstr}";
+	$sql = "SELECT id FROM question WHERE survey_id ${sidstr}";
 	$result = mysql_query($sql);
 	$qids = array();
 	while(list($qid) = mysql_fetch_row($result)) {

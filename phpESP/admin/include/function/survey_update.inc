@@ -10,17 +10,17 @@
 if(!defined('_FUNCTION_SURVEY_UPDATE')) {
 	define('_FUNCTION_SURVEY_UPDATE',TRUE);
 
-/* {{{ proto string survey_update(int* survey_id, string* tab, string old_tab)
+/* {{{ proto bool survey_update(int* survey_id, string* tab, string old_tab)
    Reads current form variables from HTTP_POST_VARS.
-   Returns an empty string on sucess, else returns an string
-   with an error message. */
+   Returns an true on sucess, else returns false and 
+   sets global $errstr with an error message. */
 function survey_update(&$survey_id, &$tab, $old_tab) {
-	global $HTTP_POST_VARS;
+	global $HTTP_POST_VARS, $HTTP_SERVER_VARS, $errstr;
 	@reset($HTTP_POST_VARS);
 
 	// do not need update
 	if(empty($old_tab))
-		return;
+		return(1);
 
 	$f_arr = array();
 	$v_arr = array();
@@ -30,7 +30,8 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		// need to fill out at least some info on 1st tab before proceeding
 		if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])) {
 			$tab = "general";
-			return(_('Sorry, please fill out the name and title before proceeding.'));
+			$errstr = _('Sorry, please fill out the name and title before proceeding.');
+			return(0);
 		}
 
 		// create a new survey in the database
@@ -38,30 +39,37 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		foreach($fields as $f) {
 			if(!empty($HTTP_POST_VARS[$f])) {
 				array_push($f_arr,$f);
-				array_push($v_arr,"'".$HTTP_POST_VARS[$f]."'");
+				array_push($v_arr,"'".XADDSLASHES($HTTP_POST_VARS[$f])."'");
 			}
 		}
 		array_push($f_arr,'owner');
-		array_push($v_arr,"'".$PHP_AUTH_USER."'");
+		array_push($v_arr,"'".XADDSLASHES($HTTP_SERVER_VARS['PHP_AUTH_USER'])."'");
 		$sql = "INSERT INTO survey (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) . ")";
 
 		$result = @mysql_query ($sql);
 		if(!$result) {
 			$tab = "general";
-			return(_('Sorry, name already in use. Pick a new name.') .' [ ' .mysql_errno().': '.mysql_error().' ]');
+			$errstr = _('Sorry, name already in use. Pick a new name.') .' [ ' .mysql_errno().': '.mysql_error().' ]';
+			return(0);
 		}
 
-		$sql = "SELECT id FROM survey WHERE name='".  $HTTP_POST_VARS['name'] ."'";
+		$sql = "SELECT id FROM survey WHERE name='".  XADDSLASHES($HTTP_POST_VARS['name']) ."'";
 		$result = mysql_query($sql);
 		$survey_id = mysql_result($result,0,0);
 		mysql_free_result($result);
-		return;
+		return(1);
 	}
 
 	// survey already started
 	switch($old_tab) {
 		// coming from the general tab ...
 		case "general":
+			if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])) {
+				$tab = "general";
+				$errstr = _('Sorry, please fill out the name and title before proceeding.');
+				return(0);
+			}
+
 			$fields = array('name','title','subtitle','email','thank_head','thank_body','info','public');
 			$sql = "SELECT name FROM survey WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
@@ -70,56 +78,62 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 			// trying to change survey name
 			if($name != $HTTP_POST_VARS['name']) {
-				$sql = "SELECT COUNT(*) WHERE name='" . $HTTP_POST_VARS['name'] ."'";
+				$sql = "SELECT COUNT(*) FROM survey WHERE name='" . XADDSLASHES($HTTP_POST_VARS['name']) ."'";
 				$result = mysql_query($sql);
 				$count = mysql_result($result,0,0);
 				mysql_free_result($result);
 				if($count != 0) {
 					$tab = "general";
-					return(_('Sorry, that name is already in use.'));
+					$errstr = _('Sorry, that name is already in use.');
+					return(0);
 				}
 			}
 
 			// UPDATE the row in the DB with current values
 			foreach($fields as $f) {
-				array_push($f_arr,$f ."='" . $HTTP_POST_VARS[$f] . "'");
+				array_push($f_arr,$f ."='" . XADDSLASHES($HTTP_POST_VARS[$f]) . "'");
 			}
-			$sql = "UPDATE survey SET " . join(',',$f_arr) . " WHERE id='${survey_id}'";
+			$sql = "UPDATE survey SET " . join(', ',$f_arr) . " WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
 			if(!$result) {
 				$tab = "general";
-				return(_('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]');
+				$errstr = _('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]';
+				return(0);
 			}
-			return;
+			return(1);
 
 		// coming from the questions tab ...
 		case "questions":
 			// if the question box is empty ... ignore everything else
 			if(empty($HTTP_POST_VARS['content']))
-				return;
+				return(1);
 
 			// constraint: question type required
 			if(empty($HTTP_POST_VARS['type_id'])) {
 				$tab = 'questions';
-				return(_('Sorry, you must select a type for this question.'));
+				$dont_clear = 1;
+				$errstr= _('Sorry, you must select a type for this question.');
+				return(0);
 			}
 
 			$has_choices = esp_type_has_choices();
 
-			$qid = $HTTP_POST_VARS['id'];
-			if(stristr($qid,'new'))
+			$qid = XADDSLASHES($HTTP_POST_VARS['id']);	# curr_q_id
+			if($qid == _('New Question'))
 				$qid = '';
 
 			// constraint: can not change between question w/ answer choices and one w/o
 			if($qid != '') {
 				$sql =  "SELECT Q.type_id FROM question Q WHERE Q.survey_id='${survey_id}' AND Q.id='${qid}'"; 
 				$result = mysql_query($sql);
-				list($old_type_id) = mysql_fetch_row($result);
+				$old_type_id = mysql_result($result,0,0);
 				mysql_free_result($result);
 				if($has_choices[$HTTP_POST_VARS['type_id']] != $has_choices[$old_type_id]) { // trying to change between incompatible question types
 					$tab = "questions";
 					$HTTP_POST_VARS['type_id'] = $old_type_id;
-					return(_('Sorry, you cannot change between those types of question. Create a new question instead.'));
+					$dont_clear = 1;
+					$errstr = _('Sorry, you cannot change between those types of question. Create a new question instead.');
+					return(0);
 				}
 			}
 			
@@ -140,43 +154,50 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			if($qid != '') {
 				$fields = array('type_id','result_id','parent_id','required','private','content','deleted');
 				foreach($fields as $f) {
-					array_push($f_arr,$f.'='.$HTTP_POST_VARS[$f]);
+					if(!empty($HTTP_POST_VARS[$f]))
+						array_push($f_arr,$f."='".XADDSLASHES($HTTP_POST_VARS[$f])."'");
 				}
-				$sql = "UPDATE survey_questions SET " . join(',',$f_arr) . " WHERE id='${qid}'";
+				$sql = "UPDATE question SET " . join(', ',$f_arr) . " WHERE id='${qid}'";
 
 			// INSERT row in the DB for new question
 			} else {
-				$fields = array('survey_id','type_id','result_id','position','parent_id','required','private','content');
+				$fields = array('type_id','result_id','position','parent_id','required','private','content');
 				if(empty($HTTP_POST_VARS['position']) || $HTTP_POST_VARS['position'] == 0) {
 					// set the position to the end
 					$sql = "SELECT MAX(position) FROM question WHERE survey_id='${survey_id}'";
 					$result = mysql_query($sql);
-					$position = mysql_result($result,0,0) + 10;
+					$HTTP_POST_VARS['position'] = mysql_result($result,0,0) + 10;
 					mysql_free_result($result);
 				}
+				$f_arr = array('survey_id');
+				$v_arr = array("'".$survey_id."'");
 				foreach($fields as $f) {
 					if(!empty($HTTP_POST_VARS[$f])) {
 						array_push($f_arr,$f);
-						array_push($v_arr,$HTTP_POST_VARS[$f]);
+						array_push($v_arr,"'".XADDSLASHES($HTTP_POST_VARS[$f])."'");
 					}
 				}
-				$sql  = "INSERT INTO question (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) .")";
+				
+				$sql  = "INSERT INTO question (" . join(', ',$f_arr) . ") VALUES (" . join(', ',$v_arr) .")";
 			}
 			$result = mysql_query($sql);
 			if($qid == '')
 				$qid = mysql_insert_id();
+			$HTTP_POST_VARS['id'] = $qid;
 			if(!$result) {
 				$tab = 'questions';
-				return(_('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]');
+				$dont_clear = 1;
+				$errstr = _('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]';
+				return(0);
 			}
 
 			// UPDATE or INSERT rows for each of the question choices for this question
 			if($has_choices[$HTTP_POST_VARS['type_id']]) {
 				$count = 0;
-				for($i=1;$i<$num_choices+1;$i++) {
+				for($i=1;$i<$HTTP_POST_VARS['num_choices']+1;$i++) {
 					$sql='';
-					$choice_id = ${"choice_id_".$i};
-					$choice_content = ${"choice_content_".$i};
+					$choice_id = XADDSLASHES($HTTP_POST_VARS["choice_id_${i}"]);
+					$choice_content = XADDSLASHES($HTTP_POST_VARS["choice_content_${i}"]);
 					// each of the submitted choices
 					if($choice_id=='' && $choice_content!='') {
 						// insert (new)
@@ -194,26 +215,31 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 						$result = mysql_query($sql);
 						if(!$result) {
 							$tab = 'questions';
-							return(_('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]');
+							$dont_clear = 1;
+							$errstr = _('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]';
+							return(0);
 						}
 					}
 				}
-				if(!$count) {
+				if(!$count && !isset($HTTP_POST_VARS['extra_choices'])) {
 					$tab = 'questions';
-					return(_('Sorry, you need at least one answer option for this question type.'));
+					$dont_clear = 1;
+					$errstr = _('Sorry, you need at least one answer option for this question type.') .
+						' [ '. _('ID') .': '. $HTTP_POST_VARS['type_id'] .' ]';
+					return(0);
 				}
 			}
-			return;
+			return(1);
 
 		case "preview":
 			// can not change anything here yet, so no need to update DB.
-			return;
+			return(1);
 
 		case "order":
 			// it updates the DB itself
-			return;
+			return(1);
 	}
-	return;
+	return(1);
 }
 /* }}} */
 

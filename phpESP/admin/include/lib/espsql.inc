@@ -35,7 +35,9 @@ WHERE survey_id='${sid}' AND
 /* {{{ proto string survey_select_section_sql(int survey_id, int section)
    Returns a string of a SQL fragment to limit questions to
    specified section. */
-function survey_select_section_sql($sid, $section) {
+function survey_select_section_sql($sid, $section, $table = '') {
+	if(!empty($table))
+		$table .= '.';
 	$sql = "
 SELECT position
 FROM question
@@ -49,11 +51,11 @@ ORDER BY position,id";
 	if($section > $num_sections)
 		return('');	// invalid section
 
-	$ret = array("survey_id='${sid}'", "deleted='N'");
+	$ret = array("${table}survey_id='${sid}'", "${table}deleted='N'");
 	if($section>1 && $num_sections>1)
-		array_push($ret, 'position>' . mysql_result($result,$section-2,0));
+		array_push($ret, "${table}position>" . mysql_result($result,$section-2,0));
 	if($section<$num_sections && $num_sections>1)
-		array_push($ret, 'position<' . mysql_result($result,$section-1,0));
+		array_push($ret, "${table}position<" . mysql_result($result,$section-1,0));
 
 	mysql_free_result($result);
 	return('WHERE ' . join(' AND ',$ret) . ' ');
@@ -68,7 +70,10 @@ function esp_type_has_choices() {
 	$sql = 'SELECT id, has_choices FROM question_type ORDER BY id';
 	$result = mysql_query($sql);
 	while(list($tid,$answ) = mysql_fetch_row($result)) {
-		$has_choices[$tid]=$answ;
+		if($answ == 'Y')
+			$has_choices[$tid]=1;
+		else
+			$has_choices[$tid]=0;
 	}
 	mysql_free_result($result);
 	return($has_choices);
@@ -79,7 +84,7 @@ function esp_type_has_choices() {
    Returns an associative array of bools indicating the
    table the responses are stored in. */
 function esp_type_response_table() {
-	$sql = 'SELECT id, has_choices FROM question_type ORDER BY id';
+	$sql = 'SELECT id, response_table FROM question_type ORDER BY id';
 	$result = mysql_query($sql);
 	$response_table = array();
 	while(list($tid,$answ) = mysql_fetch_row($result)) {

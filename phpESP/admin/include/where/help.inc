@@ -231,7 +231,7 @@
 	<tr>
 		<td>2</td>
 		<td align="left">
-&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=100><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;50%</td>
+&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar.gif" height=9 width=100><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_r.gif" height=9 width=4>&nbsp;50%</td>
 		<td align="right" width="60">(2)</td>
 	</tr>
 	<tr>
@@ -249,18 +249,18 @@
 	<tr>
 		<td>5</td>
 		<td align="left">
-&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=50><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;25%</td>
+&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar.gif" height=9 width=50><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_r.gif" height=9 width=4>&nbsp;25%</td>
 		<td align="right" width="60">(1)</td>
 	</tr>
 	<tr>
 		<td>N/A</td>
 		<td align="left">
-&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=50><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;25%</td>
+&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar.gif" height=9 width=50><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_r.gif" height=9 width=4>&nbsp;25%</td>
 		<td align="right" width="60">(1)</td>
 	</tr>
 	<tr>
 		<td><b>TOTAL</b></td>
-		<td align="right"><b>&nbsp;<img src="<?php echo($IMAGE_PATH); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH); ?>hbar.gif" height=9 width=200><img src="<?php echo($IMAGE_PATH); ?>hbar_r.gif" height=9 width=4>&nbsp;100%</b></td>
+		<td align="right"><b>&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar.gif" height=9 width=200><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']); ?>hbar_r.gif" height=9 width=4>&nbsp;100%</b></td>
 		<td align="right"><b>4</b></td>
 	</tr>
 </table></blockquote>
@@ -386,29 +386,29 @@
 	<tr>
 		<td>Red</td>
 		<td align="left" width="220" colspan="6">
-&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
-				width=86><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4></td>
+&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar.gif" height=9
+				width=86><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_r.gif" height=9 width=4></td>
 		<td align="right" width="60">(2.17)</td>
 	</tr>
 	<tr>
 		<td>Blue</td>
 		<td align="left" width="220" colspan="6">
-&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
-				width=100><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4></td>
+&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar.gif" height=9
+				width=100><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_r.gif" height=9 width=4></td>
 		<td align="right" width="60">(2.50)</td>
 	</tr>
 	<tr>
 		<td>White</td>
 		<td align="left" width="220" colspan="6">
-&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
-				width=150><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4></td>
+&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar.gif" height=9
+				width=150><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_r.gif" height=9 width=4></td>
 		<td align="right" width="60">(3.75)</td>
 	</tr>
 	<tr>
 		<td>Black</td>
 		<td align="left" width="220" colspan="6">
-&nbsp;<img src="<?php echo($IMAGE_PATH) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($IMAGE_PATH) ?>hbar.gif" height=9
-				width=200><img src="<?php echo($IMAGE_PATH) ?>hbar_r.gif" height=9 width=4></td>
+&nbsp;<img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_l.gif" height=9 width=4><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar.gif" height=9
+				width=200><img src="<?php echo($GLOBALS['ESPCONFIG']['image_path']) ?>hbar_r.gif" height=9 width=4></td>
 		<td align="right" width="60">(5.00)</td>
 	</tr>
 </table>
@@ -442,7 +442,7 @@
 	the page. (It is suggested that you put this in the cell of a table.) Change
 	the text <tt>[SID]</tt> to the survey ID of your survey (found on the
 	status page).</p>
-	<tt>&lt;?php $sid=[SID]; include("<?php echo($cf_handler); ?>"); ?&gt;</tt>
+	<tt>&lt;?php $sid=[SID]; include("<?php echo($GLOBALS['ESPCONFIG']['handler']); ?>"); ?&gt;</tt>
 
 	<p>NOTE: This code was also given to you on the <b>Finish</b> tab of the survey
 	design.</p>

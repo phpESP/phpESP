@@ -9,5 +9,5 @@
 
 	@session_unregister('survey_id');
 	@session_destroy();
-	include($PIECES."/index".$EXT);
+	include(esp_where('index'));
 ?>

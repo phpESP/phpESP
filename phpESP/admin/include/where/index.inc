@@ -1,1 +1,1 @@
-<?php include($PIECES."/where/manage".$EXT); ?>
+<?php include(esp_where('manage')); ?>

@@ -21,7 +21,7 @@ function survey_report($sid, $details = 0, $format = '') {
 			  FROM question_type 
 			 ORDER BY id';
 	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error system table corrupt.') ." [ ". _('Table') .": question_types ]";
+		$errmsg = _('Error system table corrupt.') ." [ ". _('Table') .": question_type ]";
 		return($errmsg);
 	}
 	while($row = mysql_fetch_row($result)) {
@@ -41,7 +41,7 @@ function survey_report($sid, $details = 0, $format = '') {
 
 	// load survey questions
 	$sql = "SELECT * 
-			  FROM survey_question 
+			  FROM question 
 			 WHERE survey_id='${sid}' AND 
 				   deleted='N'
 			 ORDER BY position,id";
@@ -50,7 +50,7 @@ function survey_report($sid, $details = 0, $format = '') {
 		return($errmsg);
 	}
 ?>
-<h2><?php echo(_('Report for') .': '. $survey["title"] .' [ID: '. $survey['id'] .']'); ?></h2>
+<h2><?php echo(_('Report for') .': '. $survey["title"] .' ['. _('ID') .': '. $survey['id'] .']'); ?></h2>
 <h3><?php echo($survey["subtitle"]); ?></h3>
 <blockquote><?php echo($survey["info"]); ?></blockquote>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">

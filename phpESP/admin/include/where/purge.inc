@@ -9,15 +9,16 @@
 
 
 	// clear the session
+	@session_unset();
 	@session_destroy();
 
-	if(!empty($list)) {
-		while(list(,$sid) = each($list)) {
-			survey_purge($sid);
+	if(!empty($HTTP_POST_VARS['list'])) {
+		while(list(,$sid) = each($HTTP_POST_VARS['list'])) {
+			survey_purge(intval($sid));
 		}
 	}
 
-	$sql = 'SELECT id,name,title,status FROM surveys ORDER BY id DESC';
+	$sql = 'SELECT id,name,title,status FROM survey ORDER BY id DESC';
 	$result = mysql_query($sql);
 
 ?>
@@ -32,8 +33,8 @@ not do anything here that you are not completly certain
 about. There is no confirmation, there is no turning
 back.')); ?></p>
 
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($cf_active_bgcolor); ?>" width="95%">
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<td>&nbsp;</td>
 		<td><b><?php echo(_('ID')); ?></b></td>
@@ -55,10 +56,10 @@ back.')); ?></p>
 			$stat = _('Editing');
 		}
 		
-		if($bg != '#ffffff')
-			$bg = '#ffffff';
+		if($bg != $ESPCONFIG['bgalt_color1'])
+			$bg = $ESPCONFIG['bgalt_color1'];
 		else
-			$bg = '#eeeeee';
+			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><input type="checkbox" name="list[]" value="<?php echo($sid); ?>"></td>
@@ -77,4 +78,4 @@ back.')); ?></p>
 		</td>
 	</tr>
 </table>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

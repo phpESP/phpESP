@@ -19,15 +19,54 @@
  * and "blah_y" and includes 'blah'.
  */
 
+	session_register('survey_id');
+	session_register('new_survey');
+	session_register('last_tab');
+	session_register('curr_q');
 
-	session_register("survey_id");
+	/* Use this hack to work around how PHP handles session vars.
+	 * When Register_Globals is on, the value of the global $foo
+	 * is saved, and $HTTP_SESSION_VARS['foo'] is ignored.
+	 * When Register_Globals is off, the global $foo is ignored
+	 * and $HTTP_SESSION_VARS['foo'] is saved.
+	 * By making $HTTP_SESSION_VARS['foo'] a reference to $foo
+	 * when reg_glob is on, we can use $HTTP_SESSION_VARS uniformly
+	 * from here on, regardless of the INI settings.
+	 */
+	if(get_cfg_var('register_globals')) {
+		$HTTP_SESSION_VARS['survey_id'] = &$survey_id;
+		$HTTP_SESSION_VARS['new_survey'] = &$new_survey;
+		$HTTP_SESSION_VARS['last_tab'] = &$last_tab;
+		$HTTP_SESSION_VARS['curr_q'] = &$curr_q;
+	}
+	
+	global $errstr;
+	
+	if(!empty($HTTP_GET_VARS['newid'])) {
+		$HTTP_SESSION_VARS['survey_id'] = intval($HTTP_GET_VARS['newid']);
+		$HTTP_POST_VARS['tab'] = 'general';
+		$HTTP_SESSION_VARS['last_tab'] = '';
+		$HTTP_SESSION_VARS['new_survey'] = FALSE;
+	}
 
-	if(!isset($cf_tabs))
+	if(empty($HTTP_SESSION_VARS['survey_id'])) {
+		$HTTP_SESSION_VARS['survey_id'] = '';
+		$HTTP_SESSION_VARS['new_survey'] = TRUE;
+	}
+
+	if(empty($HTTP_SESSION_VARS['new_survey']))
+		$HTTP_SESSION_VARS['new_survey'] = empty($HTTP_SESSION_VARS['survey_id']);
+
+	if(empty($ESPCONFIG['tabs'])) {
+		echo('<b>'. _('No tabs defined. Please check your ini settings.'). '</b>');
 		return;
+	}
+	
+	$tab = &$HTTP_POST_VARS['tab'];
 		
 /* XXX I18n do not translate */
 	if(stristr($tab,'continue')) {
-		switch($old_tab) {
+		switch($HTTP_SESSION_VARS['last_tab']) {
 			case 'general':
 				$tab='questions';
 				break;
@@ -41,54 +80,62 @@
 				$tab='general';
 		}
 	}
+/* XXX I18n do not translate */
 
 	if(empty($tab)) {
-		foreach($cf_tabs as $tab) {
-			if(!empty(${$tab . "_x"}) && !empty(${$tab . "_y"})) {
-				if(!$cf_insecure) {
-					if(!ereg('^[A-Za-z0-9_]+$',$tab))	// Valid chars are [A-Za-z0-9_]
-						$tab="index";
-				}
+		foreach($ESPCONFIG['tabs'] as $tab) {
+			$x = $HTTP_POST_VARS["${tab}_x"];
+			$y = $HTTP_POST_VARS["${tab}_y"];
+			if(!empty($x) && !empty($y)) {
 				break;
 			}
-			$tab = $old_tab;
+			$tab = $HTTP_SESSION_VARS['last_tab'];
 		}
-	} else {
-		$tab = strtolower($tab);
 	}
-	$errstr = survey_update($survey_id,$tab,$old_tab);
-	if(!file_exists($PIECES."/tab/".$tab.$EXT)) {
-		include($PIECES."/index".$EXT);
-		return;
+	if(empty($tab))
+		$tab = 'general';
+	$tab = strtolower(ereg_replace(' +','_',$tab));
+	if(!ereg('^[A-Za-z0-9_]+$',$tab))	// Valid chars are [A-Za-z0-9_]
+		$tab = 'general';
+	if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']))
+		$tab = 'general';
+	if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension'])) {
+		echo('<b>'. _('Unable to open include file. Check INI settings. Aborting.'). '</b>');
+		exit;
 	}
+	
+	$errstr = '';
+	$updated = survey_update($HTTP_SESSION_VARS['survey_id'],$tab,$HTTP_SESSION_VARS['last_tab']);
 ?>
 <h2>Survey Design</h2>
-<font size="+2"><a href="<?php echo("${ME}?where=help"); ?>" target="_blank"><?php echo(_('Help')); ?></a></font>
+<?php if(!empty($errstr)) echo(mkerror($errstr)."<br>\n"); ?>
+<font size="+2">
+<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" target="_blank"><?php echo(_('Help')); ?></a>
+</font>
 
 <table border="0" cellspacing="0" cellpadding="0" align="center" width="95%">
   <tr align="left" valign="bottom">
     <td>
       <input type="hidden" name="where" value="tab">
-      <input type="hidden" name="old_tab" value="<?php echo($tab); ?>">
 	  <table border="0" cellspacing="0" cellpadding="0">
 		<tr>
-		  <td><input type="image" border="0" name="general"   src="<?php echo($IMAGE_PATH); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" name="questions" src="<?php echo($IMAGE_PATH); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" width="186" height="43"></td>
-		  <td><input type="image" border="0" name="order"     src="<?php echo($IMAGE_PATH); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif"     width="126" height="43"></td>
-		  <td><input type="image" border="0" name="preview"   src="<?php echo($IMAGE_PATH); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" name="finish"    src="<?php echo($IMAGE_PATH); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif"   width="114" height="43"></td>
+		  <td><input type="image" border="0" name="general"   src="<?php echo($ESPCONFIG['image_path']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
+		  <td><input type="image" border="0" name="questions" src="<?php echo($ESPCONFIG['image_path']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" width="186" height="43"></td>
+		  <td><input type="image" border="0" name="order"     src="<?php echo($ESPCONFIG['image_path']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif"     width="126" height="43"></td>
+		  <td><input type="image" border="0" name="preview"   src="<?php echo($ESPCONFIG['image_path']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
+		  <td><input type="image" border="0" name="finish"    src="<?php echo($ESPCONFIG['image_path']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif"   width="114" height="43"></td>
 		</tr>
 	  </table>
     </td>
   </tr>
-  <tr valign="top" align="center" bgcolor="<?php echo($cf_active_bgcolor); ?>">
+  <tr valign="top" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>">
     <td>
-<?php include($PIECES."/tab/".$tab.$EXT); ?>
+<?php include($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']); $HTTP_SESSION_VARS['last_tab'] = $tab; ?>
     </td>
   </tr>
 </table>
-<?php if($tab=='finish') return; ?>
-<?php if($new_survey) { ?>
+<?php if($tab=='finish') {echo('&nbsp;'); return;} ?>
+<?php if($HTTP_SESSION_VARS['new_survey']) { ?>
 <?php echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')); ?><br>
 <input type="submit" name="where" value="Cancel">
 <?php if($tab=='preview') { ?>
@@ -102,7 +149,7 @@ Questions may be re-ordered or deleted from the <b>Order</b> tab.
 You may see a preview of your survey at any time, by going to the <b>Preview</b>
 tab. If you have no further changes click <b>Finish</b> to go back to the
 Management Interface.')); ?><br>
-<a href="<?php echo("${ME}?where=help"); ?>" target="_blank"><?php echo(_('Click here to open the Help window.')); ?></a></p>
+<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" target="_blank"><?php echo(_('Click here to open the Help window.')); ?></a></p>
 <input type="submit" name="tab" value="General">
 <input type="submit" name="tab" value="Questions">
 <input type="submit" name="tab" value="Order">

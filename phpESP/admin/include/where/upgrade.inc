@@ -5,7 +5,12 @@
 // Written by James Flemer
 // <jflemer@acm.jhu.edu>
 
-	if(isset($runnow)) {
+	$o_now    = XADDSLASHES($HTTP_POST_VARS['o_now']);
+	$o_count  = XADDSLASHES($HTTP_POST_VARS['o_count']);
+	$o_maxcid = XADDSLASHES($HTTP_POST_VARS['o_maxcid']);
+	$c_maxcid = XADDSLASHES($HTTP_POST_VARS['c_maxcid']);
+
+	if(isset($HTTP_POST_VARS['runnow'])) {
 		$sql = "SELECT NOW()+0, COUNT(id), MAX(choice_id) FROM answers_other";
 		$result = mysql_query($sql);
 		list($o_now, $o_count, $o_maxcid) = mysql_fetch_row($result);
@@ -17,7 +22,7 @@
 		mysql_free_result($result);
 	}
 
-	if(!isset($submit) || $o_now == '' || $o_maxcid == '' || $c_maxid == '') { ?>
+	if(!isset($HTTP_POST_VARS['submit']) || $o_now == '' || $o_maxcid == '' || $c_maxid == '') { ?>
 <input type="hidden" name="where" value="upgradeother">
 <table border=0>
 <tr><td colspan=3>
@@ -39,12 +44,12 @@
 <tr><td colspan=3><hr></td></tr>
 <tr><th colspan=3 align="left"><?php echo(_('First Query')); ?></th></tr>
 <tr><th>NOW()+0</th><th>COUNT(id)</th><th>MAX(choice_id)</th></tr>
-<tr><td><input type="text" name="o_now" size="20" value="<?php echo($o_now); ?>"></td>
-    <td><input type="text" name="o_count" size="20" value="<?php echo($o_count); ?>"></td>
-    <td><input type="text" name="o_maxcid" size="20" value="<?php echo($o_maxcid); ?>"></td></tr>
+<tr><td><input type="text" name="o_now" size="20" value="<?php echo($HTTP_POST_VARS['o_now']); ?>"></td>
+    <td><input type="text" name="o_count" size="20" value="<?php echo($HTTP_POST_VARS['o_count']); ?>"></td>
+    <td><input type="text" name="o_maxcid" size="20" value="<?php echo($HTTP_POST_VARS['o_maxcid']); ?>"></td></tr>
 <tr><th colspan=3 align="left"><?php echo(_('Second Query')); ?></th></tr>
 <tr><th>MAX(id)</th><th></th><th></th></tr>
-<tr><td><input type="text" name="c_maxid" size="20" value="<?php echo($c_maxid); ?>"></td><td></td><td></td></tr>
+<tr><td><input type="text" name="c_maxid" size="20" value="<?php echo($HTTP_POST_VARS['c_maxid']); ?>"></td><td></td><td></td></tr>
 <tr><th colspan=3><input type="submit" name="submit" value="<?php echo(_('Go')); ?>"></th></tr>
 <tr><td colspan=3><hr></td></tr>
 </table>

@@ -15,7 +15,6 @@ if(!defined('_LIB_ESPRESPONSE')) {
    questions need to be completed. */
 function response_check_required($sid, $section) {
 	global $HTTP_POST_VARS;
-	@reset($HTTP_POST_VARS);
 
 	$sql = "
 SELECT id,type_id,content
@@ -55,7 +54,7 @@ ORDER BY position";
 		// missing required variables
 		$message = _('You are missing the following required questions:') ."<br>\n";
 		while(list($qid,$content)=each($missing)) {
-			if(DEBUG)
+			if($GLOBALS['ESPCONFIG']['DEBUG'])
 				$message .= "<!-- ${qid} -->";
 			$message .= "${content}<br>\n";
 		}
@@ -69,10 +68,9 @@ ORDER BY position";
    Reads current form variables from HTTP_POST_VARS.
    Returns the ID for the response. */
 function response_insert($sid,$section,$rid) {
-	global $HTTP_POST_VARS, $PHP_AUTH_USER;
-	@reset($HTTP_POST_VARS);
+	global $HTTP_POST_VARS;
 
-	$userid = $PHP_AUTH_USER;
+	$userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
 
 	if(empty($rid)) {
 		// create a uniqe id for this response
@@ -84,14 +82,14 @@ function response_insert($sid,$section,$rid) {
 	$sql  = "
 SELECT Q.id, Q.type_id, T.response_table
 FROM question Q, question_type T
-". survey_select_section_sql($sid,$section) ." AND
+". survey_select_section_sql($sid,$section,'Q') ." AND
    Q.survey_id='${sid}' AND
    Q.deleted='N' AND
    Q.type_id=T.id";
 
 	$q_result = mysql_query($sql);
 	while(list($qid, $tid, $table) = mysql_fetch_row($q_result)) {
-		$val = $HTTP_POST_VARS[$qid];
+		$val = XADDSLASHES($HTTP_POST_VARS[$qid]);
 		switch($table) {
 			case 'response_bool':
 				$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${val}' )";
@@ -109,7 +107,7 @@ FROM question Q, question_type T
 					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
 					$c_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($c_result)) {
-						$other = $HTTP_POST_VARS["${qid}_${cid}"];
+						$other = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
 						if(ereg("[^ \t\n]",$other)) {
 							$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 							$result = mysql_query($sql);
@@ -121,7 +119,7 @@ FROM question Q, question_type T
 				}
 				if(ereg("other_([0-9]+)", $val, $regs)) {
 					$cid=$regs[1];
-					$other = $HTTP_POST_VARS["${qid}_${cid}"];
+					$other = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
@@ -135,7 +133,7 @@ FROM question Q, question_type T
 				$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%'";
 				$c_result = mysql_query($sql);
 				while(list($cid) = mysql_fetch_row($c_result)) {
-					$other = $HTTP_POST_VARS["${qid}_${cid}"];
+					$other = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
@@ -157,7 +155,7 @@ FROM question Q, question_type T
 					$sql = "SELECT id FROM question_choice WHERE question_id='${qid}'";
 					$cid_result = mysql_query($sql);
 					while(list($cid) = mysql_fetch_row($cid_result)) {
-						$val = $HTTP_POST_VARS[$qid ."_". $cid];
+						$val = XADDSLASHES($HTTP_POST_VARS[$qid ."_". $cid]);
 						if(strtolower($val) == "n/a")
 							$rank = -1;
 						else
@@ -271,8 +269,6 @@ function response_select($sid, $rid) {
    Reads current form variables from HTTP_POST_VARS.
    Returns true if mail sent. */
 function response_send_email($sid, $rid) {
-	global $HTTP_POST_VARS, $PHP_AUTH_USER;
-	@reset($HTTP_POST_VARS);
 
 	$sql = "SELECT name, email FROM survey WHERE id='${sid}'";
 	$result = mysql_query($sql);
@@ -285,18 +281,25 @@ function response_send_email($sid, $rid) {
 	$sql = "SELECT id FROM question WHERE survey_id='${sid}' AND deleted='N' ORDER BY position,id";
 	$result = mysql_query($sql);
 
+	$userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
+	if(empty($userid))
+		$userid = $GLOBALS['HTTP_POST_VARS']['userid'];
+
 	$subject = _('Response from survey:') ." $name [$rid]";
 	$body  = "survey.id = ${sid}\n";
 	$body .= "survey.name = ${name}\n";
-	$body .= "response.id = $rid\n";
-	$body .= "response.username = ${PHP_AUTH_USER}\n";
+	$body .= "response.id = ${rid}\n";
+	$body .= "response.username = ${userid}\n";
 
 	$answers = response_select($sid,$rid);
 
-	$headers = "From: \"phpESP ". addslashes($VERSION) ."\" <phpesp\@${SERVER_NAME}>\n";
-	$headers .= "X-Sender: <phpesp\@${SERVER_NAME}>\n"; 
+	$headers = "From: \"phpESP ".
+		addslashes($GLOBALS['ESPCONFIG']['VERSION']) .
+		"\" <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n";
+	$headers .= "X-Sender: <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n"; 
 	$headers .= "X-Mailer: phpESP\n";
-	$headers .= "Return-Path: <${SERVER_ADMIN}\@${SERVER_NAME}>\n";
+	$headers .= "Return-Path: <". $GLOBALS['HTTP_SERVER_VARS']['SERVER_ADMIN'] ."@".
+		$GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] . ">\n";
 
 	while(list($qid,$var) = each($answers)) {
 		if(is_array($var)) {

@@ -17,7 +17,6 @@ if(!defined('_LIB_ESPHTML_RESULTS')) {
 /* {{{ proto void mkrespercent(array weights, int total, int precision, bool show_totals)
   Builds HTML showing PERCENTAGE results. */
 function mkrespercent($counts,$total,$precision,$showTotals) {
-	global $cf_altbg1_color, $cf_altbg2_color, $cf_image_path;
 	$i=0;
 ?>
 <table width="90%" border="0">
@@ -26,19 +25,19 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 		if($num>0) { $percent = $num/$total*100.0; }
 		else { $percent = 0; }
 
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($content); ?></td>
 		<td align="left">
 <?php	
 		if($num) {
-			echo("&nbsp;<img src=\"${cf_image_path}/hbar_l.gif\" height=9 width=4>");
-			printf("<img src=\"${cf_image_path}/hbar.gif\" height=9 width=%d>",$percent*2);
-			echo("<img src=\"${cf_image_path}/hbar_r.gif\" height=9 width=4>");
+			echo("&nbsp;<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
+			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$percent*2);
+			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
 			printf("&nbsp;%.${precision}f%%",$percent);
 		}
 ?>
@@ -49,17 +48,17 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 		$i += $num;
 	} // end while
 	if($showTotals) {
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b><?php echo(_('TOTAL')); ?></b></td>
 		<td width="40%"><b>&nbsp;<?php if($i && !($i > $total))
-			echo("<img src=\"${cf_image_path}/hbar_l.gif\" height=9 width=4>");
-			printf("<img src=\"${cf_image_path}/hbar.gif\" height=9 width=%d>",$i/$total*200.0);
-			echo("<img src=\"${cf_image_path}/hbar_r.gif\" height=9 width=4>");
+			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
+			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$i/$total*200.0);
+			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
 			printf("&nbsp;%.${precision}f%%",$i/$total*100.0); ?></b></td>
 		<td width="10%" align="right"><b><?php echo($total); ?></b></td>
 	</tr>
@@ -73,11 +72,10 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 /* {{{ proto void mkresrank(array weights, int total, int precision, bool show_totals) 
    Builds HTML showing RANK results. */
 function mkresrank($counts,$total,$precision,$showTotals) {
-	global $cf_altbg1_color, $cf_altbg2_color;
 ?>
 <table border="0">
 	<tr>
-		<td align="right"><b>Rank</b></td>
+		<td align="right"><b><?php echo(_('Rank')); ?></b></td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
@@ -92,10 +90,10 @@ function mkresrank($counts,$total,$precision,$showTotals) {
 			$p = 0;
 		$pt += $p;
 
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td align="right"><b><?php echo(++$i); ?></b></td>
@@ -106,10 +104,10 @@ function mkresrank($counts,$total,$precision,$showTotals) {
 <?php
 	} // end while
 	if($showTotals) {
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td colspan=2 align="left"><b><?php echo(_('TOTAL')); ?></b></td>
@@ -125,16 +123,15 @@ function mkresrank($counts,$total,$precision,$showTotals) {
 /* {{{ proto void mkrescount(array weights, int total, int precision, bool show_totals) 
    Builds HTML showing COUNT results. */
 function mkrescount($counts,$total,$precision,$showTotals) {
-	global $cf_altbg1_color, $cf_altbg2_color;
 	$i=0;
 ?>
 <table width="90%" border="0">
 <?php
 	while(list($content,$num) = each($counts)) {
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($content); ?></td>
@@ -145,10 +142,10 @@ function mkrescount($counts,$total,$precision,$showTotals) {
 		$i += $num;
 	} // end while
 	if($showTotals) {
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b><?php echo(_('TOTAL')); ?></b></td>
@@ -164,17 +161,16 @@ function mkrescount($counts,$total,$precision,$showTotals) {
 /* {{{ proto void mkreslist(array weights, int total, int precision, bool show_totals) 
 	Builds HTML showing LIST results. */
 function mkreslist($counts,$total,$precision,$showTotals) {
-	global $cf_altbg1_color, $cf_altbg2_color;
 	if($total==0)	return;
 ?>
 <table width="90%" border="0" cellpadding="1">
 	<tr><th align="left"><?php echo(_('#')); ?></th><th><?php echo(_('Response')); ?></th></tr>
 <?php
 	while(list($text,$num) = each($counts)) {
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 		echo("<tr bgcolor=\"$bg\"><th align=\"left\">$num</th><td>$text</td></tr>\n");
 	}
 ?>
@@ -186,7 +182,6 @@ function mkreslist($counts,$total,$precision,$showTotals) {
 /* {{{ proto void mkresavg(array weights, int total, int precision, bool show_totals) 
 	Builds HTML showing AVG results. */
 function mkresavg($counts,$total,$precision,$showTotals) {
-	global $cf_altbg1_color, $cf_altbg2_color, $cf_image_path;
 	$i=0;
 ?>
 <table border="0">
@@ -206,19 +201,19 @@ function mkresavg($counts,$total,$precision,$showTotals) {
 	</tr>
 <?php
 	while(list($content,$avg) = each($counts)) {
-		if($bg != $cf_altbg1_color)
-			$bg = $cf_altbg1_color;
+		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
 		else
-			$bg = $cf_altbg2_color;
+			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td align="right"><?php echo($content); ?></td>
 		<td align="left" width="220" colspan="6">
 <?php
 		if($avg) {
-			echo("&nbsp;<img src=\"${cf_image_path}/hbar_l.gif\" height=9 width=4>");
-			printf("<img src=\"${cf_image_path}/hbar.gif\" height=9 width=%d>",$avg*40);
-			echo("<img src=\"${cf_image_path}/hbar_r.gif\" height=9 width=4>");
+			echo("&nbsp;<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_l.gif\" height=9 width=4>");
+			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar.gif\" height=9 width=%d>",$avg*40);
+			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_path'] ."/hbar_r.gif\" height=9 width=4>");
 		}
 ?>
 		</td>

@@ -6,29 +6,26 @@
 // <roma@latnet.lv>
 
 	// see if surveys have been selected
-	if(!empty($sids)) {
-		if($test) {
-			echo("<p><b>". _('Testing Survey...') ."</b> (SIDS = $sids)</p>\n");
+	if(!empty($HTTP_GET_VARS['sids'])) {
+		if($HTTP_GET_VARS['test']) {
+			echo("<p><b>". _('Testing Survey...') .'</b> ('. _('SIDS') ." = ". $HTTP_GET_VARS['sids'] .")</p>\n");
 		}
-		
-		// turn it into an array, rather than space seperated list
-		$sids = split(" ",$sids);
 ?>
-<table bgcolor="<?php echo($cf_active_bgcolor); ?>" border="1" width="95%"><tr><td>
+<table bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" border="1" width="95%"><tr><td>
 <?php
-		$ret = survey_merge($sids,$precision,$totals);
+		$ret = survey_merge(split(" ",$HTTP_GET_VARS['sids']),$HTTP_GET_VARS['precision'],$HTTP_GET_VARS['totals']);
 		if(!empty($ret))
-			echo("<font color=\"$cf_error_color\">$ret</font>\n");
+			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
 ?>
 </td></tr></table>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php
 		return;
 	}
 	
 	// otherwise:
 	// build a table of surveys to choose from ...
-	$sql = "SELECT id,name,title,status FROM surveys WHERE NOT (status & '".STATUS_DELETED."') ORDER BY name,id";
+	$sql = "SELECT id,name,title,status FROM survey WHERE NOT (status & '".STATUS_DELETED."') ORDER BY name,id";
 	$result = mysql_query($sql);
 
 ?>
@@ -51,10 +48,10 @@ function merge(box) {
 			sidsArray=ml;
 		}
 		sids = sidsArray.join("+");
-		location.href = "<?php echo("${ME}?where=merge"); ?>&sids="+sids;
+		location.href = "<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=merge"); ?>&sids="+sids;
 	} else {
-		windowTitle="Error!";
-		errMsg="You need to select at least two surveys!";
+		windowTitle="<?php echo(_('Error!')); ?>";
+		errMsg="<?php echo(_('You need to select at least two surveys!')); ?>";
 		windowOpener(windowTitle,errMsg);
 	}
 }
@@ -93,7 +90,7 @@ function BumpUp(box)  {
 </SCRIPT>
 <h2><?php echo(_('Merge Survey Results')); ?></h2>
 <?php echo(_('Pick Surveys to Merge')); ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($cf_active_bgcolor); ?>" width="95%">
+<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<th width="33%"><?php echo(_('List of Surveys')); ?></th>
 		<th width="34%">&nbsp;</th>
@@ -104,7 +101,7 @@ function BumpUp(box)  {
 		<select multiple size="10" name="list1">
 			<?php while(list($sid, $name, $title) = mysql_fetch_row($result)) { ?>
 			<option value="<?php echo($sid); ?>"><?php echo($name); ?></option>
-			<?php } ?>
+			<?php } mysql_free_result($result); ?>
 		</select>
 		</td>
 		<td align="center">
@@ -118,4 +115,4 @@ function BumpUp(box)  {
 		</td>
 	</tr>
 </table>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

@@ -7,10 +7,12 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	session_register("survey_id");
+	$url = $ESPCONFIG['ME'] .'?where=tab&tab=order';
 
-	$url = $PHP_SELF . '?where=tab&tab=order';
-
+	$op  = $HTTP_GET_VARS['op'];
+	$qid = XADDSLASHES($HTTP_GET_VARS['qid']);
+	$sid = $HTTP_SESSION_VARS['survey_id'];
+	
 	if(!empty($op)) {
 		// trying to perform some operation
 		switch(strtolower($op)) {
@@ -18,9 +20,10 @@
 				$sql = "SELECT position FROM question WHERE id='${qid}'";
 				$result = mysql_query($sql);
 				$my_pos = mysql_result($result,0,0);
+				mysql_free_result($result);
 				$sql = "SELECT id,position 
 					FROM question 
-					WHERE survey_id='${survey_id}' AND
+					WHERE survey_id='${sid}' AND
 					deleted='N' AND
 					position < '${my_pos}'
 					ORDER BY position DESC
@@ -29,6 +32,7 @@
 				if(mysql_num_rows($result) != 1)
 					break;
 				list($her_qid,$her_pos) = mysql_fetch_row($result);
+				mysql_free_result($result);
 
 				// set "above" quesiton to my position
 				$sql = "UPDATE question SET position='${my_pos}' WHERE id='${her_qid}'";
@@ -57,8 +61,8 @@
 				$my_pos = mysql_result($result,0,0);
 				$sql = "SELECT id,position
 					FROM question
-					WHERE survey_id='${survey_id}'
-					AND deleted='N' AND
+					WHERE survey_id='${sid}' AND
+					deleted='N' AND
 					position > '${my_pos}'
 					ORDER BY position ASC
 					LIMIT 1";
@@ -66,6 +70,7 @@
 				if(mysql_num_rows($result) != 1)
 					break;
 				list($her_qid,$her_pos) = mysql_fetch_row($result);
+				mysql_free_result($result);
 
 				// set "below" quesiton to my position
 				$sql = "UPDATE question SET position='${my_pos}' WHERE id='${her_qid}'";
@@ -86,25 +91,31 @@
 			case 'b':	// add section break
 				$sql = "SELECT MAX(position)
 					FROM question
-					WHERE survey_id='${survey_id}'
-					AND deleted='N'";
+					WHERE survey_id='${sid}' AND
+					deleted='N'";
 				$result = mysql_query($sql);
 				$position = mysql_result($result,0,0) + 10;
+				mysql_free_result($result);
 				
 				$sql = "INSERT INTO question (survey_id,type_id,position,content)
-				VALUES ('${survey_id}', 99, '${position}', 'break')";
+				VALUES ('${sid}', 99, '${position}', 'break')";
 				$result = mysql_query($sql);
 				break;
 
 		} // end select
 	} // end op check
 
-	$sql = "SELECT id,type_id,position,content FROM question WHERE survey_id='${survey_id}' AND deleted='N' ORDER by position";
+	$sql = "SELECT id,type_id,position,content
+	FROM question
+	WHERE survey_id='${sid}' AND
+	deleted='N'
+	ORDER BY position";
 	$result = mysql_query($sql);
 
 	$i=0;
 ?>
-<?php echo(_('Change the order that questions are presented by clicking on the up and down arrows.
+<?php echo(_('Change the order that questions are
+presented by clicking on the up and down arrows.
 Remove a question by clicking on the X.')); ?>
 <hr>
 <table>
@@ -115,7 +126,7 @@ Remove a question by clicking on the X.')); ?>
 <area shape="rect" coords="0,0,11,22"  href="<?php echo($url); ?>&op=u&qid=<?php echo($qid); ?>" alt="<?php echo(_('Move Up')); ?>">
 <area shape="rect" coords="11,0,22,22" href="<?php echo($url); ?>&op=x&qid=<?php echo($qid); ?>" alt="<?php echo(_('Delete')); ?>">
 <area shape="rect" coords="22,0,32,22" href="<?php echo($url); ?>&op=d&qid=<?php echo($qid); ?>" alt="<?php echo(_('Move Down')); ?>">
-</map><img src="<?php echo($IMAGE_PATH); ?>knobs.gif" border="0" usemap="#Q<?php echo($qid); ?>">
+</map><img src="<?php echo($ESPCONFIG['image_path']); ?>knobs.gif" border="0" usemap="#Q<?php echo($qid); ?>">
 		</td>
 		<td>
 <?php
@@ -126,7 +137,10 @@ Remove a question by clicking on the X.')); ?>
 ?>
 		</td>
 	</tr>
-<?php	} ?>
+<?php
+		}
+		mysql_free_result($result);
+?>
 </table>
 <hr>
 <a href="<?php echo($url); ?>&op=b"><?php echo(_('Click here to add a section (page) break.')); ?></a>

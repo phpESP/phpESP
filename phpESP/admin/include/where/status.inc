@@ -8,18 +8,21 @@
 // <jflemer@eGrad2000.com>
 
 	// clear the session
+	@session_unset();
 	@session_destroy();
+	
+	$sid = XADDSLASHES($HTTP_GET_VARS['sid']);
 
-	if(!empty($op)) {
-		$sql = "SELECT status FROM surveys WHERE id='${sid}'";
+	if(!empty($HTTP_GET_VARS['op'])) {
+		$sql = "SELECT status FROM survey WHERE id='${sid}'";
 		$old_status = mysql_result(mysql_query($sql),0,0);
 		$err = 0;
 		$sql = '';
 		$status = $old_status;
 		// trying to perform some operation
-		switch(strtolower($op)) {
+		switch(strtolower($HTTP_GET_VARS['op'])) {
 			case 'c':	// Clear
-				if($god) {
+				if($HTTP_GET_VARS['god']) {
 					$status = 0;
 					break;
 				}
@@ -51,7 +54,7 @@
 				$status = $old_status | STATUS_DELETED;
 				break;
 		}
-		$sql = "UPDATE surveys SET status='${status}' WHERE id='${sid}'";
+		$sql = "UPDATE survey SET status='${status}' WHERE id='${sid}'";
 		if(!$err && !empty($sql))
 			mysql_query($sql);
 		else {
@@ -82,8 +85,8 @@ no further interaction is allowed. You may <b>not</b> view the results of an
 archived survey.')); ?></p>
 
 </div>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($cf_active_bgcolor); ?>" width="95%">
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<td><b><?php echo(_('ID')); ?></b></td>
 		<td><b><?php echo(_('Name')); ?></b></td>
@@ -95,15 +98,15 @@ archived survey.')); ?></p>
 		<td>&nbsp;</td>
 	</tr>
 <?php
-	$sql = 'SELECT id,name,title,status FROM surveys ORDER BY id DESC';
+	$sql = 'SELECT id,name,title,status FROM survey ORDER BY id DESC';
 	$result = mysql_query($sql);
 
 	while(list($sid,$name,$title,$status) = mysql_fetch_row($result)) {
 		$stat = _('Editing');
-		$test = "<a href=\"${ME}?where=status&op=t&sid=${sid}\">". _('Test') ."</a>";
-		$act  = "<a href=\"${ME}?where=status&op=a&sid=${sid}\">". _('Activate') ."</a>";
-		$done = "<a href=\"${ME}?where=status&op=e&sid=${sid}\">". _('End') ."</a>";
-		$del  = "<a href=\"${ME}?where=status&op=d&sid=${sid}\">". _('Archive') ."</a>";
+		$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=t&sid=${sid}\">". _('Test') ."</a>";
+		$act  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=a&sid=${sid}\">". _('Activate') ."</a>";
+		$done = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=e&sid=${sid}\">". _('End') ."</a>";
+		$del  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=d&sid=${sid}\">". _('Archive') ."</a>";
 		
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
@@ -118,7 +121,7 @@ archived survey.')); ?></p>
 		} elseif($status & STATUS_TEST) {
 			$stat = _('Testing');
 			$done = '&nbsp;';
-			$test = "<a href=\"${ME}?where=status&op=m&sid=${sid}\">". _('Edit') ."</a>";
+			$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=m&sid=${sid}\">". _('Edit') ."</a>";
 		} else {
 			$done = '&nbsp;';
 		}
@@ -142,4 +145,4 @@ archived survey.')); ?></p>
 	}
 ?>
 </table>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

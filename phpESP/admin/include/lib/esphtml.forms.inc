@@ -22,16 +22,14 @@ if(!defined('_LIB_ESPHTML_FORMS')) {
 /* {{{ proto string mkwarn(string message)
    Returns HTML format for an warning message. */
 function mkwarn ($msg) {
-	global $cf_warn_color;
-	return("<font color=\"${cf_warn_color}\" size=\"+1\">${msg}</font>\n");
+	return("<font color=\"". $GLOBALS['ESPCONFIG']['warn_color'] ."\" size=\"+1\">${msg}</font>\n");
 }
 /* }}} */
 
 /* {{{ proto string mkerror(string message)
    Returns HTML format for an error message. */
 function mkerror ($msg) {
-	global $cf_error_color;
-	return("<font color=\"${cf_error_color}\" size=\"+1\">[ ${msg} ]</font>\n");
+	return("<font color=\"". $GLOBALS['ESPCONFIG']['error_color'] ."\" size=\"+1\">[ ${msg} ]</font>\n");
 }
 /* }}} */
 
@@ -94,7 +92,7 @@ function mktextarea ($name,$rows,$cols,$wrap) {
 function mkselect ($name, $options) {
 	// needs register_globals = on
 	global $$name;
-	$str  = "<select name=\"'${name}\">\n";
+	$str  = "<select name=\"${name}\">\n";
 	$str .= "<option></option>\n";
 	while(list($cid, $content) = each($options)) {
 		$checked = '';

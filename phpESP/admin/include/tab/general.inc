@@ -7,22 +7,25 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	session_register("survey_id");
-	session_register("new_survey");
+	$sid = XADDSLASHES($HTTP_SESSION_VARS['survey_id']);
 
-	if(!empty($newid))
-		$survey_id = $newid;
-
-	// load current values from DB if survey_id exists (in session)
-	if(!empty($survey_id)) {
-		$sql = "SELECT * FROM survey WHERE id='${survey_id}'";
+	// load current values from DB if $sid exists (in session)
+	$survey = array();
+	if(!empty($sid) && $updated) {
+		$sql = "SELECT * FROM survey WHERE id='${sid}'";
 		$result = mysql_query($sql);
 		$survey = mysql_fetch_array($result,MYSQL_ASSOC);
 		mysql_free_result($result);
+	} else {
+		$fields = array('name','title','subtitle','email','thank_head','thank_body','info','public');
+		foreach ($fields as $f) {
+			$survey[$f] = $HTTP_POST_VARS[$f];
+		}
 	}
 ?>
-<?php echo(_('The information on this tab applies to the whole survey. Fill out this page
-then go to the <b>Questions</b> tab to add/edit individual survey questions.')); ?>
+<?php echo(_('The information on this tab applies to the whole survey.
+Fill out this page then go to the <b>Questions</b> tab to
+add/edit individual survey questions.')); ?>
 
 <hr>
 <table width="100%" border="0" cellspacing="0">

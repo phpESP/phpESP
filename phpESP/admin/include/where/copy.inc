@@ -7,20 +7,19 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	if(!empty($sid)) {
-		$ret = survey_copy($sid);
-		if($ret) {
-			echo("<font color=\"${cf_error_color}\">${ret}</font><br>\n");
-			echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
+	if(!empty($HTTP_GET_VARS['sid'])) {
+		if(!survey_copy($HTTP_GET_VARS['sid'])) {
+			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">". _('Error copying survey.') ."</font><br>\n");
+			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
 			return;
 		}
 ?>
 <script language="JavaScript"><!--
-window.location="<?php echo("${ME}?where=manage"); ?>"
+window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 //-->
 </script>
 <?php 
-		echo("<noscript><a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a></noscript>\n");
+		echo("<noscript><a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a></noscript>\n");
 		return;
 	}
 
@@ -32,7 +31,7 @@ window.location="<?php echo("${ME}?where=manage"); ?>"
 Chose a survey to make a copy of. The copy will have the same
 status of a newly created survey. You will be able to edit the
 survey, and will have to activate it before use.')); ?>
-<table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($cf_active_bgcolor); ?>" width="95%">
+<table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<td><b><?php echo(_('ID')); ?></b></td>
 		<td><b><?php echo(_('Name')); ?></b></td>
@@ -51,15 +50,15 @@ survey, and will have to activate it before use.')); ?>
 			$stat = _('Editing');
 		}
 		
-		if($bg != '#ffffff')
-			$bg = '#ffffff';
+		if($bg != $ESPCONFIG['bgalt_color1'])
+			$bg = $ESPCONFIG['bgalt_color1'];
 		else
-			$bg = '#eeeeee';
+			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($sid); ?></td>
 		<td><?php echo($name); ?></td>
-		<td><a href="<?php echo("${ME}?where=copy&sid=${sid}"); ?>"><?php echo($title); ?></a></td>
+		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=copy&sid=${sid}"); ?>"><?php echo($title); ?></a></td>
 		<td><?php echo($stat); ?></td>
 	</tr>
 <?php
@@ -67,4 +66,4 @@ survey, and will have to activate it before use.')); ?>
 	mysql_free_result($result);
 ?>
 </table>
-<?php echo("<a href=\"${ME}?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
+<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

@@ -24,15 +24,37 @@
 if(!defined('_FUNCS')) {
  	define('_FUNCS',TRUE);
 
+	if(get_magic_quotes_gpc()) {
+		function XADDSLASHES($a) { return($a); }
+	} else {
+		function XADDSLASHES($a) { return(addslashes($a)); }
+	}
+	set_magic_quotes_runtime(0);
 
+	function esp_where($where) {
+		if(empty($where))
+			$where = 'index';
+		$where = strtolower(ereg_replace(' +','_',$where));
+		if(!ereg('^[A-Za-z0-9_]+$',$where))	// Valid chars are [A-Za-z0-9_]
+			$where = 'index';
+		if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']))
+			$where = 'index';
+		if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension'])) {
+			echo('<b>'. _('Unable to open include file. Check INI settings. Aborting.'). '</b>');
+			exit;
+		}
+		return($GLOBALS['ESPCONFIG']['include_path'].'/where/'.$where.$GLOBALS['ESPCONFIG']['extension']);
+	}
+	
 	// redirect to thank you page for survey ID 'sid'
 	// exits PHP!
 	function goto_thankyou($sid,$referer) {
-		global $cf_thank_body;
-		global $cf_thank_head;
-		$sql = "SELECT thanks_page,thank_head,thank_body FROM surveys WHERE id='${sid}'";
+		$thank_body = $GLOBALS['ESPCONFIG']['thank_body'];
+		$thank_head = $GLOBALS['ESPCONFIG']['thank_head'];
+		$sql = "SELECT thanks_page,thank_head,thank_body FROM survey WHERE id='${sid}'";
 		$result = mysql_query($sql);
 		list($thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
+		mysql_free_result($result);
 		if((empty($thank_head)  && empty($thank_body)) && !empty($thank_url)) {
 ?>
 <script language="JavaScript">
@@ -48,8 +70,8 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		}
 
 		if(empty($thank_body) && empty($thank_head)) {
-			$thank_body = $cf_thank_body;
-			$thank_head = $cf_thank_head;
+			$thank_body = $GLOBALS['ESPCONFIG']['thank_body'];
+			$thank_head = $GLOBALS['ESPCONFIG']['thank_head'];
 		}
 ?>
 <h2><?php echo($thank_head); ?></h2>
@@ -59,43 +81,40 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		return;
 	}
 
-
-
-
 	// clear the results of a survey (non-reversable)
 	function clear_results($sid) {
-		$sql = "SELECT id FROM survey_questions WHERE survey_id='${sid}'";
+		$sql = "SELECT id FROM question WHERE survey_id='${sid}'";
 		$result = mysql_query($sql);
 		$qids = array();
 		while(list($qid) = mysql_fetch_row($result)) {
 			array_push($qids, $qid);
 		}
 		mysql_free_result($result);
-		$qidstr = "question_id IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $qids) . ")");
+		$qidstr = 'question_id ' . array_to_insql($qids);
 	
-		$tables = array('answers_bool','answers_multiple','answers_other','answers_rank','answers_single','answers_text');
+		$tables = array('response_bool','response_multiple','response_other','response_rank','response_single','response_text');
 		foreach($tables as $table) {
 			$sql = "DELETE FROM ${table} WHERE ${qidstr}";
 			$result = mysql_query($sql);
 		}
-		$sql = "DELETE FROM survey_responses WHERE survey_id=${sid}";
+		$sql = "DELETE FROM response WHERE survey_id=${sid}";
 		mysql_query($sql);
 
 		return;
 	}
 
-	require($PIECES."/lib/esphtml.forms".$EXT);
-	require($PIECES."/lib/esphtml.results".$EXT);
-	require($PIECES."/lib/espmerge".$EXT);
-	require($PIECES."/lib/espresponse".$EXT);
-	require($PIECES."/lib/espsql".$EXT);
-	require($PIECES."/function/survey_copy".$EXT);
-	require($PIECES."/function/survey_merge".$EXT);
-	require($PIECES."/function/survey_purge".$EXT);
-	require($PIECES."/function/survey_render".$EXT);
-	require($PIECES."/function/survey_report".$EXT);
-	require($PIECES."/function/survey_results".$EXT);
-	require($PIECES."/function/survey_update".$EXT);
+	require($ESPCONFIG['include_path']."/lib/esphtml.forms".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/lib/esphtml.results".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/lib/espmerge".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/lib/espresponse".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/lib/espsql".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_copy".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_merge".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_purge".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_render".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_report".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_results".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
 
 } // end if !defined(_FUNCS)
 

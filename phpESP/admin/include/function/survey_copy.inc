@@ -28,7 +28,7 @@ function survey_copy($sid) {
 	// clear the sid, clear the creation date, change the name, and clear the status
 	$survey['id'] = '';
 	$survey['created'] = '';
-	$survey['owner'] = $PHP_AUTH_USER;
+	$survey['owner'] = XADDSLASHES($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']);
 	$survey['name'] .= '_'. _('copy');
 	$survey['status'] = 0;
 
@@ -54,7 +54,7 @@ function survey_copy($sid) {
 	$has_choices = esp_type_has_choices();
 
 	// make copies of all the questions
-	$sql = "SELECT * FROM survey_question 
+	$sql = "SELECT * FROM question 
 		WHERE survey_id='${sid}' AND deleted='N'
 		ORDER by position,id";
 	$result = mysql_query($sql);
@@ -71,7 +71,7 @@ function survey_copy($sid) {
 
 		// copy question to new survey
 		array_walk($question,'add_squotes');
-		$sql = "INSERT INTO survey_question ";
+		$sql = "INSERT INTO question ";
 		$sql .= '('. join(',',array_keys($question)) .') ';
 		$sql .= 'VALUES ( '. join(',',array_values($question)) .' )';
 		if(!mysql_query($sql))

@@ -7,13 +7,19 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	session_register("survey_id");
-	session_register("new_survey");
-	session_register("curr_q");		// curr_q is session variable
-	// q is form variable
+	if(empty($HTTP_SESSION_VARS['curr_q']))
+		$HTTP_SESSION_VARS['curr_q'] = 0;
+	
+	$curr_q =& $HTTP_SESSION_VARS['curr_q'];
+	$sid = $HTTP_SESSION_VARS['survey_id'];
 
 	// build array of question IDs
-	$sql = "SELECT id FROM question WHERE survey_id='${survey_id}' AND deleted='N' AND type_id!=99 ORDER BY position";
+	$sql = "SELECT id
+	FROM question
+	WHERE survey_id='${sid}' AND
+		deleted='N' AND
+		type_id != 99
+	ORDER BY position";
 	$result = mysql_query($sql);
 	$total_num_q = mysql_num_rows($result);
 	$q_ids = array();
@@ -21,39 +27,53 @@
 		array_push($q_ids,mysql_result($result,$i,0));
 	}
 	mysql_free_result($result);
-
-	if($extra_choices && empty($q)) {
-		$q=1;
-		while($q_ids[$q-1] != $id && $q <= $total_num_q) {
+	
+	// update failed, stay on same question
+	if(!$updated || isset($HTTP_POST_VARS['extra_choices'])) {
+		$q=0;
+		while($q_ids[$q] != $id && $q < $total_num_q) {
 			$q++;
 		}
+		$HTTP_POST_VARS['q'] = ++$q;
+		unset($q);
+	} else {
+		if(empty($HTTP_POST_VARS['q']))
+			$HTTP_POST_VARS['q'] = $curr_q;
+		if($HTTP_POST_VARS['q'] == _('New Question'))
+			$HTTP_POST_VARS['q'] = 0;
+		if($HTTP_POST_VARS['q']<0 || $HTTP_POST_VARS['q']>$total_num_q)
+			$HTTP_POST_VARS['q'] = 1;
 	}
-
-	if(!$dont_clear) {
-		if(isset($q) && !empty($q))
-			$curr_q = $q;
-		if(stristr($curr_q,_('New')))
-			$curr_q = 0;
-	}
-
-	if($total_num_q > 0 && $curr_q) {
-		// survey questions exist already
-		// 1st sanity check the question #
-		if(empty($curr_q) || $curr_q<1 || $curr_q>$total_num_q) {
-			$curr_q = 1;
-		}
+	$curr_q = $HTTP_POST_VARS['q'];
+	if($curr_q)
 		$curr_q_id = $q_ids[$curr_q-1];
-		if(!$dont_clear) {
-			// load values from DB
-			$sql = "SELECT * FROM question WHERE id='${curr_q_id}' AND deleted='N' ORDER BY position";
-			$result = mysql_query($sql);
-			$question = mysql_fetch_array($result,MYSQL_ASSOC);
-			mysql_free_result($result);
+	else
+		$curr_q_id = 0;
+
+	$fields = array('type_id','result_id','position','parent_id','required','private','content');
+	if($updated && $total_num_q > 0 && $curr_q) {
+		// survey questions exist already
+		// load values from DB
+		$sql = "SELECT * FROM question WHERE id='${curr_q_id}' AND deleted='N' ORDER BY position";
+		$result = mysql_query($sql);
+		$question = mysql_fetch_array($result,MYSQL_ASSOC);
+		mysql_free_result($result);
+		foreach($fields as $f) {
+			$HTTP_POST_VARS[$f] = $question[$f];
+			$$f = $question[$f];
+		}
+	} else if ($updated) {
+		// adding a new question (possibly because there are no questions yet)
+		$curr_q = 0;
+		$curr_q_id = '';
+		foreach($fields as $f) {
+			$HTTP_POST_VARS[$f] = '';
+			$$f = '';
 		}
 	} else {
-		// adding a new question (possibly because there are no questions yet)
-		$curr_q = _('New');
-		$curr_q_id = '';
+		foreach($fields as $f) {
+			$$f = $HTTP_POST_VARS[$f];
+		}
 	}
 ?>
 <table width="100%" border="0" cellspacing="0">
@@ -71,7 +91,7 @@
 		<td colspan="4"><hr></td>
 	</tr>
 	<tr>
-		<td valign=TOP><b><?php echo(_('Question').' '); if(!stristr(_('New'),$curr_q)) echo($curr_q); ?></b></td>
+		<td valign=TOP><b><?php if(!$curr_q){echo(_('New Question'));}else{echo(_('Question')." $curr_q");} ?></b></td>
 		<td valign=TOP colspan="3">
 			<?php echo(mktextarea("content",4,60,"VIRTUAL")); ?>
 
@@ -111,8 +131,12 @@
 </table>
 <?php
 	// has answer options ... so show that part of the form
-	if($curr_q == _('New') || empty($type_id) || mysql_result(mysql_query("SELECT has_choices FROM question_type WHERE id='${type_id}'"),0,0)) {
-		include($PIECES."/tab/questions_options".$EXT);
+	if($curr_q == 0 || 
+		empty($type_id) ||
+		mysql_result(mysql_query("SELECT has_choices
+		FROM question_type
+		WHERE id='${type_id}'"),0,0)=='Y') {
+		include($GLOBALS['ESPCONFIG']['include_path']."/tab/questions_options".$GLOBALS['ESPCONFIG']['extension']);
 	}
 ?>
 <hr>
