@@ -206,3 +206,33 @@ function ErrorMsg() {
    return $cfg['adodb_conn']->ErrorMsg();
 }
 /* }}} */
+
+function password_upgrade($username, $password, $table) {
+    $cfg =& $GLOBALS['ESPCONFIG'];
+
+    if ($cfg['adodb_database_type'] == "mysql") {
+        $info = $cfg['adodb_conn']->ServerInfo();
+        $version = $info['version'];
+        if ($version > 4.0) {
+            $username = _addslashes($username);
+            $sql = "SELECT * FROM ".$table." WHERE
+            username = ".$username." AND
+            password = OLD_PASSWORD($password) AND
+            disabled = 'N' AND
+            (expiration = '0' OR expiration > ". sys_time_stamp().")";
+            $accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC );
+            if (!$accres) {
+                echo(ErrorMsg());
+            }
+            if (record_count($accres) == 1) {
+			// A matching row was found - upgrade his password.
+                $sql = "UPDATE $table SET password = PASSWORD($password) WHERE username = $username";
+                $accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC );
+                if (!$accres) {
+                    echo(ErrorMsg());
+                }
+            
+            }
+        }
+    }
+}
