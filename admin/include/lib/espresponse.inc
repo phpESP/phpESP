@@ -86,7 +86,7 @@ SELECT Q.id, Q.type_id, T.response_table
 FROM question Q, question_type T
 ". survey_select_section_sql($sid,$section,'Q') ." AND
    Q.survey_id='${sid}' AND
-   Q.deleted='N' AND
+   Q.deleted='N' AND Q.type_id < 50 AND
    Q.type_id=T.id";
 
 	$q_result = mysql_query($sql);

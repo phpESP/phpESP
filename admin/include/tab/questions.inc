@@ -103,7 +103,7 @@
 			<td align="center"><?php echo(mktext('name',12)); ?></td>
 			<td align="center"><?php
 				if($updated && empty($GLOBALS['type_id'])) $GLOBALS['type_id'] = 2;
-				$sql = 'SELECT id, type FROM question_type WHERE id < 50';
+				$sql = 'SELECT id, type FROM question_type WHERE id != 99';
 				$result = mysql_query($sql);
 				$arr = array();
 				while(list($key, $val) = mysql_fetch_row($result)) {

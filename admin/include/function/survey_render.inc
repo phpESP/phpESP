@@ -70,6 +70,12 @@ function render_survey($sid, $section = 1, $message = '') {
 		$tid  = &$question['type_id'];
 		$size = &$question['length'];
 		$prec = &$question['precise'];
+		
+		if ($tid == 100) {
+			echo("<tr><td></td><td valign=\"TOP\" align=\"LEFT\">". 
+					$question['content'] ."</td></tr>\n");
+			continue;
+		}
 
 		++$i;
 		if($has_choices[$tid]) {
