@@ -1,33 +1,44 @@
-# $Id$
+p h p E S P   (Easy Survey Package)
+============================================================
+$Id$
 
-// Written by James Flemer
-// For eGrad2000.com
-// [jflemer@acm.jhu.edu]
-// [jflemer@eGrad2000.com] (no longer valid)
+Written by James Flemer <jflemer@acm.jhu.edu>
+[Originally for eGrad2000.com]
 
+phpESP is a package for PHP that provides an easy to use
+web-based interface to designing surveys, deploying them on
+your web site, and exporting data. It features multiple
+users and user groups, with data isolation and hiding
+between groups. It is suitable for use by a single person,
+a  department, or an entire organization. The surveys
+created by phpESP can be easily embedded into existing HTML
+templates with one or two new lines.
+
+============================================================
 FILES:
-admin/:			administration interface and files
-images/:		gifs used for the packages
-public/:		public interface to taking surveys
-LICENSE:		the license, read this!
-phpESP.sql:		SQL script to initialize your mysql database for phpESP
+admin/:        administration interface and files
+images/:       gifs used by the package
+public/:       public interface to taking surveys
+locale/:       language files
+LICENSE:       the license, read this!
+phpESP.sql:    SQL script to initialize your mysql database for phpESP
 
 PREREQUISITES:
   * mysql installed and running
   * web server with PHP4 installed and configured for .php files
-    (I built and tested with Apache/1.3.12 + PHP4.0.1pl2)
+    suggested: Apache 1.3+ with PHP 4.1+
   * read the license
 
 INSTALLING:
   You may install this package in any place you wish,
   however the recommended location is in:
     /usr/local/lib/php/contrib/phpESP
-  By doing so, you can avoid editing so many files to point
-  them at the rest of the files.
+  By doing so, you can avoid editing pathnames in the
+  sources.
 
   Unpack the archive in the directory that you choose.
   (From now on  referred to as the [install-root].) Now
-  you  need to place a few files somewhere inside your
+  you need to place a few files somewhere inside your
   htdocs tree. Symlink (or copy) the [install-root]/images
   directory to somewhere in the htdocs tree.
 
@@ -39,9 +50,11 @@ INSTALLING:
   Edit the file [install-root]/admin/manage.php and set the
   path to where the phpESP.ini is.  Then symlink (or copy)
   it to somewhere in the htdocs tree as index.php or
-  whatever you wish. 
+  whatever you wish. This is used to access the
+  administrative interface to phpESP. All users who will be
+  creating survyes will need access to this URL.
 
-  Edit the file [install-root]/public/handler*.php and set
+  Edit the files [install-root]/public/handler*.php and set
   the path to where the phpESP.ini is.
 
   Create a new mysql database, and a mysql user with
@@ -49,7 +62,12 @@ INSTALLING:
 
   From a privileged mysql account import the file
   [install-root]/phpESP.sql to initialize the survey
-  database.
+  database. To do this from the command line do the
+  following:
+    $ mysql -uroot -p phpesp < [install-root]/phpESP.sql
+  Where "root" is a privileged mysql account, and "phpesp"
+  is the name of the database you created in the previous
+  step.
 
   Load the admin site in your browser, and go! Further docs
   provided from the help page on the admin site. The
@@ -57,7 +75,8 @@ INSTALLING:
   password for this account right away.
 
   If you have problems, questions, suggestion, patches,
-  flames feel free to email me. (See top of this doc, or
-  SourceForge to get my email address.)
-
+  flames feel free to join the phpesp-general mailing list.
+  You can join from the following URL:
+  http://lists.sourceforge.net/lists/listinfo/phpesp-general
+  
 --James
