@@ -73,7 +73,8 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 			$rid = intval($HTTP_POST_VARS['rid']);
 		elseif(!empty($HTTP_GET_VARS['rid']))
 			$rid = intval($HTTP_GET_VARS['rid']);
-		$guicross = $HTTP_GET_VARS['type'];
+		if(!empty($HTTP_GET_VARS['type']))
+			$guicross = $HTTP_GET_VARS['type'];
 		if(!empty($rid)) {
             		$ret = survey_results($sid, $precision, 0, '', '', $rid);
 		} else if (!empty($guicross)){
