@@ -1,0 +1,72 @@
+	$Id$
+
+					Survey Themes:
+	==========================================================================================================
+	
+	Written by Kon Angelopoulos <angekproductions@iprimus.com.au> 08/06/2002
+
+	==========================================================================================================
+	The ability to create themes for surveys is accomplished through the use of css (cascading style sheets).
+	A theme is made possible by copying and then editing the template.css style sheet located in the css directory. This "template"
+	consists of the following class definitions. Before we examine the classes it is worth noting that you should not
+	change the names of the actual classes nor add additional classes without editing the way that surveys are rendered.
+	However you are free to add,delete,modify any of the classes' attributes.
+
+	The Classes:
+	1/ headerGraphic: allows for the inclusion of a graphic at the top of your survey and works in conjunction with
+		the 2/image class. If you do not wish to include such a graphic you may simply ommit these two classes from
+		your css file.
+	3/surveyTitle: allows for the formatting of the survey's title.
+	4/surveySubtitle: allows for the formatting of the survey's subtitle.
+	5/addInfo: allows for the formatting of the "additional Information" that can be included just after the survey's
+	subtitle.
+	6/message: allows for the formatting of the messages that appear at the top of the survey when a user tries to submit
+	a survey without completing all required questions.
+	7/reqQuestion: allows for the formatting of the required Question string that appears near the top of the survey when
+	the survey contains required questions.
+	8/mainTable: allows for the formatting of the main table. This is the table that contains all other survey elements.
+	9/preQuestionBorder: allows for the formatting of the row that appears just before each survey question.
+	
+	each question is now contained within a nested table structure which consists of an outer table and an inner table.
+	This structure allows the theme creator to add a border around each question if so desired. The class for this outer
+	table is 10/ qnOuterTable.
+
+	The inner table class 11/ qnInnerTable: is required if such borders are to be created.
+	To create a border the qnOuterTable class should have a background-color attribute set. This color will form the border.
+	To complete the border effect the qnInnerTable class should also have a background-color attribute set.
+
+	12/qnInnerTd: allows for the formatting of the question number.
+	13/qnInner: allows for the formatting of the column that contains the question text.
+	14/qnType: allows for the formatting of the column that contains the question type (radio buttons, checkboxes, etc..).
+	15/thankHead: allows for the formatting of the thank you heading that appears after a user has successfully submitted a survey.
+	16/thankBody: allows for the formatting of the thank you text that appears just under the thank you heading.
+	17/returnLink: allows for the formatting of the "return" link that appears on the thank you page.
+
+	Finally there exists one further definition which is 18/ body: This is not a class but a redefinition of the body html tag.
+	This can be used to format the survey's background color, background image, left, right, top margins etc.
+
+	To ensure that survey themes work correctly you must ensure:
+	1/ that a css directory exists, preferably within your phpESP directory, and that: a/its path is indicated in the phpESP.ini file.
+	and b/ it is readable by the web server.
+	2/ that all the survey css files are contained within this directory and created prior to creating the survey that will require it.
+	3/ that any header graphics used are contained in a directory recognised by the web surver. It would be preferable to keep
+	these images in a subdirectory within phpESP's image directory.
+	3/ that you do not use attributes that are known to cause major problems in some browsers. for example: the cell-spacing,
+	rowspan attributes do not work in many browsers, and the width attribute is not handled properly by Netscape 4.78 Linux, other
+	css propeties that NN4.xx browsers cannot render include background-attachment, background-position, border-top, border-left,
+	border-bottom, bottom-right, display (except display:none), font-variant, letter-spacing, list-style-image, list-style-position,
+	vertical-align, word-spacing, white-space:nowrap, first-line and first-letter pseudo-elements.
+
+	Finally, if you do not wish to apply a theme to a survey it is recommended that you use the default.css style.
+
+	The "template" css file that has been provided has been tested with the following browsers:
+	Linux:
+		a/ Opera 6.0 - no problems.
+		b/ Konqueror 2.2-11 - no problems.
+		c/ Mozilla 0.9.2.1 - no problems.
+		d/ Netscape Navigator 4.78 - does not like the width attribute and I was unable to get the headerGraphic and image
+		   classes to work.
+	Windows:
+		a/Internet Explorer 6.0 - no problems.
+		b/ Netscape 4.78 - as mentioned above.
+		c/ Netscape 6	- no problems.
