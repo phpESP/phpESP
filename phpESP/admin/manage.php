@@ -9,7 +9,7 @@
 
 	session_start();
 
- 	$CONFIG = "phpESP.ini";
+ 	$CONFIG = '/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini';
 
 	if(!file_exists($CONFIG)) {
 		echo('<b>Unable to open INI file. Aborting.</b>');
@@ -17,15 +17,26 @@
 	}
 	include($CONFIG);
 	
-	if($ESPCONFIG['auth_manage']) {
-		session_register('acl');
-		if(get_cfg_var('register_globals')) {
-			$HTTP_SESSION_VARS['acl'] = &$acl;
-		}
+	session_register('acl');
+	if(get_cfg_var('register_globals')) {
+		$HTTP_SESSION_VARS['acl'] = &$acl;
+	}
+	if($ESPCONFIG['auth_design']) {
 		if(!manage_auth(
 				XADDSLASHES(@$HTTP_SERVER_VARS['PHP_AUTH_USER']),
 				XADDSLASHES(@$HTTP_SERVER_VARS['PHP_AUTH_PW'])))
 			exit;
+	} else {
+		$HTTP_SESSION_VARS['acl'] = array (
+			'username'  => 'none',
+			'pdesign'   => array('none'),
+			'pdata'     => array('none'),
+			'pall'      => array('none'),
+			'pgroup'    => array('none'),
+			'puser'     => array('none'),
+			'superuser' => 'Y',
+			'disabled'  => 'N'
+		);
 	}
 ?>
 <HTML>
