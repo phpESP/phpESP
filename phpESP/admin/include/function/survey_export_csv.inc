@@ -90,7 +90,13 @@ function survey_generate_csv($sid) {
 				break;
 			case 1: /* string */
 				if (isset($response[$columns[$i]])) {
-					$response[$columns[$i]] = ereg_replace("[\n\t]", ' ', $response[$columns[$i]]);
+                    /* Excel seems to allow "\n" inside a quoted string, but
+                     * "\r\n" is used as a record separator and so "\r" may
+                     * not occur within a cell. So one would like to preserve
+                     * new-lines in a response, remove the "\n" from the
+                     * regex below.
+                     */
+					$response[$columns[$i]] = ereg_replace("[\r\n\t]", ' ', $response[$columns[$i]]);
 					$response[$columns[$i]] = ereg_replace('"', '""', $response[$columns[$i]]);
 					$response[$columns[$i]] = '"'. $response[$columns[$i]] .'"';
 				}
