@@ -201,7 +201,7 @@ FROM question Q, question_type T
 				if(strtolower($bareval) == "n/a")
 					$rank = -1;
 				else
-					$rank = int($bareval);
+					$rank = intval($bareval);
 				$sql  = "INSERT INTO ${table} ( response_id,question_id,rank ) VALUES ( '${rid}','${qid}','${rank}' )";
 				$result = mysql_query($sql);
 				break;
