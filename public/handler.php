@@ -14,7 +14,7 @@
 		echo(mkerror('Error processing survey: Survey not specified.'));
 		return;
 	}
-	
+
 	if(empty($HTTP_POST_VARS['userid'])) {
 		// find remote user id (takes the first non-empty of the folowing)
 		//  1. a GET variable named 'userid'
@@ -36,7 +36,11 @@
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
 	if($results && empty($HTTP_GET_VARS['results']) && empty($HTTP_POST_VARS['results'])) {
-		survey_results($sid);
+		if($totals == 0) {
+			survey_results($sid,0);
+		} else {
+			survey_results($sid,1);
+		}
 		return;
 	}
 
