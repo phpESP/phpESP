@@ -2,6 +2,11 @@
 PHPESP CHANGE LOG
 =================
 
+v1.6 final ==> v1.7-dev
+=======================
+* FIXED csv export bug for certain rank questions.  (Submitted by Paul
+  Jackson <beachbum_boy AT users.sourceforge.net>
+
 v1.6 RC3 ==> v1.6 final
 =======================
 * FIXED windows bug with LC_MESSAGES.  (Reported by Terry Black
