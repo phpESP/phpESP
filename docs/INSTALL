@@ -1,0 +1,286 @@
+=================
+INSTALLING PHPESP
+=================
+
+This document contains instructions for installing phpESP on your
+system.
+
+
+OBTAINING PHPESP
+----------------
+
+phpESP can be obtained from the phpESP web site, at
+
+   http://phpesp.sourceforge.net/
+
+The most current release version and the most current development
+version are listed on the main page.  Older releases are available from
+the "Files" section of the Source Forge project page.  All distribution
+files can be unpacked using tar+gunzip (see INSTALLING PHPESP, below). 
+
+Bleeding-edge development versions of phpESP are available via CVS; see
+the file docs/HACKING for information on accessing the phpESP CVS
+repository.
+
+
+PREREQUISITES
+-------------
+
+The following prerequisites are REQUIRED for phpESP to function
+properly.
+
+  1. A web server that supports PHP.
+
+     phpESP is developed under the Apache web server, which we
+     recommend.  Apache is available from
+
+        http://httpd.apache.org/
+
+     phpESP may work under Microsoft IIS, but is known to have certain
+     problems.
+
+  2. PHP 4.2.1 or above.
+
+     PHP is the interpreted language in which phpESP is written.  You
+     can obtain PHP at
+
+        http://www.php.net/
+
+     Follow the instructions in the PHP package to build PHP for your
+     system.  If you use Apache, be sure to build PHP as a library with
+     the
+
+         --with-apache
+     or
+         --with-apxs
+
+     options to ./configure.
+
+     The following PHP options are REQUIRED by phpESP (listed with
+     their own prerequisites and configure options).  In many cases,
+     the required libraries and tools can be obtained as packages from
+     your operating system vendor.
+
+       a. MySQL support.  (--with-mysql)
+
+          phpESP uses a MySQL database to store survey information,
+          responses to surveys, and user information.  Information on
+          obtaining MySQL is available at
+
+            http://www.mysql.com/
+        
+          (Future versions may allow the use of any database supported
+          by the PEAR database abstraction class.)
+
+     The following PHP options are RECOMMENDED to enable advanced
+     features in phpESP:
+
+       a. Gettext support.  (--with-gettext)
+
+          Gettext is the GNU Translation Project's localization
+          library.  phpESP uses gettext to provide local translations
+          of text displayed by the designer interface.  Information on
+          obtaining the gettext package is available at
+
+             http://www.gnu.org/software/gettext/gettext.html
+
+          (See also note below on configuring translations.)
+
+  3. Additional PEAR Modules
+
+     PEAR is short for "PHP Extension and Application Repository".  The
+     goal of PEAR is to provide a means of distributing reusable code.
+
+     For more information, see http://pear.php.net/
+
+     At this time, phpESP does not use any PEAR modules.  Future
+     versions of phpESP will take advantage of PEAR.
+
+
+INSTALLING PHPESP
+-----------------
+
+phpESP is written in PHP, and must be installed in a web-accessible
+directory.  The precise location of this directory will differ from
+system to system.  If you have no idea where you should be installing
+phpESP, install it directly under the root of your web server's
+document tree.
+
+Since phpESP is written in PHP, there is no compilation necessary;
+simply expand the distribution where you want it to reside and rename
+the root directory of the distribution to whatever you wish to appear
+in the URL.  For example, with the Apache web server's default document
+root of '/usr/local/apache/htdocs', you would type:
+
+   cd /usr/local/apache/htdocs
+   tar zxvf /path/to/phpESP-1.6.tar.gz
+   mv phpESP-1.6 phpESP
+
+and would then find phpESP at the URL
+
+   http://your-server/phpESP/
+
+
+CONFIGURING PHPESP
+------------------
+
+1. Configuring the web server
+
+   phpESP requires the following web server settings.  Examples shown
+   are for Apache; other web servers' configurations will differ.
+
+   a. PHP interpretation for files matching "*.php"
+
+         AddType application/x-httpd-php .php
+
+   Note: The above instructions may not work if you have specified PHP
+         as an output filter with SetOutputFilter directive  in Apache
+         2.x versions.  In particular, RedHat 8.0 Apache 2.x RPMS have
+         the output filter set, and MUST NOT have the above AddType
+         directive added.
+
+   b. "index.php" as an index file (brought up when a user requests a
+      URL for a directory)
+
+         DirectoryIndex index.php
+
+2. Creating databases
+
+   If you are upgrading an existing version of phpESP please read
+   "docs/UPDATING" for instructions on updating your database.
+
+   a. Database and User
+
+      First, look at the "scripts/db/mysql_create.sql" file.  This
+      script, when run as the root user in mysql, will create a
+      database and user for phpESP.  Be sure to change the default
+      password, "phpesp", to something else before executing the
+      script!  (Remember to use this password when you configure phpESP
+      in the next step.)
+
+      Alternatively, you may create the database and user for phpESP on
+      your own.  This can easily be done with a tool like phpMyAdmin.
+
+   b. Tables and Data
+   
+      Once a database and user have been created for phpESP, you must
+      create and populate the tables for phpESP.  You will find a
+      script names "mysql_populate.sql" in the same location as the 
+      last script.  This script should be executed on the new phpESP
+      database as the root user in mysql.  As above, you may run this
+      script using an administration tool of your choosing.
+
+   Note: The recommended and supported method of executing these
+         scripts is via the mysql CLI (command line interface).  For
+         example, to run these scripts you would execute the following
+         commands:
+
+         $ mysql -u root -p < scripts/db/mysql_create.sql
+         $ mysql -u root -p phpesp < scripts/db/mysql_populate.sql
+         
+         If you use a database name other than "phpesp", substitute
+         that name on the second command line.
+
+3. Configuring phpESP
+
+   To configure phpESP, change to the admin/ directory of the installed
+   distribution, and edit "phpESP.ini.php".  Most users will only have
+   to change a few settings in this file.  The most common changes are
+   to the 'base_url', and to the database username and password
+   ('db_user' and 'db_pass').
+
+   Note for international users:  phpESP uses GNU gettext to provide
+   local translations of text displayed by applications; the
+   translations are found in the locale/ directory.  If a translation
+   is not yet available for your locale (and you wish to create one),
+   or if you are having trouble using a provided translation, please
+   see the "docs/TRANSLATIONS" file for instructions.
+
+4. Securing phpESP
+
+   a. Passwords
+
+      phpESP's configuration file contains passwords which local users
+      could use to access your database.  It is recommended to ensure
+      that at least the phpESP configuration files (in config/) are not
+      readable to system users.
+
+      An additional approach is to make phpESP's configuration files
+      owned by the user 'root' and by a group which only the web server
+      user belongs to, and then making them readable only to owner and
+      group.  For example, if your web server runs as www.www, do as
+      follows:
+
+         chown root.www config/*
+         chmod 0440 config/*
+
+   b. Sessions
+
+      Session data -- including hashed versions of your users'
+      passwords, in some applications -- may not be stored as securely
+      as necessary.
+
+      If you are using file-based PHP sessions (which are the default),
+      be sure that session files are not being written into /tmp with
+      permissions that allow other users to read them.  Ideally, change
+      the 'session.save_path' setting in php.ini to a directory only
+      readable and writeable by your web server.
+
+      Additionally, if phpESP is deployed at a hosting service that
+      uses a server farm you may have problems with sessions.  If all
+      servers do not share a common 'session.save_path', sessions will
+      break.  The solution to this problem is to use the php function
+      session_save_path(), to change the path to a shared location. 
+      Please make use of one of the support channels (below) if you
+      encounter this problem.
+
+
+5. Testing phpESP
+
+   Once you have configured your web server, PHP, and phpESP, bring up
+   the included test page in your Web browser to ensure that all
+   necessary prerequisites have been met.  If you installed phpESP as
+   described above, the URL to the test page would be
+
+      http://your-server/phpESP/admin/test.php
+
+   Check that your PHP and PEAR versions are acceptably recent, and
+   that all required module capabilities are present.  Then note the
+   "Session counter: 1" line under "PHP Sessions", and reload the page.
+   The session counter should increment.
+
+
+OBTAINING SUPPORT
+-----------------
+
+If you encounter problems with phpESP, help is available!
+
+The phpESP Frequently Asked Questions List (FAQ), available on the Web
+at
+
+  http://phpesp.sourceforge.net/docs/faq.html
+
+A few mailing lists are run for phpESP.  Information, archives, and
+subscription information can be found at
+
+  http://phpesp.sourceforge.net/
+
+Finally, phpESP developers, contributors and users also make occasional
+appearances on IRC, on the channel #phpesp on freenode.
+(irc.freenode.net).
+
+Please keep in mind that phpESP is free software written by volunteers.
+
+Thanks for using phpESP!
+
+The phpESP team
+
+----
+$Id$
+
+------------------------------------------------------------------------
+This document was obtained from the Horde project, and modified for
+phpESP.  We would like to thank the Horde project for providing such
+clean documentation.  You may learn more about the Horde project at
+  http://www.horde.org/
+------------------------------------------------------------------------

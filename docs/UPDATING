@@ -1,0 +1,22 @@
+===============
+UPDATING PHPESP
+===============
+
+This document contains instructions for updating an existing
+installation of phpESP to a more recent version.  Please see the
+INSTALL guide for instructions on obtaining phpESP.
+
+GETTING STARTED
+---------------
+
+
+BACKING UP OLD DATABASE
+-----------------------
+
+
+UPDATING DATABASE
+-----------------
+
+
+----
+$Id$
