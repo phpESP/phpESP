@@ -64,7 +64,6 @@
 		return;
 	}
 	// CSV
-	$data = survey_generate_csv($sid);
 	header("Content-Transfer-Encoding: ascii");
 	header("Content-Disposition: attachment; filename=$name.csv");
 	header("Content-Type: text/comma-separated-values");
