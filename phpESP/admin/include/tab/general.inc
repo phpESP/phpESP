@@ -33,7 +33,7 @@ Fill out this page then go to the <b>Fields</b> tab to
 edit individual fields.')); ?>
 <script language="javascript">
 <!--
-function saveOrder() {
+function validate() {
     return true;
 }
 -->
