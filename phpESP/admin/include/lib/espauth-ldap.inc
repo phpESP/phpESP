@@ -30,6 +30,9 @@ function survey_auth($sid, $username, $password) {
    
 	$GLOBALS['auth_options'] = array();
 
+    // make sure database is opened
+    esp_init_db();
+
 	// Formulate the query and check whether survey requires authentication
 	$sql = "SELECT realm FROM survey WHERE id = '$sid' AND public = 'N'";
 
