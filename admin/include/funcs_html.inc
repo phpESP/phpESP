@@ -197,6 +197,7 @@ if(!defined('_FUNCS_HTML')) {
 
 	// build HTML showing LIST results
 	function mkreslist($counts,$total,$use_totals) {
+		if($total==0)	return;
 ?>
 <table border="1" cellpadding="1">
 	<tr><th>#</th><th>Response</th></tr>
