@@ -31,9 +31,10 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
 
 		// need to fill out at least some info on 1st tab before proceeding
-		if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])) {
+		if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])
+				|| empty($HTTP_POST_VARS['realm'])) {
 			$tab = "general";
-			$errstr = _('Sorry, please fill out the name and title before proceeding.');
+			$errstr = _('Sorry, please fill out the name, group, and title before proceeding.');
 			return(0);
 		}
 
