@@ -61,39 +61,39 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 			foreach($arr as $row) {
 				/* check for data in required fields */
 				if($row[0]) {
-					$username = XADDSLASHES($row[0]);
+					$username = _addslashes($row[0]);
 				}
 				else {
 					$error=1;
 					break;
 				}
 				if($row[1]) {
-					$password = XADDSLASHES($row[1]);
+					$password = _addslashes($row[1]);
 				}
 				else {
 					$error=1;
 					break;
 				}
 				if($row[2]) {
-					$realm = XADDSLASHES($row[2]);
+					$realm = _addslashes($row[2]);
 					if(isset($row[3]))
-						$fname = XADDSLASHES($row[3]);
+						$fname = _addslashes($row[3]);
 					else
 						$fname = '';
 					if(isset($row[4]))
-						$lname = XADDSLASHES($row[4]);
+						$lname = _addslashes($row[4]);
 					else
 						$lname = '';
 					if(isset($row[5]))
-						$email = XADDSLASHES($row[5]);
+						$email = _addslashes($row[5]);
 					else
 						$email = '';
 					if(isset($row[6]))
-						$expir = XADDSLASHES($row[6]);
+						$expir = _addslashes($row[6]);
 					else
 						$expir = '';
 					if(isset($row[7]))
-						$disabled = XADDSLASHES($row[7]);
+						$disabled = _addslashes($row[7]);
 					else
 						$disabled = '';
 					/* validate email address.  */
@@ -155,63 +155,63 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 			foreach($arr as $row) {
 				/* check for data in required fields */
 				if($row[0]) {
-					$username = XADDSLASHES($row[0]);
+					$username = _addslashes($row[0]);
 				}
 				else {
 					$error=1;
 					break;
 				}
 				if($row[1]) {
-					$password = XADDSLASHES($row[1]);
+					$password = _addslashes($row[1]);
 				}
 				else {
 					$error=1;
 					break;
 				}
 				if($row[2]) {
-					$realm = XADDSLASHES($row[2]);
+					$realm = _addslashes($row[2]);
 					if(isset($row[3]))
-						$fname = XADDSLASHES($row[3]);
+						$fname = _addslashes($row[3]);
 					else
 						$fname = '';
 					if(isset($row[4]))
-						$lname = XADDSLASHES($row[4]);
+						$lname = _addslashes($row[4]);
 					else
 						$lnam = '';
 					if(isset($row[5]))
-						$email = XADDSLASHES($row[5]);
+						$email = _addslashes($row[5]);
 					else
 						$email = '';
 					if(isset($row[6]))
-						$pdesign = XADDSLASHES($row[6]);
+						$pdesign = _addslashes($row[6]);
 					else
 						$pdesign = '';
 					if(isset($row[7]))
-						$pstatus = XADDSLASHES($row[7]);
+						$pstatus = _addslashes($row[7]);
 					else
 						$pstatus = '';
 					if(isset($row[8]))
-						$pdata = XADDSLASHES($row[8]);
+						$pdata = _addslashes($row[8]);
 					else
 						$pdata = '';
 					if(isset($row[9]))
-						$pall = XADDSLASHES($row[9]);
+						$pall = _addslashes($row[9]);
 					else
 						$pall = '';
 					if(isset($row[10]))
-						$pgroup = XADDSLASHES($row[10]);
+						$pgroup = _addslashes($row[10]);
 					else
 						$pgroup = '';
 					if(isset($row[11]))
-						$puser = XADDSLASHES($row[11]);
+						$puser = _addslashes($row[11]);
 					else
 						$puser = '';
 					if(isset($row[12]))
-						$expir = XADDSLASHES($row[12]);
+						$expir = _addslashes($row[12]);
 					else
 						$expir = '';
 					if(isset($row[13]))
-						$disabled = XADDSLASHES($row[13]);
+						$disabled = _addslashes($row[13]);
 					else
 						$disabled = '';
 					if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
