@@ -4,6 +4,8 @@ PHPESP CHANGE LOG
 
 v1.6.1 final ==> v1.7-dev
 =========================
+* FIXED invalid CSS comments.
+* FIXED bugus CSS link background image link.
 * FIXED surveys created in 1.5 fail to CSV exported properly
   (Reported by Hakan Kuecuekyilmaz).
 * FIXED legend text on "change status page" (Reported by
