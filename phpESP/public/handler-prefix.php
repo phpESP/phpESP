@@ -88,8 +88,11 @@ if(!defined('AUTHHAND-PREFIX')) {
 		$HTTP_POST_VARS['referer'] = isset($HTTP_SERVER_VARS['HTTP_REFERER']) ?
 			$HTTP_SERVER_VARS['HTTP_REFERER'] : '';
 
-	if(empty($HTTP_POST_VARS['sec']) || $HTTP_POST_VARS['sec'] < 1) {
-		$HTTP_POST_VARS['sec'] = 1;
+	if (empty($HTTP_POST_VARS['rid']))
+		$HTTP_POST_VARS['rid'] = '';
+	else
+		$HTTP_POST_VARS['rid'] = intval($HTTP_POST_VARS['rid']) ?
+				intval($HTTP_POST_VARS['rid']) : '';
 
 		if($ESPCONFIG['auth_response']) {
 			// check for authorization on the survey
@@ -99,16 +102,28 @@ if(!defined('AUTHHAND-PREFIX')) {
                     $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
             isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) &&
                     $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
-			if(!survey_auth($sid,
-                    isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) ?
-                        addslashes($HTTP_SERVER_VARS['PHP_AUTH_USER']) : '',
-                    isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) ?
-                        addslashes($HTTP_SERVER_VARS['PHP_AUTH_PW']) : ''))
-            {
+
+		if(!survey_auth($sid, addslashes($espuser), addslashes($esppass)))
 				return;
+		
+		$HTTP_POST_VARS['rid'] = auth_get_rid($sid, addslashes($espuser),
+				$HTTP_POST_VARS['rid']);
+		
+		if (auth_get_option('resume')) {
+			if (!empty($HTTP_POST_VARS['rid']) && (empty($HTTP_POST_VARS['sec']) ||
+					intval($HTTP_POST_VARS['sec']) < 1)) {
+				$HTTP_POST_VARS['sec'] = response_select_max_sec($sid,
+						$HTTP_POST_VARS['rid']);
             }
 		}
 	}
+
+	if (empty($HTTP_POST_VARS['sec']))
+		$HTTP_POST_VARS['sec'] = 1;
+	else
+		$HTTP_POST_VARS['sec'] = (intval($HTTP_POST_VARS['sec']) > 0) ?
+				intval($HTTP_POST_VARS['sec']) : 1;
+
 	define('AUTHHAND-OK', TRUE);
 } /* !defined('AUTHHAND-PREFIX') */
 ?>
