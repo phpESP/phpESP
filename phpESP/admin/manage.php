@@ -58,7 +58,7 @@
 	if(isset($HTTP_POST_VARS['where']))
 		$where = $HTTP_POST_VARS['where'];
 	elseif(isset($HTTP_GET_VARS['where']))
-		$where = $HTTP_GET_VARS['where']);
+		$where = $HTTP_GET_VARS['where'];
 	include(esp_where($where));
 
 	if(file_exists($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']))
