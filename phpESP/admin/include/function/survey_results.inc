@@ -11,17 +11,17 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	$GLOBALS['ESPCONFIG']['DEBUG_RESULTS'] = $GLOBALS['ESPCONFIG']['DEBUG'];
 
-/* {{{ proto string survey_results(int survey_id, int preceision, bool show_totals, int question_id, array choice_ids)
+/* {{{ proto string survey_results(int survey_id, int preceision, bool show_totals, int question_id, array choice_ids, int response_id)
 	Builds HTML for the results for the survey. If a
 	question id and choice id(s) are given, then the results
 	are only calculated for respodants who chose from the
 	choice ids for the given question id.
 	Returns empty string on sucess, else returns an error
 	string. */
-function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '') {
+function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '', $rid = '') {
 	$bg = '';
 	if(empty($precision))	$precision  = 1;
-	if(empty($showTotals))	$showTotals = 1;
+	if($showTotals === '')	$showTotals = 1;
 
 	if(is_int($cids))
 		$cids = array($cids);
@@ -89,55 +89,59 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 // find total number of survey responses
 // and relevant response ID's
-	$sql = "";
-	if($cross) {
-		if(!empty($cidstr))
-			$sql = "SELECT A.response_id
-					  FROM ${crossTable} A,
-						   response R
-					 WHERE A.response_id=R.id AND
-						   R.complete='Y' AND
-						   A.question_id='${qid}' AND
-				    	   A.choice_id ${cidstr}
-					 ORDER BY A.response_id";
-		else
-			$sql = "SELECT A.response_id
-					  FROM ${crossTable} A,
-						   response R
-					 WHERE A.response_id=R.id AND
-						   R.complete='Y' AND
-						   A.question_id='${qid}' AND
-				    	   A.choice_id = 0
-					 ORDER BY A.response_id";
+	if (!empty($rid)) {
+		$ridstr = "= '${rid}'";
+        $total = 1;
 	} else {
-		$sql = "SELECT R.id
-				  FROM response R
-				 WHERE R.survey_id='${sid}' AND
-					   R.complete='Y'
-				 ORDER BY R.id";
-	}
-	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error opening survey.') ." [ ID:${sid} ] [ ".mysql_error()."]";
-		return($errmsg);
-	}
-	$total = mysql_num_rows($result);
-	if($total < 1) {
-		$errmsg = _('Error opening survey.') .' '. _('No responses found.') ." [ ID:${sid} ]";
-			return($errmsg);
-        if ($GLOBALS['ESP_CONFIG']['DEBUG'])
-            echo("<!-- \$errmsg = '$errmsg' -->\n");
-	}
+	    $sql = "";
+	    if($cross) {
+		    if(!empty($cidstr))
+			    $sql = "SELECT A.response_id
+					      FROM ${crossTable} A,
+						       response R
+					     WHERE A.response_id=R.id AND
+						       R.complete='Y' AND
+						       A.question_id='${qid}' AND
+				    	       A.choice_id ${cidstr}
+					     ORDER BY A.response_id";
+		    else
+			    $sql = "SELECT A.response_id
+					      FROM ${crossTable} A,
+						       response R
+					     WHERE A.response_id=R.id AND
+						       R.complete='Y' AND
+						       A.question_id='${qid}' AND
+				    	       A.choice_id = 0
+					     ORDER BY A.response_id";
+	    } else {
+		    $sql = "SELECT R.id
+				      FROM response R
+				     WHERE R.survey_id='${sid}' AND
+					       R.complete='Y'
+				     ORDER BY R.id";
+	    }
+	    if(!($result = mysql_query($sql))) {
+		    $errmsg = _('Error opening survey.') ." [ ID:${sid} ] [ ".mysql_error()."]";
+		    return($errmsg);
+	    }
+	    $total = mysql_num_rows($result);
+	    if($total < 1) {
+		    $errmsg = _('Error opening survey.') .' '. _('No responses found.') ." [ ID:${sid} ]";
+			    return($errmsg);
+            if ($GLOBALS['ESP_CONFIG']['DEBUG'])
+                echo("<!-- \$errmsg = '$errmsg' -->\n");
+	    }
 
-	$rid = array();
-	while($row = mysql_fetch_row($result)) {
-		array_push($rid, $row[0]);
+		$rid = array();
+		while($row = mysql_fetch_row($result)) {
+			array_push($rid, $row[0]);
+		}
+		mysql_free_result($result);
+		// create a string suitable for inclusion in a SQL statement
+		// containing the desired Response IDs
+		// ex: "('304','311','317','345','365','370','403','439')"
+		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rid)) .")";
 	}
-	mysql_free_result($result);
-
-	// create a string suitable for inclusion in a SQL statement
-	// containing the desired Response IDs
-	// ex: "('304','311','317','345','365','370','403','439')"
-	$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rid)) .")";
 ?>
 <h2><?php echo($survey["title"]); ?></h2>
 <h3><?php echo($survey["subtitle"]); ?></h3>
@@ -155,6 +159,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		$qid = $question['id'];
 		$tid = $question['type_id'];
 		$table = $response_table[$tid];
+        $totals = $showTotals;
 
 		if ($tid == 99) {
 			echo("<tr><td><hr></td></tr>\n");
@@ -205,7 +210,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 // -------------------------------- response_single --------------------------------
 // -------------------------------- response_multiple --------------------------------
 		case 'response_multiple':
-			$showTotals = 0;
+			$totals = 0;
 		case 'response_single':
                 $question_content=array();
                 $counts1=array();
@@ -337,19 +342,19 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 // ---------------------------------------------------------------------------
 		switch($question["result_id"]) {
 			case "1":	// Percentages
-				mkrespercent($counts,$total,$precision,$showTotals);
+				mkrespercent($counts,$total,$precision,$totals);
 				break;
 			case "2":	// Rank
-				mkresrank($counts,$total,$precision,$showTotals);
+				mkresrank($counts,$total,$precision,$totals);
 				break;
 			case "3":	// Count
-				mkrescount($counts,$total,$precision,$showTotals);
+				mkrescount($counts,$total,$precision,$totals);
 				break;
 			case "4":	// List
-				mkreslist($counts,$total,$precision,$showTotals);
+				mkreslist($counts,$total,$precision,$totals);
 				break;
 			case "99":	// Average
-				mkresavg($counts,$total,$precision,$showTotals,$question['length']);
+				mkresavg($counts,$total,$precision,$totals,$question['length']);
 				break;
 		} // end switch
 ?>
