@@ -92,8 +92,12 @@ if(!defined('_FUNCS_HTML')) {
 		return($str);
 	}
 
+//------------------------------------------------------------------
+//------------------------- RESULTS --------------------------------
+//------------------------------------------------------------------
+
 	// build HTML showing PERCENTAGE results
-	function mkrespercent($counts,$total,$use_totals) {
+	function mkrespercent($counts,$total,$precision,$showTotals) {
 		global $IMAGE_PATH;
 		$i=0;
 ?>
@@ -110,7 +114,7 @@ if(!defined('_FUNCS_HTML')) {
 		<td><?php echo($content); ?></td>
 		<td align="left">
 <?php		if($num)
-				printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.2f%%",$percent*2, $percent);
+				printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.${precision}f%%",$percent*2, $percent);
 ?>
 		</td>
 		<td align="right">(<?php echo($num); ?>)</td>
@@ -118,14 +122,14 @@ if(!defined('_FUNCS_HTML')) {
 <?php
 			$i += $num;
 		} // end while
-		if($use_totals) {
+		if($showTotals) {
 			if($bg != "#eeeeee")	$bg = "#eeeeee";
 			else                	$bg = "#ffffff";
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b>TOTAL</b></td>
-		<td><b>&nbsp;<?php if($i && !($i > $total)) printf("<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.2f%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
-		<td align="right"><b><?php echo($total); ?></b></td>
+		<td width="40%"><b>&nbsp;<?php if($i && !($i > $total)) printf("<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.${precision}f%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
+		<td width="10%" align="right"><b><?php echo($total); ?></b></td>
 	</tr>
 <?		} ?>
 </table>
@@ -133,7 +137,7 @@ if(!defined('_FUNCS_HTML')) {
 	} // end function mkrespercent($counts,$total)
 
 	// build HTML showing RANK results
-	function mkresrank($counts,$total,$use_totals) {
+	function mkresrank($counts,$total,$precision,$showTotals) {
 ?>
 <table border="0">
 	<tr>
@@ -158,18 +162,18 @@ if(!defined('_FUNCS_HTML')) {
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td align="right"><b><?php echo(++$i); ?></b></td>
 		<td><?php echo($content); ?></td>
-		<td align="right" width="60"><?php if($p) printf("%.2f%%",$p); ?></td>
+		<td align="right" width="60"><?php if($p) printf("%.${precision}f%%",$p); ?></td>
 		<td align="right" width="60">(<?php echo($num); ?>)</td>
 	</tr>
 <?php
 		} // end while
-		if($use_totals) {
+		if($showTotals) {
 			if($bg != "#eeeeee")	$bg = "#eeeeee";
 			else                	$bg = "#ffffff";
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td colspan=2 align="left"><b>TOTAL</b></td>
-		<td align="right"><b><?php printf("%.2f%%",$pt); ?></b></td>
+		<td align="right"><b><?php printf("%.${precision}f%%",$pt); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 	</tr>
 <?		} ?>
@@ -178,7 +182,7 @@ if(!defined('_FUNCS_HTML')) {
 	} // end function mkresrank($counts,$total)
 
 	// build HTML showing COUNT results
-	function mkrescount($counts,$total,$use_totals) {
+	function mkrescount($counts,$total,$precision,$showTotals) {
 		$i=0;
 ?>
 <table width="90%" border="0">
@@ -190,19 +194,19 @@ if(!defined('_FUNCS_HTML')) {
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($content); ?></td>
 		<td align="right" width="60"><?php echo($num); ?></td>
-		<td align="right" width="60">(<?php if($num) printf("%.2f",$num/$total*100.0); ?>%)</td>
+		<td align="right" width="60">(<?php if($num) printf("%.${precision}f",$num/$total*100.0); ?>%)</td>
 	</tr>
 <?php
 			$i += $num;
 		} // end while
-		if($use_totals) {
+		if($showTotals) {
 			if($bg != "#eeeeee")	$bg = "#eeeeee";
 			else                	$bg = "#ffffff";
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b>TOTAL</b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
-		<td align="right"><b>(<?php if($i) printf("%.2f",$i/$total*100.0); ?>%)</b></td>
+		<td align="right"><b>(<?php if($i) printf("%.${precision}f",$i/$total*100.0); ?>%)</b></td>
 	</tr>
 <?		} ?>
 </table>
@@ -210,7 +214,7 @@ if(!defined('_FUNCS_HTML')) {
 	} // end function mkrescount($counts,$total)
 
 	// build HTML showing LIST results
-	function mkreslist($counts,$total,$use_totals) {
+	function mkreslist($counts,$total,$precision,$showTotals) {
 		if($total==0)	return;
 ?>
 <table width="90%" border="0" cellpadding="1">
@@ -227,7 +231,7 @@ if(!defined('_FUNCS_HTML')) {
 	} // end function mkreslist($counts,$total)
 
 	// build HTML showing AVG results
-	function mkresavg($counts,$total,$use_totals) {
+	function mkresavg($counts,$total,$precision,$showTotals) {
 		global $IMAGE_PATH;
 		$i=0;
 ?>
@@ -262,7 +266,7 @@ if(!defined('_FUNCS_HTML')) {
 				width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>",$avg*40);
 ?>
 		</td>
-		<td align="right" width="60">(<?php printf("%.2f",$avg); ?>)</td>
+		<td align="right" width="60">(<?php printf("%.${precision}f",$avg); ?>)</td>
 	</tr>
 <?php
 			$i += $num;
