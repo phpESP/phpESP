@@ -7,7 +7,11 @@
 // Modified by James Flemer
 // <jflemer@acm.jhu.edu>
 
-	$sid = intval($_REQUEST['sid']);
+	$sid = -1;
+	if (!empty($HTTP_GET_VARS['sid']))
+		$sid = intval($HTTP_GET_VARS['sid']);
+	else if(!empty($HTTP_POST_VARS['sid']))
+		$sid = intval($HTTP_POST_VARS['sid']);
 
 	$sql = "SELECT name FROM survey WHERE id = $sid";
 	$result = mysql_query($sql);
@@ -45,7 +49,7 @@
 		}
 	}
 
-	$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : 'csv';
+	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv';
 	
 	// Try DBF first, default to CSV
 	if($type == 'dbf') {
