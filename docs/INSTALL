@@ -202,17 +202,17 @@ CONFIGURING PHPESP
 
       phpESP's configuration file contains passwords which local users
       could use to access your database.  It is recommended to ensure
-      that at least the phpESP configuration files (in config/) are not
-      readable to system users.
+      that at least the phpESP configuration file (admin/phpESP.ini.php)
+      is not readable to system users.
 
-      An additional approach is to make phpESP's configuration files
+      An additional approach is to make phpESP's configuration file
       owned by the user 'root' and by a group which only the web server
-      user belongs to, and then making them readable only to owner and
+      user belongs to, and then making it readable only to owner and
       group.  For example, if your web server runs as www.www, do as
       follows:
 
-         chown root.www config/*
-         chmod 0440 config/*
+         chown root.www admin/phpESP.ini.php
+         chmod 0440 admin/phpESP.ini.php
 
    b. Sessions
 
