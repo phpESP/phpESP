@@ -19,7 +19,7 @@
 	require_once(ESP_BASE . '/admin/phpESP.ini.php');
 	require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['handler_prefix']);
-	if(!defined('AUTHHAND-OK')) {
+	if(!defined('ESP-AUTH-OK')) {
 		if (!empty($GLOBALS['errmsg']))
 			echo($GLOBALS['errmsg']);
 		return;
