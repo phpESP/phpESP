@@ -4,13 +4,16 @@
 // Matthew Gregg
 // <greggmc at musc.edu>
 
-	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini.php');
+	if (!defined('ESP_BASE'))
+		define('ESP_BASE', dirname(__FILE__) . '/../');
+
+	require_once(ESP_BASE . '/admin/phpESP.ini.php');
 
 	$_name = '';
 	$_title = '';
 	$_css = '';
 	if (isset($HTTP_GET_VARS['name'])) {
-		$_name = XADDSLASHES($HTTP_GET_VARS['name']);
+		$_name = _addslashes($HTTP_GET_VARS['name']);
 		unset($HTTP_GET_VARS['name']);
 		$HTTP_SERVER_VARS['QUERY_STRING'] =
 			ereg_replace('(^|&)name=[^&]*&?', '', $HTTP_SERVER_VARS['QUERY_STRING']);
@@ -48,7 +51,7 @@
 <head><title><?php echo($_title); ?></title>
 <?php
     if (!empty($_css)) {
-	    echo('<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['survey_css_dir'].$_css ."\" type=\"text/css\">\n");
+	    echo('<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css ."\" type=\"text/css\">\n");
     }
     unset($_css);
 ?>
