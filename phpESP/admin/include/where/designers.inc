@@ -6,7 +6,7 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@acm.rpi.edu>
 
-	$sql = 'SELECT username, fname, lname, realm, disabled, expiration FROM designer';
+	$sql = 'SELECT login, fname, lname, realm, disabled, expiration FROM admin_users';
 
 	/* load only accounts available to _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
@@ -15,16 +15,16 @@
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['puser']));
 		$sql .= " WHERE realm $realms";
-	}
+    }
 
 	$sql .= ' ORDER BY ';
 	$base = $GLOBALS['ESPCONFIG']['ME'] .'?where=designers';
 	if($HTTP_GET_VARS['u'] == 'd') {
-		$us = 'username DESC';
+		$us = 'login DESC';
 		$u = 'a';
 	} else {
 		$HTTP_GET_VARS['u'] = 'a';
-		$us = 'username ASC';
+		$us = 'login ASC';
 		$u = 'd';
 	}
 	if($HTTP_GET_VARS['g'] == 'd') {
@@ -68,7 +68,7 @@
 		$l = "&s=l";
 	}
 
-	$result = mysql_query($sql);
+	$result = mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn']);
 	
 	$bg = $ESPCONFIG['bgalt_color2'];
 ?>

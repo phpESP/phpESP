@@ -13,26 +13,15 @@
 		$sid = intval($HTTP_GET_VARS['sid']);
 
 	$errstr = "";
+    $username = $HTTP_SESSION_VARS['acl']['username'];
 
 	if ($sid) {
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM survey s WHERE s.id = '$sid'";
-			$sql1 = "SELECT a.realm, a.maxlogin FROM access a
-				WHERE a.survey_id = '$sid' ORDER BY a.realm";
+            $sql = "SELECT name, title, owner, public
+                    FROM survey WHERE id=$sid";
 		} else {
-			$realms = array_to_insql(
-				array_intersect(
-					$HTTP_SESSION_VARS['acl']['pall'],
-					array_merge(
-						$HTTP_SESSION_VARS['acl']['pall'],
-						$HTTP_SESSION_VARS['acl']['pdesign'])));
-			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM survey s WHERE s.id = '$sid' AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = '".
-				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms)";
-			$sql1 = "SELECT a.realm, a.maxlogin FROM access a, survey s
-				WHERE a.survey_id = '$sid' AND s.id=a.survey_id AND (s.owner = '".
-				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms) ORDER BY a.realm";
+            $sql = "SELECT name, title, owner, public
+                    FROM survey WHERE id=$sid AND owner='$username'";
 		}
 		$result = mysql_query($sql);
 		if (mysql_num_rows($result) < 1) {
@@ -40,7 +29,7 @@
 		}
 	}
 	if ($sid) {
-		list($name,$title,$owner,$realm,$public) = mysql_fetch_row($result);
+		list($name,$title,$owner,$public) = mysql_fetch_row($result);
 		mysql_free_result($result);
 		
 		if (!empty($HTTP_POST_VARS['op']))
@@ -48,27 +37,27 @@
 		else
 			$op = $HTTP_GET_VARS['op'];
 
-		if (!empty($HTTP_POST_VARS['realm']))
-			$arealm = XADDSLASHES($HTTP_POST_VARS['realm']);
-		else
-			$arealm = XADDSLASHES($HTTP_GET_VARS['realm']);
-
-		if (!empty($HTTP_POST_VARS['max']))
-			$max = intval($HTTP_POST_VARS['max']);
-		else
-			$max = intval($HTTP_GET_VARS['max']);
-		
 		if ($op == 'a') {
-			if (empty($HTTP_POST_VARS['realm'])) {
-				$errstr = mkerror(_('Please select a group.'));
-			} else {
-				if (!$max) $max = 0;
-				$sql = "INSERT INTO access (survey_id, realm, maxlogin) VALUES ('$sid', '$arealm', '$max')";
-				mysql_query($sql);
-			}
+            $login = $HTTP_POST_VARS['uname'];
+            $survey_name = "phpESP_" . $sid;
+            $password = $HTTP_POST_VARS['passwd'];
+            $password2 = $HTTP_POST_VARS['passwd2'];
+            if ($password != $password2)
+                $errstr = "The passwords do not match, try again.";
+            else {
+
+
+                $cryptpw = crypt($password, substr($password, 0, 2));
+    			$sql = "INSERT INTO users (login, survey_name, password, encrypt) 
+                        VALUES ('$login', '$survey_name', '$cryptpw', 'y')";
+                mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn']);
+            }
 		} elseif ($op == 'r') {
-			$sql = "DELETE FROM access WHERE survey_id = '$sid' AND realm = '$arealm'";
-			mysql_query($sql);
+            $login = $HTTP_GET_VARS['uname'];
+            $survey_name = "phpESP_" . $sid;
+			$sql = "DELETE FROM users 
+                    WHERE login='$login' AND survey_name='$survey_name'";
+            mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn']);
 		} elseif ($op == 'v') {
 			$sql = "UPDATE survey SET public = 'N' WHERE id = '$sid'";
 			mysql_query($sql);
@@ -85,27 +74,12 @@
 		else
 			$public = _('Public');
 
-		$r = '<select name="realm"><option></option>';
 		$groups = array();
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-			$sql = "SELECT name FROM realm";
-			$result = mysql_query($sql);
-			while( list($g) = mysql_fetch_row($result) ) {
-				array_push($groups, $g);
-			}
-			mysql_free_result($result);
-		} else {
-			$groups =& $HTTP_SESSION_VARS['acl']['pgroup'];
-		}
-		foreach($groups as $g) {
-			$r .= "<option value=\"$g\">$g</option>";
-		}
-		$r .= '</select>';
 	}
 ?>
 <h2><?php echo(_('Survey Access')); ?></h2>
 
-<?php if(!empty($errstr)) echo("<p>$errstr</p>\n"); ?>
+<?php if(!empty($errstr)) echo("<p><font color=white>$errstr</font></p>\n"); ?>
 
 <div align="left">
 <p><?php
@@ -130,18 +104,25 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Name')); ?></th><td><?php echo($name); ?></td><td>&nbsp;</td></tr>
 	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Title')); ?></th><td><?php echo($title); ?></td><td>&nbsp;</td></tr>
 	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Owner')); ?></th><td><?php echo($owner); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Group')); ?></th><td><?php echo($realm); ?></td><td>&nbsp;</td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Public')); ?></th><td><?php echo($public); ?></td><td>&nbsp;</td></tr>
+	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Access')); ?></th><td><?php echo($public); ?></td><td>&nbsp;</td></tr>
 	<tr bgcolor="#dddddd"><td colspan="3"><hr></td></tr>
-	<tr><th align="left"><?php echo(_('Group')); ?></th><th align="left"><?php echo(_('Max Logins')); ?></th><td>&nbsp;</td></tr>
 <?php
-		$result = mysql_query($sql1);
-		while ( list($arealm, $amax) = mysql_fetch_row($result) ) { ?>
-	<tr><td><?php echo($arealm); ?></td><td><?php echo($amax); ?></td>
-		<td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=r&realm=" . urlencode($arealm)); ?>">Remove</a></td></tr>
-<?php	} ?>
-	<tr><td><?php echo($r); ?></td>
-		<td><input type="text" name="max" size="5"></td>
+echo '<tr><td>Authorized users:</td></tr>';
+$sql1 = "SELECT login FROM users 
+        WHERE survey_name='" . "phpESP_" . $sid . "'";
+$result = mysql_query($sql1, $GLOBALS['ESPCONFIG']['auth_db_conn']);
+?>
+    <tr><td><b>Username</b></td><td><b>Password</b></td></tr>
+
+<?
+while (list($user) = mysql_fetch_row($result) ) { 
+    echo "<tr><td>$user</td><td><i>hidden</i></td>";
+?>
+    <td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=r&uname=" . urlencode($user)); ?>">Remove</a></td></tr>
+<?
+}
+?>
+    <tr><td><input name=uname></td><td><input type=password name=passwd>&nbsp;<input type=password name=passwd2></td>
 		<td><input type="submit" value="<?php echo(_('Add')); ?>"></td></tr>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
@@ -155,8 +136,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 		<th align="left"><?php echo(_('Name')); ?></th>
 		<th align="left"><?php echo(_('Title')); ?></th>
 		<th align="left"><?php echo(_('Owner')); ?></th>
-		<th align="left"><?php echo(_('Group')); ?></th>
-		<th align="left"><?php echo(_('Public')); ?></th>
+		<th align="left"><?php echo(_('Access')); ?></th>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
@@ -176,7 +156,9 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,owner,realm,public
 			FROM survey WHERE NOT (status & " .STATUS_DELETED. ") AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			$HTTP_SESSION_VARS['acl']['username'] .
+            //"' || realm $realms".
+            "') ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
 
@@ -199,7 +181,6 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 		<td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid"); ?>"><?php echo($name); ?></a></td>
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
-		<td><?php echo($realm); ?></td>
 		<td><?php echo($public); ?></td>
 		<td><?php echo($op); ?></td>
 		<td>&nbsp;</td>

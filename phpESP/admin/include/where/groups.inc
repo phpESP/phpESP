@@ -6,6 +6,10 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@acm.rpi.edu>
 
+echo "Groups have been removed for survey.ucsb.edu <br><br>";
+echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); 
+return;
+
 	/* load only accounts available to _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
 			!auth_no_access(_('to access this menu'))) {

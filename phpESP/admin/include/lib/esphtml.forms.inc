@@ -75,6 +75,36 @@ function mktext ($_name, $size = 20, $max = 0) {
 }
 /* }}} */
 
+/* {{{ proto string mkdate(string name, int size)
+   Returns HTML format for a date entry line. */
+function mkdate ($_name, $size = 20, $max = 10) {
+	// needs register_globals = on
+	global $$_name;
+	$size = intval($size);
+	$max  = intval($max);
+	$str = "size=\"$size\"";
+	if ($max)	$str .= " maxlength=\"$max\"";
+	if (isset($$_name))
+		return('<input onblur="check_date(this)" type="text" '. $str .' name="'. htmlspecialchars($_name) .'" value="'. htmlspecialchars($$_name) .'">');
+	return('<input onblur="check_date(this)" type="text" '. $str .' name="'. htmlspecialchars($_name) .'">');
+}
+/* }}} */
+
+/* {{{ proto string mkdate(string name, int size)
+   Returns HTML format for a numeric entry line. */
+function mknum ($_name, $size, $max) {
+	// needs register_globals = on
+	global $$_name;
+	$size = intval($size);
+	$max  = intval($max);
+	$str = "size=\"$size\"";
+	if ($max)	$str .= " maxlength=\"$max\"";
+	if (isset($$_name))
+		return('<input onKeyUp="javascript:dodacheck(this);" onKeyDown="javascript:dodacheck(this);" type="text" '. $str .' name="'. htmlspecialchars($_name) .'" value="'. htmlspecialchars($$_name) .'">');
+	return('<input onKeyUp="javascript:dodacheck(this);" onKeyDown="javascript:dodacheck(this);" type="text" '. $str .' name="'. htmlspecialchars($_name) .'">');
+}
+/* }}} */
+
 /* {{{ proto string mkpass(string name)
    Returns HTML format for a password entry line. */
 function mkpass ($_name) {

@@ -35,6 +35,17 @@
 			/* cleared for testing ... was that enough tests? */
 ?>
 </form>
+<?php // lets make the css style available during the testing.
+      // this should really go into the head section.....but should still work
+	$sql = "SELECT theme FROM survey where id = '${sid}'";
+	if ($result = mysql_query($sql)) {
+                if (mysql_num_rows($result) > 0) {
+                        list($css_file) = mysql_fetch_row($result);
+                        mysql_free_result($result);
+                	echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$css_file."\"  type=\"text/css\">\n");
+		}
+        }
+?>
 <b><?php echo(_('Testing Survey...')); ?></b> (<?php echo(_('SID')." = $sid"); ?>)
 <p>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
@@ -79,14 +90,16 @@
 		$sql = "SELECT id,name,title,owner,realm
 			FROM survey 
 			WHERE (status & $statusok) AND NOT (status & $statusbad) AND
-			(owner = '". $HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms)
-			ORDER BY id DESC";
+			(owner = '". $HTTP_SESSION_VARS['acl']['username'] .
+             //"' || realm $realms" .
+             "') ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
 
 ?>
 <h2><?php echo(_('Test a Survey')); ?></h2>
-<?php echo(_('Pick Survey to Test')); ?>
+<?php echo(_('Pick Survey to Test <br>')); ?>
+<?php echo(_('If your survey is not listed, make sure you have changed its <a href=index.php?where=status>status</a> to "Testing"')); ?>
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<th align="left"><?php echo(_('ID')); ?></th>

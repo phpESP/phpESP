@@ -47,12 +47,14 @@ function survey_get_sections($sid, $field = 'id') {
 		return array();
 	$ret = array();
 	$sec = array();
-	while (list($key, $type) = mysql_fetch_row($result)) {
-		if ($type != 99) {
-			array_push($sec, $key);
+	while (list($key, $type, $content) = mysql_fetch_row($result)) {
+		if ($type != 99 ) {
+                if ($type != 98){
+    			array_push($sec, $key);
+            }
 		} else {
-			array_push($ret, $sec);
-			$sec = array();
+   			array_push($ret, $sec);
+   			$sec = array();
 		}
 	}
 	array_push($ret, $sec);
@@ -60,7 +62,8 @@ function survey_get_sections($sid, $field = 'id') {
 	return $ret;
 }
 /* }}} */
-			
+
+
 
 /* {{{ proto string survey_select_section_sql(int survey_id, int section)
    Returns a string of a SQL fragment to limit questions to

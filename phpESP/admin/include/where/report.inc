@@ -52,9 +52,9 @@
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,owner,realm FROM survey WHERE (owner='".
-			$HTTP_SESSION_VARS['acl']['username'] ."' ||
-			realm $realms) 
-			AND NOT (status & $statusbad)
+			$HTTP_SESSION_VARS['acl']['username'] .
+            //"' || realm $realms) ".
+			"') AND NOT (status & $statusbad)
 			ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);

@@ -27,7 +27,7 @@ if(!$sid) {
 		<th align="left"><?php echo(_('Owner')); ?></th>
 		<th align="left"><?php echo(_('Group')); ?></th>
 		<th align="left"><?php echo(_('Status')); ?></th>
-		<th align="left" colspan="2"><?php echo(_('Format')); ?></td>
+		<th align="left" colspan="2"><?php echo(_('.csv File')); ?></td>
 	</tr>
 <?php
 	/* load names and titles of all surveys available to
@@ -43,7 +43,9 @@ if(!$sid) {
 				$HTTP_SESSION_VARS['acl']['pdata']));
 		$sql = "SELECT id,name,title,status,owner,realm
 			FROM survey WHERE (status & $statusok) AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			$HTTP_SESSION_VARS['acl']['username'] .
+            //"' || realm $realms".
+            "') ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
 
@@ -74,9 +76,9 @@ if(!$sid) {
 		<td><?php echo($realm); ?></td>
 		<td><?php echo($stat); ?></td>
 		<td><?php
-			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=csv&sid=$sid\">" . _('CSV') . "</a>"); ?>
-			(<?php
-			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=download&type=csv&sid=$sid\">" . _('download') . '</a>'); ?>)</td>
+?>
+			<?php
+			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=download&type=csv&sid=$sid\">" . _('download') . '</a>'); ?></td>
 		<td>&nbsp;<!-- <?php
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=dbf&sid=$sid\">" . _('DBF') . "</a>"); ?>  --></td>
 	</tr>

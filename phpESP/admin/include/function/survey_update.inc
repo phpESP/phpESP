@@ -39,7 +39,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		}
 
 		// create a new survey in the database
-		$fields = array('name','realm','title','subtitle','email','thank_head','thank_body','info');
+		$fields = array('name','realm','title','subtitle','email','theme','thank_head','thank_body','info');
 		foreach($fields as $f) {
 			if(isset($HTTP_POST_VARS[$f])) {
 				array_push($f_arr,$f);
@@ -79,7 +79,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				return(0);
 			}
 
-			$fields = array('name','realm','title','subtitle','email','thank_head','thank_body','info');
+			$fields = array('name','realm','title','subtitle','email','theme','thank_head','thank_body','info');
 			$sql = "SELECT name FROM survey WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
 			$name = mysql_result($result,0,0);
@@ -137,9 +137,9 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				} while ($str1 != $str2);
 				$HTTP_POST_VARS['name'] = $str1;
 			}
-			$HTTP_POST_VARS['name'] = strtoupper(substr( eregi_replace(
-				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name'])), 0, 10));
-			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
+//			$HTTP_POST_VARS['name'] = strtoupper(substr( eregi_replace(
+//				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name'])), 0, 10));
+//			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
 
 			// constraint: question type required
 			if(empty($HTTP_POST_VARS['type_id'])) {

@@ -30,8 +30,8 @@
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 			in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM designer WHERE username='$u' AND realm='$r'";
-			if(!mysql_query($sql) || mysql_affected_rows() < 1) {
+			$sql = "DELETE FROM admin_users WHERE login='$u'";
+			if(!mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn']) || mysql_affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
 					mysql_error() .')');
@@ -94,16 +94,25 @@
 			$r = '';
 		
 		/* new user */
-		$sql = "SELECT * FROM designer WHERE username='$u' AND realm='$r'";
-		$result = mysql_query($sql);
+		$sql = "SELECT * FROM admin_users WHERE login='$u'";
+		$result = mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn']);
 		if(!$result || mysql_num_rows($result) < 1) {
 			if(empty($u) || empty($r) || empty($password)) {
 				$errstr .= mkerror(_('Username, Password, and Group are required.'));
 			} else {
-				$sql = "INSERT INTO designer
-					(username,realm,password)
-					VALUES ('$u','$r',PASSWORD('$password'))";
-				if(!mysql_query($sql)) {
+                //
+                // generate the password using DES (2 letter salt)
+                // using a random salt (logical AND of session_id and current milliseconds)
+                // avoids cleartext passwords in database logs
+                //
+                $time = gettimeofday();
+                $secs = (int)$time["usec"];
+                $random = session_id() & $secs;
+                $crypt_pass = crypt($password, substr($random, 0, 2));
+				$sql = "INSERT INTO admin_users
+					(login,password)
+					VALUES ('$u','$crypt_pass')";
+				if(!mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn'])) {
 					$u = '';
 					$r = '';
 					$errstr .= mkerror(_('Error adding account.') .' ('.
@@ -114,7 +123,7 @@
 		mysql_free_result($result);
 		
 		/* change user data */
-		if(!empty($u) && !empty($r)) {
+		if(!empty($u) ) {
 			if(empty($pdesign))
 				$pdesign = 'Y';
 			$fields = array('pstatus','pdata','pall','pgroup','puser','disabled');
@@ -122,10 +131,21 @@
 				if(empty($$f))
 					$$f = 'N';
 			}
-			if (!empty($password))
-				$password = "password=PASSWORD('$password'),";
-			$sql = "UPDATE designer SET
-				$password
+			if (!empty($password)) {
+
+                //
+                // generate the password using DES (2 letter salt)
+                // using a random salt (logical AND of session_id and current milliseconds)
+                // avoids cleartext passwords in database logs
+                //
+                $time = gettimeofday();
+                $secs = (int)$time["usec"];
+                $random = session_id() & $secs;
+                $crypt_pass = crypt($password, substr($random, 0, 2));
+                $password = 'password=\'' . $crypt_pass . '\', ';
+            }
+			$sql = "UPDATE admin_users SET
+                $password
 				fname='$fname',
 				lname='$lname',
 				email='$email',
@@ -138,8 +158,8 @@
 				disabled='$disabled',
 				changed=now(),
 				expiration='$expiration'
-			WHERE username='$u' AND realm='$r'";
-			if(!mysql_query($sql)) {
+			WHERE login='$u' ";
+			if(!mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn'])) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot change account data.') .' ('.
 					mysql_error() .')');
@@ -168,16 +188,17 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM designer WHERE username='$u' AND realm='$r'";
-		$result = mysql_query($sql);
+		$sql = "SELECT login, fname, lname, email, pdesign, pstatus,
+                pdata, pall, pgroup, puser, disabled, expiration
+                FROM admin_users WHERE login='$u'";
+		$result = mysql_query($sql, $GLOBALS['ESPCONFIG']['auth_db_conn']);
 		if($arr = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			foreach(array(
-				'username', 'realm', 'fname', 'lname', 'email',
+				'login', 'fname', 'lname', 'email',
 				'pdesign', 'pstatus', 'pdata', 'pall', 'pgroup', 'puser',
 				'disabled', 'expiration') as $col)
 				{ $$col = $arr[$col]; }
-			$u =& $username;
-			$r =& $realm;
+			$u =& $login;
 			if(intval($expiration) > 0) {
 				$ex_year  = substr($expiration,0,4);
 				$ex_month = substr($expiration,4,2);
@@ -211,31 +232,6 @@
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Password') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">". mkpass('password') ."</td>\n");
-?>
-	</tr><tr>
-<?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Group') ."</th>\n");
-	if(empty($r)) {
-		$r = '<select name="r"><option></option>';
-		$groups = array();
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-			$sql = "SELECT name FROM realm";
-			$result = mysql_query($sql);
-			while( list($g) = mysql_fetch_row($result) ) {
-				array_push($groups, $g);
-			}
-			mysql_free_result($result);
-		} else {
-			$groups =& $HTTP_SESSION_VARS['acl']['pgroup'];
-		}
-		foreach($groups as $g) {
-			$r .= "<option value=\"$g\">$g</option>";
-		}
-		$r .= '</select>';
-	} else {
-		$r = mkhidden('r') . "<tt>$r</tt>";
-	}
-	echo("<td bgcolor=\"$bg1\"><tt>$r</tt></td>\n");
 ?>
 	</tr><tr>
 <?php
@@ -291,20 +287,22 @@
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Group Editor') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('pall',array('Y' => _('Yes'), 'N' => _('No'))) .
-		'<!-- ('. _('may edit <b>all</b> forms owned by this group') .") --></td>\n");
+    echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Group Editor') ."</th>\n");
+    echo("<td bgcolor=\"$bg1\">". mkselect('pall',array('Y' => _('Yes'), 'N' => _('No'))) .
+        '<!-- ('. _('may edit <b>all</b> forms owned by this group') .") --></td>\n");
 ?>
-	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Members') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('pgroup',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
+//    echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Members') ."</th>\n");
+//    echo("<td bgcolor=\"$bg1\">". mkselect('pgroup',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
 ?>
-	</tr><tr>
+    <input type="hidden" name="pgroup" value='N'> 
+    </tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Respondents') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('puser',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
+    echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Respondents') ."</th>\n");
+    echo("<td bgcolor=\"$bg1\">". mkselect('puser',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
 ?>
+
+    <input type="hidden" name="r" value="default">
 	</tr><tr>
 		<th colspan="2" bgcolor="<?php echo($bg2); ?>">
 			<input type="submit" name="submit" value="<?php echo(_('Update')); ?>">&nbsp;

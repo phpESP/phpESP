@@ -104,12 +104,14 @@ CREATE TABLE question (
 	type_id		INT UNSIGNED NOT NULL,
 	result_id	INT UNSIGNED,
 	length		INT NOT NULL DEFAULT 0,
-	precise		INT NOT NULL DEFAULT 0,
+	precise		FLOAT NOT NULL DEFAULT 0,
 	position	INT UNSIGNED NOT NULL,
 	content		TEXT NOT NULL,
 	required	ENUM('Y','N') NOT NULL DEFAULT 'N',
 	deleted		ENUM('Y','N') NOT NULL DEFAULT 'N',
 	public		ENUM('Y','N') NOT NULL DEFAULT 'Y',
+    show_title  ENUM('Y','N') NOT NULL DEFAULT 'N',
+
 	PRIMARY KEY (id)
 );
 

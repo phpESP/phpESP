@@ -50,13 +50,18 @@ if(!defined('_FUNCS')) {
 	
 	// redirect to thank you page for survey ID 'sid'
 	// exits PHP!
-	function goto_thankyou($sid,$referer) {
+	function goto_thankyou($sid,$referer,$username) {
+        manage_logout();
 		$thank_body = $GLOBALS['ESPCONFIG']['thank_body'];
 		$thank_head = $GLOBALS['ESPCONFIG']['thank_head'];
-		$sql = "SELECT thanks_page,thank_head,thank_body FROM survey WHERE id='${sid}'";
+		$sql = "SELECT theme,thanks_page,thank_head,thank_body FROM survey WHERE id='${sid}'";
 		$result = mysql_query($sql);
-		list($thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
+		list($theme,$thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
 		mysql_free_result($result);
+
+		if (!empty($theme)){
+			echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$theme."\"  type=\"text/css\">\n");
+		}
 		if((empty($thank_head)  && empty($thank_body)) && !empty($thank_url)) {
 ?>
 <script language="JavaScript">
@@ -76,9 +81,9 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 			$thank_head = $GLOBALS['ESPCONFIG']['thank_head'];
 		}
 ?>
-<h2><?php echo($thank_head); ?></h2>
-<blockquote><?php echo($thank_body); ?></blockquote>
-<a href="<?php echo($referer); ?>">Return</a>
+<h2 class="thankhead"><?php echo($thank_head); ?></h2>
+<blockquote class="thankbody"><?php echo($thank_body); ?></blockquote>
+<a class="returnlink" href="<?php echo($referer); ?>">Return</a>
 <?php
 		return;
 	}
@@ -119,6 +124,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	require($ESPCONFIG['include_path']."/function/survey_results".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
+	require($ESPCONFIG['include_path']."/function/survey_question_list".$ESPCONFIG['extension']);
 
 } // end if !defined(_FUNCS)
 

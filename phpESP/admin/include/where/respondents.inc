@@ -6,7 +6,7 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@acm.rpi.edu>
 
-	$sql = 'SELECT username, fname, lname, realm, disabled, expiration FROM respondent';
+	$sql = 'SELECT login, first_name, last_name, realm, disabled, expiration FROM users';
 
 	/* load only accounts available to _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
@@ -20,11 +20,11 @@
 	$sql .= ' ORDER BY ';
 	$base = $GLOBALS['ESPCONFIG']['ME'] .'?where=respondents';
 	if($HTTP_GET_VARS['u'] == 'd') {
-		$us = 'username DESC';
+		$us = 'login DESC';
 		$u = 'a';
 	} else {
 		$HTTP_GET_VARS['u'] = 'a';
-		$us = 'username ASC';
+		$us = 'login ASC';
 		$u = 'd';
 	}
 	if($HTTP_GET_VARS['g'] == 'd') {
@@ -36,16 +36,16 @@
 		$g = 'd';
 	}
 	if($HTTP_GET_VARS['f'] == 'd' || $HTTP_GET_VARS['l'] == 'd') {
-		$ls = 'lname DESC';
+		$ls = 'last_name DESC';
 		$l = 'a';
-		$fs = 'fname DESC';
+		$fs = 'first_name DESC';
 		$f = 'a';
 	} else {
 		$HTTP_GET_VARS['l'] = 'a';
-		$ls = 'lname ASC';
+		$ls = 'last_name ASC';
 		$l = 'd';
 		$HTTP_GET_VARS['f'] = 'a';
-		$fs = 'fname ASC';
+		$fs = 'first_name ASC';
 		$f = 'd';
 	}
 	if($HTTP_GET_VARS['s'] == 'g') {

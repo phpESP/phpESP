@@ -15,6 +15,12 @@
 	$num_sections = 1 + mysql_result($result,0,0);
 	mysql_free_result($result);
 
+	$sql = "SELECT COUNT(*) FROM question WHERE survey_id='${sid}'
+	AND deleted='N' AND type_id='99'";
+	$result = mysql_query($sql);
+	$num_skips = 1 + mysql_result($result,0,0);
+	mysql_free_result($result);
+
 	if(empty($HTTP_POST_VARS['section']))
 		$HTTP_POST_VARS['section']=1;
 ?>
@@ -34,6 +40,16 @@ this page.')); ?>
 <input type="hidden" name="where" value="tab">
 <input type="hidden" name="old_tab" value="preview">
 <hr>
+<?php // lets make the css style available during the preview.
+      // this should really go into the head section.....but should still work
+        $sql = "SELECT theme FROM survey where id = '${sid}'";
+        if ($result = mysql_query($sql)) {
+                if (mysql_num_rows($result) > 0) {
+                        list($css_file) = mysql_fetch_row($result);
+                        mysql_free_result($result);
+                        echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$css_file."\"  type=\"text/css\">\n");                }
+        }
+?>
 <table border="1" cellpadding="2" bgcolor="#FFFFFF">
 	<tr>
 		<td>
@@ -48,3 +64,6 @@ this page.')); ?>
 		</td>
 	</tr>
 </table>
+<b>Note:</b> The question numbers shown here may appear incorrect in the case of non-linear progression through the pages.
+Please be sure to review the pages in the order they are intended to be viewed. Be assured that page numbering will
+appear correctly once the survey is activated.

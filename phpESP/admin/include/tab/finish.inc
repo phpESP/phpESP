@@ -22,25 +22,18 @@
 <div align="left">
 	<p><?php echo(_('You have completed this survey design.')); ?></p>
 
-	<p><?php echo(_('To insert this survey into your web page, copy the text
-below, and paste it into the HTML of your page.')); ?></p>
+	<p><?php echo(_('Next, you should return to the Management Interface to test your survey. <br>
+                To do this, you much change the <b>status</b> of your survey to <i>Testing</i>. <br>
+                You may then choose to <b>test</b> your survey. <br>
+                If anything is incorrect, you can change the status of your survey back to <i>Editing</i> and make changes.
+                ')); ?></p>
 
-<blockquote><tt>
-	&lt;?php $sid=<?php echo($HTTP_SESSION_VARS['survey_id']); ?>;
-	include("<?php echo($ESPCONFIG['handler']); ?>");?&gt;
-</tt></blockquote> 
+	<p><?php echo(_('Once you are satisfied with the status of your survey, you can activate it.')); ?></p>
 
-	<p><?php echo(_('Once activated you can also access the survey directly
-from the following URL.')); ?></p>
-<blockquote><tt>
-	<?php echo($ESPCONFIG['auto_handler']."?name=".$survey_name); ?>
-</tt></blockquote>
-
-	<p><?php echo(_('You must activate this survey before you can collect
-results. Once a survey is active, you may no longer make any
-changes to it. You may activate this survey by choosing
-<b>Change the Status of an Existing Survey</b> from the
-Management Interface.')); ?></p>
+	<p><?php echo(_('You must activate this survey before you can collect results. 
+                <br>Once a survey is active, you may no longer make any changes to it. 
+<br>You may activate this survey by contacting the Survey Center administrators.
+<br>Be sure to have your login and survey name available.')); ?></p>
 </div>
 
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

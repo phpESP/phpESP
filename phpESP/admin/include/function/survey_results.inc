@@ -162,6 +162,9 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			echo("<tr><td>". $question['content'] ."</td></tr>\n");
 			continue;
 		}
+		if ($tid == 98) {
+            continue;
+        }
 
 		if($bg != '#eeeeee')	$bg = '#eeeeee';
 		else                	$bg = '#ffffff';
@@ -205,6 +208,17 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		case 'response_multiple':
 			$showTotals = 0;
 		case 'response_single':
+                $question_content=array();
+                $counts1=array();
+                $sql = "SELECT content FROM question_choice WHERE question_id='${qid}'";
+                if($result = mysql_query($sql)){
+	               	while (list($row) = mysql_fetch_row($result)){
+        	               	array_push($question_content , $row);
+                        }
+                        mysql_free_result($result);
+                        unset($sql);
+                }
+
 			$sql = "SELECT C.content, COUNT(A.response_id) AS num
 					  FROM question_choice C,
 						   ${table} A
@@ -217,10 +231,19 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
-					$counts[$ccontent] = $count;
+					$counts1[$ccontent] = $count;
 				}
 				mysql_free_result($result);
 			}
+			//lets show all the question choices in the results page regardless of an 
+			//associated count value.
+                        foreach($question_content as $qn){
+	 	        	if (isset($counts1[$qn]))
+                	        	$counts[$qn] = $counts1[$qn];
+                                else
+                                        $counts[$qn] = '0';
+                        }
+
 			// handle 'other...'
 			$sql = "SELECT A.response, C.content
 					  FROM response_other A, question_choice C

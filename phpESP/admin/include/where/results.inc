@@ -83,7 +83,9 @@
 				$HTTP_SESSION_VARS['acl']['pdata']));
 		$sql = "SELECT id,name,title,owner,realm
 			FROM survey WHERE NOT (status & $statusno) AND (status & $statusok) AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			$HTTP_SESSION_VARS['acl']['username'] .
+            //"' || realm $realms".
+            "') ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
 

@@ -51,7 +51,9 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,status,owner,realm
 			FROM survey WHERE NOT (status & ". STATUS_DELETED .") AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			$HTTP_SESSION_VARS['acl']['username'] .
+            //"' || realm $realms" .
+            "') ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
 

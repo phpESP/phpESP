@@ -30,7 +30,7 @@
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 			in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM respondent WHERE username='$u' AND realm='$r'";
+			$sql = "DELETE FROM users WHERE login='$u' AND realm='$r'";
 			if(!mysql_query($sql) || mysql_affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
@@ -48,8 +48,8 @@
 		$u         = XADDSLASHES($HTTP_POST_VARS['u']);
 		$r         = XADDSLASHES($HTTP_POST_VARS['r']);
 		$password  = XADDSLASHES($HTTP_POST_VARS['password']);
-		$fname     = XADDSLASHES($HTTP_POST_VARS['fname']);
-		$lname     = XADDSLASHES($HTTP_POST_VARS['lname']);
+		$fname     = XADDSLASHES($HTTP_POST_VARS['first_name']);
+		$lname     = XADDSLASHES($HTTP_POST_VARS['last_name']);
 		$email     = XADDSLASHES($HTTP_POST_VARS['email']);
 		$disabled  = XADDSLASHES($HTTP_POST_VARS['disabled']);
 
@@ -88,15 +88,28 @@
 			$r = '';
 		
 		/* new user */
-		$sql = "SELECT * FROM respondent WHERE username='$u' AND realm='$r'";
+		$sql = "SELECT * FROM users WHERE login='$u' AND realm='$r'";
 		$result = mysql_query($sql);
 		if(mysql_num_rows($result) < 1) {
 			if(empty($u) || empty($r) || empty($password)) {
 				$errstr .= mkerror(_('Username, Password, and Group are required.'));
 			} else {
-				$sql = "INSERT INTO respondent
-					(username,realm,password) 
-					VALUES ('$u','$r',PASSWORD('$password'))";
+                //
+                // generate the password using DES (2 letter salt)
+                // using a random salt (logical AND of session_id and current milliseconds)
+                // avoids cleartext passwords in database logs
+                //
+                $time = gettimeofday();
+                $secs = (int)$time["usec"];
+                $random = session_id() & $secs;
+                $crypt_pass = crypt($password, substr($random, 0, 2));
+
+//				$sql = "INSERT INTO users
+//					(login,realm,password) 
+//					VALUES ('$u','$r',PASSWORD('$password'))";
+				$sql = "INSERT INTO users
+					(login,realm,password) 
+					VALUES ('$u','$r','$crypt_pass')";
 				if(!mysql_query($sql)) {
 					$u = '';
 					$r = '';
@@ -111,17 +124,30 @@
 		if(!empty($u) && !empty($r)) {
 			if(empty($disabled))
 				$disabled = 'N';
-			if (!empty($password))
-				$password = "password=PASSWORD('$password'),";
-			$sql = "UPDATE respondent SET
+			if (!empty($password)){
+
+                // 
+                // generate the password using DES (2 letter salt)
+                // using a random salt (logical AND of session_id and current milliseconds)
+                // avoids cleartext passwords in database logs
+                //
+                $time = gettimeofday();
+                $secs = (int)$time["usec"];
+                $random = session_id() & $secs;
+                $crypt_pass = crypt($password, substr($random, 0, 2));
+                $password = 'password=\'' . $crypt_pass . '\', ';
+
+//				$password = "password=PASSWORD('$password'),";
+            }
+			$sql = "UPDATE users SET
 				$password
-				fname='$fname',
-				lname='$lname',
+				first_name='$fname',
+				last_name='$lname',
 				email='$email',
 				disabled='$disabled',
 				changed=now(),
 				expiration='$expiration'
-			WHERE username='$u' AND realm='$r'";
+			WHERE login='$u' AND realm='$r'";
 			if(!mysql_query($sql)) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot change account data.') .' ('.
@@ -145,14 +171,14 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM respondent WHERE username='$u' AND realm='$r'";
+		$sql = "SELECT * FROM users WHERE login='$u' AND realm='$r'";
 		$result = mysql_query($sql);
 		if($arr = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			foreach(array(
-				'username', 'fname', 'lname', 'email',
+				'login', 'first_name', 'last_name', 'email',
 				'realm', 'disabled', 'expiration') as $col)
 				{ $$col = $arr[$col]; }
-			$u =& $username;
+			$u =& $login;
 			$r =& $realm;
 			if(intval($expiration) > 0) {
 				$ex_year  = substr($expiration,0,4);
@@ -216,12 +242,12 @@
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('First Name') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('fname', 16, 16) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mktext('first_name', 16, 16) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Last Name') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('lname', 24, 24) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mktext('last_name', 24, 24) ."</td>\n");
 ?>
 	</tr><tr>
 <?php

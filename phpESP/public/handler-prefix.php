@@ -42,7 +42,7 @@ if(!defined('AUTHHAND-PREFIX')) {
 	define('AUTHHAND-PREFIX', TRUE);
 	// undefine('AUTHHAND-OK');
 	
-	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
+	require('/www/phpesp/admin/phpESP.ini');
 	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 	
 	$GLOBALS['errmsg'] = '';
@@ -94,10 +94,12 @@ if(!defined('AUTHHAND-PREFIX')) {
 		if($ESPCONFIG['auth_response']) {
 			// check for authorization on the survey
 			include($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
+
 			if(!survey_auth(
 					$sid, 
-					addslashes($HTTP_SERVER_VARS['PHP_AUTH_USER']),
-					addslashes($HTTP_SERVER_VARS['PHP_AUTH_PW'])))
+                    $HTTP_SESSION_VARS['userid'],
+                    $HTTP_SESSION_VARS['password']
+                        ))
 				return;
 		}
 	}
