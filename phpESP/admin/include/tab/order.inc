@@ -9,8 +9,14 @@
 
 	$url = $ESPCONFIG['ME'] .'?where=tab&tab=order';
 
-	$src = intval($HTTP_POST_VARS['src']);
-	$dst = intval($HTTP_POST_VARS['dst']);
+    if(isset($HTTP_POST_VARS['src'])) 
+    	$src = intval($HTTP_POST_VARS['src']);
+    else
+        $src = 0; 
+    if (isset($HTTP_POST_VARS['dst']))
+    	$dst = intval($HTTP_POST_VARS['dst']);
+    else
+        $dst = 0;
 	$sid = $HTTP_SESSION_VARS['survey_id'];
 
 	if(isset($HTTP_POST_VARS['addbreak'])) {
