@@ -31,7 +31,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	$cross = !empty($qid);
 	if($cross) {
 		if(is_array($cids) && count($cids)>0) {
-			$cidstr = esp_array_to_insql($cids);
+			$cidstr = array_to_insql($cids);
 		} else {
 			$cidstr = '';
 		}
@@ -178,7 +178,8 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
 					  FROM ${table} A
 					 WHERE A.question_id='${qid}' AND 
-						   A.response_id ${ridstr}
+						   A.response_id ${ridstr} AND
+						   A.choice_id != ''
 					 GROUP BY A.choice_id";
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
