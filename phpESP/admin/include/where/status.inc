@@ -16,17 +16,17 @@
 		$sql = "SELECT status,owner,realm FROM survey WHERE id='${sid}'";
 		$result = mysql_query($sql);
 		if((list($old_status, $owner, $realm) = mysql_fetch_row($result))) {
-			$access = FALSE;
-			$err = FALSE;
+			$access = false;
+			$err = false;
 			$status = $old_status;
 			// trying to perform some operation
 			switch(strtolower($HTTP_GET_VARS['op'])) {
 				case 'c':	// Clear
 					/* only _superuser_s can do this */
 					if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-						$access = TRUE;
+						$access = true;
 					} else {
-						$access = FALSE;
+						$access = false;
 					}
 					$status = 0;
 					break;
@@ -36,11 +36,11 @@
 						in_array($realm, array_intersect(
 							$HTTP_SESSION_VARS['acl']['pall'],
 							$HTTP_SESSION_VARS['acl']['pdesign']))) {
-						$access = TRUE;
+						$access = true;
 					}
 					$status = $old_status | STATUS_TEST;
 					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
-						$err = TRUE;
+						$err = true;
 					break;
 				case 'm':	// Edit
 					/* only the owner or a group editor+design */
@@ -48,11 +48,11 @@
 						in_array($realm, array_intersect(
 							$HTTP_SESSION_VARS['acl']['pall'],
 							$HTTP_SESSION_VARS['acl']['pdesign']))) {
-						$access = TRUE;
+						$access = true;
 					}
 					$status = $old_status & ~STATUS_TEST;
 					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
-						$err = TRUE;
+						$err = true;
 					else
 						clear_results($sid);
 					break;
@@ -61,11 +61,11 @@
 					if(in_array($realm, $HTTP_SESSION_VARS['acl']['pstatus']) &&
 						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
 						in_array($realm, $HTTP_SESSION_VARS['acl']['pall']))) {
-						$access = TRUE;
+						$access = true;
 					}
 					$status = $old_status | STATUS_ACTIVE;
 					if($old_status & ( STATUS_DELETED | STATUS_DONE ) )
-						$err = TRUE;
+						$err = true;
 					else
 						clear_results($sid);
 					break;
@@ -74,25 +74,25 @@
 					if(in_array($realm, $HTTP_SESSION_VARS['acl']['pstatus']) &&
 						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
 						in_array($realm, $HTTP_SESSION_VARS['acl']['pall']))) {
-						$access = TRUE;
+						$access = true;
 					}
 					$status = $old_status | STATUS_DONE;
 					if($old_status & STATUS_DELETED )
-						$err = TRUE;
+						$err = true;
 					break;
 				case 'd':	// Delete
 					/* only the owner+stauts or a group editor+status */
 					if(in_array($realm, $HTTP_SESSION_VARS['acl']['pstatus']) &&
 						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
 						in_array($realm, $HTTP_SESSION_VARS['acl']['pall']))) {
-						$access = TRUE;
+						$access = true;
 					}
 					$status = $old_status | STATUS_DELETED;
 					break;
 			}
 			/* superuser overrides all */
 			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y')
-				$access = TRUE;
+				$access = true;
 			$sql = "UPDATE survey SET status='${status}' WHERE id='${sid}'";
 			if($access || auth_no_access(_('to access this survey'))) {
 				if(!$err) {

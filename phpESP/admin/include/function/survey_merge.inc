@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_FUNCTION_SURVEY_MERGE')) {
- 	define('_FUNCTION_SURVEY_MERGE',TRUE);
-
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_MERGE']))
 	$GLOBALS['ESPCONFIG']['DEBUG_MERGE'] = $GLOBALS['ESPCONFIG']['DEBUG'];
 
@@ -366,5 +363,4 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 }
 /* }}} */
 
-} // end _FUNCTION_SURVEY_MERGE
 ?>

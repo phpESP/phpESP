@@ -6,7 +6,7 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	$HTTP_SESSION_VARS['new_survey'] = FALSE;
+	$HTTP_SESSION_VARS['new_survey'] = false;
 	$survey_name = "";
     $sql = "SELECT name FROM survey WHERE id = '". $HTTP_SESSION_VARS['survey_id']. "'";
     if ($result = mysql_query($sql)) {

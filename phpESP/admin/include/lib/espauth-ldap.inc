@@ -6,20 +6,23 @@
 //  By: Christopher Zorn <zorncj@musc.edu>
 //      James Flemer <jflemer@alum.rpi.edu>
 
-if (!extension_loaded('ldap') && !ini_get('safe_mode') && !@dl('gettext.so')) {
-	echo('<b>The PHP ldap extension is not installed. Aborting.</b>');
-	exit;
-}
-
-if(!defined('_LIB_AUTH')) {
-	define('_LIB_AUTH', TRUE);
+	$_ext = 'ldap.so';
+	if (substr(PHP_OS, 0, 3) == 'WIN') {
+		$_ext = 'php_ldap.dll';
+	}
+	if (!extension_loaded('ldap') && !ini_get('safe_mode')
+		&& ini_get('enable_dl') && !@dl($_ext)) {
+		echo "<b>FATAL: Unable to load the PHP ldap extension ($_ext). Aborting.</b>";
+		exit;
+	}
+	unset($_ext);
 
 /* {{{ proto bool survey_auth(int survey_id, string username, string password)
-   Returns TRUE if the supplied username/password is allowed
+   Returns true if the supplied username/password is allowed
    access to the survey. */
 function survey_auth($sid, $username, $password) {
 	// Default to _unauthorized_
-	$auth = FALSE;
+	$auth = false;
 
 	// Formulate the query and check whether survey requires authentication
 	$sql = "SELECT realm FROM survey WHERE id = '$sid' AND public = 'N'";
@@ -28,14 +31,14 @@ function survey_auth($sid, $username, $password) {
 	$accres = mysql_query( $sql );
 	if(!$accres) {
 		$GLOBALS['errmsg'] = mkerror(_('Unable to execute query for access.'));
-		return(FALSE);
+		return(false);
 	}
 
 	// Get number of rows in $accres.
 	if(mysql_num_rows($accres) < 1) {
 		// no matching rows ... no authorization required
 		mysql_free_result($accres);
-		return(TRUE);
+		return(true);
 	}
 
 	$realm = mysql_result($accres, 0, 0);
@@ -57,12 +60,12 @@ function survey_auth($sid, $username, $password) {
 		$usrres = mysql_query( $sql );
 		if(!$usrres) {
 			$GLOBALS['errmsg'] = mkerror(_('Unable to execute query respondents.' ));
-			return(FALSE);
+			return(false);
 		}
 
 		if (mysql_num_rows( $usrres ) > 0) {
 			// A matching row was found - the user is authorized.
-			$auth = TRUE;
+			$auth = true;
 			$maxlogin = mysql_result($usrres, 0, 0);
 			mysql_free_result($usrres);
 		}
@@ -73,7 +76,7 @@ function survey_auth($sid, $username, $password) {
 		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
 		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		$GLOBALS['errmsg'] = mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
-		return(FALSE);
+		return(false);
 	}
 
 	if ( $maxlogin > 0 ) {
@@ -91,14 +94,14 @@ function survey_auth($sid, $username, $password) {
 		header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' );
 		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		$GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
-		return(FALSE);
+		return(false);
 	}
-	return(TRUE);
+	return(true);
 }
 /* }}} */
 
 /* {{{ proto bool manage_auth(string username, string password)
-   Returns TRUE if the supplied username/password is allowed
+   Returns true if the supplied username/password is allowed
    access to the management interface. This sets/clears
    access control related session variables. */
 function manage_auth($username, $password) {
@@ -122,10 +125,10 @@ function manage_auth($username, $password) {
 		$auth = mysql_result($result, 0, 0);
 		mysql_free_result($result);
 		if($auth)
-			return(TRUE);
+			return(true);
 	}
 
-	$auth_ldap_accept = $auth = FALSE; // default to unauthorized
+	$auth_ldap_accept = $auth = false; // default to unauthorized
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
 
 	if (!empty($username) && !empty($password)) {
@@ -168,13 +171,13 @@ function manage_auth($username, $password) {
 				_('Service Unavailable') .'</h1>'.
 				mkerror(_('Unable to load ACL.') .' ('. mysql_error() .')') .
 				'</body></html>');
-			return(FALSE);
+			return(false);
 		}
 
 		// Get number of rows in $accres.
 		if (mysql_numrows( $accres ) > 0) {
 			// A matching row was found - the user is authorized.
-			$auth = TRUE;
+			$auth = true;
 		} else if ($auth_ldap_accept) {
 			$sql = "SELECT * FROM designer WHERE
 					username = '$username' AND
@@ -199,7 +202,7 @@ function manage_auth($username, $password) {
 				$user_sql = "UPDATE designer SET password = PASSWORD('$password') WHERE username = '$username'";
 			}
 			if (mysql_query($user_sql)) {
-				$auth = TRUE;
+				$auth = true;
 			}
 		}
 	}
@@ -213,7 +216,7 @@ function manage_auth($username, $password) {
 			mkerror(_('Incorrect User ID or Password, or your account has been disabled.')) .
 			"</body>\n</html>\n");
 		exit;
-		return(FALSE);
+		return(false);
 	}
 
 	// All tests passed ... create ACL array,
@@ -246,7 +249,7 @@ function manage_auth($username, $password) {
 	// if one were to want login accounting (logs) this
 	// would be the ideal place to do so...
 
-	return(TRUE);
+	return(true);
 }
 /* }}} */
 
@@ -267,13 +270,13 @@ function manage_logout() {
 /* }}} */
 
 /* {{{ proto boolean auth_is_owner(int surveyId, string user)
-   Returns TRUE if user owns the survey. */
+   Returns true if user owns the survey. */
 function auth_is_owner($sid, $user) {
-	$val = FALSE;
+	$val = false;
 	$sql = "SELECT s.owner = '$user' FROM survey s WHERE s.id='$sid'";
 	$result = mysql_query($sql);
 	if(!(list($val) = mysql_fetch_row($result)))
-		$val = FALSE;
+		$val = false;
 	mysql_free_result($result);
 	return $val;
 }
@@ -293,19 +296,19 @@ function auth_get_survey_realm($sid) {
 
 /* {{{ proto boolean auth_no_access(string description)
    Handle a user trying to access an unauthorised area.
-   Returns TRUE if user should be allowed to continue.
-   Returns FALSE (or exits) if access should be denied. */
+   Returns true if user should be allowed to continue.
+   Returns false (or exits) if access should be denied. */
 function auth_no_access($description) {
 	echo(mkerror(_('This account does not have permission') .' '. $description .'.'));
 	echo("\n<br>\n");
 	echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
-	return FALSE;
+	return false;
 }
 /* }}} */
 
 /* {{{ proto boolean auth_change_manager_passwd(string user, string old, string new)
    Change a managers password. If old password does not match
-   or if there is an error, return FALSE. Return TRUE if
+   or if there is an error, return false. Return true if
    password changed. */
 function auth_change_manager_passwd($user,$old,$new) {
 	$sql = "UPDATE designer SET password=PASSWORD('$new')
@@ -314,5 +317,4 @@ function auth_change_manager_passwd($user,$old,$new) {
 }
 /* }}} */
 
-} // end _LIB_AUTH
 ?>

@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_LIB_ESPSQL')) {
-	define('_LIB_ESPSQL', TRUE);
-
 /* {{{ proto string array_to_insql(array elements)
    Returns a string of a SQL fragment to klugde around
    mysql's lack of nested SELECTS. */
@@ -155,5 +152,4 @@ function esp_type_response_table() {
 }
 /* }}} */
 
-} // end _LIB_ESPSQL
 ?>
