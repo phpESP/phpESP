@@ -15,8 +15,8 @@
 	$errstr = '';
 	if(!empty($HTTP_POST_VARS['r']) && !empty($HTTP_POST_VARS['t'])) {
 		$sql = "INSERT INTO realm (name, title)
-		VALUES ('". XADDSLASHES($HTTP_POST_VARS['r']) ."', '".
-		XADDSLASHES($HTTP_POST_VARS['t']) ."')";
+		VALUES ('". _addslashes($HTTP_POST_VARS['r']) ."', '".
+		_addslashes($HTTP_POST_VARS['t']) ."')";
 		if(!mysql_query($sql))
 			$errstr = _('Error adding group.') . ' (' . mysql_error() .')';
 	}
@@ -24,14 +24,14 @@
 		if($HTTP_GET_VARS['del'] == 'superuser') {
 			$errstr = _('Error deleting group.');
 		} else {
-			$sql = "SELECT count(d.username) FROM designer d WHERE d.realm='". XADDSLASHES($HTTP_GET_VARS['del']) ."'";
+			$sql = "SELECT count(d.username) FROM designer d WHERE d.realm='". _addslashes($HTTP_GET_VARS['del']) ."'";
 			$result = mysql_query($sql);
 			$count = mysql_result($result, 0, 0);
 			mysql_free_result($result);
 			if ($count > 0) {
 				$errstr = _('Group is not empty.');
 			} else {
-				$sql = "DELETE FROM realm WHERE name='". XADDSLASHES($HTTP_GET_VARS['del']) ."'";
+				$sql = "DELETE FROM realm WHERE name='". _addslashes($HTTP_GET_VARS['del']) ."'";
 				if(!mysql_query($sql))
 					$errstr = _('Error deleting group.');
 			}
