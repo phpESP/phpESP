@@ -115,7 +115,7 @@ function render_survey($sid, $section = 1, $message = '') {
               <td width="100%" height="60" valign="top">
                  <table class="qnInnerTable" width="100%" cellPadding="10"  cellSpacing="1">
                   <tr>
-                    <td class="qnInnerTd" rowspan="2">
+                    <td class="qnInnerTd" rowspan="2" vAlign="top">
 			<?php if($question['required']=='Y') { echo('<font color="#FF0000">*</font>'); } ?><A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A></td>
 		    <td class="qnInner">
 			<?php echo($question['content']); ?>
