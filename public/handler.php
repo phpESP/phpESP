@@ -71,8 +71,12 @@
 			$HTTP_POST_VARS['sec']++;
 		}
 	}
+	
+	$action = $HTTP_SERVER_VARS['PHP_SELF'];
+	if (!empty($HTTP_SERVER_VARS['QUERY_STRING']))
+		$action .= "?" . $HTTP_SERVER_VARS['QUERY_STRING'];
 ?>
-<form method="post" name="phpesp_response" action="<?php echo($HTTP_SERVER_VARS['PHP_SELF']); ?>">
+<form method="post" name="phpesp_response" action="<?php echo($action); ?>">
 <input type="hidden" name="referer" value="<?php echo($HTTP_POST_VARS['referer']); ?>">
 <input type="hidden" name="userid" value="<?php echo($HTTP_POST_VARS['userid']); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">

@@ -65,6 +65,9 @@ INSTALLING:
   Edit the files [install-root]/public/handler*.php and set
   the path to where the phpESP.ini is.
 
+  Edit the file [install-root]/public/survey.php and set the
+  path to where phpESP.ini is.
+
   Create a new mysql database, and a mysql user with
   select,insert,update,delete privileges on the database.
 
