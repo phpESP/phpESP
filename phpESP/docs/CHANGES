@@ -4,6 +4,8 @@ PHPESP CHANGE LOG
 
 v1.6 RC3 ==> v1.6 RC4
 =====================
+* LANGUAGE: Update of Dutch translation (nl_NL)
+  (Klaas Chielens <klaas AT chielens.net>)
 * LANGUAGE: Translation into Greek (el_GR)
   (armandos <armandos AT hol.gr>)
 * LANGUAGE: Translation into Swedish (sv_SE)
