@@ -65,7 +65,6 @@
 		elseif(!empty($HTTP_GET_VARS['rid']))
 			$rid = intval($HTTP_GET_VARS['rid']);
 		if(!empty($rid)) {
-			$rid = intval($HTTP_GET_VARS['rid']);
             $ret = survey_results($sid, $precision, 0, '', '', $rid);
         } else {
 		    $ret = survey_results($sid, $precision, $totals, $qid,
