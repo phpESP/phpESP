@@ -16,6 +16,13 @@ function survey_auth($sid, $username, $password) {
 	// Default to _unauthorized_
 	$auth = FALSE;
 
+	if (isset($GLOBALS['HTTP_GET_VARS']['auth_options']) || isset($GLOBALS['HTTP_POST_VARS']['auth_options'])) {
+		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
+		return(FALSE);
+	}
+	
+	$GLOBALS['auth_options'] = array();
+
 	// Formulate the query and check whether survey requires authentication
 	$sql = "SELECT realm FROM survey WHERE id = '$sid' AND public = 'N'";
 
@@ -39,7 +46,7 @@ function survey_auth($sid, $username, $password) {
 	// A matching row was found - the survey requires authentication.
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
-		$sql = "SELECT a.maxlogin, a.realm
+		$sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
 			FROM access a, respondent r
 			WHERE a.survey_id = '$sid' AND
 				r.username = '$username' AND
@@ -58,8 +65,9 @@ function survey_auth($sid, $username, $password) {
 		if (mysql_num_rows( $usrres ) > 0) {
 			// A matching row was found - the user is authorized.
 			$auth = TRUE;
-			$maxlogin = mysql_result($usrres, 0, 0);
+			list($maxlogin, $arealm, $aresume, $anavigate) = mysql_fetch_row($usrres);
 			mysql_free_result($usrres);
+			$GLOBALS['auth_options'] = array('resume' => $aresume, 'navigate' => $anavigate);
 		}
 	}
 
@@ -83,7 +91,7 @@ function survey_auth($sid, $username, $password) {
 		mysql_free_result($numres);
 	}
 	if( !$auth ) {
-		header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' );
+		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
 		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		$GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
 		return(FALSE);
@@ -257,6 +265,51 @@ function auth_change_manager_passwd($user,$old,$new) {
 	$sql = "UPDATE designer SET password=PASSWORD('$new')
 		WHERE username='$user' AND password=PASSWORD('$old')";
 	return(mysql_query($sql) && mysql_affected_rows() > 0);
+}
+/* }}} */
+
+/* {{{ proto boolean auth_get_option(string option)
+   Returns the value of the given option. Valid options include:
+   { resume, navigate } */
+function auth_get_option($opt) {
+	return (isset($GLOBALS['auth_options'][$opt]) && $GLOBALS['auth_options'][$opt] == 'Y');
+}
+/* }}} */
+
+/* {{{ proto int auth_get_rid (int survey_id, string username, int response_id)
+   Returns the RID to use for this user. */
+function auth_get_rid($sid, $username, $rid = 0) {
+	$rid = intval($rid);
+	if (isset($rid) && $rid != 0) {
+		// check for valid rid
+		$sql = "SELECT (r.username = '$username' && r.complete = 'N') AS valid
+				FROM response r
+				WHERE r.id = '$rid' AND
+					r.survey_id = '$sid'";
+		$res = mysql_query($sql);
+		$valid = FALSE;
+		if ($res && mysql_num_rows($res) > 0 && mysql_result($res, 0, 0))
+			$valid = TRUE;
+		if ($res)
+			mysql_free_result($res);
+		return ($valid) ? $rid : '';
+	} elseif (auth_get_option('resume')) {
+		// find latest in progress rid
+		$sql = "SELECT r.id FROM response r
+				WHERE r.survey_id = '$sid' AND
+					r.complete = 'N' AND
+					r.username = '$username'
+				ORDER BY submitted DESC
+				LIMIT 1";
+		$res = mysql_query($sql);
+		if ($res && mysql_num_rows($res) > 0)
+			$rid = mysql_result($res, 0, 0);
+		if ($res)
+			mysql_free_result($res);
+		return ($rid != 0) ? $rid : '';
+	} else {
+		return '';
+	}
 }
 /* }}} */
 
