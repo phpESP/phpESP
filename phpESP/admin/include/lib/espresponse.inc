@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_LIB_ESPRESPONSE')) {
- 	define('_LIB_ESPRESPONSE',TRUE);
-
 /* {{{ proto string response_check_required(int survey_id, int section)
    Reads current form variables from HTTP_POST_VARS.
    Returns an empty string if all required fields are
@@ -94,6 +91,23 @@ function response_delete($sid, $rid, $sec = null) {
 }
 /* }}} */
 
+/* {{{ proto void response_delete_all(int survey_id)
+   Deletes all responses from survey. */
+function response_delete_all($sid) {
+	$sec = survey_get_sections($sid);
+	$qids = array();
+	foreach ($sec as $s)
+		$qids = array_merge($qids, $s);
+	$qids = array_to_insql($qids);
+
+	/* delete values */
+	foreach (array('bool', 'single', 'multiple', 'rank', 'text', 'other', 'date') as $tbl) {
+		$sql = "DELETE FROM response_$tbl WHERE question_id $qids";
+		$res = mysql_query($sql);
+	}
+}
+/* }}} */
+
 /* {{{ proto int response_insert(int survey_id, int section, int response_id)
    Reads current form variables from HTTP_POST_VARS.
    Returns the ID for the response. */
@@ -122,7 +136,7 @@ FROM question Q, question_type T
 
 	$q_result = mysql_query($sql);
 	while(list($qid, $tid, $table) = mysql_fetch_row($q_result)) {
-        $bareval = isset($HTTP_POST_VARS[$qid]) ? DESLASH($HTTP_POST_VARS[$qid]) : '';
+        $bareval = isset($HTTP_POST_VARS[$qid]) ? _stripslashes($HTTP_POST_VARS[$qid]) : '';
 		if (is_string($bareval))
 			$val = addslashes($bareval);
         else
@@ -160,7 +174,7 @@ FROM question Q, question_type T
 					while(list($cid) = mysql_fetch_row($c_result)) {
                         if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
                             continue;
-						$other = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
+						$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 						if(ereg("[^ \t\n]",$other)) {
 							$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 							$result = mysql_query($sql);
@@ -174,7 +188,7 @@ FROM question Q, question_type T
 					$cid=$regs[1];
                     if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
                         break; // out of the case
-					$other = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
+					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
@@ -190,7 +204,7 @@ FROM question Q, question_type T
 				while(list($cid) = mysql_fetch_row($c_result)) {
                     if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
                         continue;
-					$other = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
+					$other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
 						$sql = "INSERT INTO response_other ( response_id,question_id,choice_id,response ) VALUES ( '${rid}','${qid}','${cid}','${other}' )";
 						$result = mysql_query($sql);
@@ -200,7 +214,7 @@ FROM question Q, question_type T
 				if(!isset($HTTP_POST_VARS[$qid]) || count($HTTP_POST_VARS[$qid]) < 1)
 					break;
 				foreach($HTTP_POST_VARS[$qid] as $cid) {
-					$cid = XADDSLASHES($cid);
+					$cid = _addslashes($cid);
 					if(ereg("other_[0-9]+", $cid))
 						continue;
 					$sql  = "INSERT INTO ${table} ( response_id,question_id,choice_id ) VALUES ( '${rid}','${qid}','${cid}' )";
@@ -214,7 +228,7 @@ FROM question Q, question_type T
 					while(list($cid) = mysql_fetch_row($cid_result)) {
                         if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
                             continue;
-						$val = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
+						$val = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
 						if(strtolower($val) == "n/a")
 							$rank = -1;
 						else
@@ -245,8 +259,8 @@ FROM question Q, question_type T
 function response_commit($rid) {
 	$sql = "UPDATE response SET complete='Y', submitted = NULL WHERE id='${rid}'";
 	if(mysql_query($sql))
-		return(TRUE);
-	return(FALSE);
+		return(true);
+	return(false);
 }
 /* }}} */
 
@@ -496,7 +510,7 @@ function response_select_name($sid, $rid, $qids = null) {
    Returns true if mail sent. */
 function response_send_email($sid, $rid) {
 	if (!$GLOBALS['ESPCONFIG']['allow_email']) {
-		return TRUE;
+		return true;
 	}
 
 	$sql = "SELECT name, email FROM survey WHERE id='${sid}'";
@@ -505,7 +519,7 @@ function response_send_email($sid, $rid) {
 	mysql_free_result($result);
 
 	if(empty($email))
-		return(FALSE);
+		return(false);
 
 	//lets check to see if user wants human readable email
 	if ($GLOBALS['ESPCONFIG']['human_read_mail']) {
@@ -631,5 +645,4 @@ function response_import_sec($sid, $rid, $sec, $varr = null) {
     }    
 }
 
-} // end _LIB_ESPRESPONSE
 ?>
