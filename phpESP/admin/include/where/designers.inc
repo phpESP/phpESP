@@ -19,6 +19,12 @@
 
 	$sql .= ' ORDER BY ';
 	$base = $GLOBALS['ESPCONFIG']['ME'] .'?where=designers';
+	if(!isset($HTTP_GET_VARS['u'])) $HTTP_GET_VARS['u'] = '';
+	if(!isset($HTTP_GET_VARS['g'])) $HTTP_GET_VARS['g'] = '';
+	if(!isset($HTTP_GET_VARS['f'])) $HTTP_GET_VARS['f'] = '';
+	if(!isset($HTTP_GET_VARS['l'])) $HTTP_GET_VARS['l'] = '';
+	if(!isset($HTTP_GET_VARS['s'])) $HTTP_GET_VARS['s'] = '';
+
 	if($HTTP_GET_VARS['u'] == 'd') {
 		$us = 'username DESC';
 		$u = 'a';
