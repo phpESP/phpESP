@@ -110,7 +110,7 @@ edit individual fields.')); ?>
 			$themes_array = array();
 			$result = @chdir($ESPCONFIG['survey_css']);
 			if (!$result){
-				echo(_(<b>Can\'t seem to find phpESP's css directory.<br>
+				echo(_('<b>Can\'t seem to find phpESP\'s css directory.<br>
 					Please check your ini file to ensure that $ESPCONFIG[\'survey_css\']\'s
 					path is set correctly.</b>'));
 				exit;
