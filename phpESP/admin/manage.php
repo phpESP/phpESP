@@ -1,6 +1,8 @@
 <?php
 
-# $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
 // Written by James Flemer
 // For eGrad2000.com
@@ -60,7 +62,6 @@
 	}
 ?>
 <html>
-<!-- $Id$ -->
 <head>
 	<title><?php echo($ESPCONFIG['title']); ?></title>
 <?php

@@ -1,6 +1,8 @@
 <?php
 
- # $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
 /* The Cross Tabulation feature has been kept separate from the rest of phpESP intentionally.
    It provides an easier means of disabling it by commenting out the require line in results.inc

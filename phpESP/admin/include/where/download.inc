@@ -1,6 +1,8 @@
 <?php
 
-# $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
 // Download patch submitted by Matthew Gregg
 // <greggmc@musc.edu>
