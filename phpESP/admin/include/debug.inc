@@ -11,34 +11,42 @@ function windowOpener(windowTitle,errMsg) {
 
 function debugWindow () {
  windowTitle="esp debug window";
- errMsg="<?php
- 	echo("\\nSESSIONID: ".addcslashes(session_id(),"\0..\31")."\\n");
-	if(SID) echo(addcslashes(join('', file(session_save_path()."/sess_".session_id())),"\0..\31"));
- 	echo("\\nHTTP_SESSION_VARS:\\n");
+ errMsg=<?php
+ 	echo('"\\nSID: '. session_id() ."\\n\"\n");
+	echo('+ "\\nSESSION: '.addcslashes(join('', file(session_save_path()."/sess_".session_id())),"\0..\31\\\"")."\\n\"\n");
+	
+ 	echo("+ \"\\nACL:\\n\"\n");
+	if(isset($HTTP_SESSION_VARS['acl'])) {
+		foreach ($HTTP_SESSION_VARS['acl'] as $key => $value) {
+			echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
+		}
+	}
+	
+ 	echo("+ \"\\nHTTP_SESSION_VARS:\\n\"\n");
   	foreach ($HTTP_SESSION_VARS as $key => $value) {
-		echo(addcslashes("$key => $value\\n","\0..\31"));
+		echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
 	}
- 	echo("\\nESPCONFIG:\\n");
+ 	echo("+ \"\\nESPCONFIG:\\n\"\n");
   	foreach ($ESPCONFIG as $key => $value) {
-		echo(addcslashes("$key => $value\\n","\0..\31"));
+		echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
 	}
- 	echo("\\nHTTP_GET_VARS:\\n");
+ 	echo("+ \"\\nHTTP_GET_VARS:\\n\"\n");
   	foreach ($HTTP_GET_VARS as $key => $value) {
-		echo(addcslashes("$key => $value\\n","\0..\31"));
+		echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
 	}
- 	echo("\\nHTTP_POST_VARS:\\n");
+ 	echo("+ \"\\nHTTP_POST_VARS:\\n\"\n");
   	foreach ($HTTP_POST_VARS as $key => $value) {
-		echo(addcslashes("$key => $value\\n","\0..\31"));
+		echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
 	}
- 	echo("\\nHTTP_SERVER_VARS:\\n");
+ 	echo("+ \"\\nHTTP_SERVER_VARS:\\n\"\n");
   	foreach ($HTTP_SERVER_VARS as $key => $value) {
-		echo(addcslashes("$key => $value\\n","\0..\31"));
+		echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
 	}
- 	echo("\\nHTTP_ENV_VARS:\\n");
+ 	echo("+ \"\\nHTTP_ENV_VARS:\\n\"\n");
   	foreach ($HTTP_ENV_VARS as $key => $value) {
-		echo(addcslashes("$key => $value\\n","\0..\31"));
+		echo("+ \"" . addcslashes("$key => $value","\0..\31\\\"") ."\\n\"\n");
 	}
-	?>";
+	?>;
  windowOpener(windowTitle, errMsg);
 }
 // End -->
