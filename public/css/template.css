@@ -2,7 +2,6 @@
 .headerGraphic {
 	background-image: url(../../images/surveyimages/phpespHeader.jpg);
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	width: 100%;
 	border: none;
 }
