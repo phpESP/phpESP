@@ -20,7 +20,7 @@ function response_check_required($sid, $section) {
 SELECT id,type_id,content
 FROM question
 ". survey_select_section_sql($sid,$section) ." AND
-   required='Y'
+   required='Y' AND deleted='N'
 ORDER BY position";
 
 	$result = mysql_query($sql);
@@ -34,7 +34,7 @@ ORDER BY position";
 	
 	while(list($qid,$tid,$content) = mysql_fetch_row($result)) {
 		if($tid == 8) { // Rank
-			$sql = "SELECT id FROM question_choice WHERE question_id='${qid}'";
+			$sql = "SELECT id FROM question_choice WHERE question_id='$qid'";
 			$cid_result = mysql_query($sql);
 			while(list($cid) = mysql_fetch_row($cid_result)) {
 				if(empty($HTTP_POST_VARS["${qid}_${cid}"])) {
@@ -71,6 +71,8 @@ function response_insert($sid,$section,$rid) {
 	global $HTTP_POST_VARS;
 
 	$userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
+	if (empty($userid))
+		$userid = $HTTP_POST_VARS['userid'];
 
 	if(empty($rid)) {
 		// create a uniqe id for this response
@@ -97,8 +99,19 @@ FROM question Q, question_type T
 				break;
 			case 'response_text':
 				// only insert if non-empty content
+				if($tid == 10) { // numeric
+					$val = ereg_replace("[^0-9.\-]*(-?[0-9]*\.?[0-9]*).*", '\1', $HTTP_POST_VARS[$qid]);
+				}
+
 				if(ereg("[^ \t\n]",$val)) {
-					$sql  = "INSERT INTO ${table} ( response_id,question_id,answer ) VALUES ( '${rid}','${qid}','${val}' )";
+					$sql  = "INSERT INTO ${table} ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
+					$result = mysql_query($sql);
+				}
+				break;
+			case 'response_date':
+				// only insert if non-empty content
+				if(($val = ereg_replace("[^0-9]*([0-9]+)/([0-9]+)/([0-9]+).*", '\3-\1-\2', $val))) {
+					$sql  = "INSERT INTO ${table} ( response_id,question_id,response ) VALUES ( '${rid}','${qid}','${val}' )";
 					$result = mysql_query($sql);
 				}
 				break;
@@ -259,6 +272,16 @@ function response_select($sid, $rid) {
 	}
 	mysql_free_result($result);
 
+	// --------------------- response_date ---------------------
+	$sql = "SELECT a.question_id,a.response
+	FROM response_date a
+	WHERE a.response_id='${rid}'";
+	$result = mysql_query($sql);
+	while(list($qid,$cid) = mysql_fetch_row($result)) {
+		$values["$qid"]=$cid;
+	}
+	mysql_free_result($result);
+
 	// --------------------- return ---------------------
 	ksort($values);
 	return($values);
@@ -272,7 +295,7 @@ function response_select_named($sid, $rid) {
 	$values = array();
 
 	// --------------------- response_bool ---------------------
-	$sql = "SELECT q.content,a.choice_id
+	$sql = "SELECT q.name,a.choice_id
 	FROM response_bool a, question q
 	WHERE a.response_id='${rid}' AND a.question_id=q.id";
 	$result = mysql_query($sql);
@@ -282,7 +305,7 @@ function response_select_named($sid, $rid) {
 	mysql_free_result($result);
 
 	// --------------------- response_single ---------------------
-	$sql = "SELECT q.content,c.content 
+	$sql = "SELECT q.name,c.content 
 	FROM response_single a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
 	$result = mysql_query($sql);
@@ -292,7 +315,7 @@ function response_select_named($sid, $rid) {
 	mysql_free_result($result);
 
 	// --------------------- response_multiple ---------------------
-	$sql = "SELECT q.content,c.content 
+	$sql = "SELECT q.name,c.content 
 	FROM response_multiple a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
 	ORDER BY a.question_id";
@@ -314,7 +337,7 @@ function response_select_named($sid, $rid) {
 	mysql_free_result($result);
 
 	// --------------------- response_rank ---------------------
-	$sql = "SELECT q.content,c.content 
+	$sql = "SELECT q.name,c.content,a.rank
 	FROM response_rank a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
 	$result = mysql_query($sql);
@@ -327,7 +350,7 @@ function response_select_named($sid, $rid) {
 	mysql_free_result($result);
 
 	// --------------------- response_text ---------------------
-	$sql = "SELECT q.content,a.response
+	$sql = "SELECT q.name,a.response
 	FROM response_text a, question q
 	WHERE a.response_id='${rid}' AND a.question_id=q.id";
 	$result = mysql_query($sql);
@@ -337,13 +360,23 @@ function response_select_named($sid, $rid) {
 	mysql_free_result($result);
 
 	// --------------------- response_other ---------------------
-	$sql = "SELECT q.content,c.content,a.response
+	$sql = "SELECT q.name,c.content,a.response
 	FROM response_other a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
 	ORDER BY a.question_id";
 	$result = mysql_query($sql);
 	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
 		$values["${qid}_${cid}"]=$answer;
+	}
+	mysql_free_result($result);
+
+	// --------------------- response_date ---------------------
+	$sql = "SELECT q.name,a.response
+	FROM response_date a, question q
+	WHERE a.response_id='${rid}' AND a.question_id=q.id";
+	$result = mysql_query($sql);
+	while(list($qid,$cid) = mysql_fetch_row($result)) {
+		$values["$qid"]=$cid;
 	}
 	mysql_free_result($result);
 
