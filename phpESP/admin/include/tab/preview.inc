@@ -18,13 +18,12 @@
 	if(empty($HTTP_POST_VARS['section']))
 		$HTTP_POST_VARS['section']=1;
 ?>
-<SCRIPT LANGUAGE="JavaScript">
-<!-- // Begin // This should really go into <HEAD> tag
+<script language="JavaScript">
+<!-- // Begin <?php // This should really go into <head> tag ?>
 
 function other_check(name)
 {
-other = name.split("_");
-
+  other = name.split("_");
   var f = document.phpesp;
   for (var i=0; i<=f.elements.length; i++) {
     if (f.elements[i].value == "other_"+other[1]) {
@@ -34,12 +33,13 @@ other = name.split("_");
   }
 }
 // End -->
-</SCRIPT>
-<?php echo(_('This is a preview of how the survey will look.
-In the preview the &quot;Next Page&quot; and
-&quot;Submit Survey&quot; are inactive.
-The survey will use the background color of the
-document in which it is embedded. If you have no
+</script>
+<?php echo(_('This is a preview of how this survey will look.
+In the preview the survey navigation buttons are inactive, use
+the section number buttons to view different sections. Some
+navigation buttons may not appear on your final survey, depending
+on what access it is assigned. The survey will use the background
+color of the document in which it is embedded. If you have no
 further changes click <b>Finish</b> at the bottom of
 this page.')); ?>
 <?php	if($num_sections > 1) { ?>
@@ -65,9 +65,15 @@ this page.')); ?>
 	<tr>
 		<td>
 <?php
-	render_survey($sid,$HTTP_POST_VARS['section']);
+	survey_render($sid,$HTTP_POST_VARS['section']);
+	if ($ESPCONFIG['auth_response']) {
+		if ($HTTP_POST_VARS['section'] > 1) {
+        	echo('<input type="button" value="' . _('Previous Page'). '"> ');
+        }
+	    echo ('<input type="button" value="'. _('Save') .'"> ');
+	}
 	if($HTTP_POST_VARS['section'] != $num_sections) {
-		echo('<input type="button" value="'. _('Next Page') .'">');
+		echo('<input type="button" value="'. _('Next Page') .'"> ');
 	} else {
 		echo('<input type="button" value="'. _('Submit Survey') .'">');
 	}
