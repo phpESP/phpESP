@@ -177,7 +177,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			$HTTP_POST_VARS['precise'] = intval($HTTP_POST_VARS['precise']) or 0;
 			
 			// defaults for length field
-			if(empty($HTTP_POST_VARS['length'])) {
+			if(empty($HTTP_POST_VARS['length']) && $HTTP_POST_VARS['type_id'] < 50) {
 				$arr = array(
 					0,		// 0: unused
 					0,		// 1: Yes/No
@@ -190,12 +190,12 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 					5,		// 8: Rate (# cols)
 					0,		// 9: Date
 					10		// 10: Numeric (digits)
-					); 
+					);
 				$HTTP_POST_VARS['length'] = $arr[$HTTP_POST_VARS['type_id']];
 			}
 
 			// defaults for precision field
-			if(empty($HTTP_POST_VARS['precise'])) {
+			if(empty($HTTP_POST_VARS['precise']) && $HTTP_POST_VARS['type_id'] < 50) {
 				$arr = array(
 					0,		// 0: unused
 					0,		// 1: Yes/No
