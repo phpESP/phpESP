@@ -7,7 +7,10 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	$sid = intval($HTTP_GET_VARS['sid']);
+	if(!empty($HTTP_GET_VARS['sid']))
+		$sid = intval($HTTP_GET_VARS['sid']);
+	
+	$bg = '';
 
 	/* operation selected ... */
 	if(!empty($HTTP_GET_VARS['op'])) {

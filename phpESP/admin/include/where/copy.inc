@@ -54,6 +54,7 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
+	$bg = '';
 
 ?>
 <h2><?php echo(_('Copy Survey')); ?></h2>
