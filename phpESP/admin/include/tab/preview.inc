@@ -6,7 +6,7 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	$sid = XADDSLASHES($HTTP_SESSION_VARS['survey_id']);
+	$sid = _addslashes($HTTP_SESSION_VARS['survey_id']);
 
 	$sql = "SELECT COUNT(*) FROM question WHERE survey_id='${sid}'
 	AND deleted='N' AND type_id='99'";
@@ -57,7 +57,7 @@ this page.')); ?>
                 if (mysql_num_rows($result) > 0) {
                         list($css_file) = mysql_fetch_row($result);
                         mysql_free_result($result);
-                        echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['survey_css_dir'].$css_file."\"  type=\"text/css\">\n");                }
+                        echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['css_url'].$css_file."\"  type=\"text/css\">\n");                }
         }
 ?>
 <table border="1" cellpadding="2" bgcolor="#FFFFFF">
