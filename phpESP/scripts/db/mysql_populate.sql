@@ -31,7 +31,7 @@ CREATE TABLE realm (
 -- # table of respondents (people who enter data / take surveys)
 CREATE TABLE respondent (
 	username	CHAR(64) NOT NULL,
-	password	CHAR(16) NOT NULL,
+	password	CHAR(64) NOT NULL,
 	auth		CHAR(16) NOT NULL DEFAULT 'BASIC',
 	realm		CHAR(16) NOT NULL,
 	fname		CHAR(16),
@@ -46,7 +46,7 @@ CREATE TABLE respondent (
 -- # table of designers (people who create forms / surveys)
 CREATE TABLE designer (
 	username	CHAR(64) NOT NULL,
-	password	CHAR(16) NOT NULL,
+	password	CHAR(64) NOT NULL,
 	auth		CHAR(16) NOT NULL DEFAULT 'BASIC',
 	realm		CHAR(16) NOT NULL,
 	fname		CHAR(16),
