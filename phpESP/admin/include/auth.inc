@@ -1,6 +1,7 @@
 <?php 
 //  Authentication Module
 //  By: Romans Jasins <roma@latnet.lv>
+//      James Flemer <jflemer@acm.jhu.edu>
 
 function survey_auth($sid,$PHP_AUTH_USER,$PHP_AUTH_PW) {
 	// Formulate the query and check whether survey requires authentication
@@ -47,7 +48,6 @@ function survey_auth($sid,$PHP_AUTH_USER,$PHP_AUTH_PW) {
 		if ( $num != 0 ) { 
 			// A matching row was found - the user is authorized. 
 			$auth = true; 
-		} else {
 			$access = mysql_fetch_array($accres,MYSQL_ASSOC);
 			mysql_free_result($accres);
 		}
@@ -65,7 +65,9 @@ function survey_auth($sid,$PHP_AUTH_USER,$PHP_AUTH_PW) {
 	// Get account id and type
 	$acctype = $access['acctype'];
 	$user =  $access['username'];
-	if(!($acctype && $user)) {
+	if(empty($acctype))
+		$acctype = 0;
+	if(empty($user)) {
 		mkerror(_( 'Unable to get account information.' ));
 		return(false);
 	}
@@ -75,6 +77,7 @@ function survey_auth($sid,$PHP_AUTH_USER,$PHP_AUTH_PW) {
 		$maxlogin = $access['maxlogin'];
 		$numlogin = $access['numlogin'];
 		if(++$numlogin > $maxlogin) {
+			mysql_query("UPDATE users SET accstatus = 0 WHERE username='${user}'");
 			header( 'WWW-Authenticate: Basic realm="'. $auth_realm .'"' ); 
 			header( 'HTTP/1.0 401 '. _('Unauthorized')); 
 			mkerror(_('Your account has been disabled.'));
