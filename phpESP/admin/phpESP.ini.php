@@ -27,10 +27,10 @@ $ESPCONFIG['autopub_url'] = $ESPCONFIG['base_url'] . 'public/survey.php';
 $ESPCONFIG['css_url'] = $ESPCONFIG['base_url'] . 'public/css/';
 
 // Database connection information
-$ESPCONFIG['db_host'] = 'localhost';
-$ESPCONFIG['db_user'] = 'phpesp';
-$ESPCONFIG['db_pass'] = 'phpesp';
-$ESPCONFIG['db_name'] = 'phpesp';
+$ESPCONFIG['db_host'] = 'bfs.itlab.musc.edu';
+$ESPCONFIG['db_user'] = 'esp';
+$ESPCONFIG['db_pass'] = 'cooper';
+$ESPCONFIG['db_name'] = 'esp_test';
 
 // Allow phpESP to send email (BOOLEAN)
 $ESPCONFIG['allow_email'] = true;
@@ -49,9 +49,9 @@ $ESPCONFIG['auth_type'] = 'default';
 
 // LDAP connection information
 // (Set these values if you choose 'ldap' as the authentication type.)
-$ESPCONFIG['ldap_server'] = 'ldap.example.com';
+$ESPCONFIG['ldap_server'] = 'itc.musc.edu';
 $ESPCONFIG['ldap_port']   = '389';
-$ESPCONFIG['ldap_dn']     = 'dc=example,dc=com';
+$ESPCONFIG['ldap_dn']     = 'dc=musc,dc=edu';
 $ESPCONFIG['ldap_filter'] = 'uid=';
 
 // Group to add responders to via the sign-up page
@@ -77,8 +77,8 @@ $ESPCONFIG['alink_color']       = '#0000CC';
 $ESPCONFIG['table_bgcolor']     = '#0099FF';
 $ESPCONFIG['active_bgcolor']    = '#FFFFFF';
 $ESPCONFIG['dim_bgcolor']       = '#3399CC';
-$ESPCONFIG['error_color']       = '#FFFF66';
-$ESPCONFIG['warn_color']        = '#FFFF66';
+$ESPCONFIG['error_color']       = '#FF0000';
+$ESPCONFIG['warn_color']        = '#FF0000';
 $ESPCONFIG['reqd_color']        = '#FF0000';
 $ESPCONFIG['bgalt_color1']      = '#FFFFFF';
 $ESPCONFIG['bgalt_color2']      = '#EEEEEE';
@@ -88,7 +88,7 @@ $ESPCONFIG['bgalt_color2']      = '#EEEEEE';
  *******************************************************************/
 
 // Enable debugging code (BOOLEAN)
-$ESPCONFIG['DEBUG'] = false;
+$ESPCONFIG['DEBUG'] = true;
 
 // Name of application
 $ESPCONFIG['name'] = 'phpESP';
