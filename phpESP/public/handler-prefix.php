@@ -94,11 +94,19 @@ if(!defined('AUTHHAND-PREFIX')) {
 		if($ESPCONFIG['auth_response']) {
 			// check for authorization on the survey
 			include($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
-			if(!survey_auth(
-					$sid, 
-					addslashes($HTTP_SERVER_VARS['PHP_AUTH_USER']),
-					addslashes($HTTP_SERVER_VARS['PHP_AUTH_PW'])))
+            $espuser = ''; $esppass = '';
+            isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) && 
+                    $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
+            isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) && 
+                    $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
+			if(!survey_auth($sid,
+                    isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) ?
+                        addslashes($HTTP_SERVER_VARS['PHP_AUTH_USER']) : '',
+                    isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) ?
+                        addslashes($HTTP_SERVER_VARS['PHP_AUTH_PW']) : ''))
+            {
 				return;
+            }
 		}
 	}
 	define('AUTHHAND-OK', TRUE);
