@@ -58,9 +58,13 @@ if(!defined('_FUNCS_HTML')) {
 	}
 
 	// return HTML format for a text entry line
-	function mktext ($name) {
+//	function mktext ($name) {
+//		global $$name;	// needs register_globals = on
+//		return('<input type="text" name="'. htmlspecialchars($name) .'" value="'. htmlspecialchars($$name) .'">');
+//	}
+	function mktext ($name,$attribs='') {
 		global $$name;	// needs register_globals = on
-		return('<input type="text" name="'. htmlspecialchars($name) .'" value="'. htmlspecialchars($$name) .'">');
+		return('<input type="text" name="'. htmlspecialchars($name) .'" value="'. htmlspecialchars($$name) ."\" ${attribs}>");
 	}
 
 	// return HTML format for a text entry box
