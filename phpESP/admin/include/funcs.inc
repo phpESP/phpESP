@@ -103,6 +103,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		return;
 	}
 
+	require($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/lib/esphtml.forms".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/lib/esphtml.results".$ESPCONFIG['extension']);
 	require($ESPCONFIG['include_path']."/lib/espmerge".$ESPCONFIG['extension']);
