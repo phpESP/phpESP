@@ -160,7 +160,7 @@ archived survey.')); ?></li>
 	$result = mysql_query($sql);
 
 	$realms = array_intersect(
-			$HTTP_SESSION_VARS['acl']['pall'],
+			$HTTP_SESSION_VARS['acl']['pstatus'],
 			array_merge(
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pstatus']));
