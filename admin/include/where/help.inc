@@ -10,7 +10,7 @@
 ?>
 <a name="top"></a>
 <table bgcolor="#ffffff" border=2 width="98%"><tr><td>
-
+<font size="+3">Survey Help</font>
 <ul>
 	<li><a href="#new"><font size="+2">Creating a new survey</font></a></li>
 	<li><a href="#themes"><font size="+2">Creating and Assigning Survey Themes</font></a></li>
@@ -18,6 +18,10 @@
 	<li><a href="#types"><font size="+2">Response Types Examples</font></a></li>
 	<li><a href="#edit"><font size="+2">Editing a survey</font></a></li>
 	<li><a href="#status"><font size="+2">Putting a survey into production use</font></a></li>
+</ul>
+<font size="+3">Administration Help</font>
+<ul>
+	<li><a href="#upload"><font size="+2">Uploading Bulk Account and Group information</font></a></li>
 </ul>
 
 <hr>
@@ -161,7 +165,7 @@
 
 	<p><a href="#top">Back to Top</a></p>
 </li>
-<li><a name="themes"><h3>Creating and Assigning Survey Themes</h3></a>
+<li><h3><a name="themes">Creating and Assigning Survey Themes</h3></a>
 	<p>All themes (css style sheets) are contained within the css
 	directory which is, by default, located in the public directory
 	of this package (and its path is definable in the phpESP.ini file).
@@ -176,7 +180,7 @@
 	selection from the dropdown list that is found on the <b>general
 	tab</b> page. 
 </li>
-	<li><a name="test"><h3>Test Mode</h3></a>
+<li><h3><a name="test">Test Mode</h3></a>
 	<p>After you have created a survey you can put it into
 	testing mode. This allows you to access a live copy of
 	it from the Management Interface. You can fill out the
@@ -193,7 +197,7 @@
 
 	<p><a href="#top">Back to Top</a></p>
 </li>
-<li><a name="types"><h3>Response Types</h3></a>
+<li><h3><a name="types">Response Types</h3></a>
 	<ul>
 	<li>Yes/No<br>
 		<input type="radio" name="bool">Yes<br>
@@ -285,16 +289,14 @@
 	</ul>
 	<p><a href="#top">Back to Top</a></p>
 </li>
-<li>
-	<a name="edit"><h3>Editing a survey</h3></a>
+<li><h3><a name="edit">Editing a survey</h3></a>
 	<p>Editing a survey uses the same interface as creating
 	a new survey, refer to the help for creating a new
 	survey for more details.</p>
 	
 	<p><a href="#top">Back to Top</a></p>
 </li>
-<li>
-	<a name="status"><h3>Putting a survey into production use</h3></a>
+<li><h3><a name="status">Putting a survey into production use</h3></a>
 
 	<p>Once you have created/edited a survey, and are ready
 	to make it available online you must activate it. Go to
@@ -328,6 +330,46 @@
 	<tt>&lt;?php $sid=<em>SID</em>; $results=1; include('<?php echo($GLOBALS['ESPCONFIG']['handler']); ?>'); ?&gt;</tt>
 
 	<p><a href="#top">Back to Top</a></p>
+</li>
+</ul>
+
+<hr>
+<ul>
+<li><h3><a name="upload">Uploading Account and Group information</h3></a>
+	<ul>
+	<li><p>On either the Respondent or Designer Managment Interfaces,
+		click <b>Bulk Upload</b>. You will be presented with a form asking
+		for <b>File Type</b> and <b>File to Upload</b>.  From the <b>File Type</b>
+		dropdown, select the file type you wish to upload.  From the 
+		<b>File to Upload</b> browse your local filesystem to find the specific
+		file you are uploading.</p>
+	</li>
+	<li><b>Tab Delimited, Data File Format:</b>
+		<p>The tab delimited file should contain rows of text, terminated by a newline
+		character(\n), with each field in the rows delimited by the tab character(\t).</p>
+		<ul>
+		<li><b>Respondent Format:</b>
+		<p>Username, Password and Group are required fields</p>
+			<b>Field Order:</b>
+			<p><tt>username\tpassword\tgroup\tfname\tlname\temail\texpiration\tdisabled\n</tt></p>
+			<b>Example Row:</b>
+			<p><tt>looser\tsecret\teditors\tJohn\tSmith\tsmith@yahoo.com\t20011122\tN\n</tt></p>
+
+		</li>
+		<li><b>Designer Format:</b><p\>
+		<p>Username, Password and Group are required fields</p>
+			<b>Field Order:</b>
+			<p><tt>username\tpassword\tgroup\tfname\tlname\temail\tdesign\tstatus\texport\tgroupedit\tgroupadmin\tgrouprespondents\texpiration\tdisabled</tt></p>
+			<b>Example Row:</b>
+			<p><tt>looser\tsecret\teditors\tJohn\tSmith\tsmith@yahoo.com\tY\tN\tY\tN\Y\tN\t20031122\tY\n</tt></p>
+
+		</ul>
+	<li><b>CSV, Data File Format:</b><p>Not Yet Implemented</p></li>
+	<li><b>XML, Data File Format:</b><p>Not Yet Implemented</p></li>
+	</li>
+	</ul>
+	<p><a href="#top">Back to Top</a></p>
+
 </li>
 </ul>
 
