@@ -17,6 +17,9 @@ function render_survey($sid, $section = 1, $message = '') {
 	global $HTTP_POST_VARS;
 	@reset($HTTP_POST_VARS);
 
+	if(empty($section))
+		$section = 1;
+
 	$has_choices = esp_type_has_choices();
 
 // load survey title (and other globals)
@@ -27,37 +30,31 @@ function render_survey($sid, $section = 1, $message = '') {
 	$survey = mysql_fetch_array($result,MYSQL_ASSOC);
 	mysql_free_result($result);
 
-// section:
-	$num_sections = survey_num_sections($sid);
-	if($section > $num_sections)
+	$sections = survey_get_sections($sid);
+	$num_sections = count($sections);
+	if($section-- > $num_sections)
 		return(false);	// invalid section
-
+	
 // load survey questions
-	$sql = "SELECT * FROM question ";
-	$sql .= survey_select_section_sql($sid,$section);
-	$sql .= "ORDER BY position,id";
+	$sec_sql = array_to_insql($sections[$section]);
+	$sql = "SELECT * FROM question WHERE id $sec_sql ORDER BY position,id";
 	$questions_result = mysql_query($sql);
 	if(mysql_num_rows($questions_result) < 1)
 		return(false);
 
 // check to see if there are required questions
-	$sql = "SELECT COUNT(*) FROM question ";
-	$sql .= survey_select_section_sql($sid,$section);
-	$sql .= "AND required='Y'";
+	$sql = "SELECT COUNT(*) FROM question WHERE id $sec_sql AND required='Y'";
 	$has_required = mysql_result(mysql_query($sql),0,0);		
 
 // find out what question number we are on $i
 	$i=0;
-	for($j=1;$j<$section;$j++) {
-		$sql = "SELECT COUNT(*) FROM question ";
-		$sql .= survey_select_section_sql($sid,$j);
-		$i += mysql_result(mysql_query($sql),0,0);
-	}
+	for($j=0;$j<$section;$j++)
+		$i += count($sections[$j]);
 ?>
 <h2><?php echo($survey["title"]); ?></h2>
 <h3><?php echo($survey["subtitle"]); ?></h3>
 <?php if($num_sections>1) { ?>
-	<font size="-1"><?php echo(_('Page')); ?> <?php echo($section); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font>
+	<font size="-1"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font>
 <?php } ?>
 <blockquote><?php echo($survey["info"]); ?></blockquote>
 <blockquote><?php echo($message); ?></blockquote>
@@ -69,16 +66,16 @@ function render_survey($sid, $section = 1, $message = '') {
 <?php
 	while($question = mysql_fetch_array($questions_result,MYSQL_ASSOC)) {
 		// process each question
-		$qid = $question['id'];
-		$tid = $question['type_id'];
-		if($tid == '99')
-			break;
+		$qid  = &$question['id'];
+		$tid  = &$question['type_id'];
+		$size = &$question['length'];
+		$prec = &$question['precision'];
 
 		++$i;
 		if($has_choices[$tid]) {
-			$sql = "SELECT * FROM question_choice WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
+			$sql = "SELECT * FROM question_choice WHERE question_id='$qid' AND content NOT LIKE '!other%' ORDER BY id";
 			$choices_result = mysql_query($sql);
-			$sql = "SELECT * FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
+			$sql = "SELECT * FROM question_choice WHERE question_id='$qid' AND content LIKE '!other%' ORDER BY id";
 			$others_result = mysql_query($sql);
 			$others = mysql_num_rows($others_result);
 		} else { $choices_result = ''; }
@@ -109,12 +106,12 @@ function render_survey($sid, $section = 1, $message = '') {
 				break;
 			case '2':	// single text line
 ?>
-					<?php echo(mktext($qid)); ?>
+					<?php echo(mktext($qid, $size, $prec)); ?>
 <?php
 				break;
 			case '3':	// essay
 ?>
-					<?php echo(mktextarea($qid,4,66,'VIRTUAL')); ?>
+					<?php echo(mktextarea($qid, $size, $prec, 'VIRTUAL')); ?>
 <?php
 				break;
 			case '4':	// radio
@@ -129,11 +126,14 @@ function render_survey($sid, $section = 1, $message = '') {
 				$j=0;
 				while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {	
 					$cid = $other['id'];
-					$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
+					$other_text = preg_replace(
+							array("/\!other=(.*)/","/\!other/"),
+							array("\\1 ","Other: "),
+							$other['content']);
 ?>
 						<tr>
-							<td><?php echo(mkradio($qid,"other_${cid}")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_${cid}")); ?></td>
+							<td><?php echo(mkradio($qid,"other_$cid")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_$cid", $size, $prec)); ?></td>
 						</tr>
 <?php
 					$j++;
@@ -157,8 +157,8 @@ function render_survey($sid, $section = 1, $message = '') {
 					$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
 ?>
 						<tr>
-							<td><?php echo(mkcheckbox($qid,"other_${cid}")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_${cid}")); ?></td>
+							<td><?php echo(mkcheckbox($qid,"other_$cid")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_$cid", $size, $prec)); ?></td>
 						</tr>
 <?php
 					$j++;
@@ -205,7 +205,7 @@ function render_survey($sid, $section = 1, $message = '') {
 <?php
 				while($choice = mysql_fetch_array($choices_result,MYSQL_ASSOC)) {
 					$cid = $choice['id'];
-					$str = $qid . "_" . $cid;
+					$str = "${qid}_$cid";
 ?>
 						<tr>
 							<td align="right"><?php echo($choice['content']); ?></td>
@@ -220,6 +220,19 @@ function render_survey($sid, $section = 1, $message = '') {
 					</table>
 <?php
 				break;
+			case '9':	// date
+?>
+					<?php echo(mktext($qid, 10, 10)); ?> <em>(e.g. 4/21/2002)</em>
+<?php
+				break;
+			case '10':	// numeric
+					$size++; // for sign
+					if($prec)
+						$size += 1 + $prec;
+?>
+					<?php echo(mktext($qid, $size, $size)); ?>
+<?php
+				break;
 		}
 		// end of select
 ?>
@@ -232,7 +245,7 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 </table>
 <?php if($num_sections>1) { ?>
-	<font size="-1"><?php echo(_('Page')); ?> <?php echo($section); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font><br>
+	<font size="-1"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font><br>
 <?php } ?>
 <?php
 	return;
