@@ -349,7 +349,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				mkreslist($counts,$total,$precision,$showTotals);
 				break;
 			case '99':	// Average
-				mkresavg($counts,$total,$precision,$showTotals);
+				mkresavg($counts,$total,$precision,$showTotals,0);
 				break;
 		} // end switch
 ?>
