@@ -35,6 +35,7 @@ CREATE TABLE survey (
 	email		CHAR(64),
 	subtitle	TEXT,
 	info		TEXT,
+	theme		CHAR(64),
 	thanks_page	CHAR(255),
 	thank_head	CHAR(255),
 	thank_body	TEXT,
