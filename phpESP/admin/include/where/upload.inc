@@ -13,7 +13,7 @@
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
 	if(isset($HTTP_GET_VARS['account_type']))
-		$account_type = XADDSLASHES($HTTP_GET_VARS['account_type']);
+		$account_type = _addslashes($HTTP_GET_VARS['account_type']);
 	else
 		$account_type = "respondents";
 
@@ -26,11 +26,11 @@
 	if(isset($HTTP_POST_VARS['submit'])) {
 		unset($HTTP_POST_VARS['submit']);
 		if(isset($HTTP_POST_VARS['account_type']))
-			$account_type = XADDSLASHES($HTTP_POST_VARS['account_type']);
+			$account_type = _addslashes($HTTP_POST_VARS['account_type']);
 		else
 			$account_type = "respondents";
 
-		$upload_type	= XADDSLASHES($HTTP_POST_VARS['upload_type']);
+		$upload_type	= _addslashes($HTTP_POST_VARS['upload_type']);
 			$upload_file	= $HTTP_POST_FILES['upload_file']['tmp_name'];
 		$group_acl	= array();
 
