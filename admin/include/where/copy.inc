@@ -76,7 +76,7 @@ survey, and will have to activate it before use.')); ?>
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
 		} elseif($status & STATUS_DONE) {
-			$stat = -('Ended');
+			$stat = _('Ended');
 		} elseif($status & STATUS_ACTIVE) {
 			$stat = _('Active');
 		} else {
