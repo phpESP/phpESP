@@ -13,6 +13,7 @@ if(!defined('_FUNCTION_SURVEY_REPORT')) {
 	Rerturns an empty string on success, else an error message. */
 function survey_report($sid, $details = 0, $format = '') {
 	if(empty($sid)) return;
+	$bg = '';
 	// build associative array holding weather each question
 	// type has answer choices or not and the table the answers are in
 	$has_choices = array();
