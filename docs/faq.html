@@ -18,7 +18,7 @@ h1 {
     <ul>
         <li><a href="#ipermissions"><b>What are the correct permission settings for phpESP files?</b></a></li>
 	<li><a href="#iunsupported"><b>I'm getting an error that says PHP is running in a unsupported mode.</a></b></li>
-	<li><a href="#idisableauth"><b>Can I disable authentication in the management interface?</a></b></li>
+	<li><a href="#idisableauth"><b>Can I disable authentication for the management interface?</a></b></li>
         <li><a href="#iglobals"><b>Does register globals need to be on?</b></a></li>
         <li><a href="#iblank"><b>I'm running Windows and keep getting a blank screen - Help!</b></a></li>
         <li><a href="#ipasswd"><b>Where do I set the MySQL login passwords?</b></a></li>
@@ -58,8 +58,8 @@ h1 {
 <p class="indented">This error is an indication that your web server is running PHP in CGI mode instead of SAPI.
 phpESP can function in this configuration but authentication must be disabled. (<a href="#idisableauth">See disabling authentication in this FAQ.</a>) (<a href="http://us4.php.net/manual/en/install.general.php">See the PHP manual for more information on CGI VS SAPI.</a>)</p>
 <a href="#top">Top</a> 
-<p><a name="idisableauth"><b>Can I disable authentication in the managment interface?</b></a>
-<p class="indented">Authentication can be disabled by setting auth_design to false in phpESP.ini.php.<br /><br />
+<p><a name="idisableauth"><b>Can I disable authentication for the managment interface?</b></a>
+<p class="indented">Authentication can be disabled by setting auth_design to false in phpESP.ini.php. Be warned that doing so could pose a security risk.<br /><br />
 Change this:<br />
 <tt>$ESPCONFIG['auth_response'] = true;</tt><br /><br />
 To this:<br />
