@@ -36,11 +36,8 @@
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
 	if($results && empty($HTTP_GET_VARS['results']) && empty($HTTP_POST_VARS['results'])) {
-		if($totals == 0) {
-			survey_results($sid,0);
-		} else {
-			survey_results($sid,1);
-		}
+		// small security issue here, anyone could pick a QID to crossanalyze
+		survey_results($sid,$precision,$totals,$qid,$cids);
 		return;
 	}
 
