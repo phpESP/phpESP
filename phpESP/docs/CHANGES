@@ -5,6 +5,8 @@ PHPESP CHANGE LOG
 v1.5 RC2 ==> v1.6 RC3
 =====================
 * NEW FEATURE: System test script.
+* FIXED bug with querying the database before it was opened.  (Noticed
+  by James P. Dugal <jpd AT louisiana.edu>.)
 
 v1.6 RC1 ==> v1.6 RC2
 =====================
@@ -12,7 +14,7 @@ v1.6 RC1 ==> v1.6 RC2
   incorrectly.  (Only affected multipage surveys.)
 * FIXED missing "help" link and title display on cross-tab interface. 
 * FIXED display of selected theme on general tab. (Noticed by Eric Bont
-  <kanven AT fhi.nl>.
+  <kanven AT fhi.nl>.)
 
 v1.5 final ==> v1.6 RC1
 =======================
