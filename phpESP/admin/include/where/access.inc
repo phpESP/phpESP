@@ -9,10 +9,13 @@
 
 	if (!empty($HTTP_POST_VARS['sid']))
 		$sid = intval($HTTP_POST_VARS['sid']);
-	else
+	elseif (!empty($HTTP_GET_VARS['sid']))
 		$sid = intval($HTTP_GET_VARS['sid']);
+	else
+		$sid = '';
 
 	$errstr = "";
+	$bg = '';
 
 	if ($sid) {
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
@@ -45,17 +48,19 @@
 		
 		if (!empty($HTTP_POST_VARS['op']))
 			$op = $HTTP_POST_VARS['op'];
-		else
+		elseif (!empty($HTTP_GET_VARS['op']))
 			$op = $HTTP_GET_VARS['op'];
+		else
+			$op = '';
 
 		if (!empty($HTTP_POST_VARS['realm']))
 			$arealm = XADDSLASHES($HTTP_POST_VARS['realm']);
-		else
+		elseif (!empty($HTTP_GET_VARS['realm']))
 			$arealm = XADDSLASHES($HTTP_GET_VARS['realm']);
 
 		if (!empty($HTTP_POST_VARS['max']))
 			$max = intval($HTTP_POST_VARS['max']);
-		else
+		elseif (!empty($HTTP_POST_VARS['max']))
 			$max = intval($HTTP_GET_VARS['max']);
 		
 		if ($op == 'a') {
