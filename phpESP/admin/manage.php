@@ -23,7 +23,13 @@
 		echo('<b>FATAL: Mysql extension not loaded. Aborting.</b>');
 		exit;
 	}
+
 	require_once($CONFIG);
+    if((php_sapi_name() == 'cgi') and ($ESPCONFIG['auth_design'])) {
+        echo ('<b>FATAL: Your webserver is running PHP in an unsupported mode. Aborting.</b><br/>');
+        echo ('<b>Please read <a href="http://phpesp.sf.net/cvs/docs/faq.html?rev=.&content-type=text/html#iunsupported">this</a> entry in the FAQ for more information</b>');
+        exit;
+    }
 	
     esp_init_adodb();
 	
