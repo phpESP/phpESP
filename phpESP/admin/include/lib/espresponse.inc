@@ -351,7 +351,7 @@ function response_select_named($sid, $rid) {
 		$cid = ereg_replace("!other=?", '', $cid);
 		if (!empty($cid))
 			$cid .= ': ';
-		if (isset($values[$qid]))
+		if (is_array($values[$qid]))
 			array_push($values[$qid], "$cid$answer");
 		else
 			$values[$qid] = "$cid$answer";
