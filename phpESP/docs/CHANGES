@@ -2,6 +2,10 @@
 PHPESP CHANGE LOG
 =================
 
+v1.5 RC2 ==> v1.6 RC3
+=====================
+* NEW FEATURE: System test script.
+
 v1.6 RC1 ==> v1.6 RC2
 =====================
 * FIXED a bug which caused non-resumable responses to be stored
