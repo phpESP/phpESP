@@ -288,7 +288,7 @@ if (!defined('ESP_BASE'))
 ?>
                 </table>
 		 <p>&nbsp;</p>  
-		<a href="<?php echo($ESPCONFIG['base_url']); ?>index.php?where=results&sid=<?php echo($sid);?>&type=cross">Go back to Cross Analysis/Tabulation</a>
+		<a href="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>?where=results&sid=<?php echo($sid);?>&type=cross">Go back to Cross Analysis/Tabulation</a>
 		</center>
 		
 <?php
