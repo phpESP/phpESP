@@ -97,29 +97,34 @@ if(!defined('_FUNCS_HTML')) {
 		global $IMAGE_PATH;
 		$i=0;
 ?>
-<table border="0">
+<table width="90%" border="0">
 <?php
 		while(list($content,$num) = each($counts)) {
 			if($num>0) { $percent = $num/$total*100.0; }
 			else { $percent = 0; }
+
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($content); ?></td>
 		<td align="left">
 <?php		if($num)
 				printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.2f%%",$percent*2, $percent);
 ?>
 		</td>
-		<td align="right" width="60">(<?php echo($num); ?>)</td>
+		<td align="right">(<?php echo($num); ?>)</td>
 	</tr>
 <?php
 			$i += $num;
 		} // end while
 		if($use_totals) {
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b>TOTAL</b></td>
-		<td align="right"><b><?php if($i && !($i > $total)) printf("&nbsp;<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.2f%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
+		<td><b>&nbsp;<?php if($i && !($i > $total)) printf("<img src=\"${IMAGE_PATH}hbar_l.gif\" height=9 width=4><img src=\"${IMAGE_PATH}hbar.gif\" height=9 width=%d><img src=\"${IMAGE_PATH}hbar_r.gif\" height=9 width=4>&nbsp;%.2f%%",$i/$total*200.0,$i/$total*100.0); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 	</tr>
 <?		} ?>
@@ -146,8 +151,11 @@ if(!defined('_FUNCS_HTML')) {
 			else
 				$p = 0;
 			$pt += $p;
+
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr bgcolor="<?php echo($bg); ?>">
 		<td align="right"><b><?php echo(++$i); ?></b></td>
 		<td><?php echo($content); ?></td>
 		<td align="right" width="60"><?php if($p) printf("%.2f%%",$p); ?></td>
@@ -156,8 +164,10 @@ if(!defined('_FUNCS_HTML')) {
 <?php
 		} // end while
 		if($use_totals) {
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr bgcolor="<?php echo($bg); ?>">
 		<td colspan=2 align="left"><b>TOTAL</b></td>
 		<td align="right"><b><?php printf("%.2f%%",$pt); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
@@ -171,11 +181,13 @@ if(!defined('_FUNCS_HTML')) {
 	function mkrescount($counts,$total,$use_totals) {
 		$i=0;
 ?>
-<table border="0">
+<table width="90%" border="0">
 <?php
 		while(list($content,$num) = each($counts)) {
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($content); ?></td>
 		<td align="right" width="60"><?php echo($num); ?></td>
 		<td align="right" width="60">(<?php if($num) printf("%.2f",$num/$total*100.0); ?>%)</td>
@@ -184,8 +196,10 @@ if(!defined('_FUNCS_HTML')) {
 			$i += $num;
 		} // end while
 		if($use_totals) {
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b>TOTAL</b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 		<td align="right"><b>(<?php if($i) printf("%.2f",$i/$total*100.0); ?>%)</b></td>
@@ -199,11 +213,13 @@ if(!defined('_FUNCS_HTML')) {
 	function mkreslist($counts,$total,$use_totals) {
 		if($total==0)	return;
 ?>
-<table border="1" cellpadding="1">
-	<tr><th>#</th><th>Response</th></tr>
+<table width="90%" border="0" cellpadding="1">
+	<tr><th align="left">#</th><th>Response</th></tr>
 <?php
 	while(list($text,$num) = each($counts)) {
-		echo("<tr><th>$num</th><td>$text</td></tr>\n");
+		if($bg != "#eeeeee")	$bg = "#eeeeee";
+		else                	$bg = "#ffffff";
+		echo("<tr bgcolor=\"$bg\"><th align=\"left\">$num</th><td>$text</td></tr>\n");
 	}
 ?>
 </table>
@@ -234,8 +250,11 @@ if(!defined('_FUNCS_HTML')) {
 		while(list($content,$avg) = each($counts)) {
 			if($avg>5) { $avg = 5; }
 			if($avg<0) { $avg = 0; }
+
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr bgcolor="<?php echo($bg); ?>">
 		<td align="right"><?php echo($content); ?></td>
 		<td align="left" width="220" colspan="6">
 <?php		if($avg)
