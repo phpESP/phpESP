@@ -10,9 +10,13 @@
 	$bg = '';
 
 	// see if a survey has been selected
-	if(!empty($HTTP_GET_VARS['sid'])) {
+    $sid = '';
+	if (!empty($HTTP_POST_VARS['sid']))
+        $sid = intval($HTTP_POST_VARS['sid']);
+    elseif (!empty($HTTP_GET_VARS['sid']))
 		$sid = intval($HTTP_GET_VARS['sid']);
-
+    
+    if (!empty($sid)) {
 		$srealm = auth_get_survey_realm($sid);
 		if(!empty($HTTP_GET_VARS['test'])) {
 			/* check ACL to see if user is allowed to test
@@ -51,12 +55,22 @@
 			$totals = intval($HTTP_GET_VARS['totals']);
 		$qid = '';
         $cids = '';
+        $rid = '';
 		if(!empty($HTTP_GET_VARS['qid']))
 			$qid = intval($HTTP_GET_VARS['qid']);
         if(!empty($HTTP_GET_VARS['cids']))
             $cids = XADDSLASHES($HTTP_GET_VARS['cids']);
-		$ret = survey_results($sid, $precision, $totals, $qid,
-			$cids);
+		if(!empty($HTTP_POST_VARS['rid']))
+			$rid = intval($HTTP_POST_VARS['rid']);
+		elseif(!empty($HTTP_GET_VARS['rid']))
+			$rid = intval($HTTP_GET_VARS['rid']);
+		if(!empty($rid)) {
+			$rid = intval($HTTP_GET_VARS['rid']);
+            $ret = survey_results($sid, $precision, 0, '', '', $rid);
+        } else {
+		    $ret = survey_results($sid, $precision, $totals, $qid,
+			    $cids);
+        }
 		if(!empty($ret))
 			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
 ?>
@@ -95,9 +109,14 @@
 ?>
 <h2><?php echo(_('View Survey Results')); ?></h2>
 <?php echo(_('Pick Survey to View')); ?>
+
+<input type="hidden" name="rid" value="">
+<input type="hidden" name="sid" value="">
+<input type="hidden" name="where" value="results">
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<th align="left"><?php echo(_('ID')); ?></th>
+		<th align="left"><?php echo(_('Respondent')); ?></th>
 		<th align="left"><?php echo(_('Name')); ?></th>
 		<th align="left"><?php echo(_('Title')); ?></th>
 		<th align="left"><?php echo(_('Owner')); ?></th>
@@ -105,6 +124,7 @@
 		<th align="left"><?php echo(_('Resp')); ?></th>
 	</tr>
 <?php
+    $count = 0;
 	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {
 
 		$sql2 = "SELECT count(*) from response where survey_id = $sid";
@@ -118,7 +138,28 @@
 			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<td><?php echo($sid); ?></td>
+        <td><?php echo($sid); ?></td>
+<?php
+        // grab all the rid values for the particular survey
+        $sql = "SELECT R.id FROM response R ".
+                "WHERE R.survey_id = '${sid}' AND R.complete = 'Y' ".
+                "ORDER BY R.id";
+        $rid_result = mysql_query($sql);
+        $count++;
+?>
+        <td>
+            <select name="rid<?php echo $count; ?>" onChange="javascript:this.form.rid.value=this.form.rid<?php echo $count; ?>.options[this.form.rid<?php echo $count; ?>.selectedIndex].value; this.form.sid.value=<?php echo $sid; ?>; this.form.submit(); return false;">
+            <option value=""></option>
+<?php
+        $i = 0;
+        while (list($rid) = mysql_fetch_row($rid_result)) {
+?>
+            <option value="<?php echo $rid; ?>"><?php echo ++$i; ?></option>
+<?php
+        }
+?>
+            </select>
+        </td>
 		<td>
 			<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&sid=${sid}"); ?>">
 				<?php echo($name); ?>
