@@ -13,56 +13,61 @@ if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
    responses.
  */
 function survey_results_navbar($sid, $curr_rid) {
-    $sql = "SELECT R.id
-            FROM response R
-            WHERE R.survey_id='${sid}' AND
-            R.complete = 'Y'
-            ORDER BY R.id";
-    $result = mysql_query($sql);
-    $total = mysql_num_rows($result);
-    if ($total < 1)
-        return;
+	$sql = "SELECT R.id
+		FROM response R
+		WHERE R.survey_id='${sid}' AND
+		R.complete = 'Y'
+		ORDER BY R.id";
+	$result = mysql_query($sql);
+	$total = mysql_num_rows($result);
+	if ($total < 1)
+		return;
 
-    $rids = array();
-    $i = 0;
-    $curr_pos = -1;
-    while ($row = mysql_fetch_row($result)) {
-        array_push($rids, $row[0]);
-        if ($row[0] == $curr_rid)
-            $curr_pos = $i;
-        $i++;
-    }
-    mysql_free_result($result);
+	$rids = array();
+	$i = 0;
+	$curr_pos = -1;
+	while ($row = mysql_fetch_row($result)) {
+		array_push($rids, $row[0]);
+		if ($row[0] == $curr_rid)
+			$curr_pos = $i;
+		$i++;
+	}
+	mysql_free_result($result);
 
-    $prev_rid = ($curr_pos > 0) ? $rids[$curr_pos - 1] : null;
-    $next_rid = ($curr_pos < $total - 1) ? $rids[$curr_pos + 1] : null;
-    $rows_per_page = 1;
-    $pages = ceil($total / $rows_per_page);
+	$prev_rid = ($curr_pos > 0) ? $rids[$curr_pos - 1] : null;
+	$next_rid = ($curr_pos < $total - 1) ? $rids[$curr_pos + 1] : null;
+	$rows_per_page = 1;
+	$pages = ceil($total / $rows_per_page);
 
-    $url = $GLOBALS['ESPCONFIG']['ME'] . "?where=results&sid=$sid";
+	$url = $GLOBALS['ESPCONFIG']['ME'] . "?where=results&sid=$sid";
 
-    $mlink = create_function('$i,$r', 'return "<a href=\"'.$url.'&rid=$r\">$i</a>";');
+	$mlink = create_function('$i,$r', 'return "<a href=\"'.$url.'&rid=$r\">$i</a>";');
 
-    $linkarr = array();
+	$linkarr = array();
 
-    if ($prev_rid != null)
-        array_push($linkarr, "<a href=\"$url&rid=$prev_rid\">"._('Previous').'</a>');
-    for ($i = 1; $i <= $curr_pos; $i++)
-        array_push($linkarr, "<a href=\"$url&rid=".$rids[$i]."\">$i</a>");
-    array_push($linkarr, "<a href=\"$url&rid=$curr_rid\"><b>$i</b></a>");
-    for (++$i; $i <= $total; $i++)
-        array_push($linkarr, "<a href=\"$url&rid=".$rids[$i]."\">$i</a>");
-    if ($next_rid != null)
-        array_push($linkarr, "<a href=\"$url&rid=$next_rid\">"._('Next').'</a>');
+	$display_pos = 1;
+	if ($prev_rid != null)
+		array_push($linkarr, "<a href=\"$url&rid=$prev_rid\">"._('Previous').'</a>');
+	for ($i = 0; $i < $curr_pos; $i++) {
+		array_push($linkarr, "<a href=\"$url&rid=".$rids[$i]."\">$display_pos</a>");
+		$display_pos++;
+	}
+	array_push($linkarr, "<a href=\"$url&rid=$curr_rid\"><b>$display_pos</b></a>");
+	for (++$i; $i < $total; $i++) {
+		$display_pos++;
+		array_push($linkarr, "<a href=\"$url&rid=".$rids[$i]."\">$display_pos</a>");
+	}
+	if ($next_rid != null)
+		array_push($linkarr, "<a href=\"$url&rid=$next_rid\">"._('Next').'</a>');
 
-?>
-<center>
-<h2><?php echo _('Navigate Individual Respondent Submissions'); ?></h2>
-<br />
-<?php echo implode(' | ', $linkarr); ?>
-<br />
-</center>
-<?php
+	?>
+		<center>
+		<h2><?php echo _('Navigate Individual Respondent Submissions'); ?></h2>
+		<br />
+		<?php echo implode(' | ', $linkarr); ?>
+		<br />
+		</center>
+		<?php
 }
 /* }}} */
 
@@ -227,7 +232,7 @@ if (!empty($guicross)){
 		$qid = $question['id'];
 		$tid = $question['type_id'];
 		$table = $response_table[$tid];
-        $totals = $showTotals;
+		$totals = $showTotals;
 
 		if ($tid == 99) {
 			echo("<tr><td><hr></td></tr>\n");
@@ -250,43 +255,43 @@ if (!empty($guicross)){
 				echo ('<input type="hidden" name="where" value="results" />');
 				echo ('<input type="hidden" name="sid" value="'.$sid.'" />');
 				echo ("\n<table width=\"90%\" border=\"0\">\n");
-                                echo ("<tbody>\n");
-                                echo ("   <tr>\n");
-                                echo ("      <td width=\"34\" height=\"31\" bgcolor=\"khaki\">\n");
+				echo ("<tbody>\n");
+				echo ("   <tr>\n");
+				echo ("      <td width=\"34\" height=\"31\" bgcolor=\"khaki\">\n");
 				if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
-                                	echo ("<div align=\"center\">\n");
-                                        echo ("   <input type=\"radio\" name=\"qid\" value=\"".$qid."\" />\n");
-                                        echo ("</div>\n");
+					echo ("<div align=\"center\">\n");
+					echo ("   <input type=\"radio\" name=\"qid\" value=\"".$qid."\" />\n");
+					echo ("</div>\n");
 				}
 				echo ("</td>\n");
-                                echo ("<td width=\"429\" bgcolor=\"#CCCCCC\">\n");
+				echo ("<td width=\"429\" bgcolor=\"#CCCCCC\">\n");
 			} //end if empty($guicross)
-				echo ("<A NAME=\"Q".++$i."\"><b>".$i.".</b></A>\n");
-                                echo ("<b>".$question['content']."</b>\n");
+			echo ("<A NAME=\"Q".++$i."\"><b>".$i.".</b></A>\n");
+			echo ("<b>".$question['content']."</b>\n");
 			if (!empty($guicross)){
 				echo ("</td>\n");
-                        	echo ("<td width=\"33\" bgcolor=\"#CC0000\">\n");
-                                if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
+				echo ("<td width=\"33\" bgcolor=\"#CC0000\">\n");
+				if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
 					echo ("<div align=\"center\">\n");
-                                        echo ("<input type=\"radio\" name=\"qidr\" value=\"".$qid."\" />\n");
-                                        echo ("</div>\n");
+					echo ("<input type=\"radio\" name=\"qidr\" value=\"".$qid."\" />\n");
+					echo ("</div>\n");
 				}
 				echo ("</td>\n");
-                                echo ("<td width=\"32\" bgcolor=\"#0099FF\">\n");
-                                if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
+				echo ("<td width=\"32\" bgcolor=\"#0099FF\">\n");
+				if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
 					echo ("<div align=\"center\">\n");
-                                        echo ("<input type=\"radio\" name=\"qidc\" value=\"".$qid."\" />\n");
-                                        echo ("</div>\n");
+					echo ("<input type=\"radio\" name=\"qidc\" value=\"".$qid."\" />\n");
+					echo ("</div>\n");
 				}
 				echo ("</td>\n");
-                                echo ("</tr>\n");
-                                echo ("</tbody>\n");
-                                echo ("</table>\n");
+				echo ("</tr>\n");
+				echo ("</tbody>\n");
+				echo ("</table>\n");
 			} //end if empty($guicross)
 		} //end if ($tid < 50)
-		
-		$counts = array();
-		switch ($table) {
+
+$counts = array();
+switch ($table) {
 // -------------------------------- response_bool --------------------------------
 		case 'response_bool':
             $counts = array(_('Yes') => 0, _('No') => 0);
