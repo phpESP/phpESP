@@ -40,15 +40,15 @@ function move(f,bDir,sName) {
    }
 }
 
-function saveOrder() {
+function validate() {
         var orderList = "";
-        for (var i=0; i < document.phpesp.questions.length; i++){
-                orderList = orderList + document.phpesp.questions.options[i].value;
-                if (i + 1 != document.phpesp.questions.length){
+        for (var i=0; i < document.tabs.questions.length; i++){
+                orderList = orderList + document.tabs.questions.options[i].value;
+                if (i + 1 != document.tabs.questions.length){
                         orderList = orderList + "|";
                 }
         }
-        document.phpesp.questions_order.value = orderList;
+        document.tabs.questions_order.value = orderList;
 }
 
 function removeItem() {
@@ -58,8 +58,8 @@ function removeItem() {
         alert("You must first select an item to delete");
         return false;
     } else {
-        document.phpesp.removeit.value = 1;
-        document.phpesp.submit();
+        document.tabs.removeit.value = 1;
+        document.tabs.submit();
     }
 }
 // comment -->

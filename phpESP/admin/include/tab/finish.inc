@@ -19,7 +19,7 @@
 
 ?>
 <script language="javascript">
-function saveOrder() {
+function validate() {
     return true;
 }
 </script>
