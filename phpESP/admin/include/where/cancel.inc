@@ -25,7 +25,7 @@
 
 	$sql = "SELECT status FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE	id=".$HTTP_SESSION_VARS['survey_id'];
 	$result = execute_sql($sql);
-	if(row_count($result) < 1) {
+	if(count($result) < 1) {
 		db_close($result);
 		$HTTP_SESSION_VARS['survey_id']    = '';
 		$HTTP_SESSION_VARS['survey_realm'] = '';
