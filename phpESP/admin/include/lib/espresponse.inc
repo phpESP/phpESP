@@ -160,7 +160,7 @@ FROM question Q, question_type T
 				$sql = "SELECT id FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%'";
 				$c_result = mysql_query($sql);
 				while(list($cid) = mysql_fetch_row($c_result)) {
-                    if (!isset($HTTP_POST_VARS["${qid}_${cid}"]));
+                    if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
                         continue;
 					$other = XADDSLASHES($HTTP_POST_VARS["${qid}_${cid}"]);
 					if(ereg("[^ \t\n]",$other)) {
