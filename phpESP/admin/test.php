@@ -136,12 +136,14 @@ ul,th {
             ($ESPCONFIG['gettext'] ? 'Real' : 'Emulated'), 'Real'); ?></li>
     <li>default_lang: <?php _pass($ESPCONFIG['default_lang']); ?></li>
     <li>current lang: <?php _pass($ESPCONFIG['lang']); ?></li>
+    <li>available langs: <?php _pass(implode(', ', esp_getlocales())); ?><br />
+      (<?php _pass(implode(', ', array_keys(esp_getlocale_map()))); ?>)
+    </li>
     <li>GNU Gettext test: <?php
-        $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'en';
-        include($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
+        esp_setlocale('en_US');
         check_string(_('%%%% Gettext Test Failed'), 'Passed'); ?></li>
     <li>Catalog Open Test: <?php
-        $ret = fopen($ESPCONFIG['locale_path'] . '/en/LC_MESSAGES/messages.mo', 'r');
+        $ret = fopen($ESPCONFIG['locale_path'] . '/en_US/LC_MESSAGES/messages.mo', 'r');
         check_bool($ret !== false, true);
         fclose($ret);
     ?></li>

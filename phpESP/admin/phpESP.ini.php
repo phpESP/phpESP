@@ -60,7 +60,7 @@ $ESPCONFIG['signup_realm'] = 'auto';
 
 // Default language for designer interface
 // (Must have gettext support avaiable.)
-$ESPCONFIG['default_lang'] = 'en';
+$ESPCONFIG['default_lang'] = 'en_US';
 
 // HTML character set used by phpESP
 // (Try 'Windows-1251' for Cryillic, etc.)
@@ -128,7 +128,8 @@ $ESPCONFIG['css_path'] = ESP_BASE . '/public/css/';
 $ESPCONFIG['locale_path'] = ESP_BASE . '/locale/';
 
 // Load I18N support
-include_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
+require_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
+esp_setlocale_ex();
 
 // default thank you messages
 $ESPCONFIG['thank_head'] = _('Thank You For Completing This Survey.');
