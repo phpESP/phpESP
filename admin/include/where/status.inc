@@ -15,9 +15,10 @@
 
 	/* operation selected ... */
 	if(!empty($HTTP_GET_VARS['op'])) {
-		$sql = "SELECT status,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
-		$result = mysql_query($sql);
-		if((list($old_status, $owner, $realm) = mysql_fetch_row($result))) {
+		$sql = "SELECT status,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
+		$result = execute_sql($sql);
+		if((list($old_status, $owner, $realm) = fetch_row($result))) {
+            $result->MoveNext();
 			$access = false;
 			$err = false;
 			$status = $old_status;
@@ -95,10 +96,10 @@
 			/* superuser overrides all */
 			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y')
 				$access = true;
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status='${status}' WHERE id='${sid}'";
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status=$status WHERE id=${sid}";
 			if($access || auth_no_access(_('to access this survey'))) {
 				if(!$err) {
-					mysql_query($sql);
+					execute_sql($sql);
 				} else {
 					mkwarn(_('Can not set survey status.'));
 					mkerror(_('Status') .': '. $old_status);
@@ -157,10 +158,10 @@ archived survey.')); ?></li>
 					$HTTP_SESSION_VARS['acl']['pall'],
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,status,owner,realm
-			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner = ".
+			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
 	$realms = array_intersect(
 			$HTTP_SESSION_VARS['acl']['pstatus'],
@@ -168,7 +169,8 @@ archived survey.')); ?></li>
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pstatus']));
 
-	while(list($sid,$name,$title,$status,$owner,$realm) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$status,$owner,$realm) = fetch_row($result)) {
+        $result->MoveNext();
 		$stat = _('Editing');
 		$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=t&sid=${sid}\">". _('Test') ."</a>";
 		$act  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=a&sid=${sid}\">". _('Activate') ."</a>";

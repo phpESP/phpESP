@@ -48,12 +48,13 @@ if(!$sid) {
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdata']));
 		$sql = "SELECT id,name,title,status,owner,realm
-			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (status & $statusok) AND (owner = '".
-			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (status & $statusok) AND (owner = ".
+			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
-	while(list($sid,$name,$title,$status,$owner,$realm) = mysql_fetch_row($result)) {
+	while(list($sid,$name,$title,$status,$owner,$realm) = fetch_row($result)) {
+        $result->MoveNext();
 		$stat = _('Editing');
 
 		if($status & STATUS_DELETED) {
@@ -97,9 +98,7 @@ if(!$sid) {
 
 	/* sid supplied ... continue */
 	$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = $sid";
-	$result = mysql_query($sql);
-	$name = mysql_result($result, 0, 0);
-	mysql_free_result($result);
+	$name = get_one($sql);
 
 	/* check ACLs for permissions */
 	$srealm = auth_get_survey_realm($sid);

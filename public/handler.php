@@ -27,7 +27,7 @@
 		return;
 	}
     
-    esp_init_db();
+    esp_init_adodb();
 
 	if (empty($HTTP_POST_VARS['referer']))
 		$HTTP_POST_VARS['referer'] = '';
@@ -41,10 +41,10 @@
 	}
 
 	// else draw the survey
-	$sql = "SELECT status, name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
-	$result = mysql_query($sql);
-    if ($result && mysql_num_rows($result) > 0)
-    	list ($status, $name) = mysql_fetch_row($result);
+	$sql = "SELECT status, name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
+	$result = execute_sql($sql);
+    if ($result && record_count($result) > 0)
+    	list ($status, $name) = fetch_row($result);
     else
         $status = 0;
 

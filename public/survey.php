@@ -20,11 +20,12 @@
 	}
 	require_once($CONFIG);	
 	
-	esp_init_db();	
+    esp_init_adodb();
 	
 	$_name = '';
 	$_title = '';
 	$_css = '';
+    $sid = '';
 	if (isset($HTTP_GET_VARS['name'])) {
 		$_name = _addslashes($HTTP_GET_VARS['name']);
 		unset($HTTP_GET_VARS['name']);
@@ -33,11 +34,11 @@
 	}
 
 	if (!empty($_name)) {
-        	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = '$_name'";
-        	if ($_result = mysql_query($_sql)) {
-            		if (mysql_num_rows($_result) > 0)
-                		list($sid, $_title, $_css) = mysql_fetch_row($_result);
-            		mysql_free_result($_result);
+        	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = $_name";
+        	if ($_result = execute_sql($_sql)) {
+            		if (record_count($_result) > 0)
+                		list($sid, $_title, $_css) = fetch_row($_result);
+            		db_close($_result);
         		}
         	unset($_sql);
         	unset($_result);
@@ -49,11 +50,11 @@
 
 	if (empty($_name) && isset($sid) && $sid) {
         $_sql = "SELECT title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid'";
-        if ($_result = mysql_query($_sql)) {
-            if (mysql_num_rows($_result) > 0){
-                list($_title, $_css) = mysql_fetch_row($_result);
+        if ($_result = execute_sql($_sql)) {
+            if (record_count($_result) > 0){
+                list($_title, $_css) = fetch_row($_result);
             }
-            mysql_free_result($_result);
+            db_close($_result);
         }
         unset($_sql);
         unset($_result);

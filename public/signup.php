@@ -21,7 +21,7 @@
 
   require_once(ESP_BASE . '/admin/phpESP.ini.php');
   
-  esp_init_db();
+  esp_init_adodb();
 
   $fields = array(
       'username',
@@ -81,13 +81,13 @@
       if (isset($post[$f]) && !empty($post[$f])) {
         array_push($sqlf, $f);
         if ($f == 'password')
-          array_push($sqlv, "PASSWORD('" . _addslashes($post[$f]) . "')");
+          array_push($sqlv, db_crypt(_addslashes($post[$f]));
         else
-          array_push($sqlv, "'" . _addslashes($post[$f]) . "'");
+          array_push($sqlv,  _addslashes($post[$f]) );
       }
     }
     array_push($sqlf, 'realm');
-    array_push($sqlv, "'" . addslashes($signup_realm) ."'");
+    array_push($sqlv, addslashes($signup_realm) );
 
     $sqlf = implode(',', $sqlf);
     $sqlv = implode(',', $sqlv);
@@ -95,11 +95,11 @@
     $sql = "INSERT INTO respondent ($sqlf) VALUES ($sqlv)";
     
     /* execute statement */
-    $res = mysql_query($sql);
+    $res = execute_sql($sql);
     if (!$res) {
       $msg = '<font color="red">'. _('Request failed, please choose a different username.') .'</font>';
       if ($GLOBALS['ESPCONFIG']['DEBUG'])
-        $msg .= mkerror(mysql_errno() . ': ' . mysql_error());
+        $msg .= mkerror(ErrorNo() . ': ' . ErrorMsg());
       break;
     }
     

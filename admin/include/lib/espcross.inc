@@ -22,11 +22,12 @@ function mkcrossformat($counts, $qid, $tid) {
         $sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
                 WHERE question_id = $qid
                 ORDER BY id";
-        $result = mysql_query($sql);
-        while ($cid = mysql_fetch_row($result)) {
+        $result = execute_sql($sql);
+        while ($cid = fetch_row($result)) {
+            $result->MoveNext();
             array_push($cids, $cid[0]);
         }
-        mysql_free_result($result);
+        db_close($result);
     }
 
     $bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];

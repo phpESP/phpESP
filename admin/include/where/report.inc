@@ -53,13 +53,13 @@
 			array_intersect(
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
-		$sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner='".
-			$HTTP_SESSION_VARS['acl']['username'] ."' ||
+		$sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner=".
+			$HTTP_SESSION_VARS['acl']['username'] ." ||
 			realm $realms)
 			AND NOT (status & $statusbad)
 			ORDER BY id DESC";
 	}
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 
 ?>
 <h2><?php echo(_('View Form Report')); ?></h2>
@@ -74,7 +74,8 @@
 	</tr>
 <?php
     $bg = '';
-	while(list($sid, $name, $title, $owner, $realm) = mysql_fetch_row($result)) {
+	while(list($sid, $name, $title, $owner, $realm) = fetch_row($result)) {
+        $result->MoveNext();
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
 		else
