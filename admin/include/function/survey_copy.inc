@@ -28,7 +28,7 @@ function survey_copy($sid) {
 	// clear the sid, clear the creation date, change the name, and clear the status
 	$survey['id'] = '';
 	$survey['changed'] = '';
-	$survey['owner'] = XADDSLASHES($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']);
+	$survey['owner'] = $GLOBALS['HTTP_SESSION_VARS']['username']);
 	$survey['name'] .= '_'. _('copy');
 	$survey['status'] = 0;
 
