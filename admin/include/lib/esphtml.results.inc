@@ -133,6 +133,7 @@ function mkrescount($counts,$total,$precision,$showTotals) {
 ?>
 <table width="90%" border="0">
 <?php
+    $bg = '';
 	while(list($content,$num) = each($counts)) {
 		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
@@ -208,6 +209,7 @@ function mkresavg($counts,$total,$precision,$showTotals,$length) {
 		<td></td>
 	</tr>
 <?php
+    $bg = '';
 	while(list($content,$avg) = each($counts)) {
 		if($bg != $GLOBALS['ESPCONFIG']['bgalt_color1'])
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color1'];
