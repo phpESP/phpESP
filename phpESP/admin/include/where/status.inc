@@ -106,23 +106,25 @@
 <h2><?php echo(_('Survey Status')); ?></h2>
 <div align="left">
 
-<p><?php echo(_('<b>Test</b> transitions a survey into testing mode. At which point you may
+<ul>
+<li><?php echo(_('<b>Test</b> transitions a survey into testing mode. At which point you may
 perform a live test by taking the survey, and viewing the results. You will not
 be able to make any further changes to the survey once you have switched to
-test mode.')); ?></p>
+test mode.')); ?></li>
 
-<p><?php echo(_('<b>Activate</b> transitions a survey into active more. In this mode the
+<li><?php echo(_('<b>Activate</b> transitions a survey into active more. In this mode the
 survey is open for production use, and may be put online. This will clear any
 results from testing mode (if any). No further editing of survey is
-allowed.')); ?></p>
+allowed.')); ?></li>
 
-<p><?php echo(_('<b>End</b> transitions a survey into ended mode. In this mode, no edits are
+<li><?php echo(_('<b>End</b> transitions a survey into ended mode. In this mode, no edits are
 possible, no users may take the survey (it is inactive), but results are still
-viewable from the results menu.')); ?></p>
+viewable from the results menu.')); ?></li>
 
-<p><?php echo(_('<b>Archive</b> removes this survey. It is still stored in the database, but
+<li><?php echo(_('<b>Archive</b> removes this survey. It is still stored in the database, but
 no further interaction is allowed. You may <b>not</b> view the results of an
-archived survey.')); ?></p>
+archived survey.')); ?></li>
+</ul>
 
 </div>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
