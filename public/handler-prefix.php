@@ -108,10 +108,10 @@ if(!defined('AUTHHAND-PREFIX')) {
 		if(!survey_auth($sid, addslashes($espuser), addslashes($esppass)))
 				return;
 		
-		$HTTP_POST_VARS['rid'] = auth_get_rid($sid, addslashes($espuser),
-				$HTTP_POST_VARS['rid']);
-		
 		if (auth_get_option('resume')) {
+			$HTTP_POST_VARS['rid'] = auth_get_rid($sid, addslashes($espuser),
+					$HTTP_POST_VARS['rid']);
+
 			if (!empty($HTTP_POST_VARS['rid']) && (empty($HTTP_POST_VARS['sec']) ||
 					intval($HTTP_POST_VARS['sec']) < 1)) {
 				$HTTP_POST_VARS['sec'] = response_select_max_sec($sid,
