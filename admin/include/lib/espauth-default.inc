@@ -45,6 +45,9 @@ function survey_auth($sid, $username, $password) {
 
 	// A matching row was found - the survey requires authentication.
 	if (!empty($username) && !empty($password)) {
+        // if we are running mysql >4.0 need to check/upgrade passwords
+        password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['respondent_table']);
+
 		// Formulate the query check whether user is authorized
 		$sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
 			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['respondent_table']." r
@@ -127,6 +130,9 @@ function manage_auth($username, $password, $raw_password="") {
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
 
 	if (!empty($username) && !empty($password)) {
+        // if we are running mysql >4.0 need to check/upgrade passwords
+        password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['designer_table']);
+
 		// Formulate the query check whether user is authorized
 		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
 			username = "._addslashes($username)." AND
