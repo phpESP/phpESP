@@ -7,7 +7,7 @@
 // <jflemer@alum.rpi.edu>
 
 	$bg = '';
-
+require ($ESPCONFIG['include_path']."where/crosstab.inc");
 	// see if a survey has been selected
     $sid = '';
 	if (!empty($HTTP_POST_VARS['sid']))
@@ -59,16 +59,30 @@
 			$qid = intval($HTTP_GET_VARS['qid']);
         if(!empty($HTTP_GET_VARS['cids']))
             $cids = _addslashes($HTTP_GET_VARS['cids']);
+	if (!empty($HTTP_POST_VARS['cids'])){
+		$cids = _addslashes($HTTP_POST_VARS['cids']);
+	}
+	if (!empty($HTTP_POST_VARS['qid']))
+		$qid = intval($HTTP_POST_VARS['qid']);
+
+	if (!empty($HTTP_POST_VARS['qidc']))
+		$qidc = intval($HTTP_POST_VARS['qidc']);
+	if (!empty($HTTP_POST_VARS['qidr']))
+		$qidr = intval($HTTP_POST_VARS['qidr']);
 		if(!empty($HTTP_POST_VARS['rid']))
 			$rid = intval($HTTP_POST_VARS['rid']);
 		elseif(!empty($HTTP_GET_VARS['rid']))
 			$rid = intval($HTTP_GET_VARS['rid']);
+		$guicross = $HTTP_GET_VARS['type'];
 		if(!empty($rid)) {
-            $ret = survey_results($sid, $precision, 0, '', '', $rid);
-        } else {
-		    $ret = survey_results($sid, $precision, $totals, $qid,
-			    $cids);
-        }
+            		$ret = survey_results($sid, $precision, 0, '', '', $rid);
+		} else if (!empty($guicross)){
+			$ret = survey_results($sid, $precision, $totals, '','',$cids, $guicross);
+		} else if (!empty($qidc) || !empty($qidr)){
+			cross_tabulation($sid, $qidc, $qidr, $qid, $cids);
+        	} else {
+		    	$ret = survey_results($sid, $precision, $totals, $qid, $cids);
+        	}
 		if(!empty($ret))
 			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
 ?>
@@ -77,6 +91,14 @@
 		if(!empty($HTTP_GET_VARS['test'])) {
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=". $HTTP_GET_VARS['sid'] ."\">". _('Test Survey') ."</a><br>\n");
 		}
+?>
+<?php	if (!empty($HTTP_GET_VARS['type'])) {
+		echo ("<br>\n");
+		echo ("<input type=\"reset\" name=\"Reset\" value=\"Reset\">\n");
+                echo ("&nbsp;\n");
+                echo ("<input type=\"submit\" name=\"Submit\" value=\"Cross Tabulate\">\n");
+                echo ("<br><br>\n");
+	}
 ?>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php
@@ -105,16 +127,29 @@
 	$result = mysql_query($sql);
 
 ?>
-<h2><?php echo(_('View Survey Results')); ?></h2>
-<?php echo(_('Pick Survey to View')); ?>
+<?php
+	if (empty($HTTP_GET_VARS['type'])) {
+		echo("<h2>View Survey Results</h2>");
+		echo("Pick Survey to View");
 
-<input type="hidden" name="rid" value="">
-<input type="hidden" name="sid" value="">
-<input type="hidden" name="where" value="results">
+		echo("<input type=\"hidden\" name=\"rid\" value=\"\">");
+		echo("<input type=\"hidden\" name=\"sid\" value=\"\">");
+		echo("<input type=\"hidden\" name=\"where\" value=\"results\">");
+	}
+	else {
+		echo("<h2>Cross Tabulation</h2>");
+                echo("Pick Survey to Cross Tabulate");
+	}
+?>
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
 		<th align="left"><?php echo(_('ID')); ?></th>
-		<th align="left"><?php echo(_('Respondent')); ?></th>
+		<?php if (empty($HTTP_GET_VARS['type'])) { ?>
+			<th align="left"><?php echo(_('Respondent')); ?></th>
+		<?php }
+		      else { ?>
+			<th align="left"></th>
+		<?php }?>
 		<th align="left"><?php echo(_('Name')); ?></th>
 		<th align="left"><?php echo(_('Title')); ?></th>
 		<th align="left"><?php echo(_('Owner')); ?></th>
@@ -123,8 +158,8 @@
 	</tr>
 <?php
     $count = 0;
-	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {
-
+	while(list($sid,$name,$title,$owner,$realm) = mysql_fetch_row($result)) {	
+		//let's see how many respondents we have for each survey.
 		$sql2 = "SELECT count(*) from response where survey_id = $sid";
 		$result2 = mysql_query($sql2);
 		list($resp) = mysql_fetch_row($result2);
@@ -138,14 +173,19 @@
 	<tr bgcolor="<?php echo($bg); ?>">
         <td><?php echo($sid); ?></td>
 <?php
-        // grab all the rid values for the particular survey
-        $sql = "SELECT R.id FROM response R ".
-                "WHERE R.survey_id = '${sid}' AND R.complete = 'Y' ".
-                "ORDER BY R.id";
-        $rid_result = mysql_query($sql);
-        $count++;
+	if (empty($HTTP_GET_VARS['type'])) {
+        	// grab all the rid values for the particular survey
+        	$sql = "SELECT R.id FROM response R ".
+                	"WHERE R.survey_id = '${sid}' AND R.complete = 'Y' ".
+                	"ORDER BY R.id";
+        	$rid_result = mysql_query($sql);
+        	$count++;
+	}
 ?>
         <td>
+	<?php 
+		if (empty($HTTP_GET_VARS['type'])) {
+	?>
             <select name="rid<?php echo $count; ?>" onChange="javascript:this.form.rid.value=this.form.rid<?php echo $count; ?>.options[this.form.rid<?php echo $count; ?>.selectedIndex].value; this.form.sid.value=<?php echo $sid; ?>; this.form.submit(); return false;">
             <option value=""></option>
 <?php
@@ -156,10 +196,21 @@
 <?php
         }
 ?>
-            </select>
+            </select> 
+<?php
+		}
+?>
         </td>
 		<td>
+		<?php
+		if (!empty($HTTP_GET_VARS['type'])){
+		?>	
+			<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&sid=${sid}&type=cross"); ?>">
+	<?php   }
+		else {
+	?>
 			<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&sid=${sid}"); ?>">
+	<?php   } ?>
 				<?php echo($name); ?>
 			</a>
 		</td>

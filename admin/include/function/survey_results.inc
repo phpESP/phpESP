@@ -5,23 +5,24 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-require ($ESPCONFIG['include_path']."where/browse_responses.inc");
+require_once ($ESPCONFIG['include_path']."where/browse_responses.inc");
+require_once ($ESPCONFIG['include_path']."where/cross.inc");
 
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	$GLOBALS['ESPCONFIG']['DEBUG_RESULTS'] = $GLOBALS['ESPCONFIG']['DEBUG'];
-
-/* {{{ proto string survey_results(int survey_id, int preceision, bool show_totals, int question_id, array choice_ids, int response_id)
+/* {{{ proto string survey_results(int survey_id, int precision, bool show_totals, int question_id, array choice_ids, int response_id)
 	Builds HTML for the results for the survey. If a
 	question id and choice id(s) are given, then the results
 	are only calculated for respodants who chose from the
 	choice ids for the given question id.
 	Returns empty string on sucess, else returns an error
 	string. */
-function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '', $rid = '') {
+
+function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '', $rid = '', $guicross='') {
 	$bg = '';
 	if(empty($precision))	$precision  = 1;
 	if($showTotals === '')	$showTotals = 1;
-
+		
 	if(is_int($cids))
 		$cids = array($cids);
 	if(is_string($cids))
@@ -37,7 +38,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		}
 	}
 
-	// build associative array holding weather each question
+	// build associative array holding whether each question
 	// type has answer choices or not and the table the answers are in
 	$has_choices = array();
 	$response_table = array();
@@ -142,6 +143,13 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		// ex: "('304','311','317','345','365','370','403','439')"
 		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rid)) .")";
 	}
+if (!empty($guicross)){
+?>
+<center>
+<a href="<?php echo($GLOBALS[ESPCONFIG]['base_url']."examples/analysis_help.php"); ?>" target="_blank">cross analysis help</a> | <a href="<?php echo($GLOBALS[ESPCONFIG]['base_url']."examples/tabulation_help.php"); ?>" target="_blank">cross tabulation help</a>
+</center>
+<?php
+}
 ?>
 <h2><?php echo($survey["title"]); ?></h2>
 <h3><?php echo($survey["subtitle"]); ?></h3>
@@ -172,16 +180,57 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 		if($bg != '#eeeeee')	$bg = '#eeeeee';
 		else                	$bg = '#ffffff';
-?>
-	<tr xbgcolor="<?php echo($bg); ?>">
- 		<td>
-			<?php if ($tid < 50) { ?>
-			<A NAME="Q<?php echo(++$i); ?>"><?php echo($i); ?>.</A>
-			<?php } ?>
-			<?php echo($question["content"]); ?>
 
-			<blockquote>
+	if (empty($guicross)){
+?>
+		<tr xbgcolor="<?php echo($bg); ?>">  
 <?php
+	} else {
+		echo ("<tr>\n");
+	}
+?>
+ 		<td>
+	<?php	
+		if ($tid < 50) {
+			if (!empty($guicross)){
+				echo ("<input type=\"hidden\" name=\"where\" value=\"results\">\n");
+				echo ("<input type=\"hidden\" name=\"sid\" value=\"".$sid."\">\n");
+				echo ("<table width=\"90%\" border=\"0\">\n");
+                                echo ("<tbody>\n");
+                                echo ("   <tr>\n");
+                                echo ("      <td width=\"34\" height=\"31\" bgcolor=\"khaki\">\n");
+				if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
+                                	echo ("<div align=\"center\">\n");
+                                        echo ("   <input type=\"radio\" name=\"qid\" value=\"".$qid."\">\n");
+                                        echo ("</div>\n");
+				}
+				echo ("</td>\n");
+                                echo ("<td width=\"429\" bgcolor=\"#CCCCCC\">\n");
+			} //end if empty($guicross)
+				echo ("<A NAME=\"Q".++$i."\"><b>".$i.".</b></A>\n");
+                                echo ("<b>".$question['content']."</b>\n");
+			if (!empty($guicross)){
+				echo ("</td>\n");
+                        	echo ("<td width=\"33\" bgcolor=\"#CC0000\">\n");
+                                if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
+					echo ("<div align=\"center\">\n");
+                                        echo ("<input type=\"radio\" name=\"qidr\" value=\"".$qid."\">\n");
+                                        echo ("</div>\n");
+				}
+				echo ("</td>\n");
+                                echo ("<td width=\"32\" bgcolor=\"#0099FF\">\n");
+                                if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
+					echo ("<div align=\"center\">\n");
+                                        echo ("<input type=\"radio\" name=\"qidc\" value=\"".$qid."\">\n");
+                                        echo ("</div>\n");
+				}
+				echo ("</td>\n");
+                                echo ("</tr>\n");
+                                echo ("</tbody>\n");
+                                echo ("</table>\n");
+			} //end if empty($guicross)
+		} //end if ($tid < 50)
+		
 		$counts = array();
 		switch ($table) {
 // -------------------------------- response_bool --------------------------------
@@ -214,7 +263,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		case 'response_single':
                 $question_content=array();
                 $counts1=array();
-                $sql = "SELECT content FROM question_choice WHERE question_id='${qid}' ORDER BY id";
+		$sql = "SELECT content FROM question_choice WHERE question_id='${qid}' ORDER BY id";
                 if($result = mysql_query($sql)){
 	               	while (list($row) = mysql_fetch_row($result)){
         	               	array_push($question_content , $row);
@@ -340,6 +389,10 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			break;
 		}
 // ---------------------------------------------------------------------------
+	if (!empty($guicross) && $question["result_id"] == 1){
+		mkcrossformat($counts,$qid,$tid);
+	}
+	else if (empty($guicross)) {
 		switch($question["result_id"]) {
 			case "1":	// Percentages
 				mkrespercent($counts,$total,$precision,$totals);
@@ -357,8 +410,8 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 				mkresavg($counts,$total,$precision,$totals,$question['length']);
 				break;
 		} // end switch
+	} //end if
 ?>
-			</blockquote>
 		</td>
 	</tr>
 <?php } // end while ?>
