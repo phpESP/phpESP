@@ -13,7 +13,7 @@
 <p><?php
 	if($GLOBALS['ESPCONFIG']['auth_design']) {
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y')
-			echo(mkwarn(_('Superuser')));
+			echo('<font color="yellow">'. _('Superuser') .'</font>');
 		else
 			echo(_('Username'));
 		echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>');
