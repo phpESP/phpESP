@@ -159,7 +159,7 @@ archived survey.')); ?></li>
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,status,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner = ".
-			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
+			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 

@@ -54,7 +54,7 @@
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner=".
-			$HTTP_SESSION_VARS['acl']['username'] ." ||
+			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." ||
 			realm $realms)
 			AND NOT (status & $statusbad)
 			ORDER BY id DESC";
