@@ -6,9 +6,6 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_FUNCTION_SURVEY_UPDATE')) {
-	define('_FUNCTION_SURVEY_UPDATE',TRUE);
-
 /* {{{ proto bool survey_update(int* survey_id, string* tab, string old_tab)
    Reads current form variables from HTTP_POST_VARS.
    Returns an true on sucess, else returns false and
@@ -44,7 +41,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		foreach($fields as $f) {
 			if(isset($HTTP_POST_VARS[$f])) {
 				array_push($f_arr,$f);
-				array_push($v_arr,"'".XADDSLASHES($HTTP_POST_VARS[$f])."'");
+				array_push($v_arr,"'"._addslashes($HTTP_POST_VARS[$f])."'");
 			}
 		}
 		array_push($f_arr,'owner');
@@ -58,7 +55,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			return(0);
 		}
 
-		$sql = "SELECT id FROM survey WHERE name='".  XADDSLASHES($HTTP_POST_VARS['name']) ."'";
+		$sql = "SELECT id FROM survey WHERE name='".  _addslashes($HTTP_POST_VARS['name']) ."'";
 		$result = mysql_query($sql);
 		$survey_id = mysql_result($result,0,0);
 		mysql_free_result($result);
@@ -90,7 +87,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 			// trying to change survey name
 			if($name != $HTTP_POST_VARS['name']) {
-				$sql = "SELECT COUNT(*) FROM survey WHERE name='" . XADDSLASHES($HTTP_POST_VARS['name']) ."'";
+				$sql = "SELECT COUNT(*) FROM survey WHERE name='" . _addslashes($HTTP_POST_VARS['name']) ."'";
 				$result = mysql_query($sql);
 				$count = mysql_result($result,0,0);
 				mysql_free_result($result);
@@ -103,7 +100,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 			// UPDATE the row in the DB with current values
 			foreach($fields as $f) {
-				array_push($f_arr,$f ."='" . XADDSLASHES($HTTP_POST_VARS[$f]) . "'");
+				array_push($f_arr,$f ."='" . _addslashes($HTTP_POST_VARS[$f]) . "'");
 			}
 			$sql = "UPDATE survey SET " . join(', ',$f_arr) . " WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
@@ -220,7 +217,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				$fields = array('name','type_id','length','precise','required','content');
 				foreach($fields as $f) {
 					if(isset($HTTP_POST_VARS[$f]))
-						array_push($f_arr,$f."='".XADDSLASHES($HTTP_POST_VARS[$f])."'");
+						array_push($f_arr,$f."='"._addslashes($HTTP_POST_VARS[$f])."'");
 				}
 				$sql = "UPDATE question SET " . join(', ',$f_arr) . " WHERE id='${qid}'";
 
@@ -238,7 +235,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				foreach($fields as $f) {
 					if(isset($HTTP_POST_VARS[$f])) {
 						array_push($f_arr, $f);
-						array_push($v_arr, "'". XADDSLASHES($HTTP_POST_VARS[$f]) ."'");
+						array_push($v_arr, "'". _addslashes($HTTP_POST_VARS[$f]) ."'");
 					}
 				}
 				$sql = "INSERT INTO question (" . join(', ',$f_arr) . ") VALUES (" . join(', ',$v_arr) .")";
@@ -267,7 +264,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				for($i=1;$i<$HTTP_POST_VARS['num_choices']+1;$i++) {
 					$sql='';
 					$choice_id      = intval($HTTP_POST_VARS["choice_id_${i}"]);
-					$choice_content = XADDSLASHES($HTTP_POST_VARS["choice_content_${i}"]);
+					$choice_content = _addslashes($HTTP_POST_VARS["choice_content_${i}"]);
 					// each of the submitted choices
 					if($choice_id=='' && $choice_content!='') {
 						// insert (new)
@@ -313,5 +310,4 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 }
 /* }}} */
 
-} // end _FUNCTION_SURVEY_UPDATE
 ?>
