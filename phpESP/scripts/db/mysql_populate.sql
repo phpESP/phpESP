@@ -5,6 +5,18 @@
 -- # For eGrad2000.com
 -- # <jflemer@alum.rpi.edu>
 
+-- # Use this script to create and populate the phpESP tables. This
+-- # should be executed _after_ the mysql_create.sql script. If you are
+-- # upgrading an existing phpESP database, please read "docs/UPDATING"
+-- # before doing anything else.
+-- # 
+-- # To execute this script via the mysql CLI, run:
+-- #   mysql -u root -p phpesp < mysql_populate.sql
+-- # If you used an name other than "phpesp", use it in place of
+-- # "phpesp" in the command line.
+
+-- #
+
 -- ## Database changes from 1.5 to 1.6
 -- ALTER TABLE respondent MODIFY COLUMN username CHAR(64) NOT NULL;
 -- ALTER TABLE designer   MODIFY COLUMN username CHAR(64) NOT NULL;
