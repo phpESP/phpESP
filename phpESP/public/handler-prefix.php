@@ -37,10 +37,10 @@
  *
  */
 
-    if (defined('AUTHHAND-PREFIX'))
+    if (defined('ESP-HANDLER-PREFIX'))
         return;
 
-    define('AUTHHAND-PREFIX', true);
+    define('ESP-HANDLER-PREFIX', true);
 
     if (!defined('ESP_BASE'))
         define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
@@ -128,6 +128,6 @@
         $HTTP_POST_VARS['sec'] = (intval($HTTP_POST_VARS['sec']) > 0) ?
                 intval($HTTP_POST_VARS['sec']) : 1;
 
-    define('AUTHHAND-OK', true);
+    define('ESP-AUTH-OK', true);
 
 ?>
