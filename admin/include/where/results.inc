@@ -43,6 +43,10 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 		}
 
 ?>
+<font size="+2">
+<a href="<?php echo($GLOBALS['ESPCONFIG']['ME']."?where=help"); ?>" target="_blank">Help</a>
+</font>
+<br /><br />
 <table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 <tr><td>
 <?php
