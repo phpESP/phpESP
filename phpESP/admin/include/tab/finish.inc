@@ -32,7 +32,7 @@ below, and paste it into the HTML of your page.')); ?></p>
 	<p><?php echo(_('Once activated you can also access the survey directly
 from the following URL.')); ?></p>
 <blockquote><tt>
-	<?php echo($ESPCONFIG['auto_handler']."?name=".$survey_name); ?>
+	<?php echo($ESPCONFIG['autopub_url']."?name=".$survey_name); ?>
 </tt></blockquote>
 
 	<p><?php echo(_('You must activate this survey before you can collect

@@ -64,7 +64,7 @@ $ESPCONFIG['default_lang'] = 'en';
 
 // HTML character set used by phpESP
 // (Try 'Windows-1251' for Cryillic, etc.)
-$ESPCONFIG['cf_charset'] = 'ISO-8859-1';
+$ESPCONFIG['charset'] = 'ISO-8859-1';
 
 // Default number of option lines for new questions
 $ESPCONFIG['default_num_choices'] = 10;

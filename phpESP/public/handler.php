@@ -79,7 +79,7 @@
 	if(!empty($HTTP_POST_VARS['resume']) && $ESPCONFIG['auth_response'] && auth_get_option('resume')) {
         response_delete($sid, $HTTP_POST_VARS['rid'], $HTTP_POST_VARS['sec']);
 		$HTTP_POST_VARS['rid'] = response_insert($sid,$HTTP_POST_VARS['sec'],$HTTP_POST_VARS['rid']);
-        if ($action == $ESPCONFIG['auto_handler'])
+        if ($action == $ESPCONFIG['autopub_url'])
     		goto_saved("$action?name=$name");
         else
             goto_saved($action);
