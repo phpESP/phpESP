@@ -20,6 +20,7 @@ admin/:        administration interface and files
 images/:       gifs used by the package
 public/:       public interface to taking surveys
 locale/:       language files
+GUIDE:         users guide
 LICENSE:       the license, read this!
 phpESP.sql:    SQL script to initialize your mysql database for phpESP
 
