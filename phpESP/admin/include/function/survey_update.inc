@@ -26,9 +26,11 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 	// new survey
 	if(empty($survey_id)) {
+		if (isset($HTTP_POST_VARS['name'])) {
 		$HTTP_POST_VARS['name'] = eregi_replace(
 			"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name']) );
 		$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
+		}
 
 		// need to fill out at least some info on 1st tab before proceeding
 		if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])
@@ -39,7 +41,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		}
 
 		// create a new survey in the database
-		$fields = array('name','realm','title','subtitle','email','theme','thank_head','thank_body','info');
+		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info');
 		foreach($fields as $f) {
 			if(isset($HTTP_POST_VARS[$f])) {
 				array_push($f_arr,$f);
@@ -68,9 +70,11 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 	switch($old_tab) {
 		// coming from the general tab ...
 		case "general":
+			if (isset($HTTP_POST_VARS['name'])) {
 			$HTTP_POST_VARS['name'] = eregi_replace(
 				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name']) );
 			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
+			}
 
 			if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])
 					|| empty($HTTP_POST_VARS['realm'])) {
@@ -79,7 +83,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				return(0);
 			}
 
-			$fields = array('name','realm','title','subtitle','email','theme','thank_head','thank_body','info');
+			$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info');
 			$sql = "SELECT name FROM survey WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
 			$name = mysql_result($result,0,0);
