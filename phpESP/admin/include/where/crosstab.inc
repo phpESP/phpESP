@@ -140,22 +140,22 @@
 	foreach ($qids as $qid){
 		switch ($tids[$tidcounter]){
 			case 1:
-				$from_table = 'response_bool';
+				$from_table = $GLOBALS['ESPCONFIG']['response_bool_table'];
 				$order = 'id';
-				$table = 'response_bool';
+				$table = $GLOBALS['ESPCONFIG']['response_bool_table'];
 				array_push($tbl, $table);
 				break;
 			case 4:
 			case 6:
-				$from_table = 'question_choice';
+				$from_table = $GLOBALS['ESPCONFIG']['question_choice_table'];
 				$order = 'id';
-				$table = 'response_single';
+				$table = $GLOBALS['ESPCONFIG']['response_single_table'];
 				array_push($tbl, $table);
 				break;
 			case 5:
-				$from_table = 'question_choice';
+				$from_table = $GLOBALS['ESPCONFIG']['question_choice_table'];
 				$order = 'id';
-				$table = 'response_multiple';
+				$table = $GLOBALS['ESPCONFIG']['response_multiple_table'];
 				array_push($tbl, $table);
 				break;
 		}
@@ -172,7 +172,7 @@
 			}
 		}
 		else {
-			$sql = "SELECT id FROM ".$from_table."table
+			$sql = "SELECT id FROM ".$from_table."
 				WHERE question_id = $qids[$count]
 				ORDER BY $order";
 			$result = mysql_query($sql);
