@@ -16,8 +16,11 @@ else                  $server =& $HTTP_SERVER_VARS;
  * Here are all the configuration options.
  */
 
+// use http or https?
+$ESPCONFIG['proto'] = 'http://';
+
 // Base URL for phpESP
-$ESPCONFIG['base_url'] = 'http://' . $server['HTTP_HOST'] . '/phpESP/';
+$ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP/';
 
 // URL of the images directory (for <img src='...'> tags)
 $ESPCONFIG['image_url'] = $ESPCONFIG['base_url'] . 'images/';
