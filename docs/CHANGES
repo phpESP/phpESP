@@ -2,6 +2,11 @@
 PHPESP CHANGE LOG
 =================
 
+v1.6 RC1 ==> v1.6 RC2
+=====================
+* FIXED display of selected theme on general tab. (Noticed by Eric Bont
+  <kanven AT fhi.nl>.
+
 v1.5 final ==> v1.6 RC1
 =======================
 * NEW FEATURE: Ability to navigate (back/forward) a survey response.
