@@ -1,0 +1,50 @@
+# $Id$
+
+// Written by James Flemer
+// For eGrad2000.com
+// [jflemer@acm.jhu.edu]
+// [jflemer@eGrad2000.com]
+
+FILES:
+admin/:		administration interface and files
+images/:	gifs used for the packages
+public/:	public interface to taking surveys
+phpESP.sql:	SQL script to initialize your mysql database for phpESP
+
+PREREQUISITES:
+  * mysql installed and running
+  * web server with PHP4 installed and configured for .php files
+    (I built and tested with Apache/1.3.12 + PHP4.0.1pl2)
+
+INSTALLING:
+
+  Unpack the archive somewhere in your htdocs dir. (now referred to
+  [install-root])
+
+  Create a new mysql database, and a mysql user with
+  select,insert,update,delete privileges on the database.
+
+  From a privileged mysql account import the file [install-root]/phpESP.sql to
+  initialize the survey database.
+
+  Edit the file [install-root]/admin/phpESP.ini and set the paths according to
+  where you installed phpESP, and the path to it on your website. Set the
+  database info.
+
+  Edit the [install-root]/admin/.htaccess file to set the access permission for
+  the administration side. Or just set the path to use the current auth method.
+  By default the .htpasswd file contains one user 'root' with a password of
+  'esp'. CHANGE THE DEFAULT, by running:
+     /usr/local/apache/bin/htpasswd .htpasswd root
+  from the admin directory. (Substitute your path to apache
+  above if different.)
+
+  Load the admin site in your browser, and go! Further docs provided from the
+  help page on the admin site. Depending on where you installed phpESP the
+  admin site should be at --
+    http://127.0.0.1/[path-to-install-in-htdocs]/phpESP/admin/
+
+  If you have problems, questions, suggestion, patches, flames feel free to
+  email me. (See top of this doc, or sourceforge to get my email address.)
+
+--James

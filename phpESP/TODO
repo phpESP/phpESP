@@ -1,0 +1,18 @@
+# phpESP -- TODO list
+#
+# $Id$
+#
+
+SOON:
+* add ability to make "sub"-questions of other questions
+* check email on multipage surveys
+* add more enforcing of policy (changing survey after it has been activated)
+* add spell checking support (use spell checking from IMP?)
+* add "Archive" managemnet
+
+LATER:
+* add "parameters" to question types (?)
+* add ability to view results per submission
+
+NEVER: :)
+* add LOCALE support

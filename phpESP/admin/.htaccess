@@ -1,0 +1,8 @@
+AuthType Basic
+AuthName "Restricted Directory"
+
+#AuthUserFile htdocs/<path-to-phpESP>/admin/.htpasswd
+AuthUserFile htdocs/phpESP/admin/.htpasswd
+#AuthGroupFile htdocs/<path-to-phpESP>/admin/.htgroup
+AuthGroupFile htdocs/phpESP/admin/.htgroup
+require group admin
