@@ -18,5 +18,13 @@ Additional development including authentication
 enhancements and CSV export were written for The
 University of Vermont.
 
+Patches for adding "Section Text" to surveys were provided
+by Kon Angelopoulos <angekgabiel@iprimus.com.au>.
+
 If you have made any significant enhancements or changes to
 phpESP please contribute back.
+
+Language Translations
+=====================
+German (de)      <flo.bee@web.de>
+Dutch  (nl)      Sipke Overbeeke <sipke@8a.nl>
