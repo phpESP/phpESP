@@ -75,8 +75,8 @@ if(!$sid) {
 		<td><?php echo($stat); ?></td>
 		<td><?php
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=csv&sid=$sid\">" . _('CSV') . "</a>"); ?></td>
-		<td><?php
-			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=dbf&sid=$sid\">" . _('DBF') . "</a>"); ?></td>
+		<td>&nbsp;<!-- <?php
+			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=export&type=dbf&sid=$sid\">" . _('DBF') . "</a>"); ?>  --></td>
 	</tr>
 <?php
 	}
