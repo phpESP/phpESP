@@ -8,9 +8,9 @@
 
 ?>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<?php if (file_exists($ESPCONFIG['include_path']."/../../GUIDE")) { ?>
+<?php if (file_exists(ESP_BASE . '/docs/GUIDE')) { ?>
 <table bgcolor="#ffffff" border="0"><tr><td><pre>
-<?php include($ESPCONFIG['include_path']."/../../GUIDE"); ?>
+<?php include(ESP_BASE . '/docs/GUIDE'); ?>
 </pre></td></tr></table>
 <?php
 	} else {
