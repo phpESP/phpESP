@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-03-22 16:40-0500\n"
 "Last-Translator: Henrik <henrik@hornhaver.dk>\n"
 "Language-Team: da_DK <jflemer@alum.rpi.edu>\n"
@@ -1680,25 +1680,25 @@ msgstr ""
 msgid "File to upload"
 msgstr "Ikke i stand til at hente ACL"
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1752,40 +1752,50 @@ msgid "Confirm Password"
 msgstr "Bekræft ny adgangskode"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Total"
+#
 #
 #
 #~ msgid "are required."
 #~ msgstr "er obligatoriske"
 #
 #
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "Forkert bruger ID eller adgangskode eller din konto er spærret."
+#
 #
 #
 #~ msgid "free-form"
 #~ msgstr "free-form"
 #
 #
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "det vil sige instruktioner, informationer osv."
+#
 #
 #
 #~ msgid "Required?"
 #~ msgstr "Obligatorisk?"
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "for at åbne denne menu"
+#
 #
 #
 #~ msgid "Purge"
 #~ msgstr "Ryd"
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
 #
 #
 #~ msgid "to design forms"
@@ -1794,8 +1804,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Hoved til bekræftelse"
+#
 #
 #
 #
@@ -1810,8 +1822,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "Max Logins"
 #~ msgstr "Maksimalt antal login"
+#
 #
 #
 #
@@ -1822,14 +1836,17 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "NOTE: This does not currently work on embedded forms."
 #~ msgstr "Bemærk: Dette understøttes ikke i indlejrede (embedded) formularer."
 #
 #
 #
 #
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Respons fra survey"
+#
 #
 #
 #

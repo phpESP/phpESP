@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: <info@cawi.it>\n"
 "Language-Team: it_IT <jflemer@alum.rpi.edu>\n"
@@ -1682,25 +1682,25 @@ msgstr "Delimitato da Tab"
 msgid "File to upload"
 msgstr "File da caricare"
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1754,12 +1754,15 @@ msgid "Confirm Password"
 msgstr "Conferma la nuova Password"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Totale"
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "sono richiesti."
+#
 #
 #
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
@@ -1767,40 +1770,50 @@ msgstr "Conferma la nuova Password"
 #~ "Non corretta User ID o Password, o la tua account è stata disabilitata. "
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "forma libera"
+#
 #
 #
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ie. istruzioni, informazioni di sfondo, etc."
 #
 #
+#
 #~ msgid "Required?"
 #~ msgstr "Richiesta?"
+#
 #
 #
 #~ msgid "You must use"
 #~ msgstr "Devi utilizzarlo"
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "per accedere a questo menu"
+#
 #
 #
 #~ msgid "Purge"
 #~ msgstr "Pulisci"
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "Stato"
+#
 #
 #
 #~ msgid "to design forms"
 #~ msgstr "al design questionari "
 #
 #
+#
 #~ msgid "%s"
 #~ msgstr "%s"
+#
 #
 #
 #
@@ -1811,8 +1824,10 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Conferma intestazione "
+#
 #
 #
 #
@@ -1823,6 +1838,7 @@ msgstr "Conferma la nuova Password"
 #~ msgstr ""
 #~ "Corpo del testo in &quot;Confirmation&quot; pagina. Questo appare sotto "
 #~ "l' intestazione di conferma"
+#
 #
 #
 #

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-08-02 16:21--500\n"
 "Last-Translator: RAUL PITTI <rpitti@netmasters.com.pa>\n"
 "Language-Team: es_ES <jflemer@alum.rpi.edu>\n"
@@ -1642,25 +1642,25 @@ msgstr ""
 msgid "File to upload"
 msgstr "Incapaz de cargar ACL."
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1714,12 +1714,15 @@ msgid "Confirm Password"
 msgstr "Confirme la nueva contraseña"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Total"
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "son obligatorias."
+#
 #
 #
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
@@ -1728,33 +1731,41 @@ msgstr "Confirme la nueva contraseña"
 #~ "desactivada."
 #
 #
+#
 #, fuzzy
 #~ msgid "free-form"
 #~ msgstr "texto libre"
+#
 #
 #
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "p.ej. instrucciones, información adicional, étc."
 #
 #
+#
 #~ msgid "Required?"
 #~ msgstr "Requerido?"
+#
 #
 #
 #~ msgid "You must use"
 #~ msgstr "Debe utilizar"
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "para acessar este menú"
+#
 #
 #
 #~ msgid "Purge"
 #~ msgstr "Eliminar"
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
 #
 #
 #~ msgid "to design forms"
@@ -1763,8 +1774,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Encabezado de Confirmación"
+#
 #
 #
 #

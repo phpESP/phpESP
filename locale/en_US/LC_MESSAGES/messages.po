@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: James Flemer <jflemer@alum.rpi.edu>\n"
 "Language-Team: en_US <jflemer@alum.rpi.edu>\n"
@@ -1574,25 +1574,25 @@ msgstr ""
 msgid "File to upload"
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr "Passed"
 #

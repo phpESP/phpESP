@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Ricardo Cavallini <ricardo@cavallini.com.br>\n"
 "Language-Team: pt_BR <jflemer@alum.rpi.edu>\n"
@@ -1683,25 +1683,25 @@ msgstr ""
 msgid "File to upload"
 msgstr "Incapaz de carregar ACL"
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1755,48 +1755,60 @@ msgid "Confirm Password"
 msgstr "Confirmar Nova Senha"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Total"
+#
 #
 #
 #~ msgid "are required."
 #~ msgstr "são obrigatórias."
 #
 #
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "O usuário e a senha estão incorretos ou sua conta foi desativada."
+#
 #
 #
 #~ msgid "free-form"
 #~ msgstr "free-form"
 #
 #
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ex.: instruções, background info, etc."
+#
 #
 #
 #~ msgid "Required?"
 #~ msgstr "Obrigatório?"
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "Você tem que usar"
+#
 #
 #
 #~ msgid "to access this menu"
 #~ msgstr "para acessar este menu"
 #
 #
+#
 #~ msgid "Purge"
 #~ msgstr "Remover"
+#
 #
 #
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
 #
 #
+#
 #~ msgid "to design forms"
 #~ msgstr "para fazer o design dos formulários"
+#
 #
 #
 #
@@ -1807,12 +1819,14 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid ""
 #~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
 #~ "the Confirmation Heading."
 #~ msgstr ""
 #~ "Body text na página de &quot;Confirmação&quot;. Aparece abaixo do "
 #~ "Cabeçalho de Confirmação."
+#
 #
 #
 #

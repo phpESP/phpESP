@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: flobee <flo.bee@web.de>\n"
 "Language-Team: de_DE <jflemer@alum.rpi.edu>\n"
@@ -1698,25 +1698,25 @@ msgstr ""
 msgid "File to upload"
 msgstr "Unm&ouml;glich ACL zu laden"
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1772,44 +1772,55 @@ msgid "Confirm Password"
 msgstr "Passwort &auml;ndern"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Gesammt"
+#
 #
 #
 #~ msgid "are required."
 #~ msgstr " markiert sind m&uuml;ssen beantwortet werden"
 #
 #
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "Benutzer ID oder Password falsch. Oder Account wurde deaktiviert"
+#
 #
 #
 #~ msgid "free-form"
 #~ msgstr "Freies Format"
 #
 #
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "z.B. Einleitung, Themenbeschreibung, Hintergrunds- Informationen."
+#
 #
 #
 #~ msgid "Required?"
 #~ msgstr "Erforderlich?"
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "Muss benutzt werden"
+#
 #
 #
 #~ msgid "to access this menu"
 #~ msgstr "um dieses Menue zu erreichen"
 #
 #
+#
 #~ msgid "Purge"
 #~ msgstr "l&ouml;schen"
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
 #
 #
 #~ msgid "to design forms"
@@ -1818,8 +1829,10 @@ msgstr "Passwort &auml;ndern"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Best&auml;tigungs- Kopfzeile"
+#
 #
 #
 #
@@ -1834,8 +1847,10 @@ msgstr "Passwort &auml;ndern"
 #
 #
 #
+#
 #~ msgid "Max Logins"
 #~ msgstr "Max. Logins"
+#
 #
 #
 #
