@@ -522,7 +522,7 @@ function response_send_email($sid, $rid) {
 		return(false);
 
 	//lets check to see if user wants human readable email
-	if ($GLOBALS['ESPCONFIG']['human_read_mail']) {
+	if ($GLOBALS['ESPCONFIG']['human_email']) {
 		$answers = response_select_human($sid, $rid);
         $qsep = "\n\t";
         $isep = "\n\t";
@@ -543,7 +543,7 @@ function response_send_email($sid, $rid) {
 	$userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
         $sql = "SELECT * FROM respondent WHERE username = '" . addslashes($userid) . "'";
         $result = mysql_query($sql);
-        if ($result) {
+        if ($result && mysql_num_rows($result)) {
             $tmp = mysql_fetch_array($result, MYSQL_ASSOC);
             mysql_free_result($result);
             reset($tmp);
