@@ -14,7 +14,7 @@
 
 ?>
 <h2><?php echo(_('Management Interface')); ?></h2>
-<table border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
+<table border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['active_bgcolor']); ?>" width="95%">
 	<tr>
 		<td>
 			<!-- <font size="+1"><?php echo(_('Choose a function')); ?>:</font> -->
