@@ -45,16 +45,17 @@ Any blank lines will be suppressed.')); ?>
 				if ($curr_q) {
 					$choice_id      = intval($HTTP_POST_VARS["choice_id_$i"]);
 				}
-				$choice_content = $HTTP_POST_VARS["choice_content_$i"];
+				if(isset($HTTP_POST_VARS["choice_content_$i"]))
+					$choice_content = $HTTP_POST_VARS["choice_content_$i"];
 			}
 ?>
 	<tr>
 		<td valign=middle align="right"><b><?php echo($i); ?>.</b></td>
 		<td valign=middle align="left">
 			<input type="hidden" name="choice_id_<?php echo($i); ?>"
-				value="<?php echo($choice_id); ?>">
+				value="<?php if(isset($choice_id)) echo($choice_id); ?>">
 			<input type="text" size="60" name="choice_content_<?php echo($i); ?>"
-				value="<?php echo(htmlspecialchars($choice_content)); ?>">
+				value="<?php if(isset($choice_content)) echo(htmlspecialchars($choice_content)); ?>">
 		</td>
 	</tr>
 <?php	} ?>
