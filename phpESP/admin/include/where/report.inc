@@ -53,10 +53,10 @@
 <?php echo(_('Pick Survey to View')); ?>
 <table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
 	<tr bgcolor="#dddddd">
-		<th><?php echo(_('ID')); ?></th>
-		<th><?php echo(_('Name')); ?></th>
-		<th><?php echo(_('Title')); ?></th>
-		<th><?php echo(_('Owner')); ?></th>
+		<th align="left"><?php echo(_('ID')); ?></th>
+		<th align="left"><?php echo(_('Name')); ?></th>
+		<th align="left"><?php echo(_('Title')); ?></th>
+		<th align="left"><?php echo(_('Owner')); ?></th>
 	</tr>
 <?php
 	while(list($sid, $name, $title, $owner) = mysql_fetch_row($result)) {
