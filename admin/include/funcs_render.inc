@@ -128,11 +128,12 @@ if(!defined('_FUNCS_RENDER')) {
 <?php				}
 					$j=0;
 					while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {	
+						$cid = $other['id'];
 						$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
 ?>
 						<tr>
-							<td><?php echo(mkradio($qid,"other_${j}")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_${j}")); ?></td>
+							<td><?php echo(mkradio($qid,"other_${cid}")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_${cid}")); ?></td>
 						</tr>
 <?php
 						$j++;
@@ -152,11 +153,12 @@ if(!defined('_FUNCS_RENDER')) {
 <?php				}
 					$j=0;
 					while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {	
+						$cid = $other['id'];
 						$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
 ?>
 						<tr>
-							<td><?php echo(mkcheckbox($qid,"other_${j}")); ?></td>
-							<td><?php echo($other_text . mktext("${qid}_${j}")); ?></td>
+							<td><?php echo(mkcheckbox($qid,"other_${cid}")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_${cid}")); ?></td>
 						</tr>
 <?php
 						$j++;
