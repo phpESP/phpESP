@@ -154,8 +154,12 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		$tid = $question['type_id'];
 		$table = $response_table[$tid];
 
-		if($tid == 99) {
+		if ($tid == 99) {
 			echo("<tr><td><hr></td></tr>\n");
+			continue;
+		}
+		if ($tid == 100) {
+			echo("<tr><td>". $question['content'] ."</td></tr>\n");
 			continue;
 		}
 
