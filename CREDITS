@@ -1,7 +1,6 @@
-# phpESP -- Credits
-#
-# $Id$
-#
+p h p E S P   (Easy Survey Package)
+============================================================
+$Id$
 
 This software was initially written for eGrad2000.com. I
 would like to thank everyone there and their commitment to
@@ -16,5 +15,8 @@ Romans Jasins <roma@latnet.lv>. Thanks Roma, especially for
 the Javascript and HTML help. Get some sleep!
 
 Additional development including authentication
-enhancements and CSV export were written from The
+enhancements and CSV export were written for The
 University of Vermont.
+
+If you have made any significant enhancements or changes to
+phpESP please contribute back.
