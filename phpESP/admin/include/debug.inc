@@ -1,4 +1,9 @@
 <?php
+# $Id$
+
+// Written by James Flemer
+// <jflemer@alum.rpi.edu>
+
 	$arr = array();
 	
 	array_push($arr, array('SID', session_id()));
