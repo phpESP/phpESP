@@ -1,6 +1,9 @@
 =================
 PHPESP CHANGE LOG
 =================
+1.7.2 =>
+* Added form based login
+
 v1.7.1 => 1.7.2
 * FIXED missing javascript funtion
 
