@@ -61,7 +61,7 @@
 	$data = survey_generate_csv($sid);
 	header("Content-Transfer-Encoding: ascii");
 	header("Content-Disposition: attachment; filename=$name.csv");
-	header("Content-Type: application/x-csv");
+	header("Content-Type: text/comma-separated-values");
 	$output = survey_generate_csv($sid);
 	foreach ($output as $row ) {
 		echo(join(',', $row) . "\n");
