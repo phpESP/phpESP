@@ -66,6 +66,34 @@ ORDER BY position";
 }
 /* }}} */
 
+/* {{{ proto void response_delete(int survey_id, int section, int response_id)
+   Deletes values for the response. */
+function response_delete($sid, $rid, $sec = null) {
+	if (empty($rid))
+		return;
+
+	if ($sec != null) {
+		if ($sec < 1)
+			return;
+
+		/* get question_id's in this section */
+		$qids = survey_get_sections($sid);
+		if (!isset($qids[$sec - 1]))
+			return;
+		$qids = 'AND question_id '. array_to_insql($qids[$sec - 1]);
+	} else {
+		/* delete all */
+		$qids = '';
+	}
+
+	/* delete values */
+	foreach (array('bool', 'single', 'multiple', 'rank', 'text', 'other', 'date') as $tbl) {
+		$sql = "DELETE FROM response_$tbl WHERE response_id = '$rid' $qids";
+		$res = mysql_query($sql);
+	}
+}
+/* }}} */
+
 /* {{{ proto int response_insert(int survey_id, int section, int response_id)
    Reads current form variables from HTTP_POST_VARS.
    Returns the ID for the response. */
@@ -215,178 +243,145 @@ FROM question Q, question_type T
 /* {{{ proto bool response_commit(int response_id)
    Returns true on sucess. */
 function response_commit($rid) {
-	$sql = "UPDATE response SET complete='Y' WHERE id='${rid}'";
+	$sql = "UPDATE response SET complete='Y', submitted = NULL WHERE id='${rid}'";
 	if(mysql_query($sql))
 		return(TRUE);
 	return(FALSE);
 }
 /* }}} */
 
-/* {{{ proto array response_select(int survey_id, int response_id)
+/* {{{ proto array response_select(int survey_id, int response_id, array columns, array question_ids)
    Returns the values from the specific response in a sorted
-   associative array indexed by question_id. */
-function response_select($sid, $rid) {
+   array indexed by question_id. */
+function response_select($sid, $rid, $col = null, $qids = null) {
 	$values = array();
 
+    if ($col == null) {
+        $col = '';
+    }
+    if (!is_array($col) && !empty($col)) {
+        $col = explode(',', preg_replace("/\s/",'', $col));
+    }
+    if (is_array($col) && count($col) > 0) {
+        $col = ',' . implode(',', array_map(create_function('$a','return "q.$a";'), $col));
+    }
+
+    if ($qids == null) {
+        $qids = '';
+    } elseif (is_array($qids)) {
+        $qids = 'AND a.question_id ' . array_to_insql($qids);
+    } elseif (intval($qids) > 0) {
+        $qids = 'AND a.question_id = ' . intval($qids);
+    } else {
+        $qids = '';
+    }
+
 	// --------------------- response_bool ---------------------
-	$sql = "SELECT question_id,choice_id FROM response_bool WHERE response_id='${rid}'";
+	$sql = "SELECT q.id $col,a.choice_id
+	FROM response_bool a, question q
+	WHERE a.response_id='${rid}' AND a.question_id=q.id $qids";
 	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
+	while($row = mysql_fetch_row($result)) {
+        $qid = array_shift($row);
+		$values["$qid"]=$row;
 	}
 	mysql_free_result($result);
 
 	// --------------------- response_single ---------------------
-	$sql = "SELECT question_id,choice_id FROM response_single WHERE response_id='${rid}'";
+	$sql = "SELECT q.id $col,c.content
+	FROM response_single a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids";
 	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
+	while($row = mysql_fetch_row($result)) {
+        $qid = array_shift($row);
+		$values["$qid"]=$row;
 	}
 	mysql_free_result($result);
 
 	// --------------------- response_multiple ---------------------
-	$sql = "SELECT question_id,choice_id FROM response_multiple WHERE response_id='${rid}' ORDER BY question_id";
+	$sql = "SELECT q.id $col,c.content,c.id
+	FROM response_multiple a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
+	ORDER BY a.question_id";
 	$result = mysql_query($sql);
 	$arr = array();
-	$tmp = '';
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
+	$tmp = null;
+	while($row = mysql_fetch_row($result)) {
+        $qid = array_shift($row);
+        $val = $row[count($row)-2];
+		if (ereg('^!other', $val)) continue;
 		if($tmp == $qid) {
-			array_push($arr, $cid);
+			$arr[] = $row;
 			continue;
 		}
-		if(!empty($tmp))
+		if($tmp != null)
 			$values["$tmp"]=$arr;
 		$tmp = $qid;
-		$arr = array($cid);
+		$arr = array($row);
 	}
-	if(!empty($tmp))
+	if($tmp != null)
 		$values["$tmp"]=$arr;
 	mysql_free_result($result);
-
-	// --------------------- response_rank ---------------------
-	$sql = "SELECT question_id,choice_id,rank FROM response_rank WHERE response_id='${rid}'";
-	$result = mysql_query($sql);
-	while(list($qid,$cid,$rank) = mysql_fetch_row($result)) {
-		if($cid)
-			$values["${qid}_${cid}"]=$rank;
-		else
-			$values["$qid"]=$rank;
-	}
-	mysql_free_result($result);
-
-	// --------------------- response_text ---------------------
-	$sql = "SELECT question_id,response FROM response_text WHERE response_id='${rid}'";
-	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
-	}
-	mysql_free_result($result);
+    unset($arr);
+    unset($tmp);
+    unset($row);
 
 	// --------------------- response_other ---------------------
-	$sql = "SELECT question_id,choice_id,response FROM response_other WHERE response_id='${rid}' ORDER BY question_id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
-		$values["${qid}_${cid}"]=$answer;
-	}
-	mysql_free_result($result);
-
-	// --------------------- response_date ---------------------
-	$sql = "SELECT a.question_id,a.response
-	FROM response_date a
-	WHERE a.response_id='${rid}'";
-	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
-	}
-	mysql_free_result($result);
-
-	// --------------------- return ---------------------
-	ksort($values);
-	return($values);
-}
-/* }}} */
-
-function response_select_hrm($sid, $rid) {
-        $values = array();
-
-        // --------------------- response_bool ---------------------
-        $sql = "SELECT q.id,q.content,a.choice_id
-        FROM response_bool a, question q
-        WHERE a.response_id='${rid}' AND a.question_id=q.id";
-        $result = mysql_query($sql);
-        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
-                $values["$qid"]=$content." : ".$cid;
-        }
-        mysql_free_result($result);
-
-        // --------------------- response_single ---------------------
-        $sql = "SELECT q.id,q.content,c.content
-        FROM response_single a, question q, question_choice c
-        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
-        $result = mysql_query($sql);
-        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
-                $values["$qid"]=$content." : ".$cid;
-        }
-        mysql_free_result($result);
-
-        // --------------------- response_multiple ---------------------
-        $sql = "SELECT q.id,q.content,c.content,a.choice_id
-        FROM response_multiple a, question q, question_choice c
-        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
+	$sql = "SELECT q.id $col,c.content,c.id,a.response
+	FROM response_other a, question q, question_choice c
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids
         ORDER BY a.question_id";
         $result = mysql_query($sql);
-        while(list($qid,$qcontent,$rcontent,$cid) = mysql_fetch_row($result)) {
-                $strqn = "${qid}_${cid}";
-                $str = "${qcontent} : ${rcontent}";
-                $qid = $strqn;
-                $values[$qid] = $str;
+	while($row = mysql_fetch_row($result)) {
+        $ans = array_pop($row);
+        $cid = array_pop($row);
+        $val = array_pop($row);
+        $qid = array_shift($row);
+		$val = ereg_replace("^!other=?", '', $val);
+        $row[count($row)] = $ans;
+		$row[count($row)] = $val;
+		$values["${qid}_$cid"] = $row;
+        array_pop($row);
+        array_pop($row);
+        $row[count($row)] = empty($val) ? $ans : "$val: $ans";
+        $row[count($row)] = $cid;
+		if (isset($values[$qid]) && is_array($values[$qid]))
+			$values[$qid][] = $row;
         }
         mysql_free_result($result);
 
-
         // --------------------- response_rank ---------------------
-        $sql = "SELECT q.id,q.content,c.content,a.rank,a.choice_id
+	$sql = "SELECT CONCAT(q.id,'_',c.id) AS id $col,a.rank,c.content
         FROM response_rank a, question q, question_choice c
-        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
+	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id $qids";
         $result = mysql_query($sql);
-        while(list($qid,$content,$cid,$rank,$choice_id) = mysql_fetch_row($result)) {
-                 if($cid) {
-                        $str1 = "${qid}_${choice_id}";
-
-                        $qid = $str1;
-                }
-                $values[$qid] = $content." : ".$cid." : ".$rank;
+	while($row = mysql_fetch_row($result)) {
+        $qid = array_shift($row);
+        $cid = array_pop($row);
+        $row[count($row)-1] = array($cid, $row[count($row)-1]);
+		$values[$qid] = $row;
         }
         mysql_free_result($result);
 
         // --------------------- response_text ---------------------
-        $sql = "SELECT q.id,q.content,a.response
+	$sql = "SELECT q.id $col,a.response
         FROM response_text a, question q
-        WHERE a.response_id='${rid}' AND a.question_id=q.id";
+	WHERE a.response_id='${rid}' AND a.question_id=q.id $qids";
         $result = mysql_query($sql);
-        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
-                $values["$qid"]=$content." : ".$cid;
-        }
-        mysql_free_result($result);
-
-        // --------------------- response_other ---------------------
-        $sql = "SELECT q.id,q.content,c.content,a.response
-        FROM response_other a, question q, question_choice c
-        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
-        ORDER BY a.question_id";
-        $result = mysql_query($sql);
-        while(list($qid,$content,$cid,$answer) = mysql_fetch_row($result)) {
-                $values["${qid}_${cid}"]=$content." : ".$answer;
+	while($row = mysql_fetch_row($result)) {
+        $qid = array_shift($row);
+		$values["$qid"]=$row;
         }
         mysql_free_result($result);
 
         // --------------------- response_date ---------------------
-        $sql = "SELECT q.id,q.content,a.response
+	$sql = "SELECT q.id $col,a.response
         FROM response_date a, question q
-        WHERE a.response_id='${rid}' AND a.question_id=q.id";
+	WHERE a.response_id='${rid}' AND a.question_id=q.id $qids";
         $result = mysql_query($sql);
-        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
-                $values["$qid"]=$content." : ".$cid;
+	while($row = mysql_fetch_row($result)) {
+        $qid = array_shift($row);
+		$values["$qid"]=$row;
         }
         mysql_free_result($result);
 
@@ -394,122 +389,108 @@ function response_select_hrm($sid, $rid) {
         ksort($values);
         return($values);
 }
+/* }}} */
 
-/* {{{ proto array response_select_named(int survey_id, int response_id)
-   Returns the values from the specific response in a sorted
-   associative array indexed by question_id. */
-function response_select_named($sid, $rid) {
-	$values = array();
-
-	// --------------------- response_bool ---------------------
-	$sql = "SELECT q.name,a.choice_id
-	FROM response_bool a, question q
-	WHERE a.response_id='${rid}' AND a.question_id=q.id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
+function response_select_human($sid, $rid, $qids = null) {
+    $res = response_select($sid, $rid, 'content', $qids);
+    $hmn = array();
+    reset($res);
+    $tmps = null;
+    $tmpv = array();
+    while(list($qid, $arr) = each($res)) {
+        $sub = null;
+        if (strstr($qid, '_')) {
+            // rank or other
+            list($qid, $sub) = explode('_', $qid);
+            if (!is_array($arr[1]))
+                continue; // other
+        }
+        if (is_array($arr[0])) {
+            $val = array_map(create_function('$a','return $a[1];'), $arr);
+            $arr[0] = $arr[0][0];
+        } else {
+            if (is_array($arr[1])) {
+                if ($tmps != null && $tmps != $arr[0]) {
+                    $hmn[] = array($tmps, $tmpv);
+                    $tmpv = array();
 	}
-	mysql_free_result($result);
-
-	// --------------------- response_single ---------------------
-	$sql = "SELECT q.name,c.content
-	FROM response_single a, question q, question_choice c
-	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
-	}
-	mysql_free_result($result);
-
-	// --------------------- response_multiple ---------------------
-	$sql = "SELECT q.name,c.content
-	FROM response_multiple a, question q, question_choice c
-	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
-	ORDER BY a.question_id";
-	$result = mysql_query($sql);
-	$arr = array();
-	$tmp = '';
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		if (ereg('^!other', $cid)) continue;
-		if($tmp == $qid) {
-			array_push($arr, $cid);
+                $tmps = $arr[0];
+                $tmpv[] = $arr[1][0] . ' = '. $arr[1][1];
 			continue;
+            } else {
+                if ($tmps != null) {
+                    $hmn[] = array($tmps, $tmpv);
+                    $tmps = null;
+                    $tmpv = array();
 		}
-		if(!empty($tmp))
-			$values["$tmp"]=$arr;
-		$tmp = $qid;
-		$arr = array($cid);
+                $val = $arr[1];
 	}
-	if(!empty($tmp))
-		$values["$tmp"]=$arr;
-	mysql_free_result($result);
+        }
+        $hmn[] = array($arr[0], $val);
+    }
+    return $hmn;
+}
 
-	// --------------------- response_other ---------------------
-	$sql = "SELECT q.name,c.content,a.response
-	FROM response_other a, question q, question_choice c
-	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
-	ORDER BY a.question_id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
-		$cid = ereg_replace("^!other=?", '', $cid);
-		if (!empty($cid))
-			$cid .= ': ';
-		if (is_array($values[$qid]))
-			array_push($values[$qid], "$cid$answer");
-		else
-			$values[$qid] = "$cid$answer";
+function response_select_compact($sid, $rid, $qids = null) {
+    $res = response_select($sid, $rid, null, $qids);
+    $cpq = array();
+    reset($res);
+    while(list($qid, $arr) = each($res)) {
+        if (strstr($qid, '_')) {
+            // rank or other
+            if (is_array($arr[0])) {
+                // rank
+                $cpq[] = array($qid, $arr[0][0], $arr[0][1]);
+            } else {
+                // other
+                $cpq[] = array($qid, $arr[0]);
 	}
-	mysql_free_result($result);
+        } elseif (is_array($arr[0])) {
+	        $cpq[] = array($qid,
+                    array_map(create_function('$a','return array_shift($a);'), $arr),
+                    array_map(create_function('$a','return array_pop($a);'), $arr));
+        } else {
+	        $cpq[] = array($qid, $arr[0]);
+        }
+    }
+    return $cpq;
+}
 
-	// --------------------- response_rank ---------------------
-	$sql = "SELECT q.name,c.content,a.rank
-	FROM response_rank a, question q, question_choice c
-	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid,$rank) = mysql_fetch_row($result)) {
-		if($cid) {
-				$str1 = "${qid}_${cid}";
+function response_select_name($sid, $rid, $qids = null) {
+    $res = response_select($sid, $rid, 'name', $qids);
+    $nam = array();
+    reset($res);
+    while(list($qid, $arr) = each($res)) {
+        if (strstr($qid, '_')) {
+            // rank or other
+            if (is_array($arr[1])) {
+                // rank
+                $str1 = $arr[1][0];
 				do {
 					$str2 = $str1;
 					$str1 = eregi_replace(
 					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
 					" ", $str2);
 				} while ($str1 != $str2);
-				$qid = $str1;
-				$qid = strtoupper(eregi_replace(
-					"[^A-Z0-9]+", "_", trim($qid)));
-				$qid = ereg_replace('_$',"",$qid);
-		}
-		$values[$qid] = $rank;
+			    $str1 = strtoupper(eregi_replace(
+				    "[^A-Z0-9]+", "_", trim($str1)));
+			    $str1 = ereg_replace('_$',"",$str1);
+                $arr[0] .= "_$str1";
+                $nam[$arr[0]] = $arr[1][1];
+            } else {
+                // other
+                continue;
 	}
-	mysql_free_result($result);
-
-	// --------------------- response_text ---------------------
-	$sql = "SELECT q.name,a.response
-	FROM response_text a, question q
-	WHERE a.response_id='${rid}' AND a.question_id=q.id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
+        } elseif (is_array($arr[0])) {
+            // multiple
+	        $nam[$arr[0][0]] =
+                    array_map(create_function('$a','return $a[1];'), $arr);
+        } else {
+	        $nam[$arr[0]] = $arr[1];
 	}
-	mysql_free_result($result);
-
-	// --------------------- response_date ---------------------
-	$sql = "SELECT q.name,a.response
-	FROM response_date a, question q
-	WHERE a.response_id='${rid}' AND a.question_id=q.id";
-	$result = mysql_query($sql);
-	while(list($qid,$cid) = mysql_fetch_row($result)) {
-		$values["$qid"]=$cid;
 	}
-	mysql_free_result($result);
-
-	// --------------------- return ---------------------
-	ksort($values);
-	return($values);
+    return $nam;
 }
-/* }}} */
-
 /* {{{ proto bool response_send_email(int survey_id, int response_id)
    Reads current form variables from HTTP_POST_VARS.
    Returns true if mail sent. */
@@ -526,24 +507,54 @@ function response_send_email($sid, $rid) {
 	if(empty($email))
 		return(FALSE);
 
-	$sql = "SELECT id FROM question WHERE survey_id='${sid}' AND deleted='N' ORDER BY position,id";
-	$result = mysql_query($sql);
+	//lets check to see if user wants human readable email
+	if ($GLOBALS['ESPCONFIG']['human_read_mail']) {
+		$answers = response_select_human($sid, $rid);
+        $qsep = "\n\t";
+        $isep = "\n\t";
+        $end = "\n\n";
+	} else {
+		$answers = response_select_compact($sid, $rid);
+        $qsep = ' : ';
+        $isep = ',';
+        $end = "\n";
+    }
 
+    $user = array(
+            'survey.id' => $sid,
+            'survey.name' => $name,
+            'survey.response' => $rid,
+        );
+	if (isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'])) {
 	$userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
-	if(empty($userid))
-		$userid = $GLOBALS['HTTP_POST_VARS']['userid'];
+        $sql = "SELECT * FROM respondent WHERE username = '" . addslashes($userid) . "'";
+        $result = mysql_query($sql);
+        if ($result) {
+            $tmp = mysql_fetch_array($result, MYSQL_ASSOC);
+            mysql_free_result($result);
+            reset($tmp);
+            $skip = array(
+                    'password',
+                    'auth',
+                    'disabled',
+                    'changed',
+                    'expiration',
+                );
+            while (list($k, $v) = each($tmp)) {
+                if (!in_array($k, $skip) && isset($v) && !empty($v))
+                    $user["user.$k"] = $v;
+            }
+            unset($tmp);
+        }
+    } else {
+		$user['user.username'] = $GLOBALS['HTTP_POST_VARS']['userid'];
+    }
 
 	$subject = _('Response from survey:') ." $name [$rid]";
-	$body  = "survey.id = ${sid}\n";
-	$body .= "survey.name = ${name}\n";
-	$body .= "response.id = ${rid}\n";
-	$body .= "response.username = ${userid}\n";
-
-	//lets check to see if user wants human readable email
-	if ($GLOBALS['ESPCONFIG']['human_read_mail'])
-		$answers = response_select_hrm($sid, $rid);
-	else
-		$answers = response_select($sid,$rid);
+    $body = '';
+    reset($user);
+    while (list($k, $v) = each($user))
+    	$body .= $k . $qsep . $v . $end;
 
 	$headers = "From: \"phpESP ".
 		addslashes($GLOBALS['ESPCONFIG']['version']) .
@@ -553,16 +564,72 @@ function response_send_email($sid, $rid) {
 	$headers .= "Return-Path: <". $GLOBALS['HTTP_SERVER_VARS']['SERVER_ADMIN'] ."@".
 		$GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] . ">\n";
 
-	while(list($qid,$var) = each($answers)) {
-		if(is_array($var)) {
-			$body .= $qid ." = ". join(',',$var) . "\n";
-		} else {
-			$body .= $qid ." = ". $var ."\n";
+    reset($answers);
+	while($arr = array_shift($answers)) {
+        unset($x);
+        if (count($arr) > 2)
+            list($k, $v, $x) = $arr;
+        else
+            list($k, $v) = $arr;
+        if (is_array($v))
+            $v = implode($isep, $v);
+        if (isset($x)) {
+            if (is_array($x))
+                $v .= ' (' . implode($isep, $x) . ')';
+            else
+                $v .= ' = ' . $x;
 		}
+    	$body .= $k . $qsep . $v . $end;
 	}
+
 	return(mail($email,$subject,$body,$headers));
 }
 /* }}} */
+
+function response_select_max_pos($sid, $rid) {
+	$max = 0;
+	
+	foreach (array('bool', 'single', 'multiple', 'rank', 'text', 'other', 'date') as $tbl) {
+		$sql = "SELECT MAX(q.position) FROM response_$tbl a, question q
+				WHERE a.response_id = '$rid' AND
+					q.id = a.question_id AND
+					q.survey_id = '$sid' AND
+                    q.deleted = 'N'";
+		$res = mysql_query($sql);
+		if (($num = mysql_result($res, 0, 0)) > $max)
+			$max = $num;
+		mysql_free_result($res);
+	}
+        return $max;
+}
+
+function response_select_max_sec($sid, $rid) {
+	$pos = response_select_max_pos($sid, $rid);
+	$sql = "SELECT COUNT(*)+1 FROM question q
+			WHERE q.survey_id = '$sid' AND
+				q.type_id = 99 AND
+				q.position < '$pos' AND
+                q.deleted = 'N'";
+	$res = mysql_query($sql);
+	$max = mysql_result($res, 0, 0);
+	mysql_free_result($res);
+	return $max;
+}
+
+function response_import_sec($sid, $rid, $sec, $varr = null) {
+    if ($varr == null)
+        $varr =& $GLOBALS['HTTP_POST_VARS'];
+    
+    $ids = survey_get_sections($sid);
+    if ($sec < 1 || !isset($ids[$sec - 1]))
+        return;
+    $vals = response_select_compact($sid, $rid, $ids[$sec - 1]);
+
+    reset($vals);
+    foreach ($vals as $arr) {
+        $varr[$arr[0]] = (count($arr) > 2) ? $arr[2] : $arr[1];
+    }    
+}
 
 } // end _LIB_ESPRESPONSE
 ?>
