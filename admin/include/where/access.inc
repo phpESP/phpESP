@@ -107,11 +107,24 @@
 
 		$r = '<select name="realm"><option></option>';
 		$groups = array();
+        $selected_groups = array();
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+            // if realm has already been added then do not include it for
+            // reselection.
+            $sql = "SELECT realm FROM ".$GLOBALS['ESPCONFIG']['access_table'];
+            $result = execute_sql($sql);
+            while (list($sg) = fetch_row($result)) {
+                array_push($selected_groups, $sg);
+                $result->MoveNext();
+            }
+            db_close($result);
+
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 			$result = execute_sql($sql);
 			while( list($g) = fetch_row($result) ) {
-				array_push($groups, $g);
+                if (!in_array($g, $selected_groups)) {
+				    array_push($groups, $g);
+                }
                 $result->MoveNext();
 			}
 			db_close($result);
