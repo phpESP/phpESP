@@ -99,7 +99,7 @@
 					mysql_query($sql);
 				} else {
 					mkwarn(_('Can not set survey status.'));
-					mkerror(_('STATUS') .': '. $old_status);
+					mkerror(_('Status') .': '. $old_status);
 				}
 			}
 		}

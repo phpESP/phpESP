@@ -58,7 +58,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 	$total = mysql_num_rows($result);
 	if($total < 1) {
 		$errmsg = _('Error opening surveys.') ." ".
-			_('No responses found.') ." [ ID: ${sidstr} ] [ ". _('Total') .": ${total} ]";
+			_('No responses found.') ." [ ID: ${sidstr} ] [ ". _('TOTAL') .": ${total} ]";
 		mysql_free_result($result);
 		return($errmsg);
 	}

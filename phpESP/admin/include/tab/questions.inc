@@ -113,7 +113,7 @@ function clearTextInputs() {
 			<th><?php echo(_('Type')); ?></th>
 			<th><?php echo(_('Length')); ?></th>
 			<th><?php echo(_('Precision')); ?></th>
-			<th><?php echo(_('Required?')); ?></th>
+			<th><?php echo(_('Required')); ?>?</th>
 		</tr><tr>
 			<td>&nbsp;</td>
 			<td align="center"><?php echo(mktext('name',12)); ?></td>

@@ -106,7 +106,8 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			  FROM question_type
 			 ORDER BY id';
 	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error system table corrupt.') . ' [ '. _('Table') .': question_type ]';
+        $errmsg = sprintf('%s [ %s: question_type ]',
+                _('Error system table corrupt.'), _('Table'));
 		return($errmsg);
 	}
 	while($row = mysql_fetch_row($result)) {

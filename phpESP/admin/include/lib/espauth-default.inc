@@ -164,7 +164,7 @@ function manage_auth($username, $password) {
 		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
 			"<body><h1>401 ". _('Unauthorized') ."</h1>\n".
-			mkerror(_('Incorrect User ID or Password, or your account has been disabled.')) .
+			mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')) .
 			"</body>\n</html>\n");
 		exit;
 		return(false);
