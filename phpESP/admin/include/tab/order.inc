@@ -16,8 +16,8 @@ $result = execute_sql($sql);
 $max = record_count($result);
 ?>
 <?php echo(_('Change the order that questions are
-presented by choosing the desired position from the
-list.')); ?>
+presented by selecting a question from the list, then use the up/down 
+buttons to change its position.')); ?>
 <hr>
 <script language="javascript">
 <!-- // comment
