@@ -104,7 +104,7 @@ Remove a question by clicking on the X.
 <area shape="rect" coords="0,0,11,22"  href="<?php echo($url); ?>&op=u&qid=<?php echo($qid); ?>" alt="Move Up">
 <area shape="rect" coords="11,0,22,22" href="<?php echo($url); ?>&op=x&qid=<?php echo($qid); ?>" alt="Delete">
 <area shape="rect" coords="22,0,32,22" href="<?php echo($url); ?>&op=d&qid=<?php echo($qid); ?>" alt="Move Down">
-</map><img src="<php echo($IMAGE_PATH); ?>knobs.gif" border="0" usemap="#Q<?php echo($qid); ?>">
+</map><img src="<?php echo($IMAGE_PATH); ?>knobs.gif" border="0" usemap="#Q<?php echo($qid); ?>">
 		</td>
 		<td>
 <?php

@@ -26,8 +26,8 @@
 			include($cf_handler);
 ?>
 </td></tr></table>
-<a href="<?php echo($ME); ?>?where=results&sid=<?php echo($sid); ?>&test=1">View Results</a><br>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo($tmp); ?>?where=results&sid=<?php echo($sid); ?>&test=1">View Results</a><br>
+<a href="<?php echo($tmp); ?>?where=manage">Go back to Management Interface</a>
 <form>
 <?php
 			return;
