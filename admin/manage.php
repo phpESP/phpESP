@@ -15,6 +15,10 @@
 		echo('<b>Unable to open INI file. Aborting.</b>');
 		exit;
 	}
+	if(!extension_loaded('mysql')) {
+		echo('<b>Mysql extension not loaded. Aborting.</b>');
+		exit;
+	}
 	include($CONFIG);
 	
 	session_register('acl');
