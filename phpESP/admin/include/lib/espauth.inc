@@ -12,7 +12,7 @@ if(!defined('_LIB_AUTH')) {
 /* {{{ proto bool survey_auth(int survey_id, string username, string password)
    Returns TRUE if the supplied username/password is allowed
    access to the survey. */
-function survey_auth($sid,$username,$password) {
+function survey_auth($sid, $username, $password) {
 	// Default to _unauthorized_
 	$auth = FALSE;
 
@@ -22,7 +22,7 @@ function survey_auth($sid,$username,$password) {
 	// Execute the query and put results in $accres 
 	$accres = mysql_query( $sql );
 	if(!$accres) {
-		echo(mkerror(_('Unable to execute query for access.')));
+		$GLOBALS['errmsg'] = mkerror(_('Unable to execute query for access.'));
 		return(FALSE);
 	}
 
@@ -43,6 +43,7 @@ function survey_auth($sid,$username,$password) {
 			FROM access a, respondent r
 			WHERE a.survey_id = '$sid' AND
 				r.username = '$username' AND
+				r.password = PASSWORD('$password') AND
 				r.realm = a.realm AND
 				r.disabled = 'N' AND
 				(r.expiration = '0' OR r.expiration > NOW())"; 
@@ -50,7 +51,7 @@ function survey_auth($sid,$username,$password) {
 		// Execute the query and put results in $usrres 
 		$usrres = mysql_query( $sql );
 		if(!$usrres) {
-			echo(mkerror(_('Unable to execute query respondents.' )));
+			$GLOBALS['errmsg'] = mkerror(_('Unable to execute query respondents.' ));
 			return(FALSE);
 		}
 
@@ -66,7 +67,7 @@ function survey_auth($sid,$username,$password) {
 	if ( ! $auth ) { 
 		header( "WWW-Authenticate: Basic realm=\"$realm\"" ); 
 		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
-		echo(mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')));
+		$GLOBALS['errmsg'] = mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
 		return(FALSE);
 	}
 
@@ -84,7 +85,7 @@ function survey_auth($sid,$username,$password) {
 	if( !$auth ) {
 		header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' ); 
 		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
-		echo(mkerror(_('Your account has been disabled or you have already completed this survey.')));
+		$GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
 		return(FALSE);
 	}
 	return(TRUE);
