@@ -27,7 +27,7 @@
 		    </ul>
 		    <a href="#edit" style="text-decoration:none;">Edit a Survey</a><br />
 		    <a href="#test" style="text-decoration:none;">Test a Survey</a><br />
-		    <a href="#status" style="text-decoration:none;">Changing Survey Status</a><br />
+		    <a href="#status" style="text-decoration:none;">Publishing a Survey</a><br />
 		    <a href="#themes" style="text-decoration:none;">Themes</a><br />
 		    <ul>
 			<li><a href="#create" style="text-decoration:none; font-size:80%;">Create</a></li>
@@ -244,7 +244,7 @@
 
 		<hr style="width:100%;" />
 
-		<h2 id="status">Putting a survey into production use</h2>
+		<h2 id="status">Publishing a Survey</h2>
 		<ul>
 		    <li>Once you have created/edited a survey, and are ready
 		    to make it available online you must activate it. Go to
