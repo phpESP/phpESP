@@ -15,12 +15,10 @@
 function response_check_required($sid, $section) {
 	global $HTTP_POST_VARS;
 
-	$sql = "
-SELECT id,type_id,content
-FROM question
-". survey_select_section_sql($sid,$section) ." AND
-   required='Y' AND deleted='N'
-ORDER BY position";
+    $sql = "SELECT id,type_id,content FROM question
+    ". survey_select_section_sql($sid,$section) ." AND
+    required='Y' AND deleted='N' AND type_id < 98
+    ORDER BY position";
 
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result) < 1) {
