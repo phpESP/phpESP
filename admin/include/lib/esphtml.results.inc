@@ -66,7 +66,7 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 			printf("&nbsp;%.${precision}f%%",$percent); ?></b></td>
 		<td width="10%" align="right"><b><?php echo($total); ?></b></td>
 	</tr>
-<?	} ?>
+<?php } ?>
 </table>
 <?php
 }
@@ -118,7 +118,7 @@ function mkresrank($counts,$total,$precision,$showTotals) {
 		<td align="right"><b><?php printf("%.${precision}f%%",$pt); ?></b></td>
 		<td align="right"><b><?php echo($total); ?></b></td>
 	</tr>
-<?	} ?>
+<?php } ?>
 </table>
 <?php
 }
@@ -156,7 +156,7 @@ function mkrescount($counts,$total,$precision,$showTotals) {
 		<td align="right"><b><?php echo($total); ?></b></td>
 		<td align="right"><b>(<?php if($i) printf("%.${precision}f",$i/$total*100.0); ?>%)</b></td>
 	</tr>
-<?	} ?>
+<?php	} ?>
 </table>
 <?php
 }
