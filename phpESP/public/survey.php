@@ -51,7 +51,6 @@
         // call the handler-prefix once $sid is set to handle
         // authentication / authorization
 
-        include($ESPCONFIG['handler_prefix']);
 
         if (empty($_name) && isset($sid) && $sid) {
             $_sql = "SELECT title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid'";
@@ -64,6 +63,7 @@
             unset($_sql);
             unset($_result);
         }
+        include($ESPCONFIG['handler_prefix']);
 
 ?>
 <html>

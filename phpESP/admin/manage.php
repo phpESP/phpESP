@@ -27,7 +27,7 @@
 	require_once($CONFIG);
 
     /* check for an unsupported web server configuration */
-    if((in_array(php_sapi_name(), $ESPCONFIG['unsupported'])) and ($ESPCONFIG['auth_design'])) {
+    if((in_array(php_sapi_name(), $ESPCONFIG['unsupported'])) and ($ESPCONFIG['auth_design']) and ($ESPCONFIG['auth_mode'] == 'php')) {
         echo ('<b>FATAL: Your webserver is running PHP in an unsupported mode. Aborting.</b><br/>');
         echo ('<b>Please read <a href="http://phpesp.sf.net/cvs/docs/faq.html?rev=.&content-type=text/html#iunsupported">this</a> entry in the FAQ for more information</b>');
         exit;
@@ -40,11 +40,40 @@
 		$HTTP_SESSION_VARS['acl'] = &$acl;
 	}
 	if($ESPCONFIG['auth_design']) {
-
-        $raw_password = @$HTTP_SERVER_VARS['PHP_AUTH_PW'];
+        if ($ESPCONFIG['auth_mode'] == 'php') {
+            $raw_password = @$HTTP_SERVER_VARS['PHP_AUTH_PW'];
+            $username = @$HTTP_SERVER_VARS['PHP_AUTH_USER'];
+        }
+        elseif ($ESPCONFIG['auth_mode'] == 'form') {
+            if (!isset($HTTP_POST_VARS['username'])) {
+                $HTTP_POST_VARS['username'] = "";
+            }
+            if (!isset($HTTP_POST_VARS['password'])) {
+                $HTTP_POST_VARS['password'] = "";
+            }
+            if (!isset($HTTP_SESSION_VARS['username'])) {
+                session_register('username');
+            }
+            if (!isset($HTTP_SESSION_VARS['raw_password'])) {
+                session_register('raw_password');
+            }
+                
+            if ($HTTP_POST_VARS['username'] != "") {
+                $username = $HTTP_POST_VARS['username'];
+            }
+            elseif ($HTTP_SESSION_VARS['username'] != "") {
+                $username = $HTTP_SESSION_VARS['username'];
+            }
+            if ($HTTP_POST_VARS['password'] != "") {
+                    $raw_password = $HTTP_POST_VARS['password'];
+            }
+            elseif ($HTTP_SESSION_VARS['raw_password'] != "") {
+                    $raw_password = $HTTP_SESSION_VARS['raw_password'];
+            }
+        }
         $password = _addslashes($raw_password);
-		if(!manage_auth((@$HTTP_SERVER_VARS['PHP_AUTH_USER']), $password, $raw_password))
-			exit;
+        if(!manage_auth($username, $password, $raw_password))
+            exit;
 	} else {
 		$HTTP_SESSION_VARS['acl'] = array (
 			'username'  => 'none',

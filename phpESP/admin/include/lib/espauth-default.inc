@@ -11,7 +11,7 @@
 /* {{{ proto bool survey_auth(int survey_id, string username, string password)
    Returns true if the supplied username/password is allowed
    access to the survey. */
-function survey_auth($sid, $username, $password) {
+function survey_auth($sid, $username, $password, $css, $title) {
 	// Default to _unauthorized_
 	$auth = false;
 
@@ -75,11 +75,29 @@ function survey_auth($sid, $username, $password) {
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) {
-		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
-		header( 'HTTP/1.0 401 '. _('Unauthorized'));
-		$GLOBALS['errmsg'] = mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
-		return(false);
-	}
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            header( "WWW-Authenticate: Basic realm=\"$realm\"" );
+            header( 'HTTP/1.0 401 '. _('Unauthorized'));
+            $GLOBALS['errmsg'] = mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
+            return(false);
+        }
+        elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            if (isset($GLOBALS['_GET']['name'])) {
+                $survey_name = $GLOBALS['_GET']['name'];
+            }
+            elseif (isset($GLOBALS['HTTP_POST_VARS']['name'])) {
+                $survey_name = $GLOBALS['HTTP_POST_VARS']['name'];
+            }
+            $error_message = "";
+            if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
+                $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
+            }
+            echo show_login($survey_name, $error_message, $css, $title);
+            exit;
+            return(false);
+        }
+    }
+
 
 	if ( $maxlogin > 0 ) {
 		// see if user is over the MAX # of responses
@@ -90,13 +108,13 @@ function survey_auth($sid, $username, $password) {
 
 		$auth = get_one($sql);
 	}
-	if( !$auth ) {
-		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
-		header( 'HTTP/1.0 401 '. _('Unauthorized'));
-		$GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
-		return(false);
-	}
-	return(true);
+    if( !$auth ) {
+        header( "WWW-Authenticate: Basic realm=\"$realm\"" );
+        header( 'HTTP/1.0 401 '. _('Unauthorized'));
+        $GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
+        return(false);
+    }
+    return(true);
 }
 /* }}} */
 
@@ -129,46 +147,56 @@ function manage_auth($username, $password, $raw_password="") {
 	$auth = false; // default to unauthorized
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
 
-	if (!empty($username) && !empty($password)) {
+    if (!empty($username) && !empty($password)) {
         // if we are running mysql >4.0 need to check/upgrade passwords
         password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['designer_table']);
 
-		// Formulate the query check whether user is authorized
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
-			username = "._addslashes($username)." AND
-			password = ".db_crypt($password) ."AND
-			disabled = 'N' AND
-			(expiration = '0' OR expiration > ". sys_time_stamp().")";
-		// Execute the query and put recordset in $accres
-		$accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC );
-		if(!$accres) {
-			header( 'HTTP/1.0 503 '. _('Service Unavailable'));
-			echo('<html><head><title>'. _('Service Unavailable') .
-				'</title></head><body><h1>HTTP 503 '.
-				_('Service Unavailable') .'</h1>'.
-				mkerror(_('Unable to load ACL.') .' ('. ErrorMsg() .')') .
-				'</body></html>');
-			return(false);
-		}
+        // Formulate the query check whether user is authorized
+        $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
+        username = "._addslashes($username)." AND
+        password = ".db_crypt($password) ."AND
+        disabled = 'N' AND
+        (expiration = '0' OR expiration > ". sys_time_stamp().")";
+        // Execute the query and put recordset in $accres
+        $accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC );
+        if(!$accres) {
+            header( 'HTTP/1.0 503 '. _('Service Unavailable'));
+            echo('<html><head><title>'. _('Service Unavailable') .
+            '</title></head><body><h1>HTTP 503 '.
+            _('Service Unavailable') .'</h1>'.
+            mkerror(_('Unable to load ACL.') .' ('. ErrorMsg() .')') .
+            '</body></html>');
+            return(false);
+        }
 
-		// Get number of rows in $accres.
-		if (record_count($accres) > 0) {
-			// A matching row was found - the user is authorized.
-			$auth = true;
-		}
-	}
-
-	// no matching authorization ... send a 401
-	if ( ! $auth ) {
-		header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' );
-		header( 'HTTP/1.0 401 '. _('Unauthorized'));
-		echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
-			"<body><h1>401 ". _('Unauthorized') ."</h1>\n".
-			mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')) .
-			"</body>\n</html>\n");
-		exit;
-		return(false);
-	}
+        // Get number of rows in $accres.
+        if (record_count($accres) > 0) {
+            // A matching row was found - the user is authorized.
+            $auth = true;
+        }
+    }
+    if ( ! $auth ) {
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            // no matching authorization ... send a 401
+            header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' );
+            header( 'HTTP/1.0 401 '. _('Unauthorized'));
+            echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
+            "<body><h1>401 ". _('Unauthorized') ."</h1>\n".
+            mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.')) .
+            "</body>\n</html>\n");
+            exit;
+            return(false);
+        }
+        elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            $error_message = "";
+            if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
+                $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
+            }
+            echo show_login(null, $error_message, null, "phpESP Managment Login");
+            exit;
+            return(false);
+        }
+    }
 
 	// All tests passed ... create ACL array,
 	// and stick it in the session
@@ -217,6 +245,8 @@ function manage_logout() {
 	session_unset();
 	$acl = array('expired' => 2);
 	session_register('acl');
+    session_register('username');
+    session_register('raw_password');
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array('expired' => 2);
 }
 /* }}} */

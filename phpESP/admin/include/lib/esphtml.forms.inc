@@ -149,4 +149,43 @@ function mksubmit($_name, $_value = null) {
 }
 /* }}} */
 
+function show_login($_surveyname = null, $_message = null, $_css = null, $_title = "Survey Login") {
+    $str = "<html>\n<head>\n<title>Survey Login: $_title</title>\n";
+    if (empty($_css)) {
+        $_css = "default.css";
+    }
+    $str .= '<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css .'" type="text/css">';
+    $str .=  "\n</head>\n<body id=\"auth\">\n";
+    
+    $str .= '<div class="headerGraphic"></div>';
+    $str .= '<div class="login">';
+    if ($_title) {
+        $str .= "<h1>$_title</h1>\n";
+    }
+    if ($_message) {
+        $str .= mkerror($_message);
+    }
+    $str .= '<form name="loginform" id="loginform"  method="post">';
+    $str .= "\n<fieldset><legend>Login</legend>\n";
+    $str .= '<div class="row">';
+    $str .= '<label for="username">';
+    $str .= "Username:";
+    $str .= '</label>';
+    $str .= mktext("username");
+    $str .= "\n".'</div><div class="row">'."\n";
+    $str .= '<label for="password">';
+    $str .= "Password:";
+    $str .= '</label>';
+    $str .= mkpass("password");
+    $str .= "\n".'</div><div class="row">'."\n";
+    $str .= mksubmit("Login");
+    if ($_surveyname != "") {
+        $str .= mkhidden("name", $_surveyname);
+    }
+    $str .= "\n</div></fieldset>\n</form>\n";
+    $str .= "</div>";
+    $str .= "\n</body>\n</html>";
+
+    return $str;
+}
 ?>
