@@ -6,10 +6,10 @@ v1.4 final ==> v1.5 RC1
 =======================
 * NEW FEATURE: Survey Themes. See README_SURVEYTHEMES.
   (Kon Angelopoulos <angekproductions at iprimus.com.au>)
-* NEW FEATURE: Bulk import of accouts.
+* NEW FEATURE: Bulk import of accounts.
   (Matthew Gregg <greggmc at musc.edu>)
 * NEW FEATURE: Option to send Human Readable email for
-  each survey submittion.
+  each survey submission.
   (Kon Angelopoulos <angekproductions at iprimus.com.au>)
 * NEW FEATURE: Display of number of responses to surveys
   when listing of surveys.
@@ -35,7 +35,7 @@ v1.4 beta 3 ==> v1.4 final
 * FIXED inclusion of "Other" data in CSV files.
 * FIXED problem with zero (0) in req'd numeric fields.
 * FIXED namespace conflict on temporary variables. Was
-  causing Language preferance to be ignored and results to be
+  causing Language preference to be ignored and results to be
   improperly stored.
 * CHANGED name from 'phpESP -- Easy Survey Package' to
   'phpESP -- php Easy Survey Package' (for TM# 1,721,621)
@@ -47,7 +47,7 @@ v1.4 beta 3 ==> v1.4 final
 
 v1.4 beta 2 ==> v1.4 beta 3
 ===========================
-* NEW FEATURE: Section Text, allows freeform text to be
+* NEW FEATURE: Section Text, allows free form text to be
   placed inside a survey. (REQ: Database update!)
   (Kon Angelopoulos <angekgabiel at iprimus.com.au>)
 * NEW FEATURE: Added a configuration variable to globally
