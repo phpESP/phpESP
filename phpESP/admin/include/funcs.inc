@@ -26,6 +26,12 @@
 if(!defined('_FUNCS')) {
  	define('_FUNCS',TRUE);
 
+	// install get text .. or transparency
+	if(!extension_loaded("gettext")) {
+		@dl("gettext.so") or 
+			include("gettext.inc");
+	}
+
 	// return the number of sections in survey $sid
 	function count_sections($sid) {
 		$sql = "
