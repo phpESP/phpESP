@@ -84,9 +84,6 @@
 
 		// coming from the questions tab ...
 		case "questions":
-			if(stristr($id,'new'))
-				$id = '';
-
 			// if the question box is empty ... ignore everything else
 			if(empty($content))
 				return;
@@ -98,6 +95,9 @@
 				$dont_clear = 1;
 				return;
 			}
+
+			if(stristr($id,'new'))
+				$id = '';
 
 			// contraint: can not change between question w/ answer choices and one w/o
 			$fields = array('survey_id','type_id','result_id','parent_id','required','params','content');
