@@ -20,6 +20,7 @@
 
 	require_once(ESP_BASE . '/admin/phpESP.ini.php');
 	require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
+    esp_init_adodb();
 	require_once($ESPCONFIG['handler_prefix']);
 	if(!defined('ESP-AUTH-OK')) {
 		if (!empty($GLOBALS['errmsg']))
@@ -27,7 +28,6 @@
 		return;
 	}
     
-    esp_init_adodb();
 
 	if (empty($HTTP_POST_VARS['referer']))
 		$HTTP_POST_VARS['referer'] = '';
