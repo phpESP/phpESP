@@ -35,14 +35,10 @@ $ESPCONFIG['css_url'] = $ESPCONFIG['base_url'] . 'public/css/';
 $ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
 
 // Database connection information
-#$ESPCONFIG['db_host'] = 'bfs.itlab.musc.edu';
 $ESPCONFIG['db_host'] = 'localhost';
-#$ESPCONFIG['db_user'] = 'esp';
-$ESPCONFIG['db_user'] = 'root';
-#$ESPCONFIG['db_user'] = 'greggmc';
-#$ESPCONFIG['db_pass'] = 'c00per';
-$ESPCONFIG['db_pass'] = 'cooper';
-$ESPCONFIG['db_name'] = 'esp';
+$ESPCONFIG['db_user'] = 'phpesp';
+$ESPCONFIG['db_pass'] = 'phpesp';
+$ESPCONFIG['db_name'] = 'phpesp';
 
 // ADODB 
 $ESPCONFIG['adodb_path'] = ESP_BASE . 'admin/include/lib/adodb/';
@@ -63,13 +59,13 @@ $ESPCONFIG['auth_design'] = true;
 $ESPCONFIG['auth_response'] = true;
 
 // Choose authentication type: { 'default', 'ldap' }
-$ESPCONFIG['auth_type'] = 'ldap';
+$ESPCONFIG['auth_type'] = 'default';
 
 // LDAP connection information
 // (Set these values if you choose 'ldap' as the authentication type.)
-$ESPCONFIG['ldap_server'] = 'ldaps://authldap.musc.edu';
-$ESPCONFIG['ldap_port']   = '636';
-$ESPCONFIG['ldap_dn']     = 'dc=musc,dc=edu';
+$ESPCONFIG['ldap_server'] = 'ldap://example.com';
+$ESPCONFIG['ldap_port']   = '389    ';
+$ESPCONFIG['ldap_dn']     = 'dc=example,dc=com';
 $ESPCONFIG['ldap_filter'] = 'uid=';
 
 // Group to add responders to via the sign-up page
@@ -106,7 +102,7 @@ $ESPCONFIG['bgalt_color2']      = '#EEEEEE';
  *******************************************************************/
 
 // Enable debugging code (BOOLEAN)
-$ESPCONFIG['DEBUG'] = true;
+$ESPCONFIG['DEBUG'] = false;
 
 // Name of application
 $ESPCONFIG['name'] = 'phpESP';
@@ -118,8 +114,8 @@ $ESPCONFIG['version'] = '1.7-dev';
 $ESPCONFIG['extension'] = '.inc';
 
 // Survey handler to use
-$ESPCONFIG['handler']        = ESP_BASE . 'public/handler.php';
-$ESPCONFIG['handler_prefix'] = ESP_BASE . 'public/handler-prefix.php';
+$ESPCONFIG['handler']        = ESP_BASE . '/public/handler.php';
+$ESPCONFIG['handler_prefix'] = ESP_BASE . '/public/handler-prefix.php';
 
 // Valid tabs when editing surveys
 $ESPCONFIG['tabs'] = array('general', 'questions', 'preview', 'order', 'finish');
