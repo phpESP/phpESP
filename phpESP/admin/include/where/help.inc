@@ -13,6 +13,7 @@
 
 <ul>
 	<li><a href="#new"><font size="+2">Creating a new survey</font></a></li>
+	<li><a href="#themes"><font size="+2">Creating and Assigning Survey Themes</font></a></li>
 	<li><a href="#test"><font size="+2">Testing a survey</font></a></li>
 	<li><a href="#types"><font size="+2">Response Types Examples</font></a></li>
 	<li><a href="#edit"><font size="+2">Editing a survey</font></a></li>
@@ -42,6 +43,12 @@
 		the <b>email</b> field. (This is intended for
 		<b>backup</b>, not as the primary data collection,
 		you should probably leave it blank.)</p>
+
+		<p>If you would like to theme your survey select the
+		appropriate theme from the dropdown list. This will
+		establish a link to a specific css style sheet for 
+		your survey. To design a theme please refer to the section:
+		<b>Creating and Assigning Survey Themes</b>.</p>
 
 		<p>The <b>Confirmation Page</b> is the page users
 		will be shown after filling out the survey online.
@@ -154,7 +161,22 @@
 
 	<p><a href="#top">Back to Top</a></p>
 </li>
-<li><a name="test"><h3>Test Mode</h3></a>
+<li><a name="themes"><h3>Creating and Assigning Survey Themes</h3></a>
+	<p>All themes (css style sheets) are contained within the css
+	directory which is, by default, located in the public directory
+	of this package (and its path is definable in the phpESP.ini file).
+	Please ensure that all your css files are 
+	contained within this directory. In this directory you will find
+	the <b>template.css</b>. To create a new theme simply copy the
+	the template.css file and edit the class definitions.<b> Do not
+	alter the class names</b>. Greater style flexibility is assured
+	by not redefining html tags but rather by assigning classes to 
+	these tags. <a href="../examples/classes.html" target="themes">Click here</a> to see what these classes actually define.
+	Once you've saved your new theme it will become available for
+	selection from the dropdown list that is found on the <b>general
+	tab</b> page. 
+</li>
+	<li><a name="test"><h3>Test Mode</h3></a>
 	<p>After you have created a survey you can put it into
 	testing mode. This allows you to access a live copy of
 	it from the Management Interface. You can fill out the
