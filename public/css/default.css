@@ -10,3 +10,12 @@
         width:26px;
         vertical-align:text-top;
 }
+.message {
+        font-family: default;
+        font-size: medium;
+        font-variant: normal;
+        font-weight: bold;
+        color: #CC0000;
+        text-align: center;
+}
+
