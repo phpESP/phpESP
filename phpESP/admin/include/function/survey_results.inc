@@ -8,6 +8,8 @@
 if(!defined('_FUNCTION_SURVEY_RESULTS')) {
  	define('_FUNCTION_SURVEY_RESULTS',TRUE);
 
+require ($ESPCONFIG['include_path']."where/browse_responses.inc");
+
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	$GLOBALS['ESPCONFIG']['DEBUG_RESULTS'] = $GLOBALS['ESPCONFIG']['DEBUG'];
 
@@ -90,6 +92,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 // find total number of survey responses
 // and relevant response ID's
 	if (!empty($rid)) {
+		navigate_responses($sid,$rid);
 		$ridstr = "= '${rid}'";
         $total = 1;
 	} else {
