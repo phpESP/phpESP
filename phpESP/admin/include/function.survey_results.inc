@@ -71,7 +71,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				 WHERE survey_id='${sid}' AND 
 				       status='' 
 				 ORDER BY position,id";
-		if(!($questions_result = mysql_query($sql)) {
+		if(!($questions_result = mysql_query($sql))) {
 			$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ]";
 			return(1);
 		}
@@ -154,7 +154,10 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				$sql = "SELECT A.choice_id, COUNT(A.response_id)
 						  FROM ${table} A
 						 WHERE A.question_id='${qid}' AND 
-						       A.response_id IN ${ridstr}";
+						       A.response_id IN ${ridstr} AND
+							   A.choice_id IN ('yes','no')
+						 GROUP BY A.choice_id";
+				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 				if($result = mysql_query($sql)) {
 					while(list($ccontent,$count) = mysql_fetch_row($result)) {
 						$counts[ucfirst($ccontent)] = $count;
