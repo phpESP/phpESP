@@ -28,13 +28,13 @@ if(!defined('_FUNCS_HTML')) {
 	// return HTML format for an warning message
 	function mkwarn ($msg) {
 		global $cf_warn_color;
-		return('<font color="'. $cf_warn_color .'" size="+1">'. $msg ."</font>\n");
+		return("<font color=\"${cf_warn_color}\" size=\"+1\">${msg}</font>\n");
 	}
 
 	// return HTML format for an error message
 	function mkerror ($msg) {
 		global $cf_error_color;
-		return('<font color="'. $cf_error_color .'" size="+1">[ '. $msg ." ]</font>\n");
+		return("<font color=\"${cf_error_color}\" size=\"+1\">[ ${msg} ]</font>\n");
 	}
 
 	// return HTML format for a radio button

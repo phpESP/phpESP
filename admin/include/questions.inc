@@ -13,7 +13,7 @@
 	// q is form variable
 
 	// build array of question IDs
-	$sql = "SELECT id FROM survey_questions WHERE survey_id='${survey_id}' AND status='' AND type_id!=99 ORDER BY position";
+	$sql = "SELECT id FROM survey_questions WHERE survey_id='${survey_id}' AND status=0 AND type_id!=99 ORDER BY position";
 	$result = mysql_query($sql);
 	$total_num_q = mysql_num_rows($result);
 	$q_ids = array();

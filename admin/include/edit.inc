@@ -9,10 +9,8 @@
 
 	// clear the session
 	@session_destroy();
-	$curr_q=1;
 
-//	$sql = "SELECT * FROM surveys ORDER BY name";
-	$sql = "SELECT * FROM surveys ORDER BY id DESC";
+	$sql = "SELECT id,name,title FROM surveys WHERE status=0 ORDER BY id DESC";
 	$result = mysql_query($sql);
 
 ?>
@@ -25,29 +23,26 @@ Pick Survey to Edit
 		<td><b>Title</b></td>
 	</tr>
 <?php
-	while($survey = mysql_fetch_array($result)) {
-		// only include "inactive" surveys for editing!
-		if(!($survey["status"])) {
-
-			if($bg != "#ffffff")
-				$bg = "#ffffff";
-			else
-				$bg = "#eeeeee";
+	while(list($sid,$name,$title) = mysql_fetch_row($result)) {
+		if($bg != "#ffffff")
+			$bg = "#ffffff";
+		else
+			$bg = "#eeeeee";
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<td><?php echo($survey['id']); ?></td>
+		<td><?php echo($sid); ?></td>
 		<td>
-			<a href="<?php echo($ME); ?>?where=tab&tab=general&newid=<?php echo($survey['id']); ?>">
-				<?php echo($survey['name']); ?>
+			<a href="<?php echo("${ME}?where=tab&tab=general&newid=${sid}"); ?>">
+				<?php echo($name); ?>
 			</a>
 		</td>
 		<td>
-			<?php echo($survey['title']); ?>
+			<?php echo($title); ?>
 		</td>
 	</tr>
 <?php
-		}
 	}
+	mysql_free_result($result);
 ?>
 </table>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo("${ME}?where=manage"); ?>">Go back to Management Interface</a>

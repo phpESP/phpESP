@@ -58,11 +58,6 @@
 			mkerror("STATUS: ${old_status}");
 		}
 	}
-
-//	$sql = "SELECT * FROM surveys ORDER BY status,name";
-	$sql = "SELECT * FROM surveys ORDER BY id DESC";
-	$result = mysql_query($sql);
-
 ?>
 <h2>Survey Status</h2>
 <div align="left">
@@ -99,27 +94,30 @@ archived survey.</p>
 		<td>&nbsp;</td>
 	</tr>
 <?php
-	while($survey = mysql_fetch_array($result)) {
+	$sql = "SELECT id,name,title,status FROM surveys ORDER BY id DESC";
+	$result = mysql_query($sql);
+
+	while(list($sid,$name,$title,$status) = mysql_fetch_row($result)) {
 		$stat = 'Editing';
-		$test = '<a href="'. $PHP_SELF .'?where=status&op=t&sid='. $survey['id'] .'">Test</a>';
-		$act  = '<a href="'. $PHP_SELF .'?where=status&op=a&sid='. $survey['id'] .'">Activate</a>';
-		$done = '<a href="'. $PHP_SELF .'?where=status&op=e&sid='. $survey['id'] .'">End</a>';
-		$del  = '<a href="'. $PHP_SELF .'?where=status&op=d&sid='. $survey['id'] .'">Archive</a>';
+		$test = "<a href=\"${ME}?where=status&op=t&sid=${sid}\">Test</a>";
+		$act  = "<a href=\"${ME}?where=status&op=a&sid=${sid}\">Activate</a>";
+		$done = "<a href=\"${ME}?where=status&op=e&sid=${sid}\">End</a>";
+		$del  = "<a href=\"${ME}?where=status&op=d&sid=${sid}\">Archive</a>";
 		
-		if($survey['status'] & STATUS_DELETED) {
+		if($status & STATUS_DELETED) {
 			$stat = 'Archived';
 			$test = $act = $done = $del = '&nbsp;';
 			continue;
-		} elseif($survey['status'] & STATUS_DONE) {
+		} elseif($status & STATUS_DONE) {
 			$stat = 'Ended';
 			$test = $act = $done = '&nbsp;';
-		} elseif($survey['status'] & STATUS_ACTIVE) {
+		} elseif($status & STATUS_ACTIVE) {
 			$stat = 'Active';
 			$test = $act = '&nbsp;';
-		} elseif($survey['status'] & STATUS_TEST) {
+		} elseif($status & STATUS_TEST) {
 			$stat = 'Testing';
 			$done = '&nbsp;';
-			$test = '<a href="'. $PHP_SELF .'?where=status&op=m&sid='. $survey['id'] .'">Edit</a>';
+			$test = "<a href=\"${ME}?where=status&op=m&sid=${sid}\">Edit</a>";
 		} else {
 			$done = '&nbsp;';
 		}
@@ -130,9 +128,9 @@ archived survey.</p>
 			$bg = "#eeeeee";
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<td><?php echo($survey['id']); ?></td>
-		<td><?php echo($survey['name']); ?></td>
-		<td><?php echo($survey['title']); ?></td>
+		<td><?php echo($sid); ?></td>
+		<td><?php echo($name); ?></td>
+		<td><?php echo($title); ?></td>
 		<td><?php echo($stat); ?></td>
 		<td><?php echo($test); ?></td>
 		<td><?php echo($act); ?></td>
@@ -143,4 +141,4 @@ archived survey.</p>
 	}
 ?>
 </table>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo("${ME}?where=manage"); ?>">Go back to Management Interface</a>

@@ -34,10 +34,10 @@
 </td></tr></table>
 <?php
 		if($test) {
-			echo("<a href=\"$ME?where=test&sid=$sid\">Test Survey</a><br>\n");
+			echo("<a href=\"${ME}?where=test&sid=${sid}\">Test Survey</a><br>\n");
 		}
 ?>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo("${ME}?where=manage"); ?>">Go back to Management Interface</a>
 <?php
 		return;
 	}
@@ -45,8 +45,7 @@
 // No SurveyId specified, so build a table of
 // surveys to choose from ...
 
-//	$sql = "SELECT * FROM surveys ORDER BY name";
-	$sql = "SELECT * FROM surveys ORDER BY id DESC";
+	$sql = "SELECT id,name,title,status FROM surveys ORDER BY id DESC";
 	$result = mysql_query($sql);
 
 ?>
@@ -59,23 +58,24 @@ Pick Survey to View
 		<td><b>Title</b></td>
 	</tr>
 <?php
-	while($survey = mysql_fetch_array($result)) {
+	while(list($sid,$name,$title,$status) = mysql_fetch_row($result)) {
 		// only include active or done surveys viewing!
-		if($survey["status"] & (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED)) {
+		// this should be done in SQL
+		if($status & (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED)) {
 			if($bg != "#ffffff")
 				$bg = "#ffffff";
 			else
 				$bg = "#eeeeee";
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<td><?php echo($survey['id']); ?></td>
+		<td><?php echo($sid); ?></td>
 		<td>
-			<a href="<?php echo($ME); ?>?where=results&sid=<?php echo($survey['id']); ?>">
-				<?php echo($survey['name']); ?>
+			<a href="<?php echo("${ME}?where=results&sid=${sid}"); ?>">
+				<?php echo($name); ?>
 			</a>
 		</td>
 		<td>
-			<?php echo($survey['title']); ?>
+			<?php echo($title); ?>
 		</td>
 	</tr>
 <?php
@@ -83,4 +83,4 @@ Pick Survey to View
 	}
 ?>
 </table>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo("${ME}?where=manage"); ?>">Go back to Management Interface</a>

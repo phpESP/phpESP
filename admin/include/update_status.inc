@@ -13,7 +13,7 @@
 	$result = mysql_query($sql);
 	$num_s = mysql_num_rows($result);
 	for($i=0;$i<$num_s;$i++) {
-		$sids[] = mysql_result($result,$i,0);
+		array_push($sids,mysql_result($result,$i,0));
 	}
 	mysql_free_result($result);
 
