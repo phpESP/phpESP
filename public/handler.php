@@ -19,7 +19,8 @@
 		$referer = $HTTP_REFERER;
 
 	// show results instead of show survey
-	if($HTTP_POST_VARS['results']) {
+	// but do not allow getting results from URL or FORM
+	if($results && empty($HTTP_GET_VARS['results']) && empty($HTTP_POST_VARS['results'])) {
 		survey_results($sid);
 		return;
 	}
