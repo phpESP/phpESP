@@ -20,9 +20,10 @@
 	} else {
 		$fields = array('name','realm','title','subtitle','email','theme','thank_head','thank_body','info','public');
 	   	foreach ($fields as $f) {
-            if(isset($HTTP_POST_VARS[$f])) {
+            if(!empty($HTTP_POST_VARS[$f])) 
 	    	    $survey[$f] = DESLASH($HTTP_POST_VARS[$f]);
-            }
+            else
+                $survey[$f] = ''; 
         }
 	}
 ?>

@@ -9,10 +9,12 @@
 
 	if(empty($HTTP_SESSION_VARS['curr_q']))
 		$HTTP_SESSION_VARS['curr_q'] = 0;
+    if(empty($HTTP_POST_VARS['id']))
+        $HTTP_POST_VARS['id'] = 0;
 	
 	$curr_q =& $HTTP_SESSION_VARS['curr_q'];
 	$sid =& $HTTP_SESSION_VARS['survey_id'];
-	$id = intval($HTTP_POST_VARS['id']);
+   	$id = intval($HTTP_POST_VARS['id']);
 
 	// build array of question IDs
 	$sql = "SELECT id FROM question
@@ -39,7 +41,7 @@
 			$HTTP_POST_VARS['q'] = 1;
 	}
 	$curr_q = $HTTP_POST_VARS['q'];
-	if($curr_q)
+	if($curr_q && isset($q_ids[$curr_q-1]))
 		$curr_q_id = $q_ids[$curr_q-1];
 	else
 		$curr_q_id = 0;
@@ -70,7 +72,10 @@
 		}
 	} else {
 		foreach($fields as $f) {
-			$$f = DESLASH($HTTP_POST_VARS[$f]);
+            if(!empty($HTTP_POST_VARS[$f])) 
+			    $$f = DESLASH($HTTP_POST_VARS[$f]);
+            else
+                $$f = '';
 		}
 	}
 ?>
