@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-07 15:03-0500\n"
+"POT-Creation-Date: 2003-03-07 15:09-0500\n"
 "PO-Revision-Date: 2003-03-07 20:42+0100\n"
 "Last-Translator: Klaas Chielens <klaas@chielens.net>\n"
 "Language-Team: nl_NL <jflemer@alum.rpi.edu>\n"
@@ -1028,16 +1028,14 @@ msgid "Copy Survey"
 msgstr "Kopieer vragenlijst"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 61
-#, fuzzy
 msgid ""
 "Choose a survey of which to make a copy. The copy will have the same\n"
 "status of a newly created survey. You will be able to edit the\n"
 "survey, and will have to activate it before use."
 msgstr ""
-"\n"
-"Kies een vragenlijst om een kopie van te maken. De kopie heeft dezelfde \n"
-"status als een nieuwe vragenlijst. Je kan de vragenlijst veranderen\n"
-" en moet deze activeren voor gebruik."
+"Kies een vragenlijst om een kopie van te maken. De kopie heeft dezelfde "
+"status als een nieuwe vragenlijst. Je kan de vragenlijst veranderen "
+"en moet deze activeren voor gebruik."
 #
 # File: phpESP/admin/include/where/copy.inc, line: 69
 # File: phpESP/admin/include/where/export.inc, line: 33
