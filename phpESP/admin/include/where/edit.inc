@@ -7,6 +7,9 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
+
+    $bg = '';
+
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {

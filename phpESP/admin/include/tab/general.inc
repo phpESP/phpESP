@@ -19,9 +19,11 @@
 		mysql_free_result($result);
 	} else {
 		$fields = array('name','realm','title','subtitle','email','theme','thank_head','thank_body','info','public');
-		foreach ($fields as $f) {
-			$survey[$f] = DESLASH($HTTP_POST_VARS[$f]);
-		}
+	   	foreach ($fields as $f) {
+            if(isset($HTTP_POST_VARS[$f])) {
+	    	    $survey[$f] = DESLASH($HTTP_POST_VARS[$f]);
+            }
+        }
 	}
 ?>
 <?php echo(_('The information on this tab applies to the whole survey.
@@ -34,7 +36,7 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Name')); ?></b></td>
 		<td>
 			<input type="text" size="20" name="name" maxlength="20" value="<?php
-				echo(htmlspecialchars($survey['name'])); ?>">
+				if(isset($survey['name'])) echo(htmlspecialchars($survey['name'])); ?>">
 			<font color="#ff0000"><em>Required</em></font><br>
 			<?php echo(
 			_('Survey filename.') .' '.
@@ -66,7 +68,7 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Title')); ?></b></td>
 		<td>
 			<input type="text" size=60 maxlength=60 name="title" value="<?php
-				echo(htmlspecialchars($survey['title'])); ?>">
+				if(isset($survey['title'])) echo(htmlspecialchars($survey['title'])); ?>">
 			<font color="#ff0000"><em>Required</em></font><br>
 			<?php echo(_('Title of the survey.') .' '.
 			_('This appears at the top of every page of the survey.')
@@ -78,7 +80,7 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Subtitle')); ?></b></td>
 		<td>
 			<input type="text" size=60 maxlength=128 name="subtitle" value="<?php
-			echo(htmlspecialchars($survey['subtitle'])); ?>"><br>
+			if(isset($survey['subtitle'])) echo(htmlspecialchars($survey['subtitle'])); ?>"><br>
 			<?php echo(_('Subtitle of the survey.') .' '.
 			_('Appears below the title.') .' ('. _('free-form') .', '. _('including spaces'). ')'); ?>
 		</td>
@@ -87,7 +89,7 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Additional Info')); ?></b></td>
 		<td>
-			<textarea rows=5 cols=60 name="info" wrap="VIRTUAL"><?php echo($survey['info']); ?></textarea><br>
+			<textarea rows=5 cols=60 name="info" wrap="VIRTUAL"><?php if(isset($survey['info'])) echo($survey['info']); ?></textarea><br>
 			<?php echo(_('Text to be displayed on the survey before any fields.')); ?>
 			(<?php echo(_('ie. instructions, background info, etc.')); ?>)
 		</td>
@@ -96,7 +98,7 @@ edit individual fields.')); ?>
 	<tr valign="top">
 		<td><b><?php echo(_('Email')); ?></b></td>
 		<td>
-			<input type="text" name="email" size="30" value="<?php echo(htmlspecialchars($survey['email'])); ?>"><br>
+			<input type="text" name="email" size="30" value="<?php if(isset($survey['email'])) echo(htmlspecialchars($survey['email'])); ?>"><br>
 			<?php echo(_('Sends a copy of each submission to address (or leave blank for no email backup).')); ?></td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
@@ -125,7 +127,7 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Confirmation Heading')); ?></b></td>
 		<td>
 			<input type="text" name="thank_head" size="30" value="<?php
-				echo(htmlspecialchars($survey['thank_head'])); ?>"><br>
+				if(isset($survey['thank_head'])) echo(htmlspecialchars($survey['thank_head'])); ?>"><br>
 			<?php echo(_('Heading on the &quot;Confirmation&quot; page (appearing after a user completes a survey). This is displayed in bold.')); ?></td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
@@ -133,7 +135,7 @@ edit individual fields.')); ?>
 		<td><b><?php echo(_('Confirmation Text')); ?></b></td>
 		<td>
 			<textarea rows=5 cols=60 name="thank_body" wrap="VIRTUAL"><?php
-				echo($survey['thank_body']); ?></textarea><br>
+				if(isset($survey['thank_body'])) echo($survey['thank_body']); ?></textarea><br>
 			<?php echo(_('Body text on the &quot;Confirmation&quot; page. This is displayed below the Confirmation Heading.')); ?></td>
 	</tr>
 </table>
