@@ -304,7 +304,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				}
 				$content = array();
 				foreach($cids[0] as $cid) {
-					$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice']." WHERE id=${cid}";
+					$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE id=${cid}";
 					if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					array_push($content, mysql_result($result,0,0));
