@@ -18,14 +18,18 @@
 		if($test) {
 			echo("<p><b>Testing Survey...</b> (SID = $sid)</p>\n");
 		}
+		
 ?>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
 <?php
 		// check to see if in "cross analysis" mode
 		if(empty($qid))
-			survey_results($sid,$totals); // no, regular results
+			$ret = survey_results($sid,$totals); // no, regular results
 		else
-			survey_results($sid,$totals,$qid,$cids); // yes, cross analyze
+			$ret = survey_results($sid,$totals,$qid,$cids); // yes, cross analyze
+			
+		if($ret != '')
+			echo("<font color=\"$cf_error_color\">$ret</font>\n");
 ?>
 </td></tr></table>
 <?php
