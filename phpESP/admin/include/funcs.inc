@@ -29,7 +29,7 @@ if(!defined('_FUNCS')) {
 	// install get text .. or transparency
 	if(!extension_loaded("gettext")) {
 		@dl("gettext.so") or 
-			include("gettext.inc");
+			include($PIECES."/gettext".$EXT);
 	}
 
 	// return the number of sections in survey $sid
