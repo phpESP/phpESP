@@ -4,6 +4,39 @@ PHPESP CHANGE LOG
 
 v1.6.1 final ==> v1.7-dev
 =========================
+* FIXED surveys created in 1.5 fail to CSV exported properly
+  (Reported by Hakan Kuecuekyilmaz).
+* FIXED legend text on "change status page" (Reported by
+  Daniel Buchmann).
+* FIXED Section text set to required causes survey to be
+  invalid. (Based on patch by Paul Jackson - 
+  <beachbum_boy AT users.sourceforge.net>.
+* FIXED crosstab grand total incorrect.
+* FIXED questions that have the same name cause CSV export
+  to "explode".  Question now are forced to be unique.
+  (Reported by Paul Jackson - 
+  <beachbum_boy AT users.sourceforge.net>.
+* FIXED mysql create script failed on mysql >= 4. (Based on
+  patch by Kevin Hawkins - jedihawk AT users.sourceforge.net>).
+* FIXED permission problems in admin pages. (Reported by
+  Leonard Chan - <wotg AT users.sourceforge.net>).
+* FIXED single quotes in question names cause bogus question 
+  names. Reported by (Elie De Brauwer -
+  <amo-ej1 AT users.sourceforge.net>).
+* FIXED quotes in essay questions cause extra escapes.
+  (Reported by Elie De Brauwer - 
+  <amo-ej1 AT users.sourceforge.net>).
+* FIXED removed duplicate call to survey_generate_csv in
+  download.inc.  Based on patch from (Rodolfo Cossalter -
+  <rcoss at users.sourceforge.net>).
+* FIXED allow https urls.
+* FIXED groups limited to one assignment for access.
+* FIXED 0 interpreted as a non-response in Text questions.
+  (Reported by <ude.csum [AT] adin>).
+* NEW FEATURE: Prefix can be assigned to DB tables.
+* ADDED support for databases other than mySQL.  ADOdb now
+  required by and shipping with phpESP.
+* ADDED new css tags for error/info text.
 
 v1.6 final ==> v1.6.1 final
 ===========================
