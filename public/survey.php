@@ -1,5 +1,7 @@
 <?php
-# $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
 // Matthew Gregg
 // <greggmc at musc.edu>

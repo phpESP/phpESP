@@ -1,5 +1,7 @@
 <?php
-# $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
 // Written by James E Flemer
 // <jflemer@alum.rpi.edu>
@@ -115,7 +117,6 @@
 <?php if (!$embed) { ?>
 <html>
 <head>
-<!-- $Id$ -->
 <title><?php echo _('Account Request Form'); ?></title>
 </head>
 <body>

@@ -1,6 +1,8 @@
 <?php
 
-# $Id$
+/* $Id$ */
+
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
     if (isset($_SERVER))  $s =& $_SERVER;
     else                  $s =& $HTTP_SERVER_VARS;
