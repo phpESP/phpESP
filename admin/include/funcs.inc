@@ -242,6 +242,8 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 					$result = mysql_query($sql);
 					break;
 				case 'answers_multiple':
+					if(empty($val))
+						break;
 					foreach($val as $cid) {
 						if(ereg("other_([0-9]+)", $cid, $regs)) {
 							$i=$regs[1];
