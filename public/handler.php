@@ -82,7 +82,7 @@
 		}
 	}
 ?>
-<form method="post" action="<?php echo($PHP_SELF); ?>">
+<form method="post" name="survey" action="<?php echo($PHP_SELF); ?>">
 <input type="hidden" name="referer" value="<?php echo($referer); ?>">
 <input type="hidden" name="userid" value="<?php echo($userid); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
