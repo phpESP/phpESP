@@ -10,6 +10,7 @@ v1.5 final ==> v1.6 RC1
 * NEW FEATURE: Graphical interface for cross analysis.
 * NEW FEATURE: Response id, response time, and username included in CSV
   export.
+* NEW FEATURE: Self sign-up form for respondents.
 * ADDED a new default group 'auto' to database, used for self
   registered respondents.
 * ADDED two new fields to the 'access' table to enable navigation and
