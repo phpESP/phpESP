@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 09:44-0500\n"
+"POT-Creation-Date: 2003-03-05 14:31-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: James Flemer <jflemer@alum.rpi.edu>\n"
 "Language-Team: en <jflemer@alum.rpi.edu>\n"
@@ -59,10 +59,10 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_merge.inc, line: 42
 # File: phpESP/admin/include/function/survey_report.inc, line: 34
 # File: phpESP/admin/include/function/survey_report.inc, line: 45
-# File: phpESP/admin/include/function/survey_results.inc, line: 121
-# File: phpESP/admin/include/function/survey_results.inc, line: 134
-# File: phpESP/admin/include/function/survey_results.inc, line: 184
-# File: phpESP/admin/include/function/survey_results.inc, line: 189
+# File: phpESP/admin/include/function/survey_results.inc, line: 122
+# File: phpESP/admin/include/function/survey_results.inc, line: 135
+# File: phpESP/admin/include/function/survey_results.inc, line: 185
+# File: phpESP/admin/include/function/survey_results.inc, line: 190
 msgid "Error opening survey."
 msgstr ""
 #
@@ -73,45 +73,38 @@ msgid "Error opening surveys."
 msgstr ""
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 61
-# File: phpESP/admin/include/function/survey_results.inc, line: 189
+# File: phpESP/admin/include/function/survey_results.inc, line: 190
 msgid "No responses found."
 msgstr ""
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 61
-msgid "Total"
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 59
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 116
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 155
+msgid "TOTAL"
 msgstr ""
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 84
 # File: phpESP/admin/include/function/survey_report.inc, line: 45
-# File: phpESP/admin/include/function/survey_results.inc, line: 134
+# File: phpESP/admin/include/function/survey_results.inc, line: 135
 msgid "No questions found."
 msgstr ""
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 60
-# File: phpESP/admin/include/function/survey_render.inc, line: 342
-msgid "Page"
-msgstr ""
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 60
-# File: phpESP/admin/include/function/survey_render.inc, line: 342
-msgid "of"
-msgstr ""
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 65
-msgid "Questions marked with a"
+msgid "Page %d of %d"
 msgstr ""
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 66
-msgid "are required."
+msgid "Questions marked with a %s are required."
 msgstr ""
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 140
 # File: phpESP/admin/include/function/survey_report.inc, line: 67
 # File: phpESP/admin/include/function/survey_report.inc, line: 69
-# File: phpESP/admin/include/function/survey_results.inc, line: 290
-# File: phpESP/admin/include/function/survey_results.inc, line: 301
+# File: phpESP/admin/include/function/survey_results.inc, line: 291
+# File: phpESP/admin/include/function/survey_results.inc, line: 302
+# File: phpESP/admin/include/where/access.inc, line: 161
 # File: phpESP/admin/include/where/access.inc, line: 162
-# File: phpESP/admin/include/where/access.inc, line: 163
 # File: phpESP/admin/include/where/admdesigner.inc, line: 269
 # File: phpESP/admin/include/where/admdesigner.inc, line: 279
 # File: phpESP/admin/include/where/admdesigner.inc, line: 284
@@ -126,10 +119,10 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_render.inc, line: 144
 # File: phpESP/admin/include/function/survey_report.inc, line: 67
 # File: phpESP/admin/include/function/survey_report.inc, line: 69
-# File: phpESP/admin/include/function/survey_results.inc, line: 290
-# File: phpESP/admin/include/function/survey_results.inc, line: 303
+# File: phpESP/admin/include/function/survey_results.inc, line: 291
+# File: phpESP/admin/include/function/survey_results.inc, line: 304
+# File: phpESP/admin/include/where/access.inc, line: 161
 # File: phpESP/admin/include/where/access.inc, line: 162
-# File: phpESP/admin/include/where/access.inc, line: 163
 # File: phpESP/admin/include/where/admdesigner.inc, line: 269
 # File: phpESP/admin/include/where/admdesigner.inc, line: 279
 # File: phpESP/admin/include/where/admdesigner.inc, line: 284
@@ -166,14 +159,22 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 #
+# File: phpESP/admin/include/function/survey_render.inc, line: 342
+msgid "Page"
+msgstr ""
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 342
+msgid "of"
+msgstr ""
+#
 # File: phpESP/admin/include/function/survey_report.inc, line: 22
-# File: phpESP/admin/include/function/survey_results.inc, line: 109
+# File: phpESP/admin/include/function/survey_results.inc, line: 110
 msgid "Error system table corrupt."
 msgstr ""
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 22
-# File: phpESP/admin/include/function/survey_results.inc, line: 109
-# File: phpESP/admin/include/function/survey_results.inc, line: 145
+# File: phpESP/admin/include/function/survey_results.inc, line: 110
+# File: phpESP/admin/include/function/survey_results.inc, line: 146
 msgid "Table"
 msgstr ""
 #
@@ -184,8 +185,8 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_report.inc, line: 49
 # File: phpESP/admin/include/function/survey_report.inc, line: 55
 # File: phpESP/admin/include/function/survey_update.inc, line: 295
-# File: phpESP/admin/include/where/access.inc, line: 145
-# File: phpESP/admin/include/where/access.inc, line: 180
+# File: phpESP/admin/include/where/access.inc, line: 144
+# File: phpESP/admin/include/where/access.inc, line: 179
 # File: phpESP/admin/include/where/copy.inc, line: 66
 # File: phpESP/admin/include/where/edit.inc, line: 33
 # File: phpESP/admin/include/where/export.inc, line: 28
@@ -208,9 +209,9 @@ msgstr ""
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 57
 # File: phpESP/admin/include/where/access.inc, line: 102
-# File: phpESP/admin/include/where/access.inc, line: 150
-# File: phpESP/admin/include/where/access.inc, line: 185
-# File: phpESP/admin/include/where/access.inc, line: 216
+# File: phpESP/admin/include/where/access.inc, line: 149
+# File: phpESP/admin/include/where/access.inc, line: 184
+# File: phpESP/admin/include/where/access.inc, line: 215
 msgid "Public"
 msgstr ""
 #
@@ -230,11 +231,11 @@ msgstr ""
 msgid "Navigate Individual Respondent Submissions"
 msgstr ""
 #
-# File: phpESP/admin/include/function/survey_results.inc, line: 145
+# File: phpESP/admin/include/function/survey_results.inc, line: 146
 msgid "Error cross-analyzing. Question not valid type."
 msgstr ""
 #
-# File: phpESP/admin/include/function/survey_results.inc, line: 217
+# File: phpESP/admin/include/function/survey_results.inc, line: 218
 msgid "Cross analysis on QID:"
 msgstr ""
 #
@@ -283,7 +284,6 @@ msgid "Sorry, you need at least one answer option for this question type."
 msgstr ""
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 21
-# File: phpESP/admin/include/where/crosstab.inc, line: 17
 msgid ""
 "Error cross-tabulating. Please ensure that your column\n"
 "                                             and row selections are not of "
@@ -291,14 +291,12 @@ msgid ""
 msgstr ""
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 29
-# File: phpESP/admin/include/where/crosstab.inc, line: 25
 msgid ""
 "Error cross-tabulating. Please ensure you make both\n"
 "                                     a column and row selection."
 msgstr ""
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 34
-# File: phpESP/admin/include/where/crosstab.inc, line: 30
 msgid ""
 "Error cross-tabulating. You are attempting to cross analyse\n"
 "                             and tabulate at the same time. This is not "
@@ -336,7 +334,9 @@ msgid "Unauthorized"
 msgstr ""
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 78
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 167
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 88
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 226
 msgid ""
 "Incorrect User ID or Password, or your account has been disabled/expired."
 msgstr ""
@@ -358,22 +358,16 @@ msgstr ""
 msgid "Management Interface"
 msgstr ""
 #
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 167
-# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 226
-msgid "Incorrect User ID or Password, or your account has been disabled."
-msgstr ""
-#
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 253
-# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 312
 msgid "This account does not have permission"
 msgstr ""
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 255
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 314
 # File: phpESP/admin/include/tab/finish.inc, line: 45
-# File: phpESP/admin/include/where/access.inc, line: 139
-# File: phpESP/admin/include/where/access.inc, line: 173
-# File: phpESP/admin/include/where/access.inc, line: 233
+# File: phpESP/admin/include/where/access.inc, line: 138
+# File: phpESP/admin/include/where/access.inc, line: 172
+# File: phpESP/admin/include/where/access.inc, line: 232
 # File: phpESP/admin/include/where/admdesigner.inc, line: 316
 # File: phpESP/admin/include/where/admrespondent.inc, line: 255
 # File: phpESP/admin/include/where/copy.inc, line: 29
@@ -414,14 +408,12 @@ msgstr ""
 msgid "Go back to Management Interface"
 msgstr ""
 #
-# File: phpESP/admin/include/lib/esphtml.forms.inc, line: 142
-msgid "Submit"
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 312
+msgid "This account does not have permission %s."
 msgstr ""
 #
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 59
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 116
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 155
-msgid "TOTAL"
+# File: phpESP/admin/include/lib/esphtml.forms.inc, line: 142
+msgid "Submit"
 msgstr ""
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 81
@@ -477,8 +469,8 @@ msgid ""
 msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 36
-# File: phpESP/admin/include/where/access.inc, line: 146
-# File: phpESP/admin/include/where/access.inc, line: 181
+# File: phpESP/admin/include/where/access.inc, line: 145
+# File: phpESP/admin/include/where/access.inc, line: 180
 # File: phpESP/admin/include/where/copy.inc, line: 67
 # File: phpESP/admin/include/where/edit.inc, line: 34
 # File: phpESP/admin/include/where/export.inc, line: 29
@@ -493,6 +485,7 @@ msgstr ""
 # File: phpESP/admin/include/tab/general.inc, line: 39
 # File: phpESP/admin/include/tab/general.inc, line: 62
 # File: phpESP/admin/include/tab/general.inc, line: 70
+# File: phpESP/admin/include/tab/questions.inc, line: 116
 msgid "Required"
 msgstr ""
 #
@@ -513,8 +506,8 @@ msgid "alpha-numeric only"
 msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 47
-# File: phpESP/admin/include/where/access.inc, line: 148
-# File: phpESP/admin/include/where/access.inc, line: 183
+# File: phpESP/admin/include/where/access.inc, line: 147
+# File: phpESP/admin/include/where/access.inc, line: 182
 # File: phpESP/admin/include/where/copy.inc, line: 70
 # File: phpESP/admin/include/where/edit.inc, line: 36
 # File: phpESP/admin/include/where/export.inc, line: 31
@@ -531,8 +524,8 @@ msgid "User and Group that owns this survey."
 msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 67
-# File: phpESP/admin/include/where/access.inc, line: 147
-# File: phpESP/admin/include/where/access.inc, line: 182
+# File: phpESP/admin/include/where/access.inc, line: 146
+# File: phpESP/admin/include/where/access.inc, line: 181
 # File: phpESP/admin/include/where/copy.inc, line: 68
 # File: phpESP/admin/include/where/edit.inc, line: 35
 # File: phpESP/admin/include/where/export.inc, line: 30
@@ -554,12 +547,7 @@ msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 73
 # File: phpESP/admin/include/tab/general.inc, line: 82
-msgid "free-form"
-msgstr ""
-#
-# File: phpESP/admin/include/tab/general.inc, line: 73
-# File: phpESP/admin/include/tab/general.inc, line: 82
-msgid "including spaces"
+msgid "free-form, including spaces"
 msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 78
@@ -579,11 +567,9 @@ msgid "Additional Info"
 msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 90
-msgid "Text to be displayed on this survey before any fields."
-msgstr ""
-#
-# File: phpESP/admin/include/tab/general.inc, line: 91
-msgid "ie. instructions, background info, etc."
+msgid ""
+"Text to be displayed on this survey before any fields.\n"
+"(i.e. instructions, background info, etc.)"
 msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 96
@@ -613,7 +599,7 @@ msgstr ""
 # File: phpESP/admin/include/tab/general.inc, line: 106
 msgid ""
 "Heading (in bold) and body text for the &quot;Confirmation&quot; page\n"
-"\t\t\t\t\tdisplayed after a user completes this survey."
+"displayed after a user completes this survey."
 msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 108
@@ -665,7 +651,7 @@ msgid "----- Section Break -----"
 msgstr ""
 #
 # File: phpESP/admin/include/tab/order.inc, line: 142
-# File: phpESP/admin/include/where/access.inc, line: 165
+# File: phpESP/admin/include/where/access.inc, line: 164
 msgid "Remove"
 msgstr ""
 #
@@ -735,14 +721,10 @@ msgstr ""
 msgid "Precision"
 msgstr ""
 #
-# File: phpESP/admin/include/tab/questions.inc, line: 116
-msgid "Required?"
-msgstr ""
-#
 # File: phpESP/admin/include/tab/questions_options.inc, line: 32
 msgid ""
 "Enter the possible answers (if applicable). Enter\n"
-"<tt>!other</tt> on an line by itself to create a\n"
+"%s on an line by itself to create a\n"
 "fill-in-the-blank answer at the end of this question.\n"
 "Any blank lines will be suppressed."
 msgstr ""
@@ -756,7 +738,7 @@ msgid "Please select a group."
 msgstr ""
 #
 # File: phpESP/admin/include/where/access.inc, line: 100
-# File: phpESP/admin/include/where/access.inc, line: 213
+# File: phpESP/admin/include/where/access.inc, line: 212
 msgid "Private"
 msgstr ""
 #
@@ -776,16 +758,12 @@ msgid "Note"
 msgstr ""
 #
 # File: phpESP/admin/include/where/access.inc, line: 133
-msgid "You must use"
+msgid "You must use %s when using private surveys."
 msgstr ""
 #
-# File: phpESP/admin/include/where/access.inc, line: 136
-msgid "when using private surveys."
-msgstr ""
-#
-# File: phpESP/admin/include/where/access.inc, line: 149
-# File: phpESP/admin/include/where/access.inc, line: 152
-# File: phpESP/admin/include/where/access.inc, line: 184
+# File: phpESP/admin/include/where/access.inc, line: 148
+# File: phpESP/admin/include/where/access.inc, line: 151
+# File: phpESP/admin/include/where/access.inc, line: 183
 # File: phpESP/admin/include/where/admdesigner.inc, line: 217
 # File: phpESP/admin/include/where/admrespondent.inc, line: 193
 # File: phpESP/admin/include/where/copy.inc, line: 71
@@ -802,28 +780,28 @@ msgstr ""
 msgid "Group"
 msgstr ""
 #
-# File: phpESP/admin/include/where/access.inc, line: 153
+# File: phpESP/admin/include/where/access.inc, line: 152
 msgid "Max Responses"
 msgstr ""
 #
-# File: phpESP/admin/include/where/access.inc, line: 154
+# File: phpESP/admin/include/where/access.inc, line: 153
 msgid "Save/Restore"
 msgstr ""
 #
-# File: phpESP/admin/include/where/access.inc, line: 155
+# File: phpESP/admin/include/where/access.inc, line: 154
 msgid "Back/Forward"
 msgstr ""
 #
-# File: phpESP/admin/include/where/access.inc, line: 171
+# File: phpESP/admin/include/where/access.inc, line: 170
 # File: phpESP/admin/include/where/groups.inc, line: 91
 msgid "Add"
 msgstr ""
 #
-# File: phpESP/admin/include/where/access.inc, line: 214
+# File: phpESP/admin/include/where/access.inc, line: 213
 msgid "Make Public"
 msgstr ""
 #
-# File: phpESP/admin/include/where/access.inc, line: 217
+# File: phpESP/admin/include/where/access.inc, line: 216
 msgid "Make Private"
 msgstr ""
 #
@@ -993,9 +971,8 @@ msgstr ""
 msgid "Copy Survey"
 msgstr ""
 #
-# File: phpESP/admin/include/where/copy.inc, line: 60
+# File: phpESP/admin/include/where/copy.inc, line: 61
 msgid ""
-"\n"
 "Choose a survey of which to make a copy. The copy will have the same\n"
 "status of a newly created survey. You will be able to edit the\n"
 "survey, and will have to activate it before use."
@@ -1004,6 +981,7 @@ msgstr ""
 # File: phpESP/admin/include/where/copy.inc, line: 69
 # File: phpESP/admin/include/where/export.inc, line: 33
 # File: phpESP/admin/include/where/purge.inc, line: 54
+# File: phpESP/admin/include/where/status.inc, line: 102
 # File: phpESP/admin/include/where/status.inc, line: 140
 msgid "Status"
 msgstr ""
@@ -1041,6 +1019,28 @@ msgstr ""
 # File: phpESP/admin/include/where/purge.inc, line: 67
 # File: phpESP/admin/include/where/status.inc, line: 171
 msgid "Editing"
+msgstr ""
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 17
+# File: phpESP/admin/include/where/crosstab.inc, line: 25
+# File: phpESP/admin/include/where/crosstab.inc, line: 30
+msgid "Error cross-tabulating."
+msgstr ""
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 18
+msgid ""
+"Please ensure that your column and row selections are not of the same "
+"question."
+msgstr ""
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 26
+msgid "Please ensure you make both a column and row selection."
+msgstr ""
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 31
+msgid ""
+"You are attempting to cross analyze and tabulate at the same time. This is "
+"not possible!"
 msgstr ""
 #
 # File: phpESP/admin/include/where/debug_dump.inc, line: 3
@@ -1142,7 +1142,10 @@ msgid "Error exporting survey as:"
 msgstr ""
 #
 # File: phpESP/admin/include/where/groups.inc, line: 11
-msgid "to access this menu"
+# File: phpESP/admin/include/where/report.inc, line: 22
+# File: phpESP/admin/include/where/tab.inc, line: 75
+# File: phpESP/admin/include/where/tab.inc, line: 84
+msgid "to access this form"
 msgstr ""
 #
 # File: phpESP/admin/include/where/groups.inc, line: 21
@@ -1323,6 +1326,7 @@ msgid "Confirm New Password"
 msgstr ""
 #
 # File: phpESP/admin/include/where/purge.inc, line: 33
+# File: phpESP/admin/include/where/purge.inc, line: 96
 msgid "Purge Surveys"
 msgstr ""
 #
@@ -1346,17 +1350,8 @@ msgstr ""
 msgid "Clear Checkboxes"
 msgstr ""
 #
-# File: phpESP/admin/include/where/purge.inc, line: 96
-msgid "Purge"
-msgstr ""
-#
 # File: phpESP/admin/include/where/readme.inc, line: 17
 msgid "README not found."
-msgstr ""
-#
-# File: phpESP/admin/include/where/report.inc, line: 22
-# File: phpESP/admin/include/where/tab.inc, line: 75
-msgid "to access this form"
 msgstr ""
 #
 # File: phpESP/admin/include/where/report.inc, line: 35
@@ -1420,10 +1415,6 @@ msgstr ""
 msgid "Can not set survey status."
 msgstr ""
 #
-# File: phpESP/admin/include/where/status.inc, line: 102
-msgid "STATUS"
-msgstr ""
-#
 # File: phpESP/admin/include/where/status.inc, line: 108
 msgid "Survey Status"
 msgstr ""
@@ -1477,10 +1468,6 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/status.inc, line: 175
 msgid "Archive"
-msgstr ""
-#
-# File: phpESP/admin/include/where/tab.inc, line: 84
-msgid "to design forms"
 msgstr ""
 #
 # File: phpESP/admin/include/where/tab.inc, line: 90
@@ -1558,11 +1545,6 @@ msgstr ""
 msgid "An error occurred during upload.  Rows that failed are listed below."
 msgstr ""
 #
-# File: phpESP/admin/include/where/upload.inc, line: 67
-# File: phpESP/admin/include/where/upload.inc, line: 79
-msgid "%s"
-msgstr ""
-#
 # File: phpESP/admin/include/where/upload.inc, line: 86
 msgid ""
 "An error occurred during upload.  Please check the format of your text file."
@@ -1610,7 +1592,7 @@ msgid ""
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 141
+# File: phpESP/admin/test.php, line: 142
 msgid "%%%% Gettext Test Failed"
 msgstr "Passed"
 #
