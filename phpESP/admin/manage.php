@@ -65,6 +65,7 @@
 <html>
 <head>
 	<title><?php echo($ESPCONFIG['title']); ?></title>
+    <script type="text/javascript" src="<?php echo($ESPCONFIG['js_url']);?>default.js"></script>
 <?php
 	if(!empty($ESPCONFIG['style_sheet'])) {
 		echo("<link href=\"". $ESPCONFIG['style_sheet'] ."\" rel=\"stylesheet\" type=\"text/css\" />\n");
