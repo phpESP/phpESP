@@ -31,7 +31,7 @@
  *       </td>
  *   </tr>
  *   <tr><td colspan="2"><p align="right"><font size="-2">
- *       Copyright &copy; 2001. Speednaked.com</font></p></td></tr>
+ *       Copyright &copy; 2003. Speednaked.com</font></p></td></tr>
  *   </table>
  *   </body>
  *   </html>
