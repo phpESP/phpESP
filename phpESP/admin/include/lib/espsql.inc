@@ -12,7 +12,9 @@ if(!defined('_LIB_ESPSQL')) {
    Returns a string of a SQL fragment to klugde around
    mysql's lack of nested SELECTS. */
 function array_to_insql($array) {
-	return("IN (".ereg_replace("([^,]+)","'\\1'",join(",",$array)).")");
+	if (count($array))
+		return("IN (".ereg_replace("([^,]+)","'\\1'",join(",",$array)).")");
+	return 'IS NULL';
 }
 /* }}} */
 
@@ -20,17 +22,45 @@ function array_to_insql($array) {
    Returns the number of sections in the survey. */
 function survey_num_sections($sid) {
 	$sql = "
-SELECT COUNT(*)
+SELECT COUNT(*) + 1
 FROM question
 WHERE survey_id='${sid}' AND
   type_id='99' AND
   deleted='N'";
 	$result = mysql_query($sql);
-	$count = mysql_result($result,0,0) + 1;
+	$count = mysql_result($result,0,0);
 	mysql_free_result($result);
 	return($count);
 }
 /* }}} */
+
+/* {{{ proto array survey_get_sections(int survey_id)
+	Returns 2D-array with question id's of sections. */
+function survey_get_sections($sid, $field = 'id') {
+	if (empty($field))
+		$field = 'id';
+	
+	$sql = "SELECT $field, type_id FROM question
+			WHERE survey_id = $sid AND deleted = 'N'
+			ORDER BY position";
+	if (!($result = mysql_query($sql)))
+		return array();
+	$ret = array();
+	$sec = array();
+	while (list($key, $type) = mysql_fetch_row($result)) {
+		if ($type != 99) {
+			array_push($sec, $key);
+		} else {
+			array_push($ret, $sec);
+			$sec = array();
+		}
+	}
+	array_push($ret, $sec);
+	mysql_free_result($result);
+	return $ret;
+}
+/* }}} */
+			
 
 /* {{{ proto string survey_select_section_sql(int survey_id, int section)
    Returns a string of a SQL fragment to limit questions to
