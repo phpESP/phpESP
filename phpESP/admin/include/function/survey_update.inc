@@ -181,16 +181,34 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 					0,		// 0: unused
 					0,		// 1: Yes/No
 					20,		// 2: Text Box  (width)
-					5,		// 3: Essay Box (height)
-					10,		// 4: Radio Buttons
-					10,		// 5: Check Boxes
-					0,		// 6: Dropdown Box
-					0,		// 7: Rating
-					0,		// 8: Rate
+					60,		// 3: Essay Box (width)
+					0,		// 4: Radio Buttons
+					0,		// 5: Check Boxes (minumum)
+					0,		// 6: Dropdown Box (length)
+					5,		// 7: Rating (# cols)
+					5,		// 8: Rate (# cols)
 					0,		// 9: Date
-					10		// 10: Numeric
+					10		// 10: Numeric (digits)
 					); 
 				$HTTP_POST_VARS['length'] = $arr[$HTTP_POST_VARS['type_id']];
+			}
+
+			// defaults for precision field
+			if(empty($HTTP_POST_VARS['precise'])) {
+				$arr = array(
+					0,		// 0: unused
+					0,		// 1: Yes/No
+					0,		// 2: Text Box
+					5,		// 3: Essay Box (height)
+					10,		// 4: Radio Buttons
+					0,		// 5: Check Boxes (maximum)
+					0,		// 6: Dropdown Box
+					0,		// 7: Rating (use N/A)
+					0,		// 8: Rate (use N/A)
+					0,		// 9: Date
+					0		// 10: Numeric (decimal)
+					); 
+				$HTTP_POST_VARS['precise'] = $arr[$HTTP_POST_VARS['type_id']];
 			}
 
 			// UPDATE row in the DB for the current question
@@ -234,10 +252,17 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 			// UPDATE or INSERT rows for each of the question choices for this question
 			if($has_choices[$HTTP_POST_VARS['type_id']]) {
+				$cids = array();
+				$sql = "SELECT c.id FROM question q, question_choice c WHERE q.id=c.question_id AND q.survey_id=${survey_id}";
+				$result = mysql_query($sql);
+				for ($i = 0; $i < mysql_num_rows($result); ++$i) {
+					array_push($cids, mysql_result($result, $i, 0));
+				}
+				mysql_free_result($result);
 				$count = 0;
 				for($i=1;$i<$HTTP_POST_VARS['num_choices']+1;$i++) {
 					$sql='';
-					$choice_id      = XADDSLASHES($HTTP_POST_VARS["choice_id_${i}"]);
+					$choice_id      = intval($HTTP_POST_VARS["choice_id_${i}"]);
 					$choice_content = XADDSLASHES($HTTP_POST_VARS["choice_content_${i}"]);
 					// each of the submitted choices
 					if($choice_id=='' && $choice_content!='') {
@@ -247,7 +272,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 					} elseif($choice_id!='' && $choice_content=='') {
 						// delete (old)
 						$sql = "DELETE FROM question_choice WHERE id='${choice_id}'";
-					} elseif($choice_id!='' && $choice_content!='') {
+					} elseif($choice_id!='' && $choice_content!='' && in_array($choice_id, $cids)) {
 						// update (old)
 						$sql = "UPDATE question_choice SET content='${choice_content}' WHERE id='${choice_id}'";
 						++$count;
