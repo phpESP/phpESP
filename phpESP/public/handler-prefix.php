@@ -42,7 +42,7 @@ if(!defined('AUTHHAND-PREFIX')) {
 	define('AUTHHAND-PREFIX', TRUE);
 	// undefine('AUTHHAND-OK');
 
-	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini');
+	require('/usr/local/lib/php/contrib/phpESP/admin/phpESP.ini.php');
 	require($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 
 	$GLOBALS['errmsg'] = '';

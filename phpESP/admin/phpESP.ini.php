@@ -195,13 +195,13 @@ if (!defined('STATUS_ACTIVE')) {
 
 if (!file_exists($ESPCONFIG['include_path'].'/funcs'.$ESPCONFIG['extension'])) {
     echo('<b>'. _('I can not find the phpESP includes directory.
-			Please check your phpESP.ini file to ensure that all paths are set correctly.') .
+			Please check your phpESP.ini.php file to ensure that all paths are set correctly.') .
 			'</b>');
     exit;
 }
 if (!file_exists($ESPCONFIG['survey_css'])) {
 	echo('<b>'. _('I can not find the phpESP css directory.
-			Please check your phpESP.ini file to ensure that the
+			Please check your phpESP.ini.php file to ensure that the
 			&quot;survey_css&quot; path is set correctly.') . '</b>');
 }
 
