@@ -299,7 +299,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 // -------------------------------- response_rank --------------------------------
 		case 'response_rank':
 			if($tid == 8) { //Rank
-				$sql = "SELECT C.content, AVG(A.rank) AS average
+				$sql = "SELECT C.content, AVG(A.rank+1) AS average
 						  FROM question_choice C, ${table} A
 						 WHERE C.question_id='${qid}' AND
     						   A.question_id='${qid}' AND
