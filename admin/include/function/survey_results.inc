@@ -217,7 +217,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		case 'response_single':
                 $question_content=array();
                 $counts1=array();
-                $sql = "SELECT content FROM question_choice WHERE question_id='${qid}'";
+                $sql = "SELECT content FROM question_choice WHERE question_id='${qid}' ORDER BY id";
                 if($result = mysql_query($sql)){
 	               	while (list($row) = mysql_fetch_row($result)){
         	               	array_push($question_content , $row);
