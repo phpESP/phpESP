@@ -54,7 +54,7 @@
 					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
 						$err = true;
 					else
-						clear_results($sid);
+						response_delete_all($sid);
 					break;
 				case 'a':	// activate
 					/* only the owner+stauts or a group editor+status */
@@ -67,7 +67,7 @@
 					if($old_status & ( STATUS_DELETED | STATUS_DONE ) )
 						$err = true;
 					else
-						clear_results($sid);
+						response_delete_all($sid);
 					break;
 				case 'e':	// End
 					/* only the owner+stauts or a group editor+status */
