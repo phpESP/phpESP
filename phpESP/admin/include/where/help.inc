@@ -347,7 +347,8 @@
 	</li>
 	<li><b>Tab Delimited, Data File Format:</b>
 		<p>The tab delimited file should contain rows of text, terminated by a newline
-		character(\n), with each field in the rows delimited by the tab character(\t).</p>
+		character(\n), with each field in the rows delimited by the tab character(\t).
+		Each of the examples below should be a single row.</p>
 		<ul>
 		<li><b>Respondent Format:</b>
 		<p>Username, Password and Group are required fields</p>
@@ -360,7 +361,8 @@
 		<li><b>Designer Format:</b><p\>
 		<p>Username, Password and Group are required fields</p>
 			<b>Field Order:</b>
-			<p><tt>username\tpassword\tgroup\tfname\tlname\temail\tdesign\tstatus\texport\tgroupedit\tgroupadmin\tgrouprespondents\texpiration\tdisabled</tt></p>
+			<p><tt>username\tpassword\tgroup\tfname\tlname\temail\t
+design\tstatus\texport\tgroupedit\tgroupadmin\tgrouprespondents\texpiration\tdisabled</tt></p>
 			<b>Example Row:</b>
 			<p><tt>looser\tsecret\teditors\tJohn\tSmith\tsmith@yahoo.com\tY\tN\tY\tN\Y\tN\t20031122\tY\n</tt></p>
 
@@ -374,43 +376,43 @@
 </li>
 
 <li><h3><a name="analysis">Cross Analysis</h3></a>
-<font size="-1">To cross analyse results from a survey choose a question by
-    selecting the appropriate radio button to the left of the question. You must
-    then choose one or more of the question's choices by selecting the appropriate
-    checkbox under the chosen question. This will display the entire results of
-    this survey based on the criteria you have chosen. At present, Cross Analysis
-    is limited to single questions. </font>
-  <p><img src="<?php echo($ESPCONFIG['image_url']);?>cross_analysis.jpg" width="700" height="262"><br>
-    <br>
-    <font size="-1">This will produce the following result:</font><br>
-    <br>
-    <img src="<?php echo($ESPCONFIG['image_url']);?>cross_analysis_result.jpg" width="700" height="284"><br>
-    <br>
-    <font size="-1">The resulting display shows all the responses where question 1 choice was
-    &quot;Yes&quot;.</font>
+	To cross analyse results from a survey choose a question by
+	selecting the appropriate radio button to the left of the question. You must
+	then choose one or more of the question's choices by selecting the appropriate
+	checkbox under the chosen question. This will display the entire results of
+	this survey based on the criteria you have chosen. At present, Cross Analysis
+	is limited to single questions.
+	<p><img src="<?php echo($ESPCONFIG['image_url']);?>cross_analysis.jpg" width="700" height="262"><br>
+	<br>
+	This will produce the following result:<br>
+	<br>
+	<img src="<?php echo($ESPCONFIG['image_url']);?>cross_analysis_result.jpg" width="700" height="284"><br>
+	<br>
+	The resulting display shows all the responses where question 1 choice was
+	&quot;Yes&quot;.
 <p><a href="#top">Back to Top</a></p>
 </li>
 <li><h3><a name="tabulation">Cross Tabulation</h3></a>
-<font size="-1">Cross tabulation returns a result set based on a two question
-    selection. This is achieved by choosing which question's options will form
-    the rows or columns for the cross tabulated result set. Selecting a radio
-    button in the red box to the right of the question indicates the row selection
-    and selecting a radio button in the blue box to the right of the question
-    indicates the column selection. </font></p>
-  <p><img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate.jpg" width="700" height="273"></p>
-  <p><font size="-1">In the above example we have chosen to cross tabulate question1 and question
-    4 where question 1 is the row selection and question 4 is the column selection.
-    This returns the following result set:</font> <br>
-    <br>
-    <img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate_result1.jpg" width="700" height="187"><br>
-    <font size="-1">Alternatevily we can cross tabulate the same 2 questions but set question
-    4 as the row selection and question 1 as the column selection as shown below:</font><br>
-    <br>
-    <img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate2.jpg" width="700" height="271"><br>
-    <br>
-    <font size="-1">This produces the following result set:</font><br>
-    <br>
-    <img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate_result2.jpg" width="700" height="274"> </p>
+	Cross tabulation returns a result set based on a two question
+	selection. This is achieved by choosing which question's options will form
+	the rows or columns for the cross tabulated result set. Selecting a radio
+	button in the red box to the right of the question indicates the row selection
+	and selecting a radio button in the blue box to the right of the question
+	indicates the column selection.</p>
+	<p><img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate.jpg" width="700" height="273"></p>
+	<p>In the above example we have chosen to cross tabulate question1 and question
+	4 where question 1 is the row selection and question 4 is the column selection.
+	This returns the following result set:<br>
+	<br>
+	<img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate_result1.jpg" width="700" height="187"><br>
+	Alternatively we can cross tabulate the same 2 questions but set question
+	4 as the row selection and question 1 as the column selection as shown below:<br>
+	<br>
+	<img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate2.jpg" width="700" height="271"><br>
+	<br>
+	This produces the following result set:<br>
+	<br>
+	<img src="<?php echo($ESPCONFIG['image_url']);?>cross_tabulate_result2.jpg" width="700" height="274"> </p>
 <p><a href="#top">Back to Top</a></p>
 </li>
 </ul>
