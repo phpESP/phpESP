@@ -6,10 +6,6 @@
    It provides an easier means of disabling it by commenting out the require line in results.inc
    and the function call (cross_tabulation()) plus it avoids cluttering survey_results...
 */
-if (!defined('ESP_BASE'))
-                define('ESP_BASE', dirname(__FILE__) . '/../');
-
-        require_once(ESP_BASE . '/admin/include/lib/esphtml.forms.inc');
 
 /* {{{ proto void cross_tabulation (integer sid, integer qidc, integer qidr, integer qid, array cids)
   Builds HTML to allow for cross tabulation reporting. */
