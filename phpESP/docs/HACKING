@@ -1,0 +1,62 @@
+===================================
+HACKING PHPESP: A Developer's Guide
+===================================
+
+This document contains a guide to the phpESP source code, and how to
+get started as a developer.
+
+
+OBTAINING PHPESP FROM CVS
+-------------------------
+
+phpESP comes in three flavors: there are stable release versions,
+development (or beta) release versions, and the phpESP cvs tree.  Most
+developers work directly with the most current sources in the cvs
+tree.  In order to check out a working copy from the cvs tree, you must
+have a cvs client.  You can login to the cvs server as "anonymous" to
+get read-only access with the following command (all one line):
+
+  $ cvs -d :pserver:anonymous@cvs.phpesp.sourceforge.net:/cvshome/phpesp
+        login
+
+The password is empty, so just press enter at the prompt.  Once you are
+logged in, you can obtain a working copy of phpESP with the following
+command (also all on one line):
+
+  $ cvs -d :pserver:anonymous@cvs.phpesp.sourceforge.net:/cvshome/phpesp
+        co phpESP
+
+This will create a directory called "phpESP", which will contain the 
+current sources.  You may work with these files by whatever means you
+wish.  You may also use cvs commands within this directory to interact
+with the cvs tree.  For example, to generate a patch including all
+changes you have made to the source locally, you would execute (from
+the "phpESP" directory):
+
+  $ cvs diff -u
+
+The output, called a unified diff, is the preferred format for sending
+patches to the development team.  If you are not familiar with cvs, you
+may read more about it at the following web site:
+
+  http://www.cvshome.org/
+
+
+SOURCE CODE LAYOUT
+------------------
+
+
+CODING STANDARDS
+----------------
+
+
+ETIQUETTE
+---------
+
+
+BECOMING AN "OFFICIAL" DEVELOPER
+--------------------------------
+
+
+----
+$Id$
