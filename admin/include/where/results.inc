@@ -48,10 +48,13 @@
 		if(!empty($HTTP_GET_VARS['totals']))
 			$totals = intval($HTTP_GET_VARS['totals']);
 		$qid = '';
+        $cids = '';
 		if(!empty($HTTP_GET_VARS['qid']))
 			$qid = intval($HTTP_GET_VARS['qid']);
+        if(!empty($HTTP_GET_VARS['cids']))
+            $cids = XADDSLASHES($HTTP_GET_VARS['cids']);
 		$ret = survey_results($sid, $precision, $totals, $qid,
-			XADDSLASHES($HTTP_GET_VARS['cids']));
+			$cids);
 		if(!empty($ret))
 			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
 ?>

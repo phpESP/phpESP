@@ -19,6 +19,7 @@ if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	Returns empty string on sucess, else returns an error
 	string. */
 function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '') {
+	$bg = '';	
 	if(empty($precision))	$precision  = 1;
 	if(empty($showTotals))	$showTotals = 1;
 
@@ -298,7 +299,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 // -------------------------------- response_rank --------------------------------
 		case 'response_rank':
 			if($tid == 8) { //Rank
-				$sql = "SELECT C.content, AVG(A.rank+1) AS average
+				$sql = "SELECT C.content, AVG(A.rank) AS average
 						  FROM question_choice C, ${table} A
 						 WHERE C.question_id='${qid}' AND
     						   A.question_id='${qid}' AND
