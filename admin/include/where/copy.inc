@@ -64,8 +64,8 @@ survey, and will have to activate it before use.')); ?>
 		<th align="left"><?php echo(_('ID')); ?></th>
 		<th align="left"><?php echo(_('Name')); ?></th>
 		<th align="left"><?php echo(_('Title')); ?></th>
-		<th align="left"><?php echo(_('Status')); ?></th>
 		<th align="left"><?php echo(_('Owner')); ?></th>
+		<th align="left"><?php echo(_('Status')); ?></th>
 	</tr>
 <?php
 	while(list($sid,$name,$title,$status,$owner) = mysql_fetch_row($result)) {
@@ -86,10 +86,10 @@ survey, and will have to activate it before use.')); ?>
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($sid); ?></td>
-		<td><?php echo($name); ?></td>
-		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=copy&sid=${sid}"); ?>"><?php echo($title); ?></a></td>
-		<td><?php echo($stat); ?></td>
+		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=copy&sid=${sid}"); ?>"><?php echo($name); ?></a></td>
+		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
+		<td><?php echo($stat); ?></td>
 	</tr>
 <?php
 	}
