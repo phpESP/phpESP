@@ -9,3 +9,6 @@ admin/include/funcs.inc:108:check_required()
 * Data export files are dumped in /tmp and owned by the
   webserver (may be changed in admin/include/espauth-default.inc
   line 170)
+
+Please report any new bugs using the bug report form:
+  http://sourceforge.net/tracker/?func=add&group_id=8956&atid=108956
