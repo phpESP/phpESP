@@ -1,0 +1,49 @@
+p h p E S P   (php Easy Survey Package)
+============================================================
+$Id$
+
+v1.4 beta 3 ==> v1.4 final
+==========================
+* NEW FEATURE: Automatic survey template added. This lets
+  you use a survey without having to create a HTML template
+  file yourself and insert the PHP tag.
+* NEW FEATURE: Added CSV (comma separated values) download
+  of collected data.
+* NEW FEATURE: Added LDAP authentication.
+  (Christopher Zorn <zorncj at musc.edu>)
+* FIXED problems with newlines and quotes in CSV data files.
+* FIXED inclusion of "Other" data in CSV files.
+* FIXED problem with zero (0) in req'd numeric fields.
+* FIXED namespace conflict on temporary variables. Was
+  causing Language preferance to be ignored and results to be
+  improperly stored.
+* CHANGED name from 'phpESP -- Easy Survey Package' to
+  'phpESP -- php Easy Survey Package' (for TM# 1,721,621)
+* LANGUAGE: Translation into Danish (da)
+  (Henrik <henrik at hornhaver.dk>)
+* LANGUAGE: Translation into French (fr)
+  (Cedric Levasseur <cedric.levasseur at linux-at-business.com>,
+  Olivier Sevin <cjanson at ifrance.com>)
+
+v1.4 beta 2 ==> v1.4 beta 3
+===========================
+* NEW FEATURE: Section Text, allows freeform text to be
+  placed inside a survey. (REQ: Database update!)
+  (Kon Angelopoulos <angekgabiel at iprimus.com.au>)
+* NEW FEATURE: Added a configuration variable to globally
+  disable email functions.
+* LANGUAGE: Translation into German (de)
+  (<flo.bee at web.de>)
+* LANGUAGE: Translation into Dutch (nl)
+  (Sipke Overbeeke <sipke at 8a.nl>)
+
+v1.4 beta 1 ==> v1.4 beta 2 (not released)
+==========================================
+* CHANGED results to store IP address if no other ID
+  available.
+* FIXED status page to omit archived surveys.
+* FIXED more spelling mistakes.
+
+v1.3 final ==> v1.4 beta 1
+==========================
+* FIXED spelling mistakes.
