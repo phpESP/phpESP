@@ -9,16 +9,18 @@
 
 // void		mkwarn(char *warning);
 // void		mkerror(char *error);
+
 // void		mkradio(char *name, char *value);
 // void		mkcheckbox(char *name, char *value);
 // void		mktext(char *name);
 // void		mktextarea(char *name, int rows, int cols, bool wordwrap);
 // void		mkselect(char *name, char *options[]);
-// void		mkrespercent(int[char*] counts, int total);
-// void		mkresrank(int[char*] counts, int total);
-// void		mkrescount(int[char*] counts, int total);
-// void		mkreslist(int[char*] counts, int total);
-// void		mkresavg(int[char*] counts, int total);
+
+// void		mkrespercent(int[char*] counts, int total, bool showTotals);
+// void		mkresrank(int[char*] counts, int total, bool showTotals);
+// void		mkrescount(int[char*] counts, int total, bool showTotals);
+// void		mkreslist(int[char*] counts, int total, bool showTotals);
+// void		mkresavg(int[char*] counts, int total, bool showTotals);
 
 if(!defined('_FUNCS_HTML')) {
 	define('_FUNCS_HTML',TRUE);
@@ -196,12 +198,13 @@ if(!defined('_FUNCS_HTML')) {
 	// build HTML showing LIST results
 	function mkreslist($counts,$total,$use_totals) {
 ?>
-<table border="1">
-<?php while(list(,$text) = each($counts)) { ?>
-	<tr>
-		<td><?php echo($text); ?></td>
-	</tr>
-<? } ?>
+<table border="1" cellpadding="1">
+	<tr><th>#</th><th>Response</th></tr>
+<?php
+	while(list($text,$num) = each($counts)) {
+		echo("<tr><th>$num</th><td>$text</td></tr>\n");
+	}
+?>
 </table>
 <?php
 	} // end function mkreslist($counts,$total)
