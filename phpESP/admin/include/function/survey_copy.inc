@@ -36,7 +36,8 @@ function survey_copy($sid) {
     $result = execute_sql($sql);
 	while($result->fields[0] > 0) {
         $result->MoveNext();
-		$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=". _addslashes($survey['name']) . ++$i;
+		$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=". _addslashes($survey['name'].++$i);
+        $result = execute_sql($sql);
 	}
 	if($i)
 		$survey['name'] .= $i;
