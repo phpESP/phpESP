@@ -39,6 +39,12 @@ if(!defined('_FUNCS_RENDER')) {
 		if(mysql_num_rows($questions_result) < 1)
 			return(1);
 
+	// check to see if there are required questions
+		$sql = "SELECT COUNT(*) FROM survey_questions ";
+		$sql .= section_range_sql($sid,$section);
+		$sql .= "AND required='yes'";
+		$has_required = mysql_result(mysql_query($sql),0,0);		
+
 	// find out what question number we are on $i
 		$i=0;
 		for($j=1;$j<$section;$j++) {
@@ -54,7 +60,10 @@ if(!defined('_FUNCS_RENDER')) {
 <?php } ?>
 <blockquote><?php echo($survey["info"]); ?></blockquote>
 <blockquote><?php echo($message); ?></blockquote>
-<p><font size="-1">Questions marked with a <font color="#FF0000">*</font> are required.</font></p>
+<?php if($has_required) { ?>
+	<p><font size="-1">Questions marked with a 
+	<font color="#FF0000">*</font> are required.</font></p>
+<?php } ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <?php
 
