@@ -291,6 +291,95 @@ function response_select($sid, $rid) {
 }
 /* }}} */
 
+function response_select_hrm($sid, $rid) {
+        $values = array();
+
+        // --------------------- response_bool ---------------------
+        $sql = "SELECT q.id,q.content,a.choice_id
+        FROM response_bool a, question q
+        WHERE a.response_id='${rid}' AND a.question_id=q.id";
+        $result = mysql_query($sql);
+        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
+                $values["$qid"]=$content." : ".$cid;
+        }
+        mysql_free_result($result);
+
+        // --------------------- response_single ---------------------
+        $sql = "SELECT q.id,q.content,c.content
+        FROM response_single a, question q, question_choice c
+        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
+        $result = mysql_query($sql);
+        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
+                $values["$qid"]=$content." : ".$cid;
+        }
+        mysql_free_result($result);
+
+        // --------------------- response_multiple ---------------------
+        $sql = "SELECT q.id,q.content,c.content,a.choice_id
+        FROM response_multiple a, question q, question_choice c
+        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
+        ORDER BY a.question_id";
+        $result = mysql_query($sql);
+        while(list($qid,$qcontent,$rcontent,$cid) = mysql_fetch_row($result)) {
+                $strqn = "${qid}_${cid}";
+                $str = "${qcontent} : ${rcontent}";
+                $qid = $strqn;
+                $values[$qid] = $str;
+        }
+        mysql_free_result($result);
+
+
+        // --------------------- response_rank ---------------------
+        $sql = "SELECT q.id,q.content,c.content,a.rank,a.choice_id
+        FROM response_rank a, question q, question_choice c
+        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
+        $result = mysql_query($sql);
+        while(list($qid,$content,$cid,$rank,$choice_id) = mysql_fetch_row($result)) {
+                 if($cid) {
+                        $str1 = "${qid}_${choice_id}";
+
+                        $qid = $str1;
+                }
+                $values[$qid] = $content." : ".$cid." : ".$rank;
+        }
+        mysql_free_result($result);
+
+        // --------------------- response_text ---------------------
+        $sql = "SELECT q.id,q.content,a.response
+        FROM response_text a, question q
+        WHERE a.response_id='${rid}' AND a.question_id=q.id";
+        $result = mysql_query($sql);
+        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
+                $values["$qid"]=$content." : ".$cid;
+        }
+        mysql_free_result($result);
+
+        // --------------------- response_other ---------------------
+        $sql = "SELECT q.id,q.content,c.content,a.response
+        FROM response_other a, question q, question_choice c
+        WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
+        ORDER BY a.question_id";
+        $result = mysql_query($sql);
+        while(list($qid,$content,$cid,$answer) = mysql_fetch_row($result)) {
+                $values["${qid}_${cid}"]=$content." : ".$answer;
+        }
+        mysql_free_result($result);
+
+        // --------------------- response_date ---------------------
+        $sql = "SELECT q.id,q.content,a.response
+        FROM response_date a, question q
+        WHERE a.response_id='${rid}' AND a.question_id=q.id";
+        $result = mysql_query($sql);
+        while(list($qid,$content,$cid) = mysql_fetch_row($result)) {
+                $values["$qid"]=$content." : ".$cid;
+        }
+        mysql_free_result($result);
+
+        // --------------------- return ---------------------
+        ksort($values);
+        return($values);
+}
+
 /* {{{ proto array response_select_named(int survey_id, int response_id)
    Returns the values from the specific response in a sorted
    associative array indexed by question_id. */
@@ -435,7 +524,11 @@ function response_send_email($sid, $rid) {
 	$body .= "response.id = ${rid}\n";
 	$body .= "response.username = ${userid}\n";
 
-	$answers = response_select($sid,$rid);
+	//lets check to see if user wants human readable email
+	if ($GLOBALS['ESPCONFIG']['human_read_mail'])
+		$answers = response_select_hrm($sid, $rid);
+	else
+		$answers = response_select($sid,$rid);
 
 	$headers = "From: \"phpESP ".
 		addslashes($GLOBALS['ESPCONFIG']['VERSION']) .
