@@ -2,6 +2,14 @@
 PHPESP CHANGE LOG
 =================
 
+v1.7-dev final ==> v1.7-rc1
+=========================
+* FIXED !other Checkbox questions not recording.
+* FIXED bad javascript path in head.inc. (Reported by
+  <beachbum_boy AT users.sourceforge.net>).
+* ADDED a check for unsupported web server 
+  configuration(sapi, cgi, etc..) 
+
 v1.6.1 final ==> v1.7-dev
 =========================
 * FIXED invalid CSS comments.
