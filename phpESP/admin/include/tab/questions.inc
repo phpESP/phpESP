@@ -25,14 +25,16 @@
 
 	// build array of question IDs
 	$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-	WHERE survey_id='$sid' AND deleted='N' AND type_id != 99
+	WHERE survey_id=$sid AND deleted='N' AND type_id != 99
 	ORDER BY position";
-	$result = mysql_query($sql);
-	$total_num_q = mysql_num_rows($result);
+	$result = execute_sql($sql);
+	$total_num_q = record_count($result);
 	$q_ids = array();
-	while(list($qi) = mysql_fetch_row($result))
+	while(list($qi) = fetch_row($result)) {
+        $result->MoveNext();
 		array_push($q_ids, $qi);
-	mysql_free_result($result);
+    }
+	db_close($result);
 
 	// update failed, stay on same question
 	if(!$updated || isset($HTTP_POST_VARS['extra_choices'])) {
@@ -57,10 +59,10 @@
 	if($updated && $total_num_q > 0 && $curr_q) {
 		// survey questions exist already
 		// load values from DB
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id='${curr_q_id}' AND deleted='N' ORDER BY position";
-		$result = mysql_query($sql);
-		$question = mysql_fetch_array($result,MYSQL_ASSOC);
-		mysql_free_result($result);
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id=${curr_q_id} AND deleted='N' ORDER BY position";
+		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+		$question = fetch_row($result);
+		db_close($result);
 		foreach($fields as $f) {
 			$HTTP_POST_VARS[$f] =& $question[$f];
 		}
@@ -125,9 +127,10 @@ function clearTextInputs() {
 			<td align="center"><?php
 				if($updated && empty($HTTP_POST_VARS['type_id'])) $HTTP_POST_VARS['type_id'] = 2;
 				$sql = 'SELECT id, type FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' WHERE id != 99';
-				$result = mysql_query($sql);
+				$result = execute_sql($sql);
 				$arr = array();
-				while(list($key, $val) = mysql_fetch_row($result)) {
+				while(list($key, $val) = fetch_row($result)) {
+                    $result->MoveNext();
 					$arr["$key"] = _($val);
 				}
 				echo(mkselect('type_id',$arr));
@@ -156,11 +159,12 @@ function clearTextInputs() {
 	</table>
 <?php
 	// has answer options ... so show that part of the form
-	if($curr_q == 0 ||
-            empty($HTTP_POST_VARS['type_id']) ||
-			mysql_result(mysql_query("SELECT has_choices
+    $sql = "SELECT has_choices
 					FROM ".$GLOBALS['ESPCONFIG']['question_type_table']."
-					WHERE id='" . $HTTP_POST_VARS['type_id'] ."'"),0,0)=='Y') {
+        WHERE id=" . $HTTP_POST_VARS['type_id'];
+    $choices = get_one($sql);
+	if($curr_q == 0 ||
+            empty($HTTP_POST_VARS['type_id']) || $choices =='Y') {
 		include($GLOBALS['ESPCONFIG']['include_path']."/tab/questions_options".$GLOBALS['ESPCONFIG']['extension']);
 	}
 ?>

@@ -10,93 +10,108 @@
 /* {{{ proto void add_squotes(string* value, string key)
    Adds single quotes to value. */
 function add_squotes (&$val, $key) {
-	$val = "'" . addcslashes($val,"\\'") . "'";
+	$val = _addslashes($val);
 }
 /* }}} */
 
 /* {{{ proto bool survey_copy(int survey_id)
    Creates an editable copy of a survey. */
 function survey_copy($sid) {
-	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
-	$result = mysql_query($sql);
-	if(mysql_num_rows($result) != 1)
+    $survey_fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info');
+	$sql = "SELECT ". join(', ',$survey_fields)." FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
+	$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+	if(record_count($result) != 1)
 		return(false);
-	$survey = mysql_fetch_array($result,MYSQL_ASSOC);
-	mysql_free_result($result);
+	$survey = fetch_row($result);
+	db_close($result);
 
-	// clear the sid, clear the creation date, change the name, and clear the status
-	$survey['id'] = '';
-	$survey['changed'] = '';
+	// clear the sid,  change the name, and clear the status
 	$survey['owner'] = $GLOBALS['HTTP_SESSION_VARS']['acl']['username'];
 	$survey['name'] .= '_'. _('copy');
 	$survey['status'] = 0;
 
 	// check for 'name' conflict, and resolve
-	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name='". $survey['name'] ."'";
+	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=". _addslashes($survey['name']);
 	$i=0;
-	while(mysql_result(mysql_query($sql),0,0) > 0) {
-		$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name='". $survey['name'] . ++$i ."'";
+    $result = execute_sql($sql);
+	while($result->fields[0] > 0) {
+        $result->MoveNext();
+		$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=". _addslashes($survey['name']) . ++$i;
 	}
 	if($i)
 		$survey['name'] .= $i;
 
 	// create new survey
 	array_walk($survey, 'add_squotes');
+	$survey['changed'] = sys_time_stamp();
 	$sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG']['survey_table']." ";
 	$sql .= '('. join(',',array_keys($survey)) .') ';
 	$sql .= 'VALUES ( '. join(',',array_values($survey)) .' )';
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 	if(!$result)
 		return(false);
-	$new_sid = mysql_insert_id();
+	$new_sid = insert_id('survey_id_seq');
 
 	$has_choices = esp_type_has_choices();
 
 	// make copies of all the questions
-	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-		WHERE survey_id='${sid}' AND deleted='N'
-		ORDER by position,id";
-	$result = mysql_query($sql);
+    $question_fields = array('id', 'survey_id', 'name', 'type_id', 'result_id', 'length', 'precise', 
+    'position', 'content', 'required', 'deleted', 'public');
+	$sql = "SELECT ". join(', ',$question_fields)." FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+		WHERE survey_id=${sid} AND deleted='N'
+		ORDER by position, id";
+	$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 	$pos=1;
-	while($question = mysql_fetch_array($result,MYSQL_ASSOC)) {
+    array_shift($question_fields);
+	while($question = fetch_row($result)) {
+        $result->MoveNext();
 		$tid = $question['type_id'];
 		$qid = $question['id'];
-
 		// fix some fields first
-		$question['id'] = '';
 		$question['survey_id'] = $new_sid;
 		$question['position'] = $pos++;
 
 		// copy question to new survey
-		array_walk($question,'add_squotes');
+        array_shift($question);
+        if(!isset($question['result_id'])) {
+            $question['result_id'] = 'NULL';
+        }
+        $question['name'] = _addslashes($question['name']);
+        $question['content'] = _addslashes($question['content']);
+        $question['required'] = _addslashes($question['required']);
+        $question['deleted'] = _addslashes($question['deleted']);
+        $question['public'] = _addslashes($question['public']);
 		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." ";
-		$sql .= '('. join(',',array_keys($question)) .') ';
+		$sql .= '('. join(',', $question_fields) .') ';
 		$sql .= 'VALUES ( '. join(',',array_values($question)) .' )';
-		if(!mysql_query($sql))
+		if(!execute_sql($sql))
 			return(false);
-		$new_qid = mysql_insert_id();
+		$new_qid = insert_id('question_id_seq');
 
 		// make copies of all the question choices (if exist)
 		if($has_choices[$tid]) {
-			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
-				WHERE question_id='${qid}'
+            $question_choice_fields = array('question_id', 'content', 'value');
+			$sql = "SELECT ". join(', ',$question_choice_fields)."
+                FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
+				WHERE question_id=${qid}
 				ORDER BY id";
-			$result2 = mysql_query($sql);
-			while($choice = mysql_fetch_array($result2,MYSQL_ASSOC)) {
-				$choice['id'] = '';
+			$result2 = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+			while($choice = fetch_row($result2)) {
+                $result2->MoveNext();
 				$choice['question_id'] = $new_qid;
+                $choice['content'] = _addslashes($choice['content']);
+                $choice['value'] = _addslashes($choice['value']);
 
-				array_walk($choice,'add_squotes');
 				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_choice_table']." ";
-				$sql .= '('. join(',',array_keys($choice)) .') ';
+				$sql .= '('. join(',',$question_choice_fields) .') ';
 				$sql .= 'VALUES ( '. join(',',array_values($choice)) .' )';
-				if(!mysql_query($sql))
+				if(!execute_sql($sql))
 					return(false);
 			}
-			mysql_free_result($result2);
+			db_close($result2);
 		}
 	}
-	mysql_free_result($result);
+	db_close($result);
 
 	return(true);
 }

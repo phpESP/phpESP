@@ -16,14 +16,14 @@
 		$sid = intval($HTTP_POST_VARS['sid']);
 
 	$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = $sid";
-	$result = mysql_query($sql);
-	if (mysql_num_rows($result) < 1) {
-		mysql_free_result($result);
+	$result = execute_sql($sql);
+	if (record_count($result) < 1) {
+		db_close($result);
 		echo mkerror(_('Invalid survey ID.'));
 		return;
 	}
-	$name = mysql_result($result, 0, 0);
-	mysql_free_result($result);
+	$name = $result->fields[0];
+    db_close($result);
 
 	/* check ACLs for permissions */
 	$srealm = auth_get_survey_realm($sid);

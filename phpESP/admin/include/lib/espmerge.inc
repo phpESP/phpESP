@@ -12,9 +12,7 @@
    survey ids. */
 function merge_expand_qids($targetq, $surveys) {
 	$sql = "SELECT survey_id FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id ". array_to_insql($targetq);
-	$result = mysql_query($sql);
-	$targets = mysql_result($result, 0, 0);
-	mysql_free_result($result);
+	$targets = get_one($sql);
 
 	$sidstr = array_to_insql($surveys);
 	$sql = "
@@ -22,14 +20,14 @@ SELECT Q.survey_id, Q.id
 FROM ".$GLOBALS['ESPCONFIG']['question_table']." Q
 WHERE Q.survey_id ${$sidstr} AND deleted='N'
 ORDER BY Q.survey_id, Q.position, Q.id";
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 	foreach($surveys as $sid) {
 		$i[$sid] = 0;
 	}
-	while(list($sid, $qid) = mysql_fetch_row($result)) {
+	while(list($sid, $qid) = fetch_row($result)) {
 		$$sid[$i[$sid]++] = $qid;
 	}
-	mysql_free_result($result);
+	db_close($result);
 	foreach($surveys as $sid) {
 		$num = $i[$sid];
 	}
@@ -50,9 +48,9 @@ ORDER BY Q.survey_id, Q.position, Q.id";
    question ids. */
 function merge_expand_cids($targetc, $questions) {
 	$sql = "SELECT question_id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE id ". array_to_insql($targetc);
-	$result = mysql_query($sql);
-	$targetq = mysql_result($result, 0, 0);
-	mysql_free_result($result);
+	$result = execute_sql($sql);
+	$targetq = $result->fields[0];
+	db_close($result);
 
 	array_push($questions,$targetq);
 	$qidstr = array_to_insql($questions);
@@ -61,14 +59,14 @@ SELECT C.question_id, C.id
 FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
 WHERE C.question_id ${$qidarr}
 ORDER BY C.question_id, C.id";
-	$result = mysql_query($sql);
+	$result = execute_sql($sql);
 	foreach($questions as $qid) {
 		$i[$qid] = 0;
 	}
-	while(list($qid, $cid) = mysql_fetch_row($result)) {
+	while(list($qid, $cid) = fetch_row($result)) {
 		$$qid[$i[$qid]++] = $cid;
 	}
-	mysql_free_result($result);
+	db_close($result);
 	foreach($questions as $qid) {
 		$num = $i[$qid];
 	}

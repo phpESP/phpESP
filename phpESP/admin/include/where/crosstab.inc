@@ -1,15 +1,15 @@
 <?php
 
-/* $Id$ */
+    /* $Id$ */
 
-/* vim: set tabstop=4 shiftwidth=4 expandtab: */
+    /* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
-/* The Cross Tabulation feature has been kept separate from the rest of phpESP intentionally.
+    /* The Cross Tabulation feature has been kept separate from the rest of phpESP intentionally.
    It provides an easier means of disabling it by commenting out the require line in results.inc
    and the function call (cross_tabulation()) plus it avoids cluttering survey_results...
-*/
+    */
 
-/* {{{ proto void cross_tabulation (integer sid, integer qidc, integer qidr, integer qid, array cids)
+    /* {{{ proto void cross_tabulation (integer sid, integer qidc, integer qidr, integer qid, array cids)
   Builds HTML to allow for cross tabulation reporting. */
   function cross_tabulation($sid, $qidc, $qidr, $qid, $cids){
   // some error handling
@@ -59,28 +59,28 @@
 
 	foreach ($qids as $qid){
 		$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-			WHERE survey_id='${sid}'
-			AND id = '${qid}'";
-		$tid_result = mysql_query($sql);
-		$result = mysql_fetch_row($tid_result);
+            WHERE survey_id=${sid}
+            AND id = ${qid}";
+            $tid_result = execute_sql($sql);
+            $result = fetch_row($tid_result);
 		
 		array_push($qn_content, $result[0]);
 	}
-	mysql_free_result($tid_result);
+        db_close($tid_result);
         unset($sql);
         unset($result);
 	
 	// let's determine each question's type.
 	foreach ($qids as $qid){
 		$sql = "SELECT type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-			WHERE survey_id='${sid}'
-			AND id = '${qid}'";
-		$tid_result = mysql_query($sql);
-		$result = mysql_fetch_row($tid_result);
+            WHERE survey_id=${sid}
+            AND id = ${qid}";
+            $tid_result = execute_sql($sql);
+            $result = fetch_row($tid_result);
 		
 		array_push($tids, $result[0]);
 	}
-	mysql_free_result($tid_result);
+        db_close($tid_result);
         unset($sql);
         unset($result);
 	// Now that we know the question's type	
@@ -99,13 +99,14 @@
 		}
 		else if ($tid_count == 0){
 			$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
-				WHERE question_id='${qidc}'
+                WHERE question_id=${qidc}
 				ORDER BY id";
-			if ($result = mysql_query($sql)){
-				while (list($row) = mysql_fetch_row($result)){
+                if ($result = execute_sql($sql)){
+                    while (list($row) = fetch_row($result)){
+                        $result->MoveNext();
 					array_push($qidc_content, $row);
 				}
-				mysql_free_result($result);
+                    db_close($result);
 				unset($sql);
 			}
 		}
@@ -122,13 +123,14 @@
 		}
 		else{
 			$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
-                                WHERE question_id='${qidr}'
+                WHERE question_id=${qidr}
                                 ORDER BY id";
-			if ($result = mysql_query($sql)){
-				while (list($row) = mysql_fetch_row($result)){
+                if ($result = execute_sql($sql)){
+                    while (list($row) = fetch_row($result)){
+                        $result->MoveNext();
                 	                array_push($qidr_content, $row);
                                 }
-                                mysql_free_result($result);
+                    db_close($result);
                                 unset($sql);	
 			}
 		}
@@ -175,8 +177,9 @@
 			$sql = "SELECT id FROM ".$from_table."
 				WHERE question_id = $qids[$count]
 				ORDER BY $order";
-			$result = mysql_query($sql);
-			while ($cid = mysql_fetch_row($result)){
+                    $result = execute_sql($sql);
+                    while ($cid = fetch_row($result)){
+                        $result->MoveNext();
 				if ($count == 0){
 					array_push($cids_col, $cid[0]);
 				}
@@ -184,7 +187,7 @@
 					array_push($cids_row, $cid[0]);
 				}
 			}
-	mysql_free_result($result);
+                    db_close($result);
 		}
 		$count++;
 		$tidcounter++;	
@@ -198,11 +201,12 @@
                 $total_row = 0;
         	foreach ($cids_col as $xx){
                 	$sql1 = "SELECT count(*) FROM ".$GLOBALS['ESPCONFIG'][$tbl[0].'_table']." r1, ".$GLOBALS['ESPCONFIG'][$tbl[1].'_table']." r2
-                                 WHERE (r1.question_id = '${qids[0]}' AND r1.choice_id = '${xx}')
-                                 AND (r2.question_id = '${qids[1]}' AND r2.choice_id = '${yy}')
+                    WHERE (r1.question_id = ${qids[0]} AND r1.choice_id = ${xx})
+                    AND (r2.question_id = ${qids[1]} AND r2.choice_id = ${yy})
                                  AND r1.response_id = r2.response_id";
-                        $result1 = mysql_query($sql1);
-                        while ($counts = mysql_fetch_row($result1)){
+                    $result1 = execute_sql($sql1);
+                    while ($counts = fetch_row($result1)){
+                        $result1->MoveNext();
                         	$total_row += intval($counts[0]);
                                 array_push($col_counts, $counts[0]);
                         }
@@ -211,7 +215,7 @@
 	}                
 
                 // let's build the cross-tabulation results table
-?>
+            ?>
                 <center>
 		<p><b><?php echo("\"<font color=\"#CC0000\">".$qn_content[1]."</font>\""); ?>
 		      <?php echo ("vs \"<font color=\"#0099FF\">".$qn_content[0]."</font>\""); ?></b></p>
@@ -220,18 +224,18 @@
                 <td width="411" height="25" valign="default" bgcolor="#FFFFFF"><!-- <div align="center">
 		<strong>graph cross tabulated results:&nbsp;&nbsp;&nbsp;&nbsp; 
                 </strong></div> --></td>
-<?php
+                    <?php
                 foreach ($qidc_content as $content){
                         //echo ("<td width=\"89\" bgcolor=\"#FFFFFF\">");
                         echo ("<td bgcolor=\"#FFFFFF\">");
                         echo ("<div align=\"center\"><font color=\"#0099FF\"><b>".$content."</b></font></div></td>\n");
                 }
                 unset($content);
-?>
+                        ?>
                 <td bgcolor="#CCCCCC">
                 <div align="center"><strong>Totals</strong></div></td>
                 </tr>
-<?php
+                        <?php
                 $q = 0;
                 $counter = 0;
                 $rt = 0;
@@ -284,12 +288,12 @@
                 echo ("<td valign=\"default\">");
                 echo ("<div align=\"center\"><strong>".$grand_total."</strong></div></td>\n");
                 echo ("</tr>\n");
-?>
+                            ?>
                 </table>
 		 <p>&nbsp;</p>  
 		<a href="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>?where=results&sid=<?php echo($sid);?>&type=cross">Go back to Cross Analysis/Tabulation</a>
 		</center>
 		
-<?php
+                                <?php
   }
-?>
+                                ?>

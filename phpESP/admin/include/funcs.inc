@@ -16,13 +16,15 @@
     }
 
     if(get_magic_quotes_gpc()) {
-        function _addslashes($a)    { return($a); }
+        function _addslashes($a)    { return(db_qstr($a)); }
         function _stripslashes($a)  { return(stripslashes($a)); }
     } else {
-        function _addslashes($a)    { return(addslashes($a)); }
+        function _addslashes($a)    { return(db_qstr($a)); }
         function _stripslashes($a)  { return($a); }
     }
     set_magic_quotes_runtime(0);
+    // If there are any errors in the standard libraries we want to know!
+    error_reporting(E_ALL); 
 
     function esp_where($where = null)
     {
@@ -41,40 +43,47 @@
         return($cfg['include_path'].'/where/'.$where.$cfg['extension']);
     }
 
-    function esp_init_db() {
-        $_ext = 'mysql.so';
-        if (substr(PHP_OS, 0, 3) == 'WIN') {
-            $_ext = 'php_mysql.dll';
-        }
-        if (!extension_loaded('mysql') && !ini_get('safe_mode')
-            && ini_get('enable_dl') && !@dl($_ext)) {
-            echo "<b>FATAL: Unable to load the PHP mysql extension ($_ext). Aborting.</b>";
+    function esp_init_adodb() {
+        $cfg =& $GLOBALS['ESPCONFIG'];
+        if(!file_exists($cfg['adodb_path'].'adodb.inc.php')) {
+            echo('<b>'. _('Unable to open ADODB include file. Check INI settings. Aborting.'). '</b>');
             exit;
         }
-        unset($_ext);
-    
-        $cfg =& $GLOBALS['ESPCONFIG'];
-        if (isset($cfg['db_conn']))
-            return;
-
-        $cfg['db_conn'] = @mysql_connect(
-                $cfg['db_host'], $cfg['db_user'], $cfg['db_pass']);
-        if ($cfg['db_conn'] !== false) {
-            if (mysql_select_db($cfg['db_name'], $cfg['db_conn']) === false) {
-                mysql_close($cfg['db_conn']);
-                $cfg['db_conn'] = false;
-            }
+        else {
+            include($cfg['adodb_path'].'adodb.inc.php');
         }
-        if ($cfg['db_conn'] === false) {
+        if (isset($cfg['adodb_conn'])) {
+            return;
+        }
+        $cfg['adodb_conn'] = &ADONewConnection($cfg['adodb_database_type']);
+        error_reporting(0);  // Hide errors 
+
+        //$cfg['adodb_conn']->debug=1;
+        if ($cfg['adodb_database_type'] == "sqlite") {
+            $dbconnected = $cfg['adodb_conn']->Connect($cfg['adodb_pathto_db']);
+        }
+        else {
+            if (!isset($cfg['adodbi_persist']) or !empty($cfg['adodb_persist'])) {
+                // Use persistent connection (default)
+                $dbconnected = $cfg['adodb_conn']->PConnect($cfg['db_host'], $cfg['db_user'], $cfg['db_pass'], $cfg['db_name']);
+            }
+            else {
+                // Use single connection
+                $dbconnected = $cfg['adodb_conn']->Connect($cfg['db_host'], $cfg['db_user'], $cfg['db_pass'], $cfg['db_name']);
+        }
+        }
+        if (!$dbconnected) {
             header('HTTP/1.0 503 '. _('Service Unavailable'));
             echo('<html><head><title>HTTP 503 '. _('Service Unavailable') .'</title></head>');
             echo('<body><h1>HTTP 503 '. _('Service Unavailable') .'</h1>');
             echo(mkerror(_('Connection to database failed. Please check configuration.')));
-            if ($cfg['DEBUG'])
-                echo("<br>\n". mkerror(mysql_errno().": ".mysql_error()));
+            if ($cfg['DEBUG']) {
+                echo("<br>\n". mkerror(ErrorNo().": ".ErrorMsg()));
+            }
             echo('</body></html>');
             exit;
         }
+        error_reporting(E_ALL);       // Show errors from now on.
     }
     
     // redirect to thank you page for survey ID 'sid'
@@ -82,10 +91,10 @@
     function goto_thankyou($sid,$referer) {
         $cfg =& $GLOBALS['ESPCONFIG'];
 
-        $sql = "SELECT thanks_page,thank_head,thank_body FROM ".$cfg['survey_table']." WHERE id='${sid}'";
-        $result = mysql_query($sql);
-        list($thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
-        mysql_free_result($result);
+        $sql = "SELECT thanks_page,thank_head,thank_body FROM ".$cfg['survey_table']." WHERE id=${sid}";
+        $result = execute_sql($sql);
+        list($thank_url,$thank_head,$thank_body) = fetch_row($result);
+        db_close($result);
         if(!empty($thank_url)) {
             if(!headers_sent()) {
                 header("Location: $thank_url");
@@ -139,6 +148,7 @@ and password to complete the survey.') ?></blockquote>
     require_once($ESPCONFIG['include_path']."/lib/espmerge".$ESPCONFIG['extension']);
     require_once($ESPCONFIG['include_path']."/lib/espresponse".$ESPCONFIG['extension']);
     require_once($ESPCONFIG['include_path']."/lib/espsql".$ESPCONFIG['extension']);
+    require_once($ESPCONFIG['include_path']."/lib/espdatalib".$ESPCONFIG['extension']);
     require_once($ESPCONFIG['include_path']."/function/survey_copy".$ESPCONFIG['extension']);
     require_once($ESPCONFIG['include_path']."/function/survey_merge".$ESPCONFIG['extension']);
     require_once($ESPCONFIG['include_path']."/function/survey_purge".$ESPCONFIG['extension']);

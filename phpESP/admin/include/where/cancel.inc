@@ -23,20 +23,20 @@
 		return;
 	}
 
-	$sql = "SELECT status FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE	id='".$HTTP_SESSION_VARS['survey_id']."'";
-	$result = mysql_query($sql);
-	if(mysql_num_rows($result) < 1) {
-		mysql_free_result($result);
+	$sql = "SELECT status FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE	id=".$HTTP_SESSION_VARS['survey_id'];
+	$result = execute_sql($sql);
+	if(row_count($result) < 1) {
+		db_close($result);
 		$HTTP_SESSION_VARS['survey_id']    = '';
 		$HTTP_SESSION_VARS['survey_realm'] = '';
 		include(esp_where('index'));
 		return;
 	}
-	$status = mysql_result($result,0,0);
-	mysql_free_result($result);
+	$status = $result->fields[0];
+	db_close($result);
 	$status |= STATUS_DELETED;
-	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status='${status}' WHERE id='".$HTTP_SESSION_VARS['survey_id']."'";
-	mysql_query($sql);
+	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status=${status} WHERE id=".$HTTP_SESSION_VARS['survey_id'];
+	execute_sql($sql);
 	$HTTP_SESSION_VARS['survey_id']    = '';
 	$HTTP_SESSION_VARS['survey_realm'] = '';
 	include(esp_where('index'));

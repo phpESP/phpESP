@@ -23,7 +23,7 @@
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
 	if(isset($HTTP_GET_VARS['account_type']))
-		$account_type = _addslashes($HTTP_GET_VARS['account_type']);
+		$account_type = $HTTP_GET_VARS['account_type'];
 	else
 		$account_type = "respondents";
 
@@ -36,22 +36,23 @@
 	if(isset($HTTP_POST_VARS['submit'])) {
 		unset($HTTP_POST_VARS['submit']);
 		if(isset($HTTP_POST_VARS['account_type']))
-			$account_type = _addslashes($HTTP_POST_VARS['account_type']);
+			$account_type = $HTTP_POST_VARS['account_type'];
 		else
 			$account_type = "respondents";
 
-		$upload_type	= _addslashes($HTTP_POST_VARS['upload_type']);
+        $upload_type = $HTTP_POST_VARS['upload_type'];
 			$upload_file	= $HTTP_POST_FILES['upload_file']['tmp_name'];
 		$group_acl	= array();
 
 
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
-			$result = mysql_query($sql);
-			while (list($row) = mysql_fetch_row($result)) {
+			$result = execute_sql($sql);
+			while (list($row) = fetch_row($result)) {
+                $result->MoveNext();
 				array_push($group_acl, $row);
 			}
-			mysql_free_result($result);
+			db_close($result);
 		} elseif(count($HTTP_SESSION_VARS['acl']['pgroup']) > 0) {
 			$group_acl =& $HTTP_SESSION_VARS['acl']['pgroup'];
 		} else {

@@ -42,24 +42,24 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		foreach($fields as $f) {
 			if(isset($HTTP_POST_VARS[$f])) {
 				array_push($f_arr,$f);
-				array_push($v_arr,"'"._addslashes($HTTP_POST_VARS[$f])."'");
+				array_push($v_arr, _addslashes($HTTP_POST_VARS[$f]));
 			}
 		}
-		array_push($f_arr,'owner');
-		array_push($v_arr,"'".$GLOBALS['HTTP_SESSION_VARS']['acl']['username']."'");
+		array_push($f_arr, 'owner');
+		array_push($v_arr, _addslashes($GLOBALS['HTTP_SESSION_VARS']['acl']['username']));
+        array_push($f_arr, 'changed');
+        array_push($v_arr, sys_time_stamp());
 		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['survey_table']." (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) . ")";
-
-		$result = @mysql_query ($sql);
+		$result = execute_sql($sql);
 		if(!$result) {
 			$tab = "general";
-			$errstr = _('Sorry, name already in use. Pick a new name.') .' [ ' .mysql_errno().': '.mysql_error().' ]';
+			$errstr = _('Sorry, name already in use. Pick a new name.') .' [ ' .ErrorNo().': '.ErrorMsg().' ]';
 			return(0);
 		}
 
-		$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name='".  _addslashes($HTTP_POST_VARS['name']) ."'";
-		$result = mysql_query($sql);
-		$survey_id = mysql_result($result,0,0);
-		mysql_free_result($result);
+		$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=".  _addslashes($HTTP_POST_VARS['name']);
+        $result = execute_sql($sql);
+		$survey_id = $result->fields[0];
 		return(1);
 	}
 
@@ -75,17 +75,13 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			}
 
 			$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info');
-			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${survey_id}'";
-			$result = mysql_query($sql);
-			$name = mysql_result($result,0,0);
-			mysql_free_result($result);
+			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${survey_id}";
+			$name = get_one($sql);
 
 			// trying to change survey name
 			if($name != $HTTP_POST_VARS['name']) {
-				$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name='" . _addslashes($HTTP_POST_VARS['name']) ."'";
-				$result = mysql_query($sql);
-				$count = mysql_result($result,0,0);
-				mysql_free_result($result);
+				$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=" . _addslashes($HTTP_POST_VARS['name']);
+				$count = get_one($sql);
 				if($count != 0) {
 					$tab = "general";
 					$errstr = _('Sorry, that name is already in use.');
@@ -94,14 +90,15 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			}
 
 			// UPDATE the row in the DB with current values
+            array_push($f_arr, 'changed='.sys_time_stamp());
 			foreach($fields as $f) {
-				array_push($f_arr,$f ."='" . _addslashes($HTTP_POST_VARS[$f]) . "'");
+				array_push($f_arr,$f ."=" . _addslashes($HTTP_POST_VARS[$f]));
 			}
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET " . join(', ',$f_arr) . " WHERE id='${survey_id}'";
-			$result = mysql_query($sql);
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET " . join(', ',$f_arr) . " WHERE id=${survey_id}";
+			$result = execute_sql($sql);
 			if(!$result) {
 				$tab = "general";
-				$errstr = _('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]';
+				$errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 				return(0);
 			}
 			return(1);
@@ -137,14 +134,15 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
             // do not allow questions in the same survey to have the same name.
             // applies to questions with a deleted flag of 'N' only.
             if($HTTP_POST_VARS['name'] != $HTTP_POST_VARS['name_dupcheck']) {
-                $found = 0;
+                $found=0;
                 $qn_names = array();
-                $sql = "SELECT name FROM question WHERE survey_id= '${survey_id}' AND deleted = 'N'";
-                $result = mysql_query($sql);
-                while ($names = mysql_fetch_array($result, MYSQL_ASSOC)){
+                $sql = "SELECT name FROM question WHERE survey_id=${survey_id} AND deleted = 'N'";
+                $result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+                while ($names = fetch_row($result)){
                     array_push($qn_names, $names['name']);
+                    $result->MoveNext();
                 }
-                mysql_free_result($result);
+                db_close($result);
                 foreach ($qn_names as $x){
                     if ($HTTP_POST_VARS['name'] == $x){
                         $found = 1;
@@ -175,10 +173,8 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			// constraint: can not change between question w/ answer choices and one w/o
 			$has_choices = esp_type_has_choices();
 			if(!empty($qid)) {
-				$sql =  "SELECT Q.type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']." Q WHERE Q.survey_id='${survey_id}' AND Q.id='${qid}'";
-				$result = mysql_query($sql);
-				$old_type_id = mysql_result($result,0,0);
-				mysql_free_result($result);
+				$sql =  "SELECT Q.type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']." Q WHERE Q.survey_id=${survey_id} AND Q.id=${qid}";
+				$old_type_id = get_one($sql);
 				if($has_choices[$HTTP_POST_VARS['type_id']] != $has_choices[$old_type_id]) { // trying to change between incompatible question types
 					$tab = "questions";
 					$HTTP_POST_VARS['type_id'] = $old_type_id;
@@ -235,17 +231,15 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				$fields = array('name','type_id','length','precise','required','content');
 				foreach($fields as $f) {
 					if(isset($HTTP_POST_VARS[$f]))
-						array_push($f_arr,$f."='"._addslashes($HTTP_POST_VARS[$f])."'");
+						array_push($f_arr,$f."="._addslashes($HTTP_POST_VARS[$f]));
 				}
-				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET " . join(', ',$f_arr) . " WHERE id='${qid}'";
+				$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET " . join(', ',$f_arr) . " WHERE id=${qid}";
 
 			// INSERT row in the DB for new question
 			} else {
 				// set the position to the end
-				$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id='${survey_id}'";
-				$result = mysql_query($sql);
-				$HTTP_POST_VARS['position'] = mysql_result($result,0,0);
-				mysql_free_result($result);
+				$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=${survey_id}";
+				$HTTP_POST_VARS['position'] = get_one($sql);
 
 				$HTTP_POST_VARS['survey_id'] = $survey_id;
 
@@ -253,19 +247,19 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				foreach($fields as $f) {
 					if(isset($HTTP_POST_VARS[$f])) {
 						array_push($f_arr, $f);
-						array_push($v_arr, "'". _addslashes($HTTP_POST_VARS[$f]) ."'");
+						array_push($v_arr,  _addslashes($HTTP_POST_VARS[$f]));
 					}
 				}
 				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." (" . join(', ',$f_arr) . ") VALUES (" . join(', ',$v_arr) .")";
 			}
-			$result = mysql_query($sql);
+			$result = execute_sql($sql);
 			if($qid == '')
-				$qid = mysql_insert_id();
+				$qid = insert_id('question_id_seq');
 			$HTTP_POST_VARS['id'] = $qid;
 			if(!$result) {
 				$tab = 'questions';
 				$dont_clear = 1;
-				$errstr = _('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]';
+				$errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 				return(0);
 			}
 
@@ -273,35 +267,39 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			if($has_choices[$HTTP_POST_VARS['type_id']]) {
 				$cids = array();
 				$sql = "SELECT c.id FROM ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c WHERE q.id=c.question_id AND q.survey_id=${survey_id}";
-				$result = mysql_query($sql);
-				for ($i = 0; $i < mysql_num_rows($result); ++$i) {
-					array_push($cids, mysql_result($result, $i, 0));
+				$result = execute_sql($sql);
+				for ($i = 0; $i < record_count($result); ++$i) {
+                    $result->Move($i);
+					array_push($cids, $result->fields[0]);
 				}
-				mysql_free_result($result);
+				db_close($result);
 				$count = 0;
 				for($i=1;$i<$HTTP_POST_VARS['num_choices']+1;$i++) {
 					$sql='';
 					$choice_id      = intval($HTTP_POST_VARS["choice_id_${i}"]);
-					$choice_content = _addslashes($HTTP_POST_VARS["choice_content_${i}"]);
+					$choice_content = $HTTP_POST_VARS["choice_content_${i}"];
+                    if ($choice_content != '') {
+                        $choice_content = _addslashes($choice_content);
+                    }
 					// each of the submitted choices
 					if($choice_id=='' && $choice_content!='') {
 						// insert (new)
-						$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_choice_table']." (question_id,content) VALUES ('${qid}','${choice_content}')";
+						$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_choice_table']." (question_id,content) VALUES (${qid},${choice_content})";
 						++$count;
 					} elseif($choice_id!='' && $choice_content=='') {
 						// delete (old)
-						$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE id='${choice_id}'";
+						$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE id=${choice_id}";
 					} elseif($choice_id!='' && $choice_content!='' && in_array($choice_id, $cids)) {
 						// update (old)
-						$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_choice_table']." SET content='${choice_content}' WHERE id='${choice_id}'";
+						$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_choice_table']." SET content=${choice_content} WHERE id=${choice_id}";
 						++$count;
 					}
 					if($sql != '') {
-						$result = mysql_query($sql);
+						$result = execute_sql($sql);
 						if(!$result) {
 							$tab = 'questions';
 							$dont_clear = 1;
-							$errstr = _('Warning, error encountered.') .' [ '.mysql_errno().': '.mysql_error().' ]';
+							$errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 							return(0);
 						}
 					}

@@ -14,10 +14,10 @@
 	// load current values from DB if $sid exists (in session)
 	$survey = array();
 	if(!empty($sid) && $updated) {
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
-		$result = mysql_query($sql);
-		$survey = mysql_fetch_array($result,MYSQL_ASSOC);
-		mysql_free_result($result);
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
+		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
+		$survey = fetch_row($result);
+		db_close($result);
 	} else {
 		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','public');
 	   	foreach ($fields as $f) {
@@ -51,10 +51,12 @@ edit individual fields.')); ?>
 			$realms = array();
 			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 				$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
-				$rr = mysql_query($sql);
-				while(list($r) = mysql_fetch_row($rr))
+				$rr = execute_sql($sql);
+				while(list($r) = fetch_row($rr)) {
+                    $rr->MoveNext();
 					$realms[$r] = $r;
-				mysql_free_result($rr);
+                }
+				db_close($rr);
 			} else {
 				foreach($HTTP_SESSION_VARS['acl']['pdesign'] as $r)
 					$realms[$r] = $r;
