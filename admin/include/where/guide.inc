@@ -9,13 +9,13 @@
 
 ?>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<?php if (file_exists($ESPCONFIG['include_path']."/../../README")) { ?>
+<?php if (file_exists($ESPCONFIG['include_path']."/../../GUIDE")) { ?>
 <table bgcolor="#ffffff" border="0"><tr><td><pre>
-<?php include($ESPCONFIG['include_path']."/../../README"); ?>
+<?php include($ESPCONFIG['include_path']."/../../GUIDE"); ?>
 </pre></td></tr></table>
 <?php
 	} else {
-		echo('<p>' . mkwarn(_('README not found.')) . "</p>\n");
+		echo('<p>' . mkwarn(_("User's guide not found.")) . "</p>\n");
 	}
 ?>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
