@@ -64,7 +64,7 @@
 				/* Build  exception rows */
 				/* Header row*/
 				while (list(, $col) = each ($exceptions[0])) {
-					$exception_table .= "<th align=\"left\">".sprintf(_("%s"),$col)."</th>\n";
+					$exception_table .= "<th align=\"left\">$col</th>\n";
 				}
 				$exception_table .= "</tr>\n";
 				/* Data rows*/
@@ -76,7 +76,7 @@
                        				$bg =& $ESPCONFIG['bgalt_color1'];
 					$exception_table .= "<tr valign=\"top\" bgcolor=\"$bg\">\n";
 					foreach($row as $col) {
-						$exception_table .= "<td>".sprintf(_("%s"),$col)."</td>\n";
+						$exception_table .= "<td>$col</td>\n";
 
 					}
 				}

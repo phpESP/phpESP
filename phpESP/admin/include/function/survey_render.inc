@@ -57,13 +57,13 @@ function survey_render($sid, $section = 1, $message = '') {
 <h2 class="surveyTitle"><?php echo($survey["title"]); ?></h2>
 <h3 class="surveySubtitle"><?php echo($survey["subtitle"]); ?></h3>
 <?php if($num_sections>1) { ?>
-	<font size="-1" class="surveyPage"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font>
+	<font size="-1" class="surveyPage"><?php printf(_('Page %d of %d'), $section+1, $num_sections); ?></font>
 <?php } ?>
 <blockquote class="addInfo"><?php echo($survey["info"]); ?></blockquote>
 <blockquote class="message"><?php echo($message); ?></blockquote>
 <?php if($has_required) { ?>
-	<p class="reqQuestion"><font size="-1"><?php echo(_('Questions marked with a')); ?>
-	<font color="#FF0000">*</font> <?php echo(_('are required.')); ?></font></p>
+    <p class="reqQuestion"><font size="-1">
+    <?php printf(_('Questions marked with a %s are required.'), '<font color="#FF0000">*</font>'); ?></font></p>
 <?php } ?>
 <table class="mainTable">
 <?php

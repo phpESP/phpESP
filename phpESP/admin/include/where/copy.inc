@@ -57,8 +57,8 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 
 ?>
 <h2><?php echo(_('Copy Survey')); ?></h2>
-<?php echo(_('
-Choose a survey of which to make a copy. The copy will have the same
+<?php echo(
+_('Choose a survey of which to make a copy. The copy will have the same
 status of a newly created survey. You will be able to edit the
 survey, and will have to activate it before use.')); ?>
 <table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">

@@ -8,7 +8,7 @@
 
 	/* load only accounts available to _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-			!auth_no_access(_('to access this menu'))) {
+			!auth_no_access(_('to access this form'))) {
 		return;
 	}
 	

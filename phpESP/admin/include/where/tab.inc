@@ -81,7 +81,7 @@
 	 * edit/create _any_ survey */
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
 			count($HTTP_SESSION_VARS['acl']['pdesign']) < 1 &&
-			!auth_no_access(_('to design forms'))) {
+			!auth_no_access(_('to access this form'))) {
 		return;
 	}
 		
