@@ -28,6 +28,9 @@ $ESPCONFIG['autopub_url'] = $ESPCONFIG['base_url'] . 'public/survey.php';
 // URL of the CSS directory (for themes)
 $ESPCONFIG['css_url'] = $ESPCONFIG['base_url'] . 'public/css/';
 
+//URL for management javascript
+$ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
+
 // Database connection information
 $ESPCONFIG['db_host'] = 'localhost';
 $ESPCONFIG['db_user'] = 'phpesp';
