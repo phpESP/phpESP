@@ -39,6 +39,7 @@
 				<li><a href="<?php echo("${base}?where=access");  ?>"><?php echo(_('Change Access To a Survey')); ?></a> (<?php echo(_('Limit Respondents.')); ?>)</li>
 <?php } ?>
 				<li><a href="<?php echo("${base}?where=results"); ?>"><?php echo(_('View Results from a Survey')); ?></a></li>
+				<li><a href="<?php echo("${base}?where=results&type=cross"); ?>"><?php echo(_('Cross Tabulate Survey Results')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=report");  ?>"><?php echo(_('View a Survey Report')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data to CSV')); ?></a></li>
 			</ul>
