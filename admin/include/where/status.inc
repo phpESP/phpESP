@@ -112,9 +112,8 @@
 
 <ul>
 <li><?php echo(_('<b>Test</b> transitions a survey into testing mode. At which point you may
-perform a live test by taking the survey, and viewing the results. You will not
-be able to make any further changes to the survey once you have switched to
-test mode.')); ?></li>
+perform a live test by taking the survey, and viewing the results. The survey may be switched 
+back into <b>Edit</b> mode if additional edits are needed.')); ?></li>
 
 <li><?php echo(_('<b>Activate</b> transitions a survey into active mode. In this mode the
 survey is open for production use, and may be put online. This will clear any
