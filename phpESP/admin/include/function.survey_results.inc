@@ -211,10 +211,11 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 						 WHERE A.question_id='${qid}' AND
     						   A.response_id IN $ridstr
 						 GROUP BY A.answer";
+				if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 				$result = mysql_query($sql);
 				while(list($text, $num) = mysql_fetch_row($result)) {
 					if(!empty($text))
-						$counts[] = $text;
+						$counts[$text] = $num;
 				}
 				mysql_free_result($result);
 				$question["result_id"] = 4;	// force "list" type response for text fields
