@@ -88,7 +88,7 @@
 		
 
 	if(empty($ESPCONFIG['tabs'])) {
-		echo('<b>'. _('No tabs defined. Please check your ini settings.'). '</b>');
+		echo('<b>'. _('No tabs defined. Please check your INI settings.'). '</b>');
 		return;
 	}
 	
