@@ -67,7 +67,7 @@
 	if(!empty($HTTP_POST_VARS['next'])) {
 		$msg = response_check_required($sid,$HTTP_POST_VARS['sec']);
 		if(empty($msg)) {
-			$rid = response_insert($sid,$HTTP_POST_VARS['sec'],$HTTP_POST_VARS['rid']);
+			$HTTP_POST_VARS['rid'] = response_insert($sid,$HTTP_POST_VARS['sec'],$HTTP_POST_VARS['rid']);
 			$HTTP_POST_VARS['sec']++;
 		}
 	}
