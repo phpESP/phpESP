@@ -58,7 +58,7 @@ function check_version()
         _fail(PHP_VERSION);
         return;
     }
-    if (version_compare(PHP_VERSION, '4.2.0', 'ge'))
+    if (version_compare(PHP_VERSION, '4.1.0', 'ge'))
         _pass(PHP_VERSION);
     else
         _fail(PHP_VERSION);
