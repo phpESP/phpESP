@@ -25,9 +25,9 @@ below, and paste it into the HTML of your page.')); ?></p>
 
 	<p><?php echo(_('You must activate this survey before you can collect
 results. Once a survey is active, you may no longer make any
-changes to it. You may activate this survey by chosing
+changes to it. You may activate this survey by choosing
 <b>Change the Status of an Existing Survey</b> from the
-Mangement Interface.')); ?></p>
+Management Interface.')); ?></p>
 </div>
 
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
