@@ -23,7 +23,7 @@
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT s.id, s.name, s.title, s.owner, s.realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.status = 0 AND (s.owner = ".
-			$HTTP_SESSION_VARS['acl']['username'] ." || s.realm $realms) ORDER BY id DESC";
+			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 

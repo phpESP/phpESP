@@ -56,7 +56,7 @@
 			ORDER BY id DESC";
 	else
 		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE owner=".
-			$HTTP_SESSION_VARS['acl']['username'] ."
+			_addslashes($HTTP_SESSION_VARS['acl']['username']) ."
 			AND ".db_bin("status",$statusok)."
 			ORDER BY id DESC";
 	$result = execute_sql($sql);

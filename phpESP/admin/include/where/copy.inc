@@ -52,7 +52,7 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,status,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & ". STATUS_DELETED .") AND (owner = ".
-			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
+			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 	$bg = '';

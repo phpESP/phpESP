@@ -139,7 +139,7 @@ if (isset($HTTP_GET_VARS['type'])) {
 				$HTTP_SESSION_VARS['acl']['pdata']));
 		$sql = "SELECT id,name,title,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status", $statusno)." AND ".db_bin("status", $statusok)." AND (owner = ".
-			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
+			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 
