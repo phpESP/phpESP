@@ -4,6 +4,41 @@
 // [jflemer@acm.jhu.edu]
 
 ---------------------------------------------------------------------
+UPGRADE GUIDE: [v1.2beta2 to v1.2beta3]
+
+Make sure that your 'answers_other' table has a choice_id
+column, otherwise add it. (See the update.sql)
+
+There are preliminary authorization scripts in v1.2beta3,
+see README.AUTH if you want to use them.
+
+You can now set the precision for results by setting
+'precision=X' on the GET line, or '$precision=X;' in the
+handler/wrapper you are using. (This only changes formatting
+not acutal data.)
+
+You can now merge results from two *identical* surveys.
+(This is for the case where you have copied one survey and
+only changed the text [to another language], and want to put
+the results together.) There is no menu interface for this
+yet, you are pretty much on your own. 
+
+You can now cross-analyze results. You can pick one question
+from the survey and a set of responses to that question and
+just display matching results. There is no menu interface
+for this yet either. Use mange.php?where=report to help figure
+out IDs.
+
+I held of on doing interfaces for the new stuff because,
+well this is a *beta* and the interface is going to be
+completly redone anyway. I made some notes in the CVS logs
+while I was working on stuff ... so if you want feel free to
+browse them on sourceforge.
+
+As always -- email me with questions or complaints.
+-James
+
+---------------------------------------------------------------------
 UPGRADE GUIDE: [v1.2beta1 to v1.2beta2]
 
 No database changes! But there was a bug in v1.1beta1!
