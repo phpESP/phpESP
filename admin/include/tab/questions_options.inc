@@ -27,8 +27,7 @@
 	<tr><td colspan="2"><hr></td></tr>
 	<tr>
 		<td valign=TOP colspan="2">
-			<?php echo(_(
-'Enter the possible answers (if applicable). Enter
+			<?php echo(_('Enter the possible answers (if applicable). Enter
 <tt>!other</tt> on an line by itself to create a
 fill-in-the-blank answer at the end of this question.
 Any blank lines will be suppressed.')); ?>
