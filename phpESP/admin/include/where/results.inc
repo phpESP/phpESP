@@ -6,13 +6,15 @@
 // For eGrad2000.com
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
+	
+	$bg = '';
 
 	// see if a survey has been selected
 	if(!empty($HTTP_GET_VARS['sid'])) {
 		$sid = intval($HTTP_GET_VARS['sid']);
 		
 		$srealm = auth_get_survey_realm($sid);
-		if($HTTP_GET_VARS['test']) {
+		if(!empty($HTTP_GET_VARS['test'])) {
 			/* check ACL to see if user is allowed to test
 			 * _this_ survey */
 			if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
@@ -60,7 +62,7 @@
 ?>
 </td></tr></table>
 <?php
-		if($HTTP_GET_VARS['test']) {
+		if(!empty($HTTP_GET_VARS['test'])) {
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=". $HTTP_GET_VARS['sid'] ."\">". _('Test Survey') ."</a><br>\n");
 		}
 ?>
