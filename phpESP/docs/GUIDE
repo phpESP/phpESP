@@ -146,11 +146,12 @@ permission options. The user options are:
         members of the group.
 
 The other two options set administration flags:
-    * Administer Group Members
+    * Administer Designers
         This grants the user permission to change flags on users in
         their group, and to add new users to the group.
-    * Administer Group Respondents
-        Allows a user to add users to the list of allowed respondents.
+    * Administer Respondents
+        Allows a user to add users to the list of allowed respondents,
+	within their group.
 
 ----
 $Id$

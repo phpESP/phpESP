@@ -12,6 +12,14 @@
 // <greggmc@musc.edu>
 // Bulk upload from text files
 
+    /* SuperUser or Designers with "Administer Group Members(pgroup)" permissions only*/
+    if(($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+        (count($HTTP_SESSION_VARS['acl']['pgroup']) == 0 &&
+        count($HTTP_SESSION_VARS['acl']['puser']) == 0)) &&
+        !auth_no_access(_('to access this form'))) {
+        return;
+    }
+
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
 	if(isset($HTTP_GET_VARS['account_type']))
@@ -44,10 +52,11 @@
 				array_push($group_acl, $row);
 			}
 			mysql_free_result($result);
-		} else {
+		} elseif(count($HTTP_SESSION_VARS['acl']['pgroup']) > 0) {
 			$group_acl =& $HTTP_SESSION_VARS['acl']['pgroup'];
+		} else {
+            $group_acl =& $HTTP_SESSION_VARS['acl']['puser'];
 		}
-
 		if(!empty($upload_type) && !empty($account_type) && is_uploaded_file($upload_file)) {
 			$file = file($upload_file);
 			$exceptions = array();

@@ -8,12 +8,19 @@
 // <jflemer@alum.rpi.edu>
 // <jflemer@acm.rpi.edu>
 
+    /* SuperUser or Designers with "Administer Designers(pgroup)" permissions only*/
+    if(($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') &&
+        count($HTTP_SESSION_VARS['acl']['pgroup']) == 0 &&
+        !auth_no_access(_('to access this form'))) {
+        return;
+    }
+    
 	$sql = 'SELECT username, fname, lname, realm, disabled, expiration FROM '.$GLOBALS['ESPCONFIG']['designer_table'];
 
 	/* load only accounts available to _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
 		$realms = array_to_insql(
-			array_intersect(
+			array_merge(
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['puser']));
 		$sql .= " WHERE realm $realms";
