@@ -52,6 +52,9 @@
         unset($_ext);
     
         $cfg =& $GLOBALS['ESPCONFIG'];
+        if (isset($cfg['db_conn']))
+            return;
+
         $cfg['db_conn'] = @mysql_connect(
                 $cfg['db_host'], $cfg['db_user'], $cfg['db_pass']);
         if ($cfg['db_conn'] !== false) {
