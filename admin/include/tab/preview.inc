@@ -18,6 +18,23 @@
 	if(empty($HTTP_POST_VARS['section']))
 		$HTTP_POST_VARS['section']=1;
 ?>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- // Begin // This should really go into <HEAD> tag
+
+function other_check(name)
+{
+other = name.split("_");
+
+  var f = document.phpesp;
+  for (var i=0; i<=f.elements.length; i++) {
+    if (f.elements[i].value == "other_"+other[1]) {
+      f.elements[i].checked=true;
+      break;
+    }
+  }
+}
+// End -->
+</SCRIPT>
 <?php echo(_('This is a preview of how the survey will look.
 In the preview the &quot;Next Page&quot; and 
 &quot;Submit Survey&quot; are inactive.
