@@ -18,8 +18,7 @@
 	if(empty($HTTP_POST_VARS['section']))
 		$HTTP_POST_VARS['section']=1;
 ?>
-<?php echo(_(
-'This is a preview of how the survey will look.
+<?php echo(_('This is a preview of how the survey will look.
 In the preview the &quot;Next Page&quot; and 
 &quot;Submit Survey&quot; are inactive.
 The survey will use the background color of the
