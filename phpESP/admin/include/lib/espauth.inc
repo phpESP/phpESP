@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 # $Id$
 
@@ -205,6 +205,9 @@ function manage_auth($username, $password) {
    valid username & password. */
 function manage_logout() {
 	// clear existing ACL, and set the expired flag
+	session_unset();
+	$acl = array('expired' => 2);
+	session_register('acl');
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array('expired' => 2);
 }
 /* }}} */
