@@ -2,6 +2,24 @@ p h p E S P   (php Easy Survey Package)
 ============================================================
 $Id$
 
+v1.4 final ==> v1.5 RC1
+=======================
+* NEW FEATURE: Survey Themes. See README_SURVEYTHEMES.
+  (Kon Angelopoulos <angekproductions at iprimus.com.au>)
+* NEW FEATURE: Bulk import of accouts.
+  (Matthew Gregg <greggmc at musc.edu>)
+* NEW FEATURE: Option to send Human Readable email for
+  each survey submittion.
+  (Kon Angelopoulos <angekproductions at iprimus.com.au>)
+* NEW FEATURE: Display of number of responses to surveys
+  when listing of surveys.
+  (Gary Ashton-Jones <gashtonjones at f2network.com.au>)
+* FIXED JavaScript behavior for IE on OS X.
+* CHANGED results to show all question choices even if
+  count is zero.
+* LANGUAGE: Translation into Spanish (es)
+  (RAUL PITTI <rpitti at netmasters.com.pa>)
+
 v1.4 beta 3 ==> v1.4 final
 ==========================
 * NEW FEATURE: Automatic survey template added. This lets
