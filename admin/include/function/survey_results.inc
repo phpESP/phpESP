@@ -140,9 +140,12 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 	// find out more about the question we are cross analyzing on (if any)
 	if($cross) {
-		$sql = "SELECT type_id FROM question WHERE id=${qid}";
+		$sql = "SELECT type_id, content FROM question WHERE id=${qid}";
 		$result = mysql_query($sql);
-		$crossTable = $response_table[mysql_result($result,0,0)];
+        while($content = mysql_fetch_array($result, MYSQL_ASSOC)){
+            $crossTable = $response_table[$content['type_id']];
+            $q_content = $content['content'];
+        }
 		mysql_free_result($result);
 		if(!in_array($crossTable, array('response_single','response_bool','response_multiple'))) {
 			$errmsg = _('Error cross-analyzing. Question not valid type.') .' [ '. _('Table') .": ${crossTable} ]";
@@ -217,7 +220,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 <blockquote><?php echo($survey["info"]); ?></blockquote>
 <?php
 	if($cross) {
-		echo("<blockquote>" ._('Cross analysis on QID:') ." ${qid}</blockquote>\n");
+		echo("<blockquote>" ._('Cross analysis on QN:') ." ${q_content}</blockquote>\n");
 	}
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
