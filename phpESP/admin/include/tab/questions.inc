@@ -60,7 +60,11 @@
 		// adding a new question (possibly because there are no questions yet)
 		$curr_q = 0;
 		$curr_q_id = '';
-		foreach($fields as $f) {
+		if(!empty($HTTP_POST_VARS['type_id']))
+			$type_id =& $HTTP_POST_VARS['type_id'];
+		if(!empty($HTTP_POST_VARS['required']))
+			$required =& $HTTP_POST_VARS['required'];
+		foreach(array('name','length','precise','content','position') as $f) {
 			$HTTP_POST_VARS[$f] = '';
 			$$f =& $HTTP_POST_VARS[$f];
 		}
