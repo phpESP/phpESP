@@ -609,9 +609,9 @@ function response_select_name($sid, $rid, $qids = null) {
                     "(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
                     " ", $str2);
             } while ($str1 != $str2);
-            $str1 = strtoupper(eregi_replace(
-                "[^A-Z0-9]+", "_", trim($str1)));
-            $str1 = ereg_replace('_$',"",$str1);
+            $str1 = trim(strtoupper(eregi_replace(
+                "[^A-Z0-9]+", " ", $str1)));
+            $str1 = ereg_replace(' +','_',$str1);
             $arr[1] .= "_$str1";
             $nam[$arr[1]] = $arr[3];
             continue;

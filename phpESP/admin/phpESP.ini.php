@@ -15,6 +15,7 @@ else                  $server =& $HTTP_SERVER_VARS;
  */
 
 // Base URL for phpESP
+// The string $server['HTTP_HOST'] will be replaced by the server name
 $ESPCONFIG['base_url'] = 'http://' . $server['HTTP_HOST'] . '/phpESP/';
 
 // URL of the images directory (for <img src='...'> tags)
@@ -94,7 +95,7 @@ $ESPCONFIG['DEBUG'] = false;
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '1.7-dev';
+$ESPCONFIG['version'] = '1.6.1';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';

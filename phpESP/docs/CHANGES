@@ -2,11 +2,24 @@
 PHPESP CHANGE LOG
 =================
 
-v1.6 RC3 ==> v1.6 RC4
-=====================
+v1.6 final ==> v1.6.1 final
+===========================
+* FIXED redirects so that the server port is used.  (Reported by
+  <rcoss AT dm.uba.ar>.)
+* FIXED CSV export bug on rank questions.  (Based on Patch by Paul
+  Jackson <beachbum_boy AT users.sourceforge.net>.)
+* FIXED slash bug on question choices.  (Reported by Eric Bont.)
+* FIXED purge function for non en-US locales.
+* FIXED bug with the return link at the end of surveys when
+  using the auto-publish page.
+
+v1.6 RC3 ==> v1.6 final
+=======================
 * FIXED windows bug with LC_MESSAGES.  (Reported by Terry Black
   <tblac AT doh.health.nsw.gov.au>.)
 * FIXED an E_ALL warning for HTTP_ACCEPT_LANGUAGES.
+* LANGUAGE: Update of German translation (de_DE)
+  (Robert <HEConsulting AT t-online.de>)
 * LANGUAGE: Update of Dutch translation (nl_NL)
   (Klaas Chielens <klaas AT chielens.net>)
 * LANGUAGE: Translation into Greek (el_GR)

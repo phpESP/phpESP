@@ -120,6 +120,11 @@ and would then find phpESP at the URL
 
    http://your-server/phpESP/
 
+The default user name is "root" and has a password of "esp".  You
+should login and change this password immediately after you configure
+phpESP.  This user name and password are for logging into phpESP, do
+not confuse them with the database user name and password below.
+
 
 CONFIGURING PHPESP
 ------------------
