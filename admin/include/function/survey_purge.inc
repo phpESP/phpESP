@@ -33,7 +33,7 @@ function survey_purge($sids) {
 	
 	// work from the bottom up...
 	// start with the survey results
-	$tables = array('response_bool','response_multiple','response_other','response_rank','response_single','response_text');
+	$tables = array('response_bool','response_date','response_multiple','response_other','response_rank','response_single','response_text');
 	foreach($tables as $table) {
 		$sql = "DELETE FROM ${table} WHERE question_id ${qidstr}";
 		$result = mysql_query($sql);
