@@ -5,8 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-require_once ($ESPCONFIG['include_path']."where/cross.inc");
-
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	$GLOBALS['ESPCONFIG']['DEBUG_RESULTS'] = $GLOBALS['ESPCONFIG']['DEBUG'];
 
@@ -243,27 +241,21 @@ if (!empty($guicross)){
 		if($bg != '#eeeeee')	$bg = '#eeeeee';
 		else                	$bg = '#ffffff';
 
-	if (empty($guicross)){
 ?>
 		<tr xbgcolor="<?php echo($bg); ?>">  
-<?php
-	} else {
-		echo ("<tr>\n");
-	}
-?>
  		<td>
-	<?php	
+<?php
 		if ($tid < 50) {
 			if (!empty($guicross)){
-				echo ("<input type=\"hidden\" name=\"where\" value=\"results\">\n");
-				echo ("<input type=\"hidden\" name=\"sid\" value=\"".$sid."\">\n");
-				echo ("<table width=\"90%\" border=\"0\">\n");
+				echo ('<input type="hidden" name="where" value="results" />');
+				echo ('<input type="hidden" name="sid" value="'.$sid.'" />');
+				echo ("\n<table width=\"90%\" border=\"0\">\n");
                                 echo ("<tbody>\n");
                                 echo ("   <tr>\n");
                                 echo ("      <td width=\"34\" height=\"31\" bgcolor=\"khaki\">\n");
 				if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
                                 	echo ("<div align=\"center\">\n");
-                                        echo ("   <input type=\"radio\" name=\"qid\" value=\"".$qid."\">\n");
+                                        echo ("   <input type=\"radio\" name=\"qid\" value=\"".$qid."\" />\n");
                                         echo ("</div>\n");
 				}
 				echo ("</td>\n");
@@ -276,14 +268,14 @@ if (!empty($guicross)){
                         	echo ("<td width=\"33\" bgcolor=\"#CC0000\">\n");
                                 if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
 					echo ("<div align=\"center\">\n");
-                                        echo ("<input type=\"radio\" name=\"qidr\" value=\"".$qid."\">\n");
+                                        echo ("<input type=\"radio\" name=\"qidr\" value=\"".$qid."\" />\n");
                                         echo ("</div>\n");
 				}
 				echo ("</td>\n");
                                 echo ("<td width=\"32\" bgcolor=\"#0099FF\">\n");
                                 if ($tid==1 || $tid==4 || $tid==5 || $tid==6){
 					echo ("<div align=\"center\">\n");
-                                        echo ("<input type=\"radio\" name=\"qidc\" value=\"".$qid."\">\n");
+                                        echo ("<input type=\"radio\" name=\"qidc\" value=\"".$qid."\" />\n");
                                         echo ("</div>\n");
 				}
 				echo ("</td>\n");

@@ -124,6 +124,7 @@ and password to complete the survey.') ?></blockquote>
         return;
     }
 
+	require_once($ESPCONFIG['include_path']."/lib/espcross".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['include_path']."/lib/esphtml.forms".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['include_path']."/lib/esphtml.results".$ESPCONFIG['extension']);
