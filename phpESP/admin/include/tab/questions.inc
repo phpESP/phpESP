@@ -16,6 +16,12 @@
 	$sid =& $HTTP_SESSION_VARS['survey_id'];
    	$id = intval($HTTP_POST_VARS['id']);
 
+    if (isset($HTTP_POST_VARS['type_id']))
+        $HTTP_POST_VARS['type_id'] = intval($HTTP_POST_VARS['type_id']) ?
+                $HTTP_POST_VARS['type_id'] : '';
+    else
+        $HTTP_POST_VARS['type_id'] = '';
+
 	// build array of question IDs
 	$sql = "SELECT id FROM question
 	WHERE survey_id='$sid' AND deleted='N' AND type_id != 99
@@ -56,26 +62,20 @@
 		mysql_free_result($result);
 		foreach($fields as $f) {
 			$HTTP_POST_VARS[$f] =& $question[$f];
-			$$f =& $question[$f];
 		}
 	} else if ($updated) {
 		// adding a new question (possibly because there are no questions yet)
 		$curr_q = 0;
 		$curr_q_id = '';
-		if(!empty($HTTP_POST_VARS['type_id']))
-			$type_id =& $HTTP_POST_VARS['type_id'];
-		if(!empty($HTTP_POST_VARS['required']))
-			$required =& $HTTP_POST_VARS['required'];
 		foreach(array('name','length','precise','content','position') as $f) {
 			$HTTP_POST_VARS[$f] = '';
-			$$f =& $HTTP_POST_VARS[$f];
 		}
 	} else {
 		foreach($fields as $f) {
             if(!empty($HTTP_POST_VARS[$f]))
-			    $$f = DESLASH($HTTP_POST_VARS[$f]);
+			    $HTTP_POST_VARS[$f] = DESLASH($HTTP_POST_VARS[$f]);
             else
-                $$f = '';
+                $HTTP_POST_VARS[$f] = '';
 		}
 	}
 ?>
@@ -119,7 +119,7 @@ function clearTextInputs() {
 			<td>&nbsp;</td>
 			<td align="center"><?php echo(mktext('name',12)); ?></td>
 			<td align="center"><?php
-				if($updated && empty($GLOBALS['type_id'])) $GLOBALS['type_id'] = 2;
+				if($updated && empty($HTTP_POST_VARS['type_id'])) $HTTP_POST_VARS['type_id'] = 2;
 				$sql = 'SELECT id, type FROM question_type WHERE id != 99';
 				$result = mysql_query($sql);
 				$arr = array();
@@ -129,15 +129,15 @@ function clearTextInputs() {
 				echo(mkselect('type_id',$arr));
 			?></td>
 			<td align="center"><?php
-				if(empty($GLOBALS['length'])) $GLOBALS['length'] = 0;
+				if(empty($HTTP_POST_VARS['length'])) $HTTP_POST_VARS['length'] = 0;
 				echo(mktext("length",6));
 			?></td>
 			<td align="center"><?php
-				if(empty($GLOBALS['precise'])) $GLOBALS['precise'] = 0;
+				if(empty($HTTP_POST_VARS['precise'])) $HTTP_POST_VARS['precise'] = 0;
 				echo(mktext("precise",6));
 			?></td>
 			<td align="center"><?php
-				if(empty($GLOBALS['required'])) $GLOBALS['required'] = 'N';
+				if(empty($HTTP_POST_VARS['required'])) $HTTP_POST_VARS['required'] = 'N';
 				echo(mkselect("required",array(
 					"Y" => _('Yes') . '               ',
 					"N" => _('No')
@@ -153,10 +153,10 @@ function clearTextInputs() {
 <?php
 	// has answer options ... so show that part of the form
 	if($curr_q == 0 ||
-			empty($type_id) ||
+            empty($HTTP_POST_VARS['type_id']) ||
 			mysql_result(mysql_query("SELECT has_choices
 					FROM question_type
-					WHERE id='${type_id}'"),0,0)=='Y') {
+					WHERE id='" . $HTTP_POST_VARS['type_id'] ."'"),0,0)=='Y') {
 		include($GLOBALS['ESPCONFIG']['include_path']."/tab/questions_options".$GLOBALS['ESPCONFIG']['extension']);
 	}
 ?>

@@ -202,9 +202,9 @@
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Username') ."</th>\n");
 	if(empty($u))
-		$u = mktext('u', 16, 16);
+		$u = mktext('u', 16, 16, $GLOBALS);
 	else
-		$u = mkhidden('u') . "<tt>$u</tt>";
+		$u = mkhidden('u', $GLOBALS) . "<tt>$u</tt>";
 	echo("<td bgcolor=\"$bg1\">$u</td>\n");
 ?>
 	</tr><tr>
@@ -233,32 +233,32 @@
 		}
 		$r .= '</select>';
 	} else {
-		$r = mkhidden('r') . "<tt>$r</tt>";
+		$r = mkhidden('r', $GLOBALS) . "<tt>$r</tt>";
 	}
 	echo("<td bgcolor=\"$bg1\"><tt>$r</tt></td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('First Name') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('fname', 16, 16) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mktext('fname', 16, 16, $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Last Name') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('lname', 24, 24) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mktext('lname', 24, 24, $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Email') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('email', 24, 64) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mktext('email', 24, 64, $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Expiration') ."</th>\n");
 	echo("<td bgcolor=\"$bg1\">".
-		mktext('ex_year',4,4) .' '.
-		mktext('ex_month',2,2) .' '.
-		mktext('ex_day',2,2) .' ('.
+		mktext('ex_year',4,4, $GLOBALS) .' '.
+		mktext('ex_month',2,2, $GLOBALS) .' '.
+		mktext('ex_day',2,2, $GLOBALS) .' ('.
 			_('year') .' '.
 			_('month') .' '.
 			_('day'). ")</td>\n");
@@ -266,7 +266,7 @@
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Disabled') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('disabled',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mkselect('disabled',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><!-- <tr>
 		<th colspan="2" bgcolor="<?php echo($bg2); ?>">
@@ -276,34 +276,34 @@
 	</tr>--><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Design Surveys') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('pdesign',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mkselect('pdesign',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Change Survey Status') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('pstatus',array('Y' => _('Yes'), 'N' => _('No'))) .
+	echo("<td bgcolor=\"$bg1\">". mkselect('pstatus',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) .
 		'<!-- ('. _('Activate/End') .") --></td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Export Survey Data') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('pdata',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mkselect('pdata',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Group Editor') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('pall',array('Y' => _('Yes'), 'N' => _('No'))) .
+	echo("<td bgcolor=\"$bg1\">". mkselect('pall',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) .
 		'<!-- ('. _('may edit <b>all</b> forms owned by this group') .") --></td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Members') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('pgroup',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mkselect('pgroup',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Administer Group Respondents') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('puser',array('Y' => _('Yes'), 'N' => _('No'))) ."</td>\n");
+	echo("<td bgcolor=\"$bg1\">". mkselect('puser',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 		<th colspan="2" bgcolor="<?php echo($bg2); ?>">
