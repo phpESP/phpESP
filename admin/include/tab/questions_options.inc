@@ -41,11 +41,11 @@ Any blank lines will be suppressed.')); ?>
 		for($i=1; $i<$num_choices+1; ++$i) {
 			if ($updated && $curr_q) {
 				list($choice_id, $choice_content) = mysql_fetch_row($result);
-			} elseif ($curr_q) {
-					$choice_id      = intval($HTTP_POST_VARS["choice_id_$i"]);
-					$choice_content = $HTTP_POST_VARS["choice_content_$i"];
 			} else {
-					$choice_id = $choice_content = '';
+				if ($curr_q) {
+					$choice_id      = intval($HTTP_POST_VARS["choice_id_$i"]);
+				}
+				$choice_content = $HTTP_POST_VARS["choice_content_$i"];
 			}
 ?>
 	<tr>
