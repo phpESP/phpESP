@@ -114,6 +114,7 @@ CREATE TABLE answers_other (
 	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	response_id	INT UNSIGNED NOT NULL,
 	question_id INT UNSIGNED NOT NULL,
+	choice_id	INT UNSIGNED NOT NULL,
 	answer		TEXT,
 	PRIMARY KEY (id)
 );
