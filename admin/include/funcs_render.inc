@@ -76,9 +76,9 @@ if(!defined('_FUNCS_RENDER')) {
 
 			++$i;
 			if($has_answers[$tid]) {
-				$sql = "SELECT * FROM question_choices WHERE question_id='${qid}' AND content!='!other' ORDER BY id";
+				$sql = "SELECT * FROM question_choices WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
 				$choices_result = mysql_query($sql);
-				$sql = "SELECT * FROM question_choices WHERE question_id='${qid}' AND content='!other' ORDER BY id";
+				$sql = "SELECT * FROM question_choices WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
 				$others_result = mysql_query($sql);
 				$others = mysql_num_rows($others_result);
 			} else { $choices_result = ''; }
@@ -126,12 +126,18 @@ if(!defined('_FUNCS_RENDER')) {
 							<td><?php echo($choice['content']); ?></td>
 						</tr>
 <?php				}
-					if($others > 0 ) { ?>
+					$j=0;
+					while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {	
+						$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
+?>
 						<tr>
-							<td><?php echo(mkradio($qid,'other_0')); ?></td>
-							<td>Other: <?php echo(mktext("${qid}_0")); ?></td>
+							<td><?php echo(mkradio($qid,"other_${j}")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_${j}")); ?></td>
 						</tr>
-<?php				}	?>
+<?php
+						$j++;
+					}
+?>
 					</table>
 <?php
 					break;
@@ -144,12 +150,18 @@ if(!defined('_FUNCS_RENDER')) {
 							<td><?php echo($choice['content']); ?></td>
 						</tr>
 <?php				}
-					for($j=0;$j<$others;$j++) { ?>
+					$j=0;
+					while($other = mysql_fetch_array($others_result,MYSQL_ASSOC)) {	
+						$other_text = preg_replace(array("/\!other=(.*)/","/\!other/"),array("\\1 ","Other: "),$other['content']);
+?>
 						<tr>
 							<td><?php echo(mkcheckbox($qid,"other_${j}")); ?></td>
-							<td>Other: <?php echo(mktext("${qid}_${j}")); ?></td>
+							<td><?php echo($other_text . mktext("${qid}_${j}")); ?></td>
 						</tr>
-<?php				}	?>
+<?php
+						$j++;
+					}
+?>
 					</table>
 <?php
 					break;

@@ -433,7 +433,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 					$question["result_id"] = 1;	// default to percentages for yes/no
 					
 			} elseif($table == "answers_single" || $table == "answers_multiple") {
-				$sql = "SELECT id,content FROM question_choices WHERE question_id='${qid}' AND content!='!other' ORDER BY id";
+				$sql = "SELECT id,content FROM question_choices WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
 				$result = mysql_query($sql);
 				while(list($cid,$ccontent) = mysql_fetch_row($result)) {
 					$sql2 = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
