@@ -7,10 +7,11 @@
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
 
-	// clear the session
+	// see if a survey has been selected
 	if(!empty($sid)) {
-		if(empty($totals))
+		if(!isset($totals))
 			$totals=1; // by default, show totals in results
+
 		if(!empty($cids))
 			$cids = split(" ",$cids); // turn space seperated list into array
 
