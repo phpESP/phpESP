@@ -31,7 +31,7 @@
 	// update failed, stay on same question
 	if(!$updated || isset($HTTP_POST_VARS['extra_choices'])) {
 		$q=0;
-		while($q_ids[$q] != $id && $q < $total_num_q) {
+		while($q_ids[$q] != $HTTP_POST_VARS['id'] && $q < $total_num_q) {
 			$q++;
 		}
 		$HTTP_POST_VARS['q'] = ++$q;
