@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_FUNCTION_SURVEY_PURGE')) {
- 	define('_FUNCTION_SURVEY_PURGE',TRUE);
-	
 /* {{{ proto void survey_purge(array survey_ids)
    Purges all traces of survey(s) from the database.
    Returns void. */
@@ -59,5 +56,4 @@ function survey_purge($sids) {
 }
 /* }}} */
 
-} // end _FUNCTION_SURVEY_PURGE
 ?>

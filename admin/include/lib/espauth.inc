@@ -10,7 +10,7 @@
 		$auth_type = 'default';
 
 	if (!file_exists($GLOBALS['ESPCONFIG']['include_path']."/lib/espauth-$auth_type".$ESPCONFIG['extension'])) {
-		echo("<b>Unable to set up authentication for type $auth_type. Aborting.</b>");
+		echo("<b>FATAL: Unable to set up authentication for type $auth_type. Aborting.</b>");
 		exit;
 	}
 

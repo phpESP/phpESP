@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_LIB_ESPMERGE')) {
- 	define('_LIB_ESPMERGE',TRUE);
-
 /* {{{ proto array merge_expand_qids(int target_qid, array surveys)
    Returns an array of question ids spanning the given
    survey ids. */
@@ -85,5 +82,4 @@ ORDER BY C.question_id, C.id";
 }
 /* }}} */
 	
-} // end _LIB_ESPMERGE
 ?>

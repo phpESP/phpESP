@@ -5,9 +5,6 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-if(!defined('_FUNCTION_SURVEY_REPORT')) {
- 	define('_FUNCTION_SURVEY_REPORT',TRUE);
-
 /* {{{ proto string survey_report(int survey_id, bool details, string format)
     Build a description of a survey, including all unique ids.
 	Rerturns an empty string on success, else an error message. */
@@ -116,5 +113,4 @@ function survey_report($sid, $details = 0, $format = '') {
 }
 /* }}} */
 
-} // end _FUNCTION_SURVEY_REPORT
 ?>
