@@ -82,16 +82,25 @@ function survey_generate_csv($sid) {
 		
 		// merge it
 		for($i = 0; $i < $numcols; $i++) {
-			if(is_array($response[$columns[$i]]))
+			if (isset($response[$columns[$i]]) &&
+					is_array($response[$columns[$i]]))
 				$response[$columns[$i]] = join(',', $response[$columns[$i]]);
 			switch ($types[$i]) {
 			case 2: /* special */
 				break;
 			case 1: /* string */
-				$response[$columns[$i]] = '"'. $response[$columns[$i]] .'"';
+				if (isset($response[$columns[$i]])) {
+					$response[$columns[$i]] = ereg_replace("[\n\t]", ' ', $response[$columns[$i]]);
+					$response[$columns[$i]] = ereg_replace('"', '""', $response[$columns[$i]]);
+					$response[$columns[$i]] = '"'. $response[$columns[$i]] .'"';
+				}
 				/* fall through */
 			case 0: /* number */
-				array_push($arr, $response[$columns[$i]]);
+				if (isset($response[$columns[$i]]))
+					array_push($arr, $response[$columns[$i]]);
+				else
+					array_push($arr, '');
+				break;
 			}
 		}
 		array_push($output, $arr);
