@@ -16,9 +16,11 @@ FILES
 -----
 admin/        Administration interface and support files
 docs/         Documentation files
+examples/     Example files for themes
 images/       Image files
-public/       Public interface to taking surveys
 locale/       Language files
+public/       Public interface to taking surveys
+scripts/      Database and other scripts
 LICENSE       The license, please read this.
 
 For installation instructions please read the INSTALL file in the docs/
