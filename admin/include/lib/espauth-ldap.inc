@@ -203,7 +203,7 @@ function manage_auth($username, $password, $raw_password="") {
 							(username,password,auth,realm,fname,
 							pdesign,pstatus,pdata,pall,
 							pgroup,puser,disabled,expiration,changed)
-							VALUES ('$username',".db_crypt($password).",
+							VALUES ("._addslashes($username).",".db_crypt($password).",
 									'BASIC',"._addslashes($username).", "._addslashes($username).",
 									'Y','Y','Y','Y','N','N','N','0',".sys_time_stamp().")";
 			} else {
@@ -282,7 +282,7 @@ function manage_logout() {
    Returns true if user owns the survey. */
 function auth_is_owner($sid, $user) {
 	$val = false;
-	$sql = "SELECT s.owner = $user FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id=$sid";
+	$sql = "SELECT s.owner = "._addslashes($user)." FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id=$sid";
     $result = execute_sql($sql);
 	if(!(list($val) = fetch_row($result)))
 		$val = false;
