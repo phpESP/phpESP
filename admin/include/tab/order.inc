@@ -84,7 +84,17 @@ list.')); ?>
     document.phpesp.submit();
   }
   function editq(num) {
-	document.phpesp.elements[1].value='Questions';
+    if (document.phpesp.elements[1].name == 'tab') {
+        document.phpesp.elements[1].value='Questions';
+    }
+    else {
+      for (i = 1; i <= document.phpesp.elements.length; i++) {
+	if (document.phpesp.elements[i].name == 'tab') {
+	  document.phpesp.elements[i].value='Questions';
+	  break;
+	}
+      }
+    }  
     document.phpesp.q.value=num;
     document.phpesp.submit();
 	return false;
