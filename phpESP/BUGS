@@ -7,8 +7,10 @@ admin/include/funcs.inc:108:check_required()
 	possible to select an !other field, and not fill in the box
 
 * Data export files are dumped in /tmp and owned by the
-  webserver (may be changed in admin/include/espauth-default.inc
+  web server (may be changed in admin/include/espauth-default.inc
   line 170)
+
+* Cross analysis on "!other" options is a bit suspect.
 
 Please report any new bugs using the bug report form:
   http://sourceforge.net/tracker/?func=add&group_id=8956&atid=108956
