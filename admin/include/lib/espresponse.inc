@@ -72,7 +72,8 @@ ORDER BY position";
 function response_insert($sid,$section,$rid) {
 	global $HTTP_POST_VARS;
 
-	$userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
+	$userid = isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']) ?
+            $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'] : '';
 	if (empty($userid))
 		$userid = $HTTP_POST_VARS['userid'];
 
@@ -93,6 +94,8 @@ FROM question Q, question_type T
 
 	$q_result = mysql_query($sql);
 	while(list($qid, $tid, $table) = mysql_fetch_row($q_result)) {
+        if (!isset($HTTP_POST_VARS[$qid]))
+            continue;
 		if (is_string($HTTP_POST_VARS[$qid]))
 			$val = XADDSLASHES($HTTP_POST_VARS[$qid]);
 		switch($table) {
