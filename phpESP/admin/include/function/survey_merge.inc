@@ -8,8 +8,8 @@
 if(!defined('_FUNCTION_SURVEY_MERGE')) {
  	define('_FUNCTION_SURVEY_MERGE',TRUE);
 
-if(empty($ESPCONFIG['DEBUG_MERGE']))
-	$ESPCONFIG['DEBUG_MERGE'] = $ESPCONFIG['DEBUG'];
+if(empty($GLOBALS['ESPCONFIG']['DEBUG_MERGE']))
+	$GLOBALS['ESPCONFIG']['DEBUG_MERGE'] = $GLOBALS['ESPCONFIG']['DEBUG'];
 
 /* {{{ proto string survey_merge(array survey_ids, int precision, bool show_totals)
    Builds a HTML result page after merging the results from
@@ -40,7 +40,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 	// load survey title (and other globals) from 1st surveyId
 	$sid = $sids[0];
 	$sql = "SELECT * FROM survey WHERE id=${sid}";
-	if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+	if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 	if(!($result = mysql_query($sql))) {
 		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."] [ ".mysql_error()."]";
 		return($errmsg);
@@ -53,7 +53,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			  FROM response R
 			 WHERE R.survey_id ${sidstr} AND
 				   R.complete='Y'";
-	if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+	if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 	if(!($result = mysql_query($sql))) {
 		$errmsg = _('Error opening surveys.') ." [ ID: ${sidstr} ] [ ".mysql_error()."]";
 		return($errmsg);
@@ -81,7 +81,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 					   type_id != 99 AND
 					   deleted='N'
 				 ORDER BY position,id";
-		if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+		if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 		$questions[$i] = mysql_query($sql);
 		if(!$questions[$i]) {
 			$errmsg = _('Error opening surveys.') .' '. _('No questions found.') . " [ ID:${sid} ] [ ".mysql_error()."]";
@@ -107,11 +107,11 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				echo("</table>\n");
 				return;
 			}
-			if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$i = $i; \$question[\$i]['id'] = ".$question[$i]['id']." -->\n");
+			if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$i = $i; \$question[\$i]['id'] = ".$question[$i]['id']." -->\n");
 			array_push($qids, $question[$i]['id']);
 		}
 		$qidstr = array_to_insql($qids);
-		if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$qidstr = $qidstr -->\n");
+		if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$qidstr = $qidstr -->\n");
 
 		// now -- we assume the surveys are identical, and there is a
 		// one-to-one relation between the questions of each
@@ -119,7 +119,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 		$tid = $question[0]['type_id'];
 		$table = $response_table[$tid];
-		if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$table = $table -->\n");
+		if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$table = $table -->\n");
 
 		if($tid == 99) {
 			echo("<tr><td><hr></td></tr>\n");
@@ -148,7 +148,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 					 WHERE A.question_id ${qidstr} AND 
 						   A.response_id ${ridstr}
 					 GROUP BY A.choice_id";
-			if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+			if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 			$result = mysql_query($sql);
 			while(list($text,$count) = mysql_fetch_row($result)) {
 				$counts[$text] = $count;
@@ -162,8 +162,9 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 // -------------------------------- response_single ----------------------------------
 // -------------------------------- response_multiple --------------------------------
-		case 'response_single':
 		case 'response_multiple':
+			$showTotals = 0;
+		case 'response_single':
 			for($i=0; $i<$num; $i++) {
 				$sid = $sids[$i];
 				$qid = $question[$i]['id'];
@@ -172,7 +173,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 						 WHERE question_id=${qid} AND
 							   content NOT LIKE '!other%'
 						 ORDER BY id";
-				if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result = mysql_query($sql);
 				$cids[$i] = array();
 				while(list($cid) = mysql_fetch_row($result)) {
@@ -183,7 +184,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			$content = array();
 			foreach($cids[0] as $cid) {
 				$sql = "SELECT content FROM question_choice WHERE id=${cid}";
-				if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				array_push($content, mysql_result($result,0,0));
 				mysql_free_result($result);
@@ -200,7 +201,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 						  FROM ${table} A
 						 WHERE A.choice_id ${mycidstr} AND
 							   A.response_id ${ridstr}";
-				if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				$counts[$content[$j]] = mysql_result($result,0,0);
 				mysql_free_result($result);
@@ -215,7 +216,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 						 WHERE question_id ${qidstr} AND
 							   content LIKE '!other%'
 						 ORDER BY id";
-				if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result = mysql_query($sql);
 				$cids[$i] = array();
 				while(list($cid) = mysql_fetch_row($result)) {
@@ -226,7 +227,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			$content = array();
 			foreach($cids[0] as $cid) {
 				$sql = "SELECT content FROM question_choice WHERE id=${cid}";
-				if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				$text = ereg_replace("!other=?", "", mysql_result($result,0,0));
 				if(!empty($text))
@@ -247,7 +248,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 						 WHERE A.choice_id ${mycidstr} AND
 							   A.response_id ${ridstr}
 						 GROUP BY A.response";
-				if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+				if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				while(list($response,$count) = mysql_fetch_row($result)) {
 					if(!empty($response)) {
@@ -269,7 +270,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 					 WHERE A.question_id ${qidstr} AND 
 						   A.response_id ${ridstr}
 					 GROUP BY A.response";
-			if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+			if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 			$result = mysql_query($sql);
 			while(list($response, $count) = mysql_fetch_row($result)) {
 				if(!empty($response))
@@ -290,7 +291,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 					          FROM question_choice
 							 WHERE question_id ${qidstr}
 							 ORDER BY id";
-					if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+					if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 					$result = mysql_query($sql);
 					$cids[$i] = array();
 					while(list($cid) = mysql_fetch_row($result)) {
@@ -301,7 +302,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				$content = array();
 				foreach($cids[0] as $cid) {
 					$sql = "SELECT content FROM question_choice WHERE id=${cid}";
-					if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+					if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					array_push($content, mysql_result($result,0,0));
 					mysql_free_result($result);
@@ -319,7 +320,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 							 WHERE A.choice_id ${mycidstr} AND
 								   A.response_id ${ridstr} AND
 								   A.rank>0";
-					if($ESPCONFIG['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
+					if($GLOBALS['ESPCONFIG']['DEBUG_MERGE'])	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					$counts[$content[$j]] = mysql_result($result,0,0);
 					mysql_free_result($result);

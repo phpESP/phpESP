@@ -8,8 +8,8 @@
 if(!defined('_FUNCTION_SURVEY_RESULTS')) {
  	define('_FUNCTION_SURVEY_RESULTS',TRUE);
 
-if(empty($ESPCONFIG['DEBUG_RESULTS']))
-	$ESPCONFIG['DEBUG_RESULTS'] = $ESPCONFIG['DEBUG'];
+if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
+	$GLOBALS['ESPCONFIG']['DEBUG_RESULTS'] = $GLOBALS['ESPCONFIG']['DEBUG'];
 	
 /* {{{ proto string survey_results(int survey_id, int preceision, bool show_totals, int question_id, array choice_ids)
 	Builds HTML for the results for the survey. If a 
@@ -180,7 +180,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 					 WHERE A.question_id='${qid}' AND 
 						   A.response_id ${ridstr}
 					 GROUP BY A.choice_id";
-			if($ESPCONFIG['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
+			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
 					$counts[$ccontent] = $count;
@@ -193,8 +193,9 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			break;
 // -------------------------------- response_single --------------------------------
 // -------------------------------- response_multiple --------------------------------
-		case 'response_single':
 		case 'response_multiple':
+			$showTotals = 0;
+		case 'response_single':
 			$sql = "SELECT C.content, COUNT(A.response_id) AS num
 					  FROM question_choice C,
 						   ${table} A
@@ -204,7 +205,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 						   A.choice_id=C.id AND
 						   A.response_id ${ridstr}
 					 GROUP BY C.id";
-			if($ESPCONFIG['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
+			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
 					$counts[$ccontent] = $count;
@@ -218,7 +219,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 						   A.choice_id=C.id AND
     					   A.response_id ${ridstr}
 					 ORDER BY C.id, A.response";
-			if($ESPCONFIG['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
+			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($answer,$ccontent) = mysql_fetch_row($result)) {
 					$content = ereg_replace("!other=?", "", $ccontent);
@@ -238,7 +239,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 					 WHERE A.question_id='${qid}' AND
     					   A.response_id ${ridstr}
 					 GROUP BY A.response";
-			if($ESPCONFIG['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
+			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($text, $num) = mysql_fetch_row($result)) {
 					if(!empty($text))
@@ -259,7 +260,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 							   A.rank>0 AND
 							   A.response_id ${ridstr}
 						 GROUP BY C.id";
-				if($ESPCONFIG['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
+				if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 				if($result = mysql_query($sql)) {
 					while(list($ccontent,$avg) = mysql_fetch_row($result)) {
 						$counts[$ccontent] = $avg;
