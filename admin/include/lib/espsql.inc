@@ -60,7 +60,37 @@ function survey_get_sections($sid, $field = 'id') {
 	return $ret;
 }
 /* }}} */
-			
+
+/* {{{ proto array survey_get_section_questions(int survey_id)
+	Returns 2D-array with question id's of sections, excludes 
+    the section text question type. */
+function survey_get_section_questions($sid, $field = 'id') {
+	if (empty($field))
+		$field = 'id';
+	
+	$sql = "SELECT $field, type_id FROM question
+			WHERE survey_id = $sid AND deleted = 'N'
+			ORDER BY position";
+	if (!($result = mysql_query($sql)))
+		return array();
+	$ret = array();
+	$sec = array();
+	while (list($key, $type) = mysql_fetch_row($result)) {
+        if ($type != 100) {
+	    	if ($type != 99) {
+		    	array_push($sec, $key);
+	    	} else {
+	    		array_push($ret, $sec);
+	    		$sec = array();
+	    	}
+        }
+	}
+	array_push($ret, $sec);
+	mysql_free_result($result);
+	return $ret;
+}
+/* }}} */
+	
 
 /* {{{ proto string survey_select_section_sql(int survey_id, int section)
    Returns a string of a SQL fragment to limit questions to
