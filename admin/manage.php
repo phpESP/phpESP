@@ -54,10 +54,12 @@
 	if(file_exists($ESPCONFIG['include_path']."/head".$ESPCONFIG['extension']))
 		include($ESPCONFIG['include_path']."/head".$ESPCONFIG['extension']);
 
-	if(!empty($HTTP_POST_VARS['where']))
-		include(esp_where($HTTP_POST_VARS['where']));
-	else
-		include(esp_where($HTTP_GET_VARS['where']));
+	$where = '';
+	if(isset($HTTP_POST_VARS['where']))
+		$where = $HTTP_POST_VARS['where'];
+	elseif(isset($HTTP_GET_VARS['where']))
+		$where = $HTTP_GET_VARS['where']);
+	include(esp_where($where));
 
 	if(file_exists($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']))
 		include($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']);
