@@ -25,7 +25,7 @@ function move(f,bDir,sName) {
     var el = f.elements[sName]
     var idx = el.selectedIndex
     if (idx==-1) 
-    alert("You must first select the item to reorder.")
+        alert("You must first select the item to reorder.")
     else {
         var nxidx = idx+( bDir? -1 : 1)
         if (nxidx<0) nxidx=el.length-1
@@ -51,16 +51,28 @@ function saveOrder() {
         document.phpesp.questions_order.value = orderList;
 }
 
+function removeItem() {
+    var el = document.getElementById('questions');
+    var idx = el.selectedIndex;
+    if (idx == -1) {
+        alert("You must first select an item to delete");
+        return false;
+    } else {
+        document.phpesp.removeit.value = 1;
+        document.phpesp.submit();
+    }
+}
 // comment -->
 </script>
 <input type="hidden" name="tab" value="">
+<input type="hidden" name="removeit" value="">
 <input type="hidden" name="questions_order" value="">
         <?php
             if ($max > 20) {
                 $max = 20;
             }
         ?>
-    <select name="questions" size="<?php echo($max)?>">
+    <select name="questions" id="questions" size="<?php echo($max)?>">
         <?php
         $i = 1;
         while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
@@ -81,5 +93,5 @@ function saveOrder() {
         ?>
         </select>
 <hr>
-<input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')"> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>"> | <input type="submit" value="Remove" name="remove">
+<input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')"> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>"> | <input type="button" value="Remove" name="remove" onclick="javascript:removeItem()">
     <br /><br />
