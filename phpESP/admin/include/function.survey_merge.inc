@@ -259,7 +259,8 @@ if(!defined('_FUNCTION_SURVEY_MERGE')) {
 					$sql = "SELECT A.answer, COUNT(A.response_id)
 							  FROM answers_other A
 							 WHERE A.choice_id ${mycidstr} AND
-								   A.response_id ${ridstr}";
+								   A.response_id ${ridstr}
+							 GROUP BY A.answer";
 					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					while(list($answer,$count) = mysql_fetch_row($result)) {
