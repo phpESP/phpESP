@@ -126,9 +126,12 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 					$str1 = eregi_replace(
 					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
 					" ", $str2);
-				} while ($str1 != $str2);
-				$HTTP_POST_VARS['name'] = $str1;
-			}
+				} 
+                while ($str1 != $str2);
+                $HTTP_POST_VARS['name'] = $str1;
+                }
+                $HTTP_POST_VARS['name'] = strtoupper(preg_replace("/[^A-Z0-9]+/i","_", trim($HTTP_POST_VARS['name'])));
+                $HTTP_POST_VARS['name'] = preg_replace("/(^_|_$)/i","", $HTTP_POST_VARS['name']);
 
             // angek: start: 280903. 
             // do not allow questions in the same survey to have the same name.
