@@ -55,20 +55,22 @@ function saveOrder() {
 </script>
 <input type="hidden" name="tab" value="">
 <input type="hidden" name="questions_order" value="">
-<table>
-        <tr>
-        <td>
+        <?php
+            if ($max > 20) {
+                $max = 20;
+            }
+        ?>
     <select name="questions" size="<?php echo($max)?>">
         <?php
+        $i = 1;
         while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
             $result->MoveNext();
-            $position = $pos+1;
             $dots = "";
             if($tid != 99) {
                 if (strlen($content) > 100) {
                    $dots = "...";
                 }
-                echo('<option value="'.$qid.'">'.$position.'. '.substr($content,0, 100).$dots.'</option>');
+                echo('<option value="'.$qid.'">'.$i++.'. '.substr($content,0, 100).$dots.'</option>');
             }
             else {
                 ++$sec;
@@ -78,11 +80,6 @@ function saveOrder() {
 		db_close($result);
         ?>
         </select>
-		</td>
-        <td>
-        <input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')"> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" value="Remove" name="remove">
-        </td>
-        </tr>
-</table>
 <hr>
-<input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>">
+<input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')"> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>"> | <input type="submit" value="Remove" name="remove">
+    <br /><br />
