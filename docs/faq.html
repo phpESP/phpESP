@@ -6,84 +6,86 @@
 <div><p align="center" ><b>FREQUENTLY ASKED QUESTIONS (FAQs)</b></p>
 
 <ul>
-<li><a href="#1"><b>How do you display only 1 question per page?</b></a> 
-<li><a href="#2"><b>Can you prevent multiple votes (ballot stuffing)?</b></a> 
-<li><a href="#3"><b>Do register globals need to be on?</b></a> 
-<li><a href="#4"><b>Can you limit the number of times someone takes a survey if they have to login?</b></a> 
+<li><a href="#1"><b>How can I display only 1 question per page?</b></a> 
+<li><a href="#2"><b>Can I prevent multiple votes (ballot stuffing)?</b></a> 
+<li><a href="#3"><b>Does register globals need to be on?</b></a> 
+<li><a href="#4"><b>Can I limit the number of times someone takes a survey if they have to login?</b></a> 
 <li><a href="#5"><b>What are the correct permission settings for phpESP files?</b></a>
-<li><a href="#6"><b>Can a responder complete part of a survey, log out, then log back in later to finish?</b></a>
+<li><a href="#6"><b>Can a respondent complete part of a survey, log out, then log back in later to finish?</b></a>
 <li><a href="#7"><b>Can phpESP support large numbers of respondents?</b></a>
-<li><a href="#8"><b>Do you support other databases than mysql?</b></a>
-<li><a href="#9"><b>I'm running Windows and keep getting a blank screen-Help!</b></a>
-<li><a href="#10"><b>Can you delete old surveys?</b></a>
-<li><a href="#11"><b>Where do you set the mysql login passwords?</b></a>
-<li><a href="#12"><b>Can you change the number of options on a rank question?</b></a>
+<li><a href="#8"><b>Does phpESP support other databases than MySQL?</b></a>
+<li><a href="#9"><b>I'm running Windows and keep getting a blank screen - Help!</b></a>
+<li><a href="#10"><b>Can I delete old surveys?</b></a>
+<li><a href="#11"><b>Where do I set the MySQL login passwords?</b></a>
+<li><a href="#12"><b>Can I change the number of options on a rank question?</b></a>
 <li><a href="#13"><b>I'm having trouble changing the default language, what should I do?</b></a>
  
 </ul>
 <br>
-<p><a name="1"><b>How do you display only 1 question per page? </b></a>
+<p><a name="1"><b>How can I display only 1 question per page? </b></a>
 <p class="indented">You can put a section break between each question to emulate this behavior.
 <br>
 <a href="#top">Top</a> 
-<p><a name="2"><b>Can you prevent multiple votes (ballot stuffing)? </b></a>
+<p><a name="2"><b>Can I prevent multiple votes (ballot stuffing)? </b></a>
 <p class="indented">Well, if you give each respondent a username and password and have them login, you can limit 
 multiple voting.  If you don't force respondents to log in, it becomes more difficult (e.g., you could 
 analyze the data by IP.)
 <br>
 <a href="#top">Top</a> 
-<p><a name="3"><b>Do register globals need to be on? </b></a>
+<p><a name="3"><b>Does register globals need to be on? </b></a>
 <p class="indented">No.
 <br>
 <a href="#top">Top</a> 
-<p><a name="4"><b>Can you limit the number of times someone takes a survey if they have to login? </b></a>
+<p><a name="4"><b>Can I limit the number of times someone takes a survey if they have to login? </b></a>
 <p class="indented">Yes, set max login to the number of times you want to allow someone to take the survey.
+This may be done from the <em>Survey Access</em> page.
 <br>
 <a href="#top">Top</a> 
 <p><a name="5"><b>What are the correct permission settings for phpESP files?</b></a>
-<p class="indented">phpESP files should be set as 644 to be readable by Apache
+<p class="indented">All phpESP files should be set as 644 to be readable by the web server.
 <br>
 <a href="#top">Top</a> 
-<p><a name="6"><b>Can a responder complete part of a survey, log out, then log back in later to finish? </b></a>
-<p class="indented">No, you should break the survey into two smaller surveys.
+<p><a name="6"><b>Can a respondent complete part of a survey, log out, then log back in later to finish? </b></a>
+<p class="indented">Yes, see the <em>Save/Restore</em> option on the <em>Survey Access</em> page.
 <br>
 <a href="#top">Top</a> 
 <p><a name="7"><b>Can phpESP support large numbers of respondents?</b></a>
 <p class="indented">Yes, large surveys (100 questions) and large respondent groups (4,000+) can be 
-handled without a problem.  Throughput issues are generally a function of how fast is your web server, 
-how fast is the mysql server, and available network bandwidth.
+handled without a problem.  Throughput issues are generally a function of the speed of the web server, 
+the speed of the MySQL server, and available network bandwidth.
 <br>
 <a href="#top">Top</a> 
-<p><a name="8"><b>Do you support other databases than mysql?</b></a>
-<p class="indented">Not currently.  We'd welcome help doing that if you have the time.
+<p><a name="8"><b>Does phpESP support other databases than MySQL?</b></a>
+<p class="indented">Not currently.  We would welcome help adapting phpESP to use
+the PEAR database classes if you have the time.
 <br>
 <a href="#top">Top</a> 
-<p><a name="9"><b>I'm running Windows and keep getting a blank screen-Help! </b></a>
-<p class="indented">If is is not a path problem in phpESP.ini, then copy gnu_gettext.dll and 
-php_gettext.dll (both usually found in the PHP install directory) into the system director of windows.  For
-Win95/98 the system directory is something like c:/winroot/system and on WinNT/2000/XP the system 
-directory is something like c:/winroot/system32.<br>
+<p><a name="9"><b>I'm running Windows and keep getting a blank screen - Help! </b></a>
+<p class="indented">If is is not a path problem in phpESP.ini.php, then copy gnu_gettext.dll (or libintl-1.dll) and 
+php_gettext.dll (both usually found in the PHP install directory) into the system directory of windows.  For
+Win95/98 the system directory is something like <tt>c:\windows\system</tt> and on WinNT/2000/XP the system 
+directory is something like <tt>c:\windows\system32</tt>.<br>
 <br>After you have copied these dll's to the proper place, edit your php.ini file and comment out the 
 line "extension=php_gettext.dll". <br>
-<br>Last thing you do is stop and restart your server.
+<br>Then stop and restart the web server.
 <br>
 <a href="#top">Top</a> 
-<p><a name="10"><b>Can you delete old surveys? </b></a>
+<p><a name="10"><b>Can I delete old surveys? </b></a>
 <p class="indented">Yes, there is an unlisted function http://......./phpESP/admin/manage.php?where=purge<br>
-Be careful when using it, you can't recover from it.
+Be <em>very</em> careful when using it, you cannot recover from it.
 <br>
 <a href="#top">Top</a> 
-<p><a name="11"><b>Where do you set the mysql login passwords?</b></a>
-<p class="indented">You set the password, user, and database connections that phpESP will use with 
-mysql in the file phpESP.ini -- further details are in the README file.
+<p><a name="11"><b>Where do I set the MySQL login password?</b></a>
+<p class="indented">The MySQL server name, user, and password that phpESP will use are
+set in the file phpESP.ini.php -- further details are in the INSTALL file.
 <br>
 <a href="#top">Top</a> 
-<p><a name="12"><b>Can you change the number of options on a rank question? </b></a>
+<p><a name="12"><b>Can I change the number of options on a rank question? </b></a>
 <p class="indented">Yes, change the length field.
 <br>
 <a href="#top">Top</a> 
 <p><a name="13"><b>I'm having trouble changing the default language, what should I do? </b></a>
-<p class="indented">Needs an answer.
+<p class="indented">Check the results of the phpESP system test page, then see the TRANSLATIONS file.
 <br>
 <a href="#top">Top</a>
 <!-- faq  end -->
