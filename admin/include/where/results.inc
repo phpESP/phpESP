@@ -26,7 +26,7 @@
 ?>
 </td></tr></table>
 <?php
-		if($test) {
+		if($HTTP_GET_VARS['test']) {
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=". $HTTP_GET_VARS['sid'] ."\">". _('Test Survey') ."</a><br>\n");
 		}
 ?>
