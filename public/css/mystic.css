@@ -1,7 +1,7 @@
 /* $Id$ */
 /* Brian Crawford @ IT Lab (http://www.itlab.musc.edu/) */
 .headerGraphic {
-#	background-image: url(../../images/surveyimages/musc-banner.jpg);
+/*#	background-image: url(); */
 	background-repeat: no-repeat;
 	width: 100%;
 	border: none;
@@ -16,7 +16,7 @@
 	font-size: x-large;
 	font-style: normal;
 	font-weight: bold;
-#	font-variant: small-caps;
+/*	font-variant: small-caps; */
 	text-transform: none;
 	color: #000000;
 	text-decoration: none;
@@ -29,7 +29,7 @@
 	font-size: large;
 	font-style: normal;
 	font-weight: bold;
-#	font-variant: small-caps;
+/*	font-variant: small-caps; */
 	text-transform: none;
 	color: #000000;
 	text-decoration: none;
@@ -41,7 +41,7 @@
         font-size: 12px;
         font-style: normal;
         font-weight: 600;
-#       font-variant: small-caps;
+/*      font-variant: small-caps;*/
         text-transform: none;
         color: #000000;
         text-decoration: none;
@@ -53,7 +53,7 @@
 	font-size: medium;
 	font-style: normal;
 	font-weight: normal;
-#	font-variant: small-caps;
+/*	font-variant: small-caps; */
 	text-transform: none;
 	color: #000000;
 	text-align: center;
@@ -62,7 +62,7 @@
 .message {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: medium;
-#	font-variant: small-caps;
+/*#	font-variant: small-caps;*/
 	font-weight: bold;
 	color: #000000;
 	text-align: center;
@@ -72,7 +72,7 @@
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 600;
-#	font-variant: small-caps;
+/*	font-variant: small-caps; */
 	text-transform: none;
 	color: #000000;
 	text-decoration: none;
@@ -139,7 +139,7 @@ body {
 	font-size: 14px;
 	font-weight: bold;
 	font-style: normal;
-#	font-variant: small-caps;
+/*	font-variant: small-caps;*/
 	text-transform: none;
 	text-decoration: none;
 }
@@ -152,8 +152,8 @@ body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-style: normal;
-#	font-weight: bold;
-#	font-variant: small-caps;
+/*	font-weight: bold;
+	font-variant: small-caps;*/
 	text-transform: none;
 	text-decoration: none;
 }
@@ -161,21 +161,21 @@ body {
 /* completion page font - large black */
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: x-large;
-#	font-variant: small-caps;
+/*	font-variant: small-caps;*/
 	color: #000000;
 }
 .thankBody {
 /* completion page body font - normal black */
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: medium;
-#	font-variant: small-caps;
+/*	font-variant: small-caps;*/
 	color: #000000;
 }
 .returnLink {
 /* completion page link font - small dark blue */
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: small;
-#	font-variant: small-caps;
+/*	font-variant: small-caps; */
 	color: #253D8E;
 	text-decoration: underline;
 }

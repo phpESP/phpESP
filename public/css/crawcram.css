@@ -63,7 +63,7 @@
 /* main table (bordering the question boxes) - white */
 .mainTable {
 	background-color: #FFFFFF;
-	background-image: url((URL));
+/*	background-image: url(); */
 	background-repeat: repeat-y;
 	cell-spacing: 0;
 	width: 100%;
