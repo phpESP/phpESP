@@ -4,10 +4,15 @@
 #
 
 SOON:
-* add ability to make "sub"-questions of other questions
-* add ability to insert sub headings/text within survey
-* add spell checking support (use spell checking from IMP?)
-* add "Archive" managemnet
+* "sub"-questions of other questions
+  (Roman, will this solve the SKIP problem?)
+* "forked" surveys (subsequent pages dependant on previous question)
+* question groups (questions that share a Q#)
+* check boxes with a fixed number (pick N items...)
+* javascript '!other' helper
+* sub headings/text within survey
+* spell checking support (use spell checking from IMP?)
+* "Archive" managemnet
 * move text strings to seperate file (to ease LOCALE support)
 * javascript 'order' page
 * javascript conditional questions (sub questions)
@@ -15,10 +20,16 @@ SOON:
 * CSV export function
 
 LATER:
+* results (user vs. admin)
+* fix results math ;-)
+* results w/o Total's option
+* user login/verification etc.
 * add "parameters" to question types (?)
-* add ability to view results per submission
+  * Enable/Disable "N/A" on ratings
+* view results per submission
 * new GUI
 * better docs
 
-NEVER: :)
+NEVER: :)  Well OK, not never. 
+           I'll do this when I write a new templating engine.
 * add LOCALE support
