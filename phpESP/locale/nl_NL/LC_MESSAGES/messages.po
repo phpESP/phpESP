@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-06 12:24-0500\n"
-"PO-Revision-Date: 2003-02-26 00:00-0500\n"
-"Last-Translator: Sipke Overbeeke <sipke@8a.nl>\n"
+"POT-Creation-Date: 2003-03-07 15:03-0500\n"
+"PO-Revision-Date: 2003-03-07 20:42+0100\n"
+"Last-Translator: Klaas Chielens <klaas@chielens.net>\n"
 "Language-Team: nl_NL <jflemer@alum.rpi.edu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -18,8 +18,8 @@ msgstr ""
 # File: phpESP/admin/include/where/tab.inc, line: 132
 msgid "Unable to open include file. Check INI settings. Aborting."
 msgstr ""
-"kna het include file niet openen. Bekijk de INI instellingen. Bewerking "
-"wordt beeindigd."
+"kan de include file niet openen. Bekijk de INI instellingen. Bewerking wordt "
+"beeindigd."
 #
 # File: phpESP/admin/include/funcs.inc, line: 67
 # File: phpESP/admin/include/funcs.inc, line: 68
@@ -44,10 +44,10 @@ msgid ""
 "the link below.  You may be prompted for your username\n"
 "and password to complete the survey."
 msgstr ""
-"Uw voortgang is opgeslagen. U kunt op elk moment terugkomen om deze "
-"vragenlijst af te maken. Hiervoor dient u terug te gaan naar onderstaande "
-"link (u kunt deze in uw Bookmarks opnemen). Het kan zijn dat u wordt "
-"gevraagd om uw gebruikersnaam en password."
+"Uw voortgang is opgeslagen. U kunt op elk moment terugkomen\n"
+"om deze vragenlijst af te maken. Hiervoor dient u terug te gaan\n"
+"naar onderstaande link (u kunt deze in uw Bookmarks opnemen).\n"
+"Het kan zijn dat u wordt gevraagd om uw gebruikersnaam en wachtwoord."
 #
 # File: phpESP/admin/include/funcs.inc, line: 126
 msgid "Resume survey"
@@ -98,12 +98,11 @@ msgstr "Geen vragen gevonden."
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 60
 msgid "Page %d of %d"
-msgstr ""
+msgstr "pagina %d van %d"
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 66
-#, fuzzy
 msgid "Questions marked with a %s are required."
-msgstr "Vragen gemarkeerd met een"
+msgstr "Vragen gemarkeerd met een %s zijn verplicht"
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 140
 # File: phpESP/admin/include/function/survey_report.inc, line: 67
@@ -172,12 +171,12 @@ msgstr "Pagina"
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 342
 msgid "of"
-msgstr "of"
+msgstr "van"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 22
 # File: phpESP/admin/include/function/survey_results.inc, line: 110
 msgid "Error system table corrupt."
-msgstr "Fout de systeem tavel is corrupt."
+msgstr "Fout de systeem tabel is corrupt."
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 22
 # File: phpESP/admin/include/function/survey_results.inc, line: 110
@@ -212,7 +211,7 @@ msgstr "#"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 56
 msgid "Req'd"
-msgstr "Req'd"
+msgstr "Verplicht"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 57
 # File: phpESP/admin/include/where/access.inc, line: 102
@@ -240,7 +239,7 @@ msgstr "Ongeldig argument."
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 146
 msgid "Error cross-analyzing. Question not valid type."
-msgstr "Fout bij het kruislings analyseren. Vraag is niet geldig."
+msgstr "Fout bij het kruislings analyseren. Vraag type is niet geldig."
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 218
 msgid "Cross analysis on QID:"
@@ -291,21 +290,25 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_update.inc, line: 294
 msgid "Sorry, you need at least one answer option for this question type."
 msgstr ""
-"Sorry, je moet in ieder geval een antwoord mogelijkheid ingeven voor dit "
-"soort vragen."
+"Sorry, je moet minimum één antwoord mogelijkheid ingeven voor dit soort "
+"vragen."
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 21
 msgid ""
 "Error cross-tabulating. Please ensure that your column\n"
 "                                             and row selections are not of "
 "the same question."
-msgstr "Fout bij het openen van de vragenlijst."
+msgstr ""
+"Fout bij kruiselings tabuleren. Zorg ervoor dat kolom\n"
+"en rij selecties niet uit dezelfde vraag komen."
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 29
 msgid ""
 "Error cross-tabulating. Please ensure you make both\n"
 "                                     a column and row selection."
-msgstr "Fout bij het openen van de vragenlijsten."
+msgstr ""
+"Fout bij kruiselings tabuleren. Zorg ervoor dat u zowel\n"
+"een kolom als een rij selecteert."
 #
 # File: phpESP/admin/include/lib/crosstab.inc, line: 34
 msgid ""
@@ -313,7 +316,7 @@ msgid ""
 "                             and tabulate at the same time. This is not "
 "possible!"
 msgstr ""
-"Fout bij kruis-tabel uitrekenen. U probeert een kruistabel te maken en te "
+"Fout bij kruiselings tabeleren. U probeert een kruistabel te maken en te "
 "berekenen op hetzelfde moment, dit is niet mogelijk!"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 17
@@ -353,8 +356,7 @@ msgstr "Niet toegestaan"
 msgid ""
 "Incorrect User ID or Password, or your account has been disabled/expired."
 msgstr ""
-"Incorrecte login naam of wachtwoord, of je account is uitgeschakeld of "
-"verlopen."
+"Foute login naam of wachtwoord, of je account is uitgeschakeld of verlopen."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 96
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 106
@@ -371,7 +373,7 @@ msgstr "Kan ACL niet laden."
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 222
 # File: phpESP/admin/include/where/manage.inc, line: 12
 msgid "Management Interface"
-msgstr "Beheer menu"
+msgstr "Beheers menu"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 253
 msgid "This account does not have permission"
@@ -421,12 +423,11 @@ msgstr "Dit account heeft geen permissies"
 # File: phpESP/admin/include/where/todo.inc, line: 16
 # File: phpESP/admin/include/where/upload.inc, line: 121
 msgid "Go back to Management Interface"
-msgstr "Ga terug naar het beheer menu"
+msgstr "Ga terug naar het beheers menu"
 #
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 312
-#, fuzzy
 msgid "This account does not have permission %s."
-msgstr "Dit account heeft geen permissies"
+msgstr "De permissie %s ontbreekt voor deze account."
 #
 # File: phpESP/admin/include/lib/esphtml.forms.inc, line: 142
 msgid "Submit"
@@ -573,9 +574,8 @@ msgstr "Dit verschijnt aan de top van elke pagina van deze vragenlijst."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 73
 # File: phpESP/admin/include/tab/general.inc, line: 82
-#, fuzzy
 msgid "free-form, including spaces"
-msgstr "Inclusief spaties"
+msgstr "Naar keuze, mag spaties bevatten"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 78
 msgid "Subtitle"
@@ -594,7 +594,6 @@ msgid "Additional Info"
 msgstr "Extra informatie"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 90
-#, fuzzy
 msgid ""
 "Text to be displayed on this survey before any fields.\n"
 "(i.e. instructions, background info, etc.)"
@@ -627,7 +626,6 @@ msgid "(body text)"
 msgstr "(inhouds tekst)"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 106
-#, fuzzy
 msgid ""
 "Heading (in bold) and body text for the &quot;Confirmation&quot; page\n"
 "displayed after a user completes this survey."
@@ -646,7 +644,6 @@ msgid "Email"
 msgstr "E-mail"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 116
-#, fuzzy
 msgid ""
 "Sends a copy of each submission to address (or leave blank for no email "
 "backup)."
@@ -708,7 +705,6 @@ msgid "Add Section Break"
 msgstr "Voeg sectie scheiding toe"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 36
-#, fuzzy
 msgid ""
 "This is a preview of how this survey will look.\n"
 "In the preview the survey navigation buttons are inactive, use\n"
@@ -733,7 +729,7 @@ msgstr "Sectie"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 70
 msgid "Previous Page"
-msgstr ""
+msgstr "Vorige pagina"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 72
 msgid "Save"
@@ -774,15 +770,14 @@ msgid "Precision"
 msgstr "Precisie"
 #
 # File: phpESP/admin/include/tab/questions_options.inc, line: 32
-#, fuzzy
 msgid ""
 "Enter the possible answers (if applicable). Enter\n"
 "%s on an line by itself to create a\n"
 "fill-in-the-blank answer at the end of this question.\n"
 "Any blank lines will be suppressed."
 msgstr ""
-"Voer de mogelijke antwoorden in (als van toepassing). Vul\n"
-"<tt>!other</tt> in op een apart veldom een\n"
+"Voer de mogelijke antwoorden in (indien van toepassing). Vul\n"
+" %s in op een apart veld om een\n"
 "open antwoord aan het einde van deze vraag te creeren.\n"
 "Lege velden zullen niet worden weergegeven in de vragenlijst."
 #
@@ -815,12 +810,11 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/access.inc, line: 132
 msgid "Note"
-msgstr ""
+msgstr "Bemerk"
 #
 # File: phpESP/admin/include/where/access.inc, line: 133
-#, fuzzy
 msgid "You must use %s when using private surveys."
-msgstr "wanneer u private vragenlijsten gebruikt"
+msgstr "U moet %s gebruiken indien u afgeschermde vragenlijsten maakt."
 #
 # File: phpESP/admin/include/where/access.inc, line: 148
 # File: phpESP/admin/include/where/access.inc, line: 151
@@ -1091,24 +1085,20 @@ msgstr "Wordt geWijzigd"
 # File: phpESP/admin/include/where/crosstab.inc, line: 17
 # File: phpESP/admin/include/where/crosstab.inc, line: 25
 # File: phpESP/admin/include/where/crosstab.inc, line: 30
-#, fuzzy
 msgid "Error cross-tabulating."
-msgstr "Kies een functie"
+msgstr "Fout in het gekruist tabelleren."
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 18
-#, fuzzy
 msgid ""
 "Please ensure that your column and row selections are not of the same "
 "question."
-msgstr "Fout bij het openen van de vragenlijst."
+msgstr "Zorg er voor dat de kolom en rij selecties niet dezelfde vraag zijn."
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 26
-#, fuzzy
 msgid "Please ensure you make both a column and row selection."
-msgstr "Fout bij het openen van de vragenlijsten."
+msgstr "Zorg er voor dat je zowel een kolom als een rij selectie maakt."
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 31
-#, fuzzy
 msgid ""
 "You are attempting to cross analyze and tabulate at the same time. This is "
 "not possible!"
@@ -1186,7 +1176,7 @@ msgstr "CSV"
 # File: phpESP/admin/include/where/export.inc, line: 83
 # File: phpESP/admin/include/where/test.inc, line: 132
 msgid "download"
-msgstr ""
+msgstr "download"
 #
 # File: phpESP/admin/include/where/export.inc, line: 85
 # File: phpESP/admin/include/where/test.inc, line: 133
@@ -1266,9 +1256,8 @@ msgid "Choose a function"
 msgstr "Kies een functie"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 32
-#, fuzzy
 msgid "Create a New Survey"
-msgstr "Maak een vragenlijst"
+msgstr "Maak een nieuwe vragenlijst"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 33
 msgid "Edit an Existing Survey"
@@ -1304,9 +1293,8 @@ msgid "View Results from a Survey"
 msgstr "Bekijk de resultaten van een vragenlijst"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 42
-#, fuzzy
 msgid "Cross Tabulate Survey Results"
-msgstr "Voeg vragenlijst resultaten samen"
+msgstr "Maak een gekruiste tabulatie van vragenlijstresultaten"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 43
 msgid "View a Survey Report"
@@ -1379,7 +1367,6 @@ msgid "Change Password"
 msgstr "Verander Wachtwoord"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 20
-#, fuzzy
 msgid "Your password has been successfully changed."
 msgstr "Je Wachtwoord is succesvol veranderd."
 #
@@ -1458,28 +1445,25 @@ msgid "Add a new Respondent"
 msgstr "Voeg een nieuwe Respondent toe"
 #
 # File: phpESP/admin/include/where/respondents.inc, line: 132
-#, fuzzy
 msgid "Bulk Upload Respondents"
 msgstr "Voeg een nieuwe Respondent toe"
 #
 # File: phpESP/admin/include/where/results.inc, line: 46
 # File: phpESP/admin/include/where/results.inc, line: 154
-#, fuzzy
 msgid "Cross Tabulation"
-msgstr "Kies een functie"
+msgstr "gekruist tabuleren"
 #
 # File: phpESP/admin/include/where/results.inc, line: 103
 msgid "Test Survey"
 msgstr "Test vragenlijst"
 #
 # File: phpESP/admin/include/where/results.inc, line: 111
-#, fuzzy
 msgid "Reset"
-msgstr "Test"
+msgstr "Beginwaarden"
 #
 # File: phpESP/admin/include/where/results.inc, line: 112
 msgid "Cross Tabulate"
-msgstr ""
+msgstr "Maak een gekruiste tabulatie."
 #
 # File: phpESP/admin/include/where/results.inc, line: 146
 msgid "View Survey Results"
@@ -1490,17 +1474,14 @@ msgid "Pick Survey to View"
 msgstr "Kies een vragenlijst om te bekijken"
 #
 # File: phpESP/admin/include/where/results.inc, line: 155
-#, fuzzy
 msgid "Pick Survey to Cross Tabulate"
-msgstr "Kies een vragenlijst om te testen"
+msgstr "Kies een vragenlijst om gekruist te tabuleren"
 #
 # File: phpESP/admin/include/where/results.inc, line: 162
-#, fuzzy
 msgid "Respondent"
-msgstr "Respons"
+msgstr "Respondent"
 #
 # File: phpESP/admin/include/where/results.inc, line: 171
-#, fuzzy
 msgid "Resp"
 msgstr "Respons"
 #
@@ -1528,7 +1509,6 @@ msgstr ""
 "test status is."
 #
 # File: phpESP/admin/include/where/status.inc, line: 117
-#, fuzzy
 msgid ""
 "<b>Activate</b> transitions a survey into active mode. In this mode the\n"
 "survey is open for production use, and may be put online. This will clear "
@@ -1536,11 +1516,10 @@ msgid ""
 "results from testing mode (if any). No further editing of survey is\n"
 "allowed."
 msgstr ""
-"<b>Activate</b> transitions a survey into active more. In this mode the\n"
-"survey is open for production use, and may be put online. This will clear "
-"any\n"
-"results from testing mode (if any). No further editing of survey is\n"
-"allowed."
+"<b>Activeer</b> maakt een vragenlijst actief. In deze mode is de vragenlijst "
+"open voor gebruik en kan deze online worden gezet. Dit zal alle data wissen "
+"van de testmodus (als die er is). Je kan de vragenlijst niet verder "
+"aanpassen."
 #
 # File: phpESP/admin/include/where/status.inc, line: 122
 msgid ""
@@ -1585,9 +1564,8 @@ msgid "Archive"
 msgstr "Opslaan"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 90
-#, fuzzy
 msgid "No tabs defined. Please check your INI settings."
-msgstr "Geen tabs gedefinieerd. Bekijk je INI instellingen."
+msgstr "Geen tabs gedefinieerd. Bekijk je INI instellingen na."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 142
 # File: phpESP/admin/include/where/upload.inc, line: 98
@@ -1670,43 +1648,45 @@ msgstr "Te doen lijst niet gevonden."
 # File: phpESP/admin/include/where/upload.inc, line: 60
 msgid "An error occurred during upload.  Rows that failed are listed below."
 msgstr ""
+"Er deed zich een fout voor bij het uploaden. Rijen die niet werkten zijn "
+"hieronder weergegeven."
 #
 # File: phpESP/admin/include/where/upload.inc, line: 86
 msgid ""
 "An error occurred during upload.  Please check the format of your text file."
 msgstr ""
+"Er deed zich een fout voor bij het uploaden. Kijk het formaat van je "
+"tekstbestand na. "
 #
 # File: phpESP/admin/include/where/upload.inc, line: 90
 msgid "An error occurred during upload.  Please complete all form fields."
 msgstr ""
+"Er deed zich een fout voor tijdens het uploaden. Gelieve alle velden in het "
+"formulier te vervolledigen."
 #
 # File: phpESP/admin/include/where/upload.inc, line: 94
-#, fuzzy
 msgid "Upload Account Information"
-msgstr "Respondent Account Beheer"
+msgstr "Upload account informatie"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 95
-#, fuzzy
 msgid "All fields are required"
-msgstr "zijn verplict."
+msgstr "Alle velden zijn verplict."
 #
 # File: phpESP/admin/include/where/upload.inc, line: 108
-#, fuzzy
 msgid "File Type"
-msgstr "Type"
+msgstr "Bestandstype"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 109
 msgid "Tab Delimited"
-msgstr ""
+msgstr "Tab begrensd"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 110
-#, fuzzy
 msgid "File to upload"
-msgstr "Kan ACL niet laden."
+msgstr "File die moet geupload worden"
 #
 # File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
-msgstr ""
+msgstr "Dank je wel voor het invullen van de vragenlijst."
 #
 # File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
@@ -1714,6 +1694,9 @@ msgid ""
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
+"Gelieve de back toets van je browser niet te gebruiken. Klik op de "
+"onderstaande link om terug te gaan naar de pagina waar je deze vragenlijst "
+"startte. "
 #
 # File: phpESP/admin/phpESP.ini.php, line: 141
 # File: phpESP/admin/phpESP.ini.php, line: 147
@@ -1721,10 +1704,12 @@ msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
+"Kan de phpESP %s directory niet vinden. Gelieve %s te controlleren en ervoor "
+"te zorgen dat alle paths correct zijn ingevuld. "
 #
 # File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
-msgstr ""
+msgstr "%%%%% Gettext Test Mislukt."
 #
 # File: phpESP/public/handler-prefix.php, line: 69
 msgid "Error processing survey: Survey not specified."
@@ -1738,158 +1723,41 @@ msgstr "Fout bij het verwerken van de vragenlijst: Vragenlijst is niet actief."
 #
 # File: phpESP/public/signup.php, line: 52
 msgid "Sorry, the account request form is disabled."
-msgstr ""
+msgstr "Sorry, het account request formulier is niet bruikbaar."
 #
 # File: phpESP/public/signup.php, line: 61
 msgid "Please complete all required fields."
-msgstr ""
+msgstr "Gelieve alle noodzakelijke velden in te vullen."
 #
 # File: phpESP/public/signup.php, line: 70
-#, fuzzy
 msgid "Passwords do not match."
-msgstr "Nieuwe Wachtwoorden zien niet hetzelfde of zijn leeg."
+msgstr "Nieuwe Wachtwoorden zijn niet hetzelfde of zijn leeg."
 #
 # File: phpESP/public/signup.php, line: 98
 msgid "Request failed, please choose a different username."
 msgstr ""
+"Uw verzoek was niet mogelijk, gelieve een andere gebruikersnaam te kiezen."
 #
 # File: phpESP/public/signup.php, line: 105
 msgid "Your account, %s, has been created!"
-msgstr ""
+msgstr "Uw account, %s, is aangemaakt!"
 #
 # File: phpESP/public/signup.php, line: 119
 msgid "Account Request Form"
-msgstr ""
+msgstr "Account aanmaak formulier"
 #
 # File: phpESP/public/signup.php, line: 125
 msgid ""
 "Please complete the following form to request an account.\n"
 "Items marked with a %s are required."
 msgstr ""
+"Gelieve het volgende formulier in te vullen om een account aan te vragen. "
+"Onderdelen waar %s bij staat zijn verplicht."
 #
 # File: phpESP/public/signup.php, line: 141
 msgid "Email Address"
-msgstr ""
+msgstr "Email adres"
 #
 # File: phpESP/public/signup.php, line: 156
-#, fuzzy
 msgid "Confirm Password"
-msgstr "Bevestig Nieuw Wachtwoord"
-#
-#
-#
-#~ msgid "Total"
-#~ msgstr "Totaal"
-#
-#
-#
-#~ msgid "are required."
-#~ msgstr "zijn verplict."
-#
-#
-#
-#~ msgid "Incorrect User ID or Password, or your account has been disabled."
-#~ msgstr ""
-#~ "Incorrecte login naam of wachtwoord, of je account is uitgeschakeld."
-#
-#
-#
-#~ msgid "free-form"
-#~ msgstr "free-form"
-#
-#
-#
-#~ msgid "ie. instructions, background info, etc."
-#~ msgstr "Bijv. instructies, achtergrond info, etc."
-#
-#
-#
-#~ msgid "Required?"
-#~ msgstr "Vereist?"
-#
-#
-#
-#~ msgid "to access this menu"
-#~ msgstr "om toegang te krijgen tot dit menu"
-#
-#
-#
-#~ msgid "Purge"
-#~ msgstr "Verwijder"
-#
-#
-#
-#~ msgid "STATUS"
-#~ msgstr "STATUS"
-#
-#
-#
-#~ msgid "to design forms"
-#~ msgstr "om formulieren te ontwerpen"
-#
-#
-#
-#
-#
-#
-#~ msgid "Confirmation Heading"
-#~ msgstr "Bevestigings kop"
-#
-#
-#
-#
-#
-#
-#~ msgid ""
-#~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
-#~ "the Confirmation Heading."
-#~ msgstr ""
-#~ "Body tekst op de &quot;bevestigings&quot; pagina. Dit wordt weergegeven "
-#~ "onder de bevestigings kop."
-#
-#
-#
-#
-#
-#
-#~ msgid "Max Logins"
-#~ msgstr "Maximaal aantal Logins"
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Response from survey:"
-#~ msgstr "Respons van vragenlijst:"
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Design Web Forms"
-#~ msgstr "Ontwerp Web Formulieren"
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "NOTE: This does not currently work on embedded forms."
-#~ msgstr "LET OP: Dit werkt op dit moment niet bij geneste formulieren."
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Sorry, please fill out the name and title before proceeding."
-#~ msgstr "Sorry, vul eerst de naam in titel in voordat je verder ging."
+msgstr "Bevestig Wachtwoord"
