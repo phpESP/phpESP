@@ -25,7 +25,7 @@
 
 	/* check ACLs for permissions */
 	$srealm = auth_get_survey_realm($sid);
-	if($HTTP_GET_VARS['test']) {
+	if (isset($HTTP_GET_VARS['test'])) {
 		/* check ACL to see if user is allowed to test
 		 * _this_ survey */
 		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&

@@ -234,7 +234,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 					$content = ereg_replace("!other=?", "", $ccontent);
 					if($content != '')	$content .= ": ";
 					$content .= htmlspecialchars($answer);
-					$counts[$content]++;
+					$counts[$content] = (isset($counts[$content]) ? $counts[$content] : 0)+1;
 				}
 				mysql_free_result($result);
 			}
