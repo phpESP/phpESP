@@ -90,7 +90,6 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 		if(!empty($ret))
 			echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
 ?>
-</td></tr></table>
 <?php
 		if(!empty($HTTP_GET_VARS['test'])) {
 			echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=". $HTTP_GET_VARS['sid'] ."\">". _('Test Survey') ."</a><br>\n");
@@ -99,13 +98,15 @@ require ($ESPCONFIG['include_path']."where/crosstab.inc");
 
         if (!empty($HTTP_GET_VARS['type'])) {
 ?>
-<br />
+</td></tr>
+<tr><td align="center">
 <input type="reset" value="<?php echo _('Reset'); ?>" />
 <?php echo mksubmit('cross', _('Cross Tabulate')); ?>
 <br />
 <?php
         }
 ?>
+</td></tr></table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php
 		return;
