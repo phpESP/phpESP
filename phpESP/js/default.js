@@ -13,4 +13,8 @@ function cancelConfirm() {
     return false;
 }
 
+function exportSubmit(type, f) {
+    f.where.value=type;
+    f.submit();
+}
 -->
