@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.5\n"
-"POT-Creation-Date: 2002-10-15 10:21-0400\n"
+"POT-Creation-Date: 2002-10-15 10:25-0400\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Lopo Pizarro <lopopizarro@users.sourceforge.net>\n"
 "Language-Team: pt <lopopizarro@users.sourceforge.net>\n"
