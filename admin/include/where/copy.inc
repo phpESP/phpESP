@@ -50,7 +50,7 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdesign']));
 		$sql = "SELECT id,name,title,status,owner,realm
-			FROM survey WHERE (owner = '".
+			FROM survey WHERE NOT (status & ". STATUS_DELETED .") AND (owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
@@ -58,7 +58,7 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 ?>
 <h2><?php echo(_('Copy Survey')); ?></h2>
 <?php echo(_('
-Chose a survey to make a copy of. The copy will have the same
+Choose a survey of which to make a copy. The copy will have the same
 status of a newly created survey. You will be able to edit the
 survey, and will have to activate it before use.')); ?>
 <table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
