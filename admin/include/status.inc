@@ -100,7 +100,7 @@ archived survey.</p>
 	</tr>
 <?php
 	while($survey = mysql_fetch_array($result)) {
-		$stat = 'new';
+		$stat = 'Editing';
 		$test = '<a href="'. $PHP_SELF .'?where=status&op=t&sid='. $survey['id'] .'">Test</a>';
 		$act  = '<a href="'. $PHP_SELF .'?where=status&op=a&sid='. $survey['id'] .'">Activate</a>';
 		$done = '<a href="'. $PHP_SELF .'?where=status&op=e&sid='. $survey['id'] .'">End</a>';
