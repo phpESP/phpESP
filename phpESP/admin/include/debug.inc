@@ -41,8 +41,8 @@
 	}
 	$str .= "</table>\n";
 ?>
-<SCRIPT LANGUAGE="JavaScript">
-<!-- // Begin // This should really go into <HEAD> tag
+<script language="JavaScript">
+<!-- // Begin <?php // This should really go into <head> tag ?>
 
 function windowOpener(title,msg) {
   msgWindow=window.open("","displayWindow","menubar=no,alwaysRaised=yes,dependent=yes,width=600,height=500,scrollbars=yes,resizable=yes");
@@ -56,5 +56,5 @@ function debugWindow () {
  windowOpener(title, msg);
 }
 // End -->
-</SCRIPT>
+</script>
 <form name="debug"><input type="button" value="debug" onClick="debugWindow()"></form>
