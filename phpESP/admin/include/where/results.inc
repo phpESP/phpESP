@@ -6,13 +6,13 @@
 // For eGrad2000.com
 // <jflemer@acm.jhu.edu>
 // <jflemer@eGrad2000.com>
-	
+
 	$bg = '';
 
 	// see if a survey has been selected
 	if(!empty($HTTP_GET_VARS['sid'])) {
 		$sid = intval($HTTP_GET_VARS['sid']);
-		
+
 		$srealm = auth_get_survey_realm($sid);
 		if(!empty($HTTP_GET_VARS['test'])) {
 			/* check ACL to see if user is allowed to test
@@ -79,7 +79,7 @@
 	$statusok = (STATUS_ACTIVE | STATUS_DONE);
 	$statusno = STATUS_DELETED;
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = "SELECT id,name,title,owner,realm FROM survey 
+		$sql = "SELECT id,name,title,owner,realm FROM survey
 		WHERE NOT (status & $statusno) AND (status & $statusok) ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(

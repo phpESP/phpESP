@@ -10,16 +10,16 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	$GLOBALS['ESPCONFIG']['DEBUG_RESULTS'] = $GLOBALS['ESPCONFIG']['DEBUG'];
-	
+
 /* {{{ proto string survey_results(int survey_id, int preceision, bool show_totals, int question_id, array choice_ids)
-	Builds HTML for the results for the survey. If a 
+	Builds HTML for the results for the survey. If a
 	question id and choice id(s) are given, then the results
-	are only calculated for respodants who chose from the 
-	choice ids for the given question id. 
+	are only calculated for respodants who chose from the
+	choice ids for the given question id.
 	Returns empty string on sucess, else returns an error
 	string. */
 function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '') {
-	$bg = '';	
+	$bg = '';
 	if(empty($precision))	$precision  = 1;
 	if(empty($showTotals))	$showTotals = 1;
 
@@ -65,10 +65,10 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	mysql_free_result($result);
 
 	// load survey questions
-	$sql = "SELECT * 
-			  FROM question 
-			 WHERE survey_id='${sid}' AND 
-				   deleted='N' 
+	$sql = "SELECT *
+			  FROM question
+			 WHERE survey_id='${sid}' AND
+				   deleted='N'
 			 ORDER BY position,id";
 	if(!($questions_result = mysql_query($sql))) {
 		$errmsg = _('Error opening survey.') .' '. _('No questions found.') ." [ ID:${sid} ]";
@@ -183,7 +183,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		case 'response_bool':
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
 					  FROM ${table} A
-					 WHERE A.question_id='${qid}' AND 
+					 WHERE A.question_id='${qid}' AND
 						   A.response_id ${ridstr} AND
 						   A.choice_id != ''
 					 GROUP BY A.choice_id";
@@ -234,7 +234,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 				}
 				mysql_free_result($result);
 			}
-			//lets show all the question choices in the results page regardless of an 
+			//lets show all the question choices in the results page regardless of an
 			//associated count value.
                         foreach($question_content as $qn){
 	 	        	if (isset($counts1[$qn]))

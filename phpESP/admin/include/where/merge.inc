@@ -16,7 +16,7 @@
 		 * XXX only check the first of the SIDS for ownership */
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 				auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) ||
-				($HTTP_GET_VARS['test'] && 
+				($HTTP_GET_VARS['test'] &&
 					$HTTP_SESSION_VARS['acl']['seeall'] == 'Y') ||
 				auth_no_access('to access this survey')) {
 ?>
@@ -32,19 +32,19 @@
 		}
 		return;
 	}
-	
+
 	// otherwise:
 	// build a table of surveys to choose from ...
 	/* check with ACL for allowed surveys */
 	$statusok = (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED);
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
 		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y')
-		$sql = "SELECT id,name,title,owner FROM survey 
+		$sql = "SELECT id,name,title,owner FROM survey
 			WHERE (status & $statusok)
 			ORDER BY id DESC";
 	else
 		$sql = "SELECT id,name,title,owner FROM survey WHERE owner='".
-			$HTTP_SESSION_VARS['acl']['username'] ."' 
+			$HTTP_SESSION_VARS['acl']['username'] ."'
 			AND (status & $statusok)
 			ORDER BY id DESC";
 	$result = mysql_query($sql);
@@ -85,7 +85,7 @@ function move(fbox,tbox) {
 			no.text = fbox.options[i].text;
 			tbox.options[tbox.options.length] = no;
 			fbox.options[i].value = "";
-			fbox.options[i].text = "";	
+			fbox.options[i].text = "";
 		}
 	}
 	BumpUp(fbox);

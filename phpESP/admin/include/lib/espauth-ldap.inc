@@ -6,7 +6,7 @@
 //  By: Christopher Zorn <zorncj@musc.edu>
 //      James Flemer <jflemer@acm.jhu.edu>
 
-if (!extension_loaded('ldap') && !ini_get('safe_mode') && !@dl('gettext.so')) { 
+if (!extension_loaded('ldap') && !ini_get('safe_mode') && !@dl('gettext.so')) {
 	echo('<b>The PHP ldap extension is not installed. Aborting.</b>');
 	exit;
 }
@@ -24,24 +24,24 @@ function survey_auth($sid, $username, $password) {
 	// Formulate the query and check whether survey requires authentication
 	$sql = "SELECT realm FROM survey WHERE id = '$sid' AND public = 'N'";
 
-	// Execute the query and put results in $accres 
+	// Execute the query and put results in $accres
 	$accres = mysql_query( $sql );
 	if(!$accres) {
 		$GLOBALS['errmsg'] = mkerror(_('Unable to execute query for access.'));
 		return(FALSE);
 	}
 
-	// Get number of rows in $accres. 
+	// Get number of rows in $accres.
 	if(mysql_num_rows($accres) < 1) {
 		// no matching rows ... no authorization required
 		mysql_free_result($accres);
 		return(TRUE);
 	}
-	
+
 	$realm = mysql_result($accres, 0, 0);
 	mysql_free_result($accres);
 
-	// A matching row was found - the survey requires authentication. 
+	// A matching row was found - the survey requires authentication.
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
 		$sql = "SELECT a.maxlogin, a.realm
@@ -51,27 +51,27 @@ function survey_auth($sid, $username, $password) {
 				r.password = PASSWORD('$password') AND
 				r.realm = a.realm AND
 				r.disabled = 'N' AND
-				(r.expiration = '0' OR r.expiration > NOW())"; 
+				(r.expiration = '0' OR r.expiration > NOW())";
 
-		// Execute the query and put results in $usrres 
+		// Execute the query and put results in $usrres
 		$usrres = mysql_query( $sql );
 		if(!$usrres) {
 			$GLOBALS['errmsg'] = mkerror(_('Unable to execute query respondents.' ));
 			return(FALSE);
 		}
 
-		if (mysql_num_rows( $usrres ) > 0) { 
-			// A matching row was found - the user is authorized. 
-			$auth = TRUE; 
+		if (mysql_num_rows( $usrres ) > 0) {
+			// A matching row was found - the user is authorized.
+			$auth = TRUE;
 			$maxlogin = mysql_result($usrres, 0, 0);
 			mysql_free_result($usrres);
 		}
 	}
 
 	// no matching authorization ... send a 401
-	if ( ! $auth ) { 
-		header( "WWW-Authenticate: Basic realm=\"$realm\"" ); 
-		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
+	if ( ! $auth ) {
+		header( "WWW-Authenticate: Basic realm=\"$realm\"" );
+		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		$GLOBALS['errmsg'] = mkerror(_('Incorrect User ID or Password, or your account has been disabled/expired.'));
 		return(FALSE);
 	}
@@ -82,14 +82,14 @@ function survey_auth($sid, $username, $password) {
 		survey_id = '${sid}' AND
 		complete = 'Y' AND
 		username = '$username'";
-		
+
 		$numres = mysql_query( $sql );
 		$auth = mysql_result($numres, 0, 0);
 		mysql_free_result($numres);
 	}
 	if( !$auth ) {
-		header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' ); 
-		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
+		header( 'WWW-Authenticate: Basic realm="'. $access['realm'] .'"' );
+		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		$GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
 		return(FALSE);
 	}
@@ -124,15 +124,15 @@ function manage_auth($username, $password) {
 		if($auth)
 			return(TRUE);
 	}
-	
+
 	$auth_ldap_accept = $auth = FALSE; // default to unauthorized
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
 
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
-		// This only gives authorization for use of the survey. 
+		// This only gives authorization for use of the survey.
 		// Information is entered into the database after authorization.
-		
+
 		// Add configuration for ldap server and other things
 
 		$tmp_ldap_filter = $GLOBALS['ESPCONFIG']['ldap_filter'] .$username;
@@ -153,42 +153,42 @@ function manage_auth($username, $password) {
 		}
 		ldap_close($ds);
 
-		$sql = "SELECT * FROM designer WHERE 
+		$sql = "SELECT * FROM designer WHERE
 			username = '$username' AND
 			password = PASSWORD('$password') AND
 			disabled = 'N' AND
-			(expiration = '0' OR expiration > NOW())"; 
+			(expiration = '0' OR expiration > NOW())";
 
-		// Execute the query and put results in $accres 
+		// Execute the query and put results in $accres
 		$accres = mysql_query( $sql );
 		if(!$accres) {
 			header( 'HTTP/1.0 503 '. _('Service Unavailable'));
 			echo('<html><head><title>'. _('Service Unavailable') .
 				'</title></head><body><h1>HTTP 503 '.
 				_('Service Unavailable') .'</h1>'.
-				mkerror(_('Unable to load ACL.') .' ('. mysql_error() .')') . 
+				mkerror(_('Unable to load ACL.') .' ('. mysql_error() .')') .
 				'</body></html>');
 			return(FALSE);
 		}
 
-		// Get number of rows in $accres. 
-		if (mysql_numrows( $accres ) > 0) { 
-			// A matching row was found - the user is authorized. 
-			$auth = TRUE; 
+		// Get number of rows in $accres.
+		if (mysql_numrows( $accres ) > 0) {
+			// A matching row was found - the user is authorized.
+			$auth = TRUE;
 		} else if ($auth_ldap_accept) {
-			$sql = "SELECT * FROM designer WHERE 
-					username = '$username' AND			
+			$sql = "SELECT * FROM designer WHERE
+					username = '$username' AND
 					disabled = 'N' AND
-					(expiration = '0' OR expiration > NOW())"; 
+					(expiration = '0' OR expiration > NOW())";
 
- 		    // Execute the query and put results in $accres 
+ 		    // Execute the query and put results in $accres
 		    $accres = mysql_query($sql);
 			if (mysql_num_rows($accres) < 1) {
 				// Create the group
 				$user_sql = "INSERT INTO realm (name, title) VALUES ('$username','$username')";
                 mysql_query($user_sql);
 
-				$user_sql = "INSERT INTO designer 
+				$user_sql = "INSERT INTO designer
 							(username,password,auth,realm,fname,
 							pdesign,pstatus,pdata,pall,
 							pgroup,puser,disabled)
@@ -205,9 +205,9 @@ function manage_auth($username, $password) {
 	}
 
 	// no matching authorization ... send a 401
-	if ( ! $auth ) { 
-		header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' ); 
-		header( 'HTTP/1.0 401 '. _('Unauthorized')); 
+	if ( ! $auth ) {
+		header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' );
+		header( 'HTTP/1.0 401 '. _('Unauthorized'));
 		echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
 			"<body><h1>401 ". _('Unauthorized') ."</h1>\n".
 			mkerror(_('Incorrect User ID or Password, or your account has been disabled.')) .
@@ -215,8 +215,8 @@ function manage_auth($username, $password) {
 		exit;
 		return(FALSE);
 	}
-	
-	// All tests passed ... create ACL array, 
+
+	// All tests passed ... create ACL array,
 	// and stick it in the session
 	$acl = array(
 		'username'  => $username,
@@ -236,13 +236,13 @@ function manage_auth($username, $password) {
 		}
 	}
 	mysql_free_result($accres);
-	
+
 	foreach($fields as $f) {
 		$acl[$f] =& $$f;
 	}
-	
+
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] =& $acl;
-	
+
 	// if one were to want login accounting (logs) this
 	// would be the ideal place to do so...
 
@@ -253,7 +253,7 @@ function manage_auth($username, $password) {
 /* {{{ proto void manage_logout()
    Clears the current ACL, and will cause HTTP-Auth
    to be redisplayed. This is not fool proof; common browsers
-   will continue to retry cached username & password for 
+   will continue to retry cached username & password for
    HTTP-Auth. So if the browser is not closed after logout,
    it still may be possible to get back in w/o knowing a
    valid username & password. */
@@ -305,7 +305,7 @@ function auth_no_access($description) {
 
 /* {{{ proto boolean auth_change_manager_passwd(string user, string old, string new)
    Change a managers password. If old password does not match
-   or if there is an error, return FALSE. Return TRUE if 
+   or if there is an error, return FALSE. Return TRUE if
    password changed. */
 function auth_change_manager_passwd($user,$old,$new) {
 	$sql = "UPDATE designer SET password=PASSWORD('$new')

@@ -28,7 +28,7 @@ below, and paste it into the HTML of your page.')); ?></p>
 <blockquote><tt>
 	&lt;?php $sid=<?php echo($HTTP_SESSION_VARS['survey_id']); ?>;
 	include("<?php echo($ESPCONFIG['handler']); ?>");?&gt;
-</tt></blockquote> 
+</tt></blockquote>
 
 	<p><?php echo(_('Once activated you can also access the survey directly
 from the following URL.')); ?></p>

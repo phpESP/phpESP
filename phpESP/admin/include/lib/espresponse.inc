@@ -29,9 +29,9 @@ ORDER BY position";
 		mysql_free_result($result);
 		return('');
 	}
-	
+
 	$missing = array();	// array of missing questions
-	
+
 	while(list($qid,$tid,$content) = mysql_fetch_row($result)) {
 		if($tid == 8) { // Rank
 			$sql = "SELECT id FROM question_choice WHERE question_id='$qid'";
@@ -51,7 +51,7 @@ ORDER BY position";
 			$missing[$qid] = $content;
 	}
 	mysql_free_result($result);
-	
+
 	if(count($missing) > 0) {
 		// missing required variables
 		$message = _('You are missing the following required questions:') ."<br>\n";
@@ -412,7 +412,7 @@ function response_select_named($sid, $rid) {
 	mysql_free_result($result);
 
 	// --------------------- response_single ---------------------
-	$sql = "SELECT q.name,c.content 
+	$sql = "SELECT q.name,c.content
 	FROM response_single a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id";
 	$result = mysql_query($sql);
@@ -422,7 +422,7 @@ function response_select_named($sid, $rid) {
 	mysql_free_result($result);
 
 	// --------------------- response_multiple ---------------------
-	$sql = "SELECT q.name,c.content 
+	$sql = "SELECT q.name,c.content
 	FROM response_multiple a, question q, question_choice c
 	WHERE a.response_id='${rid}' AND a.question_id=q.id AND a.choice_id=c.id
 	ORDER BY a.question_id";
@@ -472,7 +472,7 @@ function response_select_named($sid, $rid) {
 				do {
 					$str2 = $str1;
 					$str1 = eregi_replace(
-					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]", 
+					"(^| )(what|which|why|how|who|where|how|is|are|were|the|a|it|of|do|you|your|please|enter)[ ?]",
 					" ", $str2);
 				} while ($str1 != $str2);
 				$qid = $str1;
@@ -548,7 +548,7 @@ function response_send_email($sid, $rid) {
 	$headers = "From: \"phpESP ".
 		addslashes($GLOBALS['ESPCONFIG']['version']) .
 		"\" <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n";
-	$headers .= "X-Sender: <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n"; 
+	$headers .= "X-Sender: <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n";
 	$headers .= "X-Mailer: phpESP\n";
 	$headers .= "Return-Path: <". $GLOBALS['HTTP_SERVER_VARS']['SERVER_ADMIN'] ."@".
 		$GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] . ">\n";

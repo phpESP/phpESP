@@ -7,7 +7,7 @@
 
 phpESP/images/:
   Images used by the package.
-  
+
   images used for tabs on admin pages: (a=active, d=deactive)
 	finish_a.gif
 	finish_d.gif

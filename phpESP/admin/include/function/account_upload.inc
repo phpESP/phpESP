@@ -28,17 +28,17 @@ function parse_file_csv(){}
 
 function parse_file_xml(){}
 
-/* {{{ proto bool account_upload(array* exceptions, string upload_type, 
+/* {{{ proto bool account_upload(array* exceptions, string upload_type,
 	string account_type, array group_acl, file upload_file)
 	exceptions array is populated with failed SQL inserts.
 	Returns a true on success, else returns false.
 	*/
 function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $upload_file) {
 
-	
+
 	$error = 0;
 	$bool_validate = array('Y', 'N');
-	
+
 	switch($upload_type) {
 		case 'tab':
 			$arr = parse_file_tab($group_acl, $upload_file);
@@ -66,7 +66,7 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 				}
 				else {
 					$error=1;
-					break; 
+					break;
 				}
 				if($row[1]) {
 					$password = XADDSLASHES($row[1]);
@@ -97,35 +97,35 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 						$disabled = XADDSLASHES($row[7]);
 					else
 						$disabled = '';
-					/* validate email address.  */ 
+					/* validate email address.  */
 					if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
 						"([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$", $email)) {
-						array_push($exceptions, array("$username", "$password", 
-							"$realm", "$fname", "$lname", "$email",  
+						array_push($exceptions, array("$username", "$password",
+							"$realm", "$fname", "$lname", "$email",
 							"$expir", "$disabled",  "Invalid Email Addr."));
 						continue;
 					}
-						
+
 					if($expir) {
 						$year = substr($expir, 0, 4);
 						$month = substr($expir, 4, 2);
 						$day = substr($expir, 6, 2);
 						if(!checkdate($month, $day, $year)) {
-							array_push($exceptions, array("$username", "$password", 
-								"$realm", "$fname", "$lname", "$email",  
+							array_push($exceptions, array("$username", "$password",
+								"$realm", "$fname", "$lname", "$email",
 								"$expir", "$disabled",  "Invalid Expir. Date"));
 							continue;
 						}
 					}
-					else 
+					else
 						$expir = "0";
 ;
-					if(!in_array($disabled, $bool_validate)) 
+					if(!in_array($disabled, $bool_validate))
 						$disabled = 'N';
-					/* Make sure user is authorized to upload this realm */ 
+					/* Make sure user is authorized to upload this realm */
 					if(!in_array($realm, $group_acl)) {
-						array_push($exceptions, array("$username", "$password", 
-							"$realm", "$fname", "$lname", "$email", "$expir",  
+						array_push($exceptions, array("$username", "$password",
+							"$realm", "$fname", "$lname", "$email", "$expir",
 							 "$disabled", "Invalid Group"));
 						continue;
 					}
@@ -142,11 +142,11 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 				$sql .= "'$expir', '$disabled')";
 				if(!mysql_query($sql)) {
 					/* insert failed -- stuff record into failed array */
-					array_push($exceptions, array("$username", "$password", 
-						"$realm", "$fname", "$lname", "$email", "$expir",  
+					array_push($exceptions, array("$username", "$password",
+						"$realm", "$fname", "$lname", "$email", "$expir",
 						 "$disabled", mysql_error()));
 		}
-			}	
+			}
 			break;
 		case 'designers':
 			array_push($exceptions, array("Username", "Password", "Group", "First Name",
@@ -160,7 +160,7 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 				}
 				else {
 					$error=1;
-					break; 
+					break;
 				}
 				if($row[1]) {
 					$password = XADDSLASHES($row[1]);
@@ -217,9 +217,9 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 						$disabled = '';
 					if(!eregi( "^[a-z0-9]+([_\\.-][a-z0-9]+)*@" .
 						"([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$", $email)) {
-						array_push($exceptions, array("$username", "$password", 
-							"$realm", "$fname", "$lname", "$email", "$pdesign",  
-							"$pstatus", "$pdata", "$pall", "$pgroup", "$puser", 
+						array_push($exceptions, array("$username", "$password",
+							"$realm", "$fname", "$lname", "$email", "$pdesign",
+							"$pstatus", "$pdata", "$pall", "$pgroup", "$puser",
 							"$expir", "$disabled",  "Invalid Email Addr."));
 						continue;
 					}
@@ -240,22 +240,22 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 						$month = substr($expir, 4, 2);
 						$day = substr($expir, 6, 2);
 						if(!checkdate($month, $day, $year)) {
-							array_push($exceptions, array("$username", "$password", 
-								"$realm", "$fname", "$lname", "$email", "$pdesign",  
-								"$pstatus", "$pdata", "$pall", "$pgroup", "$puser", 
+							array_push($exceptions, array("$username", "$password",
+								"$realm", "$fname", "$lname", "$email", "$pdesign",
+								"$pstatus", "$pdata", "$pall", "$pgroup", "$puser",
 								"$expir", "$disabled",  "Invalid Expir. Date"));
 							continue;
 						}
 					}
-					else 
+					else
 						$expir = "0";
 					if(!in_array($disabled, $bool_validate))
 						$disabled = 'N';
-					/* Make sure user is authorized to upload this realm */ 
+					/* Make sure user is authorized to upload this realm */
 					if(!in_array($realm, $group_acl)) {
-						array_push($exceptions, array("$username", "$password", 
-							"$realm", "$fname", "$lname", "$email", "$pdesign",  
-							"$pstatus", "$pdata", "$pall", "$pgroup", "$puser", 
+						array_push($exceptions, array("$username", "$password",
+							"$realm", "$fname", "$lname", "$email", "$pdesign",
+							"$pstatus", "$pdata", "$pall", "$pgroup", "$puser",
 							"$expir", "$disabled",  "Invalid Group"));
 						continue;
 					}
@@ -270,18 +270,18 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 				$sql .= "'$pgroup', '$puser', '$expir', '$disabled')";
 				if(!mysql_query($sql)) {
 					/* insert failed -- stuff record into failed array */
-					array_push($exceptions, array("$username", "$password", 
-						"$realm", "$fname", "$lname", "$email", "$pdesign",  
-						"$pstatus", "$pdata", "$pall", "$pgroup", "$puser", 
+					array_push($exceptions, array("$username", "$password",
+						"$realm", "$fname", "$lname", "$email", "$pdesign",
+						"$pstatus", "$pdata", "$pall", "$pgroup", "$puser",
 						"$expir", "$disabled",  mysql_error()));
 				}
-			}	
+			}
 			break;
-				
+
 	}
 	if(count($exceptions) > 1 or $error)
 		return 0;
-	else 
+	else
 		return 1;
-} 
+}
 ?>

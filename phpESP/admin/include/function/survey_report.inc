@@ -7,7 +7,7 @@
 
 if(!defined('_FUNCTION_SURVEY_REPORT')) {
  	define('_FUNCTION_SURVEY_REPORT',TRUE);
-	
+
 /* {{{ proto string survey_report(int survey_id, bool details, string format)
     Build a description of a survey, including all unique ids.
 	Rerturns an empty string on success, else an error message. */
@@ -19,7 +19,7 @@ function survey_report($sid, $details = 0, $format = '') {
 	$has_choices = array();
 	$response_table = array();
 	$sql = 'SELECT id,has_choices,response_table
-			  FROM question_type 
+			  FROM question_type
 			 ORDER BY id';
 	if(!($result = mysql_query($sql))) {
 		$errmsg = _('Error system table corrupt.') ." [ ". _('Table') .": question_type ]";
@@ -41,7 +41,7 @@ function survey_report($sid, $details = 0, $format = '') {
 	mysql_free_result($result);
 
 	// load survey questions
-	$sql = "SELECT * FROM question 
+	$sql = "SELECT * FROM question
 			 WHERE survey_id='$sid' AND deleted='N'
 			 ORDER BY position";
 	if(!($questions_result = mysql_query($sql))) {

@@ -45,7 +45,7 @@
 	if ($sid) {
 		list($name,$title,$owner,$realm,$public) = mysql_fetch_row($result);
 		mysql_free_result($result);
-		
+
 		if (!empty($HTTP_POST_VARS['op']))
 			$op = $HTTP_POST_VARS['op'];
 		elseif (!empty($HTTP_GET_VARS['op']))
@@ -62,7 +62,7 @@
 			$max = intval($HTTP_POST_VARS['max']);
 		elseif (!empty($HTTP_POST_VARS['max']))
 			$max = intval($HTTP_GET_VARS['max']);
-		
+
 		if ($op == 'a') {
 			if (empty($HTTP_POST_VARS['realm'])) {
 				$errstr = mkerror(_('Please select a group.'));
@@ -119,7 +119,7 @@ Public surveys let anyone submit data.
 Private surveys are restricted by Respondent Groups.')); ?></p>
 
 <p><b><?php echo(_('Note')); ?>:</b>
-<?php echo(_('You must use') . 
+<?php echo(_('You must use') .
 	' <tt>'. substr(strrchr($ESPCONFIG['handler_prefix'], '/'), 1) .
 	' &amp; '. substr(strrchr($ESPCONFIG['handler'], '/'), 1) . '</tt> ' .
 	_('when using private surveys.')); ?></p>
@@ -185,12 +185,12 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 	}
 	$result = mysql_query($sql);
 
-	while(list($sid,$name,$title,$owner,$realm,$public) = mysql_fetch_row($result)) {				
+	while(list($sid,$name,$title,$owner,$realm,$public) = mysql_fetch_row($result)) {
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
 		else
 			$bg = $ESPCONFIG['bgalt_color2'];
-		
+
 		if ($public == 'N') {
 			$public = _('Private');
 			$op     = '<a href="'. $GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=p\">". _('Make Public') .'</a>';
