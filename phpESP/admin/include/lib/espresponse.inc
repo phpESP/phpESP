@@ -45,6 +45,8 @@ ORDER BY position";
 			mysql_free_result($cid_result);
 			continue;
 		}
+		if ($tid == 10 && $HTTP_POST_VARS[$qid] === '0') // Numeric
+			continue;
 		if(empty($HTTP_POST_VARS[$qid]))
 			$missing[$qid] = $content;
 	}
