@@ -56,12 +56,13 @@ if(!defined('AUTHHAND-PREFIX')) {
 		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
 		return;
 	}
-	
-	$sid = intval($sid);
-	if(empty($sid))
+
+	if (isset($sid) && !empty($sid))
+		$sid = intval($sid);
+	else if (isset($HTTP_POST_VARS['sid']) && !empty($HTTP_POST_VARS['sid']))
 		$sid = intval($HTTP_POST_VARS['sid']);
 
-	if(empty($sid)) {
+	if(!isset($sid) || empty($sid)) {
 		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Survey not specified.'));
 		return;
 	}
@@ -84,7 +85,8 @@ if(!defined('AUTHHAND-PREFIX')) {
 	}
 
 	if(empty($HTTP_POST_VARS['referer']))
-		$HTTP_POST_VARS['referer'] = $HTTP_SERVER_VARS['HTTP_REFERER'];
+		$HTTP_POST_VARS['referer'] = isset($HTTP_SERVER_VARS['HTTP_REFERER']) ?
+			$HTTP_SERVER_VARS['HTTP_REFERER'] : '';
 
 	if(empty($HTTP_POST_VARS['sec']) || $HTTP_POST_VARS['sec'] < 1) {
 		$HTTP_POST_VARS['sec'] = 1;
