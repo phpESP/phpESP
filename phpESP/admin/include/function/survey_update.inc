@@ -22,14 +22,13 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 	$f_arr = array();
 	$v_arr = array();
 
+    // clean up survey and question names
+    if (isset($HTTP_POST_VARS['name'])) {
+        $HTTP_POST_VARS['name'] = preg_replace("/[^A-Z0-9]+/i","_", trim($HTTP_POST_VARS['name']));
+        $HTTP_POST_VARS['name'] = preg_replace("/(^_|_$)/i","", $HTTP_POST_VARS['name']);
+    }
 	// new survey
 	if(empty($survey_id)) {
-		if (isset($HTTP_POST_VARS['name'])) {
-		$HTTP_POST_VARS['name'] = eregi_replace(
-			"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name']) );
-		$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
-		}
-
 		// need to fill out at least some info on 1st tab before proceeding
 		if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])
 				|| empty($HTTP_POST_VARS['realm'])) {
@@ -68,12 +67,6 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 	switch($old_tab) {
 		// coming from the general tab ...
 		case "general":
-			if (isset($HTTP_POST_VARS['name'])) {
-			$HTTP_POST_VARS['name'] = eregi_replace(
-				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name']) );
-			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
-			}
-
 			if(empty($HTTP_POST_VARS['name']) || empty($HTTP_POST_VARS['title'])
 					|| empty($HTTP_POST_VARS['realm'])) {
 				$tab = "general";
@@ -139,9 +132,6 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				} while ($str1 != $str2);
 				$HTTP_POST_VARS['name'] = $str1;
 			}
-			$HTTP_POST_VARS['name'] = strtoupper(substr( eregi_replace(
-				"[^A-Z0-9]+", "_", trim($HTTP_POST_VARS['name'])), 0, 30));
-			$HTTP_POST_VARS['name'] = ereg_replace('_$',"",$HTTP_POST_VARS['name']);
 
             // angek: start: 280903. 
             // do not allow questions in the same survey to have the same name.
