@@ -36,7 +36,7 @@ function survey_auth($sid, $username, $password) {
     esp_init_db();
 
 	// Formulate the query and check whether survey requires authentication
-	$sql = "SELECT realm FROM survey WHERE id = '$sid' AND public = 'N'";
+	$sql = "SELECT realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid' AND public = 'N'";
 
 	// Execute the query and put results in $accres
 	$accres = mysql_query( $sql );
@@ -59,7 +59,7 @@ function survey_auth($sid, $username, $password) {
 	if (!empty($username) && !empty($password)) {
 		// Formulate the query check whether user is authorized
 		$sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
-			FROM access a, respondent r
+			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['respondent_table']." r
 			WHERE a.survey_id = '$sid' AND
 				r.username = '$username' AND
 				r.password = PASSWORD('$password') AND
@@ -93,7 +93,7 @@ function survey_auth($sid, $username, $password) {
 
 	if ( $maxlogin > 0 ) {
 		// see if user is over the MAX # of responses
-		$sql = "SELECT COUNT(*) < '$maxlogin' FROM response WHERE
+		$sql = "SELECT COUNT(*) < '$maxlogin' FROM ".$GLOBALS['ESPCONFIG']['response_table']." WHERE
 		survey_id = '${sid}' AND
 		complete = 'Y' AND
 		username = '$username'";
@@ -168,7 +168,7 @@ function manage_auth($username, $password) {
 		}
 		ldap_close($ds);
 
-		$sql = "SELECT * FROM designer WHERE
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
 			username = '$username' AND
 			password = PASSWORD('$password') AND
 			disabled = 'N' AND
@@ -191,7 +191,7 @@ function manage_auth($username, $password) {
 			// A matching row was found - the user is authorized.
 			$auth = true;
 		} else if ($auth_ldap_accept) {
-			$sql = "SELECT * FROM designer WHERE
+			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
 					username = '$username' AND
 					disabled = 'N' AND
 					(expiration = '0' OR expiration > NOW())";
@@ -200,10 +200,10 @@ function manage_auth($username, $password) {
 		    $accres = mysql_query($sql);
 			if (mysql_num_rows($accres) < 1) {
 				// Create the group
-				$user_sql = "INSERT INTO realm (name, title) VALUES ('$username','$username')";
+				$user_sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm']." (name, title) VALUES ('$username','$username')";
                 mysql_query($user_sql);
 
-				$user_sql = "INSERT INTO designer
+				$user_sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
 							(username,password,auth,realm,fname,
 							pdesign,pstatus,pdata,pall,
 							pgroup,puser,disabled)
@@ -211,7 +211,7 @@ function manage_auth($username, $password) {
 									'BASIC','$username','$username',
 									'Y','Y','Y','Y','N','N','N')";
 			} else {
-				$user_sql = "UPDATE designer SET password = PASSWORD('$password') WHERE username = '$username'";
+				$user_sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET password = PASSWORD('$password') WHERE username = '$username'";
 			}
 			if (mysql_query($user_sql)) {
 				$auth = true;
@@ -285,7 +285,7 @@ function manage_logout() {
    Returns true if user owns the survey. */
 function auth_is_owner($sid, $user) {
 	$val = false;
-	$sql = "SELECT s.owner = '$user' FROM survey s WHERE s.id='$sid'";
+	$sql = "SELECT s.owner = '$user' FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id='$sid'";
 	$result = mysql_query($sql);
 	if(!(list($val) = mysql_fetch_row($result)))
 		$val = false;
@@ -298,7 +298,7 @@ function auth_is_owner($sid, $user) {
    Returns the realm of the survey. */
 function auth_get_survey_realm($sid) {
 	$val = '';
-	$sql = "SELECT s.realm FROM survey s WHERE s.id='$sid'";
+	$sql = "SELECT s.realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id='$sid'";
 	$result = mysql_query($sql);
 	list($val) = mysql_fetch_row($result);
 	mysql_free_result($result);
@@ -323,7 +323,7 @@ function auth_no_access($description) {
    or if there is an error, return false. Return true if
    password changed. */
 function auth_change_manager_passwd($user,$old,$new) {
-	$sql = "UPDATE designer SET password=PASSWORD('$new')
+	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET password=PASSWORD('$new')
 		WHERE username='$user' AND password=PASSWORD('$old')";
 	return(mysql_query($sql) && mysql_affected_rows() > 0);
 }
@@ -344,7 +344,7 @@ function auth_get_rid($sid, $username, $rid = 0) {
 	if (isset($rid) && $rid != 0) {
 		// check for valid rid
 		$sql = "SELECT (r.username = '$username' && r.complete = 'N') AS valid
-			FROM response r
+			FROM ".$GLOBALS['ESPCONFIG']['response_table']." r
 			WHERE r.id = '$rid' AND
 			r.survey_id = '$sid'";
 		$res = mysql_query($sql);
@@ -356,7 +356,7 @@ function auth_get_rid($sid, $username, $rid = 0) {
 		return ($valid) ? $rid : '';
 	} elseif (auth_get_option('resume')) {
 		// find latest in progress rid
-		$sql = "SELECT r.id FROM response r
+		$sql = "SELECT r.id FROM ".$GLOBALS['ESPCONFIG']['response_table']." r
 			WHERE r.survey_id = '$sid' AND
 			r.complete = 'N' AND
 			r.username = '$username'
