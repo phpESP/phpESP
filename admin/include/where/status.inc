@@ -31,7 +31,7 @@
 				case 't':	// test
 					/* only the owner or a group editor+design */
 					if($owner == $HTTP_SESSION_VARS['acl']['username'] ||
-						in_array($realm, array_insersect(
+						in_array($realm, array_intersect(
 							$HTTP_SESSION_VARS['acl']['pall'],
 							$HTTP_SESSION_VARS['acl']['pdesign']))) {
 						$access = TRUE;
