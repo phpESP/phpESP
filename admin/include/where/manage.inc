@@ -11,6 +11,7 @@
 
 ?>
 <h2><?php echo(_('Management Interface')); ?></h2>
+<p><?php echo(_('Username') .': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>'); ?></p>
 <table border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['active_bgcolor']); ?>" width="95%">
 	<tr>
 		<td>
@@ -34,6 +35,7 @@
 					<?php echo(_('(development goals)')); ?></li>
 				<li><a href="<?php echo("${base}?where=README");  ?>"><?php echo(_('View the README')); ?></a>
 					<?php echo(_('(help)')); ?></li>
+				<li><a href="<?php echo("${base}?where=logout");  ?>"><?php echo(_('Log out')); ?></a></li>
 			</ul>
 			</td></tr></table>
 		</td>
