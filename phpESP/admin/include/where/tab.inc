@@ -52,12 +52,12 @@
 		$HTTP_SESSION_VARS['survey_id']  = intval($HTTP_GET_VARS['newid']);
 		$HTTP_POST_VARS['tab']           = 'general';
 		$HTTP_SESSION_VARS['last_tab']   = '';
-		$HTTP_SESSION_VARS['new_survey'] = FALSE;
+		$HTTP_SESSION_VARS['new_survey'] = false;
 	}
 
 	if(empty($HTTP_SESSION_VARS['survey_id'])) {
 		$HTTP_SESSION_VARS['survey_id']  = '';
-		$HTTP_SESSION_VARS['new_survey'] = TRUE;
+		$HTTP_SESSION_VARS['new_survey'] = true;
 	}
 
 	if(empty($HTTP_SESSION_VARS['new_survey']))
@@ -148,11 +148,11 @@
       <input type="hidden" name="where" value="tab">
 	  <table border="0" cellspacing="0" cellpadding="0">
 		<tr>
-		  <td><input type="image" border="0" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_path']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_path']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" width="186" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_path']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif"     width="126" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_path']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_path']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif"   width="114" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" width="186" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif"     width="126" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
+		  <td><input type="image" border="0" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif"   width="114" height="43"></td>
 		</tr>
 	  </table>
     </td>

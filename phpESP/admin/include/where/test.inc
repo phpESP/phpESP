@@ -45,19 +45,19 @@
 			 * but should still work */
 			if (!empty($theme))
 				echo('<link rel="stylesheet" href="' .
-						$GLOBALS['ESPCONFIG']['survey_css_dir'].$theme . '" type="text/css">');
+						$GLOBALS['ESPCONFIG']['css_url'].$theme . '" type="text/css">');
 ?>
 <b><?php echo(_('Testing Survey...')); ?></b> (<?php echo(_('SID')." = $sid"); ?>)
 <p>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
 <?php
 			/* set things up for the handler to take over ... */
-			$test = TRUE;
+			$test = true;
 			unset($HTTP_GET_VARS['sid']);
 			unset($HTTP_POST_VARS['sid']);
 			$HTTP_POST_VARS['userid'] = 'test';
-			define('AUTHHAND-PREFIX', TRUE);
-			define('AUTHHAND-OK', TRUE);
+			define('AUTHHAND-PREFIX', true);
+			define('AUTHHAND-OK', true);
 			$HTTP_POST_VARS['sec'] = empty($HTTP_POST_VARS['sec']) ? 1 : intval($HTTP_POST_VARS['sec']);
 			$HTTP_POST_VARS['rid'] = empty($HTTP_POST_VARS['rid']) ? 0 : intval($HTTP_POST_VARS['rid']);
 			include($ESPCONFIG['handler']);
