@@ -21,7 +21,6 @@
 // int		insert_values(int sid, int section, int rid);
 // bool		complete_response(int rid);
 // char*	email_values(int sid, int rid);
-// bool		survey_results(int sid, bool show_totals);
 // void		mkrespercent(int[char*] counts, int total);
 // void		mkresrank(int[char*] counts, int total);
 // void		mkrescount(int[char*] counts, int total);
@@ -58,7 +57,7 @@ if(!defined('_FUNCS')) {
 
 	// build associative array holding weather each question
 	// type has answer choices or not
-	function arr_has_answers (){
+	function arr_has_answers() {
 		$has_answers = array();
 		$sql = 'SELECT id,has_answers FROM question_types ORDER BY id';
 		$result = mysql_query($sql);
@@ -326,7 +325,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	}
 
 	// email survey response (for survey ID 'sid')
-	function email_values ($sid, $rid) {
+	function email_values($sid, $rid) {
 		global $DEBUG;
 		global $HTTP_POST_VARS;
 		@reset($HTTP_POST_VARS);
@@ -362,187 +361,6 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 
 		return(mail($email,$subject,$body));
 	}
-
-	// builds HTML for the results for the survey 'sid'
-	function survey_results($sid,$show_totals) {
-
-	// build associative array holding weather each question
-	// type has answer choices or not and the table the answers are in
-		$has_answers = array();
-		$answer_table = array();
-		$sql = 'SELECT * FROM question_types ORDER BY id';
-		$result = mysql_query($sql);
-		while($arr = mysql_fetch_array($result)) {
-			$has_answers[$arr['id']]=$arr['has_answers'];
-			$answer_table[$arr['id']]=$arr['answer_table'];
-		}
-		mysql_free_result($result);
-
-	// load survey title (and other globals)
-		$sql = "SELECT * FROM surveys WHERE id='${sid}'";
-		$result = mysql_query($sql);
-		if(mysql_num_rows($result) != 1) {
-			$errmsg = "Error opening selected survey. [ ID:${sid} R:" . mysql_num_rows($result) ."]";
-			return(1);
-		}
-		$survey = mysql_fetch_array($result);
-		mysql_free_result($result);
-
-	// load survey questions
-		$sql = "SELECT * FROM survey_questions WHERE survey_id='${sid}' AND status='' ORDER BY position,id";
-		$questions_result = mysql_query($sql);
-		if(mysql_num_rows($questions_result) < 1) {
-			$errmsg = "Error opening selected survey. No questions found for survey. [ ID:${sid} ]";
-			return(1);
-		}
-
-	// find total number of survey responses
-		$sql = "SELECT COUNT(*) FROM survey_responses WHERE survey_id='${sid}' AND complete='yes'";
-		$result = mysql_query($sql);
-		$total = mysql_result($result,0,0);
-		mysql_free_result($result);
-
-		$i=0;
-?>
-
-<h2><?php echo($survey["title"]); ?></h2>
-<h3><?php echo($survey["subtitle"]); ?></h3>
-<blockquote><?php echo($survey["info"]); ?></blockquote>
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
-<?php
-		while($question = mysql_fetch_array($questions_result)) {
-			// process each question
-			$qid = $question['id'];
-			$tid = $question['type_id'];
-			$table = $answer_table[$tid];
-
-			if($tid == 99) {
-				echo("<tr><td><hr></td></tr>\n");
-				continue;
-			}
-
-			++$i;
-?>
-	<tr>
- 		<td>
-			<A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A>
-			<?php echo($question["content"]); ?>
-
-			<blockquote>
-<?php
-			$counts = array();
-			if($table == "answers_bool") {
-				$sql = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
-				${table}.choice_id='yes' AND ${table}.response_id=survey_responses.id AND
-				survey_responses.complete='yes'";
-				$result = mysql_query($sql);
-				$counts['Yes'] = mysql_result($result,0,0);
-				mysql_free_result($result);
-
-				$sql = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
-				${table}.choice_id='no' AND ${table}.response_id=survey_responses.id AND
-				survey_responses.complete='yes'";
-				$result = mysql_query($sql);
-				$counts['No'] = mysql_result($result,0,0);
-				mysql_free_result($result);
-
-				if(empty($question["result_id"]))
-					$question["result_id"] = 1;	// default to percentages for yes/no
-
-			} elseif($table == "answers_single" || $table == "answers_multiple") {
-				$sql = "SELECT id,content FROM question_choices WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
-				$result = mysql_query($sql);
-				while(list($cid,$ccontent) = mysql_fetch_row($result)) {
-					$sql2 = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
-					${table}.choice_id='${cid}' AND ${table}.response_id=survey_responses.id AND
-					survey_responses.complete='yes'";
-					$result2 = mysql_query($sql2);
-					$count = mysql_result($result2,0,0);
-					mysql_free_result($result2);
-					$counts[$ccontent] = $count;
-				}
-				mysql_free_result($result);
-				// handle 'other...'
-				$sql = "SELECT answers_other.answer FROM answers_other,survey_responses WHERE
-				answers_other.question_id='${qid}' AND answers_other.response_id=survey_responses.id AND
-				survey_responses.complete='yes' ORDER BY answers_other.response_id";
-				$result = mysql_query($sql);
-				while(list($ccontent) = mysql_fetch_row($result)) {
-					$counts[$ccontent] += 1;
-				}
-				mysql_free_result($result);
-				if(empty($question["result_id"]))
-					$question["result_id"] = 1;	// default to percentages
-			} elseif($table == "answers_text") {
-				$sql = "SELECT ${table}.answer FROM ${table},survey_responses WHERE
-				${table}.question_id='${qid}' AND ${table}.response_id=survey_responses.id AND
-				survey_responses.complete='yes' ORDER BY ${table}.response_id";
-				$result = mysql_query($sql);
-				while(list($text) = mysql_fetch_row($result)) {
-					if(!empty($text))
-						$counts[] = $text;
-				}
-				mysql_free_result($result);
-				$question["result_id"] = 4;	// force "list" type response for text fields
-			} elseif($table == "answers_rank") {
-				if($tid == 8) { //Rank
-					$sql = "SELECT id,content FROM question_choices WHERE question_id='${qid}' ORDER BY id";
-					$cid_result = mysql_query($sql);
-					while(list($cid,$ccontent) = mysql_fetch_row($cid_result)) {
-						$sql  = "SELECT AVG(${table}.rank) FROM ${table},survey_responses
-							WHERE ${table}.question_id='${qid}'
-							AND ${table}.choice_id='${cid}' AND ${table}.rank>0
-							AND ${table}.response_id=survey_responses.id
-							AND survey_responses.complete='yes'";
-						$rank_result = mysql_query($sql);
-						$counts[$ccontent] = mysql_result($rank_result,0,0);
-					}
-					$question["result_id"] = 99;	// force to rank
-				} else {
-					for($j=1;$j<5+1;$j++) {
-						$sql = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
-							${table}.rank='${j}' AND ${table}.response_id=survey_responses.id AND
-							survey_responses.complete='yes'";
-						$result = mysql_query($sql);
-						$counts[$j] = mysql_result($result,0,0);
-						mysql_free_result($result);
-					}
-					$sql = "SELECT COUNT(*) FROM ${table},survey_responses WHERE ${table}.question_id='${qid}' AND
-						${table}.rank='-1' AND ${table}.response_id=survey_responses.id AND
-						survey_responses.complete='yes'";
-					$result = mysql_query($sql);
-					$counts['N/A'] = mysql_result($result,0,0);
-					mysql_free_result($result);
-					if(empty($question["result_id"]))
-						$question["result_id"] = 2;	// default to rank
-				}
-			}
-			switch($question["result_id"]) {
-				case "1":	// Percentages
-					mkrespercent($counts,$total,$use_totals);
-					break;
-				case "2":	// Rank
-					mkresrank($counts,$total,$use_totals);
-					break;
-				case "3":	// Count
-					mkrescount($counts,$total,$use_totals);
-					break;
-				case "4":	// List
-					mkreslist($counts,$total,$use_totals);
-					break;
-				case "99":	// Average
-					mkresavg($counts,$total,$use_totals);
-					break;
-			} // end switch
-?>
-			</blockquote>
-		</td>
-	</tr>
-<?php	} // end while ?>
-</table>
-<?php
-		mysql_free_result($questions_result);
-	} // end function survey_results
 
 	// build HTML showing PERCENTAGE results
 	function mkrespercent($counts,$total,$use_totals) {
@@ -723,6 +541,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 
 	require($PIECES."/funcs_html".$EXT);
 	require($PIECES."/funcs_render".$EXT);
+	require($PIECES."/function.survey_results".$EXT);
 
 } // end if !defined(_FUNCS)
 
