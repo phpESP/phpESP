@@ -13,7 +13,7 @@ if(!defined('_FUNCTION_SURVEY_RENDER')) {
 /* {{{ proto bool survey_render(int survey_id, int section, string message)
    Reads current form variables from HTTP_POST_VARS.
    Builds HTML for the survey (prefixed w/ message). */
-function render_survey($sid, $section = 1, $message = '') {
+function survey_render($sid, $section = 1, $message = '') {
 	global $HTTP_POST_VARS;
 	@reset($HTTP_POST_VARS);
 
