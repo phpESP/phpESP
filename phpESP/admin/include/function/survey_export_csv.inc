@@ -49,7 +49,7 @@ function survey_generate_csv($sid) {
 	while( list( $qid, $col, $type ) = mysql_fetch_row($result) ) {
 		if ($type == 8) {
 			/* rate */
-			$sql = "SELECT CONCAT(q.name, '_', c.content)
+			$sql = "SELECT CONCAT(q.name, ' ', c.content)
 			FROM question q, question_choice c
 			WHERE q.id = $qid AND q.id = c.question_id";
 			$result2 = mysql_query($sql);
@@ -63,9 +63,9 @@ function survey_generate_csv($sid) {
 					" ", $str2);
 				} while ($str1 != $str2);
 				$col = $str1;
-				$col = strtoupper(eregi_replace(
-					"[^A-Z0-9]+", "_", trim($col)));
-				$col = ereg_replace('_$',"",$col);
+				$col = trim(strtoupper(eregi_replace(
+					"[^A-Z0-9]+", " ", $col)));
+				$col = ereg_replace(' +','_',$col);
 				array_push($columns, $col);
 				array_push($types, $id_to_csv_map[$type]);
 			}
