@@ -15,11 +15,10 @@
 
 	// load current values from DB if survey_id exists (in session)
 	if(!empty($survey_id)) {
-		$fields =
-		array('name','title','subtitle','email','thank_head','thank_body','info');
+		$fields = array('name','title','subtitle','email','thank_head','thank_body','info');
 		$sql = "SELECT " . join(',',$fields) . " FROM surveys WHERE id='${survey_id}'";
 		$result = mysql_query($sql);
-		$arr = mysql_fetch_array($result);
+		$arr = mysql_fetch_array($result,MYSQL_ASSOC);
 		mysql_free_result($result);
 		foreach($fields as $f) {
 			$$f = $arr["$f"];
@@ -61,16 +60,6 @@ then go to the <b>Questions</b> tab to add/edit individual survey questions.
 		</td>
 	</tr>
 	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFF"></td></tr>
-<!-- depreciated
-	<tr valign="top">
-		<td><b>Thank You Page</b></td>
-		<td>
-			<input type="text" name="thanks_page" size="60" value="<?php echo(htmlspecialchars($thanks_page)); ?>"><br>
-			Users will be redirected to this webpage when they complete a survey. [Must be a valid URL.]
-		</td>
-	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFF"></td></tr>
--->
 	<tr valign="top">
 		<td><b>Email</b></td>
 		<td>

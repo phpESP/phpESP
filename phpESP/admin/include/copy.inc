@@ -43,7 +43,7 @@ survey, and will have to activate it before use.
 <?php
 	while(list($sid,$name,$title,$status) = mysql_fetch_row($result)) {
 		if($status & STATUS_DELETED) {
-			$stat = 'Deleted';
+			$stat = 'Archived';
 		} elseif($status & STATUS_DONE) {
 			$stat = 'Ended';
 		} elseif($status & STATUS_ACTIVE) {
@@ -65,6 +65,7 @@ survey, and will have to activate it before use.
 	</tr>
 <?php
 	}
+	mysql_free_result($result);
 ?>
 </table>
 <a href="<?php echo("${ME}?where=manage"); ?>">Go back to Management Interface</a>

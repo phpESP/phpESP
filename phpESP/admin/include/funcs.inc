@@ -28,26 +28,36 @@ if(!defined('_FUNCS')) {
 
 	// return the number of sections in survey $sid
 	function count_sections($sid) {
-		$sql = "SELECT COUNT(*) FROM survey_questions WHERE survey_id='${sid}' AND type_id='99' AND status=''";
+		$sql = "
+SELECT COUNT(*)
+  FROM survey_questions
+ WHERE survey_id='${sid}' AND
+       type_id='99' AND
+	   status=0";
 		return(mysql_result(mysql_query($sql),0,0) + 1);
 	}
 
 	// return a string w/ SQL fragment to limit to this $section
 	function section_range_sql($sid,$section) {
-		$sql = "SELECT position FROM survey_questions WHERE survey_id='${sid}' AND type_id='99' AND status='' ORDER BY position,id";
+		$sql = "
+SELECT position
+  FROM survey_questions
+ WHERE survey_id='${sid}' AND
+       type_id='99' AND
+	   status=0
+ ORDER BY position,id";
 		$result = mysql_query($sql);
 		$num_sections = mysql_num_rows($result) + 1;
 		if($section > $num_sections)
 			return('');	// invalid section
 
-		$arr[] = "survey_id='${sid}'";
-		$arr[] = "status=''";
+		$ret = array("survey_id='${sid}'", 'status=0');
 		if($section>1 && $num_sections>1)
-			$arr[] = 'position>'. mysql_result($result,$section-2,0) .' ';
+			array_push($ret, 'position>' . mysql_result($result,$section-2,0));
 		if($section<$num_sections && $num_sections>1)
-			$arr[] = 'position<'. mysql_result($result,$section-1,0) .' ';
+			array_push($ret, 'position<' . mysql_result($result,$section-1,0));
 
-		return('WHERE ' . join(' AND ',$arr) . ' ');
+		return('WHERE ' . join(' AND ',$ret) . ' ');
 	}
 
 	// build associative array holding weather each question
@@ -70,7 +80,7 @@ if(!defined('_FUNCS')) {
 		global $cf_thank_head;
 		$sql = "SELECT thanks_page,thank_head,thank_body FROM surveys WHERE id='${sid}'";
 		$result = mysql_query($sql);
-		list($thank_url,$thank_head,$thank_body) = @mysql_fetch_row($result);
+		list($thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
 		if((empty($thank_head)  && empty($thank_body)) && !empty($thank_url)) {
 ?>
 <script language="JavaScript">
@@ -122,6 +132,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 						break;
 					}
 				}
+				mysql_free_result($cid_result);
 				continue;
 			}
 			if(empty($HTTP_POST_VARS[$qid]))
@@ -139,10 +150,12 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		return('');
 	}
 
-	// load the values from a specific response $rid, and return them in an array (like HTTP_POST_VARS)
+	// load the values from a specific response $rid, and return
+	// them in an array (like HTTP_POST_VARS)
 	function retrieve_values($sid, $rid) {
 		$values = array();
 
+		// --------------------- answers_bool ---------------------
 		$sql = "SELECT question_id,choice_id FROM answers_bool WHERE response_id='${rid}'";
 		$result = mysql_query($sql);
 		while(list($qid,$cid) = mysql_fetch_row($result)) {
@@ -150,6 +163,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		}
 		mysql_free_result($result);
 
+		// --------------------- answers_single ---------------------
 		$sql = "SELECT question_id,choice_id FROM answers_single WHERE response_id='${rid}'";
 		$result = mysql_query($sql);
 		while(list($qid,$cid) = mysql_fetch_row($result)) {
@@ -157,13 +171,14 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		}
 		mysql_free_result($result);
 
+		// --------------------- answers_multiple ---------------------
 		$sql = "SELECT question_id,choice_id FROM answers_multiple WHERE response_id='${rid}' ORDER BY question_id";
 		$result = mysql_query($sql);
 		$arr = array();
 		$tmp = '';
 		while(list($qid,$cid) = mysql_fetch_row($result)) {
 			if($tmp == $qid) {
-				$arr[] = $cid;
+				array_push($arr, $cid);
 				continue;
 			}
 			if(!empty($tmp))
@@ -175,6 +190,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 			$values["$tmp"]=$arr;
 		mysql_free_result($result);
 
+		// --------------------- answers_rank ---------------------
 		$sql = "SELECT question_id,choice_id,rank FROM answers_rank WHERE response_id='${rid}'";
 		$result = mysql_query($sql);
 		while(list($qid,$cid,$rank) = mysql_fetch_row($result)) {
@@ -185,6 +201,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		}
 		mysql_free_result($result);
 
+		// --------------------- answers_text ---------------------
 		$sql = "SELECT question_id,answer FROM answers_text WHERE response_id='${rid}'";
 		$result = mysql_query($sql);
 		while(list($qid,$cid) = mysql_fetch_row($result)) {
@@ -192,30 +209,21 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		}
 		mysql_free_result($result);
 
-		$sql = "SELECT question_id,answer FROM answers_other WHERE response_id='${rid}' ORDER BY question_id";
+		// --------------------- answers_other ---------------------
+		$sql = "SELECT question_id,choice_id,answer FROM answers_other WHERE response_id='${rid}' ORDER BY question_id";
 		$result = mysql_query($sql);
-		$arr = array();
-		$tmp = '';
-		while(list($qid,$cid) = mysql_fetch_row($result)) {
-			if($tmp == $qid) {
-				$arr[] = $cid;
-				continue;
-			}
-			if(!empty($tmp))
-				$values["$tmp"]=$arr;
-			$tmp = $qid;
-			$arr = array($cid);
+		while(list($qid,$cid,$answer) = mysql_fetch_row($result)) {
+			$values["${qid}_${cid}"]=$answer;
 		}
 		mysql_free_result($result);
 
+		// --------------------- return ---------------------
 		ksort($values);
 		return($values);
-
 	}
 
 	// insert survey response into the database (for survey ID 'sid')
 	function insert_values($sid,$section,$rid) {
-		global $DEBUG;
 		global $HTTP_POST_VARS;
 		@reset($HTTP_POST_VARS);
 
@@ -228,25 +236,13 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 			$rid = mysql_insert_id();
 		}
 
-		// get all the question_ids, and answer tables
-		$sql = "SELECT position FROM survey_questions WHERE survey_id='${sid}' AND type_id='99' AND status='' ORDER BY position,id";
-		$result = mysql_query($sql);
-		$num_sections = mysql_num_rows($result) + 1;
-		if($section > $num_sections)
-			return('');	// invalid section
-
-		$sql  = "SELECT survey_questions.id,survey_questions.type_id,question_types.answer_table ";
-		$sql .= "FROM survey_questions,question_types ";
-		$sql .= "WHERE survey_questions.survey_id='${sid}' AND survey_questions.status='' AND survey_questions.type_id=question_types.id";
-
-		$arr[] = $sql;
-
-		if($section>1 && $num_sections>1)
-			$arr[] = 'position>'. mysql_result($result,$section-2,0) .' ';
-		if($section<$num_sections && $num_sections>1)
-			$arr[] = 'position<'. mysql_result($result,$section-1,0) .' ';
-
-		$sql = join(' AND ',$arr);
+		$sql  = "
+SELECT Q.id, Q.type_id, T.answer_table
+  FROM survey_questions Q, question_types T
+". section_range_sql($sid,$section) ." AND
+       Q.survey_id='${sid}' AND
+       Q.status=0 AND
+	   Q.type_id=T.id";
 
 		$q_result = mysql_query($sql);
 		while(list($qid, $tid, $table) = mysql_fetch_row($q_result)) {
@@ -309,7 +305,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 					break;
 			}
 		}
-		@mysql_free_result($q_result);
+		mysql_free_result($q_result);
 		return($rid);
 	}
 
@@ -328,12 +324,12 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		$sql = "SELECT name,email FROM surveys WHERE id='${sid}'";
 		$result = mysql_query($sql);
 		list($name, $email) = mysql_fetch_row($result);
-		@mysql_free_result($result);
+		mysql_free_result($result);
 
 		if(empty($email))
 			return;
 
-		$sql = "SELECT id FROM survey_questions WHERE survey_id='${sid}' AND status='' ORDER BY position,id";
+		$sql = "SELECT id FROM survey_questions WHERE survey_id='${sid}' AND status=0 ORDER BY position,id";
 		$result = mysql_query($sql);
 
 		$subject = "Response from survey: ${name} [${rid}]";
@@ -351,25 +347,26 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 				$body .= $qid ." = ". $var ."\n";
 			}
 		}
-
-		if($DEBUG) echo("BODY:<blockquote><pre>$body</pre></blockquote>");
-
 		return(mail($email,$subject,$body));
 	}
 
 	// clear the results of a survey (non-reversable)
 	function clear_results($sid) {
-		$sql = "SELECT survey_questions.id,question_types.answer_table FROM survey_questions,question_types ".
-			"WHERE survey_id=$sid AND survey_questions.type_id=question_types.id";
+		$sql = "SELECT id FROM survey_questions WHERE survey_id='${sid}'";
 		$result = mysql_query($sql);
-		while(list($qid,$table) = mysql_fetch_row($result)) {
-			$sql = "DELETE FROM $table WHERE question_id=$qid";
-			mysql_query($sql); // results
-			$sql = "DELETE FROM answers_other WHERE question_id=$qid";
-			mysql_query($sql); // results
+		$qids = array();
+		while(list($qid) = mysql_fetch_row($result)) {
+			array_push($qids, $qid);
 		}
-		@mysql_free_result($result);
-		$sql = "DELETE FROM survey_responses WHERE survey_id=$sid";
+		mysql_free_result($result);
+		$qidstr = "question_id IN " . ereg_replace("([0-9]+)","'\\1'", "(" . join(",", $qids) . ")");
+	
+		$tables = array('answers_bool','answers_multiple','answers_other','answers_rank','answers_single','answers_text');
+		foreach($tables as $table) {
+			$sql = "DELETE FROM ${table} WHERE ${qidstr}";
+			$result = mysql_query($sql);
+		}
+		$sql = "DELETE FROM survey_responses WHERE survey_id=${sid}";
 		mysql_query($sql);
 
 		return;
@@ -380,6 +377,7 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 	require($PIECES."/function.survey_results".$EXT);
 	require($PIECES."/function.survey_report".$EXT);
 	require($PIECES."/function.survey_copy".$EXT);
+	require($PIECES."/function.survey_purge".$EXT);
 
 } // end if !defined(_FUNCS)
 

@@ -8,7 +8,7 @@
 	// see if a survey has been selected
 	if(!empty($sid)) {
 		if(!isset($details))
-			$details=1; // by default, show totals in results
+			$details=1; // by default, show details in report
 ?>
 <table bgcolor="#ffffff" border="1" width="95%"><tr><td>
 <?php
@@ -26,7 +26,6 @@
 // No SurveyId specified, so build a table of
 // surveys to choose from ...
 
-//	$sql = "SELECT * FROM surveys ORDER BY name";
 	$sql = "SELECT id,name,title,status FROM surveys WHERE NOT (status & '".STATUS_DELETED."') ORDER BY id DESC";
 	$result = mysql_query($sql);
 
@@ -48,10 +47,8 @@ Pick Survey to View
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($sid); ?></td>
-		<td>
-			<a href="<?php echo($ME); ?>?where=report&sid=<?php echo($sid); ?>">
-				<?php echo($name); ?>
-			</a>
+		<td><a href="<?php echo("${ME}?where=report&sid=${sid}"); ?>">
+			<?php echo($name); ?></a>
 		</td>
 		<td>
 			<?php echo($title); ?>
@@ -61,4 +58,4 @@ Pick Survey to View
 	}
 ?>
 </table>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo("${ME}?where=manage"); ?>">Go back to Management Interface</a>

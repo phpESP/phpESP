@@ -34,7 +34,7 @@
 		}
 	}
 	
-	$sql = "SELECT * FROM surveys ORDER BY name";
+	$sql = "SELECT id,name,title,status FROM surveys ORDER BY name";
 	$result = mysql_query($sql);
 
 ?>
@@ -49,9 +49,8 @@ Pick Survey to Test
 		<td>&nbsp;</td>
 	</tr>
 <?php
-	while($survey = mysql_fetch_array($result)) {
+	while(list($sid,$name,$title,$status) = mysql_fetch_row($result)) {
 		// only include "inactive" surveys for editing!
-		$status = $survey["status"];
 		if(!($status & STATUS_TEST) || 
 			($status & (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE)))
 				continue;
@@ -62,14 +61,14 @@ Pick Survey to Test
 			$bg = "#eeeeee";
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<td><?php echo($survey['id']); ?></td>
-		<td><?php echo($survey['name']); ?></td>
-		<td><?php echo($survey['title']); ?></td>
-		<td><a href="<?php echo($ME); ?>?where=test&sid=<?php echo($survey['id']); ?>">Test</a></td>
-		<td><a href="<?php echo($ME); ?>?where=results&test=1&sid=<?php echo($survey['id']); ?>">Results</a></td>
+		<td><?php echo($sid); ?></td>
+		<td><?php echo($name); ?></td>
+		<td><?php echo($title); ?></td>
+		<td><a href="<?php echo("${ME}?where=test&sid=${sid}"); ?>">Test</a></td>
+		<td><a href="<?php echo("${ME}?where=results&test=1&sid=${sid}"); ?>">Results</a></td>
 	</tr>
 <?php
 	}
 ?>
 </table>
-<a href="<?php echo($ME); ?>?where=manage">Go back to Management Interface</a>
+<a href="<?php echo("${ME}?where=manage"); ?>">Go back to Management Interface</a>
