@@ -12,7 +12,7 @@
  	$CONFIG = "phpESP.ini";
 
 	if(!file_exists($CONFIG)) {
-		echo('<b>'. _('Unable to open INI file. Aborting.'). '</b>');
+		echo('<b>Unable to open INI file. Aborting.</b>');
 		exit;
 	}
 	include($CONFIG);
