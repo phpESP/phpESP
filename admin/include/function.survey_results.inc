@@ -9,7 +9,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
  	define('_FUNCTION_SURVEY_RESULTS',TRUE);
 	
 	if(!defined('DEBUG'))
-		define('DEBUG',TRUE);
+		define('DEBUG',FALSE);
 
 	// builds HTML for the results for the survey 'sid'
 	// with the added limitation that the answer to
@@ -183,8 +183,11 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 			}
 
 			++$i;
+			
+			if($bg != "#eeeeee")	$bg = "#eeeeee";
+			else                	$bg = "#ffffff";
 ?>
-	<tr>
+	<tr xbgcolor="<?php echo($bg); ?>">
  		<td>
 			<A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A>
 			<?php echo($question["content"]); ?>
@@ -244,7 +247,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 					while(list($answer,$ccontent,$num) = mysql_fetch_row($result)) {
 						$content = ereg_replace("!other=?", "", $ccontent);
 						if($content != '')	$content .= ": ";
-						$content .= $answer;
+						$content .= htmlspecialchars($answer);
 						$counts[$content] += $num;
 					}
 					mysql_free_result($result);
@@ -262,7 +265,7 @@ if(!defined('_FUNCTION_SURVEY_RESULTS')) {
 				if($result = mysql_query($sql)) {
 					while(list($text, $num) = mysql_fetch_row($result)) {
 						if(!empty($text))
-							$counts[$text] = $num;
+							$counts[htmlspecialchars($text)] = $num;
 					}
 					mysql_free_result($result);
 				}
