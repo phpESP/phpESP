@@ -11,65 +11,45 @@
 
  	$CONFIG = "phpESP.ini";
 
-	if(file_exists($CONFIG))
-		include($CONFIG);
-
-	$where = strtolower($where);
-?>
-<!-- $Id$ -->
-<HTML>
-<HEAD>
-	<TITLE><?php echo($cf_title); ?></TITLE>
-<?php
-	if(!empty($cf_style_sheet)) {
-		echo('<LINK href="'. $cf_style_sheet .'" rel="stylesheet" type="text/css">'."\n");
+	if(!file_exists($CONFIG)) {
+		echo('<b>'. _('Unable to open INI file. Aborting.'). '</b>');
+		exit;
 	}
-	if(!empty($cf_charset)) {
-		echo('<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset='. $cf_charset ."\">\n");
+	include($CONFIG);
+?>
+<HTML>
+<!-- $Id$ -->
+<HEAD>
+	<TITLE><?php echo($ESPCONFIG['title']); ?></TITLE>
+<?php
+	if(!empty($ESPCONFIG['style_sheet'])) {
+		echo("<LINK href=\"". $ESPCONFIG['style_sheet'] ."\" rel=\"stylesheet\" type=\"text/css\">\n");
+	}
+	if(!empty($ESPCONFIG['charset'])) {
+		echo('<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset='. $ESPCONFIG['charset'] ."\">\n");
 	}
 ?>
 </HEAD>
-<BODY BGCOLOR="<?php echo($cf_main_bgcolor); ?>"
- <?php if(!empty($cf_link_color)) echo("LINK=\"${cf_link_color}\""); ?>
- <?php if(!empty($cf_vlink_color)) echo("VLINK=\"${cf_vlink_color}\""); ?>
- <?php if(!empty($cf_alink_color)) echo("ALINK=\"${cf_alink_color}\""); ?>>
+<BODY <?php
+	echo('BGCOLOR="'. $ESPCONFIG['main_bgcolor'] .'"');
+	if(!empty($ESPCONFIG['link_color']))  echo(' LINK="'.  $ESPCONFIG['link_color']  .'"');
+	if(!empty($ESPCONFIG['vlink_color'])) echo(' VLINK="'. $ESPCONFIG['vlink_color'] .'"');
+	if(!empty($ESPCONFIG['alink_color'])) echo(' ALINK="'. $ESPCONFIG['alink_color'] .'"'); ?>>
 <?php
-
-	if($DEBUG) {
-		echo("<blockquote>\n");
-		@reset ($HTTP_GET_VARS);
-		while (list ($key, $val) = @each ($HTTP_GET_VARS)) {
-			echo "$key => $val<br>\n";
-		}
-		@reset ($HTTP_POST_VARS);
-		while (list ($key, $val) = @each ($HTTP_POST_VARS)) {
-			echo "$key => $val<br>\n";
-		}
-		echo("</blockquote>\n");
+	if($ESPCONFIG['DEBUG']) {
+		include($ESPCONFIG['include_path']."/debug".$ESPCONFIG['extension']);
 	}
 
-	if(empty($where))
-		$where = "index";
-	$where = ereg_replace(' +','_',$where);
-	if(!$cf_insecure) {
-		if(in_array($where,$cf_private))		// Do not allow direct access to private files
-			$where = "index";
-		if(!ereg('^[A-Za-z0-9_]+$',$where))	// Valid chars are [A-Za-z0-9_]
-			$where = "index";
-		if(!file_exists($PIECES."/".$where.$EXT))
-			$where = "index";
-		if(!file_exists($PIECES."/index".$EXT))
-			echo("<b>I can not find your includes ... check your ini settings</b>");
-	}
-	
-	if(file_exists($PIECES."/head".$EXT))
-		include($PIECES."/head".$EXT);
+	if(file_exists($ESPCONFIG['include_path']."/head".$ESPCONFIG['extension']))
+		include($ESPCONFIG['include_path']."/head".$ESPCONFIG['extension']);
 
-	if(file_exists($PIECES."/".$where.$EXT))
-		include($PIECES."/".$where.$EXT);
+	if(!empty($HTTP_POST_VARS['where']))
+		include(esp_where($HTTP_POST_VARS['where']));
+	else
+		include(esp_where($HTTP_GET_VARS['where']));
 
-	if(file_exists($PIECES."/foot".$EXT))
-		include($PIECES."/foot".$EXT);
+	if(file_exists($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']))
+		include($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']);
 
 ?>
 </BODY>
