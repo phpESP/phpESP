@@ -5,11 +5,69 @@
 // Written by James Flemer
 // <jflemer@alum.rpi.edu>
 
-require_once ($ESPCONFIG['include_path']."where/browse_responses.inc");
 require_once ($ESPCONFIG['include_path']."where/cross.inc");
 
 if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	$GLOBALS['ESPCONFIG']['DEBUG_RESULTS'] = $GLOBALS['ESPCONFIG']['DEBUG'];
+
+/* {{{ proto void survey_results_navbar(int survey_id, int response_id)
+   Builds HTML for a response navigation bar to move between individual
+   responses.
+ */
+function survey_results_navbar($sid, $curr_rid) {
+    $sql = "SELECT R.id
+            FROM response R
+            WHERE R.survey_id='${sid}' AND
+            R.complete = 'Y'
+            ORDER BY R.id";
+    $result = mysql_query($sql);
+    $total = mysql_num_rows($result);
+    if ($total < 1)
+        return;
+
+    $rids = array();
+    $i = 0;
+    $curr_pos = -1;
+    while ($row = mysql_fetch_row($result)) {
+        array_push($rids, $row[0]);
+        if ($row[0] == $curr_rid)
+            $curr_pos = $i;
+        $i++;
+    }
+    mysql_free_result($result);
+
+    $prev_rid = ($curr_pos > 0) ? $rids[$curr_pos - 1] : null;
+    $next_rid = ($curr_pos < $total - 1) ? $rids[$curr_pos + 1] : null;
+    $rows_per_page = 1;
+    $pages = ceil($total / $rows_per_page);
+
+    $url = $GLOBALS['ESPCONFIG']['ME'] . "?where=results&sid=$sid";
+
+    $mlink = create_function('$i,$r', 'return "<a href=\"'.$url.'&rid=$r\">$i</a>";');
+
+    $linkarr = array();
+
+    if ($prev_rid != null)
+        array_push($linkarr, "<a href=\"$url&rid=$prev_rid\">"._('Previous').'</a>');
+    for ($i = 1; $i <= $curr_pos; $i++)
+        array_push($linkarr, "<a href=\"$url&rid=".$rids[$i]."\">$i</a>");
+    array_push($linkarr, "<a href=\"$url&rid=$curr_rid\"><b>$i</b></a>");
+    for (++$i; $i <= $total; $i++)
+        array_push($linkarr, "<a href=\"$url&rid=".$rids[$i]."\">$i</a>");
+    if ($next_rid != null)
+        array_push($linkarr, "<a href=\"$url&rid=$next_rid\">"._('Next').'</a>');
+
+?>
+<center>
+<h2><?php echo _('Navigate Individual Respondent Submissions'); ?></h2>
+<br />
+<?php echo implode(' | ', $linkarr); ?>
+<br />
+</center>
+<?php
+}
+/* }}} */
+
 /* {{{ proto string survey_results(int survey_id, int precision, bool show_totals, int question_id, array choice_ids, int response_id)
 	Builds HTML for the results for the survey. If a
 	question id and choice id(s) are given, then the results
@@ -17,7 +75,6 @@ if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
 	choice ids for the given question id.
 	Returns empty string on sucess, else returns an error
 	string. */
-
 function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids = '', $rid = '', $guicross='') {
 	$bg = '';
 	if(empty($precision))	$precision  = 1;
@@ -90,7 +147,6 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 // find total number of survey responses
 // and relevant response ID's
 	if (!empty($rid)) {
-		navigate_responses($sid,$rid);
 		$ridstr = "= '${rid}'";
         $total = 1;
 	} else {
@@ -143,6 +199,12 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		// ex: "('304','311','317','345','365','370','403','439')"
 		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rid)) .")";
 	}
+    
+    if (!empty($rid)) {
+        // show response navigation bar
+        survey_results_navbar($sid, $rid);
+    }
+
 if (!empty($guicross)){
 ?>
 <center>
