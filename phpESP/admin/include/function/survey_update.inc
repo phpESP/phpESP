@@ -336,12 +336,14 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
                     execute_sql($sql);
                 }
             }
-            if (isset($HTTP_POST_VARS['remove'])) {
-                if(isset($HTTP_POST_VARS['questions'])) {
-                    $qid = intval($HTTP_POST_VARS['questions']); 
-                    $sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET deleted='Y' WHERE id=$qid AND survey_id=$sid";
-                    execute_sql($sql);
-                } 
+            if (isset($HTTP_POST_VARS['removeit'])) {
+                if ($HTTP_POST_VARS['removeit'] == 1) {
+                    if(isset($HTTP_POST_VARS['questions'])) {
+                        $qid = intval($HTTP_POST_VARS['questions']); 
+                        $sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET deleted='Y' WHERE id=$qid AND survey_id=$sid";
+                        execute_sql($sql);
+                    } 
+                }
             }
             if(isset($HTTP_POST_VARS['addbreak'])) {
                 $sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=$sid";
