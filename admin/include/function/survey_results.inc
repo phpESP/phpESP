@@ -86,11 +86,14 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	if(empty($precision))	$precision  = 1;
 	if($showTotals === '')	$showTotals = 1;
 		
-	if(is_int($cids))
-		$cids = array($cids);
-	if(is_string($cids))
-		$cids = split(" ",$cids); // turn space seperated list into array
-
+    if ($cids != ''){
+        if(is_int($cids)) {
+            $cids = array($cids);
+        }
+        if(is_string($cids)) {
+            $cids = split(" ",$cids); // turn space seperated list into array
+        }
+    }
 	// set up things differently for cross analysis
 	$cross = !empty($qid);
 	if($cross) {
@@ -210,7 +213,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		// create a string suitable for inclusion in a SQL statement
 		// containing the desired Response IDs
 		// ex: "('304','311','317','345','365','370','403','439')"
-		$ridstr = "IN (" . ereg_replace("([^,]+)","'\\1'", join(",", $rids)) .")";
+		$ridstr = array_to_insql($rids);
 	}
     
     if (!empty($rid)) {
