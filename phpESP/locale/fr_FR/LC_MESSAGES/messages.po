@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.6\n"
-"POT-Creation-Date: 2003-03-05 14:31-0500\n"
+"POT-Creation-Date: 2003-03-06 12:24-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
-"Last-Translator: Cedric Levasseur <cedric.levasseur@linux-at-business."
-"com>, and olivier sevin <cjanson@ifrance.com>\n"
+"Last-Translator: Cedric Levasseur <cedric.levasseur@linux-at-business.com>, "
+"and olivier sevin <cjanson@ifrance.com>\n"
 "Language-Team: fr_FR <jflemer@alum.rpi.edu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -1697,25 +1697,25 @@ msgstr ""
 msgid "File to upload"
 msgstr "Impossible de charger les ACLs"
 #
-# File: phpESP/admin/phpESP.ini.php, line: 134
+# File: phpESP/admin/phpESP.ini.php, line: 135
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 135
+# File: phpESP/admin/phpESP.ini.php, line: 136
 msgid ""
 "Please do not use the back button on your browser to go\n"
 "back. Please click on the link below to return you to where\n"
 "you launched this survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 140
-# File: phpESP/admin/phpESP.ini.php, line: 146
+# File: phpESP/admin/phpESP.ini.php, line: 141
+# File: phpESP/admin/phpESP.ini.php, line: 147
 msgid ""
 "Unable to find the phpESP %s directory.\n"
 "\t\t\tPlease check %s to ensure that all paths are set correctly."
 msgstr ""
 #
-# File: phpESP/admin/test.php, line: 142
+# File: phpESP/admin/test.php, line: 144
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
@@ -1769,48 +1769,60 @@ msgid "Confirm Password"
 msgstr "Confirmer le nouveau mot de passe"
 #
 #
+#
 #~ msgid "Total"
 #~ msgstr "Total"
+#
 #
 #
 #~ msgid "are required."
 #~ msgstr "sont obligatoires"
 #
 #
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "ID utilisateur, mot de passe, ou votre compte a été désactivé."
+#
 #
 #
 #~ msgid "free-form"
 #~ msgstr "formulaire libre"
 #
 #
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ie. instructions, informations complémentaires, etc."
+#
 #
 #
 #~ msgid "Required?"
 #~ msgstr "Obligatoire?"
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "Vous devez utilisez"
+#
 #
 #
 #~ msgid "to access this menu"
 #~ msgstr "pour accéder à ce menu"
 #
 #
+#
 #~ msgid "Purge"
 #~ msgstr "Purge"
+#
 #
 #
 #~ msgid "STATUS"
 #~ msgstr "STATUT"
 #
 #
+#
 #~ msgid "to design forms"
 #~ msgstr "pour créer le formulaire"
+#
 #
 #
 #
@@ -1822,8 +1834,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "En-tête de la confirmation"
+#
 #
 #
 #
@@ -1838,8 +1852,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Max Logins"
 #~ msgstr "Max de Logins"
+#
 #
 #
 #
