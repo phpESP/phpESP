@@ -2,6 +2,12 @@
 PHPESP CHANGE LOG
 =================
 
+v1.7-dev final ==> v1.7-rc1
+=========================
+* FIXED !other Checkbox questions not recording.
+* FIXED bad javascript path in head.inc. (Reported by
+  <beachbum_boy AT users.sourceforge.net>).
+
 v1.6.1 final ==> v1.7-dev
 =========================
 * FIXED invalid CSS comments.
@@ -12,12 +18,12 @@ v1.6.1 final ==> v1.7-dev
   Daniel Buchmann).
 * FIXED Section text set to required causes survey to be
   invalid. (Based on patch by Paul Jackson - 
-  <beachbum_boy AT users.sourceforge.net>.
+  <beachbum_boy AT users.sourceforge.net>).
 * FIXED crosstab grand total incorrect.
 * FIXED questions that have the same name cause CSV export
   to "explode".  Question now are forced to be unique.
   (Reported by Paul Jackson - 
-  <beachbum_boy AT users.sourceforge.net>.
+  <beachbum_boy AT users.sourceforge.net>).
 * FIXED mysql create script failed on mysql >= 4. (Based on
   patch by Kevin Hawkins - jedihawk AT users.sourceforge.net>).
 * FIXED permission problems in admin pages. (Reported by
