@@ -5,7 +5,7 @@
 // Written by James Flemer <jflemer@acm.jhu.edu>
 //        and Romans Jasins <roma@latnet.lv>
 
-	require("/usr/home/jflemer/src/phpESP/admin/phpESP.ini");
+	require("/usr/home/jflemer/phpESP/admin/phpESP.ini");
 	require($PIECES."/funcs".$EXT);
 
 	if(empty($sid)) {
