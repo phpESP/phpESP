@@ -1,6 +1,6 @@
-p h p E S P   (php Easy Survey Package)
-============================================================
-$Id$
+=================
+PHPESP CHANGE LOG
+=================
 
 v1.5 final ==> v1.6 RC1
 =======================
@@ -124,3 +124,6 @@ v1.4 beta 1 ==> v1.4 beta 2 (not released)
 v1.3 final ==> v1.4 beta 1
 ==========================
 * FIXED spelling mistakes.
+
+----
+$Id$
