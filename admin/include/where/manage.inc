@@ -30,7 +30,7 @@
 		<td>
 			<table border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
 			<ul>
-				<li><a href="<?php echo("${base}?where=new");     ?>"><?php echo(_('Create a Survey')); ?></a></li>
+				<li><a href="<?php echo("${base}?where=new");     ?>"><?php echo(_('Create a New Survey')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=edit");    ?>"><?php echo(_('Edit an Existing Survey')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=test");    ?>"><?php echo(_('Test a Survey')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=copy");    ?>"><?php echo(_('Copy an Existing Survey')); ?></a></li>
