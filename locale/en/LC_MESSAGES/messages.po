@@ -1,0 +1,793 @@
+# phpESP.
+# By: James Flemer
+# <jflemer@acm.jhu.edu>
+# $Id$
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: phpESP-XML beta\n"
+"POT-Creation-Date: 2001-04-02 02:26-0400\n"
+"PO-Revision-Date: 2001-04-02 02:27-0400\n"
+"Last-Translator: James Flemer <jflemer@acm.jhu.edu>\n"
+"Language-Team: en <jflemer@acm.jhu.edu>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain\n"
+"Content-Transfer-Encoding: en\n"
+
+#: public/handler.php:76
+msgid "Error processing survey: Survey is not active."
+msgstr ""
+
+#: public/handler.php:29
+msgid "Error processing survey: Survey not specified."
+msgstr ""
+
+#: public/handler.php:20
+msgid "Error processing survey: Security violation."
+msgstr ""
+
+#: admin/phpESP.ini:70
+msgid ""
+"Please do not use the back button on your browser to go\n"
+"back. Please click on the link below to return you to where\n"
+"you launched this survey."
+msgstr ""
+
+#: admin/phpESP.ini:67
+msgid "Thank You For Completing This Survey."
+msgstr ""
+
+#: admin/phpESP.ini:110
+msgid "I can not find your includes ... check your ini settings"
+msgstr ""
+
+#: admin/manage.php:15
+msgid "Unable to open INI file. Aborting."
+msgstr ""
+
+#: admin/include/where/upgrade.inc:53
+msgid "Go"
+msgstr ""
+
+#: admin/include/where/upgrade.inc:50
+msgid "Second Query"
+msgstr ""
+
+#: admin/include/where/upgrade.inc:45
+msgid "First Query"
+msgstr ""
+
+#: admin/include/where/upgrade.inc:42
+msgid "Run Now"
+msgstr ""
+
+#: admin/include/where/upgrade.inc:37
+msgid ""
+"If you are here, it means that you\n"
+"	have been running the development version of\n"
+"	<tt>phpESP</tt> right? If you haven't been, then you\n"
+"	have no need to go to this page.</p> <p>Now hopefully\n"
+"	you have *just* upgraded, or CVS up'ed. If you ran the\n"
+"	two following SQL queries before you upgraded (as\n"
+"	recommended) then just enter the results in the form\n"
+"	below and click on <tt>Go</tt>. Otherwise click on the \n"
+"	<tt>Run Now</tt> button below to run them now."
+msgstr ""
+
+#: admin/include/where/upgrade.inc:206
+msgid "Bad"
+msgstr ""
+
+#: admin/include/where/upgrade.inc:204
+msgid "Maybe Safe"
+msgstr ""
+
+#: admin/include/where/upgrade.inc:202
+msgid "Safe"
+msgstr ""
+
+#: admin/include/where/upgrade.inc:192
+msgid ""
+"If you are here, it means that you have been running the\n"
+"	development version of <tt>phpESP</tt> right? If you haven't\n"
+"	been, then you have no need to go to this page.</p>\n"
+"	<p>And ... you made it past the first step. Now below you\n"
+"	you will see some pretty ugly tables. Hopefully you will\n"
+"	see lots of numbers under the <b>Safe</b> category, and none under\n"
+"	the <b>Bad</b> category. If there are no <b>Bad QID's</b>\n"
+"	then you should be OK. Skim through the SQL at the bottom\n"
+"	and make sure it looks sane (ie. no negative numbers,\n"
+"	no changing of 0 -> 1 and 1 -> 0 on the same question, etc).\n"
+"	If it looks sane, copy it and run it on your database.</p>\n"
+"	<p><b>What to do if there are BAD QID's:</b><br>\n"
+"	Well that probably means you didn't run this right away.\n"
+"	It is probably still OK, but there is a chance that the\n"
+"	script will miss some values, or could potentially \n"
+"	<b>corrupt</b> your results. So look at the SQL, see what it\n"
+"	is doing, look at the database and figure out if it is\n"
+"	safe to run. If you get here and are stuck, then just\n"
+"	email me ... I don't think many people will end up here,\n"
+"	so I am not going to write an in depth conversion process\n"
+"	now. :-)<br>\n"
+"	-James"
+msgstr ""
+
+#: admin/include/where/todo.inc:8
+msgid "Go back to Management Interface"
+msgstr ""
+
+#: admin/include/where/test.inc:77
+msgid "Results"
+msgstr ""
+
+#: admin/include/where/test.inc:76
+msgid "Test"
+msgstr ""
+
+#: admin/include/where/test.inc:56
+msgid "Title"
+msgstr ""
+
+#: admin/include/where/test.inc:55
+msgid "Name"
+msgstr ""
+
+#: admin/include/where/test.inc:54
+msgid "ID"
+msgstr ""
+
+#: admin/include/where/test.inc:51
+msgid "Pick Survey to Test"
+msgstr ""
+
+#: admin/include/where/test.inc:50
+msgid "Test a Survey"
+msgstr ""
+
+#: admin/include/where/test.inc:38
+msgid "View Results"
+msgstr ""
+
+#: admin/include/where/test.inc:24
+msgid "Testing Survey..."
+msgstr ""
+
+#: admin/include/where/tab.inc:61
+msgid "No tabs defined. Please check your ini settings."
+msgstr ""
+
+#: admin/include/where/tab.inc:152
+msgid "Click here to open the Help window."
+msgstr ""
+
+#: admin/include/where/tab.inc:151
+msgid ""
+"The survey title and other general fields are on the <b>General</b> tab.\n"
+"Individual survey questions are added and modified on the <b>Questions</b> tab.\n"
+"Questions may be re-ordered or deleted from the <b>Order</b> tab.\n"
+"You may see a preview of your survey at any time, by going to the <b>Preview</b>\n"
+"tab. If you have no further changes click <b>Finish</b> to go back to the\n"
+"Management Interface."
+msgstr ""
+
+#: admin/include/where/tab.inc:139
+msgid "Click cancel to cancel this survey, or click continue to proceed to the next tab."
+msgstr ""
+
+#: admin/include/where/tab.inc:113
+msgid "Help"
+msgstr ""
+
+#: admin/include/where/tab.inc:103
+msgid "Unable to open include file. Check INI settings. Aborting."
+msgstr ""
+
+#: admin/include/where/status.inc:94
+msgid "Status"
+msgstr ""
+
+#: admin/include/where/status.inc:85
+msgid ""
+"<b>Archive</b> removes this survey. It is still stored in the database, but\n"
+"no further interaction is allowed. You may <b>not</b> view the results of an\n"
+"archived survey."
+msgstr ""
+
+#: admin/include/where/status.inc:81
+msgid ""
+"<b>End</b> transitions a survey into ended mode. In this mode, no edits are\n"
+"possible, no users may take the survey (it is inactive), but results are still\n"
+"viewable from the results menu."
+msgstr ""
+
+#: admin/include/where/status.inc:77
+msgid ""
+"<b>Activate</b> transitions a survey into active more. In this mode the\n"
+"survey is open for production use, and may be put online. This will clear any\n"
+"results from testing mode (if any). No further editing of survey is\n"
+"allowed."
+msgstr ""
+
+#: admin/include/where/status.inc:72
+msgid ""
+"<b>Test</b> transitions a survey into testing mode. At which point you may\n"
+"perform a live test by taking the survey, and viewing the results. You will not\n"
+"be able to make any further changes to the survey once you have switched to\n"
+"test mode."
+msgstr ""
+
+#: admin/include/where/status.inc:66
+msgid "Survey Status"
+msgstr ""
+
+#: admin/include/where/status.inc:62
+msgid "STATUS"
+msgstr ""
+
+#: admin/include/where/status.inc:61
+msgid "Can not set survey status."
+msgstr ""
+
+#: admin/include/where/status.inc:124
+msgid "Edit"
+msgstr ""
+
+#: admin/include/where/status.inc:122
+msgid "Testing"
+msgstr ""
+
+#: admin/include/where/status.inc:119
+msgid "Active"
+msgstr ""
+
+#: admin/include/where/status.inc:116
+msgid "Ended"
+msgstr ""
+
+#: admin/include/where/status.inc:112
+msgid "Archived"
+msgstr ""
+
+#: admin/include/where/status.inc:109
+msgid "Archive"
+msgstr ""
+
+#: admin/include/where/status.inc:108
+msgid "End"
+msgstr ""
+
+#: admin/include/where/status.inc:107
+msgid "Activate"
+msgstr ""
+
+#: admin/include/where/status.inc:105
+msgid "Editing"
+msgstr ""
+
+#: admin/include/where/results.inc:46
+msgid "Pick Survey to View"
+msgstr ""
+
+#: admin/include/where/results.inc:45
+msgid "View Survey Results"
+msgstr ""
+
+#: admin/include/where/results.inc:30
+msgid "Test Survey"
+msgstr ""
+
+#: admin/include/where/results.inc:13
+msgid "SID"
+msgstr ""
+
+#: admin/include/where/report.inc:33
+msgid "View Survey Report"
+msgstr ""
+
+#: admin/include/where/report.inc:20
+msgid "Go back to Report Menu"
+msgstr ""
+
+#: admin/include/where/purge.inc:77
+msgid "Purge"
+msgstr ""
+
+#: admin/include/where/purge.inc:76
+msgid "Clear Checkboxes"
+msgstr ""
+
+#: admin/include/where/purge.inc:34
+msgid ""
+"\n"
+"This page is not directly on the main menu because it is\n"
+"dangerous. This <b>completly</b> removes everything about a\n"
+"survey from the database <b>forever</b>. All question info,\n"
+"general info, results, etc. are purged from the database. Do\n"
+"not do anything here that you are not completly certain\n"
+"about. There is no confirmation, there is no turning\n"
+"back."
+msgstr ""
+
+#: admin/include/where/purge.inc:25
+msgid "Purge Surveys"
+msgstr ""
+
+#: admin/include/where/merge.inc:97
+msgid "Surveys to Merge"
+msgstr ""
+
+#: admin/include/where/merge.inc:95
+msgid "List of Surveys"
+msgstr ""
+
+#: admin/include/where/merge.inc:92
+msgid "Pick Surveys to Merge"
+msgstr ""
+
+#: admin/include/where/merge.inc:91
+msgid "Merge Survey Results"
+msgstr ""
+
+#: admin/include/where/merge.inc:54
+msgid "You need to select at least two surveys!"
+msgstr ""
+
+#: admin/include/where/merge.inc:53
+msgid "Error!"
+msgstr ""
+
+#: admin/include/where/merge.inc:11
+msgid "SIDS"
+msgstr ""
+
+#: admin/include/where/manage.inc:39
+msgid "(help)"
+msgstr ""
+
+#: admin/include/where/manage.inc:38
+msgid "View the README"
+msgstr ""
+
+#: admin/include/where/manage.inc:37
+msgid "(development goals)"
+msgstr ""
+
+#: admin/include/where/manage.inc:36
+msgid "View the list of things still to do"
+msgstr ""
+
+#: admin/include/where/manage.inc:35
+msgid "View a survey report"
+msgstr ""
+
+#: admin/include/where/manage.inc:34
+msgid "Merge the results from two Surveys"
+msgstr ""
+
+#: admin/include/where/manage.inc:33
+msgid "View the Results of a Survey"
+msgstr ""
+
+#: admin/include/where/manage.inc:31
+msgid "(active/end/delete)"
+msgstr ""
+
+#: admin/include/where/manage.inc:30
+msgid "Change the Status of an Existing Survey"
+msgstr ""
+
+#: admin/include/where/manage.inc:29
+msgid "Make a Copy of an Existing Survey"
+msgstr ""
+
+#: admin/include/where/manage.inc:28
+msgid "Edit an Existing Survey"
+msgstr ""
+
+#: admin/include/where/manage.inc:27
+msgid "New Survey Design"
+msgstr ""
+
+#: admin/include/where/manage.inc:20
+msgid "Choose a function"
+msgstr ""
+
+#: admin/include/where/manage.inc:16
+msgid "Management Interface"
+msgstr ""
+
+#: admin/include/where/edit.inc:19
+msgid "Pick Survey to Edit"
+msgstr ""
+
+#: admin/include/where/edit.inc:18
+msgid "Edit a Survey"
+msgstr ""
+
+#: admin/include/where/copy.inc:33
+msgid ""
+"\n"
+"Chose a survey to make a copy of. The copy will have the same\n"
+"status of a newly created survey. You will be able to edit the\n"
+"survey, and will have to activate it before use."
+msgstr ""
+
+#: admin/include/where/copy.inc:29
+msgid "Copy Survey"
+msgstr ""
+
+#: admin/include/where/copy.inc:12
+msgid "Error copying survey."
+msgstr ""
+
+#: admin/include/tab/questions_options.inc:56
+msgid "Add another answer line"
+msgstr ""
+
+#: admin/include/tab/questions_options.inc:34
+msgid ""
+"Enter the possible answers (if applicable). Enter\n"
+"<tt>!other</tt> on an line by itself to create a\n"
+"fill-in-the-blank answer at the end of this question.\n"
+"Any blank lines will be suppressed."
+msgstr ""
+
+#: admin/include/tab/questions.inc:94
+msgid "Question"
+msgstr ""
+
+#: admin/include/tab/questions.inc:83
+msgid "Edit this question, or click the number of the question you would like to edit:"
+msgstr ""
+
+#: admin/include/tab/questions.inc:146
+msgid "New Question"
+msgstr ""
+
+#: admin/include/tab/questions.inc:125
+msgid ""
+msgstr ""
+
+#: admin/include/tab/questions.inc:119
+msgid "Result Type"
+msgstr ""
+
+#: admin/include/tab/questions.inc:108
+msgid "Type of Response"
+msgstr ""
+
+#: admin/include/tab/questions.inc:104
+msgid "No"
+msgstr ""
+
+#: admin/include/tab/questions.inc:104
+msgid "Default"
+msgstr ""
+
+#: admin/include/tab/questions.inc:103
+msgid "Yes"
+msgstr ""
+
+#: admin/include/tab/questions.inc:101
+msgid "Answer Required"
+msgstr ""
+
+#: admin/include/tab/preview.inc:46
+msgid "Submit Survey"
+msgstr ""
+
+#: admin/include/tab/preview.inc:44
+msgid "Next Page"
+msgstr ""
+
+#: admin/include/tab/preview.inc:30
+msgid "Section"
+msgstr ""
+
+#: admin/include/tab/preview.inc:28
+msgid ""
+"This is a preview of how the survey will look.\n"
+"In the preview the &quot;Next Page&quot; and \n"
+"&quot;Submit Survey&quot; are inactive.\n"
+"The survey will use the background color of the\n"
+"document in which it is embedded. If you have no\n"
+"further changes click <b>Finish</b> at the bottom of\n"
+"this page."
+msgstr ""
+
+#: admin/include/tab/order.inc:146
+msgid "Click here to add a section (page) break."
+msgstr ""
+
+#: admin/include/tab/order.inc:136
+msgid "----- Section Break -----"
+msgstr ""
+
+#: admin/include/tab/order.inc:128
+msgid "Move Down"
+msgstr ""
+
+#: admin/include/tab/order.inc:127
+msgid "Delete"
+msgstr ""
+
+#: admin/include/tab/order.inc:126
+msgid "Move Up"
+msgstr ""
+
+#: admin/include/tab/order.inc:119
+msgid ""
+"Change the order that questions are\n"
+"presented by clicking on the up and down arrows.\n"
+"Remove a question by clicking on the X."
+msgstr ""
+
+#: admin/include/tab/general.inc:93
+msgid "Body text on the &quot;Thank You&quot; page. This is displayed below the Thank You Heading."
+msgstr ""
+
+#: admin/include/tab/general.inc:89
+msgid "Thank You Text"
+msgstr ""
+
+#: admin/include/tab/general.inc:85
+msgid "Heading on the &quot;Thank You&quot; page (appearing after a user completes a survey). This is displayed in bold."
+msgstr ""
+
+#: admin/include/tab/general.inc:81
+msgid "Thank You Heading"
+msgstr ""
+
+#: admin/include/tab/general.inc:77
+msgid "Sends a copy of each sumbission to address (or leave blank for no email backup)."
+msgstr ""
+
+#: admin/include/tab/general.inc:74
+msgid "Email"
+msgstr ""
+
+#: admin/include/tab/general.inc:69
+msgid "ie. instructions, background info, etc."
+msgstr ""
+
+#: admin/include/tab/general.inc:68
+msgid "Text to be displayed on the survey before any questions."
+msgstr ""
+
+#: admin/include/tab/general.inc:65
+msgid "Additional Info"
+msgstr ""
+
+#: admin/include/tab/general.inc:60
+msgid "including spaces"
+msgstr ""
+
+#: admin/include/tab/general.inc:60
+msgid "Appears below the title."
+msgstr ""
+
+#: admin/include/tab/general.inc:60
+msgid "free-form"
+msgstr ""
+
+#: admin/include/tab/general.inc:59
+msgid "Subtitle of the survey."
+msgstr ""
+
+#: admin/include/tab/general.inc:55
+msgid "Subtitle"
+msgstr ""
+
+#: admin/include/tab/general.inc:50
+msgid "Required"
+msgstr ""
+
+#: admin/include/tab/general.inc:49
+msgid "This appears at the top of every page of the survey."
+msgstr ""
+
+#: admin/include/tab/general.inc:48
+msgid "Title of the survey."
+msgstr ""
+
+#: admin/include/tab/general.inc:40
+msgid "no spaces"
+msgstr ""
+
+#: admin/include/tab/general.inc:40
+msgid "alpha-numeric only"
+msgstr ""
+
+#: admin/include/tab/general.inc:39
+msgid "This is used for all further access to this survey."
+msgstr ""
+
+#: admin/include/tab/general.inc:38
+msgid "Internal survey name."
+msgstr ""
+
+#: admin/include/tab/general.inc:28
+msgid ""
+"The information on this tab applies to the whole survey.\n"
+"Fill out this page then go to the <b>Questions</b> tab to\n"
+"add/edit individual survey questions."
+msgstr ""
+
+#: admin/include/tab/finish.inc:30
+msgid ""
+"You must activate this survey before you can collect\n"
+"results. Once a survey is active, you may no longer make any\n"
+"changes to it. You may activate this survey by chosing\n"
+"<b>Change the Status of an Existing Survey</b> from the\n"
+"Mangement Interface."
+msgstr ""
+
+#: admin/include/tab/finish.inc:19
+msgid ""
+"To insert this survey into your web page, copy the text\n"
+"below, and paste it into the HTML of your page."
+msgstr ""
+
+#: admin/include/tab/finish.inc:16
+msgid "You have completed this survey design."
+msgstr ""
+
+#: admin/include/tab/finish.inc:14
+msgid "Survey Design Completed"
+msgstr ""
+
+#: admin/include/lib/espresponse.inc:55
+msgid "You are missing the following required questions:"
+msgstr ""
+
+#: admin/include/lib/espresponse.inc:288
+msgid "Response from survey:"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:78
+msgid "Rank"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:198
+msgid "5"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:197
+msgid "4"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:196
+msgid "3"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:195
+msgid "2"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:194
+msgid "1"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:190
+msgid "Average rank"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:167
+msgid "#"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:167
+msgid "Response"
+msgstr ""
+
+#: admin/include/lib/esphtml.results.inc:151
+msgid "TOTAL"
+msgstr ""
+
+#: admin/include/function/survey_update.inc:87
+msgid "Sorry, that name is already in use."
+msgstr ""
+
+#: admin/include/function/survey_update.inc:69
+msgid "Sorry, please fill out the name and title before proceeding."
+msgstr ""
+
+#: admin/include/function/survey_update.inc:52
+msgid "Sorry, name already in use. Pick a new name."
+msgstr ""
+
+#: admin/include/function/survey_update.inc:227
+msgid "Sorry, you need at least one answer option for this question type."
+msgstr ""
+
+#: admin/include/function/survey_update.inc:219
+msgid "Warning, error encountered."
+msgstr ""
+
+#: admin/include/function/survey_update.inc:135
+msgid "Sorry, you cannot change between those types of question. Create a new question instead."
+msgstr ""
+
+#: admin/include/function/survey_update.inc:115
+msgid "Sorry, you must select a type for this question."
+msgstr ""
+
+#: admin/include/function/survey_results.inc:84
+msgid "Error cross-analyzing. Question not valid type."
+msgstr ""
+
+#: admin/include/function/survey_results.inc:84
+msgid "Table"
+msgstr ""
+
+#: admin/include/function/survey_results.inc:73
+msgid "No questions found."
+msgstr ""
+
+#: admin/include/function/survey_results.inc:48
+msgid "Error system table corrupt."
+msgstr ""
+
+#: admin/include/function/survey_results.inc:145
+msgid "Cross analysis on QID:"
+msgstr ""
+
+#: admin/include/function/survey_results.inc:124
+msgid "No responses found."
+msgstr ""
+
+#: admin/include/function/survey_results.inc:124
+msgid "Error opening survey."
+msgstr ""
+
+#: admin/include/function/survey_report.inc:62
+msgid "Content"
+msgstr ""
+
+#: admin/include/function/survey_report.inc:61
+msgid "Private"
+msgstr ""
+
+#: admin/include/function/survey_report.inc:60
+msgid "Req'd"
+msgstr ""
+
+#: admin/include/function/survey_report.inc:53
+msgid "Report for"
+msgstr ""
+
+#: admin/include/function/survey_render.inc:66
+msgid "are required."
+msgstr ""
+
+#: admin/include/function/survey_render.inc:65
+msgid "Questions marked with a"
+msgstr ""
+
+#: admin/include/function/survey_render.inc:235
+msgid "Page"
+msgstr ""
+
+#: admin/include/function/survey_render.inc:235
+msgid "of"
+msgstr ""
+
+#: admin/include/function/survey_render.inc:188
+msgid "N/A"
+msgstr ""
+
+#: admin/include/function/survey_merge.inc:87
+msgid "Error opening surveys."
+msgstr ""
+
+#: admin/include/function/survey_merge.inc:64
+msgid "Total"
+msgstr ""
+
+#: admin/include/function/survey_merge.inc:27
+msgid "Invalid argument."
+msgstr ""
+
+#: admin/include/function/survey_copy.inc:32
+msgid "copy"
+msgstr ""
