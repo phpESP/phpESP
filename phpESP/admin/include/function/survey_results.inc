@@ -86,13 +86,11 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	if(empty($precision))	$precision  = 1;
 	if($showTotals === '')	$showTotals = 1;
 		
-    if ($cids != ''){
-        if(is_int($cids)) {
-            $cids = array($cids);
-        }
-        if(is_string($cids)) {
-            $cids = split(" ",$cids); // turn space seperated list into array
-        }
+    if(is_int($cids)) {
+        $cids = array($cids);
+    }
+    if(is_string($cids)) {
+        $cids = split(" ",$cids); // turn space seperated list into array
     }
 	// set up things differently for cross analysis
 	$cross = !empty($qid);
@@ -164,11 +162,12 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	if (!empty($rid)) {
 		$ridstr = "= '${rid}'";
         $total = 1;
-	} else {
-	    $sql = "";
-	    if($cross) {
-		    if(!empty($cidstr))
-			    $sql = "SELECT A.response_id
+	}
+    else {
+        $sql = "";
+        if($cross) {
+            if(!empty($cidstr)) {
+                $sql = "SELECT A.response_id
 					      FROM ".$GLOBALS['ESPCONFIG'][$crossTable.'_table']." A,
 						       ".$GLOBALS['ESPCONFIG']['response_table']." R
 					     WHERE A.response_id=R.id AND
@@ -176,8 +175,9 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 						       A.question_id='${qid}' AND
 				    	       A.choice_id ${cidstr}
 					     ORDER BY A.response_id";
-		    else
-			    $sql = "SELECT A.response_id
+            }
+            else {
+                $sql = "SELECT A.response_id
 					      FROM ".$GLOBALS['ESPCONFIG'][$crossTable.'_table']." A,
 						       ".$GLOBALS['ESPCONFIG']['response_table']." R
 					     WHERE A.response_id=R.id AND
@@ -185,7 +185,9 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 						       A.question_id='${qid}' AND
 				    	       A.choice_id = 0
 					     ORDER BY A.response_id";
-	    } else {
+            }
+        }
+        else {
 		    $sql = "SELECT R.id
 				      FROM ".$GLOBALS['ESPCONFIG']['response_table']." R
 				     WHERE R.survey_id='${sid}' AND
