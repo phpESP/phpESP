@@ -6,6 +6,10 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
+// New Interface Design by Kon Angelopoulos
+// for the phpESP project.
+// <angekproductions@iprimus.com.au>
+
 	// do not need to import session vars here
 	// it is done by questions.inc before this code executes
 
@@ -45,11 +49,11 @@ Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
 					$choice_id      = intval($HTTP_POST_VARS["choice_id_$i"]);
 				}
 				if(isset($HTTP_POST_VARS["choice_content_$i"]))
-					$choice_content = $HTTP_POST_VARS["choice_content_$i"];
+					$choice_content = _stripslashes($HTTP_POST_VARS["choice_content_$i"]);
 			}
 ?>
 	<tr>
-		<td valign=middle align="right"><b><?php echo($i); ?>.</b></td>
+		<td class="numbered"><?php echo($i); ?>.</td>
 		<td valign=middle align="left">
 			<input type="hidden" name="choice_id_<?php echo($i); ?>"
 				value="<?php if(isset($choice_id)) echo($choice_id); ?>">
