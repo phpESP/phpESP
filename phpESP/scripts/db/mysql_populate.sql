@@ -101,16 +101,16 @@ CREATE TABLE survey (
 
 -- # types of questions
 CREATE TABLE question_type (
-	id				INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	type			CHAR(32) NOT NULL,
-	has_choices		ENUM('Y','N') NOT NULL,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	type		CHAR(32) NOT NULL,
+	has_choices	ENUM('Y','N') NOT NULL,
 	response_table	CHAR(32) NOT NULL,
 	PRIMARY KEY (id)
 );
 
 -- # table of the questions for all the surveys
 CREATE TABLE question (
-	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	survey_id	INT UNSIGNED NOT NULL,
 	name		CHAR(30) NOT NULL,
 	type_id		INT UNSIGNED NOT NULL,
@@ -122,27 +122,31 @@ CREATE TABLE question (
 	required	ENUM('Y','N') NOT NULL DEFAULT 'N',
 	deleted		ENUM('Y','N') NOT NULL DEFAULT 'N',
 	public		ENUM('Y','N') NOT NULL DEFAULT 'Y',
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	KEY `result_id` (`result_id`),
+	KEY `survey_id` (`survey_id`)
 );
 
 -- # table of the choices (possible answers) of each question
 CREATE TABLE question_choice (
-	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	question_id	INT UNSIGNED NOT NULL,
 	content		TEXT NOT NULL,
 	value		TEXT,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	KEY `question_id` (`question_id`)
 );
 
 -- # access control to adding data to a form / survey
 CREATE TABLE access (
-	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	survey_id	INT UNSIGNED NOT NULL,
 	realm		CHAR(16),
 	maxlogin	INT UNSIGNED DEFAULT '0',
         resume		ENUM('Y','N') NOT NULL DEFAULT 'N',
         navigate	ENUM('Y','N') NOT NULL DEFAULT 'N',
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	KEY `survey_id` (`survey_id`)
 );
 
 -- ...............................................................
@@ -157,7 +161,8 @@ CREATE TABLE response (
 	submitted	TIMESTAMP(14) NOT NULL DEFAULT '',
 	complete	ENUM('Y','N') NOT NULL DEFAULT 'N',
 	username	CHAR(64),
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	KEY `survey_id` (`survey_id`)
 );
 
 -- # answers to boolean questions (yes/no)
@@ -165,7 +170,9 @@ CREATE TABLE response_bool (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id	INT UNSIGNED NOT NULL,
 	choice_id	ENUM('Y','N') NOT NULL,
-	PRIMARY KEY(response_id,question_id)
+	PRIMARY KEY(response_id,question_id),
+	KEY `response_id` (`response_id`),
+	KEY `question_id` (`question_id`)
 );
 
 -- # answers to single answer questions (radio, boolean, rate) (chose one of n)
@@ -173,7 +180,9 @@ CREATE TABLE response_single (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id	INT UNSIGNED NOT NULL,
 	choice_id	INT UNSIGNED NOT NULL,
-	PRIMARY KEY(response_id,question_id)
+	PRIMARY KEY(response_id,question_id),
+	KEY `response_id` (`response_id`),
+	KEY `question_id` (`question_id`)
 );
 
 -- # answers to questions where multiple responses are allowed
@@ -183,7 +192,10 @@ CREATE TABLE response_multiple (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id	INT UNSIGNED NOT NULL,
 	choice_id	INT UNSIGNED NOT NULL,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	KEY `response_id` (`response_id`),
+	KEY `question_id` (`question_id`),
+	KEY `choice_id` (`choice_id`)
 );
 
 -- # answers to rank questions
@@ -192,7 +204,10 @@ CREATE TABLE response_rank (
 	question_id	INT UNSIGNED NOT NULL,
 	choice_id	INT UNSIGNED NOT NULL,
 	rank		INT NOT NULL,
-	PRIMARY KEY(response_id,question_id,choice_id)
+	PRIMARY KEY(response_id,question_id,choice_id),
+	KEY `response_id` (`response_id`),
+	KEY `question_id` (`question_id`),
+	KEY `choice_id` (`choice_id`)
 );
 
 -- # answers to any fill in the blank or essay question
@@ -200,7 +215,9 @@ CREATE TABLE response_text (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id INT UNSIGNED NOT NULL,
 	response	TEXT,
-	PRIMARY KEY (response_id,question_id)
+	PRIMARY KEY (response_id,question_id),
+	KEY `response_id` (`response_id`),
+	KEY `question_id` (`question_id`)
 );
 
 -- # answers to any Other: ___ questions
@@ -209,7 +226,10 @@ CREATE TABLE response_other (
 	question_id INT UNSIGNED NOT NULL,
 	choice_id	INT UNSIGNED NOT NULL,
 	response	TEXT,
-	PRIMARY KEY (response_id, question_id, choice_id)
+	PRIMARY KEY (response_id, question_id, choice_id),
+	KEY `response_id` (`response_id`),
+	KEY `choice_id` (`choice_id`),
+	KEY `question_id` (`question_id`)
 );
 
 -- # answers to any date questions
@@ -217,7 +237,9 @@ CREATE TABLE response_date (
 	response_id	INT UNSIGNED NOT NULL,
 	question_id INT UNSIGNED NOT NULL,
 	response	DATE,
-	PRIMARY KEY (response_id,question_id)
+	PRIMARY KEY (response_id,question_id),
+	KEY `response_id` (`response_id`),
+	KEY `question_id` (`question_id`)
 );
 
 -- # populate the types of questions
