@@ -108,17 +108,25 @@ edit individual fields.')); ?>
                 <td><?php
 			$GLOBALS['theme'] =& $survey['theme'];
 			$themes_array = array();
-			chdir($ESPCONFIG['survey_css']);
-			$dir = dir(".");
-			$dir->rewind();
-			while ($file=$dir->read()) {
-				if (stristr($file,".css")) {
-					$pos = strrpos($file, ".");
-					$name = substr($file, 0,$pos);
-					$themes_array[$file] = $name;
-				}
+			$result = @chdir($ESPCONFIG['survey_css']);
+			if (!$result){
+				echo(_(<b>Can\'t seem to find phpESP's css directory.<br>
+					Please check your ini file to ensure that $ESPCONFIG[\'survey_css\']\'s
+					path is set correctly.</b>'));
+				exit;
 			}
-			$dir->close();
+			else {	
+				$dir = dir(".");
+				$dir->rewind();
+				while ($file=$dir->read()) {
+					if (stristr($file,".css")) {
+						$pos = strrpos($file, ".");
+						$name = substr($file, 0,$pos);
+						$themes_array[$file] = $name;
+					}
+				}
+				$dir->close();
+			}
 		?>
 			<?php echo(mkselect('theme',$themes_array)) ?><br>
                         <?php echo(_('Select a theme (css) to use with this survey.')); ?></td>
