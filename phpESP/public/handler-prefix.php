@@ -37,95 +37,97 @@
  *
  */
 
-if(!defined('AUTHHAND-PREFIX')) {
-	define('AUTHHAND-PREFIX', true);
-	// undefine('AUTHHAND-OK');
+    if (defined('AUTHHAND-PREFIX'))
+        return;
 
-	if (!defined('ESP_BASE'))
-		define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
+    define('AUTHHAND-PREFIX', true);
 
-	require_once(ESP_BASE . '/admin/phpESP.ini.php');
-	require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
+    if (!defined('ESP_BASE'))
+        define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 
-	$GLOBALS['errmsg'] = '';
+    require_once(ESP_BASE . '/admin/phpESP.ini.php');
+    require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 
-	if(isset($HTTP_GET_VARS['sid'])) {
-		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
-		return;
-	}
+    $GLOBALS['errmsg'] = '';
 
-	if(isset($HTTP_GET_VARS['results']) || isset($HTTP_POST_VARS['results'])) {
-		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
-		return;
-	}
+    if(isset($HTTP_GET_VARS['sid'])) {
+        $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
+        return;
+    }
 
-	if (isset($sid) && !empty($sid))
-		$sid = intval($sid);
-	else if (isset($HTTP_POST_VARS['sid']) && !empty($HTTP_POST_VARS['sid']))
-		$sid = intval($HTTP_POST_VARS['sid']);
+    if(isset($HTTP_GET_VARS['results']) || isset($HTTP_POST_VARS['results'])) {
+        $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
+        return;
+    }
 
-	if(!isset($sid) || empty($sid)) {
-		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Survey not specified.'));
-		return;
-	}
+    if (isset($sid) && !empty($sid))
+        $sid = intval($sid);
+    else if (isset($HTTP_POST_VARS['sid']) && !empty($HTTP_POST_VARS['sid']))
+        $sid = intval($HTTP_POST_VARS['sid']);
 
-	if(empty($HTTP_POST_VARS['userid'])) {
-		// find remote user id (takes the first non-empty of the following)
-		//  1. a GET variable named 'userid'
-		//  2. the REMOTE_USER set by HTTP-Authentication
-		//  3. the query string
-		//  4. the remote ip address
-		if (!empty($HTTP_GET_VARS['userid'])) {
-			$HTTP_POST_VARS['userid'] = $HTTP_GET_VARS['userid'];
-		} elseif(!empty($HTTP_SERVER_VARS['REMOTE_USER'])) {
-			$HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_USER'];
-		} elseif(!empty($HTTP_SERVER_VARS['QUERY_STRING'])) {
-			$HTTP_POST_VARS['userid'] = urldecode($HTTP_SERVER_VARS['QUERY_STRING']);
-		} else {
-			$HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_ADDR'];
-		}
-	}
+    if(!isset($sid) || empty($sid)) {
+        $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Survey not specified.'));
+        return;
+    }
 
-	if(empty($HTTP_POST_VARS['referer']))
-		$HTTP_POST_VARS['referer'] = isset($HTTP_SERVER_VARS['HTTP_REFERER']) ?
-			$HTTP_SERVER_VARS['HTTP_REFERER'] : '';
+    if(empty($HTTP_POST_VARS['userid'])) {
+        // find remote user id (takes the first non-empty of the following)
+        //  1. a GET variable named 'userid'
+        //  2. the REMOTE_USER set by HTTP-Authentication
+        //  3. the query string
+        //  4. the remote ip address
+        if (!empty($HTTP_GET_VARS['userid'])) {
+            $HTTP_POST_VARS['userid'] = $HTTP_GET_VARS['userid'];
+        } elseif(!empty($HTTP_SERVER_VARS['REMOTE_USER'])) {
+            $HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_USER'];
+        } elseif(!empty($HTTP_SERVER_VARS['QUERY_STRING'])) {
+            $HTTP_POST_VARS['userid'] = urldecode($HTTP_SERVER_VARS['QUERY_STRING']);
+        } else {
+            $HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+        }
+    }
 
-	if (empty($HTTP_POST_VARS['rid']))
-		$HTTP_POST_VARS['rid'] = '';
-	else
-		$HTTP_POST_VARS['rid'] = intval($HTTP_POST_VARS['rid']) ?
-				intval($HTTP_POST_VARS['rid']) : '';
+    if(empty($HTTP_POST_VARS['referer']))
+        $HTTP_POST_VARS['referer'] = isset($HTTP_SERVER_VARS['HTTP_REFERER']) ?
+            $HTTP_SERVER_VARS['HTTP_REFERER'] : '';
 
-		if($ESPCONFIG['auth_response']) {
-			// check for authorization on the survey
-			require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
-            $espuser = ''; $esppass = '';
-            isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) &&
-                    $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
-            isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) &&
-                    $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
+    if (empty($HTTP_POST_VARS['rid']))
+        $HTTP_POST_VARS['rid'] = '';
+    else
+        $HTTP_POST_VARS['rid'] = intval($HTTP_POST_VARS['rid']) ?
+                intval($HTTP_POST_VARS['rid']) : '';
 
-		if(!survey_auth($sid, addslashes($espuser), addslashes($esppass)))
-				return;
-		
-		if (auth_get_option('resume')) {
-			$HTTP_POST_VARS['rid'] = auth_get_rid($sid, addslashes($espuser),
-					$HTTP_POST_VARS['rid']);
+    if($ESPCONFIG['auth_response']) {
+        // check for authorization on the survey
+        require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
+        $espuser = ''; $esppass = '';
+        if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']))
+            $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
+        if (isset($HTTP_SERVER_VARS['PHP_AUTH_PW']))
+            $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
 
-			if (!empty($HTTP_POST_VARS['rid']) && (empty($HTTP_POST_VARS['sec']) ||
-					intval($HTTP_POST_VARS['sec']) < 1)) {
-				$HTTP_POST_VARS['sec'] = response_select_max_sec($sid,
-						$HTTP_POST_VARS['rid']);
+        if(!survey_auth($sid, addslashes($espuser), addslashes($esppass)))
+            return;
+
+        if (auth_get_option('resume')) {
+            $HTTP_POST_VARS['rid'] = auth_get_rid($sid, addslashes($espuser),
+                    $HTTP_POST_VARS['rid']);
+
+            if (!empty($HTTP_POST_VARS['rid']) && (empty($HTTP_POST_VARS['sec']) ||
+                    intval($HTTP_POST_VARS['sec']) < 1))
+            {
+                $HTTP_POST_VARS['sec'] = response_select_max_sec($sid,
+                        $HTTP_POST_VARS['rid']);
             }
-		}
-	}
+        }
+    }
 
-	if (empty($HTTP_POST_VARS['sec']))
-		$HTTP_POST_VARS['sec'] = 1;
-	else
-		$HTTP_POST_VARS['sec'] = (intval($HTTP_POST_VARS['sec']) > 0) ?
-				intval($HTTP_POST_VARS['sec']) : 1;
+    if (empty($HTTP_POST_VARS['sec']))
+        $HTTP_POST_VARS['sec'] = 1;
+    else
+        $HTTP_POST_VARS['sec'] = (intval($HTTP_POST_VARS['sec']) > 0) ?
+                intval($HTTP_POST_VARS['sec']) : 1;
 
-	define('AUTHHAND-OK', true);
-} /* !defined('AUTHHAND-PREFIX') */
+    define('AUTHHAND-OK', true);
+
 ?>
