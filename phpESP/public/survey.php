@@ -33,6 +33,7 @@
                         mysql_free_result($result);
                 }
 	}
+	include($ESPCONFIG['handler_prefix']);
 ?>
 <html>
 <head><title><?php echo($_title); ?></title>
