@@ -80,7 +80,9 @@
     // redirect to thank you page for survey ID 'sid'
     // exits PHP!
     function goto_thankyou($sid,$referer) {
-        $sql = "SELECT thanks_page,thank_head,thank_body FROM survey WHERE id='${sid}'";
+        $cfg =& $GLOBALS['ESPCONFIG'];
+
+        $sql = "SELECT thanks_page,thank_head,thank_body FROM ".$cfg['survey_table']." WHERE id='${sid}'";
         $result = mysql_query($sql);
         list($thank_url,$thank_head,$thank_body) = mysql_fetch_row($result);
         mysql_free_result($result);

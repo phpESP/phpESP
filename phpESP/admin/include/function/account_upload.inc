@@ -136,7 +136,7 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 					$error=1;
 					break;
 				}
-				$sql = "INSERT INTO respondent ";
+				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['respondent_table']." ";
 				$sql .= "(username, password, realm, fname, lname, ";
 				$sql .= "email, expiration, disabled) ";
 				$sql .= "VALUES ('$username', PASSWORD('$password'), ";
@@ -265,7 +265,7 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 						continue;
 					}
 				}
-				$sql = "INSERT INTO designer ";
+				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']." ";
 				$sql .= "(username, password, realm, fname, lname, ";
 				$sql .= "email, pdesign, pstatus, pdata, pall, pgroup,";
 				$sql .= "puser, expiration, disabled) ";

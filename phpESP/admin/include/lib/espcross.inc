@@ -19,7 +19,7 @@ function mkcrossformat($counts, $qid, $tid) {
     if ($tid == 1) {
         $cids = array('Y', 'N');
     } else {
-        $sql = "SELECT id FROM question_choice
+        $sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
                 WHERE question_id = $qid
                 ORDER BY id";
         $result = mysql_query($sql);

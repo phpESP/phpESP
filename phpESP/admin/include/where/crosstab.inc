@@ -58,7 +58,7 @@
         array_push($qids, $qidr);
 
 	foreach ($qids as $qid){
-		$sql = "SELECT content FROM question
+		$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			WHERE survey_id='${sid}'
 			AND id = '${qid}'";
 		$tid_result = mysql_query($sql);
@@ -72,7 +72,7 @@
 	
 	// let's determine each question's type.
 	foreach ($qids as $qid){
-		$sql = "SELECT type_id FROM question
+		$sql = "SELECT type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			WHERE survey_id='${sid}'
 			AND id = '${qid}'";
 		$tid_result = mysql_query($sql);
@@ -98,7 +98,7 @@
 			}
 		}
 		else if ($tid_count == 0){
-			$sql = "SELECT content FROM question_choice
+			$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
 				WHERE question_id='${qidc}'
 				ORDER BY id";
 			if ($result = mysql_query($sql)){
@@ -121,7 +121,7 @@
 			}
 		}
 		else{
-			$sql = "SELECT content FROM question_choice
+			$sql = "SELECT content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
                                 WHERE question_id='${qidr}'
                                 ORDER BY id";
 			if ($result = mysql_query($sql)){
@@ -172,7 +172,7 @@
 			}
 		}
 		else {
-			$sql = "SELECT id FROM $from_table
+			$sql = "SELECT id FROM ".$from_table."table
 				WHERE question_id = $qids[$count]
 				ORDER BY $order";
 			$result = mysql_query($sql);
@@ -197,7 +197,7 @@
         foreach ($cids_row as $yy){
                 $total_row = 0;
         	foreach ($cids_col as $xx){
-                	$sql1 = "SELECT count(*) FROM $tbl[0] r1, $tbl[1] r2
+                	$sql1 = "SELECT count(*) FROM ".$GLOBALS['ESPCONFIG'][$tbl[0].'_table']." r1, ".$GLOBALS['ESPCONFIG'][$tbl[1].'_table']." r2
                                  WHERE (r1.question_id = '${qids[0]}' AND r1.choice_id = '${xx}')
                                  AND (r2.question_id = '${qids[1]}' AND r2.choice_id = '${yy}')
                                  AND r1.response_id = r2.response_id";

@@ -8,7 +8,7 @@
 // <jflemer@alum.rpi.edu>
 // <jflemer@acm.rpi.edu>
 
-	$sql = 'SELECT username, fname, lname, realm, disabled, expiration FROM respondent';
+	$sql = 'SELECT username, fname, lname, realm, disabled, expiration FROM '.$GLOBALS['ESPCONFIG']['respondent_table'];
 
 	/* load only accounts available to _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {

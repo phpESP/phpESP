@@ -21,7 +21,7 @@ function survey_render($sid, $section = 1, $message = '') {
 	$has_choices = esp_type_has_choices();
 
 // load survey title (and other globals)
-	$sql = "SELECT * FROM survey WHERE id='${sid}'";
+	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result) != 1)
 		return(false);
@@ -37,13 +37,13 @@ function survey_render($sid, $section = 1, $message = '') {
 
 // load survey questions
 	$sec_sql = array_to_insql($sections[$section]);
-	$sql = "SELECT * FROM question WHERE id $sec_sql ORDER BY position,id";
+	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id $sec_sql ORDER BY position,id";
 	$questions_result = mysql_query($sql);
 	if(mysql_num_rows($questions_result) < 1)
 		return(false);
 
 // check to see if there are required questions
-	$sql = "SELECT COUNT(*) FROM question WHERE id $sec_sql AND required='Y'";
+	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id $sec_sql AND required='Y'";
 	$has_required = mysql_result(mysql_query($sql),0,0);
 
 // find out what question number we are on $i
@@ -104,9 +104,9 @@ function survey_render($sid, $section = 1, $message = '') {
 
 		++$i;
 		if($has_choices[$tid]) {
-			$sql = "SELECT * FROM question_choice WHERE question_id='$qid' AND content NOT LIKE '!other%' ORDER BY id";
+			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='$qid' AND content NOT LIKE '!other%' ORDER BY id";
 			$choices_result = mysql_query($sql);
-			$sql = "SELECT * FROM question_choice WHERE question_id='$qid' AND content LIKE '!other%' ORDER BY id";
+			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id='$qid' AND content LIKE '!other%' ORDER BY id";
 			$others_result = mysql_query($sql);
 			$others = mysql_num_rows($others_result);
 		} else { $choices_result = ''; }

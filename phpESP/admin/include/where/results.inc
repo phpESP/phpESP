@@ -130,7 +130,7 @@ if (isset($HTTP_GET_VARS['type'])) {
 	$statusok = (STATUS_ACTIVE | STATUS_DONE);
 	$statusno = STATUS_DELETED;
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = "SELECT id,name,title,owner,realm FROM survey
+		$sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 		WHERE NOT (status & $statusno) AND (status & $statusok) ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
@@ -138,7 +138,7 @@ if (isset($HTTP_GET_VARS['type'])) {
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdata']));
 		$sql = "SELECT id,name,title,owner,realm
-			FROM survey WHERE NOT (status & $statusno) AND (status & $statusok) AND (owner = '".
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & $statusno) AND (status & $statusok) AND (owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
@@ -179,7 +179,7 @@ if (isset($HTTP_GET_VARS['type'])) {
         //angek: let's not include incomplete surveys in the count.
         // this occurs for multipage surveys as each page completed
         // is submitted and stored.
-		$sql2 = "SELECT count(*) from response where survey_id = $sid and complete='Y'";
+        $sql2 = "SELECT count(*) FROM ".$GLOBALS['ESPCONFIG']['response_table']." WHERE survey_id = $sid AND complete = 'Y'";
 		$result2 = mysql_query($sql2);
 		list($resp) = mysql_fetch_row($result2);
     	mysql_free_result($result2);
@@ -194,7 +194,7 @@ if (isset($HTTP_GET_VARS['type'])) {
 <?php
 	if (empty($HTTP_GET_VARS['type'])) {
         	// grab all the rid values for the particular survey
-        	$sql = "SELECT R.id FROM response R ".
+        	$sql = "SELECT R.id FROM ".$GLOBALS['ESPCONFIG']['response_table']." R ".
                 	"WHERE R.survey_id = '${sid}' AND R.complete = 'Y' ".
                 	"ORDER BY R.id";
         	$rid_result = mysql_query($sql);

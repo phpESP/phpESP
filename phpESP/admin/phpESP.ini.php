@@ -129,6 +129,25 @@ $ESPCONFIG['css_path'] = ESP_BASE . '/public/css/';
 // phpESP locale path
 $ESPCONFIG['locale_path'] = ESP_BASE . '/locale/';
 
+// Database Table Names:
+$DB_PREFIX = "";	// If your database uses a prefix, set it here.
+$ESPCONFIG['access_table']              = $DB_PREFIX."access";
+$ESPCONFIG['designer_table']            = $DB_PREFIX."designer";
+$ESPCONFIG['question_table']            = $DB_PREFIX."question";
+$ESPCONFIG['question_choice_table']     = $DB_PREFIX."question_choice";
+$ESPCONFIG['question_type_table']       = $DB_PREFIX."question_type";
+$ESPCONFIG['realm_table']               = $DB_PREFIX."realm";
+$ESPCONFIG['respondent_table']          = $DB_PREFIX."respondent";
+$ESPCONFIG['response_table']            = $DB_PREFIX."response";
+$ESPCONFIG['response_bool_table']       = $DB_PREFIX."response_bool";
+$ESPCONFIG['response_date_table']       = $DB_PREFIX."response_date";
+$ESPCONFIG['response_multiple_table']   = $DB_PREFIX."response_multiple";
+$ESPCONFIG['response_other_table']      = $DB_PREFIX."response_other";
+$ESPCONFIG['response_rank_table']       = $DB_PREFIX."response_rank";
+$ESPCONFIG['response_single_table']     = $DB_PREFIX."response_single";
+$ESPCONFIG['response_text_table']       = $DB_PREFIX."response_text";
+$ESPCONFIG['survey_table']              = $DB_PREFIX."survey";
+
 // Load I18N support
 require_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
 esp_setlocale_ex();

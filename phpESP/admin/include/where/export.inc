@@ -40,7 +40,7 @@ if(!$sid) {
 	 * _this_ user */
 	$statusok = (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED);
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = "SELECT id,name,title,status,owner,realm FROM survey
+		$sql = "SELECT id,name,title,status,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 		WHERE (status & $statusok) ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
@@ -48,7 +48,7 @@ if(!$sid) {
 				$HTTP_SESSION_VARS['acl']['pall'],
 				$HTTP_SESSION_VARS['acl']['pdata']));
 		$sql = "SELECT id,name,title,status,owner,realm
-			FROM survey WHERE (status & $statusok) AND (owner = '".
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (status & $statusok) AND (owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
@@ -96,7 +96,7 @@ if(!$sid) {
 	}
 
 	/* sid supplied ... continue */
-	$sql = "SELECT name FROM survey WHERE id = $sid";
+	$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = $sid";
 	$result = mysql_query($sql);
 	$name = mysql_result($result, 0, 0);
 	mysql_free_result($result);

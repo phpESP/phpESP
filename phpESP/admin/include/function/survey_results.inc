@@ -16,7 +16,7 @@ if(empty($GLOBALS['ESPCONFIG']['DEBUG_RESULTS']))
  */
 function survey_results_navbar($sid, $curr_rid) {
 	$sql = "SELECT R.id
-		FROM response R
+		FROM ".$GLOBALS['ESPCONFIG']['response_table']." R
 		WHERE R.survey_id='${sid}' AND
 		R.complete = 'Y'
 		ORDER BY R.id";
@@ -105,7 +105,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	$has_choices = array();
 	$response_table = array();
 	$sql = 'SELECT id,has_choices,response_table
-			  FROM question_type
+			  FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].'
 			 ORDER BY id';
 	if(!($result = mysql_query($sql))) {
         $errmsg = sprintf('%s [ %s: question_type ]',
@@ -119,7 +119,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	mysql_free_result($result);
 
 	// load survey title (and other globals)
-	$sql = "SELECT * FROM survey WHERE id='${sid}'";
+	$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
 	if(!($result = mysql_query($sql))) {
 		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."]";
 		return($errmsg);
@@ -129,7 +129,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 	// load survey questions
 	$sql = "SELECT *
-			  FROM question
+			  FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 			 WHERE survey_id='${sid}' AND
 				   deleted='N'
 			 ORDER BY position,id";
@@ -140,7 +140,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 	// find out more about the question we are cross analyzing on (if any)
 	if($cross) {
-		$sql = "SELECT type_id, content FROM question WHERE id=${qid}";
+        $sql = "SELECT type_id FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id=${qid}";
 		$result = mysql_query($sql);
         while($content = mysql_fetch_array($result, MYSQL_ASSOC)){
             $crossTable = $response_table[$content['type_id']];
@@ -163,8 +163,8 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 	    if($cross) {
 		    if(!empty($cidstr))
 			    $sql = "SELECT A.response_id
-					      FROM ${crossTable} A,
-						       response R
+					      FROM ".$GLOBALS['ESPCONFIG'][$crossTable.'_table']." A,
+						       ".$GLOBALS['ESPCONFIG']['response_table']." R
 					     WHERE A.response_id=R.id AND
 						       R.complete='Y' AND
 						       A.question_id='${qid}' AND
@@ -172,8 +172,8 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 					     ORDER BY A.response_id";
 		    else
 			    $sql = "SELECT A.response_id
-					      FROM ${crossTable} A,
-						       response R
+					      FROM ".$GLOBALS['ESPCONFIG'][$crossTable.'_table']." A,
+						       ".$GLOBALS['ESPCONFIG']['response_table']." R
 					     WHERE A.response_id=R.id AND
 						       R.complete='Y' AND
 						       A.question_id='${qid}' AND
@@ -181,7 +181,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 					     ORDER BY A.response_id";
 	    } else {
 		    $sql = "SELECT R.id
-				      FROM response R
+				      FROM ".$GLOBALS['ESPCONFIG']['response_table']." R
 				     WHERE R.survey_id='${sid}' AND
 					       R.complete='Y'
 				     ORDER BY R.id";
@@ -295,7 +295,7 @@ switch ($table) {
 		case 'response_bool':
             $counts = array(_('Yes') => 0, _('No') => 0);
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
-					  FROM ${table} A
+					  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE A.question_id='${qid}' AND
 						   A.response_id ${ridstr} AND
 						   A.choice_id != ''
@@ -320,7 +320,7 @@ switch ($table) {
 		case 'response_multiple':
 			$totals = 0;
 		case 'response_single':
-        $sql = "SELECT C.content FROM question_choice C
+        $sql = "SELECT C.content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
                 WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
                 ORDER BY C.id";
         if ($result = mysql_query($sql)) {
@@ -330,8 +330,8 @@ switch ($table) {
         }
 
 			$sql = "SELECT C.content, COUNT(A.response_id) AS num
-					  FROM question_choice C,
-						   ${table} A
+					  FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C,
+						   ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE C.question_id='${qid}' AND
 						   C.content NOT LIKE '!other%' AND
 						   A.question_id=C.question_id AND
@@ -348,7 +348,7 @@ switch ($table) {
 
 			// handle 'other...'
 			$sql = "SELECT A.response, C.content
-					  FROM response_other A, question_choice C
+					  FROM ".$GLOBALS['ESPCONFIG']['response_other_table']." A, ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
 					 WHERE A.question_id='${qid}' AND
 						   A.choice_id=C.id AND
     					   A.response_id ${ridstr}
@@ -369,7 +369,7 @@ switch ($table) {
 // -------------------------------- response_text --------------------------------
 		case 'response_text':
 			$sql = "SELECT A.response, COUNT(A.response_id) AS num
-					  FROM ${table} A
+					  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE A.question_id='${qid}' AND
     					   A.response_id ${ridstr}
 					 GROUP BY A.response";
@@ -386,7 +386,7 @@ switch ($table) {
 // -------------------------------- response_date --------------------------------
 		case 'response_date':
 			$sql = "SELECT A.response, COUNT(A.response_id) AS num
-					  FROM ${table} A
+					  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE A.question_id='${qid}' AND
     					   A.response_id ${ridstr}
 					 GROUP BY A.response";
@@ -403,7 +403,7 @@ switch ($table) {
 // -------------------------------- response_rank --------------------------------
 		case 'response_rank':
 			if($tid == 8) { //Rank
-                $sql = "SELECT C.content FROM question_choice C
+                $sql = "SELECT C.content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
                         WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
                         ORDER BY C.id";
                 if ($result = mysql_query($sql)) {
@@ -412,7 +412,7 @@ switch ($table) {
                     mysql_free_result($result);
                 }
 				$sql = "SELECT C.content, AVG(A.rank+1) AS average
-						  FROM question_choice C, ${table} A
+						  FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C, ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 						 WHERE C.question_id='${qid}' AND
     						   A.question_id='${qid}' AND
 							   A.choice_id=C.id AND
@@ -429,7 +429,7 @@ switch ($table) {
 				$question["result_id"] = 99;	// force to rank
 			} else {
 				$sql = "SELECT A.rank, COUNT(A.response_id) AS num
-						  FROM ${table} A
+						  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 						 WHERE A.question_id='${qid}' AND
     						   A.response_id ${ridstr}
 						 GROUP BY A.rank";

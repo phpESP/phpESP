@@ -15,7 +15,7 @@
 
 	/* operation selected ... */
 	if(!empty($HTTP_GET_VARS['op'])) {
-		$sql = "SELECT status,owner,realm FROM survey WHERE id='${sid}'";
+		$sql = "SELECT status,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
 		$result = mysql_query($sql);
 		if((list($old_status, $owner, $realm) = mysql_fetch_row($result))) {
 			$access = false;
@@ -95,7 +95,7 @@
 			/* superuser overrides all */
 			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y')
 				$access = true;
-			$sql = "UPDATE survey SET status='${status}' WHERE id='${sid}'";
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status='${status}' WHERE id='${sid}'";
 			if($access || auth_no_access(_('to access this survey'))) {
 				if(!$err) {
 					mysql_query($sql);
@@ -148,7 +148,7 @@ archived survey.')); ?></li>
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = 'SELECT id,name,title,status,owner,realm FROM survey ORDER BY id DESC';
+		$sql = 'SELECT id,name,title,status,owner,realm FROM '.$GLOBALS['ESPCONFIG']['survey_table'].' ORDER BY id DESC';
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
@@ -157,7 +157,7 @@ archived survey.')); ?></li>
 					$HTTP_SESSION_VARS['acl']['pall'],
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,status,owner,realm
-			FROM survey WHERE (owner = '".
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);

@@ -14,7 +14,7 @@
 	// load current values from DB if $sid exists (in session)
 	$survey = array();
 	if(!empty($sid) && $updated) {
-		$sql = "SELECT * FROM survey WHERE id='${sid}'";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id='${sid}'";
 		$result = mysql_query($sql);
 		$survey = mysql_fetch_array($result,MYSQL_ASSOC);
 		mysql_free_result($result);
@@ -50,7 +50,7 @@ edit individual fields.')); ?>
 		<td><?php
 			$realms = array();
 			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-				$sql = "SELECT name FROM realm";
+				$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 				$rr = mysql_query($sql);
 				while(list($r) = mysql_fetch_row($rr))
 					$realms[$r] = $r;

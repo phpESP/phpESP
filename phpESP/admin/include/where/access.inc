@@ -21,8 +21,8 @@
 	if ($sid) {
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM survey s WHERE s.id = '$sid'";
-			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM access a
+				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = '$sid'";
+			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM ".$GLOBALS['ESPCONFIG']['access_table']." a
 				WHERE a.survey_id = '$sid' ORDER BY a.realm";
 		} else {
 			$realms = array_to_insql(
@@ -32,9 +32,9 @@
 						$HTTP_SESSION_VARS['acl']['pall'],
 						$HTTP_SESSION_VARS['acl']['pdesign'])));
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM survey s WHERE s.id = '$sid' AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = '".
+				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = '$sid' AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = '".
 				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms)";
-			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM access a, survey s
+			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['survey_table']." s
 				WHERE a.survey_id = '$sid' AND s.id=a.survey_id AND (s.owner = '".
 				$HTTP_SESSION_VARS['acl']['username'] ."' || s.realm $realms) ORDER BY a.realm";
 		}
@@ -80,19 +80,19 @@
 			if (empty($HTTP_POST_VARS['realm'])) {
 				$errstr = mkerror(_('Please select a group.'));
 			} else {
-				$sql = "INSERT INTO access (survey_id, realm, maxlogin, resume, navigate)
+				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['access_table']." (survey_id, realm, maxlogin, resume, navigate)
 						VALUES ('$sid', '$arealm', '$max', '$resume', '$navigate')";
 				mysql_query($sql);
 			}
 		} elseif ($op == 'r') {
-			$sql = "DELETE FROM access WHERE survey_id = '$sid' AND realm = '$arealm'";
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['access_table']." WHERE survey_id = '$sid' AND realm = '$arealm'";
 			mysql_query($sql);
 		} elseif ($op == 'v') {
-			$sql = "UPDATE survey SET public = 'N' WHERE id = '$sid'";
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET public = 'N' WHERE id = '$sid'";
 			mysql_query($sql);
 			$sid = 0;
 		} elseif ($op == 'p') {
-			$sql = "UPDATE survey SET public = 'Y' WHERE id = '$sid'";
+			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET public = 'Y' WHERE id = '$sid'";
 			mysql_query($sql);
 			$sid = 0;
 		}
@@ -106,7 +106,7 @@
 		$r = '<select name="realm"><option></option>';
 		$groups = array();
 		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-			$sql = "SELECT name FROM realm";
+			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 			$result = mysql_query($sql);
 			while( list($g) = mysql_fetch_row($result) ) {
 				array_push($groups, $g);
@@ -190,7 +190,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-		$sql = 'SELECT id,name,title,owner,realm,public FROM survey WHERE NOT (status & ' .STATUS_DELETED. ') ORDER BY id DESC';
+		$sql = 'SELECT id,name,title,owner,realm,public FROM '.$GLOBALS['ESPCONFIG']['survey_table'].' WHERE NOT (status & ' .STATUS_DELETED. ') ORDER BY id DESC';
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
@@ -199,7 +199,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 					$HTTP_SESSION_VARS['acl']['pall'],
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,owner,realm,public
-			FROM survey WHERE NOT (status & " .STATUS_DELETED. ") AND (owner = '".
+			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & " .STATUS_DELETED. ") AND (owner = '".
 			$HTTP_SESSION_VARS['acl']['username'] ."' || realm $realms) ORDER BY id DESC";
 	}
 	$result = mysql_query($sql);
