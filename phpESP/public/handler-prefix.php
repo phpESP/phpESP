@@ -98,7 +98,7 @@ if(!defined('AUTHHAND-PREFIX')) {
 
 		if($ESPCONFIG['auth_response']) {
 			// check for authorization on the survey
-
+			require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
             $espuser = ''; $esppass = '';
             isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) &&
                     $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
