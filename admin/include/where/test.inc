@@ -44,7 +44,11 @@
 			unset($HTTP_GET_VARS['sid']);
 			unset($HTTP_POST_VARS['sid']);
 			$HTTP_POST_VARS['userid'] = 'test';
+			define('AUTHHAND-PREFIX', TRUE);
+			define('AUTHHAND-OK', TRUE);
 			include($ESPCONFIG['handler']);
+			#undefine('AUTHHAND-PREFIX');
+			#undefine('AUTHHAND-OK');
 ?>
 </td></tr></table>
 <a href="<?php echo($ESPCONFIG['ME']); ?>?where=results&sid=<?php echo($sid); ?>&test=1"><?php echo(_('View Results')); ?></a><br>

@@ -25,6 +25,14 @@
 
 	if(empty($HTTP_POST_VARS['rid']))
 		$HTTP_POST_VARS['rid'] = '';
+	
+	if (empty($HTTP_POST_VARS['sec']))
+		$HTTP_POST_VARS['sec'] = 0;
+	else
+		$HTTP_POST_VARS['sec'] = intval($HTTP_POST_VARS['sec']);
+
+	if (empty($HTTP_POST_VARS['referer']))
+		$HTTP_POST_VARS['referer'] = '';
 
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
