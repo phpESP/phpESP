@@ -98,6 +98,7 @@ ul,th {
   
   <tr><th>PHP Extensions</th></tr>
   <tr><td><ul>
+    <li>dBase: <?php check_extension('dbase'); ?></li>
     <li>GD: <?php
         check_extension('gd');
         if (function_exists('gd_info')) {
