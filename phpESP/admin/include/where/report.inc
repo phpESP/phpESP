@@ -71,6 +71,7 @@
 		<th align="left"><?php echo(_('Group')); ?></th>
 	</tr>
 <?php
+    $bg = '';
 	while(list($sid, $name, $title, $owner, $realm) = mysql_fetch_row($result)) {
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
