@@ -95,7 +95,7 @@
 		$sql = "SELECT id,name,title,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 			WHERE ".db_bin("status",$statusok) ."AND NOT ".db_bin("status",$statusbad) ."AND
-			(owner = ". $HTTP_SESSION_VARS['acl']['username'] ." || realm $realms)
+			(owner = ". _addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms)
 			ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);

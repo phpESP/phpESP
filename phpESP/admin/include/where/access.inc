@@ -33,10 +33,10 @@
 						$HTTP_SESSION_VARS['acl']['pdesign'])));
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
 				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid AND NOT (status & " .STATUS_DELETED. ") AND (s.owner = ".
-				$HTTP_SESSION_VARS['acl']['username'] ." || s.realm $realms)";
+				_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms)";
 			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['survey_table']." s
 				WHERE a.survey_id = $sid AND s.id=a.survey_id AND (s.owner = ".
-				$HTTP_SESSION_VARS['acl']['username'] ." || s.realm $realms) ORDER BY a.realm";
+				_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms) ORDER BY a.realm";
 		}
 		$result = execute_sql($sql);
 		if (record_count($result) < 1) {
@@ -218,7 +218,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 					$HTTP_SESSION_VARS['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,owner,realm,public
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status",STATUS_DELETED)." AND (owner = ".
-			$HTTP_SESSION_VARS['acl']['username'] ." || realm $realms) ORDER BY id DESC";
+			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 	while(list($sid,$name,$title,$owner,$realm,$public) = fetch_row($result)) {
