@@ -138,7 +138,9 @@
 	$errstr = '';
 	$updated = survey_update($HTTP_SESSION_VARS['survey_id'],$tab,$HTTP_SESSION_VARS['last_tab']);
 ?>
+</form>
 <h2>Survey Design</h2>
+<form method="post" name="tabs" onSubmit="validate();" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
 <?php if(!empty($errstr)) echo(mkerror($errstr)."<br>\n"); ?>
 <font size="+2">
 <a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" target="_blank"><?php echo(_('Help')); ?></a>
