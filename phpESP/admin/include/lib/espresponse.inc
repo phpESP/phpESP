@@ -105,6 +105,9 @@ function response_delete_all($sid) {
 		$sql = "DELETE FROM response_$tbl WHERE question_id $qids";
 		$res = mysql_query($sql);
 	}
+        /* ensure responses from testing status are also deleted */
+        $sql = "DELETE FROM response WHERE survey_id=${sid}";
+        mysql_query($sql);
 }
 /* }}} */
 
