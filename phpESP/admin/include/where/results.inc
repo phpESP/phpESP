@@ -110,6 +110,7 @@
 		$sql2 = "SELECT count(*) from response where survey_id = $sid";
 		$result2 = mysql_query($sql2);
 		list($resp) = mysql_fetch_row($result2);
+    	mysql_free_result($result2);
 
 		if($bg != $ESPCONFIG['bgalt_color1'])
 			$bg = $ESPCONFIG['bgalt_color1'];
@@ -131,7 +132,6 @@
 <?php
 	}
 	mysql_free_result($result);
-	mysql_free_result($result2);
 ?>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
