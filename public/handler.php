@@ -59,6 +59,9 @@
 		}
 	}
 
+    if ($HTTP_POST_VARS['referer'] == $ESPCONFIG['autopub_url'])
+        $HTTP_POST_VARS['referer'] .= "?name=$name";
+
 	$num_sections = survey_num_sections($sid);
 
 	$msg = '';
@@ -130,7 +133,7 @@ function other_check(name)
 // End -->
 </script>
 <form method="post" name="phpesp_response" action="<?php echo($action); ?>">
-<input type="hidden" name="referer" value="<?php echo($HTTP_POST_VARS['referer']); ?>">
+<input type="hidden" name="referer" value="<?php echo htmlspecialchars($HTTP_POST_VARS['referer']); ?>">
 <input type="hidden" name="userid" value="<?php echo($HTTP_POST_VARS['userid']); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="rid" value="<?php echo($HTTP_POST_VARS['rid']); ?>">
