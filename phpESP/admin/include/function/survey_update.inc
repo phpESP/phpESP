@@ -146,23 +146,25 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
             // angek: start: 280903. 
             // do not allow questions in the same survey to have the same name.
             // applies to questions with a deleted flag of 'N' only.
-            $qn_names = array();
-            $sql = "SELECT name FROM question WHERE survey_id= '${survey_id}' AND deleted = 'N'";
-            $result = mysql_query($sql);
-            while ($names = mysql_fetch_array($result, MYSQL_ASSOC)){
-                array_push($qn_names, $names['name']);
-            }
-            mysql_free_result($result);
-            foreach ($qn_names as $x){
-                if ($HTTP_POST_VARS['name'] == $x){
-                    $found = 1;
+            if($HTTP_POST_VARS['name'] != $HTTP_POST_VARS['name_dupcheck']) {
+                $qn_names = array();
+                $sql = "SELECT name FROM question WHERE survey_id= '${survey_id}' AND deleted = 'N'";
+                $result = mysql_query($sql);
+                while ($names = mysql_fetch_array($result, MYSQL_ASSOC)){
+                    array_push($qn_names, $names['name']);
                 }
-            }
-            if ($found){
-                $dont_clear = 1;
-                $tab = 'questions';
-                $errstr=_('Sorry, this question name is already in use.');
-                return(0);
+                mysql_free_result($result);
+                foreach ($qn_names as $x){
+                    if ($HTTP_POST_VARS['name'] == $x){
+                        $found = 1;
+                    }
+                }
+                if ($found){
+                    $dont_clear = 1;
+                    $tab = 'questions';
+                    $errstr=_('Sorry, this question name is already in use.');
+                    return(0);
+                }
             }
             // angek: end: 280903.
 
