@@ -24,7 +24,7 @@ hand and save the results:
   SELECT MAX(id) FROM question_choices;
 
 Then when you upgrade go to:
-  http://127.0.0.1/phpESP/admin/manage.php?upgradeother
+  http://127.0.0.1/phpESP/admin/manage.php?where=upgradeother
 
 This node will do some intelligent guessing and calculation
 and output a SQL script that *should* fix all the problems.
