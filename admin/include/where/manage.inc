@@ -31,6 +31,7 @@
 				<li><a href="<?php echo("${base}?where=results"); ?>"><?php echo(_('View the Results of a Survey')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=merge");   ?>"><?php echo(_('Merge the results from two Surveys')); ?></a></li>
 				<li><a href="<?php echo("${base}?where=report");  ?>"><?php echo(_('View a survey report')); ?></a></li>
+				<li><a href="<?php echo("${base}?where=csv");     ?>"><?php echo(_('Export to CSV')); ?></a></li>
 			</ul>
 			<ul>
 				<li><a href="<?php echo("${base}?where=passwd");  ?>"><?php echo(_('Change your password')); ?></a></li>
