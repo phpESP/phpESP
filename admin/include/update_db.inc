@@ -99,13 +99,16 @@
 			if(stristr($id,'new'))
 				$id = '';
 
-			// contraint: can not change between question w/ answer choices and one w/o
+			// constraint: can not change between question w/ answer choices and one w/o
 			$fields = array('survey_id','type_id','result_id','parent_id','required','params','content');
 			$sql =  "SELECT has_answers FROM question_types WHERE id='${type_id}'";
 			$result = mysql_query($sql);
 			$has_answers = mysql_result($result,0,0);
 			if($id != '') {
-				$sql =  "SELECT question_types.has_answers FROM survey_questions LEFT JOIN question_types ON question_types.id = survey_questions.type_id WHERE survey_questions.survey_id='${survey_id}' AND survey_questions.id='${id}'";
+				$sql =  "SELECT question_types.has_answers FROM survey_questions LEFT JOIN
+					question_types ON question_types.id = survey_questions.type_id
+					WHERE survey_questions.survey_id='${survey_id}' AND
+					survey_questions.id='${id}'"; 
 				$result = mysql_query($sql);
 				$old_has_answers = mysql_result($result,0,0);
 				if($old_has_answers != $has_answers) { // trying to change between incompatible question types
@@ -120,6 +123,19 @@
 				}
 			}
 
+			// constraint: check for mutually exclusive Question Type-Result Type pairs
+			if(empty($result_id))
+				$result_id = 1; // default to percentages
+			if($type_id == 2 || $type_id == 3) {  // single line or essay
+				$result_id = 4; // require list type results
+			} elseif($result_id == 4) { // list
+				$result_id = 1;	// only single line or essay can use a list result
+			} elseif($type_id == 7 && $result_id == 2) { // rating question & ranking result
+				$result_id = 1; // too confusing, so force to percentages
+			} elseif($type_id == 8) { // rank question
+				$ersult_id = 5;	// force to average rank
+			}
+			
 			// UPDATE row in the DB for the current question
 			$fields = array('type_id','result_id','parent_id','required','params','content');
 			if($id != '') {
