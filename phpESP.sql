@@ -81,8 +81,12 @@ CREATE TABLE manager (
 	PRIMARY KEY(username)
 );
 
-INSERT INTO manager VALUES ('root','esp','ESP','Superuser','','',
-  'Y','Y','Y','Y','Y','Y','Y','Y');
+INSERT INTO manager (
+		username, password, firstname, lastname,
+		screate, sactivate, send, sdelete, seeall, users, managers,	superuser)
+	VALUES (
+		'root','esp','ESP','Superuser',
+		'Y','Y','Y','Y','Y','Y','Y','Y');
 
 -- # access table
 CREATE TABLE access ( 
