@@ -17,39 +17,39 @@ function render_survey($sid, $section = 1, $message = '') {
 	global $HTTP_POST_VARS;
 	@reset($HTTP_POST_VARS);
 
-	$has_answers = esp_type_has_choices();
+	$has_choices = esp_type_has_choices();
 
 // load survey title (and other globals)
-	$sql = "SELECT * FROM surveys WHERE id='${sid}'";
+	$sql = "SELECT * FROM survey WHERE id='${sid}'";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result) != 1)
-		return(1);
+		return(false);
 	$survey = mysql_fetch_array($result,MYSQL_ASSOC);
 	mysql_free_result($result);
 
 // section:
 	$num_sections = survey_num_sections($sid);
 	if($section > $num_sections)
-		return(1);	// invalid section
+		return(false);	// invalid section
 
 // load survey questions
-	$sql = "SELECT * FROM survey_questions ";
+	$sql = "SELECT * FROM question ";
 	$sql .= survey_select_section_sql($sid,$section);
 	$sql .= "ORDER BY position,id";
 	$questions_result = mysql_query($sql);
 	if(mysql_num_rows($questions_result) < 1)
-		return(1);
+		return(false);
 
 // check to see if there are required questions
-	$sql = "SELECT COUNT(*) FROM survey_questions ";
+	$sql = "SELECT COUNT(*) FROM question ";
 	$sql .= survey_select_section_sql($sid,$section);
-	$sql .= "AND required='yes'";
+	$sql .= "AND required='Y'";
 	$has_required = mysql_result(mysql_query($sql),0,0);		
 
 // find out what question number we are on $i
 	$i=0;
 	for($j=1;$j<$section;$j++) {
-		$sql = "SELECT COUNT(*) FROM survey_questions ";
+		$sql = "SELECT COUNT(*) FROM question ";
 		$sql .= survey_select_section_sql($sid,$j);
 		$i += mysql_result(mysql_query($sql),0,0);
 	}
@@ -75,10 +75,10 @@ function render_survey($sid, $section = 1, $message = '') {
 			break;
 
 		++$i;
-		if($has_answers[$tid]) {
-			$sql = "SELECT * FROM question_choices WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
+		if($has_choices[$tid]) {
+			$sql = "SELECT * FROM question_choice WHERE question_id='${qid}' AND content NOT LIKE '!other%' ORDER BY id";
 			$choices_result = mysql_query($sql);
-			$sql = "SELECT * FROM question_choices WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
+			$sql = "SELECT * FROM question_choice WHERE question_id='${qid}' AND content LIKE '!other%' ORDER BY id";
 			$others_result = mysql_query($sql);
 			$others = mysql_num_rows($others_result);
 		} else { $choices_result = ''; }
@@ -97,11 +97,11 @@ function render_survey($sid, $section = 1, $message = '') {
 ?>
 					<table border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td><?php echo(mkradio($qid,'yes')); ?></td>
+							<td><?php echo(mkradio($qid,'Y')); ?></td>
 							<td><?php echo(_('Yes')); ?></td>
 						</tr>
 						<tr>
-							<td><?php echo(mkradio($qid,'no')); ?></td>
+							<td><?php echo(mkradio($qid,'N')); ?></td>
 							<td><?php echo(_('No')); ?></td>
 						</tr>
 					</table>

@@ -10,7 +10,7 @@
 	// clear the session
 	@session_destroy();
 
-	$sql = 'SELECT id,name,title FROM surveys WHERE status=0 ORDER BY id DESC';
+	$sql = 'SELECT id,name,title FROM survey WHERE status=0 ORDER BY id DESC';
 	$result = mysql_query($sql);
 
 ?>

@@ -119,7 +119,7 @@
 <?php
 	// has answer options ... so show that part of the form
 	if($curr_q == "New" || empty($type_id) || mysql_result(mysql_query("SELECT has_answers FROM question_types WHERE id='${type_id}'"),0,0)) {
-		include($PIECES."/question_options".$EXT);
+		include($PIECES."/tab/questions_options".$EXT);
 	}
 ?>
 <hr>

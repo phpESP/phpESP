@@ -12,22 +12,22 @@
 	if(!$survey_id) {
 		// no survey INSERTed yet, so just go back to management interface
 		@session_destroy();
-		include($PIECES."/index".$EXT);
+		include($PIECES."/where/index".$EXT);
 		return;
 	}
 
-	$sql = "SELECT status FROM surveys WHERE id='${survey_id}'";
+	$sql = "SELECT status FROM survey WHERE id='${survey_id}'";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result) < 1) {
 		@session_destroy();
-		include($PIECES."/index".$EXT);
+		include($PIECES."/where/index".$EXT);
 		return;
 	}
 	$status = mysql_result($result,0,0);
 	$status |= STATUS_DELETED;
-	$sql = "UPDATE surveys SET status='${status}' WHERE id='${survey_id}'";
+	$sql = "UPDATE survey SET status='${status}' WHERE id='${survey_id}'";
 	$result = mysql_query($sql);
 	@session_destroy();
-	include($PIECES."/index".$EXT);
+	include($PIECES."/where/index".$EXT);
 	return;
 ?>

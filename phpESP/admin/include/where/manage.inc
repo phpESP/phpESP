@@ -21,16 +21,16 @@
 		<td>
 			<table border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
 			<ul>
-				<li><a href="<?php echo("${ME}?where=new");     ?><?php echo(_('New Survey Design')); ?></a></li>
-				<li><a href="<?php echo("${ME}?where=edit");    ?><?php echo(_('Edit an Existing Survey')); ?></a></li>
-				<li><a href="<?php echo("${ME}?where=copy");    ?><?php echo(_('Make a Copy of an Existing Survey')); ?></a></li>
-				<li><a href="<?php echo("${ME}?where=status");  ?><?php echo(_('Change the Status of an Existing Survey')); ?></a>
+				<li><a href="<?php echo("${ME}?where=new");     ?>"><?php echo(_('New Survey Design')); ?></a></li>
+				<li><a href="<?php echo("${ME}?where=edit");    ?>"><?php echo(_('Edit an Existing Survey')); ?></a></li>
+				<li><a href="<?php echo("${ME}?where=copy");    ?>"><?php echo(_('Make a Copy of an Existing Survey')); ?></a></li>
+				<li><a href="<?php echo("${ME}?where=status");  ?>"><?php echo(_('Change the Status of an Existing Survey')); ?></a>
 					<?php echo(_('(active/end/delete)')); ?></li>
-				<li><a href="<?php echo("${ME}?where=test");    ?><?php echo(_('Test a Survey')); ?></a></li>
-				<li><a href="<?php echo("${ME}?where=results"); ?><?php echo(_('View the Results of a Survey')); ?></a></li>
-				<li><a href="<?php echo("${ME}?where=TODO");    ?><?php echo(_('View the list of things still to do')); ?></a>
+				<li><a href="<?php echo("${ME}?where=test");    ?>"><?php echo(_('Test a Survey')); ?></a></li>
+				<li><a href="<?php echo("${ME}?where=results"); ?>"><?php echo(_('View the Results of a Survey')); ?></a></li>
+				<li><a href="<?php echo("${ME}?where=TODO");    ?>"><?php echo(_('View the list of things still to do')); ?></a>
 					<?php echo(_('(development goals)')); ?></li>
-				<li><a href="<?php echo("${ME}?where=README");  ?><?php echo(_('View the README')); ?></a>
+				<li><a href="<?php echo("${ME}?where=README");  ?>"><?php echo(_('View the README')); ?></a>
 					<?php echo(_('(help)')); ?></li>
 			</ul>
 			</td></tr></table>

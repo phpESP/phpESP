@@ -34,14 +34,16 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		}
 
 		// create a new survey in the database
-		$fields = array('name','title','subtitle','email','thank_head','thank_body','info');
+		$fields = array('name','title','subtitle','email','thank_head','thank_body','info','public');
 		foreach($fields as $f) {
 			if(!empty($HTTP_POST_VARS[$f])) {
 				array_push($f_arr,$f);
 				array_push($v_arr,"'".$HTTP_POST_VARS[$f]."'");
 			}
 		}
-		$sql = "INSERT INTO surveys (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) . ")";
+		array_push($f_arr,'owner');
+		array_push($v_arr,"'".$PHP_AUTH_USER."'");
+		$sql = "INSERT INTO survey (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) . ")";
 
 		$result = @mysql_query ($sql);
 		if(!$result) {
@@ -49,7 +51,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			return(_('Sorry, name already in use. Pick a new name.') .' [ ' .mysql_errno().': '.mysql_error().' ]');
 		}
 
-		$sql = "SELECT id FROM surveys WHERE name='".  $HTTP_POST_VARS['name'] ."'";
+		$sql = "SELECT id FROM survey WHERE name='".  $HTTP_POST_VARS['name'] ."'";
 		$result = mysql_query($sql);
 		$survey_id = mysql_result($result,0,0);
 		mysql_free_result($result);
@@ -60,8 +62,8 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 	switch($old_tab) {
 		// coming from the general tab ...
 		case "general":
-			$fields = array('name','title','subtitle','email','thank_head','thank_body','info');
-			$sql = "SELECT name FROM surveys WHERE id='${survey_id}'";
+			$fields = array('name','title','subtitle','email','thank_head','thank_body','info','public');
+			$sql = "SELECT name FROM survey WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
 			$name = mysql_result($result,0,0);
 			mysql_free_result($result);
@@ -82,7 +84,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			foreach($fields as $f) {
 				array_push($f_arr,$f ."='" . $HTTP_POST_VARS[$f] . "'");
 			}
-			$sql = "UPDATE surveys SET " . join(',',$f_arr) . " WHERE id='${survey_id}'";
+			$sql = "UPDATE survey SET " . join(',',$f_arr) . " WHERE id='${survey_id}'";
 			$result = mysql_query($sql);
 			if(!$result) {
 				$tab = "general";
@@ -110,7 +112,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 			// constraint: can not change between question w/ answer choices and one w/o
 			if($qid != '') {
-				$sql =  "SELECT Q.type_id FROM survey_questions Q WHERE Q.survey_id='${survey_id}' AND Q.id='${qid}'"; 
+				$sql =  "SELECT Q.type_id FROM question Q WHERE Q.survey_id='${survey_id}' AND Q.id='${qid}'"; 
 				$result = mysql_query($sql);
 				list($old_type_id) = mysql_fetch_row($result);
 				mysql_free_result($result);
@@ -136,7 +138,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			
 			// UPDATE row in the DB for the current question
 			if($qid != '') {
-				$fields = array('type_id','result_id','parent_id','required','params','content');
+				$fields = array('type_id','result_id','parent_id','required','private','content','deleted');
 				foreach($fields as $f) {
 					array_push($f_arr,$f.'='.$HTTP_POST_VARS[$f]);
 				}
@@ -144,10 +146,10 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 			// INSERT row in the DB for new question
 			} else {
-				$fields = array('survey_id','type_id','result_id','position','parent_id','required','params','content');
+				$fields = array('survey_id','type_id','result_id','position','parent_id','required','private','content');
 				if(empty($HTTP_POST_VARS['position']) || $HTTP_POST_VARS['position'] == 0) {
 					// set the position to the end
-					$sql = "SELECT MAX(position) FROM survey_questions WHERE survey_id='${survey_id}'";
+					$sql = "SELECT MAX(position) FROM question WHERE survey_id='${survey_id}'";
 					$result = mysql_query($sql);
 					$position = mysql_result($result,0,0) + 10;
 					mysql_free_result($result);
@@ -158,7 +160,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 						array_push($v_arr,$HTTP_POST_VARS[$f]);
 					}
 				}
-				$sql  = "INSERT INTO survey_questions (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) .")";
+				$sql  = "INSERT INTO question (" . join(',',$f_arr) . ") VALUES (" . join(',',$v_arr) .")";
 			}
 			$result = mysql_query($sql);
 			if($qid == '')
@@ -178,14 +180,14 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 					// each of the submitted choices
 					if($choice_id=='' && $choice_content!='') {
 						// insert (new)
-						$sql = "INSERT INTO question_choices (question_id,content) VALUES ('${qid}','${choice_content}')";
+						$sql = "INSERT INTO question_choice (question_id,content) VALUES ('${qid}','${choice_content}')";
 						++$count;
 					} elseif($choice_id!='' && $choice_content=='') {
 						// delete (old)
-						$sql = "DELETE FROM question_choices WHERE id='${choice_id}'";
+						$sql = "DELETE FROM question_choice WHERE id='${choice_id}'";
 					} elseif($choice_id!='' && $choice_content!='') {
 						// update (old)
-						$sql = "UPDATE question_choices SET content='${choice_content}' WHERE id='${choice_id}'";
+						$sql = "UPDATE question_choice SET content='${choice_content}' WHERE id='${choice_id}'";
 						++$count;
 					}
 					if($sql != '') {

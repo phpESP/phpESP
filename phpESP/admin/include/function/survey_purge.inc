@@ -22,7 +22,7 @@ function survey_purge($sids) {
 	}
 
 	// make a list of question IDs
-	$sql = "SELECT id FROM survey_questions WHERE survey_id ${sidstr}";
+	$sql = "SELECT id FROM survey_question WHERE survey_id ${sidstr}";
 	$result = mysql_query($sql);
 	$qids = array();
 	while(list($qid) = mysql_fetch_row($result)) {
@@ -33,26 +33,26 @@ function survey_purge($sids) {
 	
 	// work from the bottom up...
 	// start with the survey results
-	$tables = array('answers_bool','answers_multiple','answers_other','answers_rank','answers_single','answers_text');
+	$tables = array('response_bool','response_multiple','response_other','response_rank','response_single','response_text');
 	foreach($tables as $table) {
 		$sql = "DELETE FROM ${table} WHERE question_id ${qidstr}";
 		$result = mysql_query($sql);
 	}
 
 	// then responses
-	$sql = "DELETE FROM survey_responses WHERE survey_id ${sidstr}";
+	$sql = "DELETE FROM response WHERE survey_id ${sidstr}";
 	mysql_query($sql);
 
 	// then question choices
-	$sql = "DELETE FROM question_choices WHERE question_id ${qidstr}";
+	$sql = "DELETE FROM question_choice WHERE question_id ${qidstr}";
 	mysql_query($sql);
 
 	// then questions
-	$sql = "DELETE FROM survey_questions WHERE survey_id ${sidstr}";
+	$sql = "DELETE FROM question WHERE survey_id ${sidstr}";
 	mysql_query($sql);
 
 	// and finally the survey(s)
-	$sql = "DELETE FROM surveys WHERE id ${sidstr}";
+	$sql = "DELETE FROM survey WHERE id ${sidstr}";
 	mysql_query($sql);
 
 	return;

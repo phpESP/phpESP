@@ -36,25 +36,25 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 	// build associative array holding weather each question
 	// type has answer choices or not and the table the answers are in
-	$has_answers = array();
-	$answer_table = array();
-	$sql = 'SELECT id,has_answers,answer_table
-			  FROM question_types 
+	$has_choices = array();
+	$response_table = array();
+	$sql = 'SELECT id,has_choices,response_table
+			  FROM question_type
 			 ORDER BY id';
 	if(!($result = mysql_query($sql))) {
-		$errmsg = "Error phpESP system tables corrupted. [ Table(s): question_types ]";
+		$errmsg = _('Error system table corrupt.') . ' [ '. _('Table') .': question_type ]';
 		return($errmsg);
 	}
 	while($row = mysql_fetch_row($result)) {
-		$has_answers[$row[0]]=$row[1];
-		$answer_table[$row[0]]=$row[2];
+		$has_choices[$row[0]]=$row[1];
+		$response_table[$row[0]]=$row[2];
 	}
 	mysql_free_result($result);
 
 	// load survey title (and other globals)
-	$sql = "SELECT * FROM surveys WHERE id='${sid}'";
+	$sql = "SELECT * FROM survey WHERE id='${sid}'";
 	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error opening selected survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."]";
+		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."]";
 		return($errmsg);
 	}
 	$survey = mysql_fetch_array($result, MYSQL_ASSOC);
@@ -62,22 +62,22 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 	// load survey questions
 	$sql = "SELECT * 
-			  FROM survey_questions 
+			  FROM survey_question 
 			 WHERE survey_id='${sid}' AND 
-				   status='' 
+				   deleted='N' 
 			 ORDER BY position,id";
 	if(!($questions_result = mysql_query($sql))) {
-		$errmsg = _('Error opening selected survey.') .' '. _('No questions found for survey.') ." [ ID:${sid} ]";
+		$errmsg = _('Error opening survey.') .' '. _('No questions found.') ." [ ID:${sid} ]";
 		return($errmsg);
 	}
 
 	// find out more about the question we are cross analyzing on (if any)
 	if($cross) {
-		$sql = "SELECT type_id FROM survey_questions WHERE id=${qid}";
+		$sql = "SELECT type_id FROM survey_question WHERE id=${qid}";
 		$result = mysql_query($sql);
-		$crossTable = $answer_table[mysql_result($result,0,0)];
+		$crossTable = $response_table[mysql_result($result,0,0)];
 		mysql_free_result($result);
-		if(!in_array($crossTable, array('answers_single','answers_bool','answers_multiple'))) {
+		if(!in_array($crossTable, array('response_single','response_bool','response_multiple'))) {
 			$errmsg = _('Error cross-analyzing. Question not valid type.') .' [ '. _('Table') .": ${crossTable} ]";
 			return($errmsg);
 		}
@@ -90,36 +90,36 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		if(!empty($cidstr))
 			$sql = "SELECT A.response_id
 					  FROM ${crossTable} A,
-						   survey_responses R
+						   response R
 					 WHERE A.response_id=R.id AND
-						   R.complete='yes' AND
+						   R.complete='Y' AND
 						   A.question_id='${qid}' AND
 				    	   A.choice_id ${cidstr}
 					 ORDER BY A.response_id";
 		else
 			$sql = "SELECT A.response_id
 					  FROM ${crossTable} A,
-						   survey_responses R
+						   response R
 					 WHERE A.response_id=R.id AND
-						   R.complete='yes' AND
+						   R.complete='Y' AND
 						   A.question_id='${qid}' AND
 				    	   A.choice_id = 0
 					 ORDER BY A.response_id";
 	} else {
 		$sql = "SELECT R.id
-				  FROM survey_responses R
+				  FROM response R
 				 WHERE R.survey_id='${sid}' AND
-					   R.complete='yes'
+					   R.complete='Y'
 				 ORDER BY R.id";
 	}
 	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error opening selected survey.') ." [ ID:${sid} ] [ ".mysql_error()."]";
+		$errmsg = _('Error opening survey.') ." [ ID:${sid} ] [ ".mysql_error()."]";
 		return($errmsg);
 	}
 	$total = mysql_num_rows($result);
 	if($total < 1) {
-		$errmsg = _('Error opening selected survey.') .' '. _('No responses found for survey.') ." [ ID:${sid} ]";
-//			return($errmsg);
+		$errmsg = _('Error opening survey.') .' '. _('No responses found.') ." [ ID:${sid} ]";
+			return($errmsg);
 		echo("<!-- \$errmsg = '$errmsg' -->\n");
 	}
 
@@ -149,7 +149,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 		// process each question
 		$qid = $question['id'];
 		$tid = $question['type_id'];
-		$table = $answer_table[$tid];
+		$table = $response_table[$tid];
 
 		if($tid == 99) {
 			echo("<tr><td><hr></td></tr>\n");
@@ -169,31 +169,31 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			<blockquote>
 <?php
 		$counts = array();
-
-// -------------------------------- answers_bool --------------------------------
-		if($table == "answers_bool") {
+		switch ($table) {
+// -------------------------------- response_bool --------------------------------
+		case 'response_bool':
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
 					  FROM ${table} A
 					 WHERE A.question_id='${qid}' AND 
-						   A.response_id ${ridstr} AND
-						   A.choice_id IN ('yes','no')
+						   A.response_id ${ridstr}
 					 GROUP BY A.choice_id";
 			if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
-					$counts[_(ucfirst($ccontent))] = $count;
+					$counts[$ccontent] = $count;
 				}
 				mysql_free_result($result);
 			}
 
 			if(empty($question["result_id"]))
 				$question["result_id"] = 1;	// default to percentages for yes/no
-
-// -------------------------------- answers_single --------------------------------
-// -------------------------------- answers_multiple --------------------------------
-		} elseif($table == "answers_single" || $table == "answers_multiple") {
+			break;
+// -------------------------------- response_single --------------------------------
+// -------------------------------- response_multiple --------------------------------
+		case 'response_single':
+		case 'response_multiple':
 			$sql = "SELECT C.content, COUNT(A.response_id) AS num
-					  FROM question_choices C,
+					  FROM question_choice C,
 						   ${table} A
 					 WHERE C.question_id='${qid}' AND
 						   C.content NOT LIKE '!other%' AND
@@ -201,7 +201,6 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 						   A.choice_id=C.id AND
 						   A.response_id ${ridstr}
 					 GROUP BY C.id";
-//						 ORDER BY C.id";
 			if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($ccontent,$count) = mysql_fetch_row($result)) {
@@ -210,12 +209,12 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 				mysql_free_result($result);
 			}
 			// handle 'other...'
-			$sql = "SELECT A.answer, C.content
-					  FROM answers_other A, question_choices C
+			$sql = "SELECT A.response, C.content
+					  FROM response_other A, question_choice C
 					 WHERE A.question_id='${qid}' AND
 						   A.choice_id=C.id AND
     					   A.response_id ${ridstr}
-					 ORDER BY C.id, A.answer";
+					 ORDER BY C.id, A.response";
 			if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($answer,$ccontent) = mysql_fetch_row($result)) {
@@ -228,13 +227,14 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 			}
 			if(empty($question["result_id"]))
 				$question["result_id"] = 1;	// default to percentages
-// -------------------------------- answers_text --------------------------------
-		} elseif($table == "answers_text") {
-			$sql = "SELECT A.answer, COUNT(A.response_id) AS num
+			break;
+// -------------------------------- response_text --------------------------------
+		case 'response_text':
+			$sql = "SELECT A.response, COUNT(A.response_id) AS num
 					  FROM ${table} A
 					 WHERE A.question_id='${qid}' AND
     					   A.response_id ${ridstr}
-					 GROUP BY A.answer";
+					 GROUP BY A.response";
 			if(DEBUG)	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = mysql_query($sql)) {
 				while(list($text, $num) = mysql_fetch_row($result)) {
@@ -244,11 +244,12 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 				mysql_free_result($result);
 			}
 			$question["result_id"] = 4;	// force "list" type response for text fields
-// -------------------------------- answers_rank --------------------------------
-		} elseif($table == "answers_rank") {
+			break;
+// -------------------------------- response_rank --------------------------------
+		case 'response_rank':
 			if($tid == 8) { //Rank
 				$sql = "SELECT C.content, AVG(A.rank) AS average
-						  FROM question_choices C, ${table} A
+						  FROM question_choice C, ${table} A
 						 WHERE C.question_id='${qid}' AND
     						   A.question_id='${qid}' AND
 							   A.choice_id=C.id AND
@@ -279,6 +280,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 				if(empty($question["result_id"]))
 					$question["result_id"] = 2;	// default to rank
 			}
+			break;
 		}
 // ---------------------------------------------------------------------------
 		switch($question["result_id"]) {

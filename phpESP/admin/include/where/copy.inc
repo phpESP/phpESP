@@ -24,7 +24,7 @@ window.location="<?php echo("${ME}?where=manage"); ?>"
 		return;
 	}
 
-	$sql = 'SELECT id,name,title,status FROM surveys ORDER BY id DESC';
+	$sql = 'SELECT id,name,title,status FROM survey ORDER BY id DESC';
 	$result = mysql_query($sql);
 ?>
 <h2><?php echo(_('Copy Survey')); ?></h2>
@@ -51,10 +51,10 @@ survey, and will have to activate it before use.')); ?>
 			$stat = _('Editing');
 		}
 		
-		if($bg != "#ffffff")
-			$bg = "#ffffff";
+		if($bg != '#ffffff')
+			$bg = '#ffffff';
 		else
-			$bg = "#eeeeee";
+			$bg = '#eeeeee';
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><?php echo($sid); ?></td>

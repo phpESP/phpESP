@@ -84,14 +84,18 @@ Please click <a href="<?php echo($thank_url); ?>">here</a> to continue.
 		return;
 	}
 
-	require($PIECES."/funcs_html".$EXT);
-	require($PIECES."/funcs_render".$EXT);
-	require($PIECES."/function.survey_results".$EXT);
-	require($PIECES."/function.survey_report".$EXT);
-	require($PIECES."/function.survey_copy".$EXT);
-	require($PIECES."/function.survey_purge".$EXT);
-//	require($PIECES."/library.merge_utils".$EXT);
-	require($PIECES."/function.survey_merge".$EXT);
+	require($PIECES."/lib/esphtml.forms".$EXT);
+	require($PIECES."/lib/esphtml.results".$EXT);
+	require($PIECES."/lib/espmerge".$EXT);
+	require($PIECES."/lib/espresponse".$EXT);
+	require($PIECES."/lib/espsql".$EXT);
+	require($PIECES."/function/survey_copy".$EXT);
+	require($PIECES."/function/survey_merge".$EXT);
+	require($PIECES."/function/survey_purge".$EXT);
+	require($PIECES."/function/survey_render".$EXT);
+	require($PIECES."/function/survey_report".$EXT);
+	require($PIECES."/function/survey_results".$EXT);
+	require($PIECES."/function/survey_update".$EXT);
 
 } // end if !defined(_FUNCS)
 

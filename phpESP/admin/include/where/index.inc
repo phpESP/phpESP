@@ -1,1 +1,1 @@
-<?php include($PIECES."/manage".$EXT); ?>
+<?php include($PIECES."/where/manage".$EXT); ?>

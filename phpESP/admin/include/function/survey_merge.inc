@@ -23,12 +23,12 @@ if(!defined('DEBUG_MERGE')) {
 function survey_merge($sids, $precision = 1, $showTotals = 1) {
 	// sanity check arguments
 	if(!is_array($sids)) {
-		$errmsg = _('Error opening merging surveys.') ." [ ID: ${sids} ]";
+		$errmsg = _('Invalid argument.') ." [ ${sids} ]";
 		return($errmsg);
 	}
 	$num = count($sids);
 	if($num < 1) {
-		$errmsg = _('Error opening merging surveys.') ." [ IDs: ".join(",",$sids)." ]";
+		$errmsg = _('Invalid argument.') .' [ '. join(',',$sids) .' ]';
 		return($errmsg);
 	}
 
@@ -39,30 +39,14 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 	// convert arguments to alternate forms
 	$sidstr = array_to_insql($sids);
 
-	// build associative array holding weather each question
-	// type has answer choices or not and the table the answers are in
-	$has_answers = array();
-	$answer_table = array();
-	$sql = 'SELECT id,has_answers,answer_table
-			  FROM question_types 
-			 ORDER BY id';
-	if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
-	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error phpESP system tables corrupted.') ." [ ". _('Table(s)') .": question_types ] [ ".mysql_error()."]";
-		return($errmsg);
-	}
-	while($row = mysql_fetch_row($result)) {
-		$has_answers[$row[0]]=$row[1];
-		$answer_table[$row[0]]=$row[2];
-	}
-	mysql_free_result($result);
+	$response_table = esp_type_response_table();
 
 	// load survey title (and other globals) from 1st surveyId
 	$sid = $sids[0];
-	$sql = "SELECT * FROM surveys WHERE id=${sid}";
+	$sql = "SELECT * FROM survey WHERE id=${sid}";
 	if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error opening selected survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."] [ ".mysql_error()."]";
+		$errmsg = _('Error opening survey.') ." [ ID:${sid} R:" . mysql_num_rows($result) ."] [ ".mysql_error()."]";
 		return($errmsg);
 	}
 	$survey = mysql_fetch_array($result, MYSQL_ASSOC);
@@ -70,18 +54,18 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 	// find total number of survey responses
 	$sql = "SELECT R.id
-			  FROM survey_responses R
+			  FROM survey_response R
 			 WHERE R.survey_id ${sidstr} AND
-				   R.complete='yes'";
+				   R.complete='Y'";
 	if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 	if(!($result = mysql_query($sql))) {
-		$errmsg = _('Error opening selected surveys.') ." [ ID: ${sidstr} ] [ ".mysql_error()."]";
+		$errmsg = _('Error opening surveys.') ." [ ID: ${sidstr} ] [ ".mysql_error()."]";
 		return($errmsg);
 	}
 	$total = mysql_num_rows($result);
 	if($total < 1) {
-		$errmsg = _('Error opening selected surveys.') ." ".
-			_('No responses found for surveys.') ." [ ID: ${sidstr} ] [ ". _('Total') .": ${total} ]";
+		$errmsg = _('Error opening surveys.') ." ".
+			_('No responses found.') ." [ ID: ${sidstr} ] [ ". _('Total') .": ${total} ]";
 		return($errmsg);
 	}
 	// and the desired response id's
@@ -96,15 +80,15 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 	for($i=0; $i<$num; $i++) {
 		$sid = $sids[$i];
 		$sql = "SELECT * 
-				  FROM survey_questions 
+				  FROM survey_question
 				 WHERE survey_id=${sid} AND 
 					   type_id != 99 AND
-					   status=''
+					   deleted='N'
 				 ORDER BY position,id";
 		if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 		$questions[$i] = mysql_query($sql);
 		if(!$questions[$i]) {
-			$errmsg = _('Error opening selected surveys.') ." ". _('No questions found for survey.') . " [ ID:${sid} ] [ ".mysql_error()."]";
+			$errmsg = _('Error opening surveys.') .' '. _('No questions found.') . " [ ID:${sid} ] [ ".mysql_error()."]";
 			return($errmsg);
 		}
 	}
@@ -138,7 +122,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 		// we take the first element of the SIDs array to be the "master"		
 
 		$tid = $question[0]['type_id'];
-		$table = $answer_table[$tid];
+		$table = $response_table[$tid];
 		if(DEBUG_MERGE)	echo("<!-- \$table = $table -->\n");
 
 		if($tid == 99) {
@@ -161,18 +145,17 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 		$counts = array();
 
 		switch($table) {
-		case 'answers_bool':
-// -------------------------------- answers_bool --------------------------------
+// -------------------------------- response_bool --------------------------------
+		case 'response_bool':
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
 					  FROM ${table} A
 					 WHERE A.question_id ${qidstr} AND 
-						   A.response_id ${ridstr} AND
-						   A.choice_id IN ('yes','no')
+						   A.response_id ${ridstr}
 					 GROUP BY A.choice_id";
 			if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 			$result = mysql_query($sql);
 			while(list($text,$count) = mysql_fetch_row($result)) {
-				$counts[ucfirst($text)] = $count;
+				$counts[$text] = $count;
 			}
 			mysql_free_result($result);
 
@@ -181,15 +164,15 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 
 			break;
 
-// -------------------------------- answers_single ----------------------------------
-// -------------------------------- answers_multiple --------------------------------
-		case 'answers_single':
-		case 'answers_multiple':
+// -------------------------------- response_single ----------------------------------
+// -------------------------------- response_multiple --------------------------------
+		case 'response_single':
+		case 'response_multiple':
 			for($i=0; $i<$num; $i++) {
 				$sid = $sids[$i];
 				$qid = $question[$i]['id'];
 				$sql = "SELECT id 
-					      FROM question_choices
+					      FROM question_choice
 						 WHERE question_id=${qid} AND
 							   content NOT LIKE '!other%'
 						 ORDER BY id";
@@ -203,7 +186,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			}
 			$content = array();
 			foreach($cids[0] as $cid) {
-				$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+				$sql = "SELECT content FROM question_choice WHERE id=${cid}";
 				if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				array_push($content, mysql_result($result,0,0));
@@ -232,7 +215,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				$sid = $sids[$i];
 				$qid = $question[$i]['id'];
 				$sql = "SELECT id 
-					      FROM question_choices
+					      FROM question_choice
 						 WHERE question_id ${qidstr} AND
 							   content LIKE '!other%'
 						 ORDER BY id";
@@ -246,7 +229,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 			}
 			$content = array();
 			foreach($cids[0] as $cid) {
-				$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+				$sql = "SELECT content FROM question_choice WHERE id=${cid}";
 				if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
 				$text = ereg_replace("!other=?", "", mysql_result($result,0,0));
@@ -263,16 +246,16 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				}
 				$mycidstr = array_to_insql($mycids);
 
-				$sql = "SELECT A.answer, COUNT(A.response_id)
-						  FROM answers_other A
+				$sql = "SELECT A.response, COUNT(A.response_id)
+						  FROM response_other A
 						 WHERE A.choice_id ${mycidstr} AND
 							   A.response_id ${ridstr}
-						 GROUP BY A.answer";
+						 GROUP BY A.response";
 				if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 				$result=mysql_query($sql);
-				while(list($answer,$count) = mysql_fetch_row($result)) {
-					if(!empty($answer)) {
-						$text = $content[$j] . htmlspecialchars($answer);
+				while(list($response,$count) = mysql_fetch_row($result)) {
+					if(!empty($response)) {
+						$text = $content[$j] . htmlspecialchars($response);
 						$counts[$text] = $count;
 					}
 				}
@@ -283,32 +266,32 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				$question[0]['result_id'] = 1;	// default to percentages
 
 			break;					
-// -------------------------------- answers_text --------------------------------
-		case 'answers_text':
-			$sql = "SELECT A.answer, COUNT(A.response_id)
+// -------------------------------- response_text --------------------------------
+		case 'response_text':
+			$sql = "SELECT A.response, COUNT(A.response_id)
 					  FROM ${table} A
 					 WHERE A.question_id ${qidstr} AND 
 						   A.response_id ${ridstr}
-					 GROUP BY A.answer";
+					 GROUP BY A.response";
 			if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 			$result = mysql_query($sql);
-			while(list($text, $count) = mysql_fetch_row($result)) {
-				if(!empty($text))
-					$counts[htmlspecialchars($text)] = $count;
+			while(list($response, $count) = mysql_fetch_row($result)) {
+				if(!empty($response))
+					$counts[htmlspecialchars($response)] = $count;
 			}
 			mysql_free_result($result);
 
 			$question[0]['result_id'] = 4;	// force "list" type response for text fields
 
 			break;
-// -------------------------------- answers_rank --------------------------------
-		case 'answers_rank':
+// -------------------------------- response_rank --------------------------------
+		case 'response_rank':
 			if($tid == 8) { //Rank
 				for($i=0; $i<$num; $i++) {
 					$sid = $sids[$i];
 					$qid = $question[$i]['id'];
 					$sql = "SELECT id 
-					          FROM question_choices
+					          FROM question_choice
 							 WHERE question_id ${qidstr}
 							 ORDER BY id";
 					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
@@ -321,7 +304,7 @@ function survey_merge($sids, $precision = 1, $showTotals = 1) {
 				}
 				$content = array();
 				foreach($cids[0] as $cid) {
-					$sql = "SELECT content FROM question_choices WHERE id=${cid}";
+					$sql = "SELECT content FROM question_choice WHERE id=${cid}";
 					if(DEBUG_MERGE)	echo("<!-- \$sql = ${sql} -->\n");
 					$result=mysql_query($sql);
 					array_push($content, mysql_result($result,0,0));

@@ -75,5 +75,20 @@ function esp_type_has_choices() {
 }
 /* }}} */
 
+/* {{{ proto array esp_type_response_table()
+   Returns an associative array of bools indicating the
+   table the responses are stored in. */
+function esp_type_response_table() {
+	$sql = 'SELECT id, has_choices FROM question_type ORDER BY id';
+	$result = mysql_query($sql);
+	$response_table = array();
+	while(list($tid,$answ) = mysql_fetch_row($result)) {
+		$response_table[$tid]=$answ;
+	}
+	mysql_free_result($result);
+	return($response_table);
+}
+/* }}} */
+
 } // end _LIB_ESPSQL
 ?>

@@ -14,8 +14,8 @@
 	$new_survey = 1;
 	$curr_q = 'new';
 	$tab="general";
-	if(!file_exists($PIECES."/".$where.$EXT))
+	if(!file_exists($PIECES."/where/".$where.$EXT))
 		$where="index";
-	include($PIECES."/tab".$EXT);
+	include($PIECES."/where/tab".$EXT);
 
 ?>
