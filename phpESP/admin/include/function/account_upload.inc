@@ -149,7 +149,7 @@ function account_upload(&$exceptions, $upload_type, $account_type, $group_acl, $
 				$sql .= "VALUES ($username, ".db_crypt($password).", ";
 				$sql .= "$realm, $fname, $lname, $email, ";
 				$sql .= "$expir, $disabled, $changed)";
-                print $sql;
+
 				if(!execute_sql($sql)) {
 					/* insert failed -- stuff record into failed array */
 					array_push($exceptions, array($username, $password,
