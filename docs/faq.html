@@ -59,11 +59,15 @@ h1 {
 phpESP can function in this configuration but authentication must be disabled. (<a href="#idisableauth">See disabling authentication in this FAQ.</a>) (<a href="http://us4.php.net/manual/en/install.general.php">See the PHP manual for more information on CGI VS SAPI.</a>)</p>
 <a href="#top">Top</a> 
 <p><a name="idisableauth"><b>Can I disable authentication for the managment interface?</b></a>
-<p class="indented">Authentication can be disabled by setting auth_design to false in phpESP.ini.php. Be warned that doing so could pose a security risk.<br /><br />
+<p class="indented">Authentication can be disabled by setting auth_design to false in phpESP.ini.php. Warning, makeing this change could pose a security risk.<br /><br />
 Change this:<br />
-<tt>$ESPCONFIG['auth_response'] = true;</tt><br /><br />
+<tt>$ESPCONFIG['auth_response'] = true;</tt><br />
+and
+<tt>$ESPCONFIG['auth_design'] = true;</tt><br /><br />
 To this:<br />
 <tt>$ESPCONFIG['auth_response'] = false;</tt><br /></p>
+and
+<tt>$ESPCONFIG['auth_design'] = false;</tt><br /><br />
 <a href="#top">Top</a> 
 <p><a name="iglobals"><b>Does register globals need to be on? </b></a>
 <p class="indented">No.</p>
