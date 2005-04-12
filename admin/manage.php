@@ -27,7 +27,7 @@
 	require_once($CONFIG);
 
     /* check for an unsupported web server configuration */
-    if((in_array(php_sapi_name(), $ESPCONFIG['unsupported'])) and ($ESPCONFIG['auth_design']) and ($ESPCONFIG['auth_mode'] == 'php')) {
+    if((in_array(php_sapi_name(), $ESPCONFIG['unsupported'])) and ($ESPCONFIG['auth_design']) and ($ESPCONFIG['auth_mode'] == 'basic')) {
         echo ('<b>FATAL: Your webserver is running PHP in an unsupported mode. Aborting.</b><br/>');
         echo ('<b>Please read <a href="http://phpesp.sf.net/cvs/docs/faq.html?rev=.&content-type=text/html#iunsupported">this</a> entry in the FAQ for more information</b>');
         exit;
@@ -40,7 +40,7 @@
 		$HTTP_SESSION_VARS['acl'] = &$acl;
 	}
 	if($ESPCONFIG['auth_design']) {
-        if ($ESPCONFIG['auth_mode'] == 'php') {
+        if ($ESPCONFIG['auth_mode'] == 'basic') {
             $raw_password = @$HTTP_SERVER_VARS['PHP_AUTH_PW'];
             $username = @$HTTP_SERVER_VARS['PHP_AUTH_USER'];
         }
