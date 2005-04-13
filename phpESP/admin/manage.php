@@ -37,7 +37,7 @@
 	
 	session_register('acl');
 	if(get_cfg_var('register_globals')) {
-		$HTTP_SESSION_VARS['acl'] = &$acl;
+		$_SESSION['acl'] = &$acl;
 	}
 	if($ESPCONFIG['auth_design']) {
         if ($ESPCONFIG['auth_mode'] == 'basic') {
@@ -51,31 +51,24 @@
             if (!isset($HTTP_POST_VARS['password'])) {
                 $HTTP_POST_VARS['password'] = "";
             }
-            if (!isset($HTTP_SESSION_VARS['username'])) {
-                session_register('username');
-            }
-            if (!isset($HTTP_SESSION_VARS['raw_password'])) {
-                session_register('raw_password');
-            }
-                
             if ($HTTP_POST_VARS['username'] != "") {
-                $username = $HTTP_POST_VARS['username'];
+                $_SESSION['username'] = $HTTP_POST_VARS['username'];
             }
-            elseif ($HTTP_SESSION_VARS['username'] != "") {
-                $username = $HTTP_SESSION_VARS['username'];
+            elseif ($_SESSION['username'] != "") {
+                $username = $_SESSION['username'];
             }
             if ($HTTP_POST_VARS['password'] != "") {
-                    $raw_password = $HTTP_POST_VARS['password'];
+                    $_SESSION['raw_password'] = $HTTP_POST_VARS['password'];
             }
-            elseif ($HTTP_SESSION_VARS['raw_password'] != "") {
-                    $raw_password = $HTTP_SESSION_VARS['raw_password'];
+            elseif ($_SESSION['raw_password'] != "") {
+                    $raw_password = $_SESSION['raw_password'];
             }
         }
         $password = _addslashes($raw_password);
         if(!manage_auth($username, $password, $raw_password))
             exit;
-	} else {
-		$HTTP_SESSION_VARS['acl'] = array (
+    } else {
+        $_SESSION['acl'] = array (
 			'username'  => 'none',
 			'pdesign'   => array('none'),
 			'pdata'     => array('none'),
