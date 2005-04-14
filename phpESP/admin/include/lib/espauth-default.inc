@@ -242,11 +242,11 @@ function manage_auth($username, $password, $raw_password="") {
    valid username & password. */
 function manage_logout() {
 	// clear existing ACL, and set the expired flag
-	session_unset();
+    $_SESSION['acl'];
+    $_SESSION['username'] = "";
+    $_SESSION['raw_password'] = "";
+    session_destroy();
 	$acl = array('expired' => 2);
-	session_register('acl');
-    session_register('username');
-    session_register('raw_password');
 	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array('expired' => 2);
 }
 /* }}} */
