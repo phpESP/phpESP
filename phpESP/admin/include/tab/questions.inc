@@ -100,7 +100,7 @@ function validate() {
 <center>
 	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>">
 	<p>
-	<?php echo(_('Edit this question, or click the number of the qield you would like to edit:')); ?>
+	<?php echo(_('Edit this question, or click the number of the question you would like to edit:')); ?>
 	</p>
 <?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
 	<input type="submit" name="q" value="<?php echo($i); ?>">
