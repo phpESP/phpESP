@@ -141,7 +141,7 @@
 
 <?php if(!empty($errstr)) echo("<p>$errstr</p>\n"); ?>
 
-<div align="left">
+<div style="text-align: left">
 <p><?php
 	echo(_('This lets you control who has access to fill out a form.
 Public surveys let anyone submit data.
@@ -155,21 +155,21 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php if ($sid) { ?>
-<input type="hidden" name="where" value="access">
-<input type="hidden" name="sid" value="<?php echo($sid); ?>">
-<input type="hidden" name="op" value="a">
-<table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('ID')); ?></th><td colspan="5"><?php echo($sid); ?></td></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Name')); ?></th><td colspan="5"><?php echo($name); ?></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Title')); ?></th><td colspan="5"><?php echo($title); ?></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Owner')); ?></th><td colspan="5"><?php echo($owner); ?></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Group')); ?></th><td colspan="5"><?php echo($realm); ?></tr>
-	<tr bgcolor="#dddddd"><th align="left"><?php echo(_('Public')); ?></th><td colspan="5"><?php echo($public); ?></tr>
-	<tr bgcolor="#dddddd"><td colspan="6"><hr></td></tr>
-	<tr><th align="left"><?php echo(_('Group')); ?></th>
-		<th align="left"><?php echo(_('Max Responses')); ?></th>
-		<th align="left"><?php echo(_('Save/Restore')); ?></th>
-		<th align="left"><?php echo(_('Back/Forward')); ?></th>
+<input type="hidden" name="where" value="access" />
+<input type="hidden" name="sid" value="<?php echo($sid); ?>" />
+<input type="hidden" name="op" value="a" />
+<table cellspacing="0" cellpadding="4">
+	<tr class="header"><th align="left"><?php echo(_('ID')); ?></th><td colspan="5"><?php echo($sid); ?></td></tr>
+	<tr class="header"><th align="left"><?php echo(_('Name')); ?></th><td colspan="5"><?php echo($name); ?></tr>
+	<tr class="header"><th align="left"><?php echo(_('Title')); ?></th><td colspan="5"><?php echo($title); ?></tr>
+	<tr class="header"><th align="left"><?php echo(_('Owner')); ?></th><td colspan="5"><?php echo($owner); ?></tr>
+	<tr class="header"><th align="left"><?php echo(_('Group')); ?></th><td colspan="5"><?php echo($realm); ?></tr>
+	<tr class="header"><th align="left"><?php echo(_('Public')); ?></th><td colspan="5"><?php echo($public); ?></tr>
+	<tr><td colspan="6"><hr /></td></tr>
+	<tr><th><?php echo(_('Group')); ?></th>
+		<th><?php echo(_('Max Responses')); ?></th>
+		<th><?php echo(_('Save/Restore')); ?></th>
+		<th><?php echo(_('Back/Forward')); ?></th>
 		<td>&nbsp;</td></tr>
 <?php
 		$result = execute_sql($sql1);
@@ -180,7 +180,7 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 		<td><?php echo($amax); ?></td>
 		<td><?php echo(($aresume == 'Y') ? _('Yes') : _('No')); ?></td>
 		<td><?php echo(($anavigate == 'Y') ? _('Yes') : _('No')); ?></td>
-		<td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=r&realm=" . urlencode($arealm)); ?>">
+		<td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=access&sid=$sid&op=r&realm=") . urlencode($arealm)); ?>">
 		<?php echo(_('Remove')); ?></a></td></tr>
 <?php	} ?>
 	<tr><td><?php echo($r); ?></td>
@@ -194,14 +194,14 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 		return;
 	}
 ?>
-<table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="#dddddd">
-		<th align="left"><?php echo(_('ID')); ?></th>
-		<th align="left"><?php echo(_('Name')); ?></th>
-		<th align="left"><?php echo(_('Title')); ?></th>
-		<th align="left"><?php echo(_('Owner')); ?></th>
-		<th align="left"><?php echo(_('Group')); ?></th>
-		<th align="left"><?php echo(_('Public')); ?></th>
+<table cellspacing="0" cellpadding="4">
+	<tr class="header">
+		<th><?php echo(_('ID')); ?></th>
+		<th><?php echo(_('Name')); ?></th>
+		<th><?php echo(_('Title')); ?></th>
+		<th><?php echo(_('Owner')); ?></th>
+		<th><?php echo(_('Group')); ?></th>
+		<th><?php echo(_('Public')); ?></th>
 		<td>&nbsp;</td>
 	</tr>
 <?php
@@ -230,15 +230,15 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 
 		if ($public == 'N') {
 			$public = _('Private');
-			$op     = '<a href="'. $GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=p\">". _('Make Public') .'</a>';
+			$op     = '<a href="'. $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=access&sid=$sid&op=p")."\">". _('Make Public') .'</a>';
 		} else {
 			$public = _('Public');
-			$op     = '<a href="'. $GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid&op=v\">". _('Make Private') .'</a>';
+			$op     = '<a href="'. $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=access&sid=$sid&op=v")."\">". _('Make Private') .'</a>';
 		}
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
+	<tr style="background-color: <?php echo($bg); ?>;">
 		<td><?php echo($sid); ?></td>
-		<td><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid"); ?>"><?php echo($name); ?></a></td>
+		<td><a href="<?php echo(htmlentities($GLOBALS['ESPCONFIG']['ME'] ."?where=access&sid=$sid")); ?>"><?php echo($name); ?></a></td>
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
 		<td><?php echo($realm); ?></td>

@@ -182,25 +182,25 @@
 ?>
 <h2><?php echo(_('Respondent Account Administration')); ?></h2>
 <?php if(!empty($errstr)) echo("<p>$errstr</p>\n"); ?>
-<input type="hidden" name="where" value="admrespondent">
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>">
+<input type="hidden" name="where" value="admrespondent" />
+<table cellspacing="0" cellpadding="4" style="width: 350px">
 	<tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Username') ."</th>\n");
+	echo("<th class=\"right\">". _('Username') ."</th>\n");
 	if(empty($u))
 		$u = mktext('u', 16, 16, $GLOBALS);
 	else
 		$u = mkhidden('u', $GLOBALS) . "<tt>$u</tt>";
-	echo("<td bgcolor=\"$bg1\">$u</td>\n");
+	echo("<td class=\"left\">$u</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Password') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkpass('password') ."</td>\n");
+	echo("<th class=\"right\">". _('Password') ."</th>\n");
+	echo("<td class=\"left\">". mkpass('password') ."</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Group') ."</th>\n");
+	echo("<th class=\"right\">". _('Group') ."</th>\n");
 	if(empty($r)) {
 		$r = '<select name="r"><option></option>';
 		$groups = array();
@@ -222,27 +222,27 @@
 	} else {
 		$r = mkhidden('r', $GLOBALS) . "<tt>$r</tt>";
 	}
-	echo("<td bgcolor=\"$bg1\"><tt>$r</tt></td>\n");
+	echo("<td class=\"left\">$r</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('First Name') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('fname', 16, 16, $GLOBALS) ."</td>\n");
+	echo("<th class=\"right\">". _('First Name') ."</th>\n");
+	echo("<td class=\"left\">". mktext('fname', 16, 16, $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Last Name') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('lname', 24, 24, $GLOBALS) ."</td>\n");
+	echo("<th class=\"right\">". _('Last Name') ."</th>\n");
+	echo("<td class=\"left\">". mktext('lname', 24, 24, $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Email') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mktext('email', 24, 64, $GLOBALS) ."</td>\n");
+	echo("<th class=\"right\">". _('Email') ."</th>\n");
+	echo("<td class=\"left\">". mktext('email', 24, 64, $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Expiration') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">".
+	echo("<th class=\"right\">". _('Expiration') ."</th>\n");
+	echo("<td class=\"left\">".
 		mktext('ex_year', 4, 0, $GLOBALS) .' '.
 		mktext('ex_month', 2, 0, $GLOBALS) .' '.
 		mktext('ex_day', 2, 0, $GLOBALS) .' ('.
@@ -252,14 +252,14 @@
 ?>
 	</tr><tr>
 <?php
-	echo("<th bgcolor=\"$bg2\" align=\"right\">". _('Disabled') ."</th>\n");
-	echo("<td bgcolor=\"$bg1\">". mkselect('disabled',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
+	echo("<th class=\"right\">". _('Disabled') ."</th>\n");
+	echo("<td class=\"left\">". mkselect('disabled',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
 ?>
 	</tr><tr>
-		<th colspan="2" bgcolor="<?php echo($bg2); ?>">
-			<input type="submit" name="submit" value="<?php echo(_('Update')); ?>">&nbsp;
-			<input type="submit" name="cancel" value="<?php echo(_('Cancel')); ?>">&nbsp;
-			<input type="submit" name="delete" value="<?php echo(_('Delete')); ?>">
+		<th colspan="2" class="center">
+			<input type="submit" name="submit" value="<?php echo(_('Update')); ?>"/>&nbsp;
+			<input type="submit" name="cancel" value="<?php echo(_('Cancel')); ?>"/>&nbsp;
+			<input type="submit" name="delete" value="<?php echo(_('Delete')); ?>"/>
 		</th>
 	</tr>
 </table>

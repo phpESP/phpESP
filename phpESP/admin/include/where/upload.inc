@@ -31,6 +31,7 @@
 
 // End the included form so we can do a multipart/form-data form
 ?>
+</div>
 </form>
 <?php
 	if(isset($HTTP_POST_VARS['submit'])) {
@@ -106,29 +107,31 @@
 <h2><?php echo(_('Upload Account Information')); ?></h2>
 <p><?php echo(_('All fields are required')) ?></p>
 <?php if(!empty($errstr)) echo("<p>$errstr</p>\n"); ?>
-<font size="+2">
-<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" target="_blank"><?php echo(_('Help')); ?></a>
-</font>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>">
-<form enctype="multipart/form-data" method="Post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>">
+<span class="large">
+<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
+</span>
+<form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>">
+<table cellspacing="0" cellpadding="4" style="width: 350px;">
 <?php
-		echo("<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\" align=\"center\" bgcolor=\"".$ESPCONFIG['active_bgcolor']."\">\n");
-?>
-<input type="hidden" name="where" value="upload">
-<input type="hidden" name="account_type" value="<?php echo($account_type); ?>">
-<?php
-		echo("<tr>\n<th bgcolor=\"$bg2\" align=\"right\">"._('File Type')."</th>\n");
-		echo("<td bgcolor=\"$bg1\">\n".mkselect('upload_type',array('tab' => _('Tab Delimited')))."</td>\n</tr>");
-		echo("<tr>\n<th bgcolor=\"$bg2\" align=\"right\">"._('File to upload')."</th>\n");
-		echo("<td bgcolor=\"$bg1\">\n".mkfile('upload_file')."\n"."</td>\n</tr>");
+		echo("<tr>\n<td class=\"right\">"._('File Type')."</td>\n");
+		echo("<td class=\"left\">\n".mkselect('upload_type',array('tab' => _('Tab Delimited')))."</td>\n</tr>");
+		echo("<tr>\n<td class=\"right\">"._('File to upload')."</td>\n");
+		echo("<td class=\"left\">\n".mkfile('upload_file')."\n"."</td>\n</tr>");
 ?>
 <tr>
-<th colspan="2" bgcolor="<?php echo($bg2); ?>">
-<input type="submit" value="Upload" name="submit">
-</th>
+<td colspan="2" class="center">
+<input type="hidden" name="where" value="upload" />
+<input type="hidden" name="account_type" value="<?php echo($account_type); ?>" />
+<input type="submit" value="Upload" name="submit" />
+</td>
 </tr>
  </table>
+</form>
 <?php if(!empty($exception_table)) echo("<p>$exception_table</p>\n"); ?>
+<form method="post" action="" id="null">
+<div>
+
 <?php
 echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
 ?>
+

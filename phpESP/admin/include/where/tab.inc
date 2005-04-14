@@ -138,30 +138,33 @@
 	$errstr = '';
 	$updated = survey_update($HTTP_SESSION_VARS['survey_id'],$tab,$HTTP_SESSION_VARS['last_tab']);
 ?>
+</div>
 </form>
-<h2>Survey Design</h2>
-<form method="post" name="tabs" onSubmit="validate();" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
-<?php if(!empty($errstr)) echo(mkerror($errstr)."<br>\n"); ?>
-<font size="+2">
-<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" target="_blank"><?php echo(_('Help')); ?></a>
-</font>
+<form method="post" onsubmit="validate();" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
+<div>
 
-<table border="0" cellspacing="0" cellpadding="0" align="center" width="95%">
-  <tr align="left" valign="bottom">
+<h2>Survey Design</h2>
+<?php if(!empty($errstr)) echo(mkerror($errstr)."<br />\n"); ?>
+<span class="large">
+<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
+</span>
+
+<table cellspacing="0" cellpadding="0">
+  <tr style="vertical-align: bottom">
     <td>
-      <input type="hidden" name="where" value="tab">
-	  <table border="0" cellspacing="0" cellpadding="0">
+      <input type="hidden" name="where" value="tab" />
+	  <table cellspacing="0" cellpadding="0">
 		<tr>
-		  <td><input type="image" border="0" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" width="186" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif"     width="126" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif"   width="160" height="43"></td>
-		  <td><input type="image" border="0" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif"   width="114" height="43"></td>
+		  <td><input type="image" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif" style="width: 160px; height: 43px;" /></td>
+		  <td><input type="image" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" style="width: 186px; height: 43px;" /></td>
+		  <td><input type="image" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif" style="width: 126px; height: 43px;" /></td>
+		  <td><input type="image" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif" style="width: 160px; height: 43px;" /></td>
+		  <td><input type="image" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif" style="width: 114px; height: 43px;" /></td>
 		</tr>
 	  </table>
     </td>
   </tr>
-  <tr valign="top" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>">
+  <tr>
     <td>
 <?php include($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']); $HTTP_SESSION_VARS['last_tab'] = $tab; ?>
     </td>
@@ -169,22 +172,25 @@
 </table>
 <?php if($tab=='finish') {echo('&nbsp;'); return;} ?>
 <?php if($HTTP_SESSION_VARS['new_survey']) { ?>
-<?php echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')); ?><br>
-<input type="submit" name="where" value="Cancel" onclick='return cancelConfirm()'>
+<?php echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')); ?><br />
+<input type="submit" name="where" value="Cancel" onclick='return cancelConfirm()' />
 <?php if($tab=='preview') { ?>
-	<input type="submit" name="tab" value="Finish">
+	<input type="submit" name="tab" value="Finish" />
 <?php 	return; } ?>
-<input type="submit" name="tab" value="Continue &gt;">
+<input type="submit" name="tab" value="Continue &gt;" />
 <?php return; } ?>
-<p><?php echo(_('The survey title and other general fields are on the <b>General</b> tab.
-Individual survey questions are added and modified on the <b>Questions</b> tab.
-Questions may be re-ordered or deleted from the <b>Order</b> tab.
-You may see a preview of your survey at any time, by going to the <b>Preview</b>
-tab. If you have no further changes click <b>Finish</b> to go back to the
-Management Interface.')); ?><br>
-<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" target="_blank"><?php echo(_('Click here to open the Help window.')); ?></a></p>
-<input type="submit" name="tab" value="General">
-<input type="submit" name="tab" value="Questions">
-<input type="submit" name="tab" value="Order">
-<input type="submit" name="tab" value="Preview">
-<input type="submit" name="tab" value="Finish">
+<p><?php echo(_('The survey title and other general fields are on the <strong>General</strong> tab.
+Individual survey questions are added and modified on the <strong>Questions</strong> tab.
+Questions may be re-ordered or deleted from the <strong>Order</strong> tab.
+You may see a preview of your survey at any time, by going to the <strong>Preview</strong>
+tab. If you have no further changes click <strong>Finish</strong> to go back to the
+Management Interface.')); ?><br />
+<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Click here to open the Help window.')); ?></a></p>
+<input type="submit" name="tab" value="General" />
+<input type="submit" name="tab" value="Questions" />
+<input type="submit" name="tab" value="Order" />
+<input type="submit" name="tab" value="Preview" />
+<input type="submit" name="tab" value="Finish" />
+</form>
+<form method="post" action="" id="null">
+<div>

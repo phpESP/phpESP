@@ -29,31 +29,31 @@
 	}
 ?>
 <?php echo(_('The information on this tab applies to the whole survey.
-Fill out this page then go to the <b>Fields</b> tab to
+Fill out this page then go to the <strong>Fields</strong> tab to
 edit individual fields.')); ?>
-<script language="javascript">
+<script type="text/javascript">
 <!--
 function validate() {
     return true;
 }
 -->
 </script>
-<hr>
-<table width="95%" border="0" cellspacing="0" cellpadding="0">
-	<tr valign="top">
-		<td><b><?php echo(_('Name')); ?></b></td>
-		<td>
+<hr />
+<table cellspacing="0" cellpadding="0">
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Name')); ?></strong></td>
+		<td class="left">
 			<?php echo mktext('name', 20, 64, $survey); ?>
-			<font color="#ff0000"><em><?php echo _('Required'); ?></em></font><br>
+			<span class="red"><em><?php echo _('Required'); ?></em></span><br />
 			<?php echo(
 			_('Survey filename.') .' '.
 			_('This is used for all further access to this survey.')
 			.' ('. _('no spaces') .', '. _('alpha-numeric only') .')'); ?></td>
 	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-	<tr valign="top">
-		<td><b><?php echo(_('Owner')); ?></b></td>
-		<td><?php
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Owner')); ?></strong></td>
+		<td class="left"><?php
 			$realms = array();
 			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
 				$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
@@ -69,66 +69,66 @@ function validate() {
 			}
 
 			echo(htmlspecialchars($HTTP_SESSION_VARS['acl']['username']) . "&nbsp;/&nbsp;");
-			echo(mkselect('realm',$realms, $survey) . "  <font color=\"#ff0000\"><em>". _('Required') ."</em></font><br>\n");
+			echo(mkselect('realm',$realms, $survey) . "  <span class=\"red\"><em>". _('Required') ."</em></span><br />\n");
 			echo(_('User and Group that owns this survey.')); ?></td>
 	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-	<tr valign="top">
-		<td><b><?php echo(_('Title')); ?></b></td>
-		<td>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Title')); ?></strong></td>
+		<td class="left">
 			<?php echo mktext('title', 60, 60, $survey); ?>
-			<font color="#ff0000"><em><?php echo _('Required'); ?></em></font><br>
+			<span class="red"><em><?php echo _('Required'); ?></em></span><br />
 			<?php echo(_('Title of this survey.') .' '.
 			_('This appears at the top of every page of this survey.')
 			.' ('. _('free-form, including spaces') .')'); ?>
 		</td>
 	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-	<tr valign="top">
-		<td><b><?php echo(_('Subtitle')); ?></b></td>
-		<td>
-			<?php echo mktext('subtitle', 60, 128, $survey); ?><br>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Subtitle')); ?></strong></td>
+		<td class="left">
+			<?php echo mktext('subtitle', 60, 128, $survey); ?><br />
 			<?php echo(_('Subtitle of this survey.') .' '.
 			_('Appears below the title.') .' ('. _('free-form, including spaces'). ')'); ?>
 		</td>
 	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-	<tr valign="top">
-		<td><b><?php echo(_('Additional Info')); ?></b></td>
-		<td>
-			<?php echo mktextarea('info', 5, 60, 'virtual', $survey); ?><br>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Additional Info')); ?></strong></td>
+		<td class="left">
+			<?php echo mktextarea('info', 5, 60, 'virtual', $survey); ?><br />
 			<?php echo(_('Text to be displayed on this survey before any fields.
 (i.e. instructions, background info, etc.)')); ?>
 		</td>
 	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-	<tr valign="top">
-		<td><b><?php echo(_('Confirmation Page')); ?></b></td>
-		<td>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Confirmation Page')); ?></strong></td>
+		<td class="left">
 			<?php echo mktext('thanks_page', 60, 255, $survey) .'&nbsp;'.
-                    _('(URL)'); ?><br>
+                    _('(URL)'); ?><br />
 			<?php echo(_('The URL to which a user is redirected after completing this survey.')); ?>
-			<br><b><?php echo(_('OR')); ?></b><br>
+			<br /><strong><?php echo(_('OR')); ?></strong><br />
 			<?php echo mktext('thank_head', 30, 0, $survey) .'&nbsp;'.
-                    _('(heading text)'); ?><br>
+                    _('(heading text)'); ?><br />
 			<?php echo mktextarea('thank_body', 5, 60, 'virtual', $survey) .
-                    '&nbsp;' . _('(body text)'); ?><br>
+                    '&nbsp;' . _('(body text)'); ?><br />
  			<?php echo(_('Heading (in bold) and body text for the &quot;Confirmation&quot; page
 displayed after a user completes this survey.')); ?>
 			<?php echo(_('(URL, if present, takes precedent over confirmation text.)')); ?>
 			</td>
 	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-	<tr valign="top">
-		<td><b><?php echo(_('Email')); ?></b></td>
-		<td>
-            <?php echo mktext('email', 30, 0, $survey); ?><br>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Email')); ?></strong></td>
+		<td class="left">
+            <?php echo mktext('email', 30, 0, $survey); ?><br />
 			<?php echo(_('Sends a copy of each submission to address (or leave blank for no email backup).')); ?></td>
 	</tr>
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-        <tr valign="top">
-		<td><b><?php echo(_('Theme')); ?></b></td>
-                <td><?php
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+        <tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Theme')); ?></strong></td>
+                <td class="left"><?php
 			$themes_array = array();
 			$dir = dir($ESPCONFIG['css_path']);
 				$dir->rewind();
@@ -141,17 +141,17 @@ displayed after a user completes this survey.')); ?>
 				}
 				$dir->close();
 
-			echo(mkselect('theme',$themes_array, $survey) . '<br>' .
+			echo(mkselect('theme',$themes_array, $survey) . '<br />' .
             		_('Select a theme (css) to use with this survey.')); ?></td>
         </tr>
 <!--
-	<tr><td colspan="2"><hr width="90%" size="0" color="#FFFFFF"></td></tr>
-	<tr valign="top">
-        <td><b><?php echo(_('Options')); ?></b></td>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+        <td><strong><?php echo(_('Options')); ?></strong></td>
 		<td><?php echo(mkcheckbox('options','resume') . '&nbsp;' .
 				_('Allow survey respondents to save/resume. (Survey login required.)')); ?></td>
 	</tr>
-	<tr valign="top">
+	<tr style="vertical-align: top">
 		<td>&nbsp;</td>
 		<td><?php echo(mkcheckbox('options','navigate') . '&nbsp;' .
 				_('Allow survey respondents to go forward and back between survey sections.')); ?></td>

@@ -25,7 +25,7 @@
 			return;
 		}
 ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
+<table cellspacing="0" cellpadding="4">
 <tr><td>
 <?php
 		$ret = survey_report($sid, $HTTP_GET_VARS['details']);
@@ -64,13 +64,13 @@
 ?>
 <h2><?php echo(_('View Form Report')); ?></h2>
 <?php echo(_('Pick Form to View')); ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="#dddddd">
-		<th align="left"><?php echo(_('ID')); ?></th>
-		<th align="left"><?php echo(_('Name')); ?></th>
-		<th align="left"><?php echo(_('Title')); ?></th>
-		<th align="left"><?php echo(_('Owner')); ?></th>
-		<th align="left"><?php echo(_('Group')); ?></th>
+<table cellspacing="0" cellpadding="4">
+	<tr class="header">
+		<th><?php echo(_('ID')); ?></th>
+		<th><?php echo(_('Name')); ?></th>
+		<th><?php echo(_('Title')); ?></th>
+		<th><?php echo(_('Owner')); ?></th>
+		<th><?php echo(_('Group')); ?></th>
 	</tr>
 <?php
     $bg = '';
@@ -81,9 +81,9 @@
 		else
 			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
+	<tr style="background-color: <?php echo($bg); ?>;">
 		<td><?php echo($sid); ?></td>
-		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=report&sid=${sid}"); ?>">
+		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=report&sid=${sid}")); ?>">
 			<?php echo($name); ?></a>
 		</td>
 		<td><?php echo($title); ?></td>

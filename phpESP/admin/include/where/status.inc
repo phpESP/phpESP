@@ -109,7 +109,7 @@
 	}
 ?>
 <h2><?php echo(_('Survey Status')); ?></h2>
-<div align="left">
+<div style="text-align: left">
 
 <ul>
 <li><?php echo(_('<b>Test</b> transitions a survey into testing mode. At which point you may
@@ -132,14 +132,14 @@ archived survey.')); ?></li>
 
 </div>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="#dddddd">
-		<th align="left"><?php echo(_('ID')); ?></th>
-		<th align="left"><?php echo(_('Name')); ?></th>
-		<th align="left"><?php echo(_('Title')); ?></th>
-		<th align="left"><?php echo(_('Owner')); ?></th>
-		<th align="left"><?php echo(_('Group')); ?></th>
-		<th align="left"><?php echo(_('Status')); ?></th>
+<table cellspacing="0" cellpadding="4">
+	<tr class="header">
+		<th><?php echo(_('ID')); ?></th>
+		<th><?php echo(_('Name')); ?></th>
+		<th><?php echo(_('Title')); ?></th>
+		<th><?php echo(_('Owner')); ?></th>
+		<th><?php echo(_('Group')); ?></th>
+		<th><?php echo(_('Status')); ?></th>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
@@ -172,10 +172,10 @@ archived survey.')); ?></li>
 	while(list($sid,$name,$title,$status,$owner,$realm) = fetch_row($result)) {
         $result->MoveNext();
 		$stat = _('Editing');
-		$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=t&sid=${sid}\">". _('Test') ."</a>";
-		$act  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=a&sid=${sid}\" onclick='return activateConfirm()'>". _('Activate') ."</a>";
-		$done = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=e&sid=${sid}\">". _('End') ."</a>";
-		$del  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=d&sid=${sid}\">". _('Archive') ."</a>";
+		$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=status&op=t&sid=${sid}")."\">". _('Test') ."</a>";
+		$act  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=status&op=a&sid=${sid}")."\" onclick='return activateConfirm()'>". _('Activate') ."</a>";
+		$done = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=status&op=e&sid=${sid}")."\">". _('End') ."</a>";
+		$del  = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=status&op=d&sid=${sid}")."\">". _('Archive') ."</a>";
 
 		if($status & STATUS_DELETED) {
 			$stat = _('Archived');
@@ -190,7 +190,7 @@ archived survey.')); ?></li>
 		} elseif($status & STATUS_TEST) {
 			$stat = _('Testing');
 			$done = '&nbsp;';
-			$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=status&op=m&sid=${sid}\">". _('Edit') ."</a>";
+			$test = "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=status&op=m&sid=${sid}")."\">". _('Edit') ."</a>";
 		} else {
 			$done = '&nbsp;';
 		}
@@ -209,7 +209,7 @@ archived survey.')); ?></li>
 		else
 			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
+	<tr style="background-color: <?php echo($bg); ?>;">
 		<td><?php echo($sid); ?></td>
 		<td><?php echo($name); ?></td>
 		<td><?php echo($title); ?></td>

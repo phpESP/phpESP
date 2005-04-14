@@ -53,7 +53,7 @@
 <a href="<?php echo($GLOBALS['ESPCONFIG']['ME']."?where=help"); ?>" target="_blank">Help</a>
     </font>
     <br /><br />
-<table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
+<table cellpadding="4" cellspacing="0">
     <tr><td>
     <?php
         $precision = '';
@@ -102,7 +102,7 @@
     ?>
     <?php
         if(!empty($HTTP_GET_VARS['test'])) {
-            echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=". $HTTP_GET_VARS['sid'] ."\">". _('Test Survey') ."</a><br>\n");
+            echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=test&sid=". $HTTP_GET_VARS['sid']) ."\">". _('Test Survey') ."</a><br>\n");
         }
 
 
@@ -157,20 +157,20 @@
         echo(_('Pick Survey to Cross Tabulate'));
     }
 ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-    <tr bgcolor="#dddddd">
-<th align="left"><?php echo(_('ID')); ?></th>
+<table cellspacing="0" cellpadding="4">
+    <tr class="header">
+<th><?php echo(_('ID')); ?></th>
 <?php if (empty($HTTP_GET_VARS['type'])) { ?>
-<th align="left"><?php echo(_('Respondent')); ?></th>
+<th><?php echo(_('Respondent')); ?></th>
     <?php }
     else { ?>
-    <th align="left"></th>
+    <th></th>
 <?php }?>
-<th align="left"><?php echo(_('Name')); ?></th>
-<th align="left"><?php echo(_('Title')); ?></th>
-<th align="left"><?php echo(_('Owner')); ?></th>
-<th align="left"><?php echo(_('Group')); ?></th>
-<th align="left"><?php echo(_('Resp')); ?></th>
+<th><?php echo(_('Name')); ?></th>
+<th><?php echo(_('Title')); ?></th>
+<th><?php echo(_('Owner')); ?></th>
+<th><?php echo(_('Group')); ?></th>
+<th><?php echo(_('Resp')); ?></th>
     </tr>
     <?php
         $count = 0;
@@ -190,7 +190,7 @@
             else
             $bg = $ESPCONFIG['bgalt_color2'];
         ?>
-    <tr bgcolor="<?php echo($bg); ?>">
+    <tr style="background-color: <?php echo($bg); ?>;">
     <td><?php echo($sid); ?></td>
         <?php
             if (empty($HTTP_GET_VARS['type'])) {
@@ -206,7 +206,7 @@
         <?php 
             if (empty($HTTP_GET_VARS['type'])) {
             ?>
-        <select name="rid<?php echo $count; ?>" onChange="javascript:this.form.rid.value=this.form.rid<?php echo $count; ?>.options[this.form.rid<?php echo $count; ?>.selectedIndex].value; this.form.sid.value=<?php echo $sid; ?>; this.form.submit(); return false;">
+        <select name="rid<?php echo $count; ?>" onchange="javascript:this.form.rid.value=this.form.rid<?php echo $count; ?>.options[this.form.rid<?php echo $count; ?>.selectedIndex].value; this.form.sid.value=<?php echo $sid; ?>; this.form.submit(); return false;">
             <option value=""></option>
             <?php
                 $i = 0;
@@ -226,11 +226,11 @@
         <?php
             if (!empty($HTTP_GET_VARS['type'])){
             ?>	
-        <a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&sid=${sid}&type=cross"); ?>">
+        <a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=results&sid=${sid}&type=cross")); ?>">
             <?php   }
                 else {
                 ?>
-            <a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&sid=${sid}"); ?>">
+            <a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=results&sid=${sid}")); ?>">
             <?php   } ?>
             <?php echo($name); ?>
                 </a>
