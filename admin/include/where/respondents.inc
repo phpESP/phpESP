@@ -88,13 +88,13 @@
 ?>
 <h2><?php echo(_('Manage Respondent Accounts')); ?></h2>
 <p><?php echo(_('Click on a username to edit, or click on add new user below.')); ?></p>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="<?php echo($bg); ?>">
-		<th align="left"><a href="<?php echo($base . $u); ?>"><?php echo(_('Username')); ?></a></th>
-		<th align="left"><a href="<?php echo($base . $f); ?>"><?php echo(_('First Name')); ?></a></th>
-		<th align="left"><a href="<?php echo($base . $l); ?>"><?php echo(_('Last Name')); ?></a></th>
-		<th align="left"><a href="<?php echo($base . $g); ?>"><?php echo(_('Group')); ?></a></th>
-		<th align="left">&nbsp;</th>
+<table cellspacing="0" cellpadding="4" style="width: 550px;">
+	<tr style="background-color: <?php echo($bg); ?>">
+		<th><a href="<?php echo(htmlentities($base . $u)); ?>"><?php echo(_('Username')); ?></a></th>
+		<th><a href="<?php echo(htmlentities($base . $f)); ?>"><?php echo(_('First Name')); ?></a></th>
+		<th><a href="<?php echo(htmlentities($base . $l)); ?>"><?php echo(_('Last Name')); ?></a></th>
+		<th><a href="<?php echo(htmlentities($base . $g)); ?>"><?php echo(_('Group')); ?></a></th>
+		<th>&nbsp;</th>
 	</tr>
 <?php
 	while(list($u, $fname, $lname, $r, $d, $e) = fetch_row($result)) {
@@ -112,14 +112,14 @@
 		else
 			$bg =& $ESPCONFIG['bgalt_color1'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
-		<td>
-			<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=admrespondent&u=$u&r=$r"); ?>"><?php echo($u); ?></a>
+	<tr style="background-color: <?php echo($bg); ?>">
+		<td class="left">
+			<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=admrespondent&u=$u&r=$r")); ?>"><?php echo($u); ?></a>
 		</td>
-		<td><?php echo($fname); ?></td>
-		<td><?php echo($lname); ?></td>
-		<td><?php echo($r); ?></td>
-		<td><?php echo($d); ?></td>
+		<td class="left"><?php echo($fname); ?></td>
+		<td class="left"><?php echo($lname); ?></td>
+		<td class="left"><?php echo($r); ?></td>
+		<td class="left"><?php echo($d); ?></td>
 	</tr>
 <?php
 	}
@@ -128,23 +128,14 @@
 	else
 		$bg =& $ESPCONFIG['bgalt_color1'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
-		<th colspan="5" align="center">
-			<table border="0" cellpadding="4">
-				<tr>
-					<th>
-					<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=admrespondent"); ?>">
-						<?php echo(_('Add a new Respondent')); ?>
-					</a>
-					</th>
-					<th>
-					<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=upload&account_type=respondents"); ?>">
-						<?php echo(_('Bulk Upload Respondents')); ?>
-					</a>
-					</th>
-				</tr>
-			</table>
-		</th>
+	<tr style="background-color: <?php echo($bg); ?>">
+		<td colspan="5" class="center">
+			<strong><a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=admrespondent"); ?>">
+				<?php echo(_('Add a new Respondent')); ?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=upload&account_type=respondents")); ?>">
+				<?php echo(_('Bulk Upload Respondents')); ?></a></strong>
+		</td>
 	</tr>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

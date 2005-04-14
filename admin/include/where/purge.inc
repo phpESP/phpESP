@@ -47,16 +47,16 @@ about. There is no confirmation, there is no turning
 back.')); ?></p>
 
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="<?php echo($bg); ?>">
+<table cellspacing="0" cellpadding="4">
+	<tr style="background-color: <?php echo($bg); ?>">
 		<td>&nbsp;</td>
-		<th align="left"><?php echo(_('ID')); ?></th>
-		<th align="left"><?php echo(_('Name')); ?></th>
-		<th align="left"><?php echo(_('Title')); ?></th>
-		<th align="left"><?php echo(_('Owner')); ?></th>
-		<th align="left"><?php echo(_('Group')); ?></th>
-		<th align="left"><?php echo(_("# Q's")); ?></th>
-		<th align="left"><?php echo(_('Status')); ?></th>
+		<th><?php echo(_('ID')); ?></th>
+		<th><?php echo(_('Name')); ?></th>
+		<th><?php echo(_('Title')); ?></th>
+		<th><?php echo(_('Owner')); ?></th>
+		<th><?php echo(_('Group')); ?></th>
+		<th><?php echo(_("# Q's")); ?></th>
+		<th><?php echo(_('Status')); ?></th>
 	</tr>
 <?php
 	while(list($sid,$name,$title,$status,$owner,$realm,$qnum) = fetch_row($result)) {
@@ -78,8 +78,8 @@ back.')); ?></p>
 		else
 			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
-		<td><input type="checkbox" name="list[]" value="<?php echo($sid); ?>"></td>
+	<tr style="background-color: <?php echo($bg); ?>">
+		<td><input type="checkbox" name="list[]" value="<?php echo($sid); ?>" /></td>
 		<td><?php echo($sid); ?></td>
 		<td><?php echo($name); ?></td>
 		<td><?php echo($title); ?></td>
@@ -96,11 +96,11 @@ back.')); ?></p>
 	else
 		$bg = $ESPCONFIG['bgalt_color2'];
 ?>
-    <tr bgcolor="<?php echo($bg); ?>">
-		<td colspan="8" align="center">
-			<input type="hidden" name="where" value="purge">
-			<input type="reset" name="reset" value="<?php echo(_('Clear Checkboxes')); ?>">
-			<input type="submit" name="submit" value="<?php echo(_('Purge Surveys')); ?>">
+    <tr style="background-color: <?php echo($bg); ?>">
+		<td colspan="8">
+			<input type="hidden" name="where" value="purge" />
+			<input type="reset" name="reset" value="<?php echo(_('Clear Checkboxes')); ?>" />
+			<input type="submit" name="submit" value="<?php echo(_('Purge Surveys')); ?>" />
 		</td>
 	</tr>
 </table>

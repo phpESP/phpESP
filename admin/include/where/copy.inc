@@ -63,14 +63,14 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 _('Choose a survey of which to make a copy. The copy will have the same
 status of a newly created survey. You will be able to edit the
 survey, and will have to activate it before use.')); ?>
-<table border="0" cellpadding="4" cellspacing="0" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="#dddddd">
-		<th align="left"><?php echo(_('ID')); ?></th>
-		<th align="left"><?php echo(_('Name')); ?></th>
-		<th align="left"><?php echo(_('Title')); ?></th>
-		<th align="left"><?php echo(_('Status')); ?></th>
-		<th align="left"><?php echo(_('Owner')); ?></th>
-		<th align="left"><?php echo(_('Group')); ?></th>
+<table cellpadding="4" cellspacing="0">
+	<tr class="header">
+		<th><?php echo(_('ID')); ?></th>
+		<th><?php echo(_('Name')); ?></th>
+		<th><?php echo(_('Title')); ?></th>
+		<th><?php echo(_('Status')); ?></th>
+		<th><?php echo(_('Owner')); ?></th>
+		<th><?php echo(_('Group')); ?></th>
 	</tr>
 <?php
 	while(list($sid,$name,$title,$status,$owner,$realm) = fetch_row($result)) {
@@ -92,9 +92,9 @@ survey, and will have to activate it before use.')); ?>
 		else
 			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
+	<tr style="background-color: <?php echo($bg); ?>;">
 		<td><?php echo($sid); ?></td>
-		<td><a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=copy&sid=${sid}"); ?>"><?php echo($name); ?></a></td>
+		<td><a href="<?php echo(htmlentities("". $GLOBALS['ESPCONFIG']['ME'] ."?where=copy&sid=${sid}")); ?>"><?php echo($name); ?></a></td>
 		<td><?php echo($title); ?></td>
 		<td><?php echo($stat); ?></td>
 		<td><?php echo($owner); ?></td>

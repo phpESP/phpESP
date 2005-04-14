@@ -18,29 +18,29 @@
 	}
 
 ?>
-<script language="javascript">
+<script type="text/javascript">
 function validate() {
     return true;
 }
 </script>
-<br>
-<b><?php echo(_('Survey Design Completed')); ?></b>
-<div align="left">
+<br />
+<strong><?php echo(_('Survey Design Completed')); ?></strong>
+<div class="left">
 	<p><?php echo(_('You have completed this survey design.')); ?></p>
 
 	<p><?php echo(_('To insert this survey into your web page, copy the text
 below, and paste it into the HTML of your page.')); ?></p>
 
-<blockquote><tt>
+<blockquote><div><tt>
 	&lt;?php $sid=<?php echo($HTTP_SESSION_VARS['survey_id']); ?>;
 	include("<?php echo($ESPCONFIG['handler']); ?>");?&gt;
-</tt></blockquote>
+</tt></div></blockquote>
 
 	<p><?php echo(_('Once activated you can also access the survey directly
 from the following URL.')); ?></p>
-<blockquote><tt>
+<blockquote><div><tt>
 	<?php echo($ESPCONFIG['autopub_url']."?name=".$survey_name); ?>
-</tt></blockquote>
+</tt></div></blockquote>
 
 	<p><?php echo(_('You must activate this survey before you can collect
 results. Once a survey is active, you may no longer make any
@@ -50,4 +50,4 @@ Management Interface.')); ?></p>
 </div>
 
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<br>&nbsp;
+<br />&nbsp;

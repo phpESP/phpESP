@@ -3,12 +3,12 @@
 
 /* vim: set tabstop=4 shiftwidth=4 expandtab: */
 ?>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      </div>
       </form>
-    </td>
-  </tr>
-  </tbody>
-</table>
+   </div>
+  </div> <!-- end body div -->
+  <div id="footer">
+  Powered By <?php echo($ESPCONFIG['title']); ?>
+  </div> <!-- end footer div -->
+<br/>
+</div> <!-- end main div -->

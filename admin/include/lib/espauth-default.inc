@@ -39,7 +39,6 @@ function survey_auth($sid, $username, $password, $css, $title) {
 		// no matching rows ... no authorization required
 		return(true);
 	}
-
     $realm = $accres->fields[0];
     db_close($accres);
 
@@ -72,6 +71,7 @@ function survey_auth($sid, $username, $password, $css, $title) {
 			$GLOBALS['auth_options'] = array('resume' => $aresume, 'navigate' => $anavigate);
 		}
 	}
+
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) {

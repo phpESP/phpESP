@@ -19,7 +19,7 @@ $max = record_count($result);
 presented by selecting a question from the list, then use the up/down 
 buttons to change its position.')); ?>
 <hr>
-<script language="javascript">
+<script type="text/javascript">
 <!-- // comment
 function move(f,bDir,sName) {
     var el = f.elements[sName]
@@ -64,9 +64,9 @@ function removeItem() {
 }
 // comment -->
 </script>
-<input type="hidden" name="tab" value="">
-<input type="hidden" name="removeit" value="">
-<input type="hidden" name="questions_order" value="">
+<input type="hidden" name="tab" value="" />
+<input type="hidden" name="removeit" value="" />
+<input type="hidden" name="questions_order" value="" />
         <?php
             if ($max > 20) {
                 $max = 20;
@@ -86,12 +86,12 @@ function removeItem() {
             }
             else {
                 ++$sec;
-                echo('<option value="'.$qid.'"><b>'._('----- Section Break -----').'</b></option>\n');
+                echo('<option value="'.$qid.'"><strong>'._('----- Section Break -----').'</strong></option>\n');
 			}
         }
 		db_close($result);
         ?>
         </select>
-<hr>
-<input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')"> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>"> | <input type="button" value="Remove" name="remove" onclick="javascript:removeItem()">
+<hr />
+<input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')" /> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>"> | <input type="button" value="Remove" name="remove" onclick="javascript:removeItem()" />
     <br /><br />

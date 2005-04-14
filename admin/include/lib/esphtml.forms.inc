@@ -22,14 +22,14 @@
 /* {{{ proto string mkwarn(string message)
    Returns HTML format for an warning message. */
 function mkwarn ($msg) {
-	return("<font color=\"". $GLOBALS['ESPCONFIG']['warn_color'] ."\" size=\"+1\">${msg}</font>\n");
+	return("<span class=\"warn\">${msg}</span>\n");
 }
 /* }}} */
 
 /* {{{ proto string mkerror(string message)
    Returns HTML format for an error message. */
 function mkerror ($msg) {
-	return("<font color=\"". $GLOBALS['ESPCONFIG']['error_color'] ."\" size=\"+1\">[ ${msg} ]</font>\n");
+	return("<span class=\"error\">[ ${msg} ]</span>\n");
 }
 /* }}} */
 
@@ -41,7 +41,7 @@ function mkradio ($_name, $value, $varr = null) {
         $varr =& $GLOBALS['HTTP_POST_VARS'];
 	$str = '<input type="radio" name="' . htmlspecialchars($_name) .'" value="' . htmlspecialchars($value) .'"';
 	if ( isset($varr[$_name]) && $varr[$_name] == $value )
-		$str .= ' checked';
+		$str .= " checked=\"checked\"";
 	$str .= ' />';
 	return($str);
 }
@@ -54,7 +54,7 @@ function mkcheckbox ($_name, $value, $varr = null) {
         $varr =& $GLOBALS['HTTP_POST_VARS'];
 	$str = '<input type="checkbox" name="' . htmlspecialchars($_name) .'[]" value="' . htmlspecialchars($value) .'"';
 	if (isset($varr[$_name]) && is_array($varr[$_name]) && in_array($value, $varr[$_name]))
-		$str .= ' checked';
+		$str .= " checked=\"checked\"";
 	$str .= ' />';
 	return($str);
 }
@@ -103,8 +103,8 @@ function mktextarea ($_name, $rows, $cols, $wrap, $varr = null) {
 		$str .= ' rows="' . $rows . '"';
 	if($cols > 0)
 		$str .= ' cols="' . $cols . '"';
-	if($wrap != '')
-		$str .= ' wrap="' . strtolower($wrap) . '"';
+	//if($wrap != '')
+	//	$str .= ' wrap="' . strtolower($wrap) . '"';
 	$str .= '>';
 	if (isset($varr[$_name]))
 		 $str .= _stripslashes(htmlspecialchars($varr[$_name]));
@@ -123,7 +123,7 @@ function mkselect ($_name, $options, $varr = null) {
 	while(list($cid, $content) = each($options)) {
 		$checked = '';
 		if (isset($varr[$_name]) && $varr[$_name] == $cid)
-			$checked = ' selected';
+			$checked = " selected=\"selected\"";
 		$str .= "<option value=\"${cid}\"${checked}>${content}</option>\n";
 	}
 	$str .= "</select>\n";
@@ -150,7 +150,8 @@ function mksubmit($_name, $_value = null) {
 /* }}} */
 
 function show_login($_surveyname = null, $_message = null, $_css = null, $_title = "Survey Login") {
-    $str = "<html>\n<head>\n<title>Survey Login: $_title</title>\n";
+    $str = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">";
+    $str .="<head>\n<title>Survey Login: $_title</title>\n";
     if (empty($_css)) {
         $_css = "default.css";
     }
@@ -165,7 +166,7 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     if ($_message) {
         $str .= mkerror($_message);
     }
-    $str .= '<form name="loginform" id="loginform"  method="post">';
+    $str .= '<form id="loginform"  method="post">';
     $str .= "\n<fieldset><legend>Login</legend>\n";
     $str .= '<div class="row">';
     $str .= '<label for="username">';

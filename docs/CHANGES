@@ -1,7 +1,13 @@
 =================
 PHPESP CHANGE LOG
 =================
-1.7.2 =>
+1.7.5-dev2 => 1.7.5-dev3
+* FIXED register_globals being on dependancy
+
+1.7.5-dev => 1.7.5-dev2
+* FIXED form login problem
+
+1.7.2 => 1.7.5-dev
 * Added form based login
 
 v1.7.1 => 1.7.2
