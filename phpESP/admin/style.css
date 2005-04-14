@@ -1,0 +1,103 @@
+html,body {
+
+}
+
+#main {
+	background-color: #0099FF;
+}
+
+#header tt {
+	font-size: 130%;
+}
+
+.contents {
+        border: none;
+        width: 95%;
+        margin: auto;
+        text-align: center;
+        background-color: #FFFFFF;
+
+}
+
+.contents table {
+	margin: auto;
+	background-color: #FFFFFF;
+	width: 95%;
+}
+
+.contents table .header {
+	background-color: #DDDDDD;
+}
+
+.contents table th {
+	text-align: left;
+}
+
+.contents table .right{
+	text-align: right;
+	padding-right: 5px;
+}
+
+.contents table .left{
+	text-align: left;
+}
+
+.contents table .center{
+	text-align: center;
+}
+
+.contents table .user {
+	width: 300px;
+	border: 1px solid black;
+}
+
+#footer {
+	width: 100%;
+	text-align: center;
+	font-size: x-small;
+}
+
+.red {
+	color: #FF0000;
+}
+
+.large {
+	font-size: x-large;
+}
+
+img {
+	border: 0px;
+}
+
+.line1 {
+	width: 100%;
+	color: #FFFFFF;
+}
+
+.createSurvey {
+	width: 90%;
+}
+
+.warn {
+	color: #FF0000;
+	font-size: large;
+}
+
+.error {
+	color: #FF0000;
+	font-size: large;
+}
+
+.numbered {
+	text-align: right;
+	padding-right: 5px;
+}
+
+.help {
+	background-color: #FFFFFF;
+	width: 98%;
+}
+
+.help td {
+	text-align: left;
+}

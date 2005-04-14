@@ -16,10 +16,12 @@ else
 $bg = '';
 
 ?>
+</div>
 </form>
+<div class="contents">
 <h2><?php echo(_('Export Data')); ?></h2>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<table border="0" align="center" cellspacing="0" cellpadding="4" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
+<table cellspacing="0" cellpadding="4">
 <?php
 
 /* If the Survey ID is not given, then build
@@ -27,14 +29,14 @@ $bg = '';
  */
 if(!$sid) {
 ?>
-	<tr bgcolor="#dddddd">
-		<th align="left"><?php echo(_('ID')); ?></th>
-		<th align="left"><?php echo(_('Name')); ?></th>
-		<th align="left"><?php echo(_('Title')); ?></th>
-		<th align="left"><?php echo(_('Owner')); ?></th>
-		<th align="left"><?php echo(_('Group')); ?></th>
-		<th align="left"><?php echo(_('Status')); ?></th>
-		<th align="left" colspan="2"><?php echo(_('Format')); ?></td>
+	<tr class="header">
+		<th><?php echo(_('ID')); ?></th>
+		<th><?php echo(_('Name')); ?></th>
+		<th><?php echo(_('Title')); ?></th>
+		<th><?php echo(_('Owner')); ?></th>
+		<th><?php echo(_('Group')); ?></th>
+		<th><?php echo(_('Status')); ?></th>
+		<th colspan="2"><?php echo(_('Format')); ?></th>
 	</tr>
 <?php
 	/* load names and titles of all surveys available to
@@ -74,7 +76,7 @@ if(!$sid) {
 		else
 			$bg = $ESPCONFIG['bgalt_color2'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
+	<tr style="background-color: <?php echo($bg); ?>;">
 		<td><?php echo($sid); ?></td>
 		<td><?php echo($name); ?></td>
 		<td><?php echo($title); ?></td>
@@ -82,25 +84,29 @@ if(!$sid) {
 		<td><?php echo($realm); ?></td>
 		<td><?php echo($stat); ?></td>
 		<td style="font-size: xx-small; vertical-align: top;">
-    <form id="export<?php echo($sid) ?>" name="export<?php echo($sid) ?>" action="<?php echo($GLOBALS['ESPCONFIG']['ME']) ?>">
+    <form id="export<?php echo($sid) ?>" action="<?php echo($GLOBALS['ESPCONFIG']['ME']) ?>">
+	<div>
         <select name="type">
-            <option value="csv_full_header" selected>CSV Full Headers</option>
+            <option value="csv_full_header" selected="selected">CSV Full Headers</option>
             <option value="csv_short_header">CSV Short Headers</option>
             <option value="tab">Tab</option>
         </select>
-        <input type="hidden" name="sid" value="<?php echo($sid) ?>">
-        <input type="hidden" name="where" value="">
+        <input type="hidden" name="sid" value="<?php echo($sid) ?>" />
+        <input type="hidden" name="where" value="" />
 			<?php echo('<a href="javascript: exportSubmit(\'export\', document.export'.$sid.');" title="Save CSV Long Header (old method). Save the results for \''.$name.'\' to the survey in CSV Format (Comma Delimted File). Column Titles are based on question text.">' . _('Save On Server') . '</a>');
             echo("\n");?>
 			| <?php
 			echo('<a href="javascript: exportSubmit(\'download\', document.export'.$sid.');" title="Download CSV Long Header (old method). Download the results for \''.$name.'\' to your computer in CSV Format (Comma Delimted File). Column Titles are based on the question text. Click this link and select \'Save\' when prompted by your browser.">' . _('Download') . '</a>'); ?>
-            </form>
+            </div></form>
 		</td>
 	</tr>
 <?php
 	}
 ?>
 </table>
+</div>
+<form method="post" id="null" action="">
+<div class="contents">
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
 <?php
 	return;

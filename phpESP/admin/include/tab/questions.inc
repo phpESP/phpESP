@@ -82,7 +82,7 @@
 		}
 	}
 ?>
-<script language="javascript">
+<script type="text/javascript">
 <!-- // comment
 function clearTextInputs() {
 	var i = 1;
@@ -97,23 +97,26 @@ function validate() {
 }
 // comment -->
 </script>
-<center>
-	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>">
+	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>" />
 	<p>
+<<<<<<< questions.inc
+	<?php echo(_('Edit this question, or click the number of the field you would like to edit:')); ?>
+=======
 	<?php echo(_('Edit this question, or click the number of the question you would like to edit:')); ?>
+>>>>>>> 1.23
 	</p>
 <?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
-	<input type="submit" name="q" value="<?php echo($i); ?>">
+	<input type="submit" name="q" value="<?php echo($i); ?>" />
 <?php } ?>
-	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>">
-	<hr>
-	<b><?php
+	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>" />
+	<hr /> 
+	<strong><?php
 		if(!$curr_q) {
 			echo(_('New Question'));
 		} else {
 			echo(_('Field')." $curr_q");
-		} ?></b>
-	<table border="0">
+		} ?></strong>
+	<table>
 		<tr>
 			<th>&nbsp;</th>
 			<th><?php echo(_('Question Name')); ?></th>
@@ -123,8 +126,8 @@ function validate() {
 			<th><?php echo(_('Required')); ?>?</th>
 		</tr><tr>
 			<td>&nbsp;</td>
-			<td align="center"><?php echo(mktext('name',12)); ?></td>
-			<td align="center"><?php
+			<td><?php echo(mktext('name',12)); ?></td>
+			<td><?php
 				if($updated && empty($HTTP_POST_VARS['type_id'])) $HTTP_POST_VARS['type_id'] = 2;
 				$sql = 'SELECT id, type FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' WHERE id != 99';
 				$result = execute_sql($sql);
@@ -135,15 +138,15 @@ function validate() {
 				}
 				echo(mkselect('type_id',$arr));
 			?></td>
-			<td align="center"><?php
+			<td><?php
 				if(empty($HTTP_POST_VARS['length'])) $HTTP_POST_VARS['length'] = 0;
 				echo(mktext("length",6));
 			?></td>
-			<td align="center"><?php
+			<td><?php
 				if(empty($HTTP_POST_VARS['precise'])) $HTTP_POST_VARS['precise'] = 0;
 				echo(mktext("precise",6));
 			?></td>
-			<td align="center"><?php
+			<td><?php
 				if(empty($HTTP_POST_VARS['required'])) $HTTP_POST_VARS['required'] = 'N';
 				echo(mkselect("required",array(
 					"Y" => _('Yes') . '               ',
@@ -151,8 +154,8 @@ function validate() {
 				))); ?></td>
 		</tr>
 		<tr>
-			<th align="left" valign="top">Text</th>
-			<td colspan="5" valign="top"><?php
+			<th>Text</th>
+			<td colspan="5"><?php
 				echo(mktextarea("content",4,60,"VIRTUAL"));
 			?></td>
 		</tr>
@@ -168,8 +171,8 @@ function validate() {
 		include($GLOBALS['ESPCONFIG']['include_path']."/tab/questions_options".$GLOBALS['ESPCONFIG']['extension']);
 	}
 ?>
-	<hr>
+	<hr />
 <?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
-	<input type="submit" name="q" value="<?php echo($i); ?>">
+	<input type="submit" name="q" value="<?php echo($i); ?>" />
 <?php } ?>
-	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>">
+	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>" />

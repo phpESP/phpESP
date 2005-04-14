@@ -48,12 +48,12 @@
 <h2><?php echo(_('Manage Groups')); ?></h2>
 <?php if(!empty($errstr)) echo('<p>'. mkerror($errstr) ."</p>\n"); ?>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
-<input type="hidden" name="where" value="groups">
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="<?php echo($bg); ?>">
-		<th align="left"><?php echo(_('Group')); ?></th>
-		<th align="left"><?php echo(_('Description')); ?></th>
-		<th align="left"><?php echo(_('Members')); ?></th>
+<input type="hidden" name="where" value="groups" />
+<table cellspacing="0" cellpadding="4" style="width: 550px;">
+	<tr style="background-color: <?php echo($bg); ?>;">
+		<th><?php echo(_('Group')); ?></th>
+		<th><?php echo(_('Description')); ?></th>
+		<th><?php echo(_('Members')); ?></th>
 		<td>&nbsp;</td>
 	</tr>
 <?php
@@ -67,13 +67,14 @@
 		else
 			$bg =& $ESPCONFIG['bgalt_color1'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
-		<td><?php echo($realm);  ?></td>
-		<td><?php echo($title);  ?></td>
-		<td><?php echo($count);  ?></td>
-		<td><?php echo ($count ?
-			"&nbsp;" :
-			"<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=groups&del=$realm\">". _('Delete') ."</a>"); ?></td>
+	<tr style="background-color: <?php echo($bg); ?>;">
+		<td class="left"><?php echo($realm);  ?></td>
+		<td class="left"><?php echo($title);  ?></td>
+		<td class="left"><?php echo($count);  ?></td>
+                <td class="left"><?php echo ($count ?
+                        "&nbsp;" :
+                        "<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=groups&del=$realm")."\">".
+_('Delete') ."</a>"); ?></td>
 	</tr>
 <?php
 	}
@@ -85,11 +86,11 @@
 	else
 		$bg =& $ESPCONFIG['bgalt_color1'];
 ?>
-	<tr bgcolor="<?php echo($bg); ?>">
-		<td><input type="text" size="16" maxlength="16" name="r"></td>
-		<td><input type="text" size="32" maxlength="64" name="t"></td>
+	<tr style="background-color: <?php echo($bg); ?>;">
+		<td class="left"><input type="text" size="16" maxlength="16" name="r" /></td>
+		<td class="left"><input type="text" size="32" maxlength="64" name="t" /></td>
 		<td>&nbsp;</td>
-		<td><input type="submit" name="add" value="<?php echo(_('Add')); ?>"</td>
+		<td class="left"><input type="submit" name="add" value="<?php echo(_('Add')); ?>"/></td>
 	</tr>
 </table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>

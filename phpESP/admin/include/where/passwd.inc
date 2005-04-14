@@ -29,31 +29,31 @@
 		echo(mkerror(_('New passwords do not match or are blank.')));
 	}
 ?>
-<input type="hidden" name="where" value="passwd">
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>">
+<input type="hidden" name="where" value="passwd" />
+<table cellspacing="0" cellpadding="4">
 <tr>
-	<th align="right" bgcolor="<?php echo($ESPCONFIG['bgalt_color2']); ?>">
+	<th class="right">
 	<?php echo(_('Username')); ?></th>
-	<td bgcolor="<?php echo($ESPCONFIG['bgalt_color1']); ?>">
+	<td class="left">
 	<?php echo('<tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>'); ?></td>
 </tr><tr>
-	<th align="right" bgcolor="<?php echo($ESPCONFIG['bgalt_color2']); ?>">
+	<th class="right">
 	<?php echo(_('Old Password')); ?></th>
-	<td bgcolor="<?php echo($ESPCONFIG['bgalt_color1']); ?>">
+	<td class="left">
 	<?php echo(mkpass('oldpass')); ?></td>
 </tr><tr>
-	<th align="right" bgcolor="<?php echo($ESPCONFIG['bgalt_color2']); ?>">
+	<th class="right">
 	<?php echo(_('New Password')); ?></th>
-	<td bgcolor="<?php echo($ESPCONFIG['bgalt_color1']); ?>">
+	<td class="left">
 	<?php echo(mkpass('newpass1')); ?></td>
 </tr><tr>
-	<th align="right" bgcolor="<?php echo($ESPCONFIG['bgalt_color2']); ?>">
+	<th class="right">
 	<?php echo(_('Confirm New Password')); ?></th>
-	<td bgcolor="<?php echo($ESPCONFIG['bgalt_color1']); ?>">
+	<td class="left">
 	<?php echo(mkpass('newpass2')); ?></td>
 </tr><tr>
-	<th colspan="2" bgcolor="<?php echo($ESPCONFIG['bgalt_color2']); ?>">
-	<input type="submit" value="<?php echo(_('Change Password')); ?>">
+	<th colspan="2" class="center">
+	<input type="submit" value="<?php echo(_('Change Password')); ?>" />
 	</th>
 </tr>
 </table>

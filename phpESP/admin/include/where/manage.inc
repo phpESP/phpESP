@@ -22,15 +22,8 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
         echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>');
     }
 ?></p>
-<table border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="<?php echo($GLOBALS['ESPCONFIG']['active_bgcolor']); ?>" width="95%">
-    <tr>
-        <td>
-            <!-- <font size="+1"><?php echo(_('Choose a function')); ?>:</font> -->
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <table border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+			<!-- Survey Administration -->
+			<div id="surveyAdmin">
                         <ul>
                             <li><a href="<?php echo("${base}?where=new");     ?>"><?php echo(_('Create a New Survey')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=edit");    ?>"><?php echo(_('Edit an Existing Survey')); ?></a></li>
@@ -44,14 +37,21 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <li><a href="<?php echo("${base}?where=access");  ?>"><?php echo(_('Change Access To a Survey')); ?></a> (<?php echo(_('Limit Respondents.')); ?>)</li>
                             <?php } ?>
                         </ul>
+			</div>
+			<!-- End Survey Administration -->
+			<!-- Survey Results -->
+			<div id="surveyResults">
                         <ul>
                             <li><a href="<?php echo("${base}?where=results"); ?>"><?php echo(_('View Results from a Survey')); ?></a></li>
-                            <li><a href="<?php echo("${base}?where=results&type=cross"); ?>"><?php echo(_('Cross Tabulate Survey Results')); ?></a></li>
+                            <li><a href="<?php echo(htmlentities("${base}?where=results&type=cross")); ?>"><?php echo(_('Cross Tabulate Survey Results')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=report");  ?>"><?php echo(_('View a Survey Report')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data')); ?></a></li>
                         </ul>
-
+			</div>
+			<!-- End Survey Results -->
                         <?php if($GLOBALS['ESPCONFIG']['auth_design']) { ?>
+			<!-- User Administration -->
+			<div id="userAdmin">
                         <ul>
                             <?php
                             if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap') { ?>
@@ -70,21 +70,25 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <?php	}
                             } ?>
                         </ul>
+			</div>
+			<!-- End User Administration -->
                         <?php } /* AUTH_DESIGN */ ?>
-
-                        <ul>
+                        <!-- Guide -->
+			<div id="guide">
+			<ul>
                             <!--				<li><a href="<?php echo("${base}?where=TODO");    ?>"><?php echo(_('View the list of things still to do')); ?></a>
                             <?php echo(_('(development goals)')); ?></li> -->
                             <li><a href="<?php echo("${base}?where=guide");  ?>"><?php echo(_('View the User &amp; Administrator Guide')); ?></a></li>
                         </ul>
-
+			</div>
+			<!-- End Guide -->
                         <?php if($GLOBALS['ESPCONFIG']['auth_design']) { ?>
+			<!-- Logout -->
+			<div id="logout">
                         <ul>
                             <li><a href="<?php echo("${base}?where=logout");  ?>"><?php echo(_('Log out')); ?></a></li>
                         </ul>
+			</div>
+			<!-- End Logout -->
                         <?php } /* AUTH_DESIGN */ ?>
-            </td></tr></table>
-        </td>
-    </tr>
-</table>
 &nbsp;

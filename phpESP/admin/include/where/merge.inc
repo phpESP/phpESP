@@ -32,11 +32,11 @@
 					$HTTP_SESSION_VARS['acl']['seeall'] == 'Y') ||
 				auth_no_access('to access this survey')) {
 ?>
-<table bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" border="1" width="95%"><tr><td>
+<table><tr><td>
 <?php
 			$ret = survey_merge(split(" ",$HTTP_GET_VARS['sids']),$HTTP_GET_VARS['precision'],$HTTP_GET_VARS['totals']);
 			if(!empty($ret))
-				echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
+				echo("<span class=\"error\">$ret</span>\n");
 ?>
 </td></tr></table>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
@@ -62,7 +62,7 @@
 	$result = execute_sql($sql);
 
 ?>
-<SCRIPT LANGUAGE="JavaScript">
+<script type="text/javascript">
 <!-- // Begin // This should really go into <HEAD> tag
 
 function windowOpener(windowTitle,errMsg) {
@@ -120,18 +120,18 @@ function BumpUp(box)  {
 	}
 }
 // End -->
-</SCRIPT>
+</script>
 <h2><?php echo(_('Merge Survey Results')); ?></h2>
 <?php echo(_('Pick Surveys to Merge')); ?>
-<table border="0" cellspacing="0" cellpadding="4" align="center" bgcolor="<?php echo($ESPCONFIG['active_bgcolor']); ?>" width="95%">
-	<tr bgcolor="#dddddd">
-		<th width="33%"><?php echo(_('List of Surveys')); ?></th>
-		<th width="34%">&nbsp;</th>
-		<th width="33%"><?php echo(_('Surveys to Merge')); ?></th>
+<table cellspacing="0" cellpadding="4">
+	<tr>
+		<th><?php echo(_('List of Surveys')); ?></th>
+		<th>&nbsp;</th>
+		<th><?php echo(_('Surveys to Merge')); ?></th>
 	</tr>
 	<tr>
-		<td align="center">
-		<select multiple size="10" name="list1">
+		<td class="center">
+		<select multiple="multiple" size="10" name="list1">
 			<?php while(list($sid, $name, $title, $owner) = fetch_row($result)) { 
                     $result->MoveNext()
                     ?>
@@ -139,13 +139,14 @@ function BumpUp(box)  {
 			<?php } db_close($result); ?>
 		</select>
 		</td>
-		<td align="center">
-<input type="button" value="   &gt;&gt;   " onclick="move(this.form.list1,this.form.list2)" name="B1"><br>
-<input type="button" value="   &lt;&lt;   " onclick="move(this.form.list2,this.form.list1)" name="B2"><br>
-<input type="button" value="Merge" onclick="merge(this.form.list2)" name="B3">
+		<td class="center">
+<input type="button" value="   &gt;&gt;   " onclick="move(this.form.list1,this.form.list2)" name="B1" /><br />
+<input type="button" value="   &lt;&lt;   " onclick="move(this.form.list2,this.form.list1)" name="B2" /><br />
+<input type="button" value="Merge" onclick="merge(this.form.list2)" name="B3" />
 		</td>
-		<td align="center">
-		<select multiple size="10" name="list2">
+		<td class="center">
+		<select multiple="multiple" size="10" name="list2">
+		<option></option>
 		</select>
 		</td>
 	</tr>

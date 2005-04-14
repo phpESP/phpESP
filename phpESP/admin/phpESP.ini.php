@@ -88,8 +88,8 @@ $ESPCONFIG['main_bgcolor']      = '#FFFFFF';
 $ESPCONFIG['link_color']        = '#0000CC';
 $ESPCONFIG['vlink_color']       = '#0000CC';
 $ESPCONFIG['alink_color']       = '#0000CC';
-$ESPCONFIG['table_bgcolor']     = '#0099FF';
-$ESPCONFIG['active_bgcolor']    = '#FFFFFF';
+#$ESPCONFIG['table_bgcolor']     = '#0099FF';
+#$ESPCONFIG['active_bgcolor']    = '#FFFFFF';
 $ESPCONFIG['dim_bgcolor']       = '#3399CC';
 $ESPCONFIG['error_color']       = '#FF0000';
 $ESPCONFIG['warn_color']        = '#FF0000';
@@ -127,13 +127,13 @@ $ESPCONFIG['tabs'] = array('general', 'questions', 'preview', 'order', 'finish')
 $ESPCONFIG['ME'] = $server['PHP_SELF'];
 
 // CSS stylesheet to use for designer interface
-$ESPCONFIG['style_sheet'] = null;
+$ESPCONFIG['style_sheet'] = $ESPCONFIG['base_url'] . 'admin/style.css';
 
 // Status of gettext extension
 $ESPCONFIG['gettext'] = extension_loaded('gettext');
 
 // HTML page title
-$ESPCONFIG['title'] = $ESPCONFIG['name'] .', v'. $ESPCONFIG['version'];
+$ESPCONFIG['title'] = $ESPCONFIG['name'] .', v('. $ESPCONFIG['version'].')';
 
 // phpESP include path
 $ESPCONFIG['include_path'] = ESP_BASE . '/admin/include/';
