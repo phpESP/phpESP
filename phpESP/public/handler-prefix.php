@@ -51,6 +51,7 @@
     require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 
     $GLOBALS['errmsg'] = '';
+    session_start();
 
     if(isset($HTTP_GET_VARS['sid'])) {
         $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
@@ -80,18 +81,18 @@
         //  4. the remote ip address
         if (!empty($HTTP_GET_VARS['userid'])) {
             $HTTP_POST_VARS['userid'] = $HTTP_GET_VARS['userid'];
-        } elseif(!empty($HTTP_SERVER_VARS['REMOTE_USER'])) {
+        } elseif(!empty($_SERVER['REMOTE_USER'])) {
             $HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_USER'];
-        } elseif(!empty($HTTP_SERVER_VARS['QUERY_STRING'])) {
-            $HTTP_POST_VARS['userid'] = urldecode($HTTP_SERVER_VARS['QUERY_STRING']);
+        } elseif(!empty($_SERVER['QUERY_STRING'])) {
+            $HTTP_POST_VARS['userid'] = urldecode($_SERVER['QUERY_STRING']);
         } else {
-            $HTTP_POST_VARS['userid'] = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+            $HTTP_POST_VARS['userid'] = $_SERVER['REMOTE_ADDR'];
         }
     }
 
     if(empty($HTTP_POST_VARS['referer']))
-        $HTTP_POST_VARS['referer'] = isset($HTTP_SERVER_VARS['HTTP_REFERER']) ?
-            $HTTP_SERVER_VARS['HTTP_REFERER'] : '';
+        $HTTP_POST_VARS['referer'] = isset($_SERVER['HTTP_REFERER']) ?
+            $_SERVER['HTTP_REFERER'] : '';
 
     if (empty($HTTP_POST_VARS['rid']))
         $HTTP_POST_VARS['rid'] = '';
@@ -104,38 +105,38 @@
         require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
             $espuser = ''; $esppass = '';
-            if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']))
-                $espuser = $HTTP_SERVER_VARS['PHP_AUTH_USER'];
-            if (isset($HTTP_SERVER_VARS['PHP_AUTH_PW']))
-                $esppass = $HTTP_SERVER_VARS['PHP_AUTH_PW'];
+            if (isset($_SERVER['PHP_AUTH_USER']))
+                $espuser = $_SERVER['PHP_AUTH_USER'];
+            if (isset($_SERVER['PHP_AUTH_PW']))
+                $esppass = $_SERVER['PHP_AUTH_PW'];
         }
         elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
-            session_start();
             if (!isset($HTTP_POST_VARS['username'])) {
                 $HTTP_POST_VARS['username'] = "";
             }
+            if ($HTTP_POST_VARS['username'] != "") {
+                $_SESSION['espuser'] = $HTTP_POST_VARS['username'];
+            }
+            if (isset($_SESSION['espuser'])) {
+                $espuser = $_SESSION['espuser'];
+            }
+            else {
+                $espuser = "";
+            }
+
             if (!isset($HTTP_POST_VARS['password'])) {
                 $HTTP_POST_VARS['password'] = "";
             }
-            if (!isset($HTTP_SESSION_VARS['esoyser'])) {
-                session_register('espuser');
+            if ($HTTP_POST_VARS['password'] != "") {
+                $_SESSION['esppass'] = $HTTP_POST_VARS['password'];
             }
-            if (!isset($HTTP_SESSION_VARS['esppas'])) {
-                session_register('esppass');
+            if (isset($_SESSION['esppass'])) {
+                $esppass = $_SESSION['esppass'];
+            }
+            else {
+                $esppass = "";
             }
 
-            if ($HTTP_POST_VARS['username'] != "") {
-                $espuser = $HTTP_POST_VARS['username'];
-            }
-            elseif ($HTTP_SESSION_VARS['espuser'] != "") {
-                $espuser = $HTTP_SESSION_VARS['espuser'];
-            }
-            if ($HTTP_POST_VARS['password'] != "") {
-                    $esppass = $HTTP_POST_VARS['password'];
-            }
-            elseif ($HTTP_SESSION_VARS['esppass'] != "") {
-                    $esppass = $HTTP_SESSION_VARS['esppass'];
-            }
         }
 
         if(!survey_auth($sid, $espuser, _addslashes($esppass), $_css, $_title))
