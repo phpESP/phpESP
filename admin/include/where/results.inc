@@ -53,7 +53,7 @@
 <a href="<?php echo($GLOBALS['ESPCONFIG']['ME']."?where=help"); ?>" target="_blank">Help</a>
     </font>
     <br /><br />
-<table cellpadding="4" cellspacing="0">
+<table class="results" cellpadding="4" cellspacing="0">
     <tr><td>
     <?php
         $precision = '';

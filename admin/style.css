@@ -10,6 +10,13 @@ html,body {
 	font-size: 130%;
 }
 
+#surveyAdmin, #surveyResults, #userAdmin, #guide, #logout {
+    width: 50%;
+    margin: auto;
+}
+#surveyAdmin, #surveyResults, #userAdmin, #guide, #logout ul{
+    text-align: left;
+}
 .contents {
         border: none;
         width: 95%;
@@ -49,6 +56,11 @@ html,body {
 .contents table .user {
 	width: 300px;
 	border: 1px solid black;
+}
+
+.contents .results {
+    border: 1px solid;
+    text-align: left;
 }
 
 #footer {
