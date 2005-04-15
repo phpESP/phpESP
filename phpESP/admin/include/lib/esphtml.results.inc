@@ -193,16 +193,16 @@ function mkresavg($counts,$total,$precision,$showTotals,$length) {
 		$length = 5;
 	$width = 200 / $length;
 ?>
-<table border="0" cellspacing="0" cellpadding="0">
+<table cellspacing="0" cellpadding="0">
 	<tr>
 		<td></td>
-		<td align="center" colspan="<?php echo($length+2); ?>"><?php echo(_('Average rank')); ?></td>
+		<td colspan="<?php echo($length+2); ?>"><?php echo(_('Average rank')); ?></td>
 	</tr>
 	<tr>
 		<td></td>
 		<?php
 			for ($i = 0; $i < $length; )
-				echo( "<td align=\"right\" width=\"$width\">". ++$i ."</td>\n");
+				echo( "<td width=\"$width\">". ++$i ."</td>\n");
 		?>
 		<td width="20"></td>
 		<td></td>
@@ -216,8 +216,8 @@ function mkresavg($counts,$total,$precision,$showTotals,$length) {
 			$bg = $GLOBALS['ESPCONFIG']['bgalt_color2'];
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
-		<td align="right"><?php echo($content); ?>&nbsp;</td>
-		<td align="left" width="220" colspan="<?php echo($length+1); ?>">
+		<td><?php echo($content); ?>&nbsp;</td>
+		<td colspan="<?php echo($length+1); ?>">
 <?php
 		if($avg) {
 			echo('<img src="'. $GLOBALS['ESPCONFIG']['image_url'] .'hbar_l.gif" height="9" width="4">');
@@ -227,7 +227,7 @@ function mkresavg($counts,$total,$precision,$showTotals,$length) {
 		}
 ?>
 		</td>
-		<td align="right" width="60">(<?php printf("%.${precision}f",$avg); ?>)</td>
+		<td width="60">(<?php printf("%.${precision}f",$avg); ?>)</td>
 	</tr>
 <?php
 	} // end while
