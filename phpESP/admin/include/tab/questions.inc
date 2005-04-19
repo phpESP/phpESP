@@ -86,12 +86,29 @@
 <!-- // comment
 function clearTextInputs() {
 	var i = 1;
-	while (document.phpesp.elements["choice_content_" + i]) {
-		document.phpesp.elements["choice_content_" + i].value = "";
-		i++;
-
-        }
+    while (document.forms[1].elements["choice_content_" + i]) {
+        document.forms[1].elements["choice_content_" + i].value = "";
+        i++;
+    }
 }
+
+function addAnswerLine() {
+    var el = document.getElementById('answerlines');
+    var numchoice = document.getElementById('num_choices').value;
+    numchoice++;
+    var tablerow = el.insertRow(numchoice+1);
+    var tablecell = tablerow.insertCell(-1);
+    tablecell.innerHTML = numchoice+".";
+    tablecell.className = "numbered";
+    tablecell = tablerow.insertCell(-1);
+    var text = "<input type=\"hidden\" name=\"choice_id_"+numchoice+"\" value=\"\" />\n";
+    text = text+"<input type=\"text\" size=\"60\" name=\"choice_content_"+numchoice+"\" value=\"\" />\n";
+    tablecell.innerHTML = text;
+    tablecell.className = "left";
+    document.getElementById('num_choices').value = numchoice;
+}
+    
+    
 function validate() {
     return true;
 }
@@ -99,11 +116,7 @@ function validate() {
 </script>
 	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>" />
 	<p>
-<<<<<<< questions.inc
-	<?php echo(_('Edit this question, or click the number of the field you would like to edit:')); ?>
-=======
 	<?php echo(_('Edit this question, or click the number of the question you would like to edit:')); ?>
->>>>>>> 1.23
 	</p>
 <?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
 	<input type="submit" name="q" value="<?php echo($i); ?>" />
@@ -114,7 +127,7 @@ function validate() {
 		if(!$curr_q) {
 			echo(_('New Question'));
 		} else {
-			echo(_('Field')." $curr_q");
+			echo(_('Question')." $curr_q");
 		} ?></strong>
 	<table>
 		<tr>

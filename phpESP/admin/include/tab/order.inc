@@ -41,25 +41,27 @@ function move(f,bDir,sName) {
 }
 
 function validate() {
-        var orderList = "";
-        for (var i=0; i < document.tabs.questions.length; i++){
-                orderList = orderList + document.tabs.questions.options[i].value;
-                if (i + 1 != document.tabs.questions.length){
-                        orderList = orderList + "|";
-                }
+    var tabs = document.getElementById('tabs');
+    var orderList = "";
+    for (var i=0; i < tabs.questions.length; i++){
+        orderList = orderList + tabs.questions.options[i].value;
+        if (i + 1 != tabs.questions.length){
+            orderList = orderList + "|";
         }
-        document.tabs.questions_order.value = orderList;
+    }
+    tabs.questions_order.value = orderList;
 }
 
 function removeItem() {
     var el = document.getElementById('questions');
     var idx = el.selectedIndex;
+    var tabs = document.getElementById('tabs');
     if (idx == -1) {
         alert("You must first select an item to delete");
         return false;
     } else {
-        document.tabs.removeit.value = 1;
-        document.tabs.submit();
+        tabs.removeit.value = 1;
+        tabs.submit();
     }
 }
 // comment -->
