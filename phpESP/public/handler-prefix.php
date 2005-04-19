@@ -73,6 +73,18 @@
         return;
     }
 
+    if(!isset($_css)) {
+        $_css = "";
+    }
+
+    if (!isset($_title)) {
+        $_title = "";
+    }
+
+    if (!isset($survey_name)) {
+        $survey_name = "";
+    }
+
     if(empty($HTTP_POST_VARS['userid'])) {
         // find remote user id (takes the first non-empty of the following)
         //  1. a GET variable named 'userid'
