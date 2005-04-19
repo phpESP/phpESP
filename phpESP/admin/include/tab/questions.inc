@@ -111,7 +111,7 @@ function validate() {
 		if(!$curr_q) {
 			echo(_('New Question'));
 		} else {
-			echo(_('Field')." $curr_q");
+			echo(_('Question')." $curr_q");
 		} ?></b>
 	<table border="0">
 		<tr>
