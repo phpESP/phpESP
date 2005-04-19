@@ -140,7 +140,7 @@
 ?>
 </div>
 </form>
-<form method="post" onsubmit="validate();" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
+<form method="post" id="tabs" onsubmit="validate();" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
 <div>
 
 <h2>Survey Design</h2>
