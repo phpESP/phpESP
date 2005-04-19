@@ -101,7 +101,7 @@
                 exit;
             }
 ?>
-<script language="JavaScript">
+<script type="text/javascript">
 <!--
 window.location="<?php echo($thank_url); ?>"
 //-->
