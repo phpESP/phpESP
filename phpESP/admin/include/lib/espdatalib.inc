@@ -207,6 +207,9 @@ function ErrorMsg() {
 }
 /* }}} */
 
+/* {{{ proto password_upgrade(string $username, string $password, string $table) {
+    Migrates passwords from mySQL pre 4.1 to 4.1 crypt.
+    */
 function password_upgrade($username, $password, $table) {
     $cfg =& $GLOBALS['ESPCONFIG'];
 
@@ -236,3 +239,4 @@ function password_upgrade($username, $password, $table) {
         }
     }
 }
+/* }}} */
