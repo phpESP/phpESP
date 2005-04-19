@@ -35,45 +35,45 @@
 	 * from here on, regardless of the INI settings.
 	 */
 	if(ini_get('register_globals')) {
-		$HTTP_SESSION_VARS['survey_id']  = &$survey_id;
-		$HTTP_SESSION_VARS['new_survey'] = &$new_survey;
-		$HTTP_SESSION_VARS['last_tab']   = &$last_tab;
-		$HTTP_SESSION_VARS['curr_q']     = &$curr_q;
+		$_SESSION['survey_id']  = &$survey_id;
+		$_SESSION['new_survey'] = &$new_survey;
+		$_SESSION['last_tab']   = &$last_tab;
+		$_SESSION['curr_q']     = &$curr_q;
 	}
 	
 	global $errstr;
 	
 	if(@$HTTP_GET_VARS['where'] == 'new') {
-		$HTTP_SESSION_VARS['survey_id']  = '';
-		$HTTP_SESSION_VARS['new_survey'] = '';
-		$HTTP_SESSION_VARS['last_tab']   = '';
-		$HTTP_SESSION_VARS['curr_q']     = '';
+		$_SESSION['survey_id']  = '';
+		$_SESSION['new_survey'] = '';
+		$_SESSION['last_tab']   = '';
+		$_SESSION['curr_q']     = '';
 	}		
 	
 	if(!empty($HTTP_GET_VARS['newid'])) {
-		$HTTP_SESSION_VARS['survey_id']  = intval($HTTP_GET_VARS['newid']);
+		$_SESSION['survey_id']  = intval($HTTP_GET_VARS['newid']);
 		$HTTP_POST_VARS['tab']           = 'general';
-		$HTTP_SESSION_VARS['last_tab']   = '';
-		$HTTP_SESSION_VARS['new_survey'] = false;
+		$_SESSION['last_tab']   = '';
+		$_SESSION['new_survey'] = false;
 	}
 
-	if(empty($HTTP_SESSION_VARS['survey_id'])) {
-		$HTTP_SESSION_VARS['survey_id']  = '';
-		$HTTP_SESSION_VARS['new_survey'] = true;
+	if(empty($_SESSION['survey_id'])) {
+		$_SESSION['survey_id']  = '';
+		$_SESSION['new_survey'] = true;
 	}
 
-	if(empty($HTTP_SESSION_VARS['new_survey']))
-		$HTTP_SESSION_VARS['new_survey'] = empty($HTTP_SESSION_VARS['survey_id']);
+	if(empty($_SESSION['new_survey']))
+		$_SESSION['new_survey'] = empty($_SESSION['survey_id']);
 		
 	/* check ACL to see if user is allowed to design
 	 * _this_ survey */
-	if(!empty($HTTP_SESSION_VARS['survey_id'])) {
-		$srealm = auth_get_survey_realm($HTTP_SESSION_VARS['survey_id']);
-		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-				!auth_is_owner($HTTP_SESSION_VARS['survey_id'], $HTTP_SESSION_VARS['acl']['username']) &&
+	if(!empty($_SESSION['survey_id'])) {
+		$srealm = auth_get_survey_realm($_SESSION['survey_id']);
+		if($_SESSION['acl']['superuser'] != 'Y' &&
+				!auth_is_owner($_SESSION['survey_id'], $_SESSION['acl']['username']) &&
 				!in_array($srealm, array_intersect(
-						$HTTP_SESSION_VARS['acl']['pdesign'],
-						$HTTP_SESSION_VARS['acl']['pall'])) &&
+						$_SESSION['acl']['pdesign'],
+						$_SESSION['acl']['pall'])) &&
 				!auth_no_access(_('to access this form'))) {
 			return;
 		}
@@ -81,8 +81,8 @@
 
 	/* check user's ACL to see if they have rights to
 	 * edit/create _any_ survey */
-	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-			count($HTTP_SESSION_VARS['acl']['pdesign']) < 1 &&
+	if($_SESSION['acl']['superuser'] != 'Y' &&
+			count($_SESSION['acl']['pdesign']) < 1 &&
 			!auth_no_access(_('to access this form'))) {
 		return;
 	}
@@ -97,7 +97,7 @@
 		
 /* XXX I18n do not translate */
 	if(stristr($tab,'continue')) {
-		switch($HTTP_SESSION_VARS['last_tab']) {
+		switch($_SESSION['last_tab']) {
 			case 'general':
 				$tab='questions';
 				break;
@@ -120,7 +120,7 @@
 			if(!empty($x) && !empty($y)) {
 				break;
 			}
-			$tab = $HTTP_SESSION_VARS['last_tab'];
+			$tab = $_SESSION['last_tab'];
 		}
 	}
 	if(empty($tab))
@@ -136,7 +136,7 @@
 	}
 	
 	$errstr = '';
-	$updated = survey_update($HTTP_SESSION_VARS['survey_id'],$tab,$HTTP_SESSION_VARS['last_tab']);
+	$updated = survey_update($_SESSION['survey_id'],$tab,$_SESSION['last_tab']);
 ?>
 </div>
 </form>
@@ -150,11 +150,11 @@
 </span>
 
 <table cellspacing="0" cellpadding="0">
-  <tr style="vertical-align: bottom">
+  <tr class="tabheader">
     <td>
       <input type="hidden" name="where" value="tab" />
 	  <table cellspacing="0" cellpadding="0">
-		<tr>
+		<tr class="tabheader">
 		  <td><input type="image" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif" style="width: 160px; height: 43px;" /></td>
 		  <td><input type="image" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" style="width: 186px; height: 43px;" /></td>
 		  <td><input type="image" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif" style="width: 126px; height: 43px;" /></td>
@@ -166,12 +166,12 @@
   </tr>
   <tr>
     <td>
-<?php include($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']); $HTTP_SESSION_VARS['last_tab'] = $tab; ?>
+<?php include($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']); $_SESSION['last_tab'] = $tab; ?>
     </td>
   </tr>
 </table>
 <?php if($tab=='finish') {echo('&nbsp;'); return;} ?>
-<?php if($HTTP_SESSION_VARS['new_survey']) { ?>
+<?php if($_SESSION['new_survey']) { ?>
 <?php echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')); ?><br />
 <input type="submit" name="where" value="Cancel" onclick='return cancelConfirm()' />
 <?php if($tab=='preview') { ?>
