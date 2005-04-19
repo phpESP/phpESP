@@ -82,6 +82,9 @@ function survey_auth($sid, $username, $password, $css, $title) {
             return(false);
         }
         elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            if (!isset($survey_name)) {
+                $survey_name = "";
+            }
             if (isset($GLOBALS['_GET']['name'])) {
                 $survey_name = $GLOBALS['_GET']['name'];
             }
