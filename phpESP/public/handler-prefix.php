@@ -155,8 +155,7 @@
             return;
 
         if (auth_get_option('resume')) {
-            $HTTP_POST_VARS['rid'] = auth_get_rid($sid, $espuser,
-                    $HTTP_POST_VARS['rid']);
+            $HTTP_POST_VARS['rid'] = auth_get_rid($sid, $espuser, $HTTP_POST_VARS['rid']);
 
             if (!empty($HTTP_POST_VARS['rid']) && (empty($HTTP_POST_VARS['sec']) ||
                     intval($HTTP_POST_VARS['sec']) < 1))
