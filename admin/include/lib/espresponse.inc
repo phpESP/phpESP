@@ -120,6 +120,7 @@
     Reads current form variables from HTTP_POST_VARS.
     Returns the ID for the response. */
     function response_insert($sid,$section,$rid) {
+        global $HTTP_POST_VARS;
         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
             $userid = isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']) ?  $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'] : '';
         }
@@ -173,7 +174,6 @@
                     if($tid == 10) { // numeric
                     $bareval = ereg_replace("[^0-9.\-]*(-?[0-9]*\.?[0-9]*).*", '\1', $bareval);
                     }
-
                     if(ereg("[^ \t\n]",$bareval)) {
                         $val = _addslashes($bareval);
                         $sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,response ) VALUES ( ${rid},${qid},${val} )";
@@ -724,8 +724,14 @@
             'survey.name' => $name,
             'survey.response' => $rid,
         );
-        if (isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'])) {
-            $userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            if (isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'])) {
+                $userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
+            }
+            elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+                $userid = $_SESSION['espuser'];
+            }
+
             $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username = " . _addslashes($userid);
             $result = execute_sql($sql);
             if ($result && record_count($result)) {
