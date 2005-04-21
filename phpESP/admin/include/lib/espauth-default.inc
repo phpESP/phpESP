@@ -112,10 +112,30 @@ function survey_auth($sid, $username, $password, $css, $title) {
 		$auth = get_one($sql);
 	}
     if( !$auth ) {
-        header( "WWW-Authenticate: Basic realm=\"$realm\"" );
-        header( 'HTTP/1.0 401 '. _('Unauthorized'));
-        $GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
-        return(false);
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            header( "WWW-Authenticate: Basic realm=\"$realm\"" );
+            header( 'HTTP/1.0 401 '. _('Unauthorized'));
+            $GLOBALS['errmsg'] = mkerror(_('Your account has been disabled or you have already completed this survey.'));
+            return(false);
+        }
+        elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            if (!isset($survey_name)) {
+                $survey_name = "";
+            }
+            if (isset($GLOBALS['_GET']['name'])) {
+                $survey_name = $GLOBALS['_GET']['name'];
+            }
+            elseif (isset($GLOBALS['HTTP_POST_VARS']['name'])) {
+                $survey_name = $GLOBALS['HTTP_POST_VARS']['name'];
+            }
+            $error_message = "";
+            if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
+                $error_message = "Your account has been disabled or you have already completed this survey.";
+            }
+            echo show_login($survey_name, $error_message, $css, $title);
+            exit;
+            return(false);
+        }
     }
     return(true);
 }

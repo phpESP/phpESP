@@ -120,9 +120,13 @@
     Reads current form variables from HTTP_POST_VARS.
     Returns the ID for the response. */
     function response_insert($sid,$section,$rid) {
-        global $HTTP_POST_VARS;
-        $userid = isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']) ?
-        $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'] : '';
+        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+            $userid = isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']) ?  $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'] : '';
+        }
+        elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            $userid = $_SESSION['espuser'];
+        }
+
         if (empty($userid))
         $userid = $HTTP_POST_VARS['userid'];
 
