@@ -19,7 +19,7 @@
 	$bg = '';
 
 	if ($sid) {
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+		if($_SESSION['acl']['superuser'] == 'Y') {
 			$sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
 				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid";
 			$sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate FROM ".$GLOBALS['ESPCONFIG']['access_table']." a
@@ -27,16 +27,16 @@
 		} else {
 			$realms = array_to_insql(
 				array_intersect(
-					$HTTP_SESSION_VARS['acl']['pall'],
+					$_SESSION['acl']['pall'],
 					array_merge(
-						$HTTP_SESSION_VARS['acl']['pall'],
-						$HTTP_SESSION_VARS['acl']['pdesign'])));
+						$_SESSION['acl']['pall'],
+						$_SESSION['acl']['pdesign'])));
                 $sql = "SELECT s.name, s.title, s.owner, s.realm, s.public
-				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid AND NOT (status & " .STATUS_DELETED. ") AND                (s.owner = "._addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms)";
+				FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.id = $sid AND NOT (status & " .STATUS_DELETED. ") AND                (s.owner = "._addslashes($_SESSION['acl']['username']) ." || s.realm $realms)";
 			    $sql1 = "SELECT a.realm, a.maxlogin, a.resume, a.navigate 
                 FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['survey_table']." s
 				WHERE a.survey_id = $sid AND s.id=a.survey_id AND (s.owner = ".
-				_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms) ORDER BY a.realm";
+				_addslashes($_SESSION['acl']['username']) ." || s.realm $realms) ORDER BY a.realm";
 		}
 		$result = execute_sql($sql);
 		if (record_count($result) < 1) {
@@ -108,16 +108,15 @@
 		$r = '<select name="realm"><option></option>';
 		$groups = array();
         $selected_groups = array();
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
-            // if realm has already been added then do not include it for
-            // reselection.
-            $sql = "SELECT realm FROM ".$GLOBALS['ESPCONFIG']['access_table'];
-            $result = execute_sql($sql);
-            while (list($sg) = fetch_row($result)) {
-                array_push($selected_groups, $sg);
-                $result->MoveNext();
-            }
-            db_close($result);
+        // if realm has already been added then do not include it for
+        // reselection.
+        $result = execute_sql($sql1);
+        while (list($sg) = fetch_row($result)) {
+            array_push($selected_groups, $sg);
+            $result->MoveNext();
+        }
+        db_close($result);
+		if($_SESSION['acl']['superuser'] == 'Y') {
 
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 			$result = execute_sql($sql);
@@ -128,9 +127,14 @@
                 $result->MoveNext();
 			}
 			db_close($result);
-		} else {
-			$groups =& $HTTP_SESSION_VARS['acl']['pdesign'];
-		}
+        } else {
+            $g =& $_SESSION['acl']['pdesign'];
+            foreach ($g as $t) {
+                if (!in_array($t, $selected_groups)) {
+                    array_push($groups, $t);
+                }
+            }
+        }
 		foreach($groups as $g) {
 			$r .= "<option value=\"$g\">$g</option>";
 		}
@@ -207,18 +211,18 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 <?php
 	/* load names and titles of all surveys available to
 	 * _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+	if($_SESSION['acl']['superuser'] == 'Y') {
 		$sql = "SELECT id,name,title,owner,realm,public FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status",STATUS_DELETED)." ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
-				$HTTP_SESSION_VARS['acl']['pall'],
+				$_SESSION['acl']['pall'],
 				array_merge(
-					$HTTP_SESSION_VARS['acl']['pall'],
-					$HTTP_SESSION_VARS['acl']['pdesign'])));
+					$_SESSION['acl']['pall'],
+					$_SESSION['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,owner,realm,public
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status",STATUS_DELETED)." AND (owner = ".
-			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
+			_addslashes($_SESSION['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 	while(list($sid,$name,$title,$owner,$realm,$public) = fetch_row($result)) {
