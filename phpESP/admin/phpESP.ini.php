@@ -20,7 +20,7 @@ else                  $server =& $HTTP_SERVER_VARS;
 $ESPCONFIG['proto'] = 'http://';
 
 // Base URL for phpESP
-$ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP/';
+$ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP_1_7_5/';
 
 // URL of the images directory (for <img src='...'> tags)
 $ESPCONFIG['image_url'] = $ESPCONFIG['base_url'] . 'images/';
@@ -36,9 +36,9 @@ $ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
 
 // Database connection information
 $ESPCONFIG['db_host'] = 'localhost';
-$ESPCONFIG['db_user'] = 'phpesp';
-$ESPCONFIG['db_pass'] = 'phpesp';
-$ESPCONFIG['db_name'] = 'phpesp';
+$ESPCONFIG['db_user'] = 'root';
+$ESPCONFIG['db_pass'] = 'cooper';
+$ESPCONFIG['db_name'] = 'esp';
 
 // ADODB 
 $ESPCONFIG['adodb_path'] = ESP_BASE . 'admin/include/lib/adodb/';
@@ -102,13 +102,13 @@ $ESPCONFIG['bgalt_color2']      = '#EEEEEE';
  *******************************************************************/
 
 // Enable debugging code (BOOLEAN)
-$ESPCONFIG['DEBUG'] = false;
+$ESPCONFIG['DEBUG'] = true;
 
 // Name of application
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '1.7.5-dev';
+$ESPCONFIG['version'] = '1.7.5-rc1';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';

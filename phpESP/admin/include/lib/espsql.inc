@@ -24,8 +24,8 @@ function survey_num_sections($sid) {
         SELECT COUNT(*) + 1
         FROM ".$GLOBALS['ESPCONFIG']['question_table']."
         WHERE survey_id=${sid} AND
-  type_id='99' AND
-  deleted='N'";
+        type_id='99' AND
+        deleted='N'";
 	$result = execute_sql($sql);
 	$count = $result->fields[0];
 	db_close($result);
