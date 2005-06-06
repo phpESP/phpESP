@@ -150,6 +150,7 @@ function other_check(name)
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="rid" value="<?php echo($HTTP_POST_VARS['rid']); ?>">
 <input type="hidden" name="sec" value="<?php echo($HTTP_POST_VARS['sec']); ?>">
+<input type="hidden" name="name" value="<?php echo($name); ?>">
 <?php	survey_render($sid,$HTTP_POST_VARS['sec'],$msg); ?>
 <?php
 		if ($ESPCONFIG['auth_response']) {
