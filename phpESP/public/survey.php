@@ -29,9 +29,12 @@
 	if (isset($HTTP_GET_VARS['name'])) {
 		$_name = _addslashes($HTTP_GET_VARS['name']);
 		unset($HTTP_GET_VARS['name']);
-		$HTTP_SERVER_VARS['QUERY_STRING'] =
-			ereg_replace('(^|&)name=[^&]*&?', '', $HTTP_SERVER_VARS['QUERY_STRING']);
+		$_SERVER['QUERY_STRING'] = ereg_replace('(^|&)name=[^&]*&?', '', $_SERVER['QUERY_STRING']);
 	}
+    if (isset($HTTP_POST_VARS['name'])) {
+        $_name = _addslashes($HTTP_POST_VARS['name']);
+        unset($HTTP_POST_VARS['name']);
+    }
 
 	if (!empty($_name)) {
         	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = $_name";

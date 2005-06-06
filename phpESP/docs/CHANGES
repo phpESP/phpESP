@@ -1,6 +1,9 @@
 =================
 PHPESP CHANGE LOG
 =================
+* ADDED new management interface layout 
+  (from Aaron Axelsen <lists at frozenpc.net>
+
 1.7.5-dev2 => 1.7.5-dev3
 * FIXED register_globals being on dependancy
 
