@@ -125,7 +125,9 @@
             $userid = isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']) ?  $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'] : '';
         }
         elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
-            $userid = $_SESSION['espuser'];
+            if (isset($_SESSION['espuser'])) {
+                $userid = $_SESSION['espuser'];
+            }
         }
 
         if (empty($userid))
@@ -469,8 +471,10 @@
             $row = fetch_row($result);
             $qid = array_shift($row);
             settype($row[count($row) - 1], 'integer');
-            if($row[3]>=0) {
-                $row[3]++;
+            if (isset($row[3])) {
+                if($row[3]>=0) {
+                    $row[3]++;
+                }
             }
             $values[$qid] = $row;
             $result->MoveNext();
@@ -534,10 +538,12 @@
 
                 // rank
                 $key = $arr[1];
-                if ($arr[3] < 0)
-                $arr[3] = 'n/a';
-                else
-                $arr[3]++;
+                if ($arr[3] < 0) {
+                    $arr[3] = 'n/a';
+                }
+                else {
+                    $arr[3]++;
+                }
                 $val = $arr[2] . ' = ' . $arr[3];
                 if ($tmpk != $key) {
                     if (!empty($tmpk) || count($tmpv))
@@ -600,7 +606,7 @@
                 // rank or other
                 if ($arr[0] == 8) {
                     // rank
-                    $cpq[] = array($qid, $arr[2], array($arr[1]));
+                    $cpq[] = array($qid, $arr[2]+1, array($arr[1]));
                 } else {
                     // other
                     $cpq[] = array($qid, $arr[1]);
