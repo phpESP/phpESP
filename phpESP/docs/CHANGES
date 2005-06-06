@@ -1,7 +1,20 @@
 =================
 PHPESP CHANGE LOG
 =================
-1.7.2 =>
+1.7.5-dev3 => 1.7.5-rc1
+* FIXED Themes not showing on multi-page surveys
+* FIXED Surveys with required fields can't continue.
+* FIXED Typo in question tab
+* FIXED Surveys couldn't be resumed
+* FIXED Can't copy a survey multiple times
+
+1.7.5-dev2 => 1.7.5-dev3
+* FIXED register_globals being on dependancy
+
+1.7.5-dev => 1.7.5-dev2
+* FIXED form login problem
+
+1.7.2 => 1.7.5-dev
 * Added form based login
 
 v1.7.1 => 1.7.2
