@@ -32,6 +32,10 @@
 	if (empty($HTTP_POST_VARS['referer']))
 		$HTTP_POST_VARS['referer'] = '';
 
+    if (isset($HTTP_GET_VARS['test'])) {
+        $test = $HTTP_GET_VARS['test'];
+    }
+
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
 	if(isset($results) && $results) {
