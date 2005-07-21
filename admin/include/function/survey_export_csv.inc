@@ -232,7 +232,7 @@
                     for($i = 0; $i < $numcols; $i++) {
                         $match = 0;
                         foreach ($response as $key=>$value) {
-                            if ($key == key($columns[$i])){
+                            if ($key === key($columns[$i])){
                                 $match = 1;
                                 array_push($columns[$i], $value[key($value)]);
                             }
