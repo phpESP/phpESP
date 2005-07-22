@@ -166,7 +166,7 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     if ($_message) {
         $str .= mkerror($_message);
     }
-    $str .= '<form id="loginform"  method="post">';
+    $str .= '<form name="loginform"id="loginform"  method="post">';
     $str .= "\n<fieldset><legend>Login</legend>\n";
     $str .= '<div class="row">';
     $str .= '<label for="username">';
@@ -181,7 +181,7 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     $str .= "\n".'</div><div class="row">'."\n";
     $str .= mksubmit("Login");
     if ($_surveyname != "") {
-        $str .= mkhidden("name", $_surveyname);
+        $str .= '<input type="hidden" name="'."$_surveyname".'"';
     }
     $str .= "\n</div></fieldset>\n</form>\n";
     $str .= "</div>";

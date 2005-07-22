@@ -310,7 +310,7 @@ function survey_render($sid, $section = 1, $message = '') {
 					}
 					if ($prec) {
 ?>
-							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,'N/A')); ?></td>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,'-1')); ?></td>
 <?php
 					}
 ?>
