@@ -1,7 +1,14 @@
 =================
 PHPESP CHANGE LOG
 =================
+
+1.7.5-rc1 => 1.7.5 final
+* Archived surveys are now listed and exportable
+* FIXED rate items would change values when saved/resumed
+* FIXED Email results off by one
+
 1.7.5-dev3 => 1.7.5-rc1
+
 * FIXED Themes not showing on multi-page surveys
 * FIXED Surveys with required fields can't continue.
 * FIXED Typo in question tab
