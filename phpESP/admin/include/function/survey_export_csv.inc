@@ -218,6 +218,11 @@
                 ORDER BY r.submitted";
                 $result = execute_sql($sql);
                 $y = 0;
+                if (record_count($result) == 0) {
+                    $columns[0] = array('RESPONSE');
+                    $columns[1] = array('SUBMITTED');
+                    $columns[2] = array('USERNAME');
+                }
                 while($row = fetch_row($result)) {
                     $result->MoveNext();
                     if ($y == 0) {
