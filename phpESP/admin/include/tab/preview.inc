@@ -8,7 +8,7 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	$sid = _addslashes($HTTP_SESSION_VARS['survey_id']);
+	$sid = _addslashes($_SESSION['survey_id']);
 
 	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=${sid}
 	AND deleted='N' AND type_id='99'";
@@ -16,8 +16,8 @@
 	$num_sections = 1 + $result->fields[0];
 	db_close($result);
 
-	if(empty($HTTP_POST_VARS['section']))
-		$HTTP_POST_VARS['section']=1;
+	if(empty($_POST['section']))
+		$_POST['section']=1;
 ?>
 <script type="text/javascript">
 <!-- // Begin <?php // This should really go into <head> tag ?>
@@ -71,14 +71,14 @@ this page.')); ?>
 	<tr>
 		<td>
 <?php
-	survey_render($sid,$HTTP_POST_VARS['section']);
+	survey_render($sid,$_POST['section']);
 	if ($ESPCONFIG['auth_response']) {
-		if ($HTTP_POST_VARS['section'] > 1) {
+		if ($_POST['section'] > 1) {
         	echo('<input type="button" value="' . _('Previous Page'). '" /> ');
         }
 	    echo ('<input type="button" value="'. _('Save') .'" /> ');
 	}
-	if($HTTP_POST_VARS['section'] != $num_sections) {
+	if($_POST['section'] != $num_sections) {
 		echo('<input type="button" value="'. _('Next Page') .'" /> ');
 	} else {
 		echo('<input type="button" value="'. _('Submit Survey') .'" />');

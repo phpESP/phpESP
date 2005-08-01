@@ -20,7 +20,7 @@ else                  $server =& $HTTP_SERVER_VARS;
 $ESPCONFIG['proto'] = 'http://';
 
 // Base URL for phpESP
-$ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP_current/';
+$ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP/';
 
 // URL of the images directory (for <img src='...'> tags)
 $ESPCONFIG['image_url'] = $ESPCONFIG['base_url'] . 'images/';
@@ -36,9 +36,9 @@ $ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
 
 // Database connection information
 $ESPCONFIG['db_host'] = 'localhost';
-$ESPCONFIG['db_user'] = 'root';
-$ESPCONFIG['db_pass'] = 'cooper';
-$ESPCONFIG['db_name'] = 'esp';
+$ESPCONFIG['db_user'] = 'phpesp';
+$ESPCONFIG['db_pass'] = 'phpesp';
+$ESPCONFIG['db_name'] = 'phpesp';
 
 // ADODB 
 $ESPCONFIG['adodb_path'] = ESP_BASE . 'admin/include/lib/adodb/';
@@ -100,7 +100,11 @@ $ESPCONFIG['bgalt_color2']      = '#EEEEEE';
 /*******************************************************************
  * Most users will not need to change anything below this line.    *
  *******************************************************************/
-
+//angek: in the event we are using php version 5
+//$HTTP_POST_VARS=$_POST;
+//$HTTP_GET_VARS=$_GET;
+//$HTTP_SESSION_VARS=$_SESSION;
+//$HTTP_SERVER_VARS=$_SERVER;
 // Enable debugging code (BOOLEAN)
 $ESPCONFIG['DEBUG'] = false;
 

@@ -10,10 +10,10 @@
 // <jflemer@alum.rpi.edu>
 
 	$sid = -1;
-	if (!empty($HTTP_GET_VARS['sid']))
-		$sid = intval($HTTP_GET_VARS['sid']);
-	else if(!empty($HTTP_POST_VARS['sid']))
-		$sid = intval($HTTP_POST_VARS['sid']);
+	if (!empty($_GET['sid']))
+		$sid = intval($_GET['sid']);
+	else if(!empty($_POST['sid']))
+		$sid = intval($_POST['sid']);
 
 	$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = $sid";
 	$result = execute_sql($sql);
@@ -27,31 +27,31 @@
 
 	/* check ACLs for permissions */
 	$srealm = auth_get_survey_realm($sid);
-	if (isset($HTTP_GET_VARS['test'])) {
+	if (isset($_GET['test'])) {
 		/* check ACL to see if user is allowed to test
 		 * _this_ survey */
-		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-				!auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) &&
+		if($_SESSION['acl']['superuser'] != 'Y' &&
+				!auth_is_owner($sid, $_SESSION['acl']['username']) &&
 				!in_array($srealm, array_intersect(
-						$HTTP_SESSION_VARS['acl']['pdesign'],
-						$HTTP_SESSION_VARS['acl']['pall'])) &&
+						$_SESSION['acl']['pdesign'],
+						$_SESSION['acl']['pall'])) &&
 				!auth_no_access(_('to access this survey'))) {
 			return;
 		}
 	} else {
 		/* check ACL to see if user is allowed to export
 		 * _this_ survey */
-		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-				!auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) &&
+		if($_SESSION['acl']['superuser'] != 'Y' &&
+				!auth_is_owner($sid, $_SESSION['acl']['username']) &&
 				!in_array($srealm, array_intersect(
-						$HTTP_SESSION_VARS['acl']['pdata'],
-						$HTTP_SESSION_VARS['acl']['pall'])) &&
+						$_SESSION['acl']['pdata'],
+						$_SESSION['acl']['pall'])) &&
 				!auth_no_access(_('to access this survey'))) {
 			return;
 		}
 	}
 
-	$type = isset($HTTP_GET_VARS['type']) ? $HTTP_GET_VARS['type'] : 'csv_full_header';
+	$type = isset($_GET['type']) ? $_GET['type'] : 'csv_full_header';
 	
 	// default to csv_full_header
     switch($type) {

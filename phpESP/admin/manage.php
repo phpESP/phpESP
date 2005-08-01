@@ -9,7 +9,6 @@
     // <jflemer@alum.rpi.edu>
 
     session_start();
-
     if (!defined('ESP_BASE'))
     define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 
@@ -40,22 +39,22 @@
     }
     if($ESPCONFIG['auth_design']) {
         if ($ESPCONFIG['auth_mode'] == 'basic') {
-            $raw_password = @$HTTP_SERVER_VARS['PHP_AUTH_PW'];
-            $username = @$HTTP_SERVER_VARS['PHP_AUTH_USER'];
+            $raw_password = @$_SERVER['PHP_AUTH_PW'];
+            $username = @$_SERVER['PHP_AUTH_USER'];
         }
         elseif ($ESPCONFIG['auth_mode'] == 'form') {
-            if (isset($HTTP_POST_VARS['Login'])) {
-                if (!isset($HTTP_POST_VARS['username'])) {
-                    $HTTP_POST_VARS['username'] = "";
+            if (isset($_POST['Login'])) {
+                if (!isset($_POST['username'])) {
+                    $_POST['username'] = "";
                 }
-                if ($HTTP_POST_VARS['username'] != "") {
-                    $_SESSION['username'] = $HTTP_POST_VARS['username'];
+                if ($_POST['username'] != "") {
+                    $_SESSION['username'] = $_POST['username'];
                 }
-                if (!isset($HTTP_POST_VARS['password'])) {
-                    $HTTP_POST_VARS['password'] = "";
+                if (!isset($_POST['password'])) {
+                    $_POST['password'] = "";
                 }
-                if ($HTTP_POST_VARS['password'] != "") {
-                    $_SESSION['raw_password'] = $HTTP_POST_VARS['password'];
+                if ($_POST['password'] != "") {
+                    $_SESSION['raw_password'] = $_POST['password'];
                 }
             }
             if (isset($_SESSION['username'])) {
@@ -89,10 +88,10 @@
     }
 
     $where = '';
-    if(isset($HTTP_POST_VARS['where']))
-    $where = $HTTP_POST_VARS['where'];
-    elseif(isset($HTTP_GET_VARS['where']))
-    $where = $HTTP_GET_VARS['where'];
+    if(isset($_POST['where']))
+    $where = $_POST['where'];
+    elseif(isset($_GET['where']))
+    $where = $_GET['where'];
 
     if ($where == 'download') {
         include(esp_where($where));

@@ -9,11 +9,11 @@
 // <jflemer@alum.rpi.edu>
 
 /* {{{ proto bool survey_render(int survey_id, int section, string message)
-   Reads current form variables from HTTP_POST_VARS.
+   Reads current form variables from $_POST.
    Builds HTML for the survey (prefixed w/ message). */
 function survey_render($sid, $section = 1, $message = '') {
-	global $HTTP_POST_VARS;
-	@reset($HTTP_POST_VARS);
+	//global $_POST;
+	@reset($_POST);
 
 	if(empty($section))
 		$section = 1;
@@ -186,8 +186,8 @@ function survey_render($sid, $section = 1, $message = '') {
 <?php
                     $cid = "${qid}_${cid}";
                     echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
-                	if (isset($GLOBALS['HTTP_POST_VARS'][$cid]))
-                        echo(' value="'. _stripslashes(htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid])) .'"');
+                	if (isset($_POST[$cid]))
+                        echo(' value="'. _stripslashes(htmlspecialchars($_POST[$cid])) .'"');
                     echo(" />");
 ?>
                             </td>
@@ -227,8 +227,8 @@ function survey_render($sid, $section = 1, $message = '') {
 <?php
                     $cid = "${qid}_${cid}";
                     echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
-                	if (isset($GLOBALS['HTTP_POST_VARS'][$cid]))
-                        echo(' value="'. _stripslashes(htmlspecialchars($GLOBALS['HTTP_POST_VARS'][$cid])) .'"');
+                	if (isset($_POST[$cid]))
+                        echo(' value="'. _stripslashes(htmlspecialchars($_POST[$cid])) .'"');
                     echo(" />");
 ?>
                             </td>

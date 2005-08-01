@@ -19,7 +19,6 @@
  * function checks for certain variables of the form "blah_x"
  * and "blah_y" and includes 'blah'.
  */
-
 	session_register('survey_id');
 	session_register('new_survey');
 	session_register('last_tab');
@@ -27,11 +26,11 @@
 
 	/* Use this hack to work around how PHP handles session vars.
 	 * When Register_Globals is on, the value of the global $foo
-	 * is saved, and $HTTP_SESSION_VARS['foo'] is ignored.
+	 * is saved, and $_SESSION['foo'] is ignored.
 	 * When Register_Globals is off, the global $foo is ignored
-	 * and $HTTP_SESSION_VARS['foo'] is saved.
-	 * By making $HTTP_SESSION_VARS['foo'] a reference to $foo
-	 * when reg_glob is on, we can use $HTTP_SESSION_VARS uniformly
+	 * and $_SESSION['foo'] is saved.
+	 * By making $_SESSION['foo'] a reference to $foo
+	 * when reg_glob is on, we can use $_SESSION uniformly
 	 * from here on, regardless of the INI settings.
 	 */
 	if(ini_get('register_globals')) {
@@ -43,16 +42,16 @@
 	
 	global $errstr;
 	
-	if(@$HTTP_GET_VARS['where'] == 'new') {
+	if(@$_GET['where'] == 'new') {
 		$_SESSION['survey_id']  = '';
 		$_SESSION['new_survey'] = '';
 		$_SESSION['last_tab']   = '';
 		$_SESSION['curr_q']     = '';
 	}		
 	
-	if(!empty($HTTP_GET_VARS['newid'])) {
-		$_SESSION['survey_id']  = intval($HTTP_GET_VARS['newid']);
-		$HTTP_POST_VARS['tab']           = 'general';
+	if(!empty($_GET['newid'])) {
+		$_SESSION['survey_id']  = intval($_GET['newid']);
+		$_POST['tab']           = 'general';
 		$_SESSION['last_tab']   = '';
 		$_SESSION['new_survey'] = false;
 	}
@@ -84,6 +83,7 @@
 	if($_SESSION['acl']['superuser'] != 'Y' &&
 			count($_SESSION['acl']['pdesign']) < 1 &&
 			!auth_no_access(_('to access this form'))) {
+    //        echo "SESSION: ".$_SESSION['acl']['superuser'];
 		return;
 	}
 		
@@ -93,7 +93,7 @@
 		return;
 	}
 	
-	$tab = &$HTTP_POST_VARS['tab'];
+	$tab = &$_POST['tab'];
 		
 /* XXX I18n do not translate */
 	if(stristr($tab,'continue')) {
@@ -115,8 +115,8 @@
 
 	if(empty($tab)) {
 		foreach($ESPCONFIG['tabs'] as $tab) {
-			$x = @$HTTP_POST_VARS["${tab}_x"];
-			$y = @$HTTP_POST_VARS["${tab}_y"];
+			$x = @$_POST["${tab}_x"];
+			$y = @$_POST["${tab}_y"];
 			if(!empty($x) && !empty($y)) {
 				break;
 			}

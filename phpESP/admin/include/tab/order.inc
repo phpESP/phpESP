@@ -8,7 +8,7 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-$sid = $HTTP_SESSION_VARS['survey_id'];
+$sid = $_SESSION['survey_id'];
 $sql = "SELECT id,type_id,position,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 WHERE survey_id=$sid AND deleted='N'
 ORDER BY position";

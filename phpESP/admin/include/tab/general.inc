@@ -9,7 +9,7 @@
 // <jflemer@alum.rpi.edu>
 
 	unset($sid);
-	$sid = $HTTP_SESSION_VARS['survey_id'];
+	$sid = $_SESSION['survey_id'];
 
 	// load current values from DB if $sid exists (in session)
 	$survey = array();
@@ -21,8 +21,8 @@
 	} else {
 		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','public');
 	   	foreach ($fields as $f) {
-            if(!empty($HTTP_POST_VARS[$f]))
-	    	    $survey[$f] = _stripslashes($HTTP_POST_VARS[$f]);
+            if(!empty($_POST[$f]))
+	    	    $survey[$f] = _stripslashes($_POST[$f]);
             else
                 $survey[$f] = '';
         }
@@ -55,7 +55,7 @@ function validate() {
 		<td class="right"><strong><?php echo(_('Owner')); ?></strong></td>
 		<td class="left"><?php
 			$realms = array();
-			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+			if($_SESSION['acl']['superuser'] == 'Y') {
 				$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 				$rr = execute_sql($sql);
 				while(list($r) = fetch_row($rr)) {
@@ -64,11 +64,11 @@ function validate() {
                 }
 				db_close($rr);
 			} else {
-				foreach($HTTP_SESSION_VARS['acl']['pdesign'] as $r)
+				foreach($_SESSION['acl']['pdesign'] as $r)
 					$realms[$r] = $r;
 			}
 
-			echo(htmlspecialchars($HTTP_SESSION_VARS['acl']['username']) . "&nbsp;/&nbsp;");
+			echo(htmlspecialchars($_SESSION['acl']['username']) . "&nbsp;/&nbsp;");
 			echo(mkselect('realm',$realms, $survey) . "  <span class=\"red\"><em>". _('Required') ."</em></span><br />\n");
 			echo(_('User and Group that owns this survey.')); ?></td>
 	</tr>

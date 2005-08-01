@@ -9,8 +9,8 @@
 // <jflemer@acm.rpi.edu>
 
     /* SuperUser or Designers with "Administer Respondents(puser)" permissions only*/
-    if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-        count($HTTP_SESSION_VARS['acl']['puser']) == 0 &&
+    if($_SESSION['acl']['superuser'] != 'Y' &&
+        count($_SESSION['acl']['puser']) == 0 &&
         !auth_no_access(_('to access this form'))) {
             return;
         }
@@ -18,58 +18,58 @@
 	$sql = 'SELECT username, fname, lname, realm, disabled, expiration FROM '.$GLOBALS['ESPCONFIG']['respondent_table'];
 
 	/* load only accounts available to _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
+	if($_SESSION['acl']['superuser'] != 'Y') {
 		$realms = array_to_insql(
 			array_merge(
-				$HTTP_SESSION_VARS['acl']['pall'],
-				$HTTP_SESSION_VARS['acl']['puser']));
+				$_SESSION['acl']['pall'],
+				$_SESSION['acl']['puser']));
 		$sql .= " WHERE realm $realms";
 	}
 
 	$sql .= ' ORDER BY ';
 	$base = $GLOBALS['ESPCONFIG']['ME'] .'?where=respondents';
-	if(!isset($HTTP_GET_VARS['u'])) $HTTP_GET_VARS['u'] = '';
-	if(!isset($HTTP_GET_VARS['g'])) $HTTP_GET_VARS['g'] = '';
-	if(!isset($HTTP_GET_VARS['f'])) $HTTP_GET_VARS['f'] = '';
-	if(!isset($HTTP_GET_VARS['l'])) $HTTP_GET_VARS['l'] = '';
-	if(!isset($HTTP_GET_VARS['s'])) $HTTP_GET_VARS['s'] = '';
+	if(!isset($_GET['u'])) $_GET['u'] = '';
+	if(!isset($_GET['g'])) $_GET['g'] = '';
+	if(!isset($_GET['f'])) $_GET['f'] = '';
+	if(!isset($_GET['l'])) $_GET['l'] = '';
+	if(!isset($_GET['s'])) $_GET['s'] = '';
 
-	if($HTTP_GET_VARS['u'] == 'd') {
+	if($_GET['u'] == 'd') {
 		$us = 'username DESC';
 		$u = 'a';
 	} else {
-		$HTTP_GET_VARS['u'] = 'a';
+		$_GET['u'] = 'a';
 		$us = 'username ASC';
 		$u = 'd';
 	}
-	if($HTTP_GET_VARS['g'] == 'd') {
+	if($_GET['g'] == 'd') {
 		$gs = 'realm DESC';
 		$g = 'a';
 	} else {
-		$HTTP_GET_VARS['g'] = 'a';
+		$_GET['g'] = 'a';
 		$gs = 'realm ASC';
 		$g = 'd';
 	}
-	if($HTTP_GET_VARS['f'] == 'd' || $HTTP_GET_VARS['l'] == 'd') {
+	if($_GET['f'] == 'd' || $_GET['l'] == 'd') {
 		$ls = 'lname DESC';
 		$l = 'a';
 		$fs = 'fname DESC';
 		$f = 'a';
 	} else {
-		$HTTP_GET_VARS['l'] = 'a';
+		$_GET['l'] = 'a';
 		$ls = 'lname ASC';
 		$l = 'd';
-		$HTTP_GET_VARS['f'] = 'a';
+		$_GET['f'] = 'a';
 		$fs = 'fname ASC';
 		$f = 'd';
 	}
-	if($HTTP_GET_VARS['s'] == 'g') {
+	if($_GET['s'] == 'g') {
 		$sql .= "$gs, $us";
-		$u = "&s=u&g=" . $HTTP_GET_VARS['g'] ."&u=". $HTTP_GET_VARS['u'];
-		$g = "&s=g&g=$g&u=". $HTTP_GET_VARS['u'];
+		$u = "&s=u&g=" . $_GET['g'] ."&u=". $_GET['u'];
+		$g = "&s=g&g=$g&u=". $_GET['u'];
 		$f = "&s=f";
 		$l = "&s=l";
-	} elseif($HTTP_GET_VARS['s'] == 'f' || $HTTP_GET_VARS['s'] == 'l') {
+	} elseif($_GET['s'] == 'f' || $_GET['s'] == 'l') {
 		$sql .= "$fs, $ls";
 		$f = "&s=f&f=$f";
 		$l = "&s=l&l=$l";
@@ -77,8 +77,8 @@
 		$g = "&s=g";
 	} else {
 		$sql .= "$us, $gs";
-		$u = "&s=u&g=" . $HTTP_GET_VARS['g'] ."&u=$u";
-		$g = "&s=g&g=" . $HTTP_GET_VARS['g'] ."&u=". $HTTP_GET_VARS['u'];
+		$u = "&s=u&g=" . $_GET['g'] ."&u=$u";
+		$g = "&s=g&g=" . $_GET['g'] ."&u=". $_GET['u'];
 		$f = "&s=f";
 		$l = "&s=l";
 	}
