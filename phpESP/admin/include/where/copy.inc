@@ -9,18 +9,17 @@
 // <jflemer@alum.rpi.edu>
 
 	/* if survey has been selected ... */
-	if(!empty($HTTP_GET_VARS['sid'])) {
-		$sid = intval($HTTP_GET_VARS['sid']);
+	if(!empty($_GET['sid'])) {
+		$sid = intval($_GET['sid']);
 		
 		$srealm = auth_get_survey_realm($sid);
-		
 		/* check ACL to see if user is allowed to copy
 		 * _this_ survey */
-		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-				!auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) &&
+		if($_SESSION['acl']['superuser'] != 'Y' &&
+				!auth_is_owner($sid, $_SESSION['acl']['username']) &&
 				!in_array($srealm, array_intersect(
-						$HTTP_SESSION_VARS['acl']['pdesign'],
-						$HTTP_SESSION_VARS['acl']['pall'])) &&
+						$_SESSION['acl']['pdesign'],
+						$_SESSION['acl']['pall'])) &&
 				!auth_no_access(_('to access this survey'))) {
 			return;
 		}
@@ -43,16 +42,16 @@ window.location="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=manage"); ?>"
 
 	/* load names and titles of all surveys available to
 	 * _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+	if($_SESSION['acl']['superuser'] == 'Y') {
 		$sql = 'SELECT id,name,title,status,owner,realm FROM '.$GLOBALS['ESPCONFIG']['survey_table'].' ORDER BY id DESC';
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
-				$HTTP_SESSION_VARS['acl']['pall'],
-				$HTTP_SESSION_VARS['acl']['pdesign']));
+				$_SESSION['acl']['pall'],
+				$_SESSION['acl']['pdesign']));
 		$sql = "SELECT id,name,title,status,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT (status & ". STATUS_DELETED .") AND (owner = ".
-			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
+			_addslashes($_SESSION['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 	$bg = '';

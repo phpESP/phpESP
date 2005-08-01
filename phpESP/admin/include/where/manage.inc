@@ -14,12 +14,12 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
 <h2><?php echo(_('Management Interface')); ?></h2>
 <p><?php
     if($GLOBALS['ESPCONFIG']['auth_design']) {
-        if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y')
+        if($_SESSION['acl']['superuser'] == 'Y')
         echo(mkwarn(_('Superuser')));
         else {
             echo(_('Username'));
         }
-        echo(': <tt>'. $HTTP_SESSION_VARS['acl']['username'] .'</tt>');
+        echo(': <tt>'. $_SESSION['acl']['username'] .'</tt>');
     }
 ?></p>
 			<!-- Survey Administration -->
@@ -58,14 +58,14 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <li><a href="<?php echo("${base}?where=passwd");   ?>"><?php echo(_('Change Your Password')); ?></a></li>
                             <?php
                             }
-                            if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-                            count($HTTP_SESSION_VARS['acl']['puser']) > 0) { ?>
+                            if($_SESSION['acl']['superuser'] == 'Y' ||
+                            count($_SESSION['acl']['puser']) > 0) { ?>
                             <li><a href="<?php echo("${base}?where=respondents"); ?>"><?php echo(_('Manage Respondent Accounts')); ?></a></li>
                             <?php   }
-                            if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-                            count($HTTP_SESSION_VARS['acl']['pgroup']) > 0) { ?>
+                            if($_SESSION['acl']['superuser'] == 'Y' ||
+                            count($_SESSION['acl']['pgroup']) > 0) { ?>
                             <li><a href="<?php echo("${base}?where=designers");   ?>"><?php echo(_('Manage Designer Accounts')); ?></a></li>
-                            <?php	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') { ?>
+                            <?php	if($_SESSION['acl']['superuser'] == 'Y') { ?>
                             <li><a href="<?php echo("${base}?where=groups"); ?>"><?php echo(_('Manage Groups')); ?></a></li>
                             <?php	}
                             } ?>

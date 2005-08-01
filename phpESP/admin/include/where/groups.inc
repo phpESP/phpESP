@@ -9,29 +9,29 @@
 // <jflemer@acm.rpi.edu>
 
 	/* load only accounts available to _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+	if($_SESSION['acl']['superuser'] != 'Y' &&
 			!auth_no_access(_('to access this form'))) {
 		return;
 	}
 	
 	$errstr = '';
-	if(!empty($HTTP_POST_VARS['r']) && !empty($HTTP_POST_VARS['t'])) {
+	if(!empty($_POST['r']) && !empty($_POST['t'])) {
         $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm_table']." (name, title, changed)
-        VALUES (". _addslashes($HTTP_POST_VARS['r']) .", ".
-        _addslashes($HTTP_POST_VARS['t']).", ". sys_time_stamp().")";
+        VALUES (". _addslashes($_POST['r']) .", ".
+        _addslashes($_POST['t']).", ". sys_time_stamp().")";
 		if(!execute_sql($sql))
 			$errstr = _('Error adding group.') . ' (' . ErrorMsg() .')';
 	}
-	if(!empty($HTTP_GET_VARS['del'])) {
-		if($HTTP_GET_VARS['del'] == 'superuser') {
+	if(!empty($_GET['del'])) {
+		if($_GET['del'] == 'superuser') {
 			$errstr = _('Error deleting group.');
 		} else {
-			$sql = "SELECT count(d.username) FROM ".$GLOBALS['ESPCONFIG']['designer_table']." d WHERE d.realm=". _addslashes($HTTP_GET_VARS['del']);
+			$sql = "SELECT count(d.username) FROM ".$GLOBALS['ESPCONFIG']['designer_table']." d WHERE d.realm=". _addslashes($_GET['del']);
 			$count = get_one($sql);
 			if ($count > 0) {
 				$errstr = _('Group is not empty.');
 			} else {
-				$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['realm_table']." WHERE name=". _addslashes($HTTP_GET_VARS['del']);
+				$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['realm_table']." WHERE name=". _addslashes($_GET['del']);
 				if(!execute_sql($sql))
 					$errstr = _('Error deleting group.');
 			}

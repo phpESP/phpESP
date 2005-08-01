@@ -8,20 +8,20 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	if(empty($HTTP_SESSION_VARS['curr_q']))
-		$HTTP_SESSION_VARS['curr_q'] = 0;
-    if(empty($HTTP_POST_VARS['id']))
-        $HTTP_POST_VARS['id'] = 0;
+	if(empty($_SESSION['curr_q']))
+		$_SESSION['curr_q'] = 0;
+    if(empty($_POST['id']))
+        $_POST['id'] = 0;
 
-	$curr_q =& $HTTP_SESSION_VARS['curr_q'];
-	$sid =& $HTTP_SESSION_VARS['survey_id'];
-   	$id = intval($HTTP_POST_VARS['id']);
+	$curr_q =& $_SESSION['curr_q'];
+	$sid =& $_SESSION['survey_id'];
+   	$id = intval($_POST['id']);
 
-    if (isset($HTTP_POST_VARS['type_id']))
-        $HTTP_POST_VARS['type_id'] = intval($HTTP_POST_VARS['type_id']) ?
-                $HTTP_POST_VARS['type_id'] : '';
+    if (isset($_POST['type_id']))
+        $_POST['type_id'] = intval($_POST['type_id']) ?
+                $_POST['type_id'] : '';
     else
-        $HTTP_POST_VARS['type_id'] = '';
+        $_POST['type_id'] = '';
 
 	// build array of question IDs
 	$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
@@ -37,19 +37,19 @@
 	db_close($result);
 
 	// update failed, stay on same question
-	if(!$updated || isset($HTTP_POST_VARS['extra_choices'])) {
+	if(!$updated || isset($_POST['extra_choices'])) {
 		for ( $q = 0; $q < $total_num_q && $q_ids[$q] != $id ; $q++);
-		$HTTP_POST_VARS['q'] = ++$q;
+		$_POST['q'] = ++$q;
 		unset($q);
 	} else {
-		if(empty($HTTP_POST_VARS['q']))
-			$HTTP_POST_VARS['q'] = $curr_q;
-		if($HTTP_POST_VARS['q'] == _('New Question'))
-			$HTTP_POST_VARS['q'] = 0;
-		if($HTTP_POST_VARS['q']<0 || $HTTP_POST_VARS['q']>$total_num_q)
-			$HTTP_POST_VARS['q'] = 1;
+		if(empty($_POST['q']))
+			$_POST['q'] = $curr_q;
+		if($_POST['q'] == _('New Question'))
+			$_POST['q'] = 0;
+		if($_POST['q']<0 || $_POST['q']>$total_num_q)
+			$_POST['q'] = 1;
 	}
-	$curr_q = $HTTP_POST_VARS['q'];
+	$curr_q = $_POST['q'];
 	if($curr_q && isset($q_ids[$curr_q-1]))
 		$curr_q_id = $q_ids[$curr_q-1];
 	else
@@ -64,21 +64,21 @@
 		$question = fetch_row($result);
 		db_close($result);
 		foreach($fields as $f) {
-			$HTTP_POST_VARS[$f] =& $question[$f];
+			$_POST[$f] =& $question[$f];
 		}
 	} else if ($updated) {
 		// adding a new question (possibly because there are no questions yet)
 		$curr_q = 0;
 		$curr_q_id = '';
 		foreach(array('name','length','precise','content','position') as $f) {
-			$HTTP_POST_VARS[$f] = '';
+			$_POST[$f] = '';
 		}
 	} else {
 		foreach($fields as $f) {
-            if(!empty($HTTP_POST_VARS[$f]))
-			    $HTTP_POST_VARS[$f] = _stripslashes($HTTP_POST_VARS[$f]);
+            if(!empty($_POST[$f]))
+			    $_POST[$f] = _stripslashes($_POST[$f]);
             else
-                $HTTP_POST_VARS[$f] = '';
+                $_POST[$f] = '';
 		}
 	}
 ?>
@@ -141,7 +141,7 @@ function validate() {
 			<td>&nbsp;</td>
 			<td><?php echo(mktext('name',12)); ?></td>
 			<td><?php
-				if($updated && empty($HTTP_POST_VARS['type_id'])) $HTTP_POST_VARS['type_id'] = 2;
+				if($updated && empty($_POST['type_id'])) $_POST['type_id'] = 2;
 				$sql = 'SELECT id, type FROM '.$GLOBALS['ESPCONFIG']['question_type_table'].' WHERE id != 99';
 				$result = execute_sql($sql);
 				$arr = array();
@@ -152,15 +152,15 @@ function validate() {
 				echo(mkselect('type_id',$arr));
 			?></td>
 			<td><?php
-				if(empty($HTTP_POST_VARS['length'])) $HTTP_POST_VARS['length'] = 0;
+				if(empty($_POST['length'])) $_POST['length'] = 0;
 				echo(mktext("length",6));
 			?></td>
 			<td><?php
-				if(empty($HTTP_POST_VARS['precise'])) $HTTP_POST_VARS['precise'] = 0;
+				if(empty($_POST['precise'])) $_POST['precise'] = 0;
 				echo(mktext("precise",6));
 			?></td>
 			<td><?php
-				if(empty($HTTP_POST_VARS['required'])) $HTTP_POST_VARS['required'] = 'N';
+				if(empty($_POST['required'])) $_POST['required'] = 'N';
 				echo(mkselect("required",array(
 					"Y" => _('Yes') . '               ',
 					"N" => _('No')
@@ -177,10 +177,10 @@ function validate() {
 	// has answer options ... so show that part of the form
     $sql = "SELECT has_choices
 					FROM ".$GLOBALS['ESPCONFIG']['question_type_table']."
-        WHERE id=" . $HTTP_POST_VARS['type_id'];
+        WHERE id=" . $_POST['type_id'];
     $choices = get_one($sql);
 	if($curr_q == 0 ||
-            empty($HTTP_POST_VARS['type_id']) || $choices =='Y') {
+            empty($_POST['type_id']) || $choices =='Y') {
 		include($GLOBALS['ESPCONFIG']['include_path']."/tab/questions_options".$GLOBALS['ESPCONFIG']['extension']);
 	}
 ?>

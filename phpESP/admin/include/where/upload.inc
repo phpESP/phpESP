@@ -13,17 +13,17 @@
 // Bulk upload from text files
 
     /* SuperUser or Designers with "Administer Group Members(pgroup)" permissions only*/
-    if(($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-        (count($HTTP_SESSION_VARS['acl']['pgroup']) == 0 &&
-        count($HTTP_SESSION_VARS['acl']['puser']) == 0)) &&
+    if(($_SESSION['acl']['superuser'] != 'Y' &&
+        (count($_SESSION['acl']['pgroup']) == 0 &&
+        count($_SESSION['acl']['puser']) == 0)) &&
         !auth_no_access(_('to access this form'))) {
         return;
     }
 
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
-	if(isset($HTTP_GET_VARS['account_type']))
-		$account_type = $HTTP_GET_VARS['account_type'];
+	if(isset($_GET['account_type']))
+		$account_type = $_GET['account_type'];
 	else
 		$account_type = "respondents";
 
@@ -34,19 +34,19 @@
 </div>
 </form>
 <?php
-	if(isset($HTTP_POST_VARS['submit'])) {
-		unset($HTTP_POST_VARS['submit']);
-		if(isset($HTTP_POST_VARS['account_type']))
-			$account_type = $HTTP_POST_VARS['account_type'];
+	if(isset($_POST['submit'])) {
+		unset($_POST['submit']);
+		if(isset($_POST['account_type']))
+			$account_type = $_POST['account_type'];
 		else
 			$account_type = "respondents";
 
-        $upload_type = $HTTP_POST_VARS['upload_type'];
-			$upload_file	= $HTTP_POST_FILES['upload_file']['tmp_name'];
+        $upload_type = $_POST['upload_type'];
+			$upload_file	= $_POST_FILES['upload_file']['tmp_name'];
 		$group_acl	= array();
 
 
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+		if($_SESSION['acl']['superuser'] == 'Y') {
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 			$result = execute_sql($sql);
 			while (list($row) = fetch_row($result)) {
@@ -54,18 +54,18 @@
 				array_push($group_acl, $row);
 			}
 			db_close($result);
-		} elseif(count($HTTP_SESSION_VARS['acl']['pgroup']) > 0) {
-			$group_acl =& $HTTP_SESSION_VARS['acl']['pgroup'];
+		} elseif(count($_SESSION['acl']['pgroup']) > 0) {
+			$group_acl =& $_SESSION['acl']['pgroup'];
 		} else {
-            $group_acl =& $HTTP_SESSION_VARS['acl']['puser'];
+            $group_acl =& $_SESSION['acl']['puser'];
 		}
 		if(!empty($upload_type) && !empty($account_type) && is_uploaded_file($upload_file)) {
 			$file = file($upload_file);
 			$exceptions = array();
 			$success = account_upload($exceptions, $upload_type, $account_type, $group_acl, $file);
 			if($success) {
-				unset($HTTP_POST_VARS['account_type']);
-				unset($HTTP_POST_VARS['submit']);
+				unset($_POST['account_type']);
+				unset($_POST['submit']);
 				include(esp_where("$account_type"));
                        		return;
 			}

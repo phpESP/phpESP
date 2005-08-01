@@ -8,9 +8,9 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	$HTTP_SESSION_VARS['new_survey'] = false;
+	$_SESSION['new_survey'] = false;
 	$survey_name = "";
-    $sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = ". $HTTP_SESSION_VARS['survey_id'];
+    $sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = ". $_SESSION['survey_id'];
     if ($result = execute_sql($sql)) {
 	    if (record_count($result) > 0)
 		    $survey_name = $result->fields[0];
@@ -32,7 +32,7 @@ function validate() {
 below, and paste it into the HTML of your page.')); ?></p>
 
 <blockquote><div><tt>
-	&lt;?php $sid=<?php echo($HTTP_SESSION_VARS['survey_id']); ?>;
+	&lt;?php $sid=<?php echo($_SESSION['survey_id']); ?>;
 	include("<?php echo($ESPCONFIG['handler']); ?>");?&gt;
 </tt></div></blockquote>
 

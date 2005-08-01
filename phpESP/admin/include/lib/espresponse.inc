@@ -12,8 +12,8 @@
     completed, else returns a message string indicating which
     questions need to be completed. */
     function response_check_required($sid, $section) {
-        global $HTTP_POST_VARS;
-
+        //angek: may need to keep for backwards compatability
+        global $_POST;
         $sql = "SELECT id,type_id,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
         ". survey_select_section_sql($sid,$section) ." AND
         required='Y' AND deleted='N' AND type_id < 98
@@ -35,7 +35,7 @@
             $cid_result = execute_sql($sql);
             while(list($cid) = fetch_row($cid_result)) {
                 $cid_result->MoveNext();
-                if(!isset($HTTP_POST_VARS["${qid}_${cid}"])) {
+                if(!isset($_POST["${qid}_${cid}"])) {
                     $missing[$qid] = $content;
                     break;
                 }
@@ -43,13 +43,13 @@
             db_close($cid_result);
             continue;
             }
-            if ($tid == 10 && $HTTP_POST_VARS[$qid] === '0') { // Numeric
+            if ($tid == 10 && $_POST[$qid] === '0') { // Numeric
             continue;
             }
-            if (!isset($HTTP_POST_VARS[$qid])) {
-                $HTTP_POST_VARS[$qid] = '';
+            if (!isset($_POST[$qid])) {
+                $_POST[$qid] = '';
             }
-            if(empty($HTTP_POST_VARS[$qid]) && $HTTP_POST_VARS[$qid] != '0')
+            if(empty($_POST[$qid]) && $_POST[$qid] != '0')
             $missing[$qid] = $content;
         }
         db_close($result);
@@ -120,9 +120,10 @@
     Reads current form variables from HTTP_POST_VARS.
     Returns the ID for the response. */
     function response_insert($sid,$section,$rid) {
-        global $HTTP_POST_VARS;
+        //angek may need to keep this for backwards compatability
+        global $_POST;
         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
-            $userid = isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER']) ?  $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'] : '';
+            $userid = isset($_SERVER['PHP_AUTH_USER']) ?  $_SERVER['PHP_AUTH_USER'] : '';
         }
         elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
             if (isset($_SESSION['espuser'])) {
@@ -131,7 +132,7 @@
         }
 
         if (empty($userid))
-        $userid = $HTTP_POST_VARS['userid'];
+        $userid = $_POST['userid'];
 
         $userid = _addslashes($userid);
 
@@ -151,11 +152,11 @@
         $q_result = execute_sql($sql);
         while(list($qid, $tid, $table) = fetch_row($q_result)) {
             $q_result->MoveNext();
-            if (isset($HTTP_POST_VARS[$qid])) {
-                if (is_array($HTTP_POST_VARS[$qid]))
-                $bareval = array_map('_stripslashes', $HTTP_POST_VARS[$qid]);
+            if (isset($_POST[$qid])) {
+                if (is_array($_POST[$qid]))
+                $bareval = array_map('_stripslashes', $_POST[$qid]);
                 else
-                $bareval = _stripslashes($HTTP_POST_VARS[$qid]);
+                $bareval = _stripslashes($_POST[$qid]);
             }
             else
             $bareval = '';
@@ -197,10 +198,10 @@
                         while(!$c_result) {
                             $c_result->MoveNext();
                             list($cid) = fetch_row($c_result);
-                            if (!isset($HTTP_POST_VARS["${qid}_${cid}"])) {
+                            if (!isset($_POST["${qid}_${cid}"])) {
                                 continue;
                             }
-                            $other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
+                            $other = _addslashes($_POST["${qid}_${cid}"]);
                             if(ereg("[^ \t\n]",$other)) {
                                 $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_other_table']." ( response_id,question_id,choice_id,response ) VALUES ( ${rid},${qid},${cid},${other} )";
                                 $result = execute_sql($sql);
@@ -212,9 +213,9 @@
                     }
                     if(ereg("other_([0-9]+)", $bareval, $regs)) {
                         $cid=$regs[1];
-                        if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
+                        if (!isset($_POST["${qid}_${cid}"]))
                         break; // out of the case
-                        $other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
+                        $other = _addslashes($_POST["${qid}_${cid}"]);
                         if(ereg("[^ \t\n]",$other)) {
                             $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_other_table']." ( response_id,question_id,choice_id,response ) VALUES ( ${rid},${qid},${cid},${other} )";
                             $result = execute_sql($sql);
@@ -230,23 +231,23 @@
                     while(!$c_result->EOF) {
                         list($cid) = fetch_row($c_result);
                         $c_result->MoveNext();
-                        if (!isset($HTTP_POST_VARS["${qid}_${cid}"]) || empty($HTTP_POST_VARS["${qid}_${cid}"])) {
+                        if (!isset($_POST["${qid}_${cid}"]) || empty($_POST["${qid}_${cid}"])) {
                             continue;
                         }
-                        if (!isset($HTTP_POST_VARS[$qid]))
-                        $HTTP_POST_VARS[$qid] = array($cid);
+                        if (!isset($_POST[$qid]))
+                        $_POST[$qid] = array($cid);
                         else
-                        array_push($HTTP_POST_VARS[$qid], $cid);
-                        $other = _addslashes($HTTP_POST_VARS["${qid}_${cid}"]);
+                        array_push($_POST[$qid], $cid);
+                        $other = _addslashes($_POST["${qid}_${cid}"]);
                         if(ereg("[^ \t\n]",$other)) {
                             $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_other_table']." ( response_id,question_id,choice_id,response ) VALUES ( ${rid},${qid},${cid},${other} )";
                             $result = execute_sql($sql);
                         }
                     }
                     db_close($c_result);
-                    if(!isset($HTTP_POST_VARS[$qid]) || count($HTTP_POST_VARS[$qid]) < 1)
+                    if(!isset($_POST[$qid]) || count($_POST[$qid]) < 1)
                     break;
-                    foreach($HTTP_POST_VARS[$qid] as $cid) {
+                    foreach($_POST[$qid] as $cid) {
                         $cid = _addslashes($cid);
                         if(ereg("other_[0-9]+", $cid))
                         continue;
@@ -261,9 +262,9 @@
                     while(!$cid_result->EOF) {
                         list($cid) = fetch_row($cid_result);
                         $cid_result->MoveNext();
-                        if (!isset($HTTP_POST_VARS["${qid}_${cid}"]))
+                        if (!isset($_POST["${qid}_${cid}"]))
                         continue;
-                        $val = $HTTP_POST_VARS["${qid}_${cid}"];
+                        $val = $_POST["${qid}_${cid}"];
                         if(strtolower($val) == "n/a")
                         $rank = -1;
                         else
@@ -731,8 +732,8 @@
             'survey.response' => $rid,
         );
         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
-            if (isset($GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'])) {
-                $userid = $GLOBALS['HTTP_SERVER_VARS']['PHP_AUTH_USER'];
+            if (isset($_SERVER['PHP_AUTH_USER'])) {
+                $userid = $_SERVER['PHP_AUTH_USER'];
             }
             elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
                 $userid = $_SESSION['espuser'];
@@ -758,7 +759,7 @@
                 unset($tmp);
             }
         } else {
-            $user['user.username'] = $GLOBALS['HTTP_POST_VARS']['userid'];
+            $user['user.username'] = $_POST['userid'];
         }
 
         $subject = _('Response from survey:') ." $name [$rid]";
@@ -769,11 +770,11 @@
 
         $headers = "From: \"phpESP ".
         addslashes($GLOBALS['ESPCONFIG']['version']) .
-        "\" <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n";
-        $headers .= "X-Sender: <phpesp@". $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] .">\n";
+        "\" <phpesp@". $_SERVER['SERVER_NAME'] .">\n";
+        $headers .= "X-Sender: <phpesp@". $_SERVER['SERVER_NAME'] .">\n";
         $headers .= "X-Mailer: phpESP\n";
-        $headers .= "Return-Path: <". $GLOBALS['HTTP_SERVER_VARS']['SERVER_ADMIN'] ."@".
-        $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'] . ">\n";
+        $headers .= "Return-Path: <". $_SERVER['SERVER_ADMIN'] ."@".
+        $_SERVER['SERVER_NAME'] . ">\n";
 
         reset($answers);
         while($arr = array_shift($answers)) {
@@ -840,7 +841,7 @@
     */
     function response_import_sec($sid, $rid, $sec, $varr = null) {
         if ($varr == null)
-        $varr =& $GLOBALS['HTTP_POST_VARS'];
+        $varr =& $_POST;
 
         $ids = survey_get_sections($sid);
         if ($sec < 1 || !isset($ids[$sec - 1]))

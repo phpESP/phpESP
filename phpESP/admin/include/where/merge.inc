@@ -7,34 +7,34 @@
 // Written by Romans Jasins
 // <roma@latnet.lv>
 
-    if(!isset($HTTP_GET_VARS['precision'])) {
-        $HTTP_GET_VARS['precision'] = "";
+    if(!isset($_GET['precision'])) {
+        $_GET['precision'] = "";
     }
-    if(!isset($HTTP_GET_VARS['totals'])) {
-        $HTTP_GET_VARS['totals'] = "";
+    if(!isset($_GET['totals'])) {
+        $_GET['totals'] = "";
     }
-    if(!isset($HTTP_GET_VARS['test'])) {
-        $HTTP_GET_VARS['test'] = "";
+    if(!isset($_GET['test'])) {
+        $_GET['test'] = "";
     }
 
 	// see if surveys have been selected
-	if(!empty($HTTP_GET_VARS['sids'])) {
-		$sid = intval($HTTP_GET_VARS['sids']);
-		if($HTTP_GET_VARS['test']) {
-			echo("<p><b>". _('Testing Survey...') .'</b> ('. _('SIDS') ." = ". $HTTP_GET_VARS['sids'] .")</p>\n");
+	if(!empty($_GET['sids'])) {
+		$sid = intval($_GET['sids']);
+		if($_GET['test']) {
+			echo("<p><b>". _('Testing Survey...') .'</b> ('. _('SIDS') ." = ". $_GET['sids'] .")</p>\n");
 		}
 
 		/* check ACLs for permissions ...
 		 * XXX only check the first of the SIDS for ownership */
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-				auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) ||
-				($HTTP_GET_VARS['test'] &&
-					$HTTP_SESSION_VARS['acl']['seeall'] == 'Y') ||
+		if($_SESSION['acl']['superuser'] == 'Y' ||
+				auth_is_owner($sid, $_SESSION['acl']['username']) ||
+				($_GET['test'] &&
+					$_SESSION['acl']['seeall'] == 'Y') ||
 				auth_no_access('to access this survey')) {
 ?>
 <table><tr><td>
 <?php
-			$ret = survey_merge(split(" ",$HTTP_GET_VARS['sids']),$HTTP_GET_VARS['precision'],$HTTP_GET_VARS['totals']);
+			$ret = survey_merge(split(" ",$_GET['sids']),$_GET['precision'],$_GET['totals']);
 			if(!empty($ret))
 				echo("<span class=\"error\">$ret</span>\n");
 ?>
@@ -49,14 +49,14 @@
 	// build a table of surveys to choose from ...
 	/* check with ACL for allowed surveys */
 	$statusok = (STATUS_ACTIVE | STATUS_DONE & ~STATUS_DELETED);
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-		$HTTP_SESSION_VARS['acl']['seeall'] == 'Y')
+	if($_SESSION['acl']['superuser'] == 'Y' ||
+		$_SESSION['acl']['seeall'] == 'Y')
 		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 			WHERE ".db_bin("status", $statusok) ."
 			ORDER BY id DESC";
 	else
 		$sql = "SELECT id,name,title,owner FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE owner=".
-			_addslashes($HTTP_SESSION_VARS['acl']['username']) ."
+			_addslashes($_SESSION['acl']['username']) ."
 			AND ".db_bin("status",$statusok)."
 			ORDER BY id DESC";
 	$result = execute_sql($sql);

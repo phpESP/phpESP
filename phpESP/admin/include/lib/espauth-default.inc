@@ -15,7 +15,7 @@ function survey_auth($sid, $username, $password, $css, $title) {
 	// Default to _unauthorized_
 	$auth = false;
 
-	if (isset($GLOBALS['HTTP_GET_VARS']['auth_options']) || isset($GLOBALS['HTTP_POST_VARS']['auth_options'])) {
+	if (isset($_GET['auth_options']) || isset($_POST['auth_options'])) {
 		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
 		return(false);
 	}
@@ -85,14 +85,14 @@ function survey_auth($sid, $username, $password, $css, $title) {
             if (!isset($survey_name)) {
                 $survey_name = "";
             }
-            if (isset($GLOBALS['_GET']['name'])) {
+            if (isset($_GET['name'])) {
                 $survey_name = $GLOBALS['_GET']['name'];
             }
-            elseif (isset($GLOBALS['HTTP_POST_VARS']['name'])) {
-                $survey_name = $GLOBALS['HTTP_POST_VARS']['name'];
+            elseif (isset($_POST['name'])) {
+                $survey_name = $_POST['name'];
             }
             $error_message = "";
-            if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
             }
             echo show_login($survey_name, $error_message, $css, $title);
@@ -125,11 +125,11 @@ function survey_auth($sid, $username, $password, $css, $title) {
             if (isset($GLOBALS['_GET']['name'])) {
                 $survey_name = $GLOBALS['_GET']['name'];
             }
-            elseif (isset($GLOBALS['HTTP_POST_VARS']['name'])) {
-                $survey_name = $GLOBALS['HTTP_POST_VARS']['name'];
+            elseif (isset($_POST['name'])) {
+                $survey_name = $_POST['name'];
             }
             $error_message = "";
-            if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error_message = "Your account has been disabled or you have already completed this survey.";
             }
             echo show_login($survey_name, $error_message, $css, $title);
@@ -147,9 +147,9 @@ function survey_auth($sid, $username, $password, $css, $title) {
    access control related session variables. */
 function manage_auth($username, $password, $raw_password="") {
 	// see if session is expired, or has been logged out
-	if(isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
-	   isset($GLOBALS['HTTP_SESSION_VARS']['acl']['expired'])) {
-		if($GLOBALS['HTTP_SESSION_VARS']['acl']['expired']-- > 0) {
+	if(isset($_SESSION['acl']) &&
+	   isset($_SESSION['acl']['expired'])) {
+		if($_SESSION['acl']['expired']-- > 0) {
 			$username = ''; $password = '';
 		}
 	}
@@ -157,18 +157,18 @@ function manage_auth($username, $password, $raw_password="") {
 	// see if ACL is cached
 	if (!empty($username) &&
 			!empty($password) &&
-			isset($GLOBALS['HTTP_SESSION_VARS']['acl']) &&
-			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['username']) &&
-			isset($GLOBALS['HTTP_SESSION_VARS']['acl']['password']) &&
-			$GLOBALS['HTTP_SESSION_VARS']['acl']['username'] == $username) {
-		$sql = "SELECT ".db_crypt($password)." = ". $GLOBALS['HTTP_SESSION_VARS']['acl']['password'];
+			isset($_SESSION['acl']) &&
+			isset($_SESSION['acl']['username']) &&
+			isset($_SESSION['acl']['password']) &&
+			$_SESSION['acl']['username'] == $username) {
+		$sql = "SELECT ".db_crypt($password)." = ". $_SESSION['acl']['password'];
 		$auth = get_one($sql);
 		if($auth)
 			return(true);
 	}
 
 	$auth = false; // default to unauthorized
-	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array();
+	$_SESSION['acl'] = array();
 
     if (!empty($username) && !empty($password)) {
         // if we are running mysql >4.0 need to check/upgrade passwords
@@ -212,7 +212,7 @@ function manage_auth($username, $password, $raw_password="") {
         }
         elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
             $error_message = "";
-            if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
             }
             echo show_login(null, $error_message, null, "phpESP Managment Login");
@@ -247,7 +247,7 @@ function manage_auth($username, $password, $raw_password="") {
 		$acl[$f] =& $$f;
 	}
 
-	$GLOBALS['HTTP_SESSION_VARS']['acl'] =& $acl;
+	$_SESSION['acl'] =& $acl;
 
 	// if one were to want login accounting (logs) this
 	// would be the ideal place to do so...
@@ -270,7 +270,8 @@ function manage_logout() {
     $_SESSION['raw_password'] = "";
     session_destroy();
 	$acl = array('expired' => 2);
-	$GLOBALS['HTTP_SESSION_VARS']['acl'] = array('expired' => 2);
+	////angek: $GLOBALS['HTTP_SESSION_VARS']['acl'] = array('expired' => 2);
+	$_SESSION['acl'] = array('expired' => 2);
 }
 /* }}} */
 
