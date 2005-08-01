@@ -8,15 +8,15 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y') {
+	if($_SESSION['acl']['superuser'] != 'Y') {
 		echo(mkerror(_('Only superusers allowed.'))."<br>\n");
 		echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
 		return;
 	}
 
 	$sids = array();
-	if(!empty($HTTP_POST_VARS['list'])) {
-		while(list(,$sid) = each($HTTP_POST_VARS['list'])) {
+	if(!empty($_POST['list'])) {
+		while(list(,$sid) = each($_POST['list'])) {
 			array_push($sids, intval($sid));
 		}
 		survey_purge($sids);

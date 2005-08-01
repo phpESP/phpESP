@@ -21,13 +21,13 @@
 		$result = execute_sql($sql);
 		$c = record_count($result);
 	} else {
-		if (isset($HTTP_POST_VARS['num_choices']))
-			$c = intval($HTTP_POST_VARS['num_choices']);
+		if (isset($_POST['num_choices']))
+			$c = intval($_POST['num_choices']);
 		else
 			$c = $GLOBALS['ESPCONFIG']['default_num_choices'];
 	}
-	if(isset($HTTP_POST_VARS['extra_choices']))
-		$num_choices = max($c, $HTTP_POST_VARS['num_choices']) + 1;
+	if(isset($_POST['extra_choices']))
+		$num_choices = max($c, $_POST['num_choices']) + 1;
 	else
 		$num_choices = $c;
 ?>
@@ -49,10 +49,10 @@ Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
                 $result->MoveNext();
 			} else {
 				if ($curr_q) {
-					$choice_id      = intval($HTTP_POST_VARS["choice_id_$i"]);
+					$choice_id      = intval($_POST["choice_id_$i"]);
 				}
-				if(isset($HTTP_POST_VARS["choice_content_$i"]))
-					$choice_content = _stripslashes($HTTP_POST_VARS["choice_content_$i"]);
+				if(isset($_POST["choice_content_$i"]))
+					$choice_content = _stripslashes($_POST["choice_content_$i"]);
 			}
 ?>
 	<tr>

@@ -44,7 +44,8 @@
   /* Make this false to generate full HTML, rather than embedable. */
   $embed = true;
 
-  $post =& $GLOBALS['HTTP_POST_VARS'];
+  //$post =& $GLOBALS['HTTP_POST_VARS'];
+  $post =& $_POST;
   unset($msg);
   
   /* sanity check the signup_realm */

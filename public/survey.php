@@ -26,14 +26,14 @@
 	$_title = '';
 	$_css = '';
     $sid = '';
-	if (isset($HTTP_GET_VARS['name'])) {
-		$_name = _addslashes($HTTP_GET_VARS['name']);
-		unset($HTTP_GET_VARS['name']);
+	if (isset($_GET['name'])) {
+		$_name = _addslashes($_GET['name']);
+		unset($_GET['name']);
 		$_SERVER['QUERY_STRING'] = ereg_replace('(^|&)name=[^&]*&?', '', $_SERVER['QUERY_STRING']);
 	}
-    if (isset($HTTP_POST_VARS['name'])) {
-        $_name = _addslashes($HTTP_POST_VARS['name']);
-        unset($HTTP_POST_VARS['name']);
+    if (isset($_POST['name'])) {
+        $_name = _addslashes($_POST['name']);
+        unset($_POST['name']);
     }
 
 	if (!empty($_name)) {

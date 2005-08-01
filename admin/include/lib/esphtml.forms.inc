@@ -38,7 +38,7 @@ function mkerror ($msg) {
    Returns HTML format for a radio button. */
 function mkradio ($_name, $value, $varr = null) {
     if ($varr == null)
-        $varr =& $GLOBALS['HTTP_POST_VARS'];
+        $varr =& $_POST;
 	$str = '<input type="radio" name="' . htmlspecialchars($_name) .'" value="' . htmlspecialchars($value) .'"';
 	if ( isset($varr[$_name]) && $varr[$_name] == $value )
 		$str .= " checked=\"checked\"";
@@ -51,7 +51,7 @@ function mkradio ($_name, $value, $varr = null) {
    Returns HTML format for a check box. */
 function mkcheckbox ($_name, $value, $varr = null) {
     if ($varr == null)
-        $varr =& $GLOBALS['HTTP_POST_VARS'];
+        $varr =& $_POST;
 	$str = '<input type="checkbox" name="' . htmlspecialchars($_name) .'[]" value="' . htmlspecialchars($value) .'"';
 	if (isset($varr[$_name]) && is_array($varr[$_name]) && in_array($value, $varr[$_name]))
 		$str .= " checked=\"checked\"";
@@ -64,7 +64,7 @@ function mkcheckbox ($_name, $value, $varr = null) {
    Returns HTML format for a text entry line. */
 function mktext ($_name, $size = 20, $max = 0, $varr = null) {
     if ($varr == null)
-        $varr =& $GLOBALS['HTTP_POST_VARS'];
+        $varr =& $_POST;
 	$size = intval($size);
 	$max  = intval($max);
 	$str = "size=\"$size\"";
@@ -86,7 +86,7 @@ function mkpass ($_name) {
    Returns HTML format for a hidden form field. */
 function mkhidden ($_name, $varr = null) {
     if ($varr == null)
-        $varr =& $GLOBALS['HTTP_POST_VARS'];
+        $varr =& $_POST;
 	if (isset($varr[$_name]))
 		return('<input type="hidden" name="'. htmlspecialchars($_name) .'" value="'. _stripslashes(htmlspecialchars($varr[$_name])) .'" />');
 	return('<input type="hidden" name="'. htmlspecialchars($_name) .'" />');
@@ -97,7 +97,7 @@ function mkhidden ($_name, $varr = null) {
    Returns HTML format for a text entry box. */
 function mktextarea ($_name, $rows, $cols, $wrap, $varr = null) {
     if ($varr == null)
-        $varr =& $GLOBALS['HTTP_POST_VARS'];
+        $varr =& $_POST;
 	$str = '<textarea name="' . htmlspecialchars($_name) .'"';
 	if($rows > 0)
 		$str .= ' rows="' . $rows . '"';
@@ -117,7 +117,7 @@ function mktextarea ($_name, $rows, $cols, $wrap, $varr = null) {
    Returns HTML format for a select box (dropdown). */
 function mkselect ($_name, $options, $varr = null) {
     if ($varr == null)
-        $varr =& $GLOBALS['HTTP_POST_VARS'];
+        $varr =& $_POST;
 	$str  = "<select name=\"${_name}\">\n";
 	$str .= "<option></option>\n";
 	while(list($cid, $content) = each($options)) {
@@ -166,7 +166,8 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     if ($_message) {
         $str .= mkerror($_message);
     }
-    $str .= '<form name="loginform"id="loginform"  method="post">';
+
+    $str .= '<form name="loginform" id="loginform"  method="post">';
     $str .= "\n<fieldset><legend>Login</legend>\n";
     $str .= '<div class="row">';
     $str .= '<label for="username">';

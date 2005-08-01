@@ -13,17 +13,17 @@
 
 	/* load names and titles of all surveys available to
 	 * _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+	if($_SESSION['acl']['superuser'] == 'Y') {
 		$sql = "SELECT s.id, s.name, s.title, s.owner, s.realm
 		FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.status = 0 ORDER BY s.id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
-				$HTTP_SESSION_VARS['acl']['pall'],
-				$HTTP_SESSION_VARS['acl']['pdesign']));
+				$_SESSION['acl']['pall'],
+				$_SESSION['acl']['pdesign']));
 		$sql = "SELECT s.id, s.name, s.title, s.owner, s.realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." s WHERE s.status = 0 AND (s.owner = ".
-			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || s.realm $realms) ORDER BY id DESC";
+			_addslashes($_SESSION['acl']['username']) ." || s.realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 

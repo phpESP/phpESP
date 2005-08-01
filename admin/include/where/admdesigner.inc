@@ -9,8 +9,8 @@
 // <jflemer@acm.rpi.edu>
 
     /* SuperUser or Designers with "Administer Designers(pgroup)" permissions only*/
-    if(($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-        count($HTTP_SESSION_VARS['acl']['pgroup']) == 0) &&
+    if(($_SESSION['acl']['superuser'] != 'Y' &&
+        count($_SESSION['acl']['pgroup']) == 0) &&
         !auth_no_access(_('to access this form'))) {
         return;
     }
@@ -23,21 +23,21 @@
 	$r = '';
 
 	/* abort */
-	if(isset($HTTP_POST_VARS['cancel'])) {
-		unset($HTTP_POST_VARS['submit']);
-		unset($HTTP_POST_VARS['delete']);
+	if(isset($_POST['cancel'])) {
+		unset($_POST['submit']);
+		unset($_POST['delete']);
 		include(esp_where('designers'));
 		return;
 	}
 
 	/* delete user */
-	if(isset($HTTP_POST_VARS['delete'])) {
-		unset($HTTP_POST_VARS['submit']);
-		$u = _addslashes($HTTP_POST_VARS['u']);
-		$r = _addslashes($HTTP_POST_VARS['r']);
+	if(isset($_POST['delete'])) {
+		unset($_POST['submit']);
+		$u = _addslashes($_POST['u']);
+		$r = _addslashes($_POST['r']);
 		/* check acl */
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-			in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
+		if($_SESSION['acl']['superuser'] == 'Y' ||
+			in_array($r, $_SESSION['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
 			if(!execute_sql($sql) || affected_rows() < 1) {
@@ -53,39 +53,39 @@
 	}
 
 	/* submitted */
-	if(isset($HTTP_POST_VARS['submit'])) {
-		$u         = _addslashes($HTTP_POST_VARS['u']);
-		$r         = _addslashes($HTTP_POST_VARS['r']);
-		$password  = _addslashes($HTTP_POST_VARS['password']);
-		$fname     = _addslashes($HTTP_POST_VARS['fname']);
-		$lname     = _addslashes($HTTP_POST_VARS['lname']);
-		$email     = _addslashes($HTTP_POST_VARS['email']);
-		$pdesign   = _addslashes($HTTP_POST_VARS['pdesign']);
-		$pstatus   = _addslashes($HTTP_POST_VARS['pstatus']);
-		$pdata     = _addslashes($HTTP_POST_VARS['pdata']);
-		$pall      = _addslashes($HTTP_POST_VARS['pall']);
-		$pgroup    = _addslashes($HTTP_POST_VARS['pgroup']);
-		$puser     = _addslashes($HTTP_POST_VARS['puser']);
-		$disabled  = _addslashes($HTTP_POST_VARS['disabled']);
+	if(isset($_POST['submit'])) {
+		$u         = _addslashes($_POST['u']);
+		$r         = _addslashes($_POST['r']);
+		$password  = _addslashes($_POST['password']);
+		$fname     = _addslashes($_POST['fname']);
+		$lname     = _addslashes($_POST['lname']);
+		$email     = _addslashes($_POST['email']);
+		$pdesign   = _addslashes($_POST['pdesign']);
+		$pstatus   = _addslashes($_POST['pstatus']);
+		$pdata     = _addslashes($_POST['pdata']);
+		$pall      = _addslashes($_POST['pall']);
+		$pgroup    = _addslashes($_POST['pgroup']);
+		$puser     = _addslashes($_POST['puser']);
+		$disabled  = _addslashes($_POST['disabled']);
 
-		if(!empty($HTTP_POST_VARS['ex_year']) ||
-				!empty($HTTP_POST_VARS['ex_month']) ||
-				!empty($HTTP_POST_VARS['ex_day'])) {
-			if(empty($HTTP_POST_VARS['ex_day'])) {
+		if(!empty($_POST['ex_year']) ||
+				!empty($_POST['ex_month']) ||
+				!empty($_POST['ex_day'])) {
+			if(empty($_POST['ex_day'])) {
 				$ex_day = 1;
 			} else {
-				$ex_day = intval($HTTP_POST_VARS['ex_day']);
+				$ex_day = intval($_POST['ex_day']);
 			}
-			if(empty($HTTP_POST_VARS['ex_month'])) {
+			if(empty($_POST['ex_month'])) {
 				$ex_month = 1;
 			} else {
-				$ex_month = intval($HTTP_POST_VARS['ex_month']);
+				$ex_month = intval($_POST['ex_month']);
 			}
-			if(empty($HTTP_POST_VARS['ex_year'])) {
+			if(empty($_POST['ex_year'])) {
 				$now = getdate(time());
 				$ex_year = $now['year'];
 			} else {
-				$ex_year = intval($HTTP_POST_VARS['ex_year']);
+				$ex_year = intval($_POST['ex_year']);
 				if($ex_year < 2000)
 					$ex_year += 2000;
 			}
@@ -101,8 +101,8 @@
 
 		/* new user */
         /* check acl */
-        if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y' ||
-            in_array($r, $HTTP_SESSION_VARS['acl']['pgroup']) ||
+        if($_SESSION['acl']['superuser'] == 'Y' ||
+            in_array($r, $_SESSION['acl']['pgroup']) ||
             auth_no_access(_('to access this group'))) {
             $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
             $result = execute_sql($sql);
@@ -161,9 +161,9 @@
 	    	include(esp_where('designers'));
 	    	return;
 	    }
-	} else if(isset($HTTP_GET_VARS['u']) && isset($HTTP_GET_VARS['r'])) {
-		$u = _addslashes($HTTP_GET_VARS['u']);
-		$r = _addslashes($HTTP_GET_VARS['r']);
+	} else if(isset($_GET['u']) && isset($_GET['r'])) {
+		$u = _addslashes($_GET['u']);
+		$r = _addslashes($_GET['r']);
 	} else {
 		$u = '';
 		$r = '';
@@ -229,7 +229,7 @@
 	if(empty($r)) {
 		$r = '<select name="r"><option></option>';
 		$groups = array();
-		if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+		if($_SESSION['acl']['superuser'] == 'Y') {
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 			$result = execute_sql($sql);
 			while( list($g) = fetch_row($result) ) {
@@ -238,7 +238,7 @@
 			}
 			db_close($result);
 		} else {
-			$groups =& $HTTP_SESSION_VARS['acl']['pgroup'];
+			$groups =& $_SESSION['acl']['pgroup'];
 		}
 		foreach($groups as $g) {
 			$r .= "<option value=\"$g\">$g</option>";

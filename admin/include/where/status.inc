@@ -8,13 +8,13 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	if(!empty($HTTP_GET_VARS['sid']))
-		$sid = intval($HTTP_GET_VARS['sid']);
+	if(!empty($_GET['sid']))
+		$sid = intval($_GET['sid']);
 
 	$bg = '';
 
 	/* operation selected ... */
-	if(!empty($HTTP_GET_VARS['op'])) {
+	if(!empty($_GET['op'])) {
 		$sql = "SELECT status,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
 		$result = execute_sql($sql);
 		if((list($old_status, $owner, $realm) = fetch_row($result))) {
@@ -23,10 +23,10 @@
 			$err = false;
 			$status = $old_status;
 			// trying to perform some operation
-			switch(strtolower($HTTP_GET_VARS['op'])) {
+			switch(strtolower($_GET['op'])) {
 				case 'c':	// Clear
 					/* only _superuser_s can do this */
-					if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+					if($_SESSION['acl']['superuser'] == 'Y') {
 						$access = true;
 					} else {
 						$access = false;
@@ -35,10 +35,10 @@
 					break;
 				case 't':	// test
 					/* only the owner or a group editor+design */
-					if($owner == $HTTP_SESSION_VARS['acl']['username'] ||
+					if($owner == $_SESSION['acl']['username'] ||
 						in_array($realm, array_intersect(
-							$HTTP_SESSION_VARS['acl']['pall'],
-							$HTTP_SESSION_VARS['acl']['pdesign']))) {
+							$_SESSION['acl']['pall'],
+							$_SESSION['acl']['pdesign']))) {
 						$access = true;
 					}
 					$status = $old_status | STATUS_TEST;
@@ -47,10 +47,10 @@
 					break;
 				case 'm':	// Edit
 					/* only the owner or a group editor+design */
-					if($owner == $HTTP_SESSION_VARS['acl']['username'] ||
+					if($owner == $_SESSION['acl']['username'] ||
 						in_array($realm, array_intersect(
-							$HTTP_SESSION_VARS['acl']['pall'],
-							$HTTP_SESSION_VARS['acl']['pdesign']))) {
+							$_SESSION['acl']['pall'],
+							$_SESSION['acl']['pdesign']))) {
 						$access = true;
 					}
 					$status = $old_status & ~STATUS_TEST;
@@ -61,9 +61,9 @@
 					break;
 				case 'a':	// activate
 					/* only the owner+stauts or a group editor+status */
-					if(in_array($realm, $HTTP_SESSION_VARS['acl']['pstatus']) &&
-						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
-						in_array($realm, $HTTP_SESSION_VARS['acl']['pall']))) {
+					if(in_array($realm, $_SESSION['acl']['pstatus']) &&
+						($owner == $_SESSION['acl']['username'] ||
+						in_array($realm, $_SESSION['acl']['pall']))) {
 						$access = true;
 					}
 					$status = $old_status | STATUS_ACTIVE;
@@ -74,9 +74,9 @@
 					break;
 				case 'e':	// End
 					/* only the owner+stauts or a group editor+status */
-					if(in_array($realm, $HTTP_SESSION_VARS['acl']['pstatus']) &&
-						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
-						in_array($realm, $HTTP_SESSION_VARS['acl']['pall']))) {
+					if(in_array($realm, $_SESSION['acl']['pstatus']) &&
+						($owner == $_SESSION['acl']['username'] ||
+						in_array($realm, $_SESSION['acl']['pall']))) {
 						$access = true;
 					}
 					$status = $old_status | STATUS_DONE;
@@ -85,16 +85,16 @@
 					break;
 				case 'd':	// Delete
 					/* only the owner+stauts or a group editor+status */
-					if(in_array($realm, $HTTP_SESSION_VARS['acl']['pstatus']) &&
-						($owner == $HTTP_SESSION_VARS['acl']['username'] ||
-						in_array($realm, $HTTP_SESSION_VARS['acl']['pall']))) {
+					if(in_array($realm, $_SESSION['acl']['pstatus']) &&
+						($owner == $_SESSION['acl']['username'] ||
+						in_array($realm, $_SESSION['acl']['pall']))) {
 						$access = true;
 					}
 					$status = $old_status | STATUS_DELETED;
 					break;
 			}
 			/* superuser overrides all */
-			if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y')
+			if($_SESSION['acl']['superuser'] == 'Y')
 				$access = true;
 			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status=$status WHERE id=${sid}";
 			if($access || auth_no_access(_('to access this survey'))) {
@@ -148,26 +148,26 @@ archived survey.')); ?></li>
 <?php
 	/* load names and titles of all surveys available to
 	 * _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+	if($_SESSION['acl']['superuser'] == 'Y') {
 		$sql = 'SELECT id,name,title,status,owner,realm FROM '.$GLOBALS['ESPCONFIG']['survey_table'].' ORDER BY id DESC';
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
-				$HTTP_SESSION_VARS['acl']['pall'],
+				$_SESSION['acl']['pall'],
 				array_merge(
-					$HTTP_SESSION_VARS['acl']['pall'],
-					$HTTP_SESSION_VARS['acl']['pdesign'])));
+					$_SESSION['acl']['pall'],
+					$_SESSION['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,status,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE (owner = ".
-			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
+			_addslashes($_SESSION['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 
 	$realms = array_intersect(
-			$HTTP_SESSION_VARS['acl']['pstatus'],
+			$_SESSION['acl']['pstatus'],
 			array_merge(
-				$HTTP_SESSION_VARS['acl']['pall'],
-				$HTTP_SESSION_VARS['acl']['pstatus']));
+				$_SESSION['acl']['pall'],
+				$_SESSION['acl']['pstatus']));
 
 	while(list($sid,$name,$title,$status,$owner,$realm) = fetch_row($result)) {
         $result->MoveNext();
@@ -197,7 +197,7 @@ archived survey.')); ?></li>
 
 		/* whack things back to permissions set by ACL
 		 * for everyone _not_ superuser */
-		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
+		if($_SESSION['acl']['superuser'] != 'Y' &&
 				!in_array($realm, $realms)) {
 			$act  = '&nbsp;';
 			$done = '&nbsp;';

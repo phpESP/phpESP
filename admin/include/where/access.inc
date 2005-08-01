@@ -8,10 +8,10 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	if (!empty($HTTP_POST_VARS['sid']))
-		$sid = intval($HTTP_POST_VARS['sid']);
-	elseif (!empty($HTTP_GET_VARS['sid']))
-		$sid = intval($HTTP_GET_VARS['sid']);
+	if (!empty($_POST['sid']))
+		$sid = intval($_POST['sid']);
+	elseif (!empty($_GET['sid']))
+		$sid = intval($_GET['sid']);
 	else
 		$sid = '';
 
@@ -47,39 +47,39 @@
 		list($name,$title,$owner,$realm,$public) = fetch_row($result);
 		db_close($result);
 
-		if (!empty($HTTP_POST_VARS['op']))
-			$op = $HTTP_POST_VARS['op'];
-		elseif (!empty($HTTP_GET_VARS['op']))
-			$op = $HTTP_GET_VARS['op'];
+		if (!empty($_POST['op']))
+			$op = $_POST['op'];
+		elseif (!empty($_GET['op']))
+			$op = $_GET['op'];
 		else
 			$op = '';
 
-		if (!empty($HTTP_POST_VARS['realm']))
-			$arealm = _addslashes($HTTP_POST_VARS['realm']);
-		elseif (!empty($HTTP_GET_VARS['realm']))
-			$arealm = _addslashes($HTTP_GET_VARS['realm']);
+		if (!empty($_POST['realm']))
+			$arealm = _addslashes($_POST['realm']);
+		elseif (!empty($_GET['realm']))
+			$arealm = _addslashes($_GET['realm']);
 
-		if (isset($HTTP_POST_VARS['resume']))
+		if (isset($_POST['resume']))
 			$resume = 'Y';
 		else
 			$resume = 'N';
 	    $resume = _addslashes($resume);	
 		
-		if (isset($HTTP_POST_VARS['navigate']))
+		if (isset($_POST['navigate']))
 			$navigate = 'Y';
 		else
 			$navigate = 'N';
 	    $navigate = _addslashes($navigate);
 		
-		if (!empty($HTTP_POST_VARS['max']))
-			$max = intval($HTTP_POST_VARS['max']);
-		elseif (!empty($HTTP_GET_VARS['max']))
-			$max = intval($HTTP_GET_VARS['max']);
+		if (!empty($_POST['max']))
+			$max = intval($_POST['max']);
+		elseif (!empty($_GET['max']))
+			$max = intval($_GET['max']);
 		else
 			$max = 0;
 
 		if ($op == 'a') {
-			if (empty($HTTP_POST_VARS['realm'])) {
+			if (empty($_POST['realm'])) {
 				$errstr = mkerror(_('Please select a group.'));
 			} else {
 				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['access_table']." (survey_id, realm, maxlogin, resume, navigate)
@@ -211,18 +211,18 @@ Private surveys are restricted by Respondent Groups.')); ?></p>
 <?php
 	/* load names and titles of all surveys available to
 	 * _this_ user */
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+	if($_SESSION['acl']['superuser'] == 'Y') {
 		$sql = "SELECT id,name,title,owner,realm,public FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status",STATUS_DELETED)." ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
-				$HTTP_SESSION_VARS['acl']['pall'],
+				$_SESSION['acl']['pall'],
 				array_merge(
-					$HTTP_SESSION_VARS['acl']['pall'],
-					$HTTP_SESSION_VARS['acl']['pdesign'])));
+					$_SESSION['acl']['pall'],
+					$_SESSION['acl']['pdesign'])));
 		$sql = "SELECT id,name,title,owner,realm,public
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status",STATUS_DELETED)." AND (owner = ".
-			_addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
+			_addslashes($_SESSION['acl']['username']) ." || realm $realms) ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
 	while(list($sid,$name,$title,$owner,$realm,$public) = fetch_row($result)) {

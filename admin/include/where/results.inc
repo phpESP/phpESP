@@ -12,21 +12,21 @@
     require ($ESPCONFIG['include_path']."where/crosstab.inc");
     // see if a survey has been selected
     $sid = '';
-    if (!empty($HTTP_POST_VARS['sid']))
-    $sid = intval($HTTP_POST_VARS['sid']);
-    elseif (!empty($HTTP_GET_VARS['sid']))
-    $sid = intval($HTTP_GET_VARS['sid']);
+    if (!empty($_POST['sid']))
+    $sid = intval($_POST['sid']);
+    elseif (!empty($_GET['sid']))
+    $sid = intval($_GET['sid']);
 
     if (!empty($sid)) {
         $srealm = auth_get_survey_realm(_addslashes($sid));
-        if(!empty($HTTP_GET_VARS['test'])) {
+        if(!empty($_GET['test'])) {
             /* check ACL to see if user is allowed to test
             * _this_ survey */
-            if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-            !auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) &&
+            if($_SESSION['acl']['superuser'] != 'Y' &&
+            !auth_is_owner($sid, $_SESSION['acl']['username']) &&
             !in_array($srealm, array_intersect(
-                $HTTP_SESSION_VARS['acl']['pdesign'],
-                $HTTP_SESSION_VARS['acl']['pall'])) &&
+                $_SESSION['acl']['pdesign'],
+                $_SESSION['acl']['pall'])) &&
                 !auth_no_access(_('to access this survey'))) {
                     return;
                 }
@@ -34,17 +34,17 @@
         } else {
             /* check ACL to see if user is allowed to get results to
             * _this_ survey */
-            if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-            !auth_is_owner($sid, $HTTP_SESSION_VARS['acl']['username']) &&
+            if($_SESSION['acl']['superuser'] != 'Y' &&
+            !auth_is_owner($sid, $_SESSION['acl']['username']) &&
             !in_array($srealm, array_intersect(
-                $HTTP_SESSION_VARS['acl']['pdata'],
-                $HTTP_SESSION_VARS['acl']['pall'])) &&
+                $_SESSION['acl']['pdata'],
+                $_SESSION['acl']['pall'])) &&
                 !auth_no_access(_('to access this survey'))) {
                     return;
                 }
         }
-        if (isset($HTTP_GET_VARS['type'])) {
-            if ($HTTP_GET_VARS['type'] == "cross") {
+        if (isset($_GET['type'])) {
+            if ($_GET['type'] == "cross") {
                 echo('<h2>'. _('Cross Tabulation') ."</h2>\n");
             }
         }
@@ -57,37 +57,37 @@
     <tr><td>
     <?php
         $precision = '';
-        if(!empty($HTTP_GET_VARS['precision']))
-        $precision = intval($HTTP_GET_VARS['precision']);
+        if(!empty($_GET['precision']))
+        $precision = intval($_GET['precision']);
         $totals = '';
-        if(!empty($HTTP_GET_VARS['totals']))
-        $totals = intval($HTTP_GET_VARS['totals']);
+        if(!empty($_GET['totals']))
+        $totals = intval($_GET['totals']);
         $qid = '';
         $cids = '';
         $rid = '';
         $qidc = '';
         $qidr = '';
         $guicross = '';
-        if(!empty($HTTP_GET_VARS['qid']))
-        $qid = intval($HTTP_GET_VARS['qid']);
-        if(!empty($HTTP_GET_VARS['cids']))
-        $cids = _addslashes($HTTP_GET_VARS['cids']);
-        if (!empty($HTTP_POST_VARS['cids'])) {   
-            $cids = $HTTP_POST_VARS['cids'];     
+        if(!empty($_GET['qid']))
+        $qid = intval($_GET['qid']);
+        if(!empty($_GET['cids']))
+        $cids = _addslashes($_GET['cids']);
+        if (!empty($_POST['cids'])) {   
+            $cids = $_POST['cids'];     
         }
-        if (!empty($HTTP_POST_VARS['qid']))
-        $qid = intval($HTTP_POST_VARS['qid']);
+        if (!empty($_POST['qid']))
+        $qid = intval($_POST['qid']);
 
-        if (!empty($HTTP_POST_VARS['qidc']))
-        $qidc = intval($HTTP_POST_VARS['qidc']);
-        if (!empty($HTTP_POST_VARS['qidr']))
-        $qidr = intval($HTTP_POST_VARS['qidr']);
-        if(!empty($HTTP_POST_VARS['rid']))
-        $rid = intval($HTTP_POST_VARS['rid']);
-        elseif(!empty($HTTP_GET_VARS['rid']))
-        $rid = intval($HTTP_GET_VARS['rid']);
-        if(!empty($HTTP_GET_VARS['type']))
-        $guicross = $HTTP_GET_VARS['type'];
+        if (!empty($_POST['qidc']))
+        $qidc = intval($_POST['qidc']);
+        if (!empty($_POST['qidr']))
+        $qidr = intval($_POST['qidr']);
+        if(!empty($_POST['rid']))
+        $rid = intval($_POST['rid']);
+        elseif(!empty($_GET['rid']))
+        $rid = intval($_GET['rid']);
+        if(!empty($_GET['type']))
+        $guicross = $_GET['type'];
         if(!empty($rid)) {
             $ret = survey_results($sid, $precision, 0, '', '', $rid);
         } else if (!empty($guicross)){
@@ -101,12 +101,12 @@
         echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
     ?>
     <?php
-        if(!empty($HTTP_GET_VARS['test'])) {
-            echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=test&sid=". $HTTP_GET_VARS['sid']) ."\">". _('Test Survey') ."</a><br>\n");
+        if(!empty($_GET['test'])) {
+            echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=test&sid=". $_GET['sid']) ."\">". _('Test Survey') ."</a><br>\n");
         }
 
 
-        if (!empty($HTTP_GET_VARS['type'])) {
+        if (!empty($_GET['type'])) {
         ?>
         </td></tr>
         <tr><td align="center">
@@ -129,21 +129,21 @@
     * _this_ user */
     $statusok = (STATUS_ACTIVE | STATUS_DONE);
     $statusno = STATUS_DELETED;
-    if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+    if($_SESSION['acl']['superuser'] == 'Y') {
         $sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
         WHERE NOT ".db_bin("status", $statusno)." AND ".db_bin("status", $statusok)." ORDER BY id DESC";
     } else {
         $realms = array_to_insql(
             array_intersect(
-                $HTTP_SESSION_VARS['acl']['pall'],
-                $HTTP_SESSION_VARS['acl']['pdata']));
+                $_SESSION['acl']['pall'],
+                $_SESSION['acl']['pdata']));
                 $sql = "SELECT id,name,title,owner,realm
                 FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE NOT ".db_bin("status", $statusno)." AND ".db_bin("status", $statusok)." AND (owner = ".
-                _addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms) ORDER BY id DESC";
+                _addslashes($_SESSION['acl']['username']) ." || realm $realms) ORDER BY id DESC";
     }
     $result = execute_sql($sql);
 
-    if (empty($HTTP_GET_VARS['type'])) {
+    if (empty($_GET['type'])) {
     ?>
 <h2><?php echo(_('View Survey Results')); ?></h2>
 <?php echo(_('Pick Survey to View')); ?>
@@ -160,7 +160,7 @@
 <table cellspacing="0" cellpadding="4">
     <tr class="header">
 <th><?php echo(_('ID')); ?></th>
-<?php if (empty($HTTP_GET_VARS['type'])) { ?>
+<?php if (empty($_GET['type'])) { ?>
 <th><?php echo(_('Respondent')); ?></th>
     <?php }
     else { ?>
@@ -193,7 +193,7 @@
     <tr style="background-color: <?php echo($bg); ?>;">
     <td><?php echo($sid); ?></td>
         <?php
-            if (empty($HTTP_GET_VARS['type'])) {
+            if (empty($_GET['type'])) {
                 // grab all the rid values for the particular survey
                 $sql = "SELECT R.id FROM ".$GLOBALS['ESPCONFIG']['response_table']." R ".
                 "WHERE R.survey_id = ${sid} AND R.complete = 'Y' ".
@@ -204,7 +204,7 @@
         ?>
         <td>
         <?php 
-            if (empty($HTTP_GET_VARS['type'])) {
+            if (empty($_GET['type'])) {
             ?>
         <select name="rid<?php echo $count; ?>" onchange="javascript:this.form.rid.value=this.form.rid<?php echo $count; ?>.options[this.form.rid<?php echo $count; ?>.selectedIndex].value; this.form.sid.value=<?php echo $sid; ?>; this.form.submit(); return false;">
             <option value=""></option>
@@ -224,7 +224,7 @@
         </td>
         <td>
         <?php
-            if (!empty($HTTP_GET_VARS['type'])){
+            if (!empty($_GET['type'])){
             ?>	
         <a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=results&sid=${sid}&type=cross")); ?>">
             <?php   }

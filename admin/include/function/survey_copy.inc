@@ -26,7 +26,7 @@ function survey_copy($sid) {
 	db_close($result);
 
 	// clear the sid,  change the name, and clear the status
-	$survey['owner'] = $GLOBALS['HTTP_SESSION_VARS']['acl']['username'];
+	$survey['owner'] = $_SESSION['acl']['username'];
 	$survey['name'] .= '_'. _('copy');
 	$survey['status'] = 0;
 

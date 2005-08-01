@@ -9,11 +9,11 @@
 // <jflemer@alum.rpi.edu>
 
 	/* get the sid ... if any */
-	if(!empty($HTTP_GET_VARS['sid']))
-	    $sid = intval($HTTP_GET_VARS['sid']);
+	if(!empty($_GET['sid']))
+	    $sid = intval($_GET['sid']);
 
-	if(!empty($HTTP_POST_VARS['sid']))
-		$sid = intval($HTTP_POST_VARS['sid']);
+	if(!empty($_POST['sid']))
+		$sid = intval($_POST['sid']);
 
     $bg = '';
 
@@ -27,10 +27,10 @@
 		/* check ACL to see if user is allowed to test
 		 * _this_ survey */
 		$realms = array_intersect(
-				$HTTP_SESSION_VARS['acl']['pall'],
-				$HTTP_SESSION_VARS['acl']['pdesign']);
-		if($HTTP_SESSION_VARS['acl']['superuser'] != 'Y' &&
-				$owner != $HTTP_SESSION_VARS['acl']['username'] &&
+				$_SESSION['acl']['pall'],
+				$_SESSION['acl']['pdesign']);
+		if($_SESSION['acl']['superuser'] != 'Y' &&
+				$owner != $_SESSION['acl']['username'] &&
 				!in_array($realm, $realms) &&
 				!auth_no_access(_('to access this survey'))) {
 			return;
@@ -55,13 +55,13 @@
 <?php
 			/* set things up for the handler to take over ... */
 			$test = true;
-			unset($HTTP_GET_VARS['sid']);
-			unset($HTTP_POST_VARS['sid']);
-			$HTTP_POST_VARS['userid'] = 'test';
+			unset($_GET['sid']);
+			unset($_POST['sid']);
+			$_POST['userid'] = 'test';
 			define('ESP-HANDLER-PREFIX', true);
 			define('ESP-AUTH-OK', true);
-			$HTTP_POST_VARS['sec'] = empty($HTTP_POST_VARS['sec']) ? 1 : intval($HTTP_POST_VARS['sec']);
-			$HTTP_POST_VARS['rid'] = empty($HTTP_POST_VARS['rid']) ? 0 : intval($HTTP_POST_VARS['rid']);
+			$_POST['sec'] = empty($_POST['sec']) ? 1 : intval($_POST['sec']);
+			$_POST['rid'] = empty($_POST['rid']) ? 0 : intval($_POST['rid']);
 			include($ESPCONFIG['handler']);
 			//undefine('ESP-HANDLER-PREFIX');
 			//undefine('ESP-AUTH-OK');
@@ -82,19 +82,19 @@
 	 * _this_ user */
 	$statusbad = (STATUS_DONE | STATUS_DELETED | STATUS_ACTIVE);
 	$statusok = STATUS_TEST;
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+	if($_SESSION['acl']['superuser'] == 'Y') {
 		$sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 		WHERE ".db_bin("status",$statusok) ." AND NOT ".db_bin("status", $statusbad)."
 		ORDER BY id DESC";
 	} else {
 		$realms = array_to_insql(
 			array_intersect(
-				$HTTP_SESSION_VARS['acl']['pall'],
-				$HTTP_SESSION_VARS['acl']['pdesign']));
+				$_SESSION['acl']['pall'],
+				$_SESSION['acl']['pdesign']));
 		$sql = "SELECT id,name,title,owner,realm
 			FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 			WHERE ".db_bin("status",$statusok) ."AND NOT ".db_bin("status",$statusbad) ."AND
-			(owner = ". _addslashes($HTTP_SESSION_VARS['acl']['username']) ." || realm $realms)
+			(owner = ". _addslashes($_SESSION['acl']['username']) ." || realm $realms)
 			ORDER BY id DESC";
 	}
 	$result = execute_sql($sql);
