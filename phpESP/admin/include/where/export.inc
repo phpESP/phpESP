@@ -42,7 +42,7 @@ if(!$sid) {
 	/* load names and titles of all surveys available to
 	 * _this_ user */
 	$statusok = (STATUS_ACTIVE | STATUS_DONE | STATUS_DELETED);
-	if($HTTP_SESSION_VARS['acl']['superuser'] == 'Y') {
+	if($_SESSION['acl']['superuser'] == 'Y') {
 		$sql = "SELECT id,name,title,status,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
 		WHERE (status & $statusok) ORDER BY id DESC";
 	} else {
