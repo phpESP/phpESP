@@ -31,8 +31,10 @@
 	}
     
 
-	if (empty($_POST['referer']))
+	if (empty($_POST['referer'])) {
 		$_POST['referer'] = '';
+        $_POST['direct'] = 1;
+    }
 
     if (isset($_GET['test'])) {
         $test = $_GET['test'];
@@ -152,6 +154,7 @@ function other_check(name)
 </script>
 <form method="post" name="phpesp_response" action="<?php echo($action); ?>">
 <input type="hidden" name="referer" value="<?php echo htmlspecialchars($_POST['referer']); ?>">
+<input type="hidden" name="direct" value="<?php echo htmlspecialchars($_POST['direct']); ?>">
 <input type="hidden" name="userid" value="<?php echo($_POST['userid']); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="rid" value="<?php echo($_POST['rid']); ?>">
