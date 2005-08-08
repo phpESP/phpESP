@@ -80,6 +80,7 @@ function removeItem() {
         while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
             $result->MoveNext();
             $dots = "";
+            $content = strip_tags($content);
             if($tid != 99) {
                 if (strlen($content) > 100) {
                    $dots = "...";
