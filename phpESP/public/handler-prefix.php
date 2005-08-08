@@ -50,6 +50,10 @@
     require_once(ESP_BASE . '/admin/phpESP.ini.php');
     require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 
+    if (!isset($cfg['adodb_conn'])){
+        esp_init_adodb();
+    }
+
     $GLOBALS['errmsg'] = '';
     session_start();
 
