@@ -20,7 +20,9 @@
 
 	require_once(ESP_BASE . '/admin/phpESP.ini.php');
 	require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
-    esp_init_adodb();
+    if (!isset($cfg['adodb_conn'])){
+        esp_init_adodb();
+    }
 	require_once($ESPCONFIG['handler_prefix']);
 	if(!defined('ESP-AUTH-OK')) {
 		if (!empty($GLOBALS['errmsg']))
