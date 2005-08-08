@@ -123,9 +123,32 @@ to continue.</blockquote>
 ?>
 <h2 class="thankhead"><?php echo($thank_head); ?></h2>
 <blockquote class="thankbody"><?php echo($thank_body); ?></blockquote>
-<a class="returnlink" href="<?php echo($referer); ?>">Return</a>
 <?php
-        return;
+    if (isset($_GET['where']) && $_GET['where'] == 'test'){
+        $ref = "<a class=\"returnlink\" href=\"". $referer."\">Return</a><br />";
+    }
+    else {
+        $ref = check_referer($referer);
+    }
+    echo $ref;
+    return;
+    }
+    function check_referer($referer) {
+        $pos = strpos($referer, $GLOBALS['ESPCONFIG']['autopub_url']);
+        #$pos = strpos($referer,"survey.php?name=");
+        if ($pos === false) {
+            if (!empty($_POST['direct']) && $_POST['direct'] === '1'){
+                $retstr = "";
+            }
+            else{
+                $retstr = "<a class=\"returnlink\" href=\"". $referer."\">Return</a>";
+            }
+        }
+        else{
+            $retstr = "";
+        }
+
+        return $retstr;
     }
 
     function goto_saved($url) {
