@@ -31,7 +31,7 @@
 	else
 		$num_choices = $c;
 ?>
-<table border="0" cellspacing="0" width="100%">
+<table id="answerlines" border="0" cellspacing="0" width="100%">
 	<tr><td colspan="2"><hr></td></tr>
 	<tr>
 		<td valign=TOP colspan="2">
@@ -39,7 +39,7 @@
 %s on an line by itself to create a
 fill-in-the-blank answer at the end of this question.
 Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
-			<input type="hidden" name="num_choices" value="<?php echo($num_choices); ?>">
+			<input type="hidden" id="num_choices" name="num_choices" value="<?php echo($num_choices); ?>">
 		</td>
 	</tr>
 <?php
@@ -67,6 +67,6 @@ Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
 <?php	} ?>
 	<tr>
 		<td>&nbsp;</td>
-		<td><input type="submit" name="extra_choices" value="<?php echo(_('Add another answer line')); ?>"> <input type="button" name="clear" value="Clear all answer lines" onClick="clearTextInputs()"> </td>
+		<td><input type="button" name="extra_choices" onclick="addAnswerLine()" value="<?php echo(_('Add another answer line')); ?>" /> <input type="button" name="clear" value="Clear all answer lines" onclick="clearTextInputs()" /></td>
 	</tr>
 </table>
