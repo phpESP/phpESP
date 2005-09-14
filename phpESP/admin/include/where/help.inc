@@ -480,7 +480,7 @@
       <h3 style="padding-left:10px;" id="batch">Batch Account Creation</h3>
       <ul>
         <li>
-          <p>On either the Respondent or Designer Managment Interfaces, click <strong>Bulk Upload</strong>. You will be presented with a form asking for <strong>File Type</strong> and <strong>File to Upload</strong>. From the <strong>File Type</strong> dropdown, select the file type you wish to upload. From the <strong>File to Upload</strong> browse your local filesystem to find the specific file you are uploading.</p>
+          <p>On either the Respondent or Designer Management Interfaces, click <strong>Bulk Upload</strong>. You will be presented with a form asking for <strong>File Type</strong> and <strong>File to Upload</strong>. From the <strong>File Type</strong> dropdown, select the file type you wish to upload. From the <strong>File to Upload</strong> browse your local filesystem to find the specific file you are uploading.</p>
         </li>
         <li><strong>Tab Delimited, Data File Format:</strong>
           <p>The tab delimited file should contain rows of text, terminated by a newline character(\n), with each field in the rows delimited by the tab character(\t). Each of the examples below should be a single row.</p>
