@@ -547,7 +547,7 @@
 
 		    <h3 style="padding-left:10px;" id="batch">Batch Account Creation</h3>
 		    <ul>
-			<li><p>On either the Respondent or Designer Managment Interfaces, click <b>Bulk Upload</b>. 
+			<li><p>On either the Respondent or Designer Management Interfaces, click <b>Bulk Upload</b>. 
 			You will be presented with a form asking for <b>File Type</b> and <b>File to Upload</b>.  
 			From the <b>File Type</b> dropdown, select the file type you wish to upload.  From the
 			<b>File to Upload</b> browse your local filesystem to find the specific file you are 
