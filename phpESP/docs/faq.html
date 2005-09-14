@@ -58,7 +58,7 @@ h1 {
 <p class="indented">This error is an indication that your web server is running PHP in CGI mode instead of SAPI.
 phpESP can function in this configuration but authentication must be disabled. (<a href="#idisableauth">See disabling authentication in this FAQ.</a>) (<a href="http://us4.php.net/manual/en/install.general.php">See the PHP manual for more information on CGI VS SAPI.</a>)</p>
 <a href="#top">Top</a> 
-<p><a name="idisableauth"><b>Can I disable authentication for the managment interface?</b></a>
+<p><a name="idisableauth"><b>Can I disable authentication for the management interface?</b></a>
 <p class="indented">Authentication can be disabled by setting auth_design to false in phpESP.ini.php. Warning, makeing this change could pose a security risk.<br /><br />
 Change this:<br />
 <tt>$ESPCONFIG['auth_response'] = true;</tt><br />
@@ -96,7 +96,7 @@ We would welcome help makeing Postgres and SQLite support as strong as MySQL.</p
 <a href="#top">Top</a>
 </li>
 <hr>
-<li><h1>Survey Managment</h1>
+<li><h1>Survey Management</h1>
 <p><a name="mdelete"><b>Can I delete old surveys? </b></a>
 <p class="indented">Yes, there is an unlisted function http://......./phpESP/admin/manage.php?where=purge<br>
 Be <em>very</em> careful when using it, you cannot recover from it.</p>
