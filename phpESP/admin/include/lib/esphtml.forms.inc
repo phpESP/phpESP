@@ -149,6 +149,8 @@ function mksubmit($_name, $_value = null) {
 }
 /* }}} */
 
+/* {{{ proto string show_login(string surveyname, string message, string css, string title)
+    Returns HTML login form */
 function show_login($_surveyname = null, $_message = null, $_css = null, $_title = "Survey Login") {
     $str = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">";
     $str .="<head>\n<title>Survey Login: $_title</title>\n";
@@ -190,4 +192,5 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
 
     return $str;
 }
+/* }}} */
 ?>
