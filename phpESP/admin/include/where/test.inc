@@ -63,8 +63,6 @@
 			$_POST['sec'] = empty($_POST['sec']) ? 1 : intval($_POST['sec']);
 			$_POST['rid'] = empty($_POST['rid']) ? 0 : intval($_POST['rid']);
 			include($ESPCONFIG['handler']);
-			//undefine('ESP-HANDLER-PREFIX');
-			//undefine('ESP-AUTH-OK');
 ?>
 <a href="<?php echo(htmlentities($ESPCONFIG['ME']."?where=results&sid=".$sid)) ?>&test=1"><?php echo(_('View Results')); ?></a><br>
 <?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n"); ?>
@@ -130,7 +128,7 @@
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
 		<td><?php echo($realm); ?></td>
-		<td><a href="<?php echo(htmlentities("". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=${sid}")); ?>"><?php echo(_('Test')); ?></a></td>
+        <td><a href="<?php echo(htmlentities("". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=${sid}")); ?>"><?php echo(_('Test')); ?></a> (<a href="<?php echo (htmlentities("". $GLOBALS['ESPCONFIG']['autopub_url'] ."?name=${name}&test=1")); ?>"><?php echo(_('standalone')); ?>)</td>
 		<td><a href="<?php echo(htmlentities("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&test=1&sid=${sid}")); ?>"><?php echo(_('Results')); ?></a></td>
 		<td style="font-size: xx-small; vertical-align: top;">
         <form id="export<?php echo($sid) ?>" action="<?php echo($GLOBALS['ESPCONFIG']['ME']) ?>">
