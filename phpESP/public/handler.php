@@ -31,13 +31,17 @@
 	}
     
 
-	if (empty($_POST['referer'])) {
-		$_POST['referer'] = '';
-        $_POST['direct'] = 1;
+	if (empty($_REQUEST['referer'])) {
+		$_REQUEST['referer'] = '';
+        $_REQUEST['direct'] = 1;
     }
 
-    if (isset($_GET['test'])) {
-        $test = $_GET['test'];
+    if (isset($_REQUEST['test'])) {
+        $test = $_REQUEST['test'];
+    }
+
+    if (!isset($_REQUEST['sec'])) {
+        $_REQUEST['sec'] = 1;
     }
 
 	// show results instead of show survey
@@ -79,8 +83,8 @@
 		}
 	}
 
-    if ($_POST['referer'] == $ESPCONFIG['autopub_url'])
-        $_POST['referer'] .= "?name=$name";
+    if ($_REQUEST['referer'] == $ESPCONFIG['autopub_url'])
+        $_REQUEST['referer'] .= "?name=$name";
 
 	$num_sections = survey_num_sections($sid);
 
@@ -90,22 +94,22 @@
 	if (!empty($_SERVER['QUERY_STRING']))
 		$action .= "?" . $_SERVER['QUERY_STRING'];
 
-	if(!empty($_POST['submit'])) {
-		$msg = response_check_required($sid,$_POST['sec']);
+	if(!empty($_REQUEST['submit'])) {
+		$msg = response_check_required($sid,$_REQUEST['sec']);
 		if(empty($msg)) {
             if ($ESPCONFIG['auth_response'] && auth_get_option('resume'))
-                response_delete($sid, $_POST['rid'], $_POST['sec']);
-			$_POST['rid'] = response_insert($sid,$_POST['sec'],$_POST['rid']);
-			response_commit($_POST['rid']);
-			response_send_email($sid,$_POST['rid']);
-			goto_thankyou($sid,$_POST['referer']);
+                response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+			$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
+			response_commit($_REQUEST['rid']);
+			response_send_email($sid,$_REQUEST['rid']);
+			goto_thankyou($sid,$_REQUEST['referer']);
 			return;
 		}
 	}
 
-	if(!empty($_POST['resume']) && $ESPCONFIG['auth_response'] && auth_get_option('resume')) {
-        response_delete($sid, $_POST['rid'], $_POST['sec']);
-		$_POST['rid'] = response_insert($sid,$_POST['sec'],$_POST['rid']);
+	if(!empty($_REQUEST['resume']) && $ESPCONFIG['auth_response'] && auth_get_option('resume')) {
+        response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+		$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
         if ($action == $ESPCONFIG['autopub_url'])
     		goto_saved("$action?name=$name");
         else
@@ -113,27 +117,27 @@
 		return;
 	}
 
-	if(!empty($_POST['next'])) {
-		$msg = response_check_required($sid,$_POST['sec']);
+	if(!empty($_REQUEST['next'])) {
+		$msg = response_check_required($sid,$_REQUEST['sec']);
 		if(empty($msg)) {
             if ($ESPCONFIG['auth_response'] && auth_get_option('resume'))
-                response_delete($sid, $_POST['rid'], $_POST['sec']);
-			$_POST['rid'] = response_insert($sid,$_POST['sec'],$_POST['rid']);
-			$_POST['sec']++;
+                response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+			print response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
+			$_REQUEST['sec']++;
 		}
 	}
 	
-	if (!empty($_POST['prev']) && $ESPCONFIG['auth_response'] && auth_get_option('navigate')) {
+	if (!empty($_REQUEST['prev']) && $ESPCONFIG['auth_response'] && auth_get_option('navigate')) {
 		if(empty($msg)) {
             if (auth_get_option('resume'))
-                response_delete($sid, $_POST['rid'], $_POST['sec']);
-			$_POST['rid'] = response_insert($sid,$_POST['sec'],$_POST['rid']);
-			$_POST['sec']--;
+                response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+			$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
+			$_REQUEST['sec']--;
 		}
 	}
     
-    if ($ESPCONFIG['auth_response'] && auth_get_option('resume') && $_POST['rid']>0)
-        response_import_sec($sid, $_POST['rid'], $_POST['sec']);
+    if ($ESPCONFIG['auth_response'] && auth_get_option('resume') && $_REQUEST['rid']>0)
+        response_import_sec($sid, $_REQUEST['rid'], $_REQUEST['sec']);
 	
 ?>
 <script language="JavaScript">
@@ -153,17 +157,17 @@ function other_check(name)
 // End -->
 </script>
 <form method="post" name="phpesp_response" action="<?php echo($action); ?>">
-<input type="hidden" name="referer" value="<?php echo htmlspecialchars($_POST['referer']); ?>">
-<input type="hidden" name="direct" value="<?php echo htmlspecialchars($_POST['direct']); ?>">
-<input type="hidden" name="userid" value="<?php echo($_POST['userid']); ?>">
+<input type="hidden" name="referer" value="<?php echo htmlspecialchars($_REQUEST['referer']); ?>">
+<input type="hidden" name="direct" value="<?php echo htmlspecialchars($_REQUEST['direct']); ?>">
+<input type="hidden" name="userid" value="<?php echo($_REQUEST['userid']); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
-<input type="hidden" name="rid" value="<?php echo($_POST['rid']); ?>">
-<input type="hidden" name="sec" value="<?php echo($_POST['sec']); ?>">
+<input type="hidden" name="rid" value="<?php echo($_REQUEST['rid']); ?>">
+<input type="hidden" name="sec" value="<?php echo($_REQUEST['sec']); ?>">
 <input type="hidden" name="name" value="<?php echo($name); ?>">
-<?php	survey_render($sid,$_POST['sec'],$msg); ?>
+<?php	survey_render($sid,$_REQUEST['sec'],$msg); ?>
 <?php
 		if ($ESPCONFIG['auth_response']) {
-			if (auth_get_option('navigate') && $_POST['sec'] > 1) { ?>
+			if (auth_get_option('navigate') && $_REQUEST['sec'] > 1) { ?>
 	<input type="submit" name="prev" value="Previous Page">
 <?php
 			}
@@ -172,7 +176,7 @@ function other_check(name)
 <?php
 			}
 		}
-		if($_POST['sec'] == $num_sections)	{ ?>
+		if($_REQUEST['sec'] == $num_sections)	{ ?>
 	<input type="submit" name="submit" value="Submit Survey">
 <?php	} else { ?>
 	<input type="submit" name="next" value="Next Page">
