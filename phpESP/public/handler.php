@@ -44,6 +44,10 @@
         $_REQUEST['sec'] = 1;
     }
 
+    if (!isset($_REQUEST['rid'])) {
+        $_REQUEST['rid'] = "";
+    }
+
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
 	if(isset($results) && $results) {
@@ -122,7 +126,6 @@
 		if(empty($msg)) {
             if ($ESPCONFIG['auth_response'] && auth_get_option('resume'))
                 response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
-			print response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
 			$_REQUEST['sec']++;
 		}
 	}
