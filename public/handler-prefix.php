@@ -56,20 +56,20 @@
     $GLOBALS['errmsg'] = '';
     session_start();
 
-    if(isset($_GET['sid'])) {
-        $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
-        return;
-    }
+    #if(isset($_REQUEST['sid'])) {
+    #    $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
+    #    return;
+    #}
 
-    if(isset($_GET['results']) || isset($_POST['results'])) {
+    if(isset($_REQUEST['results']) || isset($_REQUEST['results'])) {
         $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
         return;
     }
 
     if (isset($sid) && !empty($sid))
         $sid = intval($sid);
-    else if (isset($_POST['sid']) && !empty($_POST['sid']))
-        $sid = intval($_POST['sid']);
+    else if (isset($_REQUEST['sid']) && !empty($_REQUEST['sid']))
+        $sid = intval($_REQUEST['sid']);
 
     if(!isset($sid) || empty($sid)) {
         $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Survey not specified.'));
@@ -88,32 +88,32 @@
         $survey_name = "";
     }
 
-    if(empty($_POST['userid'])) {
+    if(empty($_REQUEST['userid'])) {
         // find remote user id (takes the first non-empty of the following)
         //  1. a GET variable named 'userid'
         //  2. the REMOTE_USER set by HTTP-Authentication
         //  3. the query string
         //  4. the remote ip address
-        if (!empty($_GET['userid'])) {
-            $_POST['userid'] = $_GET['userid'];
+        if (!empty($_REQUEST['userid'])) {
+            $_REQUEST['userid'] = $_REQUEST['userid'];
         } elseif(!empty($_SERVER['REMOTE_USER'])) {
-            $_POST['userid'] = $_SERVER['REMOTE_USER'];
+            $_REQUEST['userid'] = $_SERVER['REMOTE_USER'];
         } elseif(!empty($_SERVER['QUERY_STRING'])) {
-            $_POST['userid'] = urldecode($_SERVER['QUERY_STRING']);
+            $_REQUEST['userid'] = urldecode($_SERVER['QUERY_STRING']);
         } else {
-            $_POST['userid'] = $_SERVER['REMOTE_ADDR'];
+            $_REQUEST['userid'] = $_SERVER['REMOTE_ADDR'];
         }
     }
 
-    if(empty($_POST['referer']))
-        $_POST['referer'] = isset($_SERVER['HTTP_REFERER']) ?
+    if(empty($_REQUEST['referer']))
+        $_REQUEST['referer'] = isset($_SERVER['HTTP_REFERER']) ?
             $_SERVER['HTTP_REFERER'] : '';
 
-    if (empty($_POST['rid']))
-        $_POST['rid'] = '';
+    if (empty($_REQUEST['rid']))
+        $_REQUEST['rid'] = '';
     else
-        $_POST['rid'] = intval($_POST['rid']) ?
-                intval($_POST['rid']) : '';
+        $_REQUEST['rid'] = intval($_REQUEST['rid']) ?
+                intval($_REQUEST['rid']) : '';
 
     if($ESPCONFIG['auth_response']) {
         // check for authorization on the survey
@@ -126,11 +126,11 @@
                 $esppass = $_SERVER['PHP_AUTH_PW'];
         }
         elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
-            if (!isset($_POST['username'])) {
-                $_POST['username'] = "";
+            if (!isset($_REQUEST['username'])) {
+                $_REQUEST['username'] = "";
             }
-            if ($_POST['username'] != "") {
-                $_SESSION['espuser'] = $_POST['username'];
+            if ($_REQUEST['username'] != "") {
+                $_SESSION['espuser'] = $_REQUEST['username'];
             }
             if (isset($_SESSION['espuser'])) {
                 $espuser = $_SESSION['espuser'];
@@ -139,11 +139,11 @@
                 $espuser = "";
             }
 
-            if (!isset($_POST['password'])) {
-                $_POST['password'] = "";
+            if (!isset($_REQUEST['password'])) {
+                $_REQUEST['password'] = "";
             }
-            if ($_POST['password'] != "") {
-                $_SESSION['esppass'] = $_POST['password'];
+            if ($_REQUEST['password'] != "") {
+                $_SESSION['esppass'] = $_REQUEST['password'];
             }
             if (isset($_SESSION['esppass'])) {
                 $esppass = $_SESSION['esppass'];
@@ -158,23 +158,23 @@
             return;
 
         if (auth_get_option('resume')) {
-            $_POST['rid'] = auth_get_rid($sid, $espuser,
-                    $_POST['rid']);
+            $_REQUEST['rid'] = auth_get_rid($sid, $espuser,
+                    $_REQUEST['rid']);
 
-            if (!empty($_POST['rid']) && (empty($_POST['sec']) ||
-                    intval($_POST['sec']) < 1))
+            if (!empty($_REQUEST['rid']) && (empty($_REQUEST['sec']) ||
+                    intval($_REQUEST['sec']) < 1))
             {
-                $_POST['sec'] = response_select_max_sec($sid,
-                        $_POST['rid']);
+                $_REQUEST['sec'] = response_select_max_sec($sid,
+                        $_REQUEST['rid']);
             }
         }
     }
 
-    if (empty($_POST['sec']))
-        $_POST['sec'] = 1;
+    if (empty($_REQUEST['sec']))
+        $_REQUEST['sec'] = 1;
     else
-        $_POST['sec'] = (intval($_POST['sec']) > 0) ?
-                intval($_POST['sec']) : 1;
+        $_REQUEST['sec'] = (intval($_REQUEST['sec']) > 0) ?
+                intval($_REQUEST['sec']) : 1;
 
     define('ESP-AUTH-OK', true);
 
