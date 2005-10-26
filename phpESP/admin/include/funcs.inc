@@ -95,6 +95,12 @@
         $result = execute_sql($sql);
         list($thank_url,$thank_head,$thank_body) = fetch_row($result);
         db_close($result);
+        $thank_url = str_replace("\r", '', $thank_url);
+        $thank_url = str_replace("%0d", '', $thank_url);
+        $thank_url = str_replace("\n", '', $thank_url);
+        $thank_url = str_replace("%0a", '', $thank_url);
+        $thank_url = str_replace("\t", '', $thank_url);
+        $thank_url = str_replace("\0", '', $thank_url);
         if(!empty($thank_url)) {
             if(!headers_sent()) {
                 header("Location: $thank_url");
@@ -135,9 +141,8 @@ to continue.</blockquote>
     }
     function check_referer($referer) {
         $pos = strpos($referer, $GLOBALS['ESPCONFIG']['autopub_url']);
-        #$pos = strpos($referer,"survey.php?name=");
         if ($pos === false) {
-            if (!empty($_POST['direct']) && $_POST['direct'] === '1'){
+            if (!empty($_REQUEST['direct']) && $_REQUEST['direct'] === '1'){
                 $retstr = "";
             }
             else{

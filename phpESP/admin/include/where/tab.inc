@@ -34,7 +34,7 @@
 	 * from here on, regardless of the INI settings.
 	 */
 	if(ini_get('register_globals')) {
-		$_SESSION['survey_id']  = &$survey_id;
+		$_SESSION['survey_id']  = intval(&$survey_id);
 		$_SESSION['new_survey'] = &$new_survey;
 		$_SESSION['last_tab']   = &$last_tab;
 		$_SESSION['curr_q']     = &$curr_q;
@@ -148,22 +148,17 @@
 <span class="large">
 <a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
 </span>
-
-<table cellspacing="0" cellpadding="0">
-  <tr class="tabheader">
-    <td>
       <input type="hidden" name="where" value="tab" />
-	  <table cellspacing="0" cellpadding="0">
-		<tr class="tabheader">
-		  <td><input type="image" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif" style="width: 160px; height: 43px;" /></td>
-		  <td><input type="image" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" style="width: 186px; height: 43px;" /></td>
-		  <td><input type="image" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif" style="width: 126px; height: 43px;" /></td>
-		  <td><input type="image" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif" style="width: 160px; height: 43px;" /></td>
-		  <td><input type="image" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif" style="width: 114px; height: 43px;" /></td>
-		</tr>
-	  </table>
-    </td>
-  </tr>
+<div id="tabmenu">
+      <ul id="sections">
+		  <li><input type="image" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif" /></li>
+      </ul>
+</div>
+<table>
   <tr>
     <td>
 <?php include($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']); $_SESSION['last_tab'] = $tab; ?>
