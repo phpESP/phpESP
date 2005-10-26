@@ -22,11 +22,12 @@
 
 	$bg1 =& $ESPCONFIG['bgalt_color1'];
 	$bg2 =& $ESPCONFIG['bgalt_color2'];
-	if(isset($_GET['account_type']))
-		$account_type = $_GET['account_type'];
-	else
-		$account_type = "respondents";
-
+    if(isset($_GET['account_type'])) {
+            $account_type = htmlspecialchars($_GET['account_type']);
+    }
+    else {
+        $account_type = "respondents";
+    }
 	$errstr = '';
 
 // End the included form so we can do a multipart/form-data form
@@ -36,13 +37,20 @@
 <?php
 	if(isset($_POST['submit'])) {
 		unset($_POST['submit']);
-		if(isset($_POST['account_type']))
-			$account_type = $_POST['account_type'];
-		else
+		if(isset($_POST['account_type'])) {
+			$account_type = htmlspecialchars($_POST['account_type']);
+        }
+		else {
 			$account_type = "respondents";
+        }
 
         $upload_type = $_POST['upload_type'];
-			$upload_file	= $_POST_FILES['upload_file']['tmp_name'];
+        if (isset($_FILES['upload_file']['tmp_name'])) {
+            $upload_file = $_FILES['upload_file']['tmp_name'];
+        }
+        else {
+            $upload_file = "";
+        }
 		$group_acl	= array();
 
 
@@ -71,7 +79,7 @@
 			}
 			elseif(count($exceptions) > 1) {
 				$errstr .= mkerror(_('An error occurred during upload.  Rows that failed are listed below.'));
-				$exception_table = ("<table width=\"95%\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\" align=\"center\" bgcolor=".$ESPCONFIG['active_bgcolor']."\">\n");
+				$exception_table = ("<table width=\"95%\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\" align=\"center\" \">\n");
 				$bg = $ESPCONFIG['bgalt_color2'];
 	 			$exception_table .= "<tr bgcolor=\"$bg\">\n";
 				/* Build  exception rows */
@@ -110,7 +118,7 @@
 <span class="large">
 <a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
 </span>
-<form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>">
+<form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>?where=upload">
 <table cellspacing="0" cellpadding="4" style="width: 350px;">
 <?php
 		echo("<tr>\n<td class=\"right\">"._('File Type')."</td>\n");
