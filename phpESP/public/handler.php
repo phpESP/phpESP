@@ -31,6 +31,8 @@
 	}
     
 
+    $_REQUEST['direct'] = '';
+
 	if (empty($_REQUEST['referer'])) {
 		$_REQUEST['referer'] = '';
         $_REQUEST['direct'] = 1;
@@ -38,6 +40,9 @@
 
     if (isset($_REQUEST['test'])) {
         $test = $_REQUEST['test'];
+    }
+    else {
+        $test = 0;
     }
 
     if (!isset($_REQUEST['sec'])) {
@@ -47,6 +52,12 @@
     if (!isset($_REQUEST['rid'])) {
         $_REQUEST['rid'] = "";
     }
+
+    $_REQUEST['rid'] = intval($_REQUEST['rid']);
+    $test = intval($test);
+    $_REQUEST['direct'] = intval($_REQUEST['direct']);
+    $_REQUEST['referer'] = intval($_REQUEST['referer']);
+
 
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
@@ -63,6 +74,10 @@
         if (!isset($cids)) {
             $cids = '';
         }
+        $precision = intval($precision);
+        $totals = intval($totals);
+        $qid = intval($qid);
+        $cids = intval($cids);
 		// small security issue here, anyone could pick a QID to crossanalyze
 		survey_results($sid,$precision,$totals,$qid,$cids);
 		return;
@@ -94,9 +109,9 @@
 
 	$msg = '';
 
-	$action = $ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+	$action = $ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . htmlspecialchars($_SERVER['PHP_SELF']);
 	if (!empty($_SERVER['QUERY_STRING']))
-		$action .= "?" . $_SERVER['QUERY_STRING'];
+		$action .= "?" . htmlspecialchars($_SERVER['QUERY_STRING']);
 
 	if(!empty($_REQUEST['submit'])) {
 		$msg = response_check_required($sid,$_REQUEST['sec']);
@@ -143,26 +158,10 @@
         response_import_sec($sid, $_REQUEST['rid'], $_REQUEST['sec']);
 	
 ?>
-<script language="JavaScript">
-<!-- // Begin <?php // This should really go into <head> tag ?>
-
-function other_check(name)
-{
-  other = name.split("_");
-  var f = document.phpesp_response;
-  for (var i=0; i<=f.elements.length; i++) {
-    if (f.elements[i].value == "other_"+other[1]) {
-      f.elements[i].checked=true;
-      break;
-    }
-  }
-}
-// End -->
-</script>
 <form method="post" name="phpesp_response" action="<?php echo($action); ?>">
 <input type="hidden" name="referer" value="<?php echo htmlspecialchars($_REQUEST['referer']); ?>">
 <input type="hidden" name="direct" value="<?php echo htmlspecialchars($_REQUEST['direct']); ?>">
-<input type="hidden" name="userid" value="<?php echo($_REQUEST['userid']); ?>">
+<input type="hidden" name="userid" value="<?php echo(htmlspecialchars($_REQUEST['userid'])); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="rid" value="<?php echo($_REQUEST['rid']); ?>">
 <input type="hidden" name="sec" value="<?php echo($_REQUEST['sec']); ?>">

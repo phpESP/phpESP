@@ -19,10 +19,25 @@ html,body {
     text-align: left;
 }
 
-.tabheader {
-   background-color: #0099ff;
-   vertical-align: bottom;
-   height: 50px;
+#tabmenu {
+    width: 95%;
+    min-width: 800px;
+    background-color: #0099ff;
+    margin: auto;
+}
+
+#sections li{
+    display: inline;
+    list-style-type: none;
+    vertical-align: bottom;
+}
+
+#sections input {
+    vertical-align: bottom;
+}
+
+#sections {
+    padding-top: 3px;
 }
 
 .contents {

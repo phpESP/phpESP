@@ -56,20 +56,17 @@
     $GLOBALS['errmsg'] = '';
     session_start();
 
-    #if(isset($_REQUEST['sid'])) {
-    #    $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
-    #    return;
-    #}
-
     if(isset($_REQUEST['results']) || isset($_REQUEST['results'])) {
         $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
         return;
     }
 
-    if (isset($sid) && !empty($sid))
+    if (isset($sid) && !empty($sid)) {
         $sid = intval($sid);
-    else if (isset($_REQUEST['sid']) && !empty($_REQUEST['sid']))
+    }
+    else if (isset($_REQUEST['sid']) && !empty($_REQUEST['sid'])) {
         $sid = intval($_REQUEST['sid']);
+    }
 
     if(!isset($sid) || empty($sid)) {
         $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Survey not specified.'));

@@ -211,7 +211,13 @@ archived survey.')); ?></li>
 ?>
 	<tr style="background-color: <?php echo($bg); ?>;">
 		<td><?php echo($sid); ?></td>
+        <?php 
+        if ($stat == 'Active') {?>
+            <td><a href="<?php echo($ESPCONFIG['autopub_url']."?name=".$name); ?>"><?php echo($name) ?></a></td>
+       <?php }
+       else {?>
 		<td><?php echo($name); ?></td>
+        <?php } ?>
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
 		<td><?php echo($realm); ?></td>

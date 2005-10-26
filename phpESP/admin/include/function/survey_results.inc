@@ -314,6 +314,7 @@ switch ($table) {
 			if($result = execute_sql($sql)) {
 				while(list($ccontent,$count) = fetch_row($result)) {
                     $result->MoveNext();
+                    $ccontent = htmlspecialchars($ccontent);
 					if ($ccontent == 'Y')
 						$ccontent = _('Yes');
 					else
@@ -337,7 +338,7 @@ switch ($table) {
         if ($result = execute_sql($sql)) {
             for ($j = 0; $j < record_count($result); $j++) {
                 $result->Move($j);
-                $counts[$result->fields[0]] = 0;
+                $counts[htmlspecialchars($result->fields[0])] = 0;
             }
             db_close($result);
         }
@@ -355,6 +356,7 @@ switch ($table) {
 			if($result = execute_sql($sql)) {
 				while(list($ccontent,$count) = fetch_row($result)) {
                     $result->MoveNext();
+                    $ccontent = htmlspecialchars($ccontent);
 					$counts[$ccontent] = $count;
 				}
 				db_close($result);
@@ -371,6 +373,7 @@ switch ($table) {
 			if($result = execute_sql($sql)) {
 				while(list($answer,$ccontent) = fetch_row($result)) {
                     $result->MoveNext();
+                    $ccontent = htmlspecialchars($ccontent);
 					$content = preg_replace(array('/^!other=/', '/^!other/'),
                             array('', 'Other:'), $ccontent);
 					$content .= ' ' . htmlspecialchars($answer);
@@ -426,7 +429,7 @@ switch ($table) {
                 if ($result = execute_sql($sql)) {
                     for ($j = 0; $j < record_count($result); $j++) {
                         $result->Move($j);
-                        $counts[$result->fields[0]] = null;
+                        $counts[htmlspecialchars($result->fields[0])] = null;
                     }
                     db_close($result);
                 }
@@ -442,6 +445,7 @@ switch ($table) {
 				if($result = execute_sql($sql)) {
 					while(list($ccontent,$avg) = fetch_row($result)) {
                         $result->MoveNext();
+                        $ccontent = htmlspecialchars($ccontent);
 						$counts[$ccontent] = $avg;
 					}
 					db_close($result);

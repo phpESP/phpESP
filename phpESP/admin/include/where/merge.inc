@@ -17,11 +17,16 @@
         $_GET['test'] = "";
     }
 
+    $_GET['precision'] = intval($_GET['precision']);
+    $_GET['totals'] = intval($_GET['totals']);
+    $_GET['test'] = intval($_GET['test']);
+
 	// see if surveys have been selected
-	if(!empty($_GET['sids'])) {
-		$sid = intval($_GET['sids']);
+	if(!empty($_REQUEST['sids'])) {
+		$sid = intval($_REQUEST['sids']);
+        $_REQUEST['sids'] = htmlspecialchars($_REQUEST['sids']);
 		if($_GET['test']) {
-			echo("<p><b>". _('Testing Survey...') .'</b> ('. _('SIDS') ." = ". $_GET['sids'] .")</p>\n");
+			echo("<p><b>". _('Testing Survey...') .'</b> ('. _('SIDS') ." = ". $sid .")</p>\n");
 		}
 
 		/* check ACLs for permissions ...
@@ -34,7 +39,7 @@
 ?>
 <table><tr><td>
 <?php
-			$ret = survey_merge(split(" ",$_GET['sids']),$_GET['precision'],$_GET['totals']);
+			$ret = survey_merge(split("\+",$_REQUEST['sids']),$_GET['precision'],$_GET['totals']);
 			if(!empty($ret))
 				echo("<span class=\"error\">$ret</span>\n");
 ?>
@@ -62,67 +67,11 @@
 	$result = execute_sql($sql);
 
 ?>
-<script type="text/javascript">
-<!-- // Begin // This should really go into <HEAD> tag
-
-function windowOpener(windowTitle,errMsg) {
-  msgWindow=window.open("","displayWindow","menubar=no,alwaysRaised=yes,dependent=yes,width=300,height=200,scrollbars=yes,resizable=no");
-  msgWindow.document.write
-      ("<HTML><HEAD><TITLE>"+windowTitle+"</TITLE></HEAD>");
-  msgWindow.document.write
-      ("<BODY><CENTER><BIG><B>"+errMsg+"</B></BIG></CENTER></BODY></HTML>");
-}
-
-function merge(box) {
-	if(box.options.length >= 2){
-		ml = new Array();
-		for(var i=0; i<box.options.length; i++) {
-			ml[i] = box.options[i].value;
-			sidsArray=ml;
-		}
-		sids = sidsArray.join("+");
-		location.href = "<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=merge"); ?>&sids="+sids;
-	} else {
-		windowTitle="<?php echo(_('Error!')); ?>";
-		errMsg="<?php echo(_('You need to select at least two surveys!')); ?>";
-		windowOpener(windowTitle,errMsg);
-	}
-}
-
-function move(fbox,tbox) {
-	for(var i=0; i<fbox.options.length; i++) {
-		if(fbox.options[i].selected && fbox.options[i].value != "") {
-			var no = new Option();
-			no.value = fbox.options[i].value;
-			no.text = fbox.options[i].text;
-			tbox.options[tbox.options.length] = no;
-			fbox.options[i].value = "";
-			fbox.options[i].text = "";
-		}
-	}
-	BumpUp(fbox);
-}
-
-function BumpUp(box)  {
-	for(var i=0; i<box.options.length; i++) {
-		if(box.options[i].value == "")  {
-			for(var j=i; j<box.options.length-1; j++)  {
-				box.options[j].value = box.options[j+1].value;
-				box.options[j].text = box.options[j+1].text;
-			}
-			var ln = i;
-			break;
-		}
-	}
-	if(ln < box.options.length)  {
-		box.options.length -= 1;
-		BumpUp(box);
-	}
-}
-// End -->
-</script>
 <h2><?php echo(_('Merge Survey Results')); ?></h2>
 <?php echo(_('Pick Surveys to Merge')); ?>
+</form>
+    <div id="error"></div>
+<form id="merge" action="<?php echo($GLOBALS['ESPCONFIG']['ME']) ?>?where=merge" method="post">
 <table cellspacing="0" cellpadding="4">
 	<tr>
 		<th><?php echo(_('List of Surveys')); ?></th>
@@ -143,10 +92,10 @@ function BumpUp(box)  {
 <input type="button" value="   &gt;&gt;   " onclick="move(this.form.list1,this.form.list2)" name="B1" /><br />
 <input type="button" value="   &lt;&lt;   " onclick="move(this.form.list2,this.form.list1)" name="B2" /><br />
 <input type="button" value="Merge" onclick="merge(this.form.list2)" name="B3" />
+    <input type="hidden" id="sids" name="sids" value="">
 		</td>
 		<td class="center">
 		<select multiple="multiple" size="10" name="list2">
-		<option></option>
 		</select>
 		</td>
 	</tr>

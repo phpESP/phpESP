@@ -13,8 +13,7 @@
    Returns an true on sucess, else returns false and
    sets global $errstr with an error message. */
 function survey_update(&$survey_id, &$tab, $old_tab) {
-    //angek: may need to keep these for backwards compatability
-    //global $_POST, $_SERVER
+
     global $errstr;
 
 	// do not need update
@@ -32,8 +31,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 	// new survey
 	if(empty($survey_id)) {
 		// need to fill out at least some info on 1st tab before proceeding
-		if(empty($_POST['name']) || empty($_POST['title'])
-				|| empty($_POST['realm'])) {
+		if(empty($_POST['name']) || empty($_POST['title']) || empty($_POST['realm'])) {
 			$tab = "general";
 			$errstr = _('Sorry, please fill out the name, group, and title before proceeding.');
 			return(0);
@@ -69,8 +67,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 	switch($old_tab) {
 		// coming from the general tab ...
 		case "general":
-			if(empty($_POST['name']) || empty($_POST['title'])
-					|| empty($_POST['realm'])) {
+			if(empty($_POST['name']) || empty($_POST['title']) || empty($_POST['realm'])) {
 				$tab = "general";
 				$errstr = _('Sorry, please fill out the name, group, and title before proceeding.');
 				return(0);
@@ -143,6 +140,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				return(0);
 			}
 
+            $_POST['type_id'] = intval($_POST['type_id']);
 			// constraint: qid must be int or empty
 			if($_POST['id'] == _('New Field'))
 				$qid = '';
@@ -310,7 +308,8 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
                 $max = record_count($result);
                 $order = split('\|', $questions_order);
                 for($i = 0; $i < count($order); $i++) {
-                    $sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$i WHERE id=$order[$i] AND survey_id=$sid";
+                    $ord = _addslashed($order[$i]);
+                    $sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET position=$i WHERE id=$ord AND survey_id=$sid";
                     execute_sql($sql);
                 }
             }
