@@ -31,10 +31,10 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <li><a href="<?php echo("${base}?where=copy");    ?>"><?php echo(_('Copy an Existing Survey')); ?></a></li>
                         </ul>
                         <ul>
-                            <li><a href="<?php echo("${base}?where=status");  ?>"><?php echo(_('Change the Status of a Survey')); ?></a>
+                    <li><a href="<?php echo("${base}?where=status");  ?>"><?php echo(_('Change the Status of a Survey')); ?></a><br />
                             <?php echo(_('(active/end/delete)')); ?></li>
                             <?php if($GLOBALS['ESPCONFIG']['auth_response']) { ?>
-                            <li><a href="<?php echo("${base}?where=access");  ?>"><?php echo(_('Change Access To a Survey')); ?></a> (<?php echo(_('Limit Respondents.')); ?>)</li>
+                            <li><a href="<?php echo("${base}?where=access");  ?>"><?php echo(_('Change Access To a Survey')); ?></a><br /> (<?php echo(_('Limit Respondents.')); ?>)</li>
                             <?php } ?>
                         </ul>
 			</div>

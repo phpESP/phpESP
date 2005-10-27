@@ -170,8 +170,7 @@ esp_setlocale_ex();
 // default thank you messages
 $ESPCONFIG['thank_head'] = _('Thank You For Completing This Survey.');
 $ESPCONFIG['thank_body'] = _('Please do not use the back button on your browser to go
-back. Please click on the link below to return you to where
-you launched this survey.');
+back.');
 
 if (!file_exists($ESPCONFIG['include_path']. '/funcs'. $ESPCONFIG['extension'])) {
     printf('<b>'. _('Unable to find the phpESP %s directory.

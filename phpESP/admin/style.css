@@ -11,7 +11,7 @@ html,body {
 }
 
 #surveyAdmin, #surveyResults, #userAdmin, #guide, #logout {
-    width: 50%;
+    width: 40%;
     margin: auto;
 }
 
@@ -21,7 +21,7 @@ html,body {
 
 #tabmenu {
     width: 95%;
-    min-width: 800px;
+    min-width: 900px;
     background-color: #0099ff;
     margin: auto;
 }
@@ -135,4 +135,7 @@ img {
 
 .help td {
 	text-align: left;
+}
+.exportsave {
+    clear: left;
 }

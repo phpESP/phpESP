@@ -106,6 +106,7 @@
         $_REQUEST['referer'] = isset($_SERVER['HTTP_REFERER']) ?
             $_SERVER['HTTP_REFERER'] : '';
 
+
     if (empty($_REQUEST['rid']))
         $_REQUEST['rid'] = '';
     else

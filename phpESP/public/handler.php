@@ -30,7 +30,6 @@
 		return;
 	}
     
-
     $_REQUEST['direct'] = '';
 
 	if (empty($_REQUEST['referer'])) {
@@ -56,7 +55,7 @@
     $_REQUEST['rid'] = intval($_REQUEST['rid']);
     $test = intval($test);
     $_REQUEST['direct'] = intval($_REQUEST['direct']);
-    $_REQUEST['referer'] = intval($_REQUEST['referer']);
+    $_REQUEST['referer'] = htmlspecialchars($_REQUEST['referer']);
 
 
 	// show results instead of show survey
@@ -159,9 +158,9 @@
 	
 ?>
 <form method="post" name="phpesp_response" action="<?php echo($action); ?>">
-<input type="hidden" name="referer" value="<?php echo htmlspecialchars($_REQUEST['referer']); ?>">
-<input type="hidden" name="direct" value="<?php echo htmlspecialchars($_REQUEST['direct']); ?>">
-<input type="hidden" name="userid" value="<?php echo(htmlspecialchars($_REQUEST['userid'])); ?>">
+<input type="hidden" name="referer" value="<?php echo ($_REQUEST['referer']); ?>">
+<input type="hidden" name="direct" value="<?php echo($_REQUEST['direct']); ?>">
+<input type="hidden" name="userid" value="<?php echo($_REQUEST['userid']); ?>">
 <input type="hidden" name="sid" value="<?php echo($sid); ?>">
 <input type="hidden" name="rid" value="<?php echo($_REQUEST['rid']); ?>">
 <input type="hidden" name="sec" value="<?php echo($_REQUEST['sec']); ?>">

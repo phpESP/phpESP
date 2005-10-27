@@ -106,21 +106,21 @@
                 header("Location: $thank_url");
                 exit;
             }
-?>
+        ?>
 <script type="text/javascript">
 <!--
 window.location="<?php echo($thank_url); ?>"
-//-->
+    //-->
 </script>
 <noscript>
 <h2 class="thankhead">Thank You for completing this survey.</h2>
 <blockquote class="thankbody">Please click
-<a class="returnlink" href="<?php echo($thank_url); ?>">here</a>
-to continue.</blockquote>
+<a class="returnlink" href="<?php echo($thank_url); ?>">here</a> to continue.</blockquote>
 </noscript>
 <?php
-            exit;
-        }
+    exit;
+}
+
 
         if(empty($thank_body) && empty($thank_head)) {
             $thank_body = $GLOBALS['ESPCONFIG']['thank_body'];
