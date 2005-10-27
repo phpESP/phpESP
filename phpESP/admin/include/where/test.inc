@@ -9,11 +9,8 @@
 // <jflemer@alum.rpi.edu>
 
 	/* get the sid ... if any */
-	if(!empty($_GET['sid']))
-	    $sid = intval($_GET['sid']);
-
-	if(!empty($_POST['sid']))
-		$sid = intval($_POST['sid']);
+	if(!empty($_REQUEST['sid']))
+		$sid = intval($_REQUEST['sid']);
 
     $bg = '';
 
@@ -55,8 +52,7 @@
 <?php
 			/* set things up for the handler to take over ... */
 			$test = true;
-			unset($_GET['sid']);
-			unset($_POST['sid']);
+			unset($_REQUEST['sid']);
 			$_POST['userid'] = 'test';
 			define('ESP-HANDLER-PREFIX', true);
 			define('ESP-AUTH-OK', true);
@@ -128,7 +124,7 @@
 		<td><?php echo($title); ?></td>
 		<td><?php echo($owner); ?></td>
 		<td><?php echo($realm); ?></td>
-        <td><a href="<?php echo(htmlentities("". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=${sid}")); ?>"><?php echo(_('Test')); ?></a> (<a href="<?php echo (htmlentities("". $GLOBALS['ESPCONFIG']['autopub_url'] ."?name=${name}&test=1")); ?>"><?php echo(_('standalone')); ?>)</td>
+        <td><a href="<?php echo(htmlentities("". $GLOBALS['ESPCONFIG']['ME'] ."?where=test&sid=${sid}&test=1")); ?>"><?php echo(_('Test')); ?></a> (<a href="<?php echo (htmlentities("". $GLOBALS['ESPCONFIG']['autopub_url'] ."?name=${name}&test=1")); ?>"><?php echo(_('standalone')); ?>)</td>
 		<td><a href="<?php echo(htmlentities("". $GLOBALS['ESPCONFIG']['ME'] ."?where=results&test=1&sid=${sid}")); ?>"><?php echo(_('Results')); ?></a></td>
 		<td style="font-size: xx-small; vertical-align: top;">
         <form id="export<?php echo($sid) ?>" action="<?php echo($GLOBALS['ESPCONFIG']['ME']) ?>">
@@ -141,10 +137,12 @@
         <input type="hidden" name="test" value="1" />
         <input type="hidden" name="sid" value="<?php echo($sid) ?>" />
         <input type="hidden" name="where" value="" />
+        <div class="exportsave">
 			<?php echo('<a href="javascript: exportSubmit(\'export\', document.getElementById(\'export'.$sid.'\'));" title="Save CSV Long Header (old method). Save the results for \''.$name.'\' to the survey in CSV Format (Comma Delimted File). Column Titles are based on question text.">' . _('Save On Server') . '</a>');
             echo("\n");?>
 			| <?php
 			echo('<a href="javascript: exportSubmit(\'download\', document.getElementById(\'export'.$sid.'\'));" title="Download CSV Long Header (old method). Download the results for \''.$name.'\' to your computer in CSV Format (Comma Delimted File). Column Titles are based on the question text. Click this link and select \'Save\' when prompted by your browser.">' . _('Download') . '</a>'); ?>
+            </div>
             </div></form>
 		</td>
 	</tr>
