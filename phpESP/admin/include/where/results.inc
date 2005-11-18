@@ -102,7 +102,7 @@
     ?>
     <?php
         if(!empty($_GET['test'])) {
-            echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=test&sid=". $_GET['sid']) ."\">". _('Test Survey') ."</a><br>\n");
+            echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] .htmlentities("?where=test&test=1&sid=". $_GET['sid']) ."\">". _('Test Survey') ."</a><br>\n");
         }
 
 
