@@ -2,14 +2,19 @@
 PHPESP CHANGE LOG
 =================
 
+1.8-rc1 => 1.8
+=========================
+FIXED results pages other than last not being stored.
+  (from <merlot02 at users.sourceforge.net>)
+
 1.7.5 => 1.8-rc1
 =========================
 * ADDED support for PHP5
   (from Kon Angelopoulos) 
 * FIXED several XSS and SQL injection bugs
-  (from Gavin Hicking <in dot garv at mail>
+  (from Gavin Hicking <in dot garv at mail>)
 * ADDED new management interface layout 
-  (from Aaron Axelsen <lists at frozenpc.net>
+  (from Aaron Axelsen <lists at frozenpc.net>)
 
 1.7.5-dev2 => 1.7.5-dev3
 =========================
