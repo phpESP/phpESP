@@ -140,6 +140,7 @@
 		if(empty($msg)) {
             if ($ESPCONFIG['auth_response'] && auth_get_option('resume'))
                 response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+            $_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
 			$_REQUEST['sec']++;
 		}
 	}
