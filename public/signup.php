@@ -79,13 +79,15 @@
     $sqlv = array();
     
     foreach ($fields as $f) {
-      if (isset($post[$f]) && !empty($post[$f])) {
-        array_push($sqlf, $f);
-        if ($f == 'password')
-          array_push($sqlv, db_crypt(_addslashes($post[$f]));
-        else
-          array_push($sqlv,  _addslashes($post[$f]) );
-      }
+    	if (isset($post[$f]) && !empty($post[$f])) {
+        	array_push($sqlf, $f);
+        	if ($f == 'password') {
+          		array_push($sqlv, db_crypt(_addslashes($post[$f])));
+        	}
+        	else {
+          		array_push($sqlv,  _addslashes($post[$f]) );
+      		}
+    	}
     }
     array_push($sqlf, 'realm');
     array_push($sqlv, addslashes($signup_realm) );
