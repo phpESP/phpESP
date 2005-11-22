@@ -4,7 +4,9 @@ PHPESP CHANGE LOG
 
 1.8-rc1 => 1.8
 =========================
-FIXED results pages other than last not being stored.
+* FIXED multi-paged surveys only storing last page results.
+  (from <merlot02 at users.sourceforge.net>)
+* FIXED qnType not showing on questions with tables
   (from <merlot02 at users.sourceforge.net>)
 
 1.7.5 => 1.8-rc1
