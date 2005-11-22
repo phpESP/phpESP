@@ -25,14 +25,14 @@ tree.  In order to check out a working copy from the cvs tree, you must
 have a cvs client.  You can login to the cvs server as "anonymous" to
 get read-only access with the following command (all one line):
 
-  $ cvs -d :pserver:anonymous@cvs.phpesp.sourceforge.net:/cvshome/phpesp
+  $ cvs -d :pserver:anonymous@cvs.sourceforge.net:/cvshome/phpesp
         login
 
 The password is empty, so just press enter at the prompt.  Once you are
 logged in, you can obtain a working copy of phpESP with the following
 command (also all on one line):
 
-  $ cvs -d :pserver:anonymous@cvs.phpesp.sourceforge.net:/cvshome/phpesp
+  $ cvs -d :pserver:anonymous@cvs.sourceforge.net:/cvshome/phpesp
         co phpESP
 
 This will create a directory called "phpESP", which will contain the 
