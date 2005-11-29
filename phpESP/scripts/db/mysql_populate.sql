@@ -80,7 +80,7 @@ INSERT INTO designer (username, password, fname, lname, realm, pdesign, pstatus,
 
 -- # table of different surveys available
 CREATE TABLE survey (
-	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name		CHAR(64) NOT NULL,
 	owner		CHAR(16) NOT NULL,
 	realm		CHAR(64) NOT NULL,
@@ -156,9 +156,9 @@ CREATE TABLE access (
 -- # this table holds info to distinguish one servey response from another
 -- # (plus timestamp, and username if known)
 CREATE TABLE response (
-	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	survey_id	INT UNSIGNED NOT NULL,
-	submitted	TIMESTAMP(14) NOT NULL DEFAULT '',
+	submitted	TIMESTAMP(14) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	complete	ENUM('Y','N') NOT NULL DEFAULT 'N',
 	username	CHAR(64),
 	PRIMARY KEY (id),
