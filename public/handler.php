@@ -158,29 +158,31 @@
         response_import_sec($sid, $_REQUEST['rid'], $_REQUEST['sec']);
 	
 ?>
-<form method="post" name="phpesp_response" action="<?php echo($action); ?>">
-<input type="hidden" name="referer" value="<?php echo ($_REQUEST['referer']); ?>">
-<input type="hidden" name="direct" value="<?php echo($_REQUEST['direct']); ?>">
-<input type="hidden" name="userid" value="<?php echo($_REQUEST['userid']); ?>">
-<input type="hidden" name="sid" value="<?php echo($sid); ?>">
-<input type="hidden" name="rid" value="<?php echo($_REQUEST['rid']); ?>">
-<input type="hidden" name="sec" value="<?php echo($_REQUEST['sec']); ?>">
-<input type="hidden" name="name" value="<?php echo($name); ?>">
+<form method="post" id="phpesp_response" action="<?php echo($action); ?>">
+    <fieldset class="hidden">
+<input type="hidden" name="referer" value="<?php echo ($_REQUEST['referer']); ?>" />
+<input type="hidden" name="direct" value="<?php echo($_REQUEST['direct']); ?>" />
+<input type="hidden" name="userid" value="<?php echo($_REQUEST['userid']); ?>" />
+<input type="hidden" name="sid" value="<?php echo($sid); ?>" />
+<input type="hidden" name="rid" value="<?php echo($_REQUEST['rid']); ?>" />
+<input type="hidden" name="sec" value="<?php echo($_REQUEST['sec']); ?>" />
+<input type="hidden" name="name" value="<?php echo($name); ?>" />
+    </fieldset>
 <?php	survey_render($sid,$_REQUEST['sec'],$msg); ?>
+    <fieldset>
 <?php
 		if ($ESPCONFIG['auth_response']) {
-			if (auth_get_option('navigate') && $_REQUEST['sec'] > 1) { ?>
-	<input type="submit" name="prev" value="Previous Page">
-<?php
+			if (auth_get_option('navigate') && $_REQUEST['sec'] > 1) { 
+                echo(mksubmit("prev", "Previous Page"));
 			}
-			if (auth_get_option('resume')) { ?>
-	<input type="submit" name="resume" value="Save">
-<?php
+			if (auth_get_option('resume')) {
+                echo(mksubmit("resume", "Save"));
 			}
 		}
-		if($_REQUEST['sec'] == $num_sections)	{ ?>
-	<input type="submit" name="submit" value="Submit Survey">
-<?php	} else { ?>
-	<input type="submit" name="next" value="Next Page">
-<?php	} ?>
+		if($_REQUEST['sec'] == $num_sections)	{ 
+            echo(mksubmit("submit", "Submit Survey"));
+        } else {
+            echo(mksubmit("next", "Next Page"));
+        } ?>
+        </fieldset>
 </form>

@@ -1,17 +1,30 @@
 /* $Id$ */
-.qnInnerTd {
-        background-color:none;
-        font-family: default;
-        font-size: ;
-        font-style: normal;
-        text-transform: none;
-        color: #000000;
-        text-decoration: none;
-        width:26px;
-        vertical-align:text-top;
+body {
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+body#auth {
+    margin: 5px;
+}
+
+#loginform {
+    width: 14em;
+}
+
+#loginform label, #loginform input {
+    display: block;
+}
+
+#loginform label {
+    padding: .5em;
+    font-weight: bold;
+}
+
+#loginform form {
+    float: left;
+}
+
 .message {
-        font-family: default;
         font-size: medium;
         font-variant: normal;
         font-weight: bold;
@@ -19,23 +32,60 @@
         text-align: center;
 }
 
-body#auth {
-    margin: 5px;
-}
-.login {
-    width: 480;
-}
-.login form {
-    float: left;
-}
-div.row {
-    clear: both;
-    padding-top: 10px;
+.error {
+    color: #CC0000;
 }
 
-div.row label {
+.qnumber {
     float: left;
-    padding-right: 5px;
-    width: 100px;
-    text-align: right;
+    padding-right: 3px;
+}
+
+.qbody {
+    padding-top: 3px;
+    padding-left: 25px;
+}
+
+.qbody ul {
+    margin: 0px;
+    padding: 0px;
+    padding-left: 15px;
+}
+
+.qsectiontext {
+    padding: 5px;
+}
+
+#survey fieldset {
+    border: 0px;
+    border-bottom: 2px solid grey;
+    padding: 28px;
+}
+
+fieldset.hidden {
+    display: none;
+}
+
+.ranktable td {
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.alt {
+    background-color: #eeeeee;
+}
+
+.nom {
+    background-color: #dddddd;
+}
+
+.required {
+    color: red;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.notice {
+    text-align: center;
 }
