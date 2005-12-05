@@ -69,13 +69,15 @@
         include($ESPCONFIG['handler_prefix']);
 
 ?>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><?php echo($_title); ?></title>
 <script type="text/javascript" src="<?php echo($ESPCONFIG['js_url']);?>default.js"></script>
 <?php
     if (!empty($_css)) {
-	    echo('<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css ."\" type=\"text/css\">\n");
+	    echo('<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css ."\" type=\"text/css\" />\n");
     }
     unset($_css);
 ?>

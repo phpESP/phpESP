@@ -1,208 +1,178 @@
 /* $Id$ */
-/* Brian Crawford @ IT Lab (http://www.itlab.musc.edu/) */
-.headerGraphic {
-/*#	background-image: url(); */
-	background-repeat: no-repeat;
-	width: 100%;
-	border: none;
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #CCCCCC;
+    margin: 0px;
 }
 .image {
-	height:60;
-	width:100%;
+    height:60px;
+    width:100%;
 }
 /* title - extra large normal font */
-.surveyTitle {
-	font-family: "Times New Roman", Times New Roman, mono;
-	font-size: x-large;
-	font-style: normal;
-	font-weight: bold;
-/*	font-variant: small-caps; */
-	text-transform: none;
-	color: #000000;
-	text-decoration: none;
-	text-align: center;
-	vertical-align: default;
+#title {
+    font-size: 150%;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
 }
 /* subtitle - bold normal font */
-.surveySubtitle {
-	font-family: "Times New Roman", Times New Roman, mono;
-	font-size: large;
-	font-style: normal;
-	font-weight: bold;
-/*	font-variant: small-caps; */
-	text-transform: none;
-	color: #000000;
-	text-decoration: none;
-	text-align: center;
-	vertical-align: default;
+#subtitle {
+    font-size: 120%;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
 }
-.surveyPage {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 600;
-/*      font-variant: small-caps;*/
-        text-transform: none;
-        color: #000000;
-        text-decoration: none;
-        text-align: center;
+
+/* main table (bordering the question boxes) - dark blue */
+#body {
+    background-color: #253D8E;
+    width: 100%;
+    border: 0px;
+    font-size: 100%;
+    color: #000000;
+    text-align: center;
 }
 /* information below subtitle - normal font */
-.addInfo {
-	font-family: "Times New Roman", Times New Roman, mono;
-	font-size: medium;
-	font-style: normal;
-	font-weight: normal;
-/*	font-variant: small-caps; */
-	text-transform: none;
-	color: #000000;
-	text-align: center;
-	vertical-align: default;
+.addinfo {
+    font-size: medium;
+    color: #000000;
+    text-align: center;
 }
 .message {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: medium;
-/*#	font-variant: small-caps;*/
-	font-weight: bold;
-	color: #000000;
-	text-align: center;
+    font-size: medium;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
 }
-.reqQuestion {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-style: normal;
-	font-weight: 600;
-/*	font-variant: small-caps; */
-	text-transform: none;
-	color: #000000;
-	text-decoration: none;
-	text-align: center;
+
+.notice {
+    text-align: center;
 }
-/* main table (bordering the question boxes) - dark blue */
-.mainTable {
-	background-color: #253D8E;
-	background-image: url((URL));
-	background-repeat: repeat-y;
-	cell-spacing: 0;
-	width: 100%;
-	border: 0;
+
+.required {
+    color: red;
+    font-weight: bold;
 }
-body {
-	background-color: #CCCCCC;
-	margin: 0px;
+
+fieldset.hidden {
+    display: none;
+}
+
+.ranktable td {
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.alt {
+    background-color: #eeeeee;
+}
+
+.nom {
+    background-color: #dddddd;
 }
 /* bars between question boxes - dark blue */
-.preQuestionBorder {
-	width: 500px;
-	margin: 0px auto;
-	text-align: center;
-	padding: 0px;
-	border: 1px none #000000;
-	background-color: #253D83;
-	height: 8px;
-	vertical-align: text-top;
+#body fieldset {
+    margin: 10px;
+    padding: 0px;
+    border: 2px solid;
+    background-color: #aaaaaa;
 }
-.qnOuterTable {
-	width: 100%;
-	border: none;
-	background-color: #000000;
-	cell-spacing: 1;
+
+#survey ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
 }
-/* inner borders - surrounding boxes inside question boxes - near black */
-.qnInnerTable {
-	width: 100%;
-	border: none;
-	background-color: #333333;
-	cell-spacing: 1;
-}
+
 /* number cell box - large bold number inside a dark grey box */
-.qnInnerTd {
-	background-color: #AAAAAA;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 18px;
-	font-style: normal;
-	font-weight: bold;
-	font-variant: small-caps;
-	text-transform: none;
-	color: #000000;
-	text-decoration: none;
-	width: 26px;
-	vertical-align: text-top;
+.qnumber {
+    float: left;
+    background-color: #aaaaaa;
+    font-weight: bold;
+    font-size: 120%;
+    color: #000000;
+    height: 100%;
+    width: 4%;
+    vertical-align: text-top;
 }
-.qnInner {
-	background-color: #CCCCCC; # question box color
-	width: 100%;
-	height: 27;
-	vertical-align: middle;
-	color: #000000; # question text color
-	font-family: Times New Roman, Verdana, Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	font-style: normal;
-/*	font-variant: small-caps;*/
-	text-transform: none;
-	text-decoration: none;
+.qtext {
+    float: right;
+    background-color: #CCCCCC;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    width: 92%;
+    vertical-align: middle;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0px;
+    color: #000000; 
+    font-size: 100%;
+    font-weight: bold;
+    text-align: left;
 }
 /* answer box  - white, normal black font */
-.qnType {
-	height: auto;
-	background-color: #FFFFFF;
-	vertical-align: middle;
-	color: #000000;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-style: normal;
-/*	font-weight: bold;
-	font-variant: small-caps;*/
-	text-transform: none;
-	text-decoration: none;
+.qbody {
+    float: right;
+    border-left: 1px solid;
+    width: 92%;
+    background-color: #FFFFFF;
+    vertical-align: middle;
+    color: #000000;
+    font-size: 100%;
+    text-align: left;
+    min-height: 50px;
+    padding: 20px;
 }
+.sectiontext {
+    background-color: #CCCCCC;
+    border-left: 1px solid;
+    vertical-align: middle;
+    padding: 5px;
+    color: #000000; 
+    font-size: 100%;
+    font-weight: bold;
+    text-align: left;
+}
+
 .thankHead {
-/* completion page font - large black */
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: x-large;
-/*	font-variant: small-caps;*/
-	color: #000000;
+    /* completion page font - large black */
+    font-size: 130%;
+    color: #000000;
 }
 .thankBody {
-/* completion page body font - normal black */
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: medium;
-/*	font-variant: small-caps;*/
-	color: #000000;
+    /* completion page body font - normal black */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color: #000000;
 }
 .returnLink {
-/* completion page link font - small dark blue */
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: small;
-/*	font-variant: small-caps; */
-	color: #253D8E;
-	text-decoration: underline;
-}
-/* textbox and radio button colors - black answers in white boxes */
-input, textarea, select, option {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: normal;
-	color: #000000;
-	background-color: #FFFFFF;
+    /* completion page link font - small dark blue */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color: #253D8E;
+    text-decoration: underline;
 }
 body#auth {
     margin: 5px;
 }
-.login {
-    width: 480;
-}
-.login form {
-    float: left;
-}
-div.row {
-    clear: both;
-    padding-top: 10px;
+
+#loginform {
+    width: 14em;
 }
 
-div.row label {
+#loginform label, #loginform input {
+    display: block;
+}
+
+#loginform label {
+    padding: .5em;
+    font-weight: bold;
+}
+
+#loginform form {
     float: left;
-    padding-right: 5px;
-    width: 100px;
-    text-align: right;
 }
