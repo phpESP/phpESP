@@ -86,7 +86,7 @@
 			$expiration = sprintf("%04d%02d%02d%06d",
 				$ex_year,$ex_month,$ex_day,0);
 		} else {
-			$expiration = "0";
+			$expiration = "0000-00-00 00:00:00";
 			$ex_year    = '';
 			$ex_month   = '';
 			$ex_day     = '';

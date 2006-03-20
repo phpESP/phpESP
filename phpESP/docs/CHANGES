@@ -2,6 +2,11 @@
 PHPESP CHANGE LOG
 =================
 
+1.8 => 1.8.1
+* FIXED Export/Download problem for IE.
+  (from Aaron Axelsen <lists at frozenpc.net>)
+* FIXED Expiration data formatted incorrectly.
+
 1.8-rc1 => 1.8
 =========================
 * FIXED multi-paged surveys only storing last page results.
