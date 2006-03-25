@@ -51,6 +51,14 @@
 		}
 	}
 
+    function printCommonHeaders() {
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Cache-Control: private",false);
+        header("Content-Transfer-Encoding: ascii");
+    }
+
 	$type = isset($_GET['type']) ? $_GET['type'] : 'csv_full_header';
 	
 	// default to csv_full_header
@@ -58,6 +66,7 @@
         case 'spss':
             //NOT FULLY IMPLEMENT YET
             header("Content-Transfer-Encoding: ascii");
+            printCommonHeaders();
             header("Content-Disposition: attachment; filename=$name.por");
             header("Content-Type: application/txt");
             $output = survey_generate_results($type, $sid);
@@ -67,6 +76,7 @@
         case 'xml':
             //NOT FULLY IMPLEMENT YET
             header("Content-Transfer-Encoding: ascii");
+            printCommonHeaders();
             header("Content-Disposition: attachment; filename=$name.xml");
             header("Content-Type: text/xml");
             $output = survey_generate_results($type, $sid);
@@ -76,6 +86,7 @@
         case 'tab':
             // TAB
             header("Content-Transfer-Encoding: ascii");
+            printCommonHeaders();
             header("Content-Disposition: attachment; filename=$name.txt");
             header("Content-Type: text/tab-separated-values");
             $output = survey_generate_results($type, $sid);
@@ -87,6 +98,7 @@
         default:	
             // CSV, csv_full_header old method, csv_short_header new method
             header("Content-Transfer-Encoding: ascii");
+            printCommonHeaders();
             header("Content-Disposition: attachment; filename=$name.csv");
             header("Content-Type: text/comma-separated-values");
             $output = survey_generate_results($type, $sid);

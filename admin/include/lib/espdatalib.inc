@@ -222,7 +222,7 @@ function password_upgrade($username, $password, $table) {
             username = ".$username." AND
             password = OLD_PASSWORD($password) AND
             disabled = 'N' AND
-            (expiration = '0' OR expiration > ". sys_time_stamp().")";
+            (expiration = '0000-00-00 00:00:00' OR expiration > ". sys_time_stamp().")";
             $accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC );
             if (!$accres) {
                 echo(ErrorMsg());
