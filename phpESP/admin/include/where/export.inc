@@ -88,6 +88,7 @@ if(!$sid) {
         <select name="type">
             <option value="csv_full_header" selected="selected">CSV Full Headers</option>
             <option value="csv_short_header">CSV Short Headers</option>
+            <option value="spss_csv">CSV for SPSS</option>
             <option value="tab">Tab</option>
         </select>
         <input type="hidden" name="sid" value="<?php echo($sid) ?>" />
@@ -156,8 +157,8 @@ if(!$sid) {
             //Not implemented yet
             break;
             
-        case 'spss':
-            //Not implemented yet
+        case 'spss_csv':
+            $file = $_SESSION['acl']['home'] . "/$name.csv";
             break;
             
         case 'dbf':

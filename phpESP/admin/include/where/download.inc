@@ -67,10 +67,14 @@
             //NOT FULLY IMPLEMENT YET
             header("Content-Transfer-Encoding: ascii");
             printCommonHeaders();
-            header("Content-Disposition: attachment; filename=$name.por");
+            header("Content-Type: text/comma-separated-values");
+            header("Content-Disposition: attachment; filename={$name}.csv");
             header("Content-Type: application/txt");
             $output = survey_generate_results($type, $sid);
             //Do something with output
+            foreach ($output as $row ) {
+                echo(implode(',', $row) . "\r\n");
+            }
             break;
 
         case 'xml':
