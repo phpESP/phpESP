@@ -38,7 +38,139 @@
             'USERNAME',
         );
         switch ($format) {
-            case 'spss':
+            case 'spss_csv':
+                // SPSS Output
+                $numcols = 3;
+                $columns2 = $columns;
+                $sql = "SELECT q.id, q.type_id FROM {$GLOBALS['ESPCONFIG']['question_table']} q
+                WHERE q.survey_ID = $sid AND q.deleted = 'N' and q.type_id < 50 ORDER BY position";
+                $result = execute_sql($sql);
+                $qcount = 0; // rating and multiple select (checkbox) count as one
+                while ( list ($qid, $type) = fetch_row($result)) {
+                    $result->MoveNext();
+                    if($type == '8' || $type == '5') { //rating question or multiple select (checkbox)
+                    $sql = "SELECT c.id FROM ".$GLOBALS['ESPCONFIG']['question_table']." q,
+                    ".$GLOBALS['ESPCONFIG']['question_choice_table']." c WHERE q.id = $qid
+                    AND q.id = c.question_id ORDER BY c.id ASC";
+                    $result2 = execute_sql($sql);
+                    $ratecols=0;
+                    $qcount++;
+                    while( list($cid) = fetch_row($result2) ) {
+                        $result2->MoveNext();
+                        $ratecols++;
+                        array_push($columns, array("Q".$qcount."_".$ratecols));
+                        array_push($columns2, $qid."_".$cid);
+                        array_push($types, $id_to_csv_map[$type]);
+                    }
+                    $numcols=$numcols+$ratecols;
+                    db_close($result2);
+                    } else {
+                        $numcols++;
+                        $qcount++;
+                        array_push($columns, array("Q".$qcount));
+                        array_push($columns2, $qid);
+                        array_push($types, $id_to_csv_map[$type]);
+                    }
+                }
+                db_close($result);
+
+                // Generate Data (This could get tricky)
+                $sql = "SELECT r.id,r.submitted,r.username
+                FROM ".$GLOBALS['ESPCONFIG']['response_table']." r
+                WHERE r.survey_id=$sid AND r.complete='Y'
+                ORDER BY r.submitted";
+                $result = execute_sql($sql);
+
+                $columns[0] = array('RESPONSE');
+                $columns[1] = array('SUBMITTED');
+                $columns[2] = array('USERNAME');
+
+                while ($row = fetch_row($result)) {
+                    $result->MoveNext();
+
+                    //Get the Response
+                    $response = response_select($sid, $row[0], 'type_id,name');
+                    array_push($columns[0], $row[0]);
+                    array_push($columns[1], $row[1]);
+                    array_push($columns[2], $row[2]);
+
+                    // Merge Repsonse into output array
+                    for($i = 3; $i < $numcols; $i++) {
+                        $key = split("_",$columns2[$i]);
+
+                        if(isset($response[$columns2[$i]]) || isset($response[$key[0]])){
+                            // This is a hack for multiple select,
+                            // seems easier than modifying response_select
+                            if (isset($response[$key[0]][0]) && is_array($response[$key[0]][0])){
+                                // check box (only question type that returns an array)
+                                $match = 0;
+                                for ($j = 0; $j < sizeof ($response[$key[0]]); $j++) {
+                                    if ($response[$key[0]][$j][3] == 'other'.'_'.$key[1]) {
+                                        array_push($columns[$i],"Other: ".$response[$key[0].'_'.$key[1]][2]);
+                                        $match = 1;
+                                    } else if ($response[$key[0]][$j][3] == $key[1]) {
+                                        array_push($columns[$i],$response[$key[0]][$j][2]);
+                                        $match = 1;
+                                    }
+                                }
+                                if ($match == 0)
+                                array_push($columns[$i], " ");
+                            } elseif (isset($response[$columns2[$i]][0]) && $response[$columns2[$i]][0] == 8) {
+                                // rating
+                                array_push($columns[$i], $response[$columns2[$i]][3]);
+                            } elseif(isset($response[$columns2[$i]][0]) && ($response[$columns2[$i]][0]==4 || $response[$columns2[$i]][0]==6)){
+                                /* radio or dropdown*/
+                                if($response[$columns2[$i]][2] == "!other"){
+                                    list(,$c)=split("_", $response[$columns2[$i]][3]);
+                                    array_push($columns[$i], "Other: ".$response[$columns2[$i].'_'.$c][2]);
+                                } else {
+                                    array_push($columns[$i], $response[$columns2[$i]][2]);
+                                }
+                            } else {
+                                array_push($columns[$i], $response[$columns2[$i]][2]);
+                            }
+                        } else {
+                            array_push($columns[$i], " ");
+                        }
+                    }
+
+                }
+                db_close($result);
+
+                $output = array();
+                for($i = 0; $i < $numcols; $i++) {
+                    $x = 0;
+                    $temp_val = "";
+                    foreach($columns[$i] as $key=>$value) {
+                        if (!isset($output[$x])) {
+                            $output[$x] = array();
+                        }
+                        if (is_array($value)) {
+                            $temp_val = join(',', $value);
+                        }
+                        else {
+                            $temp_val = $value;
+                        }
+                        switch ($types[$i]) {
+                            case 1: /* string */
+                                /* Excel seems to allow "\n" inside a quoted string, but
+                                * "\r\n" is used as a record separator and so "\r" may
+                                * not occur within a cell. So if one would like to preserve
+                                * new-lines in a response, remove the "\n" from the
+                                * regex below.
+                                */
+                                $temp_val = ereg_replace("[\r\n\t]", ' ', $temp_val);
+                                $temp_val = ereg_replace('"', '""', $temp_val);
+                                $temp_val = '"'. $temp_val .'"';
+                                /* fall through */
+                                break;
+                        }
+                        $output[$x][$i] = $temp_val;
+                        $x++;
+                    }
+                }
+                return $output;
+                break;
                 //NOT IMPLEMENTED YET
                 break;
 
@@ -300,10 +432,12 @@
             return 0;
         }
         switch ($type) {
-            case 'spss':
-                //Not fully implemented yet
+            case 'spss_csv':
                 $data = survey_generate_results($type, $sid);
                 //do something with $data
+                foreach ($data as $row) {
+                    fputs($fh, implode(',', $row) . "\r\n");
+                }
                 break;
 
             case 'xml':
