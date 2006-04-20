@@ -56,7 +56,7 @@ function survey_auth($sid, $username, $password, $css, $title) {
 				r.password = ".db_crypt($password) ." AND
 				r.realm = a.realm AND
 				r.disabled = 'N' AND
-				(r.expiration = '0' OR r.expiration > ". sys_time_stamp().")";
+				(r.expiration = '0000-00-00 00:00:00' OR r.expiration > ". sys_time_stamp().")";
 		// Execute the query assign record set to $usrres
 		$usrres = execute_sql( $sql );
 		if(!$usrres) {
@@ -179,7 +179,7 @@ function manage_auth($username, $password, $raw_password="") {
         username = "._addslashes($username)." AND
         password = ".db_crypt($password) ."AND
         disabled = 'N' AND
-        (expiration = '0' OR expiration > ". sys_time_stamp().")";
+        (expiration = '0000-00-00 00:00:00' OR expiration > ". sys_time_stamp().")";
         // Execute the query and put recordset in $accres
         $accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC );
         if(!$accres) {
