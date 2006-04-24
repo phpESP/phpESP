@@ -59,7 +59,7 @@ class ADODB_Pager {
 	global $HTTP_SERVER_VARS,$PHP_SELF,$HTTP_SESSION_VARS,$HTTP_GET_VARS;
 	
 		$curr_page = $id.'_curr_page';
-		if (empty($PHP_SELF)) $PHP_SELF = $HTTP_SERVER_VARS['PHP_SELF'];
+    if (empty($PHP_SELF)) $PHP_SELF = htmlspecialchars($HTTP_SERVER_VARS['PHP_SELF']);
 		
 		$this->sql = $sql;
 		$this->id = $id;
@@ -69,7 +69,7 @@ class ADODB_Pager {
 		$next_page = $id.'_next_page';	
 		
 		if (isset($HTTP_GET_VARS[$next_page])) {
-			$HTTP_SESSION_VARS[$curr_page] = $HTTP_GET_VARS[$next_page];
+      $HTTP_SESSION_VARS[$curr_page] = (integer) $HTTP_GET_VARS[$next_page];
 		}
 		if (empty($HTTP_SESSION_VARS[$curr_page])) $HTTP_SESSION_VARS[$curr_page] = 1; ## at first page
 		
