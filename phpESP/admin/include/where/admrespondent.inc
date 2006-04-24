@@ -129,7 +129,7 @@
             		email=$email,
             		disabled=$disabled,
             		changed=".sys_time_stamp().",
-            		expiration=$expiration
+            		expiration=".db_qstr($expiration)."
                     WHERE username=$u AND realm=$r";
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
@@ -165,8 +165,8 @@
 			$r =& $realm;
 			if(intval($expiration) > 0) {
 				$ex_year  = substr($expiration,0,4);
-				$ex_month = substr($expiration,4,2);
-				$ex_day   = substr($expiration,6,2);
+				$ex_month = substr($expiration,5,2);
+				$ex_day   = substr($expiration,8,2);
 			} else {
 				$ex_year  = '';
 				$ex_month = '';
