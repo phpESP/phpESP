@@ -33,13 +33,13 @@
 	/* delete user */
 	if(isset($_POST['delete'])) {
 		unset($_POST['submit']);
-		$u = _addslashes($_POST['u']);
-		$r = _addslashes($_POST['r']);
+		$u = $_POST['u'];
+		$r = $_POST['r'];
 		/* check acl */
 		if($_SESSION['acl']['superuser'] == 'Y' ||
 			in_array($r, $_SESSION['acl']['puser']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
 			if(!execute_sql($sql) || affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
