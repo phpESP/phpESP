@@ -189,9 +189,9 @@ function manage_auth($username, $password, $raw_password="") {
 	$auth_ldap_accept = $auth = false; // default to unauthorized
 	$_SESSION['acl'] = array();
 
-	if (!empty($username) && !empty($password)) {
+	if (!empty($username) && !empty($password) && !empty($ldap_password)) {
          // if we are running mysql >4.0 need to check/upgrade passwords
-        password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['respondent_table']);
+        password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['designer_table']);
 
 		// Formulate the query check whether user is authorized
 		// This only gives authorization for use of the survey.
@@ -208,7 +208,6 @@ function manage_auth($username, $password, $raw_password="") {
 			$search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
 			if (@ldap_count_entries($ds,$search_result)==1) {
 				$user_info = ldap_get_entries($ds, $search_result);
-				// Bind with username and password
 				$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $ldap_password);
 				if ($auth_bind) {
 					$auth_ldap_accept = true;
