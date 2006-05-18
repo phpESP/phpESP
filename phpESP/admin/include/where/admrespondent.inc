@@ -53,10 +53,10 @@
 	}
 	/* submitted */
 	if(isset($_POST['submit'])) {
-		$u         = _addslashes($_POST['u']);
-		$r         = _addslashes($_POST['r']);
-		$password  = _addslashes($_POST['password']);
-		$fname     = _addslashes($_POST['fname']);
+		$u         = $_POST['u'];
+		$r         = $_POST['r'];
+		$password  = $_POST['password'];
+		$fname     = $_POST['fname'];
 		$lname     = _addslashes($_POST['lname']);
 		$email     = _addslashes($_POST['email']);
 		$disabled  = _addslashes($_POST['disabled']);
@@ -97,7 +97,7 @@
         if($_SESSION['acl']['superuser'] == 'Y' ||
             in_array($r, $_SESSION['acl']['puser']) ||
             auth_no_access(_('to access this group'))) {
-            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
+            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
             $result = execute_sql($sql);
             if(record_count($result) < 1) {
             	if(empty($u) || empty($r) || empty($password)) {
@@ -105,7 +105,7 @@
             	} else {
             		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['respondent_table']."
             			(username,realm,password,changed)
-            			VALUES ($u,$r,".db_crypt($password).", ".sys_time_stamp().")";
+            			VALUES (".db_qstr($u).",".db_qstr($r).",".db_crypt($password).", ".sys_time_stamp().")";
             		if(!execute_sql($sql)) {
             			$u = '';
             			$r = '';
@@ -115,22 +115,22 @@
             	}
             }
             db_close($result);
-            
             /* change user data */
-            if(!empty($u) && !empty($r)) {
+            if(!empty($u) && !empty($r) && !empty($password)) {
             	if(empty($disabled))
             		$disabled = 'N';
             	if (!empty($password))
-            		$password = "password=".db_crypt($password).",";
+            		$password = "password=".db_crypt(db_qstr($password)).",";
             	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['respondent_table']." SET
             		$password
-            		fname=$fname,
+            		fname=".db_qstr($fname).",
             		lname=$lname,
             		email=$email,
             		disabled=$disabled,
             		changed=".sys_time_stamp().",
             		expiration=".db_qstr($expiration)."
-                    WHERE username=$u AND realm=$r";
+                    WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
+                    print "$sql";
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
             		$errstr .= mkerror(_('Cannot change account data.') .' ('.
@@ -143,8 +143,8 @@
             return;
         }
 	} else if(isset($_GET['u']) && isset($_GET['r'])) {
-		$u = _addslashes($_GET['u']);
-		$r = _addslashes($_GET['r']);
+		$u = $_GET['u'];
+		$r = $_GET['r'];
 	} else {
 		$u = '';
 		$r = '';
@@ -154,7 +154,7 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
 		$result = execute_sql($sql,"","ADODB_FETCH_ASSOC");
 		if($arr = fetch_row($result)) {
 			foreach(array(
