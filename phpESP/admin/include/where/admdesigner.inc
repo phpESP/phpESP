@@ -33,13 +33,13 @@
 	/* delete user */
 	if(isset($_POST['delete'])) {
 		unset($_POST['submit']);
-		$u = _addslashes($_POST['u']);
-		$r = _addslashes($_POST['r']);
+		$u = $_POST['u'];
+		$r = $_POST['r'];
 		/* check acl */
 		if($_SESSION['acl']['superuser'] == 'Y' ||
 			in_array($r, $_SESSION['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
 			if(!execute_sql($sql) || affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
@@ -54,19 +54,19 @@
 
 	/* submitted */
 	if(isset($_POST['submit'])) {
-		$u         = _addslashes($_POST['u']);
-		$r         = _addslashes($_POST['r']);
-		$password  = _addslashes($_POST['password']);
-		$fname     = _addslashes($_POST['fname']);
-		$lname     = _addslashes($_POST['lname']);
-		$email     = _addslashes($_POST['email']);
-		$pdesign   = _addslashes($_POST['pdesign']);
-		$pstatus   = _addslashes($_POST['pstatus']);
-		$pdata     = _addslashes($_POST['pdata']);
-		$pall      = _addslashes($_POST['pall']);
-		$pgroup    = _addslashes($_POST['pgroup']);
-		$puser     = _addslashes($_POST['puser']);
-		$disabled  = _addslashes($_POST['disabled']);
+		$u         = $_POST['u'];
+		$r         = $_POST['r'];
+		$password  = $_POST['password'];
+		$fname     = $_POST['fname'];
+		$lname     = $_POST['lname'];
+		$email     = $_POST['email'];
+		$pdesign   = $_POST['pdesign'];
+		$pstatus   = $_POST['pstatus'];
+		$pdata     = $_POST['pdata'];
+		$pall      = $_POST['pall'];
+		$pgroup    = $_POST['pgroup'];
+		$puser     = $_POST['puser'];
+		$disabled  = $_POST['disabled'];
 
 		if(!empty($_POST['ex_year']) ||
 				!empty($_POST['ex_month']) ||
@@ -104,7 +104,7 @@
         if($_SESSION['acl']['superuser'] == 'Y' ||
             in_array($r, $_SESSION['acl']['pgroup']) ||
             auth_no_access(_('to access this group'))) {
-            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
+            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
             $result = execute_sql($sql);
             if(!$result || record_count($result) < 1) {
             	if(empty($u) || empty($r) || empty($password)) {
@@ -112,7 +112,7 @@
             	} else {
             		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
             			(username,realm,password,changed)
-            			VALUES ($u,$r, ".db_crypt($password).", ".sys_time_stamp().")";
+            			VALUES (".db_qstr($u).",".db_qstr($r).", ".db_crypt(db_qstr($password)).", ".sys_time_stamp().")";
             		if(!execute_sql($sql)) {
             			$u = '';
             			$r = '';
@@ -133,22 +133,22 @@
             			$$f = 'N';
             	}
             	if (!empty($password))
-            		$password = "password=".db_crypt($password).",";
+            		$password = "password=".db_crypt(db_qstr($password)).",";
             	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET
             		$password
-            		fname=$fname,
-            		lname=$lname,
-            		email=$email,
-            		pdesign=$pdesign,
-            		pstatus=$pstatus,
-            		pdata=$pdata,
-            		pall=$pall,
-            		pgroup=$pgroup,
-            		puser=$puser,
-            		disabled=$disabled,
+            		fname=".db_qstr($fname).",
+            		lname=".db_qstr($lname).",
+            		email=".db_qstr($email).",
+            		pdesign=".db_qstr($pdesign).",
+            		pstatus=".db_qstr($pstatus).",
+            		pdata=".db_qstr($pdata).",
+            		pall=".db_qstr($pall).",
+            		pgroup=".db_qstr($pgroup).",
+            		puser=".db_qstr($puser).",
+            		disabled=".db_qstr($disabled).",
             		changed=".sys_time_stamp().",
             		expiration=".db_qstr($expiration)."
-            	WHERE username=$u AND realm=$r";
+            	WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
             		$errstr .= mkerror(_('Cannot change account data.') .' ('.
@@ -162,8 +162,8 @@
 	    	return;
 	    }
 	} else if(isset($_GET['u']) && isset($_GET['r'])) {
-		$u = _addslashes($_GET['u']);
-		$r = _addslashes($_GET['r']);
+		$u = $_GET['u'];
+		$r = $_GET['r'];
 	} else {
 		$u = '';
 		$r = '';
@@ -179,7 +179,7 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
 		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 		if($arr = fetch_row($result)) {
 			foreach(array(
