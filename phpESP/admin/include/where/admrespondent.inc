@@ -57,9 +57,9 @@
 		$r         = $_POST['r'];
 		$password  = $_POST['password'];
 		$fname     = $_POST['fname'];
-		$lname     = _addslashes($_POST['lname']);
-		$email     = _addslashes($_POST['email']);
-		$disabled  = _addslashes($_POST['disabled']);
+		$lname     = $_POST['lname'];
+		$email     = $_POST['email'];
+		$disabled  = $_POST['disabled'];
 
 		if(!empty($_POST['ex_year']) ||
 				!empty($_POST['ex_month']) ||
@@ -105,7 +105,7 @@
             	} else {
             		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['respondent_table']."
             			(username,realm,password,changed)
-            			VALUES (".db_qstr($u).",".db_qstr($r).",".db_crypt($password).", ".sys_time_stamp().")";
+            			VALUES (".db_qstr($u).",".db_qstr($r).",".db_crypt(db_qstr($password)).", ".sys_time_stamp().")";
             		if(!execute_sql($sql)) {
             			$u = '';
             			$r = '';
@@ -116,7 +116,7 @@
             }
             db_close($result);
             /* change user data */
-            if(!empty($u) && !empty($r) && !empty($password)) {
+            if(!empty($u) && !empty($r)) {
             	if(empty($disabled))
             		$disabled = 'N';
             	if (!empty($password))
@@ -124,13 +124,12 @@
             	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['respondent_table']." SET
             		$password
             		fname=".db_qstr($fname).",
-            		lname=$lname,
-            		email=$email,
-            		disabled=$disabled,
+            		lname=".db_qstr($lname).",
+            		email=".db_qstr($email).",
+            		disabled=".db_qstr($disabled).",
             		changed=".sys_time_stamp().",
             		expiration=".db_qstr($expiration)."
                     WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
-                    print "$sql";
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
             		$errstr .= mkerror(_('Cannot change account data.') .' ('.
