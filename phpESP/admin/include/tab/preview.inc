@@ -64,9 +64,10 @@ this page.')); ?>
                 if (record_count($result) > 0) {
                         list($css_file) = fetch_row($result);
                         db_close($result);
-                        echo("<link rel=\"stylesheet\" href=\"".$GLOBALS['ESPCONFIG']['css_url'].$css_file."\"  type=\"text/css\">\n");                }
+                        echo("<link rel=\"stylesheet\" title=\"survey\" href=\"".$GLOBALS['ESPCONFIG']['css_url'].$css_file."\"  type=\"text/css\">\n");                }
         }
 ?>
+<div id="survey">
 <table style="border: 1px solid black;" cellpadding="2">
 	<tr>
 		<td>
@@ -87,3 +88,4 @@ this page.')); ?>
 		</td>
 	</tr>
 </table>
+</div>
