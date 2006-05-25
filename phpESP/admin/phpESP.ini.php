@@ -20,7 +20,7 @@ else                  $server =& $HTTP_SERVER_VARS;
 $ESPCONFIG['proto'] = 'http://';
 
 // Base URL for phpESP
-$ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP_1_8/';
+$ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP/';
 
 // URL of the images directory (for <img src='...'> tags)
 $ESPCONFIG['image_url'] = $ESPCONFIG['base_url'] . 'images/';
@@ -59,13 +59,13 @@ $ESPCONFIG['auth_design'] = true;
 $ESPCONFIG['auth_response'] = true;
 
 // Choose authentication type: { 'default', 'ldap' }
-$ESPCONFIG['auth_type'] = 'ldap';
+$ESPCONFIG['auth_type'] = 'default';
 
 // LDAP connection information
 // (Set these values if you choose 'ldap' as the authentication type.)
-$ESPCONFIG['ldap_server'] = 'ldaps://authldap.musc.edu';
+$ESPCONFIG['ldap_server'] = 'ldap://ldap.example.com';
 $ESPCONFIG['ldap_port']   = '389';
-$ESPCONFIG['ldap_dn']     = 'dc=musc, dc=edu';
+$ESPCONFIG['ldap_dn']     = 'dc=example, dc=com';
 $ESPCONFIG['ldap_filter'] = 'uid=';
 
 // Group to add responders to via the sign-up page
@@ -105,7 +105,7 @@ $ESPCONFIG['DEBUG'] = false;
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '1.8.1';
+$ESPCONFIG['version'] = '1.8.2';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';

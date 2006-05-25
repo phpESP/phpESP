@@ -1,6 +1,10 @@
 =================
 PHPESP CHANGE LOG
 =================
+1.8.1 => 1.8.2
+* FIXED problems with adding/deleting respondents/designers
+* FIXED display issues when previewing surveys.
+* FIXED ADODB SQL INJECT issue.
 
 1.8 => 1.8.1
 * FIXED Export/Download problem for IE.
