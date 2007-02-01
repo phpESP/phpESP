@@ -386,7 +386,13 @@
             $qid = array_shift($row);
             $val = array_pop($row);
             $values[$qid] = $row;
-            array_push($values["$qid"], ($val == 'Y') ? _('Yes') : _('No'), $val);
+            $ivalue = '';
+            if ($val == 'Y') {
+                $ivalue = _('Yes');
+            } elseif ($val == 'N') {
+                $ivalue =  _('No');
+            }   
+            array_push($values["$qid"], $ivalue, $val);
             $result->MoveNext();
         }
         db_close($result);
