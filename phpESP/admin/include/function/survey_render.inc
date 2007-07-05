@@ -138,12 +138,12 @@ function survey_render($sid, $section = 1, $message = '') {
 				<table cellSpacing="0" cellPadding="0">
                         	<tbody>
                           	<tr>
-                            		<td><?php echo(mkradio($qid,'Y')); ?></td>
-                            		<td><?php echo(_('Yes')); ?></td>
+                            		<td class="qnType"><?php echo(mkradio($qid,'Y')); ?></td>
+                            		<td class="qnType"><?php echo(_('Yes')); ?></td>
                           	</tr>
                           	<tr>
-                            		<td><?php echo(mkradio($qid,'N')); ?></td>
-                            		<td><?php echo(_('No')); ?></td>
+                            		<td class="qnType"><?php echo(mkradio($qid,'N')); ?></td>
+                            		<td class="qnType"><?php echo(_('No')); ?></td>
                           	</tr>
                         	</tbody>
                       		</table>
@@ -167,8 +167,8 @@ function survey_render($sid, $section = 1, $message = '') {
                     $choices_result->MoveNext();
                     ?>
 						<tr>
-							<td><?php echo(mkradio($qid,$choice['id'])); ?></td>
-							<td><?php echo($choice['content']); ?></td>
+							<td class="qnType"><?php echo(mkradio($qid,$choice['id'])); ?></td>
+							<td class="qnType"><?php echo($choice['content']); ?></td>
 						</tr>
 <?php			}
 				$j=0;
@@ -181,8 +181,8 @@ function survey_render($sid, $section = 1, $message = '') {
 							$other['content']);
 ?>
 						<tr>
-							<td><?php echo(mkradio($qid,"other_$cid")); ?></td>
-							<td>
+							<td class="qnType"><?php echo(mkradio($qid,"other_$cid")); ?></td>
+							<td class="qnType">
 <?php
                     $cid = "${qid}_${cid}";
                     echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
@@ -208,8 +208,8 @@ function survey_render($sid, $section = 1, $message = '') {
                     $choices_result->MoveNext();
                     ?>
 						<tr>
-							<td><?php echo(mkcheckbox($qid,$choice['id'])); ?></td>
-							<td><?php echo($choice['content']); ?></td>
+							<td class="qnType"><?php echo(mkcheckbox($qid,$choice['id'])); ?></td>
+							<td class="qnType"><?php echo($choice['content']); ?></td>
 						</tr>
 <?php			}
 				$j=0;
@@ -222,8 +222,8 @@ function survey_render($sid, $section = 1, $message = '') {
 							$other['content']);
 ?>
 						<tr>
-							<td><?php echo(mkcheckbox($qid,"other_$cid")); ?></td>
-							<td>
+							<td class="qnType"><?php echo(mkcheckbox($qid,"other_$cid")); ?></td>
+							<td class="qnType">
 <?php
                     $cid = "${qid}_${cid}";
                     echo("$other_text&nbsp;<input type=\"text\" size=\"20\" name=\"$cid\" onKeyPress=\"other_check(this.name)\"");
@@ -258,12 +258,12 @@ function survey_render($sid, $section = 1, $message = '') {
 					<table border="0" cellspacing="0" cellpadding="0">
 					<tbody>
 						<tr>
-							<td width="60"><?php echo(mkradio($qid,1)); ?> <?php echo(_('1')); ?></td>
-							<td width="60"><?php echo(mkradio($qid,2)); ?> <?php echo(_('2')); ?></td>
-							<td width="60"><?php echo(mkradio($qid,3)); ?> <?php echo(_('3')); ?></td>
-							<td width="60"><?php echo(mkradio($qid,4)); ?> <?php echo(_('4')); ?></td>
-							<td width="60"><?php echo(mkradio($qid,5)); ?> <?php echo(_('5')); ?></td>
-							<td width="60"><?php echo(mkradio($qid,'N/A')); ?> <?php echo(_('N/A')); ?></td>
+							<td width="60" class="qnType"><?php echo(mkradio($qid,1)); ?> <?php echo(_('1')); ?></td>
+							<td width="60" class="qnType"><?php echo(mkradio($qid,2)); ?> <?php echo(_('2')); ?></td>
+							<td width="60" class="qnType"><?php echo(mkradio($qid,3)); ?> <?php echo(_('3')); ?></td>
+							<td width="60" class="qnType"><?php echo(mkradio($qid,4)); ?> <?php echo(_('4')); ?></td>
+							<td width="60" class="qnType"><?php echo(mkradio($qid,5)); ?> <?php echo(_('5')); ?></td>
+							<td width="60" class="qnType"><?php echo(mkradio($qid,'N/A')); ?> <?php echo(_('N/A')); ?></td>
 						</tr>
 					</tbody>
 					</table>
@@ -274,19 +274,19 @@ function survey_render($sid, $section = 1, $message = '') {
 					<table border="0" cellspacing="1" cellpadding="0">
 						<tbody>
 						<tr>
-							<td></td>
+							<td class="qnType"></td>
 <?php
 				$bg = '#eeeeee';
 				for ($j = 0; $j < $size; $j++) {
 ?>
-							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo($j+1); ?></td>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>" class="qnType"><?php echo($j+1); ?></td>
 <?php
 					if ($bg == '#eeeeee')   $bg = '#dddddd';
 					else                    $bg = '#eeeeee';
 				}
 				if ($prec) {
 ?>
-							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(_('N/A')); ?></td>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>" class="qnType"><?php echo(_('N/A')); ?></td>
 <?php
 				}
 ?>
@@ -298,19 +298,19 @@ function survey_render($sid, $section = 1, $message = '') {
 					$str = "${qid}_$cid";
 ?>
 						<tr>
-							<td align="right"><?php echo($choice['content']); ?></td>
+							<td align="right" class="qnType"><?php echo($choice['content']); ?></td>
 <?php
 					$bg = '#eeeeee';
 					for ($j = 0; $j < $size; $j++) {
 ?>
-							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,$j)); ?></td>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>" class="qnType"><?php echo(mkradio($str,$j)); ?></td>
 <?php
 						if ($bg == '#eeeeee')   $bg = '#dddddd';
 						else                    $bg = '#eeeeee';
 					}
 					if ($prec) {
 ?>
-							<td width="40" align="center" bgcolor="<?php echo($bg); ?>"><?php echo(mkradio($str,'-1')); ?></td>
+							<td width="40" align="center" bgcolor="<?php echo($bg); ?>" class="qnType"><?php echo(mkradio($str,'-1')); ?></td>
 <?php
 					}
 ?>
