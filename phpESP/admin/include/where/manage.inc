@@ -79,6 +79,7 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <!--				<li><a href="<?php echo("${base}?where=TODO");    ?>"><?php echo(_('View the list of things still to do')); ?></a>
                             <?php echo(_('(development goals)')); ?></li> -->
                             <li><a href="<?php echo("${base}?where=guide");  ?>"><?php echo(_('View the User &amp; Administrator Guide')); ?></a></li>
+                            <li><a href="<?php echo("${base}?where=help");  ?>"><?php echo(_('Click here to open the Help window.')); ?></a></li>
                         </ul>
 			</div>
 			<!-- End Guide -->

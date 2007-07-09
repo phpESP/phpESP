@@ -36,9 +36,22 @@ $ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
 
 // Database connection information
 $ESPCONFIG['db_host'] = 'localhost';
-$ESPCONFIG['db_user'] = 'phpesp';
-$ESPCONFIG['db_pass'] = 'phpesp';
+$ESPCONFIG['db_user'] = 'root';
+$ESPCONFIG['db_pass'] = '';
 $ESPCONFIG['db_name'] = 'phpesp';
+
+// to limit double postings
+// set this to the number of days people are restricted from resubmitting
+// this is in fact the expire time for a cookie
+// Set this to 0 to disable
+$ESPCONFIG['limit_double_postings'] = 3;
+
+// to use captcha confirmation, set this to 1
+$ESPCONFIG['use_captcha'] = 1;
+
+//date format to be used when filling in date fields in a survey
+$ESPCONFIG['date_format'] = "%d/%m/%Y";
+//$ESPCONFIG['date_format'] = "%m/%d/%Y";
 
 // ADODB 
 $ESPCONFIG['adodb_path'] = ESP_BASE . 'admin/include/lib/adodb/';
@@ -63,9 +76,9 @@ $ESPCONFIG['auth_type'] = 'default';
 
 // LDAP connection information
 // (Set these values if you choose 'ldap' as the authentication type.)
-$ESPCONFIG['ldap_server'] = 'ldap://example.com';
-$ESPCONFIG['ldap_port']   = '389    ';
-$ESPCONFIG['ldap_dn']     = 'dc=example,dc=com';
+$ESPCONFIG['ldap_server'] = 'ldap://ldap.example.com';
+$ESPCONFIG['ldap_port']   = '389';
+$ESPCONFIG['ldap_dn']     = 'dc=example, dc=com';
 $ESPCONFIG['ldap_filter'] = 'uid=';
 
 // Group to add responders to via the sign-up page
@@ -105,7 +118,7 @@ $ESPCONFIG['DEBUG'] = false;
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '1.8';
+$ESPCONFIG['version'] = '1.8.2k';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';

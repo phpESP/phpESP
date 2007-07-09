@@ -19,7 +19,7 @@
 		$survey = fetch_row($result);
 		db_close($result);
 	} else {
-		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','public');
+		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','public','auto_num');
 	   	foreach ($fields as $f) {
             if(!empty($_POST[$f]))
 	    	    $survey[$f] = _stripslashes($_POST[$f]);
@@ -143,6 +143,17 @@ displayed after a user completes this survey.')); ?>
 
 			echo(mkselect('theme',$themes_array, $survey) . '<br />' .
             		_('Select a theme (css) to use with this survey.')); ?></td>
+        </tr>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Automatic numbering')); ?></strong></td>
+                <td class="left"><?php
+			if (empty($survey["auto_num"])) {
+				$survey["auto_num"]='Y';
+			}
+			echo(mkselect('auto_num',array('Y'=>_('Yes'),'N'=>_('No')), $survey) . '<span class="red"><em>'. _('Required') .'</em></span><br />' .
+            		_('Select if questions are to be numbered automatically when showing the survey.')); ?>
+		</td>
         </tr>
 <!--
 	<tr><td colspan="2"><hr class="line1" /></td></tr>

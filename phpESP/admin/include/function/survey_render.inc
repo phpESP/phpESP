@@ -60,7 +60,7 @@ function survey_render($sid, $section = 1, $message = '') {
 <?php if($num_sections>1) { ?>
 	<font size="-1" class="surveyPage"><?php printf(_('Page %d of %d'), $section+1, $num_sections); ?></font>
 <?php } ?>
-<blockquote class="addInfo"><?php echo($survey["info"]); ?></blockquote>
+<blockquote class="addInfo"><?php if ($section==0) echo($survey["info"]); ?></blockquote>
 <blockquote class="message"><?php echo($message); ?></blockquote>
 <?php if($has_required) { ?>
     <p class="reqQuestion"><font size="-1">
@@ -86,7 +86,7 @@ function survey_render($sid, $section = 1, $message = '') {
     <td height="35" vAlign="top">
         <table class="qnOuterTable" width="100%" border="0" cellpadding="0" cellspacing="1">
         <tr>
-            <td width="100%" height="35" valign="top">
+            <td width="100%" height="35" valign="top" align="left">
                 <table class="qnInnerTable" width="100%" border="0" cellpadding="10" cellspacing="1">
                 <tr>
         	        <td class="qnInner" width="100%" height="35"><?php echo $question['content']; ?></td>
@@ -111,26 +111,25 @@ function survey_render($sid, $section = 1, $message = '') {
 			$others = record_count($others_result);
 		} else { $choices_result = ''; }
 ?>
-<tbody>
 <tr>
         <td class="preQuestionBorder" >&nbsp;</td>
       </tr>
       <tr>
-        <td height="62" vAlign=top>
+        <td height="62" valign=top>
                 <table class="qnOuterTable" width="100%" cellspacing="1">
             <tr>
               <td width="100%" height="60" valign="top">
                  <table class="qnInnerTable" width="100%" cellPadding="10"  cellSpacing="1">
                   <tr>
-                    <td class="qnInnerTd" rowspan="2" vAlign="top">
-			<?php if($question['required']=='Y') { echo('<font color="#FF0000">*</font>'); } ?><A NAME="Q<?php echo($i); ?>"><?php echo($i); ?>.</A></td>
-		    <td class="qnInner">
+                    <td class="qnInnerTd" valign="top" width=5%>
+			<?php if($question['required']=='Y') { echo('<font color="#FF0000">*</font>'); } ?><A NAME="Q<?php echo($i); ?>"><?php if($survey['auto_num']=='Y') {echo $i.".";} ?></A></td>
+		     <td class="qnInner" width=100% align=left>
 			<?php echo($question['content']); ?>
 		    </td>
                   </tr>
                   <tr>
+		    <td></td>
                     <td class="qnType">
-                      <blockquote>
 <?php
 		switch($tid) {
 			case '1':	// Yes/No
@@ -173,12 +172,16 @@ function survey_render($sid, $section = 1, $message = '') {
 <?php			}
 				$j=0;
 				while($other = fetch_row($others_result)) {
-                    $others_result->MoveNext();
+					$others_result->MoveNext();
 					$cid = $other['id'];
-					$other_text = preg_replace(
+					if (!strcmp($other['content'],"!other")) {
+					   $other_text = 'Other:';
+					} else {
+					   $other_text = preg_replace(
 							array("/^!other=/","/^!other/"),
-							array('','Other:'),
+							array('',''),
 							$other['content']);
+					}
 ?>
 						<tr>
 							<td class="qnType"><?php echo(mkradio($qid,"other_$cid")); ?></td>
@@ -214,12 +217,16 @@ function survey_render($sid, $section = 1, $message = '') {
 <?php			}
 				$j=0;
 				while($other = fetch_row($others_result)) {
-                    $others_result->MoveNext();
+					$others_result->MoveNext();
 					$cid = $other['id'];
-					$other_text = preg_replace(
+					if (!strcmp($other['content'],"!other")) {
+					   $other_text = 'Other:';
+					} else {
+					   $other_text = preg_replace(
 							array("/^!other=/","/^!other/"),
-							array('','Other:'),
+							array('',''),
 							$other['content']);
+					}
 ?>
 						<tr>
 							<td class="qnType"><?php echo(mkcheckbox($qid,"other_$cid")); ?></td>
@@ -322,7 +329,7 @@ function survey_render($sid, $section = 1, $message = '') {
 				break;
 			case '9':	// date
 ?>
-					<?php echo(mktext($qid, 10, 10)); ?> <em>(e.g. 4/21/2002)</em>
+					<?php echo(mktext($qid, 10, 10)); ?> <em>(e.g. <?php echo strftime ($GLOBALS['ESPCONFIG']['date_format'],strtotime("09/21/2003")) ;?>)</em>
 <?php
 				break;
 			case '10':	// numeric
@@ -336,20 +343,19 @@ function survey_render($sid, $section = 1, $message = '') {
 		}
 		// end of select
 ?>
-		</blockquote>
                          </td>
                   </tr>
                 </table></td>
             </tr>
           </table></td>
-      </tr></tbody>
+      </tr>
 <?php
 	}
 	// end of questions
 ?>
 </table>
 <?php if($num_sections>1) { ?>
-	<font size="-1" class="surveyPage"><?php echo(_('Page')); ?> <?php echo($section+1); ?> <?php echo(_('of')); ?> <?php echo($num_sections); ?></font><br>
+	<font size="-1" class="surveyPage"><?php printf(_('Page %d of %d'), $section+1, $num_sections); ?></font><br />
 <?php } ?>
 <?php
 	return;

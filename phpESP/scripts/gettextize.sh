@@ -29,7 +29,7 @@ echo "==> Extracting language strings [$langs]"
 (cd ..; \
   $script_dir/pgettext.pl -o - -s \
     `find "$dir" -name \*.php -o -name \*.inc` | \
-	sed s/charset=CHARSET/charset=ISO-8859-1/ > "$dir/locale/new.po";)
+	sed s/charset=CHARSET/charset=UTF-8/ > "$dir/locale/new.po";)
 
 date=`date "+%Y-%m-%d %H:%M%z" | sed s/\\n//`
 cd "$ldir"
@@ -40,5 +40,7 @@ for i in $langs; do
 #   sed -E "s/Project-Id-Version: $package-.*\\\\n/Project-Id-Version: $package-$version\\\\n/;
 #	s/PO(-Revision|T-Creation)-Date: .*\\\\n/PO\\1-Date: $date\\\\n/" > "$i.po"
 #  echo "==> Compiling strings for $i"
-  msgfmt --strict -c -v -o "$i.mo" "$i.po"
+  msgfmt --strict -f -c -v -o "$i.mo" "$i.po"
+  mv "$i.po" "$i/LC_MESSAGES/messages.po"
+  mv "$i.mo" "$i/LC_MESSAGES/messages.mo"
 done

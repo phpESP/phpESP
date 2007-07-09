@@ -58,7 +58,7 @@ function survey_report($sid, $details = 0, $format = '') {
 	<th align="left"><?php echo(_('ID')); ?></th>
 	<th align="left"><?php echo(_("Req'd")); ?></th>
 	<th align="left"><?php echo(_('Public')); ?></th>
-	<th align="left" colspan="2"><?php echo(_('Content')); ?></th>
+	<th align="center" colspan="2"><?php echo(_('Content')); ?></th>
 </tr>
 <?php
 	$i = 0;
@@ -83,10 +83,10 @@ function survey_report($sid, $details = 0, $format = '') {
 
 ?>
 <tr bgcolor="<?php echo($bg); ?>">
- 	<td align="right"><?php if ($tid < 50) echo(++$i); ?></td>
-	<th align="right"><?php echo($qid); ?></th>
-	<td><?php echo($reqd); ?></td>
-	<td><?php echo($publ); ?></td>
+ 	<td align="left"><?php if ($tid < 50) echo(++$i); ?></td>
+	<th align="left"><?php echo($qid); ?></th>
+	<td align="left"><?php echo($reqd); ?></td>
+	<td align="left"><?php echo($publ); ?></td>
 	<td colspan="2"><?php echo($question["content"]); ?></td>
 </tr>
 <?php

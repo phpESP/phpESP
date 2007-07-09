@@ -116,7 +116,7 @@
 <p><?php echo(_('All fields are required')) ?></p>
 <?php if(!empty($errstr)) echo("<p>$errstr</p>\n"); ?>
 <span class="large">
-<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
+<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help#batch"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
 </span>
 <form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>?where=upload">
 <table cellspacing="0" cellpadding="4" style="width: 350px;">
