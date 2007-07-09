@@ -1,6 +1,7 @@
 <?php
+
 /*
-	V4.22 15 Apr 2004  (c) 2000-2004 John Lim (jlim@natsoft.com.my). All rights reserved.
+	V4.94 23 Jan 2007  (c) 2000-2007 John Lim (jlim#natsoft.com.my). All rights reserved.
 	  Released under both BSD license and Lesser GPL library license. 
 	  Whenever there is any discrepancy between the two licenses, 
 	  the BSD license will take precedence. 
@@ -56,10 +57,10 @@ class ADODB_Pager {
 	//
 	function ADODB_Pager(&$db,$sql,$id = 'adodb', $showPageLinks = false)
 	{
-	global $HTTP_SERVER_VARS,$PHP_SELF,$HTTP_SESSION_VARS,$HTTP_GET_VARS;
+	global $PHP_SELF;
 	
 		$curr_page = $id.'_curr_page';
-    if (empty($PHP_SELF)) $PHP_SELF = htmlspecialchars($HTTP_SERVER_VARS['PHP_SELF']);
+		if (empty($PHP_SELF)) $PHP_SELF = htmlspecialchars($_SERVER['PHP_SELF']); // htmlspecialchars() to prevent XSS attacks
 		
 		$this->sql = $sql;
 		$this->id = $id;
@@ -68,12 +69,12 @@ class ADODB_Pager {
 		
 		$next_page = $id.'_next_page';	
 		
-		if (isset($HTTP_GET_VARS[$next_page])) {
-      $HTTP_SESSION_VARS[$curr_page] = (integer) $HTTP_GET_VARS[$next_page];
+		if (isset($_GET[$next_page])) {
+			$_SESSION[$curr_page] = (integer) $_GET[$next_page];
 		}
-		if (empty($HTTP_SESSION_VARS[$curr_page])) $HTTP_SESSION_VARS[$curr_page] = 1; ## at first page
+		if (empty($_SESSION[$curr_page])) $_SESSION[$curr_page] = 1; ## at first page
 		
-		$this->curr_page = $HTTP_SESSION_VARS[$curr_page];
+		$this->curr_page = $_SESSION[$curr_page];
 		
 	}
 	
@@ -229,6 +230,7 @@ class ADODB_Pager {
 		if (!$this->db->pageExecuteCountRows) return '';
 		$lastPage = $this->rs->LastPageNo();
 		if ($lastPage == -1) $lastPage = 1; // check for empty rs.
+		if ($this->curr_page > $lastPage) $this->curr_page = 1;
 		return "<font size=-1>$this->page ".$this->curr_page."/".$lastPage."</font>";
 	}
 	
@@ -239,6 +241,8 @@ class ADODB_Pager {
 	global $ADODB_COUNTRECS;
 	
 		$this->rows = $rows;
+		
+		if ($this->db->dataProvider == 'informix') $this->db->cursorType = IFX_SCROLL;
 		
 		$savec = $ADODB_COUNTRECS;
 		if ($this->db->pageExecuteCountRows) $ADODB_COUNTRECS = true;
@@ -261,10 +265,11 @@ class ADODB_Pager {
 		
 		$grid = $this->RenderGrid();
 		$footer = $this->RenderPageCount();
-		$rs->Close();
-		$this->rs = false;
 		
 		$this->RenderLayout($header,$grid,$footer);
+		
+		$rs->Close();
+		$this->rs = false;
 	}
 	
 	//------------------------------------------------------

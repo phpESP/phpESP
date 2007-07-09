@@ -93,7 +93,7 @@
 	<hr /> 
 	<strong><?php
 		if(!$curr_q) {
-			echo(_('New Question'));
+			echo('<span class="red">'._('New Question').'</span>');
 		} else {
 			echo(_('Question')." $curr_q");
 		} ?></strong>

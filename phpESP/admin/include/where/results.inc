@@ -57,38 +57,36 @@
     <tr><td>
     <?php
         $precision = '';
-        if(!empty($_GET['precision']))
-        $precision = intval($_GET['precision']);
+        if (!empty($_GET['precision']))
+           $precision = intval($_GET['precision']);
         $totals = '';
-        if(!empty($_GET['totals']))
-        $totals = intval($_GET['totals']);
+        if (!empty($_GET['totals']))
+           $totals = intval($_GET['totals']);
         $qid = '';
         $cids = '';
         $rid = '';
         $qidc = '';
         $qidr = '';
         $guicross = '';
-        if(!empty($_GET['qid']))
-        $qid = intval($_GET['qid']);
-        if(!empty($_GET['cids']))
-        $cids = _addslashes($_GET['cids']);
-        if (!empty($_POST['cids'])) {   
+        if (!empty($_GET['qid']))
+           $qid = intval($_GET['qid']);
+        if (!empty($_GET['cids']))
+           $cids = _addslashes($_GET['cids']);
+        if (!empty($_POST['cids']))
             $cids = $_POST['cids'];     
-        }
         if (!empty($_POST['qid']))
-        $qid = intval($_POST['qid']);
-
+           $qid = intval($_POST['qid']);
         if (!empty($_POST['qidc']))
-        $qidc = intval($_POST['qidc']);
+           $qidc = intval($_POST['qidc']);
         if (!empty($_POST['qidr']))
-        $qidr = intval($_POST['qidr']);
-        if(!empty($_POST['rid']))
-        $rid = intval($_POST['rid']);
-        elseif(!empty($_GET['rid']))
-        $rid = intval($_GET['rid']);
-        if(!empty($_GET['type']))
-        $guicross = $_GET['type'];
-        if(!empty($rid)) {
+           $qidr = intval($_POST['qidr']);
+        if (!empty($_POST['rid']))
+           $rid = intval($_POST['rid']);
+        elseif (!empty($_GET['rid']))
+           $rid = intval($_GET['rid']);
+        if (!empty($_GET['type']))
+           $guicross = $_GET['type'];
+        if (!empty($rid)) {
             $ret = survey_results($sid, $precision, 0, '', '', $rid);
         } else if (!empty($guicross)){
             $ret = survey_results($sid, $precision, $totals, '','','', $guicross);
@@ -98,7 +96,7 @@
             $ret = survey_results($sid, $precision, $totals, $qid, $cids);
         }
         if(!empty($ret))
-        echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
+           echo("<font color=\"". $ESPCONFIG['error_color'] ."\">$ret</font>\n");
     ?>
     <?php
         if(!empty($_GET['test'])) {
@@ -129,7 +127,7 @@
     * _this_ user */
     $statusok = (STATUS_ACTIVE | STATUS_DONE);
     $statusno = STATUS_DELETED;
-    if($_SESSION['acl']['superuser'] == 'Y') {
+    if ($_SESSION['acl']['superuser'] == 'Y') {
         $sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
         WHERE NOT ".db_bin("status", $statusno)." AND ".db_bin("status", $statusok)." ORDER BY id DESC";
     } else {

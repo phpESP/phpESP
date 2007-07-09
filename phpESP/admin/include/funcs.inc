@@ -66,11 +66,10 @@
             if (!isset($cfg['adodbi_persist']) or !empty($cfg['adodb_persist'])) {
                 // Use persistent connection (default)
                 $dbconnected = $cfg['adodb_conn']->PConnect($cfg['db_host'], $cfg['db_user'], $cfg['db_pass'], $cfg['db_name']);
-            }
-            else {
+            } else {
                 // Use single connection
                 $dbconnected = $cfg['adodb_conn']->Connect($cfg['db_host'], $cfg['db_user'], $cfg['db_pass'], $cfg['db_name']);
-        }
+            }
         }
         if (!$dbconnected) {
             header('HTTP/1.0 503 '. _('Service Unavailable'));
@@ -118,41 +117,46 @@ window.location="<?php echo($thank_url); ?>"
 <a class="returnlink" href="<?php echo($thank_url); ?>">here</a> to continue.</blockquote>
 </noscript>
 <?php
-    exit;
-}
+           exit;
+        }
 
 
         if(empty($thank_body) && empty($thank_head)) {
             $thank_body = $GLOBALS['ESPCONFIG']['thank_body'];
             $thank_head = $GLOBALS['ESPCONFIG']['thank_head'];
         }
-?>
-<h2 class="thankhead"><?php echo($thank_head); ?></h2>
-<blockquote class="thankbody"><?php echo($thank_body); ?></blockquote>
-<?php
-    if (isset($_GET['where']) && $_GET['where'] == 'test'){
-        $ref = "<a class=\"returnlink\" href=\"". $referer."\">Return</a><br />";
-    }
-    else {
-        $ref = check_referer($referer);
-    }
-    echo $ref;
-    return;
+
+        echo "<h2 class=\"thankhead\"> $thank_head </h2>";
+        echo "<blockquote class=\"thankbody\"> $thank_body </blockquote>";
+
+        if (isset($_GET['where']) && $_GET['where'] == 'test'){
+           if ($GLOBALS['ESPCONFIG']['limit_double_postings']==0) {
+              $ref = "<a class=\"returnlink\" href=\"". $referer."\">Return</a><br />";
+	   } else {
+	      $ref = "";
+	   }
+        }
+        else {
+           $ref = check_referer($referer);
+        }
+        echo $ref;
+        return;
     }
     function check_referer($referer) {
         $pos = strpos($referer, $GLOBALS['ESPCONFIG']['autopub_url']);
         if ($pos === false) {
-            if (!empty($_REQUEST['direct']) && $_REQUEST['direct'] === '1'){
+            if (!empty($_REQUEST['direct']) && $_REQUEST['direct'] === '1') {
                 $retstr = "";
+            } else {
+                if ($GLOBALS['ESPCONFIG']['limit_double_postings']==0) {
+                   $retstr = "<a class=\"returnlink\" href=\"". $referer."\">Return</a>";
+		} else {
+		   $retstr = "";
+		}
             }
-            else{
-                $retstr = "<a class=\"returnlink\" href=\"". $referer."\">Return</a>";
-            }
-        }
-        else{
+        } else {
             $retstr = "";
         }
-
         return $retstr;
     }
 

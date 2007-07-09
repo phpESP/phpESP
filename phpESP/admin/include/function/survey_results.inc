@@ -208,7 +208,7 @@ function survey_results($sid, $precision = 1, $showTotals = 1, $qid = '', $cids 
 
 		$rids = array();
 		while($row = fetch_row($result)) {
-            $result->MoveNext();
+			$result->MoveNext();
 			array_push($rids, $row[0]);
 		}
 		db_close($result);
@@ -303,18 +303,19 @@ $counts = array();
 switch ($table) {
 // -------------------------------- response_bool --------------------------------
 		case 'response_bool':
-            $counts = array(_('Yes') => 0, _('No') => 0);
+			$counts = array(_('Yes') => 0, _('No') => 0);
 			$sql = "SELECT A.choice_id, COUNT(A.response_id)
 					  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE A.question_id='${qid}' AND
 						   A.response_id ${ridstr} AND
 						   A.choice_id != ''
 					 GROUP BY A.choice_id";
-			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = execute_sql($sql)) {
+			if ($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])
+				echo("<!-- \$sql = '$sql' -->\n");
+			if ($result = execute_sql($sql)) {
 				while(list($ccontent,$count) = fetch_row($result)) {
-                    $result->MoveNext();
-                    $ccontent = htmlspecialchars($ccontent);
+					$result->MoveNext();
+					$ccontent = htmlspecialchars($ccontent);
 					if ($ccontent == 'Y')
 						$ccontent = _('Yes');
 					else
@@ -324,7 +325,7 @@ switch ($table) {
 				db_close($result);
 			}
 
-			if(empty($question["result_id"]))
+			if (empty($question["result_id"]))
 				$question["result_id"] = 1;	// default to percentages for yes/no
 			break;
 // -------------------------------- response_single --------------------------------
@@ -332,16 +333,16 @@ switch ($table) {
 		case 'response_multiple':
 			$totals = 0;
 		case 'response_single':
-        $sql = "SELECT C.content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
-                WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
-                ORDER BY C.id";
-        if ($result = execute_sql($sql)) {
-            for ($j = 0; $j < record_count($result); $j++) {
-                $result->Move($j);
-                $counts[htmlspecialchars($result->fields[0])] = 0;
-            }
-            db_close($result);
-        }
+			$sql = "SELECT C.content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C
+				WHERE C.question_id='${qid}' AND C.content NOT LIKE '!other%'
+				ORDER BY C.id";
+			if ($result = execute_sql($sql)) {
+				for ($j = 0; $j < record_count($result); $j++) {
+					$result->Move($j);
+					$counts[htmlspecialchars($result->fields[0])] = 0;
+				}
+				db_close($result);
+			}
 
 			$sql = "SELECT C.content, COUNT(A.response_id) AS num
 					  FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." C,
@@ -352,11 +353,12 @@ switch ($table) {
 						   A.choice_id=C.id AND
 						   A.response_id ${ridstr}
 					 GROUP BY C.id, C.content";
-			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = execute_sql($sql)) {
-				while(list($ccontent,$count) = fetch_row($result)) {
-                    $result->MoveNext();
-                    $ccontent = htmlspecialchars($ccontent);
+			if ($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])
+				echo("<!-- \$sql = '$sql' -->\n");
+			if ($result = execute_sql($sql)) {
+				while (list($ccontent,$count) = fetch_row($result)) {
+					$result->MoveNext();
+					$ccontent = htmlspecialchars($ccontent);
 					$counts[$ccontent] = $count;
 				}
 				db_close($result);
@@ -369,19 +371,19 @@ switch ($table) {
 						   A.choice_id=C.id AND
     					   A.response_id ${ridstr}
 					 ORDER BY C.id, A.response";
-			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
-			if($result = execute_sql($sql)) {
+			if ($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
+			if ($result = execute_sql($sql)) {
 				while(list($answer,$ccontent) = fetch_row($result)) {
-                    $result->MoveNext();
-                    $ccontent = htmlspecialchars($ccontent);
+					$result->MoveNext();
+					$ccontent = htmlspecialchars($ccontent);
 					$content = preg_replace(array('/^!other=/', '/^!other/'),
-                            array('', 'Other:'), $ccontent);
+								array('', 'Other:'), $ccontent);
 					$content .= ' ' . htmlspecialchars($answer);
 					$counts[$content] = (isset($counts[$content]) ? $counts[$content] : 0)+1;
 				}
 				db_close($result);
 			}
-			if(empty($question["result_id"]))
+			if (empty($question["result_id"]))
 				$question["result_id"] = 1;	// default to percentages
 			break;
 // -------------------------------- response_text --------------------------------
@@ -394,7 +396,7 @@ switch ($table) {
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = execute_sql($sql)) {
 				while(list($text, $num) = fetch_row($result)) {
-                    $result->MoveNext();
+					$result->MoveNext();
 					if(!empty($text))
 						$counts[htmlspecialchars($text)] = $num;
 				}
@@ -404,7 +406,7 @@ switch ($table) {
 			break;
 // -------------------------------- response_date --------------------------------
 		case 'response_date':
-			$sql = "SELECT A.response, COUNT(A.response_id) AS num
+			$sql = "SELECT DATE_FORMAT(A.response,'".$GLOBALS['ESPCONFIG']['date_format']."'), COUNT(A.response_id) AS num
 					  FROM ".$GLOBALS['ESPCONFIG'][$table.'_table']." A
 					 WHERE A.question_id='${qid}' AND
     					   A.response_id ${ridstr}
@@ -412,7 +414,7 @@ switch ($table) {
 			if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 			if($result = execute_sql($sql)) {
 				while(list($text, $num) = fetch_row($result)) {
-                    $result->MoveNext();
+					$result->MoveNext();
 					if(!empty($text))
 						$counts[htmlspecialchars($text)] = $num;
 				}
@@ -444,8 +446,8 @@ switch ($table) {
 				if($GLOBALS['ESPCONFIG']['DEBUG_RESULTS'])	echo("<!-- \$sql = '$sql' -->\n");
 				if($result = execute_sql($sql)) {
 					while(list($ccontent,$avg) = fetch_row($result)) {
-                        $result->MoveNext();
-                        $ccontent = htmlspecialchars($ccontent);
+						$result->MoveNext();
+						$ccontent = htmlspecialchars($ccontent);
 						$counts[$ccontent] = $avg;
 					}
 					db_close($result);
@@ -459,7 +461,7 @@ switch ($table) {
 						 GROUP BY A.rank";
 				if($result = execute_sql($sql)) {
 					while(list($rank, $num) = fetch_row($result)) {
-                        $result->MoveNext();
+						$result->MoveNext();
 						if($rank == -1) { $rank = "N/A"; }
 						$counts[_($rank)] += $num;
 					}

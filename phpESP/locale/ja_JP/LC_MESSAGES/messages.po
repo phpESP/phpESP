@@ -6,12 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2004-09-17 11:44-0400\n"
+"POT-Creation-Date: 2007-04-13 12:20+0200\n"
 "PO-Revision-Date: 2002-09-26 19:00+0900\n"
 "Last-Translator: IYODA Atsushi <iyoda@users.sourceforge.net>\n"
 "Language-Team: ja_JP <jflemer@alum.rpi.edu>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 #
 # File: phpESP/admin/include/funcs.inc, line: 40
@@ -171,14 +171,6 @@ msgstr "5"
 msgid "N/A"
 msgstr ""
 #
-# File: phpESP/admin/include/function/survey_render.inc, line: 352
-msgid "Page"
-msgstr "ページ"
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 352
-msgid "of"
-msgstr ""
-#
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
 msgid "Error system table corrupt."
@@ -276,11 +268,6 @@ msgstr "エラーが発生しました。"
 # File: phpESP/admin/include/function/survey_update.inc, line: 115
 msgid "Please enter text for this question."
 msgstr "この設問事項に対する説明を入力してください"
-#
-# File: phpESP/admin/include/function/survey_update.inc, line: 154
-#, fuzzy
-msgid "Sorry, this question name is already in use."
-msgstr "すでにその名前は使われています。"
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 164
 msgid "Sorry, you must select a type for this question."
@@ -471,9 +458,10 @@ msgstr ""
 "ティブ」にした後は一切の変更が不可能になります。"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 31
+#, fuzzy
 msgid ""
 "The information on this tab applies to the whole survey.\n"
-"Fill out this page then go to the <b>Fields</b> tab to\n"
+"Fill out this page then go to the <strong>Fields</strong> tab to\n"
 "edit individual fields."
 msgstr ""
 "このタブで設定した情報はアンケート全体に反映されます。このタブを設定した後、"
@@ -715,20 +703,29 @@ msgstr "次のページ"
 msgid "Submit Survey"
 msgstr "投稿する"
 #
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "New Question"
+msgstr "質問"
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 106
+#, fuzzy
 msgid ""
-"Edit this field, or click the number of the field you would like to edit:"
+"Edit this question, or click the number of the question you would like to "
+"edit:"
 msgstr ""
 "このフィールドを編集するか、編集したいフィールドの番号をクリックしてくださ"
 "い："
 #
-# File: phpESP/admin/include/tab/questions.inc, line: 117
-msgid "Field"
-msgstr "フィールド"
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Question"
+msgstr "質問"
 #
-# File: phpESP/admin/include/tab/questions.inc, line: 122
-msgid "Field Name"
-msgstr "フィールドネーム"
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Question Name"
+msgstr "質問"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 123
 msgid "Type"
@@ -1023,7 +1020,6 @@ msgid ""
 "status of a newly created survey. You will be able to edit the\n"
 "survey, and will have to activate it before use."
 msgstr ""
-"\n"
 "コピーを作りたいアンケートを選んでください。コピーしたアンケートは編集可能で"
 "す。使用前には動作確認を行ってください。"
 #
@@ -1119,15 +1115,6 @@ msgstr ""
 msgid "Invalid survey ID."
 msgstr "無効のアンケートIDです"
 #
-# File: phpESP/admin/include/where/download.inc, line: 60
-msgid "DBF download not yet implemented."
-msgstr ""
-#
-# File: phpESP/admin/include/where/download.inc, line: 62
-# File: phpESP/admin/include/where/export.inc, line: 139
-msgid "The PHP dBase Extension is not installed."
-msgstr ""
-#
 # File: phpESP/admin/include/where/edit.inc, line: 31
 msgid "Edit a Survey"
 msgstr "アンケート編集"
@@ -1144,20 +1131,16 @@ msgstr "エクスポートデータ"
 msgid "Format"
 msgstr "フォーマット"
 #
-# File: phpESP/admin/include/where/export.inc, line: 84
-# File: phpESP/admin/include/where/test.inc, line: 134
-msgid "CSV"
-msgstr "CSV"
+# File: phpESP/admin/include/where/export.inc, line: 96
+# File: phpESP/admin/include/where/test.inc, line: 141
+msgid "Save On Server"
+msgstr ""
 #
 # File: phpESP/admin/include/where/export.inc, line: 86
 # File: phpESP/admin/include/where/test.inc, line: 135
-msgid "download"
+#, fuzzy
+msgid "Download"
 msgstr "ダウンロード"
-#
-# File: phpESP/admin/include/where/export.inc, line: 88
-# File: phpESP/admin/include/where/test.inc, line: 136
-msgid "DBF"
-msgstr "DBF"
 #
 # File: phpESP/admin/include/where/export.inc, line: 116
 # File: phpESP/admin/include/where/export.inc, line: 148
@@ -1173,6 +1156,11 @@ msgstr "テストアンケート…"
 # File: phpESP/admin/include/where/test.inc, line: 52
 msgid "SID"
 msgstr "SID"
+#
+# File: phpESP/admin/include/where/download.inc, line: 62
+# File: phpESP/admin/include/where/export.inc, line: 139
+msgid "The PHP dBase Extension is not installed."
+msgstr ""
 #
 # File: phpESP/admin/include/where/export.inc, line: 151
 msgid "Survey exported as:"
@@ -1220,10 +1208,6 @@ msgstr ""
 msgid "Superuser"
 msgstr "スーパーユーザー"
 #
-# File: phpESP/admin/include/where/manage.inc, line: 28
-msgid "Choose a function"
-msgstr "機能を選んでください"
-#
 # File: phpESP/admin/include/where/manage.inc, line: 35
 msgid "Create a New Survey"
 msgstr "新しいアンケートを作る"
@@ -1270,10 +1254,6 @@ msgstr "アンケート結果をマージしてください"
 msgid "View a Survey Report"
 msgstr "アンケートの内容をみる"
 #
-# File: phpESP/admin/include/where/manage.inc, line: 51
-msgid "Export Data to CSV"
-msgstr "CVSデータを見る"
-#
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
 msgstr "あなたのパスワードを変更してください"
@@ -1299,6 +1279,10 @@ msgstr ""
 msgid "View the User &amp; Administrator Guide"
 msgstr "ユーザー&管理者ガイドを見る"
 #
+# File: phpESP/admin/include/where/tab.inc, line: 183
+msgid "Click here to open the Help window."
+msgstr "ヘルプウィンドウを開く"
+#
 # File: phpESP/admin/include/where/manage.inc, line: 83
 msgid "Log out"
 msgstr "ログアウト"
@@ -1306,14 +1290,6 @@ msgstr "ログアウト"
 # File: phpESP/admin/include/where/merge.inc, line: 24
 msgid "SIDS"
 msgstr "SIDS"
-#
-# File: phpESP/admin/include/where/merge.inc, line: 86
-msgid "Error!"
-msgstr "ぶべらんぼー"
-#
-# File: phpESP/admin/include/where/merge.inc, line: 87
-msgid "You need to select at least two surveys!"
-msgstr "最低2つのアンケートを選んでください！"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 124
 msgid "Merge Survey Results"
@@ -1568,14 +1544,17 @@ msgstr ""
 "ブに進む場合は「Continue」をクリックしてください。"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 177
+#, fuzzy
 msgid ""
-"The survey title and other general fields are on the <b>General</b> tab.\n"
-"Individual survey questions are added and modified on the <b>Questions</b> "
-"tab.\n"
-"Questions may be re-ordered or deleted from the <b>Order</b> tab.\n"
+"The survey title and other general fields are on the <strong>General</"
+"strong> tab.\n"
+"Individual survey questions are added and modified on the <strong>Questions</"
+"strong> tab.\n"
+"Questions may be re-ordered or deleted from the <strong>Order</strong> tab.\n"
 "You may see a preview of your survey at any time, by going to the "
-"<b>Preview</b>\n"
-"tab. If you have no further changes click <b>Finish</b> to go back to the\n"
+"<strong>Preview</strong>\n"
+"tab. If you have no further changes click <strong>Finish</strong> to go back "
+"to the\n"
 "Management Interface."
 msgstr ""
 "アンケートタイトルおよび他の一般情報のフィールドは、<b>「General」</b>タブに"
@@ -1584,10 +1563,6 @@ msgstr ""
 "<b>「Oeder」</b>タブからは質問の編集、削除を行えます。<b>「Preview」</b>タブ"
 "は作成したアンケートのプレビューを行えます。変更のない場合は<b>「Finish」</b>"
 "タブより編集を終了し、管理画面に戻ってください。"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 183
-msgid "Click here to open the Help window."
-msgstr "ヘルプウィンドウを開く"
 #
 # File: phpESP/admin/include/where/test.inc, line: 70
 msgid "View Results"
@@ -1600,6 +1575,10 @@ msgstr "テストするアンケートを選択"
 # File: phpESP/admin/include/where/test.inc, line: 115
 msgid "Export"
 msgstr "エクスポート"
+#
+# File: phpESP/admin/include/where/test.inc, line: 127
+msgid "standalone"
+msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 msgid "Results"
@@ -1649,11 +1628,10 @@ msgstr "ACLをロードすることができません"
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 176
+# File: phpESP/admin/phpESP.ini.php, line: 172
 msgid ""
 "Please do not use the back button on your browser to go\n"
-"back. Please click on the link below to return you to where\n"
-"you launched this survey."
+"back."
 msgstr ""
 #
 # File: phpESP/admin/phpESP.ini.php, line: 181
@@ -1667,14 +1645,27 @@ msgstr ""
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
+# File: phpESP/public/captcha_check.php, line: 4
+msgid "You entered an incorrect code. Please fill in the correct code."
+msgstr ""
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 msgid "Error processing survey: Survey not specified."
 msgstr "エラー：アンケートが選択されていません"
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 29
+#, fuzzy
+msgid "You have already completed this survey."
+msgstr "アンケートデザインが完成しました"
 #
 # File: phpESP/public/handler.php, line: 64
 # File: phpESP/public/handler.php, line: 69
 msgid "Error processing survey: Survey is not active."
 msgstr "エラー：アンケートはアクティブではありません"
+#
+# File: phpESP/public/handler.php, line: 207
+msgid "Please fill in the code displayed here."
+msgstr ""
 #
 # File: phpESP/public/signup.php, line: 54
 msgid "Sorry, the account request form is disabled."
@@ -1716,12 +1707,198 @@ msgid "Confirm Password"
 msgstr "もっかい"
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 352
+#~ msgid "Page"
+#~ msgstr "ページ"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 154
+#, fuzzy
+#~ msgid "Sorry, this question name is already in use."
+#~ msgstr "すでにその名前は使われています。"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 117
+#~ msgid "Field"
+#~ msgstr "フィールド"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 122
+#~ msgid "Field Name"
+#~ msgstr "フィールドネーム"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 84
+# File: phpESP/admin/include/where/test.inc, line: 134
+#~ msgid "CSV"
+#~ msgstr "CSV"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 88
+# File: phpESP/admin/include/where/test.inc, line: 136
+#~ msgid "DBF"
+#~ msgstr "DBF"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 28
+#~ msgid "Choose a function"
+#~ msgstr "機能を選んでください"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 51
+#~ msgid "Export Data to CSV"
+#~ msgstr "CVSデータを見る"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 86
+#~ msgid "Error!"
+#~ msgstr "ぶべらんぼー"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 87
+#~ msgid "You need to select at least two surveys!"
+#~ msgstr "最低2つのアンケートを選んでください！"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "グループメンバーを管理"
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "アンケートが指定されていません"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1732,8 +1909,30 @@ msgstr "もっかい"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "are required."
 #~ msgstr "マークの質問は必須項目です。"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1744,8 +1943,30 @@ msgstr "もっかい"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ie.手順、背景情報など"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1756,8 +1977,30 @@ msgstr "もっかい"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "You must use"
 #~ msgstr "「プライベート」にする場合は"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1770,8 +2013,30 @@ msgstr "もっかい"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "確認表題"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #

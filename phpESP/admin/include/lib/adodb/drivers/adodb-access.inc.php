@@ -1,16 +1,18 @@
 <?php
 /* 
-V4.22 15 Apr 2004  (c) 2000-2004 John Lim (jlim@natsoft.com.my). All rights reserved.
+V4.94 23 Jan 2007  (c) 2000-2007 John Lim (jlim#natsoft.com.my). All rights reserved.
   Released under both BSD license and Lesser GPL library license. 
   Whenever there is any discrepancy between the two licenses, 
   the BSD license will take precedence. See License.txt. 
   Set tabs to 4 for best viewing.
   
-  Latest version is available at http://php.weblogs.com/
+  Latest version is available at http://adodb.sourceforge.net
   
   Microsoft Access data driver. Requires ODBC. Works only on MS Windows.
 */
 if (!defined('_ADODB_ODBC_LAYER')) {
+	if (!defined('ADODB_DIR')) die();
+	
 	include(ADODB_DIR."/drivers/adodb-odbc.inc.php");
 }
  if (!defined('_ADODB_ACCESS')) {
@@ -25,6 +27,7 @@ class  ADODB_access extends ADODB_odbc {
 	var $sysDate = "FORMAT(NOW,'yyyy-mm-dd')";
 	var $sysTimeStamp = 'NOW';
 	var $hasTransactions = false;
+	var $upperCase = 'ucase';
 	
 	function ADODB_access()
 	{

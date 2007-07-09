@@ -21,7 +21,7 @@
 		$result = execute_sql($sql);
 		$c = record_count($result);
 	} else {
-		if (isset($_POST['num_choices']))
+		if ($curr_q && isset($_POST['num_choices']))
 			$c = intval($_POST['num_choices']);
 		else
 			$c = $GLOBALS['ESPCONFIG']['default_num_choices'];
@@ -43,19 +43,19 @@ Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
 		</td>
 	</tr>
 <?php
-		for($i=1; $i<$num_choices+1; ++$i) {
-			if ($updated && $curr_q) {
-				list($choice_id, $choice_content) = fetch_row($result);
-                $result->MoveNext();
-			} else {
-				if ($curr_q) {
-					$choice_id      = intval($_POST["choice_id_$i"]);
-				}
-				if(isset($_POST["choice_content_$i"]))
-					$choice_content = _stripslashes($_POST["choice_content_$i"]);
+	for($i=1; $i<$num_choices+1; ++$i) {
+		if ($updated && $curr_q) {
+			list($choice_id, $choice_content) = fetch_row($result);
+			$result->MoveNext();
+		} else {
+			if ($curr_q) {
+			   $choice_id = intval($_POST["choice_id_$i"]);
+			   if(isset($_POST["choice_content_$i"]))
+			      $choice_content = _stripslashes($_POST["choice_content_$i"]);
 			}
+		}
 ?>
-	<tr>
+	   <tr>
 		<td class="numbered"><?php echo($i); ?>.</td>
 		<td class="left">
 			<input type="hidden" name="choice_id_<?php echo($i); ?>"
@@ -63,7 +63,7 @@ Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
 			<input type="text" size="60" name="choice_content_<?php echo($i); ?>"
 				value="<?php if(isset($choice_content)) echo(htmlspecialchars($choice_content)); ?>" />
 		</td>
-	</tr>
+	   </tr>
 <?php	} ?>
 	<tr>
 		<td>&nbsp;</td>

@@ -6,25 +6,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2004-09-17 11:44-0400\n"
+"POT-Creation-Date: 2007-04-13 12:20+0200\n"
 "PO-Revision-Date: 2002-03-22 16:40-0500\n"
 "Last-Translator: Mats Landstedt <mats.landstedt@tuesday.se>\n"
 "Language-Team: sv_SE <jflemer@acm.jhu.edu>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 #
 # File: phpESP/admin/include/funcs.inc, line: 40
 # File: phpESP/admin/include/where/tab.inc, line: 134
 msgid "Unable to open include file. Check INI settings. Aborting."
 msgstr ""
-"Kan inte öppna inkluderad fil. Kontrollera INI inställningarna. Avslutar"
+"Kan inte Ã¶ppna inkluderad fil. Kontrollera INI instÃ¤llningarna. Avslutar"
 #
 # File: phpESP/admin/include/funcs.inc, line: 49
 #, fuzzy
 msgid "Unable to open ADODB include file. Check INI settings. Aborting."
 msgstr ""
-"Kan inte öppna inkluderad fil. Kontrollera INI inställningarna. Avslutar"
+"Kan inte Ã¶ppna inkluderad fil. Kontrollera INI instÃ¤llningarna. Avslutar"
 #
 # File: phpESP/admin/include/funcs.inc, line: 76
 # File: phpESP/admin/include/funcs.inc, line: 77
@@ -36,12 +36,12 @@ msgstr ""
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 177
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 179
 msgid "Service Unavailable"
-msgstr "Servicen är ej tillgänglig"
+msgstr "Servicen Ã¤r ej tillgÃ¤nglig"
 #
 # File: phpESP/admin/include/funcs.inc, line: 79
 #, fuzzy
 msgid "Connection to database failed. Please check configuration."
-msgstr "Inga flikar är definierade. Kontrollera INI inställningarna."
+msgstr "Inga flikar Ã¤r definierade. Kontrollera INI instÃ¤llningarna."
 #
 # File: phpESP/admin/include/funcs.inc, line: 135
 msgid ""
@@ -54,7 +54,7 @@ msgstr ""
 # File: phpESP/admin/include/funcs.inc, line: 139
 #, fuzzy
 msgid "Resume survey"
-msgstr "Test undersökning"
+msgstr "Test undersÃ¶kning"
 #
 # File: phpESP/admin/include/function/survey_copy.inc, line: 30
 msgid "copy"
@@ -73,13 +73,13 @@ msgstr "Ogiltigt argument."
 # File: phpESP/admin/include/function/survey_results.inc, line: 193
 # File: phpESP/admin/include/function/survey_results.inc, line: 198
 msgid "Error opening survey."
-msgstr "Fel vid öppning av undersökning."
+msgstr "Fel vid Ã¶ppning av undersÃ¶kning."
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 57
 # File: phpESP/admin/include/function/survey_merge.inc, line: 62
 # File: phpESP/admin/include/function/survey_merge.inc, line: 87
 msgid "Error opening surveys."
-msgstr " Fel vid öppning av undersökning."
+msgstr " Fel vid Ã¶ppning av undersÃ¶kning."
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 63
 # File: phpESP/admin/include/function/survey_results.inc, line: 198
@@ -97,7 +97,7 @@ msgstr "TOTALT"
 # File: phpESP/admin/include/function/survey_report.inc, line: 48
 # File: phpESP/admin/include/function/survey_results.inc, line: 139
 msgid "No questions found."
-msgstr "Hittade inga frågor."
+msgstr "Hittade inga frÃ¥gor."
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 61
 msgid "Page %d of %d"
@@ -106,7 +106,7 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_render.inc, line: 67
 #, fuzzy
 msgid "Questions marked with a %s are required."
-msgstr "Frågor markerade med en"
+msgstr "FrÃ¥gor markerade med en"
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 142
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -167,20 +167,12 @@ msgstr "5"
 # File: phpESP/admin/include/function/survey_render.inc, line: 266
 # File: phpESP/admin/include/function/survey_render.inc, line: 289
 msgid "N/A"
-msgstr "Ej tillgängligt"
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 352
-msgid "Page"
-msgstr "Sida"
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 352
-msgid "of"
-msgstr "av"
+msgstr "Ej tillgÃ¤ngligt"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
 msgid "Error system table corrupt."
-msgstr "FEL, systemets tabeller är korrupta."
+msgstr "FEL, systemets tabeller Ã¤r korrupta."
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
@@ -190,7 +182,7 @@ msgstr "Tabell"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 52
 msgid "Report for"
-msgstr "Rapport för"
+msgstr "Rapport fÃ¶r"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 52
 # File: phpESP/admin/include/function/survey_report.inc, line: 58
@@ -215,7 +207,7 @@ msgstr "Nr."
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 59
 msgid "Req'd"
-msgstr "Önskat"
+msgstr "Ã–nskat"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 60
 # File: phpESP/admin/include/where/access.inc, line: 106
@@ -227,17 +219,17 @@ msgstr "Offentlig"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 61
 msgid "Content"
-msgstr "Innehåll"
+msgstr "InnehÃ¥ll"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 53
 #, fuzzy
 msgid "Previous"
-msgstr "Förhandsvisning"
+msgstr "FÃ¶rhandsvisning"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 64
 #, fuzzy
 msgid "Next"
-msgstr "Nästa sida"
+msgstr "NÃ¤sta sida"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 68
 msgid "Navigate Individual Respondent Submissions"
@@ -245,80 +237,75 @@ msgstr ""
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 154
 msgid "Error cross-analyzing. Question not valid type."
-msgstr "Fel vid korsanalys. Frågorna är inte av en relevant typ."
+msgstr "Fel vid korsanalys. FrÃ¥gorna Ã¤r inte av en relevant typ."
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 227
 #, fuzzy
 msgid "Cross analysis on QN:"
-msgstr "Korsanalys på QID"
+msgstr "Korsanalys pÃ¥ QID"
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 36
 # File: phpESP/admin/include/function/survey_update.inc, line: 73
 msgid "Sorry, please fill out the name, group, and title before proceeding."
-msgstr "Tyvärr, fyll i namn, grupp och titel före du fortsätter."
+msgstr "TyvÃ¤rr, fyll i namn, grupp och titel fÃ¶re du fortsÃ¤tter."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 56
 msgid "Sorry, name already in use. Pick a new name."
-msgstr "Tyvärr, namnet används redan. Använd ett annat namn."
+msgstr "TyvÃ¤rr, namnet anvÃ¤nds redan. AnvÃ¤nd ett annat namn."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 87
 msgid "Sorry, that name is already in use."
-msgstr " Tyvärr, namnet används redan."
+msgstr " TyvÃ¤rr, namnet anvÃ¤nds redan."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 101
 # File: phpESP/admin/include/function/survey_update.inc, line: 262
 # File: phpESP/admin/include/function/survey_update.inc, line: 302
 msgid "Warning, error encountered."
-msgstr "Varning! Det har uppstått ett fel."
+msgstr "Varning! Det har uppstÃ¥tt ett fel."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 115
 msgid "Please enter text for this question."
-msgstr "Fyll i texten till denna fråga."
-#
-# File: phpESP/admin/include/function/survey_update.inc, line: 154
-#, fuzzy
-msgid "Sorry, this question name is already in use."
-msgstr " Tyvärr, namnet används redan."
+msgstr "Fyll i texten till denna frÃ¥ga."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 164
 msgid "Sorry, you must select a type for this question."
-msgstr "Tyvärr,  du måste välja en typ för denna fråga."
+msgstr "TyvÃ¤rr,  du mÃ¥ste vÃ¤lja en typ fÃ¶r denna frÃ¥ga."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 169
 # File: phpESP/admin/include/tab/questions.inc, line: 47
 # File: phpESP/admin/include/tab/questions.inc, line: 111
 # File: phpESP/admin/include/tab/questions.inc, line: 115
 msgid "New Field"
-msgstr "Nytt fält"
+msgstr "Nytt fÃ¤lt"
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 182
 msgid ""
 "Sorry, you cannot change between those types of question. Create a new "
 "question instead."
 msgstr ""
-"Tyvärr, du kan inte ändra typ av fråga . Skapa en ny fråga med en annan typ, "
-"istället."
+"TyvÃ¤rr, du kan inte Ã¤ndra typ av frÃ¥ga . Skapa en ny frÃ¥ga med en annan typ, "
+"istÃ¤llet."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 310
 msgid "Sorry, you need at least one answer option for this question type."
-msgstr "Tyvärr, det skall vara minst ett svar till denna typ av fråga."
+msgstr "TyvÃ¤rr, det skall vara minst ett svar till denna typ av frÃ¥ga."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 19
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 29
 # File: phpESP/public/handler-prefix.php, line: 56
 # File: phpESP/public/handler-prefix.php, line: 61
 msgid "Error processing survey: Security violation."
-msgstr "Fel vid processering av undersökningen. Säkerhetsöverträdelse"
+msgstr "Fel vid processering av undersÃ¶kningen. SÃ¤kerhetsÃ¶vertrÃ¤delse"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 33
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 44
 msgid "Unable to execute query for access."
-msgstr "Kan inte genomföra frågan om tillgång."
+msgstr "Kan inte genomfÃ¶ra frÃ¥gan om tillgÃ¥ng."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 60
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 72
 msgid "Unable to execute query respondents."
-msgstr "Kan inte öppna för användaren."
+msgstr "Kan inte Ã¶ppna fÃ¶r anvÃ¤ndaren."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 76
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 92
@@ -340,14 +327,14 @@ msgstr "Ej akuktoriserad"
 msgid ""
 "Incorrect User ID or Password, or your account has been disabled/expired."
 msgstr ""
-"Fel användare ID eller lösenord - eller så är ditt konto spärrat/utgånget."
+"Fel anvÃ¤ndare ID eller lÃ¶senord - eller sÃ¥ Ã¤r ditt konto spÃ¤rrat/utgÃ¥nget."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 93
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 105
 msgid ""
 "Your account has been disabled or you have already completed this survey."
 msgstr ""
-"Ditt konto är spärrat eller så har du redan svarat på denna undersökning."
+"Ditt konto Ã¤r spÃ¤rrat eller sÃ¥ har du redan svarat pÃ¥ denna undersÃ¶kning."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 143
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 180
@@ -358,11 +345,11 @@ msgstr "Kan inte ladda ACL:en"
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 220
 # File: phpESP/admin/include/where/manage.inc, line: 14
 msgid "Management Interface"
-msgstr "Administratörs sida"
+msgstr "AdministratÃ¶rs sida"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
-msgstr "Detta konto har inga rättigheter"
+msgstr "Detta konto har inga rÃ¤ttigheter"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 250
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 313
@@ -406,12 +393,12 @@ msgstr "Detta konto har inga rättigheter"
 # File: phpESP/admin/include/where/todo.inc, line: 18
 # File: phpESP/admin/include/where/upload.inc, line: 133
 msgid "Go back to Management Interface"
-msgstr "Gå tillbaka till administratörs sidan"
+msgstr "GÃ¥ tillbaka till administratÃ¶rs sidan"
 #
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 311
 #, fuzzy
 msgid "This account does not have permission %s."
-msgstr "Detta konto har inga rättigheter"
+msgstr "Detta konto har inga rÃ¤ttigheter"
 #
 # File: phpESP/admin/include/lib/esphtml.forms.inc, line: 145
 #, fuzzy
@@ -432,32 +419,32 @@ msgstr "Genomsnitts rankning"
 #
 # File: phpESP/admin/include/lib/espresponse.inc, line: 59
 msgid "You are missing the following required questions:"
-msgstr "Du har glömt följande obligatoriska frågor:"
+msgstr "Du har glÃ¶mt fÃ¶ljande obligatoriska frÃ¥gor:"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 27
 msgid "Survey Design Completed"
-msgstr "Undersöknings designen är klar"
+msgstr "UndersÃ¶knings designen Ã¤r klar"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 29
 msgid "You have completed this survey design."
-msgstr "Du har färdigställt denna undersöknings design"
+msgstr "Du har fÃ¤rdigstÃ¤llt denna undersÃ¶knings design"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 31
 msgid ""
 "To insert this survey into your web page, copy the text\n"
 "below, and paste it into the HTML of your page."
 msgstr ""
-"För att länka denna undesökning till din sida, \n"
+"FÃ¶r att lÃ¤nka denna undesÃ¶kning till din sida, \n"
 "kopierar du texten nedan och klistrar in den i \n"
-"HTML koden på din sida"
+"HTML koden pÃ¥ din sida"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 39
 msgid ""
 "Once activated you can also access the survey directly\n"
 "from the following URL."
 msgstr ""
-"Efter det att undersökningen blivit aktiverad\n"
-"kan du nå den via följande URL."
+"Efter det att undersÃ¶kningen blivit aktiverad\n"
+"kan du nÃ¥ den via fÃ¶ljande URL."
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 45
 #, fuzzy
@@ -468,21 +455,22 @@ msgid ""
 "<b>Change the Status of an Existing Survey</b> from the\n"
 "Management Interface."
 msgstr ""
-"Du skall aktivera denna undersökning före du kan samla in \n"
-"resultat. När en undersökning är aktiv kan du inte \n"
-"längre redigera den. Du kan aktivera undersökningen genom att välja \n"
-"<b>Ändra status på en existerande undersökning</b>, detta gör du från "
-"Administratörs sidan."
+"Du skall aktivera denna undersÃ¶kning fÃ¶re du kan samla in \n"
+"resultat. NÃ¤r en undersÃ¶kning Ã¤r aktiv kan du inte \n"
+"lÃ¤ngre redigera den. Du kan aktivera undersÃ¶kningen genom att vÃ¤lja \n"
+"<b>Ã„ndra status pÃ¥ en existerande undersÃ¶kning</b>, detta gÃ¶r du frÃ¥n "
+"AdministratÃ¶rs sidan."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 31
+#, fuzzy
 msgid ""
 "The information on this tab applies to the whole survey.\n"
-"Fill out this page then go to the <b>Fields</b> tab to\n"
+"Fill out this page then go to the <strong>Fields</strong> tab to\n"
 "edit individual fields."
 msgstr ""
-"Informationen under denna flik gäller hela undersökning.\n"
-"Fyll i denna sida och gå tilll <b>Fälten</b> för att \n"
-"redigera fälten."
+"Informationen under denna flik gÃ¤ller hela undersÃ¶kning.\n"
+"Fyll i denna sida och gÃ¥ tilll <b>FÃ¤lten</b> fÃ¶r att \n"
+"redigera fÃ¤lten."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 44
 # File: phpESP/admin/include/where/access.inc, line: 163
@@ -508,11 +496,11 @@ msgstr "Obligatorisk?"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 49
 msgid "Survey filename."
-msgstr "Undersökningens filnamn"
+msgstr "UndersÃ¶kningens filnamn"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 50
 msgid "This is used for all further access to this survey."
-msgstr "Används för alla framtida åtkomst  till denna undersökning."
+msgstr "AnvÃ¤nds fÃ¶r alla framtida Ã¥tkomst  till denna undersÃ¶kning."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 51
 msgid "no spaces"
@@ -520,7 +508,7 @@ msgstr "inga mellanrum"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 51
 msgid "alpha-numeric only"
-msgstr "endast alfa-numeriska värden"
+msgstr "endast alfa-numeriska vÃ¤rden"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 55
 # File: phpESP/admin/include/where/access.inc, line: 165
@@ -534,12 +522,12 @@ msgstr "endast alfa-numeriska värden"
 # File: phpESP/admin/include/where/status.inc, line: 140
 # File: phpESP/admin/include/where/test.inc, line: 111
 msgid "Owner"
-msgstr "Ägare"
+msgstr "Ã„gare"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 73
 #, fuzzy
 msgid "User and Group that owns this survey."
-msgstr "Grupp som äger denna undersökning."
+msgstr "Grupp som Ã¤ger denna undersÃ¶kning."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 77
 # File: phpESP/admin/include/where/access.inc, line: 164
@@ -558,12 +546,12 @@ msgstr "Titel"
 # File: phpESP/admin/include/tab/general.inc, line: 81
 #, fuzzy
 msgid "Title of this survey."
-msgstr "Titel på undersökningen"
+msgstr "Titel pÃ¥ undersÃ¶kningen"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 82
 #, fuzzy
 msgid "This appears at the top of every page of this survey."
-msgstr "Det här syns i huvudet på alla sidor för denna undersökning."
+msgstr "Det hÃ¤r syns i huvudet pÃ¥ alla sidor fÃ¶r denna undersÃ¶kning."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 83
 # File: phpESP/admin/include/tab/general.inc, line: 92
@@ -578,7 +566,7 @@ msgstr "Undertitel"
 # File: phpESP/admin/include/tab/general.inc, line: 91
 #, fuzzy
 msgid "Subtitle of this survey."
-msgstr "Undersökningens undertitel."
+msgstr "UndersÃ¶kningens undertitel."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 92
 msgid "Appears below the title."
@@ -593,12 +581,12 @@ msgstr "Ytterligare information"
 msgid ""
 "Text to be displayed on this survey before any fields.\n"
 "(i.e. instructions, background info, etc.)"
-msgstr "Text som skall synas, i undersökningen, före varje fält."
+msgstr "Text som skall synas, i undersÃ¶kningen, fÃ¶re varje fÃ¤lt."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 106
 #, fuzzy
 msgid "Confirmation Page"
-msgstr "Bekräftelse Text"
+msgstr "BekrÃ¤ftelse Text"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 109
 msgid "(URL)"
@@ -626,8 +614,8 @@ msgid ""
 "Heading (in bold) and body text for the &quot;Confirmation&quot; page\n"
 "displayed after a user completes this survey."
 msgstr ""
-"Rubrik på &quot;Bekräftelse&quot; sida (uppträder efter en användare har "
-"fullföljt en undersökning). Denna text visas i <b>fet</b> still."
+"Rubrik pÃ¥ &quot;BekrÃ¤ftelse&quot; sida (upptrÃ¤der efter en anvÃ¤ndare har "
+"fullfÃ¶ljt en undersÃ¶kning). Denna text visas i <b>fet</b> still."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 118
 msgid "(URL, if present, takes precedent over confirmation text.)"
@@ -645,7 +633,7 @@ msgid ""
 "Sends a copy of each submission to address (or leave blank for no email "
 "backup)."
 msgstr ""
-"Sänd en kopia av alla färdiga enkäter till (eller lämna tomt om du inte vill "
+"SÃ¤nd en kopia av alla fÃ¤rdiga enkÃ¤ter till (eller lÃ¤mna tomt om du inte vill "
 "ha e-post) "
 #
 # File: phpESP/admin/include/tab/general.inc, line: 130
@@ -659,7 +647,7 @@ msgstr ""
 # File: phpESP/admin/include/tab/general.inc, line: 150
 #, fuzzy
 msgid "Options"
-msgstr "Frågor"
+msgstr "FrÃ¥gor"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 152
 msgid "Allow survey respondents to save/resume. (Survey login required.)"
@@ -677,8 +665,8 @@ msgid ""
 "presented by selecting a question from the list, then use the up/down \n"
 "buttons to change its position."
 msgstr ""
-"Ändra ordningen för hur frågorna presenteras\n"
-"med hjälp av att välja önskad position från listan."
+"Ã„ndra ordningen fÃ¶r hur frÃ¥gorna presenteras\n"
+"med hjÃ¤lp av att vÃ¤lja Ã¶nskad position frÃ¥n listan."
 #
 # File: phpESP/admin/include/tab/order.inc, line: 89
 msgid "----- Section Break -----"
@@ -686,7 +674,7 @@ msgstr "---- Ny Sida ----"
 #
 # File: phpESP/admin/include/tab/order.inc, line: 96
 msgid "Add Section Break"
-msgstr "Lägg till sidbrytning"
+msgstr "LÃ¤gg till sidbrytning"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 43
 #, fuzzy
@@ -700,12 +688,12 @@ msgid ""
 "further changes click <b>Finish</b> at the bottom of\n"
 "this page."
 msgstr ""
-"Förhandsgranskning av undersökningens utformning\n"
-"Visar &quot;Nästa sida&quot; och \n"
-"&quot;Sänd undersökning&quot; inaktiv.\n"
-"Undersökningen kommer att ha samma färg som det dokument den placeras i Om "
-"du inte har ytterligare ändringar \n"
-"tryck på <b>Avsluta</b> i slutet på denna sida."
+"FÃ¶rhandsgranskning av undersÃ¶kningens utformning\n"
+"Visar &quot;NÃ¤sta sida&quot; och \n"
+"&quot;SÃ¤nd undersÃ¶kning&quot; inaktiv.\n"
+"UndersÃ¶kningen kommer att ha samma fÃ¤rg som det dokument den placeras i Om "
+"du inte har ytterligare Ã¤ndringar \n"
+"tryck pÃ¥ <b>Avsluta</b> i slutet pÃ¥ denna sida."
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 52
 msgid "Section"
@@ -721,25 +709,34 @@ msgstr ""
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 82
 msgid "Next Page"
-msgstr "Nästa sida"
+msgstr "NÃ¤sta sida"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 84
 msgid "Submit Survey"
-msgstr "Sänd undersökning"
+msgstr "SÃ¤nd undersÃ¶kning"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "New Question"
+msgstr "FrÃ¥gor"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 106
+#, fuzzy
 msgid ""
-"Edit this field, or click the number of the field you would like to edit:"
+"Edit this question, or click the number of the question you would like to "
+"edit:"
 msgstr ""
-" Redigera detta fält eller klicka på fältnumret på det fält du vill redigera:"
+" Redigera detta fÃ¤lt eller klicka pÃ¥ fÃ¤ltnumret pÃ¥ det fÃ¤lt du vill redigera:"
 #
-# File: phpESP/admin/include/tab/questions.inc, line: 117
-msgid "Field"
-msgstr "Fält"
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Question"
+msgstr "FrÃ¥gor"
 #
-# File: phpESP/admin/include/tab/questions.inc, line: 122
-msgid "Field Name"
-msgstr "Fält Namn"
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Question Name"
+msgstr "FrÃ¥gor"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 123
 msgid "Type"
@@ -747,7 +744,7 @@ msgstr "Typ"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 124
 msgid "Length"
-msgstr "Längd"
+msgstr "LÃ¤ngd"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 125
 msgid "Precision"
@@ -761,9 +758,9 @@ msgid ""
 "fill-in-the-blank answer at the end of this question.\n"
 "Any blank lines will be suppressed."
 msgstr ""
-"Skriv möjliga svar (om möjligt). Enter \n"
-"<tt>!other</tt> på en linje för att skapa en fyll i luckornasvar i slutet av "
-"denna fråga.\n"
+"Skriv mÃ¶jliga svar (om mÃ¶jligt). Enter \n"
+"<tt>!other</tt> pÃ¥ en linje fÃ¶r att skapa en fyll i luckornasvar i slutet av "
+"denna frÃ¥ga.\n"
 "Alla tomma rader tas bort."
 #
 # File: phpESP/admin/include/tab/questions_options.inc, line: 70
@@ -772,7 +769,7 @@ msgstr "Ytterligare information till en svarslinje"
 #
 # File: phpESP/admin/include/where/access.inc, line: 83
 msgid "Please select a group."
-msgstr "Vänligen välj en grupp."
+msgstr "VÃ¤nligen vÃ¤lj en grupp."
 #
 # File: phpESP/admin/include/where/access.inc, line: 104
 # File: phpESP/admin/include/where/access.inc, line: 232
@@ -781,7 +778,7 @@ msgstr "Privat"
 #
 # File: phpESP/admin/include/where/access.inc, line: 140
 msgid "Survey Access"
-msgstr "Tillgång till undersökningen"
+msgstr "TillgÃ¥ng till undersÃ¶kningen"
 #
 # File: phpESP/admin/include/where/access.inc, line: 146
 msgid ""
@@ -789,9 +786,9 @@ msgid ""
 "Public surveys let anyone submit data.\n"
 "Private surveys are restricted by Respondent Groups."
 msgstr ""
-"Här kan du kontrollera vem som har rätt att fylla i ett formulär.\n"
-"Offentliga undersökningar tillåter att ALLA kan fylla i ett formulär.\n"
-"Privata undersökningar är begränsade till svarsgrupper"
+"HÃ¤r kan du kontrollera vem som har rÃ¤tt att fylla i ett formulÃ¤r.\n"
+"Offentliga undersÃ¶kningar tillÃ¥ter att ALLA kan fylla i ett formulÃ¤r.\n"
+"Privata undersÃ¶kningar Ã¤r begrÃ¤nsade till svarsgrupper"
 #
 # File: phpESP/admin/include/where/access.inc, line: 150
 #, fuzzy
@@ -801,7 +798,7 @@ msgstr "Anm."
 # File: phpESP/admin/include/where/access.inc, line: 151
 #, fuzzy
 msgid "You must use %s when using private surveys."
-msgstr "vid privat undersökning"
+msgstr "vid privat undersÃ¶kning"
 #
 # File: phpESP/admin/include/where/access.inc, line: 166
 # File: phpESP/admin/include/where/access.inc, line: 169
@@ -842,15 +839,15 @@ msgstr "Ta bort"
 # File: phpESP/admin/include/where/access.inc, line: 190
 # File: phpESP/admin/include/where/groups.inc, line: 92
 msgid "Add"
-msgstr "Lägg till"
+msgstr "LÃ¤gg till"
 #
 # File: phpESP/admin/include/where/access.inc, line: 233
 msgid "Make Public"
-msgstr "Offentliggör"
+msgstr "OffentliggÃ¶r"
 #
 # File: phpESP/admin/include/where/access.inc, line: 236
 msgid "Make Private"
-msgstr "Gör Privat"
+msgstr "GÃ¶r Privat"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 14
 # File: phpESP/admin/include/where/admrespondent.inc, line: 14
@@ -862,14 +859,14 @@ msgstr "Gör Privat"
 # File: phpESP/admin/include/where/tab.inc, line: 86
 # File: phpESP/admin/include/where/upload.inc, line: 19
 msgid "to access this form"
-msgstr "för att komma åt detta formulär"
+msgstr "fÃ¶r att komma Ã¥t detta formulÃ¤r"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 41
 # File: phpESP/admin/include/where/admdesigner.inc, line: 106
 # File: phpESP/admin/include/where/admrespondent.inc, line: 41
 # File: phpESP/admin/include/where/admrespondent.inc, line: 99
 msgid "to access this group"
-msgstr "åtkomst till denna grupp."
+msgstr "Ã¥tkomst till denna grupp."
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 45
 # File: phpESP/admin/include/where/admrespondent.inc, line: 45
@@ -879,17 +876,17 @@ msgstr "Kan inte ta bort detta konto."
 # File: phpESP/admin/include/where/admdesigner.inc, line: 111
 # File: phpESP/admin/include/where/admrespondent.inc, line: 104
 msgid "Username, Password, and Group are required."
-msgstr "Användarnamn,Lösenord och Grupp krävs."
+msgstr "AnvÃ¤ndarnamn,LÃ¶senord och Grupp krÃ¤vs."
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 119
 # File: phpESP/admin/include/where/admrespondent.inc, line: 112
 msgid "Error adding account."
-msgstr "Fel vid uppläggning av kontot. "
+msgstr "Fel vid upplÃ¤ggning av kontot. "
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 154
 # File: phpESP/admin/include/where/admrespondent.inc, line: 136
 msgid "Cannot change account data."
-msgstr "Kan inte ändra kontots data."
+msgstr "Kan inte Ã¤ndra kontots data."
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 202
 # File: phpESP/admin/include/where/admrespondent.inc, line: 176
@@ -908,13 +905,13 @@ msgstr "Designkontots Administration"
 # File: phpESP/admin/include/where/respondents.inc, line: 93
 # File: phpESP/public/signup.php, line: 147
 msgid "Username"
-msgstr "Användarnam"
+msgstr "AnvÃ¤ndarnam"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 223
 # File: phpESP/admin/include/where/admrespondent.inc, line: 198
 # File: phpESP/public/signup.php, line: 152
 msgid "Password"
-msgstr "Lösenord"
+msgstr "LÃ¶senord"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 254
 # File: phpESP/admin/include/where/admrespondent.inc, line: 229
@@ -922,7 +919,7 @@ msgstr "Lösenord"
 # File: phpESP/admin/include/where/respondents.inc, line: 94
 # File: phpESP/public/signup.php, line: 132
 msgid "First Name"
-msgstr "Förnamn"
+msgstr "FÃ¶rnamn"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 259
 # File: phpESP/admin/include/where/admrespondent.inc, line: 234
@@ -935,17 +932,17 @@ msgstr "Efternamn"
 # File: phpESP/admin/include/where/admdesigner.inc, line: 269
 # File: phpESP/admin/include/where/admrespondent.inc, line: 244
 msgid "Expiration"
-msgstr "Gäller t.om."
+msgstr "GÃ¤ller t.om."
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 274
 # File: phpESP/admin/include/where/admrespondent.inc, line: 249
 msgid "year"
-msgstr "år"
+msgstr "Ã¥r"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 275
 # File: phpESP/admin/include/where/admrespondent.inc, line: 250
 msgid "month"
-msgstr "månad"
+msgstr "mÃ¥nad"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 276
 # File: phpESP/admin/include/where/admrespondent.inc, line: 251
@@ -979,12 +976,12 @@ msgstr "Ta bort"
 # File: phpESP/admin/include/where/admdesigner.inc, line: 290
 #, fuzzy
 msgid "Design Surveys"
-msgstr "Designa undersökningar"
+msgstr "Designa undersÃ¶kningar"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 295
 #, fuzzy
 msgid "Change Survey Status"
-msgstr "Ändra undersökningens status"
+msgstr "Ã„ndra undersÃ¶kningens status"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 297
 msgid "Activate/End"
@@ -993,7 +990,7 @@ msgstr "Aktivera/Avsluta"
 # File: phpESP/admin/include/where/admdesigner.inc, line: 301
 #, fuzzy
 msgid "Export Survey Data"
-msgstr "Exportera Undersöknings Data"
+msgstr "Exportera UndersÃ¶knings Data"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 306
 #, fuzzy
@@ -1002,12 +999,12 @@ msgstr "Grupp Redigerare"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 308
 msgid "may edit <b>all</b> forms owned by this group"
-msgstr "kan redigera <b>alla</b> formulär som ägs av denna grupp"
+msgstr "kan redigera <b>alla</b> formulÃ¤r som Ã¤gs av denna grupp"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 312
 #, fuzzy
 msgid "Administer Designers"
-msgstr "Lägg till en ny Designer "
+msgstr "LÃ¤gg till en ny Designer "
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 317
 #, fuzzy
@@ -1028,15 +1025,15 @@ msgstr "Svarare Konto Administration"
 # File: phpESP/admin/include/where/status.inc, line: 100
 # File: phpESP/admin/include/where/test.inc, line: 35
 msgid "to access this survey"
-msgstr "för att öppna denna undersökning"
+msgstr "fÃ¶r att Ã¶ppna denna undersÃ¶kning"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 30
 msgid "Error copying survey."
-msgstr "Fel vid kopiering av undersökningen"
+msgstr "Fel vid kopiering av undersÃ¶kningen"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 61
 msgid "Copy Survey"
-msgstr "Kopiera undersökning"
+msgstr "Kopiera undersÃ¶kning"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 63
 #, fuzzy
@@ -1045,10 +1042,9 @@ msgid ""
 "status of a newly created survey. You will be able to edit the\n"
 "survey, and will have to activate it before use."
 msgstr ""
-"\n"
-"Välj undersökning som skall kopieras. Kopian kommer att ha samma\n"
-"status som en ny undersökning. Du kommer att kunna redigera denna kopia & du "
-"måste aktivera den före dina användare kan få tillgång till den."
+"VÃ¤lj undersÃ¶kning som skall kopieras. Kopian kommer att ha samma\n"
+"status som en ny undersÃ¶kning. Du kommer att kunna redigera denna kopia & du "
+"mÃ¥ste aktivera den fÃ¶re dina anvÃ¤ndare kan fÃ¥ tillgÃ¥ng till den."
 #
 # File: phpESP/admin/include/where/copy.inc, line: 71
 # File: phpESP/admin/include/where/export.inc, line: 35
@@ -1123,8 +1119,8 @@ msgstr "Administrera Web Form Designer Konton"
 # File: phpESP/admin/include/where/respondents.inc, line: 90
 msgid "Click on a username to edit, or click on add new user below."
 msgstr ""
-"Klicka på användarnamnet för att redigera, eller klicka nedan på lägg till "
-"en ny användare."
+"Klicka pÃ¥ anvÃ¤ndarnamnet fÃ¶r att redigera, eller klicka nedan pÃ¥ lÃ¤gg till "
+"en ny anvÃ¤ndare."
 #
 # File: phpESP/admin/include/where/designers.inc, line: 106
 # File: phpESP/admin/include/where/respondents.inc, line: 105
@@ -1133,7 +1129,7 @@ msgstr "Inaktivera"
 #
 # File: phpESP/admin/include/where/designers.inc, line: 138
 msgid "Add a new Designer"
-msgstr "Lägg till en ny Designer "
+msgstr "LÃ¤gg till en ny Designer "
 #
 # File: phpESP/admin/include/where/designers.inc, line: 143
 msgid "Bulk Upload Designers"
@@ -1142,25 +1138,15 @@ msgstr ""
 # File: phpESP/admin/include/where/download.inc, line: 22
 #, fuzzy
 msgid "Invalid survey ID."
-msgstr "Felaktigt undersöknings ID."
-#
-# File: phpESP/admin/include/where/download.inc, line: 60
-msgid "DBF download not yet implemented."
-msgstr "DBF download är inte installerat"
-#
-# File: phpESP/admin/include/where/download.inc, line: 62
-# File: phpESP/admin/include/where/export.inc, line: 139
-#, fuzzy
-msgid "The PHP dBase Extension is not installed."
-msgstr "PHP: dBase modulen är inte installerad"
+msgstr "Felaktigt undersÃ¶knings ID."
 #
 # File: phpESP/admin/include/where/edit.inc, line: 31
 msgid "Edit a Survey"
-msgstr "Redigera en undersökning"
+msgstr "Redigera en undersÃ¶kning"
 #
 # File: phpESP/admin/include/where/edit.inc, line: 32
 msgid "Pick Survey to Edit"
-msgstr "Välj en undersökning att redigera"
+msgstr "VÃ¤lj en undersÃ¶kning att redigera"
 #
 # File: phpESP/admin/include/where/export.inc, line: 19
 msgid "Export Data"
@@ -1170,20 +1156,16 @@ msgstr "Exportera Data"
 msgid "Format"
 msgstr "Format"
 #
-# File: phpESP/admin/include/where/export.inc, line: 84
-# File: phpESP/admin/include/where/test.inc, line: 134
-msgid "CSV"
-msgstr "CVS"
+# File: phpESP/admin/include/where/export.inc, line: 96
+# File: phpESP/admin/include/where/test.inc, line: 141
+msgid "Save On Server"
+msgstr ""
 #
 # File: phpESP/admin/include/where/export.inc, line: 86
 # File: phpESP/admin/include/where/test.inc, line: 135
-msgid "download"
+#, fuzzy
+msgid "Download"
 msgstr "download"
-#
-# File: phpESP/admin/include/where/export.inc, line: 88
-# File: phpESP/admin/include/where/test.inc, line: 136
-msgid "DBF"
-msgstr "DBF"
 #
 # File: phpESP/admin/include/where/export.inc, line: 116
 # File: phpESP/admin/include/where/export.inc, line: 148
@@ -1191,7 +1173,7 @@ msgstr "DBF"
 # File: phpESP/admin/include/where/results.inc, line: 33
 # File: phpESP/admin/include/where/test.inc, line: 52
 msgid "Testing Survey..."
-msgstr "Testar undersökningen.."
+msgstr "Testar undersÃ¶kningen.."
 #
 # File: phpESP/admin/include/where/export.inc, line: 116
 # File: phpESP/admin/include/where/export.inc, line: 148
@@ -1200,26 +1182,32 @@ msgstr "Testar undersökningen.."
 msgid "SID"
 msgstr "SID"
 #
+# File: phpESP/admin/include/where/download.inc, line: 62
+# File: phpESP/admin/include/where/export.inc, line: 139
+#, fuzzy
+msgid "The PHP dBase Extension is not installed."
+msgstr "PHP: dBase modulen Ã¤r inte installerad"
+#
 # File: phpESP/admin/include/where/export.inc, line: 151
 msgid "Survey exported as:"
-msgstr "Undersökningen exporterad som:"
+msgstr "UndersÃ¶kningen exporterad som:"
 #
 # File: phpESP/admin/include/where/export.inc, line: 153
 msgid "Error exporting survey as:"
-msgstr "Fel vid exportering av undersökningen som:"
+msgstr "Fel vid exportering av undersÃ¶kningen som:"
 #
 # File: phpESP/admin/include/where/groups.inc, line: 23
 msgid "Error adding group."
-msgstr "Fel när gruppen skulle läggas till."
+msgstr "Fel nÃ¤r gruppen skulle lÃ¤ggas till."
 #
 # File: phpESP/admin/include/where/groups.inc, line: 27
 # File: phpESP/admin/include/where/groups.inc, line: 36
 msgid "Error deleting group."
-msgstr "Fel när gruppen skulle tas bort."
+msgstr "Fel nÃ¤r gruppen skulle tas bort."
 #
 # File: phpESP/admin/include/where/groups.inc, line: 32
 msgid "Group is not empty."
-msgstr "Gruppen är inte tom."
+msgstr "Gruppen Ã¤r inte tom."
 #
 # File: phpESP/admin/include/where/groups.inc, line: 48
 # File: phpESP/admin/include/where/manage.inc, line: 69
@@ -1236,7 +1224,7 @@ msgstr "Medlemmar"
 #
 # File: phpESP/admin/include/where/guide.inc, line: 19
 msgid "User's guide not found."
-msgstr "Beskrivning för användare ej funnen"
+msgstr "Beskrivning fÃ¶r anvÃ¤ndare ej funnen"
 #
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
@@ -1244,33 +1232,29 @@ msgstr "Logga in igen"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 18
 msgid "Superuser"
-msgstr "Superanvändare"
-#
-# File: phpESP/admin/include/where/manage.inc, line: 28
-msgid "Choose a function"
-msgstr "Välj funktion"
+msgstr "SuperanvÃ¤ndare"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 35
 #, fuzzy
 msgid "Create a New Survey"
-msgstr "Skapa en Ny Undersökning"
+msgstr "Skapa en Ny UndersÃ¶kning"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 36
 msgid "Edit an Existing Survey"
-msgstr "Redigera en Existerande Undersökning"
+msgstr "Redigera en Existerande UndersÃ¶kning"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 37
 # File: phpESP/admin/include/where/test.inc, line: 104
 msgid "Test a Survey"
-msgstr "Testa en Undersökning"
+msgstr "Testa en UndersÃ¶kning"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 38
 msgid "Copy an Existing Survey"
-msgstr "Kopiera en Befintlig Undersökning"
+msgstr "Kopiera en Befintlig UndersÃ¶kning"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 41
 msgid "Change the Status of a Survey"
-msgstr "Ändra Status på en Undersökning"
+msgstr "Ã„ndra Status pÃ¥ en UndersÃ¶kning"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 42
 msgid "(active/end/delete)"
@@ -1278,32 +1262,28 @@ msgstr "(aktiv/avslut/ta bort)"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 44
 msgid "Change Access To a Survey"
-msgstr "Ändra Åtkomsten till en Undersökning"
+msgstr "Ã„ndra Ã…tkomsten till en UndersÃ¶kning"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 44
 msgid "Limit Respondents."
-msgstr "Begränsa Användarna"
+msgstr "BegrÃ¤nsa AnvÃ¤ndarna"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 48
 msgid "View Results from a Survey"
-msgstr "Visa Resultatet från en Undersökning"
+msgstr "Visa Resultatet frÃ¥n en UndersÃ¶kning"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 49
 #, fuzzy
 msgid "Cross Tabulate Survey Results"
-msgstr "Sammanfoga Undersöknings Reslutaten"
+msgstr "Sammanfoga UndersÃ¶knings Reslutaten"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 50
 msgid "View a Survey Report"
-msgstr "Visa en Undersöknings Rapport"
-#
-# File: phpESP/admin/include/where/manage.inc, line: 51
-msgid "Export Data to CSV"
-msgstr "Exportera Data till CSV"
+msgstr "Visa en UndersÃ¶knings Rapport"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
-msgstr "Ändra ditt Lösenord"
+msgstr "Ã„ndra ditt LÃ¶senord"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 63
 # File: phpESP/admin/include/where/respondents.inc, line: 89
@@ -1320,11 +1300,15 @@ msgstr "Visa TO-DO listan"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 77
 msgid "(development goals)"
-msgstr "(utvecklingsmål)"
+msgstr "(utvecklingsmÃ¥l)"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 78
 msgid "View the User &amp; Administrator Guide"
-msgstr "Visa Användar &amp; Administrations Guide"
+msgstr "Visa AnvÃ¤ndar &amp; Administrations Guide"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 183
+msgid "Click here to open the Help window."
+msgstr "Klicka hÃ¤r fÃ¶r att Ã¶ppna HjÃ¤lp FÃ¶nstret."
 #
 # File: phpESP/admin/include/where/manage.inc, line: 83
 msgid "Log out"
@@ -1334,68 +1318,60 @@ msgstr "Logga ut"
 msgid "SIDS"
 msgstr "SIDS"
 #
-# File: phpESP/admin/include/where/merge.inc, line: 86
-msgid "Error!"
-msgstr "Fel!"
-#
-# File: phpESP/admin/include/where/merge.inc, line: 87
-msgid "You need to select at least two surveys!"
-msgstr "Du måste välja minst två undersäkningar"
-#
 # File: phpESP/admin/include/where/merge.inc, line: 124
 msgid "Merge Survey Results"
-msgstr "Sammanfoga Undersöknings Reslutaten"
+msgstr "Sammanfoga UndersÃ¶knings Reslutaten"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 125
 msgid "Pick Surveys to Merge"
-msgstr "Välj Undersökningar att Sammanfoga"
+msgstr "VÃ¤lj UndersÃ¶kningar att Sammanfoga"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 128
 msgid "List of Surveys"
-msgstr "Lista över Undersökningar"
+msgstr "Lista Ã¶ver UndersÃ¶kningar"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 130
 msgid "Surveys to Merge"
-msgstr "Undersökningar som skall Sammanfogas"
+msgstr "UndersÃ¶kningar som skall Sammanfogas"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 13
 # File: phpESP/admin/include/where/passwd.inc, line: 56
 msgid "Change Password"
-msgstr "Ändra Lösenord"
+msgstr "Ã„ndra LÃ¶senord"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 22
 #, fuzzy
 msgid "Your password has been successfully changed."
-msgstr "Ditt lösenord har ändrats."
+msgstr "Ditt lÃ¶senord har Ã¤ndrats."
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 26
 msgid "Password not set, check your old password."
-msgstr "Lösenordet är inte satt, kontrollera ditt gamla lösenord."
+msgstr "LÃ¶senordet Ã¤r inte satt, kontrollera ditt gamla lÃ¶senord."
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 29
 msgid "New passwords do not match or are blank."
-msgstr "De nya lösenorden överensstämmer inte - eller är blanka."
+msgstr "De nya lÃ¶senorden Ã¶verensstÃ¤mmer inte - eller Ã¤r blanka."
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 41
 msgid "Old Password"
-msgstr "Gamla Lösenordet"
+msgstr "Gamla LÃ¶senordet"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 46
 msgid "New Password"
-msgstr "Nytt Lösenord"
+msgstr "Nytt LÃ¶senord"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 51
 msgid "Confirm New Password"
-msgstr "Bekräfta det Nya Lösenordet"
+msgstr "BekrÃ¤fta det Nya LÃ¶senordet"
 #
 # File: phpESP/admin/include/where/purge.inc, line: 12
 msgid "Only superusers allowed."
-msgstr "Endast superanvändare är tillåtna."
+msgstr "Endast superanvÃ¤ndare Ã¤r tillÃ¥tna."
 #
 # File: phpESP/admin/include/where/purge.inc, line: 38
 # File: phpESP/admin/include/where/purge.inc, line: 103
 msgid "Purge Surveys"
-msgstr "Töm Undersökningar"
+msgstr "TÃ¶m UndersÃ¶kningar"
 #
 # File: phpESP/admin/include/where/purge.inc, line: 40
 msgid ""
@@ -1409,12 +1385,12 @@ msgid ""
 "back."
 msgstr ""
 "\n"
-"Denna sida ligger inte direkt på huvud menyn pga\n"
-"att det är farligt. Detta raderar <b>allt</b> om undersökningen\n"
-"från databasen för <b>alltid</b>. All svarsinformation, generell \n"
-"information, resultat, etc. kommer att försvinna från databasen.\n"
-"Gör ingeting här om du inte är helt säker. Det finns ingen andra chans, \n"
-"det finns ingen återvändo."
+"Denna sida ligger inte direkt pÃ¥ huvud menyn pga\n"
+"att det Ã¤r farligt. Detta raderar <b>allt</b> om undersÃ¶kningen\n"
+"frÃ¥n databasen fÃ¶r <b>alltid</b>. All svarsinformation, generell \n"
+"information, resultat, etc. kommer att fÃ¶rsvinna frÃ¥n databasen.\n"
+"GÃ¶r ingeting hÃ¤r om du inte Ã¤r helt sÃ¤ker. Det finns ingen andra chans, \n"
+"det finns ingen Ã¥tervÃ¤ndo."
 #
 # File: phpESP/admin/include/where/purge.inc, line: 58
 msgid "# Q's"
@@ -1422,7 +1398,7 @@ msgstr "Sp. nummer"
 #
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
-msgstr "Töm checkboxarna"
+msgstr "TÃ¶m checkboxarna"
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
 msgid "README not found."
@@ -1430,34 +1406,34 @@ msgstr "README ej funnen."
 #
 # File: phpESP/admin/include/where/report.inc, line: 37
 msgid "Go back to Report Menu"
-msgstr "Gå tillbaka till Rapport Menyn"
+msgstr "GÃ¥ tillbaka till Rapport Menyn"
 #
 # File: phpESP/admin/include/where/report.inc, line: 65
 msgid "View Form Report"
-msgstr "Visa Formulär Rapport"
+msgstr "Visa FormulÃ¤r Rapport"
 #
 # File: phpESP/admin/include/where/report.inc, line: 66
 msgid "Pick Form to View"
-msgstr "Välj ett Formulär för Visning"
+msgstr "VÃ¤lj ett FormulÃ¤r fÃ¶r Visning"
 #
 # File: phpESP/admin/include/where/respondents.inc, line: 137
 msgid "Add a new Respondent"
-msgstr "Läggtill användare"
+msgstr "LÃ¤ggtill anvÃ¤ndare"
 #
 # File: phpESP/admin/include/where/respondents.inc, line: 142
 #, fuzzy
 msgid "Bulk Upload Respondents"
-msgstr "Läggtill användare"
+msgstr "LÃ¤ggtill anvÃ¤ndare"
 #
 # File: phpESP/admin/include/where/results.inc, line: 48
 # File: phpESP/admin/include/where/results.inc, line: 156
 #, fuzzy
 msgid "Cross Tabulation"
-msgstr "Välj funktion"
+msgstr "VÃ¤lj funktion"
 #
 # File: phpESP/admin/include/where/results.inc, line: 105
 msgid "Test Survey"
-msgstr "Test undersökning"
+msgstr "Test undersÃ¶kning"
 #
 # File: phpESP/admin/include/where/results.inc, line: 113
 #, fuzzy
@@ -1470,16 +1446,16 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/results.inc, line: 148
 msgid "View Survey Results"
-msgstr "Visa Undersöknings Resultat"
+msgstr "Visa UndersÃ¶knings Resultat"
 #
 # File: phpESP/admin/include/where/results.inc, line: 149
 msgid "Pick Survey to View"
-msgstr "Välj en Undersökning att Visa"
+msgstr "VÃ¤lj en UndersÃ¶kning att Visa"
 #
 # File: phpESP/admin/include/where/results.inc, line: 157
 #, fuzzy
 msgid "Pick Survey to Cross Tabulate"
-msgstr "Välj en Undersökning att Testa"
+msgstr "VÃ¤lj en UndersÃ¶kning att Testa"
 #
 # File: phpESP/admin/include/where/results.inc, line: 164
 #, fuzzy
@@ -1493,11 +1469,11 @@ msgstr "Svar"
 #
 # File: phpESP/admin/include/where/status.inc, line: 104
 msgid "Can not set survey status."
-msgstr "Kan inte sätta undersökningens status."
+msgstr "Kan inte sÃ¤tta undersÃ¶kningens status."
 #
 # File: phpESP/admin/include/where/status.inc, line: 111
 msgid "Survey Status"
-msgstr "Undersökningens Status"
+msgstr "UndersÃ¶kningens Status"
 #
 # File: phpESP/admin/include/where/status.inc, line: 115
 #, fuzzy
@@ -1507,10 +1483,10 @@ msgid ""
 "survey may be switched \n"
 "back into <b>Edit</b> mode if additional edits are needed."
 msgstr ""
-"<b>Test</b> sätter en undersökning i testmode, därifrån kan du göra ett "
+"<b>Test</b> sÃ¤tter en undersÃ¶kning i testmode, dÃ¤rifrÃ¥n kan du gÃ¶ra ett "
 "riktigt test\n"
-"från din undersökning och se resultatet. Du kan därefter inte utföra "
-"ytterligare förändringar idin undersökning."
+"frÃ¥n din undersÃ¶kning och se resultatet. Du kan dÃ¤refter inte utfÃ¶ra "
+"ytterligare fÃ¶rÃ¤ndringar idin undersÃ¶kning."
 #
 # File: phpESP/admin/include/where/status.inc, line: 119
 #, fuzzy
@@ -1521,10 +1497,10 @@ msgid ""
 "results from testing mode (if any). No further editing of survey is\n"
 "allowed."
 msgstr ""
-"<b>Aktivera</b> sätter en undersökning till aktiv status. När undersökningen "
-"är akriverad såär den klar för användning och kan läggas ut online. "
-"Resultaten från testerna nollställs (om det fanns några värden).\n"
-"Ingen ytterligare redigering är tillåten."
+"<b>Aktivera</b> sÃ¤tter en undersÃ¶kning till aktiv status. NÃ¤r undersÃ¶kningen "
+"Ã¤r akriverad sÃ¥Ã¤r den klar fÃ¶r anvÃ¤ndning och kan lÃ¤ggas ut online. "
+"Resultaten frÃ¥n testerna nollstÃ¤lls (om det fanns nÃ¥gra vÃ¤rden).\n"
+"Ingen ytterligare redigering Ã¤r tillÃ¥ten."
 #
 # File: phpESP/admin/include/where/status.inc, line: 124
 msgid ""
@@ -1533,9 +1509,9 @@ msgid ""
 "still\n"
 "viewable from the results menu."
 msgstr ""
-"<b>Avsluta</b> sätter en ny undersökning till avslutsstatus. Inga ändringar "
-"kan utföras och inga användare kan svara på undersökningen, men resultatet "
-"bevaras och är tillgängligt."
+"<b>Avsluta</b> sÃ¤tter en ny undersÃ¶kning till avslutsstatus. Inga Ã¤ndringar "
+"kan utfÃ¶ras och inga anvÃ¤ndare kan svara pÃ¥ undersÃ¶kningen, men resultatet "
+"bevaras och Ã¤r tillgÃ¤ngligt."
 #
 # File: phpESP/admin/include/where/status.inc, line: 128
 msgid ""
@@ -1544,11 +1520,11 @@ msgid ""
 "an\n"
 "archived survey."
 msgstr ""
-"<b>Arkivera</b> tar bort denna unndersökning. Undersökningen är fortfarande "
+"<b>Arkivera</b> tar bort denna unndersÃ¶kning. UndersÃ¶kningen Ã¤r fortfarande "
 "lagrad, \n"
-"i databasen men den kan inte användas, du kan <b>inte</b> se resultaten från "
+"i databasen men den kan inte anvÃ¤ndas, du kan <b>inte</b> se resultaten frÃ¥n "
 "en \n"
-"arkiverad undersökning."
+"arkiverad undersÃ¶kning."
 #
 # File: phpESP/admin/include/where/status.inc, line: 175
 # File: phpESP/admin/include/where/test.inc, line: 132
@@ -1574,12 +1550,12 @@ msgstr "Redigera"
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #, fuzzy
 msgid "No tabs defined. Please check your INI settings."
-msgstr "Inga flikar är definierade. Kontrollera INI inställningarna."
+msgstr "Inga flikar Ã¤r definierade. Kontrollera INI instÃ¤llningarna."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 144
 # File: phpESP/admin/include/where/upload.inc, line: 110
 msgid "Help"
-msgstr "Hjälp"
+msgstr "HjÃ¤lp"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 153
 msgid "General"
@@ -1587,7 +1563,7 @@ msgstr "Generellt"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 msgid "Questions"
-msgstr "Frågor"
+msgstr "FrÃ¥gor"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 155
 msgid "Order"
@@ -1595,7 +1571,7 @@ msgstr "Ordning"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 156
 msgid "Preview"
-msgstr "Förhandsvisning"
+msgstr "FÃ¶rhandsvisning"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 157
 msgid "Finish"
@@ -1606,31 +1582,30 @@ msgid ""
 "Click cancel to cancel this survey, or click continue to proceed to the next "
 "tab."
 msgstr ""
-"Klicka på Avslut för att avbryta denna undersökning eller klicka på Fortsätt "
-"för att gå vidare till nästa flik."
+"Klicka pÃ¥ Avslut fÃ¶r att avbryta denna undersÃ¶kning eller klicka pÃ¥ FortsÃ¤tt "
+"fÃ¶r att gÃ¥ vidare till nÃ¤sta flik."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 177
+#, fuzzy
 msgid ""
-"The survey title and other general fields are on the <b>General</b> tab.\n"
-"Individual survey questions are added and modified on the <b>Questions</b> "
-"tab.\n"
-"Questions may be re-ordered or deleted from the <b>Order</b> tab.\n"
+"The survey title and other general fields are on the <strong>General</"
+"strong> tab.\n"
+"Individual survey questions are added and modified on the <strong>Questions</"
+"strong> tab.\n"
+"Questions may be re-ordered or deleted from the <strong>Order</strong> tab.\n"
 "You may see a preview of your survey at any time, by going to the "
-"<b>Preview</b>\n"
-"tab. If you have no further changes click <b>Finish</b> to go back to the\n"
+"<strong>Preview</strong>\n"
+"tab. If you have no further changes click <strong>Finish</strong> to go back "
+"to the\n"
 "Management Interface."
 msgstr ""
-"Undersökningens titel och generella fält är under fliken <b>Generellt</b>.\n"
-"Individuella undersöknings frågor lägg tills och ändras under fliken "
-"<b>Frågor</b>.\n"
-"Frågorna kan omstruktureras under fliken <b>Ordning</b>.\n"
-"Du kan förhandsgranska undersökningen under fliken <b>Visa</b> . Om du inte "
-"har ytterligare ändringar klicka på <b>Avslut</b> för att gå tillbaka till \n"
+"UndersÃ¶kningens titel och generella fÃ¤lt Ã¤r under fliken <b>Generellt</b>.\n"
+"Individuella undersÃ¶knings frÃ¥gor lÃ¤gg tills och Ã¤ndras under fliken "
+"<b>FrÃ¥gor</b>.\n"
+"FrÃ¥gorna kan omstruktureras under fliken <b>Ordning</b>.\n"
+"Du kan fÃ¶rhandsgranska undersÃ¶kningen under fliken <b>Visa</b> . Om du inte "
+"har ytterligare Ã¤ndringar klicka pÃ¥ <b>Avslut</b> fÃ¶r att gÃ¥ tillbaka till \n"
 "Administrations Sidan."
-#
-# File: phpESP/admin/include/where/tab.inc, line: 183
-msgid "Click here to open the Help window."
-msgstr "Klicka här för att öppna Hjälp Fönstret."
 #
 # File: phpESP/admin/include/where/test.inc, line: 70
 msgid "View Results"
@@ -1638,11 +1613,15 @@ msgstr "Visa Resultat"
 #
 # File: phpESP/admin/include/where/test.inc, line: 105
 msgid "Pick Survey to Test"
-msgstr "Välj en Undersökning att Testa"
+msgstr "VÃ¤lj en UndersÃ¶kning att Testa"
 #
 # File: phpESP/admin/include/where/test.inc, line: 115
 msgid "Export"
 msgstr "Exportera"
+#
+# File: phpESP/admin/include/where/test.inc, line: 127
+msgid "standalone"
+msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 msgid "Results"
@@ -1673,7 +1652,7 @@ msgstr "Svarare Konto Administration"
 # File: phpESP/admin/include/where/upload.inc, line: 107
 #, fuzzy
 msgid "All fields are required"
-msgstr "är obligatoriska"
+msgstr "Ã¤r obligatoriska"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 120
 #, fuzzy
@@ -1693,11 +1672,10 @@ msgstr "Kan inte ladda ACL:en"
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 176
+# File: phpESP/admin/phpESP.ini.php, line: 172
 msgid ""
 "Please do not use the back button on your browser to go\n"
-"back. Please click on the link below to return you to where\n"
-"you launched this survey."
+"back."
 msgstr ""
 #
 # File: phpESP/admin/phpESP.ini.php, line: 181
@@ -1711,14 +1689,27 @@ msgstr ""
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
+# File: phpESP/public/captcha_check.php, line: 4
+msgid "You entered an incorrect code. Please fill in the correct code."
+msgstr ""
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 msgid "Error processing survey: Survey not specified."
-msgstr " Fel vid processering av undersökningen.: Undersökning ej specificerad"
+msgstr " Fel vid processering av undersÃ¶kningen.: UndersÃ¶kning ej specificerad"
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 29
+#, fuzzy
+msgid "You have already completed this survey."
+msgstr "Du har fÃ¤rdigstÃ¤llt denna undersÃ¶knings design"
 #
 # File: phpESP/public/handler.php, line: 64
 # File: phpESP/public/handler.php, line: 69
 msgid "Error processing survey: Survey is not active."
-msgstr " Fel vid processering av undersökningen: Undersökningen är ej aktiv."
+msgstr " Fel vid processering av undersÃ¶kningen: UndersÃ¶kningen Ã¤r ej aktiv."
+#
+# File: phpESP/public/handler.php, line: 207
+msgid "Please fill in the code displayed here."
+msgstr ""
 #
 # File: phpESP/public/signup.php, line: 54
 msgid "Sorry, the account request form is disabled."
@@ -1731,7 +1722,7 @@ msgstr ""
 # File: phpESP/public/signup.php, line: 72
 #, fuzzy
 msgid "Passwords do not match."
-msgstr "De nya lösenorden överensstämmer inte - eller är blanka."
+msgstr "De nya lÃ¶senorden Ã¶verensstÃ¤mmer inte - eller Ã¤r blanka."
 #
 # File: phpESP/public/signup.php, line: 100
 msgid "Request failed, please choose a different username."
@@ -1758,15 +1749,231 @@ msgstr ""
 # File: phpESP/public/signup.php, line: 157
 #, fuzzy
 msgid "Confirm Password"
-msgstr "Bekräfta det Nya Lösenordet"
+msgstr "BekrÃ¤fta det Nya LÃ¶senordet"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 352
+#~ msgid "Page"
+#~ msgstr "Sida"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 352
+#~ msgid "of"
+#~ msgstr "av"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 154
+#, fuzzy
+#~ msgid "Sorry, this question name is already in use."
+#~ msgstr " TyvÃ¤rr, namnet anvÃ¤nds redan."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 117
+#~ msgid "Field"
+#~ msgstr "FÃ¤lt"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 122
+#~ msgid "Field Name"
+#~ msgstr "FÃ¤lt Namn"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/download.inc, line: 60
+#~ msgid "DBF download not yet implemented."
+#~ msgstr "DBF download Ã¤r inte installerat"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 84
+# File: phpESP/admin/include/where/test.inc, line: 134
+#~ msgid "CSV"
+#~ msgstr "CVS"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 88
+# File: phpESP/admin/include/where/test.inc, line: 136
+#~ msgid "DBF"
+#~ msgstr "DBF"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 28
+#~ msgid "Choose a function"
+#~ msgstr "VÃ¤lj funktion"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 51
+#~ msgid "Export Data to CSV"
+#~ msgstr "Exportera Data till CSV"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 86
+#~ msgid "Error!"
+#~ msgstr "Fel!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 87
+#~ msgid "You need to select at least two surveys!"
+#~ msgstr "Du mÃ¥ste vÃ¤lja minst tvÃ¥ undersÃ¤kningar"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrera Grupp Medlemmar"
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "No survey specified."
-#~ msgstr "Ingen undersökning är specificerad"
+#~ msgstr "Ingen undersÃ¶kning Ã¤r specificerad"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1779,8 +1986,30 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
-#~ msgstr "Fel användare ID eller password, eller så har ditt konto spärrats."
+#~ msgstr "Fel anvÃ¤ndare ID eller password, eller sÃ¥ har ditt konto spÃ¤rrats."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1793,6 +2022,17 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "dvs. instruktioner, information osv."
 #
@@ -1800,8 +2040,30 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "Confirmation Heading"
-#~ msgstr "Bekräftelse Rubrik"
+#~ msgstr "BekrÃ¤ftelse Rubrik"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1811,15 +2073,37 @@ msgstr "Bekräfta det Nya Lösenordet"
 #~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
 #~ "the Confirmation Heading."
 #~ msgstr ""
-#~ "Body text på &quot;Bekräftelse&quot; sida. Detta visas under "
-#~ "Bekräftelsens Rubrik."
+#~ "Body text pÃ¥ &quot;BekrÃ¤ftelse&quot; sida. Detta visas under "
+#~ "BekrÃ¤ftelsens Rubrik."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #
 #
 #~ msgid "You must use"
-#~ msgstr "Du måste använda"
+#~ msgstr "Du mÃ¥ste anvÃ¤nda"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1832,15 +2116,48 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "to access this menu"
-#~ msgstr "för att öppna denna meny"
+#~ msgstr "fÃ¶r att Ã¶ppna denna meny"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #
 #
 #~ msgid "Purge"
-#~ msgstr "Töm"
+#~ msgstr "TÃ¶m"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1853,33 +2170,88 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "to design forms"
-#~ msgstr "att designa formulär"
+#~ msgstr "att designa formulÃ¤r"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #
 #
 #~ msgid "Design Web Forms"
-#~ msgstr "Designa Web  Formulär"
+#~ msgstr "Designa Web  FormulÃ¤r"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #
 #
 #~ msgid "NOTE: This does not currently work on embedded forms."
-#~ msgstr "OBS! Detta fungerar ej för tillfället på (embedded) formulär."
+#~ msgstr "OBS! Detta fungerar ej fÃ¶r tillfÃ¤llet pÃ¥ (embedded) formulÃ¤r."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #
 #
 #~ msgid "Response from survey:"
-#~ msgstr "Svar från undersökningen"
+#~ msgstr "Svar frÃ¥n undersÃ¶kningen"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #
 #
 #~ msgid "Sorry, please fill out the name and title before proceeding."
-#~ msgstr "Beklagar, vänligen fyll i namnet och titeln före exekvering."
+#~ msgstr "Beklagar, vÃ¤nligen fyll i namnet och titeln fÃ¶re exekvering."
