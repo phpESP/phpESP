@@ -18,6 +18,7 @@
 ALTER TABLE respondent MODIFY COLUMN username CHAR(64) NOT NULL;
 ALTER TABLE designer   MODIFY COLUMN username CHAR(64) NOT NULL;
 ALTER TABLE response   MODIFY COLUMN username CHAR(64);
+ALTER TABLE response   ADD COLUMN ip CHAR(64);
 
 -- # Add fields for resume and navigate options.
 ALTER TABLE access     ADD    COLUMN resume   ENUM('Y','N') NOT NULL DEFAULT 'N';

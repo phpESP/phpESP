@@ -35,11 +35,16 @@
 		unset($_POST['submit']);
 		$u = _addslashes($_POST['u']);
 		$r = _addslashes($_POST['r']);
+		/* user can't delete himself */
+		if ($_SESSION['username']===$u) {
+			include(esp_where('designers'));
+			return;
+		}
 		/* check acl */
 		if($_SESSION['acl']['superuser'] == 'Y' ||
 			in_array($r, $_SESSION['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r;
 			if(!execute_sql($sql) || affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
@@ -56,63 +61,64 @@
 	if(isset($_POST['submit'])) {
 		$u         = _addslashes($_POST['u']);
 		$r         = _addslashes($_POST['r']);
-		$password  = _addslashes($_POST['password']);
-		$fname     = _addslashes($_POST['fname']);
-		$lname     = _addslashes($_POST['lname']);
-		$email     = _addslashes($_POST['email']);
-		$pdesign   = _addslashes($_POST['pdesign']);
-		$pstatus   = _addslashes($_POST['pstatus']);
-		$pdata     = _addslashes($_POST['pdata']);
-		$pall      = _addslashes($_POST['pall']);
-		$pgroup    = _addslashes($_POST['pgroup']);
-		$puser     = _addslashes($_POST['puser']);
-		$disabled  = _addslashes($_POST['disabled']);
+		$u_password  = _addslashes($_POST['password']);
+		$u_fname     = _addslashes($_POST['fname']);
+		$u_lname     = _addslashes($_POST['lname']);
+		$u_email     = _addslashes($_POST['email']);
+		$u_pdesign   = _addslashes($_POST['pdesign']);
+		$u_pstatus   = _addslashes($_POST['pstatus']);
+		$u_pdata     = _addslashes($_POST['pdata']);
+		$u_pall      = _addslashes($_POST['pall']);
+		$u_pgroup    = _addslashes($_POST['pgroup']);
+		$u_puser     = _addslashes($_POST['puser']);
+		$u_disabled  = _addslashes($_POST['disabled']);
 
 		if(!empty($_POST['ex_year']) ||
 				!empty($_POST['ex_month']) ||
 				!empty($_POST['ex_day'])) {
 			if(empty($_POST['ex_day'])) {
-				$ex_day = 1;
+				$u_ex_day = 1;
 			} else {
-				$ex_day = intval($_POST['ex_day']);
+				$u_ex_day = intval($_POST['ex_day']);
 			}
 			if(empty($_POST['ex_month'])) {
-				$ex_month = 1;
+				$u_ex_month = 1;
 			} else {
-				$ex_month = intval($_POST['ex_month']);
+				$u_ex_month = intval($_POST['ex_month']);
 			}
 			if(empty($_POST['ex_year'])) {
 				$now = getdate(time());
-				$ex_year = $now['year'];
+				$u_ex_year = $now['year'];
 			} else {
-				$ex_year = intval($_POST['ex_year']);
-				if($ex_year < 2000)
-					$ex_year += 2000;
+				$u_ex_year = intval($_POST['ex_year']);
+				if($u_ex_year < 2000)
+					$u_ex_year += 2000;
 			}
 
-			$expiration = sprintf("%04d%02d%02d%06d",
-				$ex_year,$ex_month,$ex_day,0);
+			$u_expiration = sprintf("%04d%02d%02d%06d",
+				$u_ex_year,$u_ex_month,$u_ex_day,0);
 		} else {
-			$expiration = "0000-00-00 00:00:00";
-			$ex_year    = '';
-			$ex_month   = '';
-			$ex_day     = '';
+			$u_expiration = "00000000000000";
+			$u_ex_year    = '';
+			$u_ex_month   = '';
+			$u_ex_day     = '';
 		}
 
-		/* new user */
         /* check acl */
         if($_SESSION['acl']['superuser'] == 'Y' ||
             in_array($r, $_SESSION['acl']['pgroup']) ||
             auth_no_access(_('to access this group'))) {
-            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
+            #$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
+            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u;
             $result = execute_sql($sql);
             if(!$result || record_count($result) < 1) {
-            	if(empty($u) || empty($r) || empty($password)) {
+		/* new user */
+            	if(empty($u) || empty($r) || empty($u_password)) {
             		$errstr .= mkerror(_('Username, Password, and Group are required.'));
             	} else {
             		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
             			(username,realm,password,changed)
-            			VALUES ($u,$r, ".db_crypt($password).", ".sys_time_stamp().")";
+            			VALUES ($u,$r, ".db_crypt($u_password).", ".sys_time_stamp().")";
             		if(!execute_sql($sql)) {
             			$u = '';
             			$r = '';
@@ -125,30 +131,31 @@
             
             /* change user data */
             if(!empty($u) && !empty($r)) {
-            	if(empty($pdesign))
-            		$pdesign = 'Y';
-            	$fields = array('pstatus','pdata','pall','pgroup','puser','disabled');
+            	if(empty($u_pdesign))
+            		$u_pdesign = 'Y';
+            	$fields = array('u_pstatus','u_pdata','u_pall','u_pgroup','u_puser','u_disabled');
             	foreach($fields as $f) {
             		if(empty($$f))
             			$$f = 'N';
             	}
-            	if (!empty($password))
-            		$password = "password=".db_crypt($password).",";
+            	if (!empty($u_password))
+            		$u_password = "password=".db_crypt($u_password).",";
             	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET
-            		$password
-            		fname=$fname,
-            		lname=$lname,
-            		email=$email,
-            		pdesign=$pdesign,
-            		pstatus=$pstatus,
-            		pdata=$pdata,
-            		pall=$pall,
-            		pgroup=$pgroup,
-            		puser=$puser,
-            		disabled=$disabled,
+            		$u_password
+			        realm=$r,
+            		fname=$u_fname,
+            		lname=$u_lname,
+            		email=$u_email,
+            		pdesign=$u_pdesign,
+            		pstatus=$u_pstatus,
+            		pdata=$u_pdata,
+            		pall=$u_pall,
+            		pgroup=$u_pgroup,
+            		puser=$u_puser,
+            		disabled=$u_disabled,
             		changed=".sys_time_stamp().",
-            		expiration=".db_qstr($expiration)."
-            	WHERE username=$u AND realm=$r";
+            		expiration=$u_expiration WHERE username=$u;
+            	#WHERE username=$u AND realm=$r;
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
             		$errstr .= mkerror(_('Cannot change account data.') .' ('.
@@ -167,36 +174,39 @@
 	} else {
 		$u = '';
 		$r = '';
-		$expiration = '';
-		$disabled = 'N';
-		$pdesign  = 'Y';
-		$pstatus  = 'N';
-		$pdata    = 'N';
-		$pall     = 'N';
-		$pgroup   = 'N';
-		$puser    = 'N';
+		$u_expiration = '';
+		$u_disabled = 'N';
+		$u_pdesign  = 'Y';
+		$u_pstatus  = 'N';
+		$u_pdata    = 'N';
+		$u_pall     = 'N';
+		$u_pgroup   = 'N';
+		$u_puser    = 'N';
 	}
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r;
 		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 		if($arr = fetch_row($result)) {
-			foreach(array(
-				'username', 'realm', 'fname', 'lname', 'email',
-				'pdesign', 'pstatus', 'pdata', 'pall', 'pgroup', 'puser',
-				'disabled', 'expiration') as $col)
-				{ $$col = $arr[$col]; }
-			$u =& $username;
-			$r =& $realm;
-			if(intval($expiration) > 0) {
-				$ex_year  = substr($expiration,0,4);
-				$ex_month = substr($expiration,5,2);
-				$ex_day   = substr($expiration,8,2);
+			#foreach(array(
+			#	'username', 'realm', 'fname', 'lname', 'email',
+			#	'pdesign', 'pstatus', 'pdata', 'pall', 'pgroup', 'puser',
+			#	'disabled', 'expiration') as $col)
+			#	{ $$col = $arr[$col]; }
+			#$u =& $username;
+			#$r =& $realm;
+			#if(intval($expiration) > 0) {
+			$u =$arr['username'];
+			$r =$arr['realm'];
+			if(intval($arr['expiration']) > 0) {
+				$arr['ex_year']  = substr($arr['expiration'],0,4);
+				$arr['ex_month'] = substr($arr['expiration'],4,2);
+				$arr['ex_day']   = substr($arr['expiration'],6,2);
 			} else {
-				$ex_year  = '';
-				$ex_month = '';
-				$ex_day   = '';
+				$arr['ex_year']  = '';
+				$arr['ex_month'] = '';
+				$arr['ex_day']   = '';
 			}
 		} else {
 			$errstr .= mkerror(_('Account not found.') .' ('.
@@ -213,10 +223,10 @@
 <?php
 	echo("<th class=\"right\">". _('Username') ."</th>\n");
 	if(empty($u))
-		$u = mktext('u', 16, 16, $GLOBALS);
+		$u_u = mktext('u', 16, 16, $GLOBALS);
 	else
-		$u = mkhidden('u', $GLOBALS) . "<tt>$u</tt>";
-	echo("<td class=\"left\">$u</td>\n");
+		$u_u = mkhidden('u', $GLOBALS) . "<tt>$u</tt>";
+	echo("<td class=\"left\">$u_u</td>\n");
 ?>
 	</tr><tr>
 <?php
@@ -226,8 +236,8 @@
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Group') ."</th>\n");
-	if(empty($r)) {
-		$r = '<select name="r"><option></option>';
+	#if(empty($r)) {
+		$u_r = '<select name="r"><option></option>';
 		$groups = array();
 		if($_SESSION['acl']['superuser'] == 'Y') {
 			$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
@@ -241,36 +251,39 @@
 			$groups =& $_SESSION['acl']['pgroup'];
 		}
 		foreach($groups as $g) {
-			$r .= "<option value=\"$g\">$g</option>";
+			if (!empty($r) && $g===$r)
+			   $u_r .= "<option value=\"$g\" selected>$g</option>";
+			else
+			   $u_r .= "<option value=\"$g\">$g</option>";
 		}
-		$r .= '</select>';
-	} else {
-		$r = mkhidden('r', $GLOBALS) . "<tt>$r</tt>";
-	}
-	echo("<td class=\"left\"><tt>$r</tt></td>\n");
+		$u_r .= '</select>';
+	#} else {
+	#	$u_r = mkhidden('r', $GLOBALS) . "<tt>$r</tt>";
+	#}
+	echo("<td class=\"left\"><tt>$u_r</tt></td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('First Name') ."</th>\n");
-	echo("<td class=\"left\">". mktext('fname', 16, 16, $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mktext('fname', 16, 16, $arr) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Last Name') ."</th>\n");
-	echo("<td class=\"left\">". mktext('lname', 24, 24, $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mktext('lname', 24, 24, $arr) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Email') ."</th>\n");
-	echo("<td class=\"left\">". mktext('email', 24, 64, $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mktext('email', 24, 64, $arr) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Expiration') ."</th>\n");
 	echo("<td class=\"left\">".
-		mktext('ex_year',4,4, $GLOBALS) .' '.
-		mktext('ex_month',2,2, $GLOBALS) .' '.
-		mktext('ex_day',2,2, $GLOBALS) .' ('.
+		mktext('ex_year',4,4, $arr) .' '.
+		mktext('ex_month',2,2, $arr) .' '.
+		mktext('ex_day',2,2, $arr) .' ('.
 			_('year') .' '.
 			_('month') .' '.
 			_('day'). ")</td>\n");
@@ -278,7 +291,7 @@
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Disabled') ."</th>\n");
-	echo("<td class=\"left\">". mkselect('disabled',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mkselect('disabled',array('Y' => _('Yes'), 'N' => _('No')), $arr) ."</td>\n");
 ?>
 	</tr><!-- <tr>
 		<th colspan="2" bgcolor="<?php echo($bg2); ?>">
@@ -288,40 +301,42 @@
 	</tr>--><tr>
 <?php
 	echo("<th class=\"right\">". _('Design Surveys') ."</th>\n");
-	echo("<td class=\"left\">". mkselect('pdesign',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mkselect('pdesign',array('Y' => _('Yes'), 'N' => _('No')), $arr) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Change Survey Status') ."</th>\n");
-	echo("<td class=\"left\">". mkselect('pstatus',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) .
+	echo("<td class=\"left\">". mkselect('pstatus',array('Y' => _('Yes'), 'N' => _('No')), $arr) .
 		'<!-- ('. _('Activate/End') .") --></td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Export Survey Data') ."</th>\n");
-	echo("<td class=\"left\">". mkselect('pdata',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mkselect('pdata',array('Y' => _('Yes'), 'N' => _('No')), $arr) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Group Editor') ."</th>\n");
-	echo("<td class=\"left\">". mkselect('pall',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) .
+	echo("<td class=\"left\">". mkselect('pall',array('Y' => _('Yes'), 'N' => _('No')), $arr) .
 		'<!-- ('. _('may edit <b>all</b> forms owned by this group') .") --></td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Administer Designers') ."</th>\n");
-	echo("<td class=\"left\">". mkselect('pgroup',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mkselect('pgroup',array('Y' => _('Yes'), 'N' => _('No')), $arr) ."</td>\n");
 ?>
 	</tr><tr>
 <?php
 	echo("<th class=\"right\">". _('Administer Respondents') ."</th>\n");
-	echo("<td class=\"left\">". mkselect('puser',array('Y' => _('Yes'), 'N' => _('No')), $GLOBALS) ."</td>\n");
+	echo("<td class=\"left\">". mkselect('puser',array('Y' => _('Yes'), 'N' => _('No')), $arr) ."</td>\n");
 ?>
 	</tr><tr>
 		<td colspan="2" class="center">
 			<input type="submit" name="submit" value="<?php echo(_('Update')); ?>"/>&nbsp;
 			<input type="submit" name="cancel" value="<?php echo(_('Cancel')); ?>"/>&nbsp;
+			<?php if (!($_SESSION['username']===$u)) { ?>
 			<input type="submit" name="delete" value="<?php echo(_('Delete')); ?>"/>
+			<?php } ?>
 		</td>
 	</tr>
 </table>

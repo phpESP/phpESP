@@ -6,27 +6,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2004-09-17 11:44-0400\n"
+"POT-Creation-Date: 2007-04-13 12:20+0200\n"
 "PO-Revision-Date: 2003-02-07 10:01+0200\n"
 "Last-Translator: armandos <armandos@hol.gr>\n"
 "Language-Team: el_GR <jflemer@alum.rpi.edu>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-7\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 #
 # File: phpESP/admin/include/funcs.inc, line: 40
 # File: phpESP/admin/include/where/tab.inc, line: 134
 msgid "Unable to open include file. Check INI settings. Aborting."
 msgstr ""
-"дем еимаи думатом ма амоивхеи то аявеио include. екецнте тис яухлисеис тоу "
-"ими. айуяысг..."
+"н■н∙н² н∙н≥н²н▒н≥ н■н╔н²н▒н╓н÷н² н²н▒ н▒н²н÷н≥н╖н≤н∙н≥ н╓н÷ н▒н║н╖н∙н≥н÷ include. н∙н⌡н∙н⌠н·н╓н∙ н╓н≥нё н║н╔н≤н°н≥нён∙н≥нё н╓н÷н╔ "
+"н≥н²н≥. н▒н н╔н║н╘нён≈..."
 #
 # File: phpESP/admin/include/funcs.inc, line: 49
 #, fuzzy
 msgid "Unable to open ADODB include file. Check INI settings. Aborting."
 msgstr ""
-"дем еимаи думатом ма амоивхеи то аявеио include. екецнте тис яухлисеис тоу "
-"ими. айуяысг..."
+"н■н∙н² н∙н≥н²н▒н≥ н■н╔н²н▒н╓н÷н² н²н▒ н▒н²н÷н≥н╖н≤н∙н≥ н╓н÷ н▒н║н╖н∙н≥н÷ include. н∙н⌡н∙н⌠н·н╓н∙ н╓н≥нё н║н╔н≤н°н≥нён∙н≥нё н╓н÷н╔ "
+"н≥н²н≥. н▒н н╔н║н╘нён≈..."
 #
 # File: phpESP/admin/include/funcs.inc, line: 76
 # File: phpESP/admin/include/funcs.inc, line: 77
@@ -38,12 +38,12 @@ msgstr ""
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 177
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 179
 msgid "Service Unavailable"
-msgstr "лг диахесилг упгяесиа"
+msgstr "н°н≈ н■н≥н▒н≤н∙нён≥н°н≈ н╔н═н≈н║н∙нён≥н▒"
 #
 # File: phpESP/admin/include/funcs.inc, line: 79
 #, fuzzy
 msgid "Connection to database failed. Please check configuration."
-msgstr "дем ояистгйам та табS. екецнте тис яухлисеис тоу ими."
+msgstr "н■н∙н² н÷н║н≥нён╓н≈н н▒н² н╓н▒ н╓н▒н▓S. н∙н⌡н∙н⌠н·н╓н∙ н╓н≥нё н║н╔н≤н°н≥нён∙н≥нё н╓н÷н╔ н≥н²н≥."
 #
 # File: phpESP/admin/include/funcs.inc, line: 135
 msgid ""
@@ -56,16 +56,16 @@ msgstr ""
 # File: phpESP/admin/include/funcs.inc, line: 139
 #, fuzzy
 msgid "Resume survey"
-msgstr "дойиласте лиа еяеума"
+msgstr "н■н÷н н≥н°н▒нён╓н∙ н°н≥н▒ н∙н║н∙н╔н²н▒"
 #
 # File: phpESP/admin/include/function/survey_copy.inc, line: 30
 msgid "copy"
-msgstr "амтицяажг"
+msgstr "н▒н²н╓н≥н⌠н║н▒н╕н≈"
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 21
 # File: phpESP/admin/include/function/survey_merge.inc, line: 26
 msgid "Invalid argument."
-msgstr "кахос паяалетяос"
+msgstr "н⌡н▒н≤н÷нё н═н▒н║н▒н°н∙н╓н║н÷нё"
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 44
 # File: phpESP/admin/include/function/survey_report.inc, line: 37
@@ -75,31 +75,31 @@ msgstr "кахос паяалетяос"
 # File: phpESP/admin/include/function/survey_results.inc, line: 193
 # File: phpESP/admin/include/function/survey_results.inc, line: 198
 msgid "Error opening survey."
-msgstr "кахос йата то амоицла тгс еяеумас"
+msgstr "н⌡н▒н≤н÷нё н н▒н╓н▒ н╓н÷ н▒н²н÷н≥н⌠н°н▒ н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 57
 # File: phpESP/admin/include/function/survey_merge.inc, line: 62
 # File: phpESP/admin/include/function/survey_merge.inc, line: 87
 msgid "Error opening surveys."
-msgstr "кахос йата то амоицла тым еяеумым"
+msgstr "н⌡н▒н≤н÷нё н н▒н╓н▒ н╓н÷ н▒н²н÷н≥н⌠н°н▒ н╓н╘н² н∙н║н∙н╔н²н╘н²"
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 63
 # File: phpESP/admin/include/function/survey_results.inc, line: 198
 msgid "No responses found."
-msgstr "дем бяехгйам апамтгсеис"
+msgstr "н■н∙н² н▓н║н∙н≤н≈н н▒н² н▒н═н▒н²н╓н≈нён∙н≥нё"
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 63
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
 msgid "TOTAL"
-msgstr "сумоко"
+msgstr "нён╔н²н÷н⌡н÷"
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 87
 # File: phpESP/admin/include/function/survey_report.inc, line: 48
 # File: phpESP/admin/include/function/survey_results.inc, line: 139
 msgid "No questions found."
-msgstr "дем бяехгйам еяытгсеис"
+msgstr "н■н∙н² н▓н║н∙н≤н≈н н▒н² н∙н║н╘н╓н≈нён∙н≥нё"
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 61
 msgid "Page %d of %d"
@@ -108,7 +108,7 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_render.inc, line: 67
 #, fuzzy
 msgid "Questions marked with a %s are required."
-msgstr "ои еяытгсеис поу сглеиымомтаи ле "
+msgstr "н÷н≥ н∙н║н╘н╓н≈нён∙н≥нё н═н÷н╔ нён≈н°н∙н≥н╘н²н÷н²н╓н▒н≥ н°н∙ "
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 142
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -126,7 +126,7 @@ msgstr "ои еяытгсеис поу сглеиымомтаи ле "
 # File: phpESP/admin/include/where/admdesigner.inc, line: 318
 # File: phpESP/admin/include/where/admrespondent.inc, line: 256
 msgid "Yes"
-msgstr "маи"
+msgstr "н²н▒н≥"
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 146
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -144,7 +144,7 @@ msgstr "маи"
 # File: phpESP/admin/include/where/admdesigner.inc, line: 318
 # File: phpESP/admin/include/where/admrespondent.inc, line: 256
 msgid "No"
-msgstr "ови"
+msgstr "н÷н╖н≥"
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 261
 msgid "1"
@@ -169,30 +169,22 @@ msgstr "5"
 # File: phpESP/admin/include/function/survey_render.inc, line: 266
 # File: phpESP/admin/include/function/survey_render.inc, line: 289
 msgid "N/A"
-msgstr "д.а."
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 352
-msgid "Page"
-msgstr "секида"
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 352
-msgid "of"
-msgstr "апо"
+msgstr "н■.н▒."
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
 msgid "Error system table corrupt."
-msgstr "кахос пимайа сустглатос (corrupt)"
+msgstr "н⌡н▒н≤н÷нё н═н≥н²н▒н н▒ нён╔нён╓н≈н°н▒н╓н÷нё (corrupt)"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
 # File: phpESP/admin/include/function/survey_results.inc, line: 154
 msgid "Table"
-msgstr "пимайас"
+msgstr "н═н≥н²н▒н н▒нё"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 52
 msgid "Report for"
-msgstr "ейхесг циа"
+msgstr "н∙н н≤н∙нён≈ н⌠н≥н▒"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 52
 # File: phpESP/admin/include/function/survey_report.inc, line: 58
@@ -217,7 +209,7 @@ msgstr "#"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 59
 msgid "Req'd"
-msgstr "апаитеитаи"
+msgstr "н▒н═н▒н≥н╓н∙н≥н╓н▒н≥"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 60
 # File: phpESP/admin/include/where/access.inc, line: 106
@@ -225,21 +217,21 @@ msgstr "апаитеитаи"
 # File: phpESP/admin/include/where/access.inc, line: 204
 # File: phpESP/admin/include/where/access.inc, line: 235
 msgid "Public"
-msgstr "дглосиа"
+msgstr "н■н≈н°н÷нён≥н▒"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 61
 msgid "Content"
-msgstr "пеяиеволемо"
+msgstr "н═н∙н║н≥н∙н╖н÷н°н∙н²н÷"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 53
 #, fuzzy
 msgid "Previous"
-msgstr "пяоеписйопгсг"
+msgstr "н═н║н÷н∙н═н≥нён н÷н═н≈нён≈"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 64
 #, fuzzy
 msgid "Next"
-msgstr "еполемг секида"
+msgstr "н∙н═н÷н°н∙н²н≈ нён∙н⌡н≥н■н▒"
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 68
 msgid "Navigate Individual Respondent Submissions"
@@ -248,85 +240,80 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_results.inc, line: 154
 msgid "Error cross-analyzing. Question not valid type."
 msgstr ""
-"кахос стгм стауяытг амакусг (cross-analyszing). г еяытгсг дем евеи аподейто "
-"тупо."
+"н⌡н▒н≤н÷нё нён╓н≈н² нён╓н▒н╔н║н╘н╓н≈ н▒н²н▒н⌡н╔нён≈ (cross-analyszing). н≈ н∙н║н╘н╓н≈нён≈ н■н∙н² н∙н╖н∙н≥ н▒н═н÷н■н∙н н╓н÷ "
+"н╓н╔н═н÷."
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 227
 #, fuzzy
 msgid "Cross analysis on QN:"
-msgstr "стауяытг амакусг (cross-analysis) сто QID:"
+msgstr "нён╓н▒н╔н║н╘н╓н≈ н▒н²н▒н⌡н╔нён≈ (cross-analysis) нён╓н÷ QID:"
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 36
 # File: phpESP/admin/include/function/survey_update.inc, line: 73
 msgid "Sorry, please fill out the name, group, and title before proceeding."
 msgstr ""
-"купалаи, паяайакы сулпкгяысте то омола, тгм олада йаи том титко пяим "
-"пяовыягсете."
+"н⌡н╔н═н▒н°н▒н≥, н═н▒н║н▒н н▒н⌡н╘ нён╔н°н═н⌡н≈н║н╘нён╓н∙ н╓н÷ н÷н²н÷н°н▒, н╓н≈н² н÷н°н▒н■н▒ н н▒н≥ н╓н÷н² н╓н≥н╓н⌡н÷ н═н║н≥н² "
+"н═н║н÷н╖н╘н║н≈нён∙н╓н∙."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 56
 msgid "Sorry, name already in use. Pick a new name."
-msgstr "купалаи, то омола упаявеи гдг. епикенте ема мео омола."
+msgstr "н⌡н╔н═н▒н°н▒н≥, н╓н÷ н÷н²н÷н°н▒ н╔н═н▒н║н╖н∙н≥ н≈н■н≈. н∙н═н≥н⌡н∙н·н╓н∙ н∙н²н▒ н²н∙н÷ н÷н²н÷н°н▒."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 87
 msgid "Sorry, that name is already in use."
-msgstr "купалаи, то омола вягсилопоиеитаи гдг."
+msgstr "н⌡н╔н═н▒н°н▒н≥, н╓н÷ н÷н²н÷н°н▒ н╖н║н≈нён≥н°н÷н═н÷н≥н∙н≥н╓н▒н≥ н≈н■н≈."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 101
 # File: phpESP/admin/include/function/survey_update.inc, line: 262
 # File: phpESP/admin/include/function/survey_update.inc, line: 302
 msgid "Warning, error encountered."
-msgstr "пяосовг, емтопистгйам кахг."
+msgstr "н═н║н÷нён÷н╖н≈, н∙н²н╓н÷н═н≥нён╓н≈н н▒н² н⌡н▒н≤н≈."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 115
 msgid "Please enter text for this question."
-msgstr "паяайакы еисацете то йеилемо циа аутг тгм еяытгсг."
-#
-# File: phpESP/admin/include/function/survey_update.inc, line: 154
-#, fuzzy
-msgid "Sorry, this question name is already in use."
-msgstr "купалаи, то омола вягсилопоиеитаи гдг."
+msgstr "н═н▒н║н▒н н▒н⌡н╘ н∙н≥нён▒н⌠н∙н╓н∙ н╓н÷ н н∙н≥н°н∙н²н÷ н⌠н≥н▒ н▒н╔н╓н≈ н╓н≈н² н∙н║н╘н╓н≈нён≈."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 164
 msgid "Sorry, you must select a type for this question."
-msgstr "купалаи, пяепеи ма епикенете емам тупо циа аутг тгм еяытгсг."
+msgstr "н⌡н╔н═н▒н°н▒н≥, н═н║н∙н═н∙н≥ н²н▒ н∙н═н≥н⌡н∙н·н∙н╓н∙ н∙н²н▒н² н╓н╔н═н÷ н⌠н≥н▒ н▒н╔н╓н≈ н╓н≈н² н∙н║н╘н╓н≈нён≈."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 169
 # File: phpESP/admin/include/tab/questions.inc, line: 47
 # File: phpESP/admin/include/tab/questions.inc, line: 111
 # File: phpESP/admin/include/tab/questions.inc, line: 115
 msgid "New Field"
-msgstr "мео педио"
+msgstr "н²н∙н÷ н═н∙н■н≥н÷"
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 182
 msgid ""
 "Sorry, you cannot change between those types of question. Create a new "
 "question instead."
 msgstr ""
-"купалаи, дем лпояеите ма акканете амалеса се аутоус тоу тупоус тгс еяытгсг. "
-"дглиоуягсте лиа меа еяытгсг."
+"н⌡н╔н═н▒н°н▒н≥, н■н∙н² н°н═н÷н║н∙н≥н╓н∙ н²н▒ н▒н⌡н⌡н▒н·н∙н╓н∙ н▒н²н▒н°н∙нён▒ нён∙ н▒н╔н╓н÷н╔нё н╓н÷н╔ н╓н╔н═н÷н╔нё н╓н≈нё н∙н║н╘н╓н≈нён≈. "
+"н■н≈н°н≥н÷н╔н║н≈нён╓н∙ н°н≥н▒ н²н∙н▒ н∙н║н╘н╓н≈нён≈."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 310
 msgid "Sorry, you need at least one answer option for this question type."
 msgstr ""
-"купалаи, пяепеи ма упаявеи тоукавистом 1 пихамг апамтгсг се ауто том тупо "
-"еяытгсгс."
+"н⌡н╔н═н▒н°н▒н≥, н═н║н∙н═н∙н≥ н²н▒ н╔н═н▒н║н╖н∙н≥ н╓н÷н╔н⌡н▒н╖н≥нён╓н÷н² 1 н═н≥н≤н▒н²н≈ н▒н═н▒н²н╓н≈нён≈ нён∙ н▒н╔н╓н÷ н╓н÷н² н╓н╔н═н÷ "
+"н∙н║н╘н╓н≈нён≈нё."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 19
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 29
 # File: phpESP/public/handler-prefix.php, line: 56
 # File: phpESP/public/handler-prefix.php, line: 61
 msgid "Error processing survey: Security violation."
-msgstr "кахос диадийасиас еяеумас: паяабиасг асжакеиас"
+msgstr "н⌡н▒н≤н÷нё н■н≥н▒н■н≥н н▒нён≥н▒нё н∙н║н∙н╔н²н▒нё: н═н▒н║н▒н▓н≥н▒нён≈ н▒нён╕н▒н⌡н∙н≥н▒нё"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 33
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 44
 msgid "Unable to execute query for access."
-msgstr "адуматом ма ейтекестеи то еяытгла (query) циа тгм пяосбасг"
+msgstr "н▒н■н╔н²н▒н╓н÷н² н²н▒ н∙н н╓н∙н⌡н∙нён╓н∙н≥ н╓н÷ н∙н║н╘н╓н≈н°н▒ (query) н⌠н≥н▒ н╓н≈н² н═н║н÷нён▓н▒нён≈"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 60
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 72
 msgid "Unable to execute query respondents."
-msgstr "адуматом ма ейтекестеи то еяытгла (query) циа тоус еяытгхемтес"
+msgstr "н▒н■н╔н²н▒н╓н÷н² н²н▒ н∙н н╓н∙н⌡н∙нён╓н∙н≥ н╓н÷ н∙н║н╘н╓н≈н°н▒ (query) н⌠н≥н▒ н╓н÷н╔нё н∙н║н╘н╓н≈н≤н∙н²н╓н∙нё"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 76
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 92
@@ -339,7 +326,7 @@ msgstr "адуматом ма ейтекестеи то еяытгла (query) циа тоус еяытгхемтес"
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 222
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 223
 msgid "Unauthorized"
-msgstr "дем евете пяосбасг (UNAUTHORIZED)"
+msgstr "н■н∙н² н∙н╖н∙н╓н∙ н═н║н÷нён▓н▒нён≈ (UNAUTHORIZED)"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 77
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 161
@@ -348,30 +335,30 @@ msgstr "дем евете пяосбасг (UNAUTHORIZED)"
 msgid ""
 "Incorrect User ID or Password, or your account has been disabled/expired."
 msgstr ""
-"кахос омола вягстг ч йыдийос ч о коцаяиаслос евеи апемеяцопоигхеи/кгнеи"
+"н⌡н▒н≤н÷нё н÷н²н÷н°н▒ н╖н║н≈нён╓н≈ н╝ н н╘н■н≥н н÷нё н╝ н÷ н⌡н÷н⌠н▒н║н≥н▒нён°н÷нё н∙н╖н∙н≥ н▒н═н∙н²н∙н║н⌠н÷н═н÷н≥н≈н≤н∙н≥/н⌡н≈н·н∙н≥"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 93
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 105
 msgid ""
 "Your account has been disabled or you have already completed this survey."
 msgstr ""
-"о коцаяиаслос аутос евеи апемеяцопоигхеи ч евет гдг суллетасвеи се аутг тгм "
-"еяеума."
+"н÷ н⌡н÷н⌠н▒н║н≥н▒нён°н÷нё н▒н╔н╓н÷нё н∙н╖н∙н≥ н▒н═н∙н²н∙н║н⌠н÷н═н÷н≥н≈н≤н∙н≥ н╝ н∙н╖н∙н╓ н≈н■н≈ нён╔н°н°н∙н╓н▒нён╖н∙н≥ нён∙ н▒н╔н╓н≈ н╓н≈н² "
+"н∙н║н∙н╔н²н▒."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 143
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 180
 msgid "Unable to load ACL."
-msgstr "дем еимаи думатом ма жоятыхеи то ACL"
+msgstr "н■н∙н² н∙н≥н²н▒н≥ н■н╔н²н▒н╓н÷н² н²н▒ н╕н÷н║н╓н╘н≤н∙н≥ н╓н÷ ACL"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 157
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 220
 # File: phpESP/admin/include/where/manage.inc, line: 14
 msgid "Management Interface"
-msgstr "пеяибакком диавеияисгс"
+msgstr "н═н∙н║н≥н▓н▒н⌡н⌡н÷н² н■н≥н▒н╖н∙н≥н║н≥нён≈нё"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
-msgstr "аутос о коцаяиаслос дем евеи тгм адеиа"
+msgstr "н▒н╔н╓н÷нё н÷ н⌡н÷н⌠н▒н║н≥н▒нён°н÷нё н■н∙н² н∙н╖н∙н≥ н╓н≈н² н▒н■н∙н≥н▒"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 250
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 313
@@ -415,59 +402,59 @@ msgstr "аутос о коцаяиаслос дем евеи тгм адеиа"
 # File: phpESP/admin/include/where/todo.inc, line: 18
 # File: phpESP/admin/include/where/upload.inc, line: 133
 msgid "Go back to Management Interface"
-msgstr "писы сто пеяибакком диавеияисгс"
+msgstr "н═н≥нён╘ нён╓н÷ н═н∙н║н≥н▓н▒н⌡н⌡н÷н² н■н≥н▒н╖н∙н≥н║н≥нён≈нё"
 #
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 311
 #, fuzzy
 msgid "This account does not have permission %s."
-msgstr "аутос о коцаяиаслос дем евеи тгм адеиа"
+msgstr "н▒н╔н╓н÷нё н÷ н⌡н÷н⌠н▒н║н≥н▒нён°н÷нё н■н∙н² н∙н╖н∙н≥ н╓н≈н² н▒н■н∙н≥н▒"
 #
 # File: phpESP/admin/include/lib/esphtml.forms.inc, line: 145
 #, fuzzy
 msgid "Submit"
-msgstr "употиткос"
+msgstr "н╔н═н÷н╓н≥н╓н⌡н÷нё"
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 83
 msgid "Rank"
-msgstr "йататанг"
+msgstr "н н▒н╓н▒н╓н▒н·н≈"
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 174
 msgid "Response"
-msgstr "апамтгсг"
+msgstr "н▒н═н▒н²н╓н≈нён≈"
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 199
 msgid "Average rank"
-msgstr "лесос ояос йататангс"
+msgstr "н°н∙нён÷нё н÷н║н÷нё н н▒н╓н▒н╓н▒н·н≈нё"
 #
 # File: phpESP/admin/include/lib/espresponse.inc, line: 59
 msgid "You are missing the following required questions:"
-msgstr "дем евете апамтгсеи стис паяайаты уповяеытийес еяытгсеис:"
+msgstr "н■н∙н² н∙н╖н∙н╓н∙ н▒н═н▒н²н╓н≈нён∙н≥ нён╓н≥нё н═н▒н║н▒н н▒н╓н╘ н╔н═н÷н╖н║н∙н╘н╓н≥н н∙нё н∙н║н╘н╓н≈нён∙н≥нё:"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 27
 msgid "Survey Design Completed"
-msgstr "г сведиасг тгс еяеумас окойкгяыхгйе"
+msgstr "н≈ нён╖н∙н■н≥н▒нён≈ н╓н≈нё н∙н║н∙н╔н²н▒нё н÷н⌡н÷н н⌡н≈н║н╘н≤н≈н н∙"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 29
 msgid "You have completed this survey design."
-msgstr "евете окойкгяысеи тгм сведиасг тгс еяеумас"
+msgstr "н∙н╖н∙н╓н∙ н÷н⌡н÷н н⌡н≈н║н╘нён∙н≥ н╓н≈н² нён╖н∙н■н≥н▒нён≈ н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 31
 msgid ""
 "To insert this survey into your web page, copy the text\n"
 "below, and paste it into the HTML of your page."
 msgstr ""
-"циа ма еисацете аутг тгм еяеума стгм истиосекида сас,\n"
-"амтиця╤ьте то паяайаты йеилемо йаи епийоккгсте то\n"
-"стом HTML йыдийа тгс секидас сас"
+"н⌠н≥н▒ н²н▒ н∙н≥нён▒н⌠н∙н╓н∙ н▒н╔н╓н≈ н╓н≈н² н∙н║н∙н╔н²н▒ нён╓н≈н² н≥нён╓н≥н÷нён∙н⌡н≥н■н▒ нён▒нё,\n"
+"н▒н²н╓н≥н⌠н║н├н╗н╓н∙ н╓н÷ н═н▒н║н▒н н▒н╓н╘ н н∙н≥н°н∙н²н÷ н н▒н≥ н∙н═н≥н н÷н⌡н⌡н≈нён╓н∙ н╓н÷\n"
+"нён╓н÷н² HTML н н╘н■н≥н н▒ н╓н≈нё нён∙н⌡н≥н■н▒нё нён▒нё"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 39
 msgid ""
 "Once activated you can also access the survey directly\n"
 "from the following URL."
 msgstr ""
-"ажоу емеяцопоигсете тгм еяеума лпояеите ма\n"
-"евете пяосбасг се аутг йатеухеиам лесы тгс\n"
-"енгс диеухумсгс:"
+"н▒н╕н÷н╔ н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён∙н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒ н°н═н÷н║н∙н≥н╓н∙ н²н▒\n"
+"н∙н╖н∙н╓н∙ н═н║н÷нён▓н▒нён≈ нён∙ н▒н╔н╓н≈ н н▒н╓н∙н╔н≤н∙н≥н▒н² н°н∙нён╘ н╓н≈нё\n"
+"н∙н·н≈нё н■н≥н∙н╔н≤н╔н²нён≈нё:"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 45
 msgid ""
@@ -477,23 +464,24 @@ msgid ""
 "<b>Change the Status of an Existing Survey</b> from the\n"
 "Management Interface."
 msgstr ""
-"пяепеи ма емеяцопоигсете тгм еяеума пяим аявисете\n"
-"тгм суккоцг дедолемым. ажоу г еяеума цимеи емеяцг\n"
-"дем ха лпояеите ма йамете йалиа аккацг. лпояеите ма\n"
-"емеяцопоигсете тгм еяеума диакецомтас тгм епикоцг\n"
-"<b>аккацг йатастасгс упаявоусас еяеумас</b> апо\n"
-"то пеяибакком диавеияисгс."
+"н═н║н∙н═н∙н≥ н²н▒ н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён∙н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒ н═н║н≥н² н▒н║н╖н≥нён∙н╓н∙\n"
+"н╓н≈н² нён╔н⌡н⌡н÷н⌠н≈ н■н∙н■н÷н°н∙н²н╘н². н▒н╕н÷н╔ н≈ н∙н║н∙н╔н²н▒ н⌠н≥н²н∙н≥ н∙н²н∙н║н⌠н≈\n"
+"н■н∙н² н≤н▒ н°н═н÷н║н∙н≥н╓н∙ н²н▒ н н▒н²н∙н╓н∙ н н▒н°н≥н▒ н▒н⌡н⌡н▒н⌠н≈. н°н═н÷н║н∙н≥н╓н∙ н²н▒\n"
+"н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён∙н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒ н■н≥н▒н⌡н∙н⌠н÷н²н╓н▒нё н╓н≈н² н∙н═н≥н⌡н÷н⌠н≈\n"
+"<b>н▒н⌡н⌡н▒н⌠н≈ н н▒н╓н▒нён╓н▒нён≈нё н╔н═н▒н║н╖н÷н╔нён▒нё н∙н║н∙н╔н²н▒нё</b> н▒н═н÷\n"
+"н╓н÷ н═н∙н║н≥н▓н▒н⌡н⌡н÷н² н■н≥н▒н╖н∙н≥н║н≥нён≈нё."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 31
+#, fuzzy
 msgid ""
 "The information on this tab applies to the whole survey.\n"
-"Fill out this page then go to the <b>Fields</b> tab to\n"
+"Fill out this page then go to the <strong>Fields</strong> tab to\n"
 "edit individual fields."
 msgstr ""
-"ои пкгяожояиес еды епгяеафоум окг тгм еяеума.\n"
-"сулпкгяысте аутг тгм секида йаи лета пгцаимете\n"
-"ста <b>педиа</b> ысте ма епенеяцастеите йахе\n"
-"педио выяиста."
+"н÷н≥ н═н⌡н≈н║н÷н╕н÷н║н≥н∙нё н∙н■н╘ н∙н═н≈н║н∙н▒н√н÷н╔н² н÷н⌡н≈ н╓н≈н² н∙н║н∙н╔н²н▒.\n"
+"нён╔н°н═н⌡н≈н║н╘нён╓н∙ н▒н╔н╓н≈ н╓н≈н² нён∙н⌡н≥н■н▒ н н▒н≥ н°н∙н╓н▒ н═н≈н⌠н▒н≥н²н∙н╓н∙\n"
+"нён╓н▒ <b>н═н∙н■н≥н▒</b> н╘нён╓н∙ н²н▒ н∙н═н∙н·н∙н║н⌠н▒нён╓н∙н≥н╓н∙ н н▒н≤н∙\n"
+"н═н∙н■н≥н÷ н╖н╘н║н≥нён╓н▒."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 44
 # File: phpESP/admin/include/where/access.inc, line: 163
@@ -507,7 +495,7 @@ msgstr ""
 # File: phpESP/admin/include/where/status.inc, line: 138
 # File: phpESP/admin/include/where/test.inc, line: 109
 msgid "Name"
-msgstr "омола"
+msgstr "н÷н²н÷н°н▒"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 47
 # File: phpESP/admin/include/tab/general.inc, line: 72
@@ -515,24 +503,24 @@ msgstr "омола"
 # File: phpESP/admin/include/tab/questions.inc, line: 126
 #, fuzzy
 msgid "Required"
-msgstr "апаитеитаи;"
+msgstr "н▒н═н▒н≥н╓н∙н≥н╓н▒н≥;"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 49
 msgid "Survey filename."
-msgstr "омола аявеиоу еяеумас"
+msgstr "н÷н²н÷н°н▒ н▒н║н╖н∙н≥н÷н╔ н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 50
 msgid "This is used for all further access to this survey."
 msgstr ""
-"ауто вягсилопоиеитаи циа окес тис упокоипес пяосбасеис се аутг тгм еяеума."
+"н▒н╔н╓н÷ н╖н║н≈нён≥н°н÷н═н÷н≥н∙н≥н╓н▒н≥ н⌠н≥н▒ н÷н⌡н∙нё н╓н≥нё н╔н═н÷н⌡н÷н≥н═н∙нё н═н║н÷нён▓н▒нён∙н≥нё нён∙ н▒н╔н╓н≈ н╓н≈н² н∙н║н∙н╔н²н▒."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 51
 msgid "no spaces"
-msgstr "выяис йема"
+msgstr "н╖н╘н║н≥нё н н∙н²н▒"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 51
 msgid "alpha-numeric only"
-msgstr "ломо акжаяихлгтийоус ваяайтгяес"
+msgstr "н°н÷н²н÷ н▒н⌡н╕н▒н║н≥н≤н°н≈н╓н≥н н÷н╔нё н╖н▒н║н▒н н╓н≈н║н∙нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 55
 # File: phpESP/admin/include/where/access.inc, line: 165
@@ -546,12 +534,12 @@ msgstr "ломо акжаяихлгтийоус ваяайтгяес"
 # File: phpESP/admin/include/where/status.inc, line: 140
 # File: phpESP/admin/include/where/test.inc, line: 111
 msgid "Owner"
-msgstr "идиойтгтгс"
+msgstr "н≥н■н≥н÷н н╓н≈н╓н≈нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 73
 #, fuzzy
 msgid "User and Group that owns this survey."
-msgstr "олада поу евеи аутг тгм еяеума"
+msgstr "н÷н°н▒н■н▒ н═н÷н╔ н∙н╖н∙н≥ н▒н╔н╓н≈ н╓н≈н² н∙н║н∙н╔н²н▒"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 77
 # File: phpESP/admin/include/where/access.inc, line: 164
@@ -565,52 +553,52 @@ msgstr "олада поу евеи аутг тгм еяеума"
 # File: phpESP/admin/include/where/status.inc, line: 139
 # File: phpESP/admin/include/where/test.inc, line: 110
 msgid "Title"
-msgstr "титкос"
+msgstr "н╓н≥н╓н⌡н÷нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 81
 #, fuzzy
 msgid "Title of this survey."
-msgstr "титкос тгс еяеумас"
+msgstr "н╓н≥н╓н⌡н÷нё н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 82
 #, fuzzy
 msgid "This appears at the top of every page of this survey."
-msgstr "ауто елжамифетаи стгм аявг йахе секидас тгс еяеумас"
+msgstr "н▒н╔н╓н÷ н∙н°н╕н▒н²н≥н√н∙н╓н▒н≥ нён╓н≈н² н▒н║н╖н≈ н н▒н≤н∙ нён∙н⌡н≥н■н▒нё н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 83
 # File: phpESP/admin/include/tab/general.inc, line: 92
 #, fuzzy
 msgid "free-form, including spaces"
-msgstr "сулпеяикалбамылемым тым йемым"
+msgstr "нён╔н°н═н∙н║н≥н⌡н▒н°н▓н▒н²н╘н°н∙н²н╘н² н╓н╘н² н н∙н²н╘н²"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 88
 msgid "Subtitle"
-msgstr "употиткос"
+msgstr "н╔н═н÷н╓н≥н╓н⌡н÷нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 91
 #, fuzzy
 msgid "Subtitle of this survey."
-msgstr "употиткос тгс еяеумас"
+msgstr "н╔н═н÷н╓н≥н╓н⌡н÷нё н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 92
 msgid "Appears below the title."
-msgstr "елжамифете йаты апо том титко"
+msgstr "н∙н°н╕н▒н²н≥н√н∙н╓н∙ н н▒н╓н╘ н▒н═н÷ н╓н÷н² н╓н≥н╓н⌡н÷"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 97
 msgid "Additional Info"
-msgstr "епипкеом пкгяожояиес"
+msgstr "н∙н═н≥н═н⌡н∙н÷н² н═н⌡н≈н║н÷н╕н÷н║н≥н∙нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 100
 #, fuzzy
 msgid ""
 "Text to be displayed on this survey before any fields.\n"
 "(i.e. instructions, background info, etc.)"
-msgstr "йеилемо поу ха елжамифетаи стгм еяеума пяим апо йахе педио."
+msgstr "н н∙н≥н°н∙н²н÷ н═н÷н╔ н≤н▒ н∙н°н╕н▒н²н≥н√н∙н╓н▒н≥ нён╓н≈н² н∙н║н∙н╔н²н▒ н═н║н≥н² н▒н═н÷ н н▒н≤н∙ н═н∙н■н≥н÷."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 106
 #, fuzzy
 msgid "Confirmation Page"
-msgstr "йеилемо епибебаиысгс"
+msgstr "н н∙н≥н°н∙н²н÷ н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 109
 msgid "(URL)"
@@ -638,8 +626,8 @@ msgid ""
 "Heading (in bold) and body text for the &quot;Confirmation&quot; page\n"
 "displayed after a user completes this survey."
 msgstr ""
-"епийежакида стгм секида &quot;епибебаиысгс&quot;  (елжамифетаи ле емтома "
-"цяаллата ажоу о еяытгхемтас сулпкгяысеи тгм еяеума). "
+"н∙н═н≥н н∙н╕н▒н⌡н≥н■н▒ нён╓н≈н² нён∙н⌡н≥н■н▒ &quot;н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈нё&quot;  (н∙н°н╕н▒н²н≥н√н∙н╓н▒н≥ н°н∙ н∙н²н╓н÷н²н▒ "
+"н⌠н║н▒н°н°н▒н╓н▒ н▒н╕н÷н╔ н÷ н∙н║н╘н╓н≈н≤н∙н²н╓н▒нё нён╔н°н═н⌡н≈н║н╘нён∙н≥ н╓н≈н² н∙н║н∙н╔н²н▒). "
 #
 # File: phpESP/admin/include/tab/general.inc, line: 118
 msgid "(URL, if present, takes precedent over confirmation text.)"
@@ -649,15 +637,15 @@ msgstr ""
 # File: phpESP/admin/include/where/admdesigner.inc, line: 264
 # File: phpESP/admin/include/where/admrespondent.inc, line: 239
 msgid "Email"
-msgstr "диеухумсг EMAIL"
+msgstr "н■н≥н∙н╔н≤н╔н²нён≈ EMAIL"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 126
 msgid ""
 "Sends a copy of each submission to address (or leave blank for no email "
 "backup)."
 msgstr ""
-"стекмеи ема амтицяажо йахе апамтгсгс се лиа диеухумсг (ч ажгсте то йемо циа "
-"ма лгм упаявеи EMAIL BACKUP)"
+"нён╓н∙н⌡н²н∙н≥ н∙н²н▒ н▒н²н╓н≥н⌠н║н▒н╕н÷ н н▒н≤н∙ н▒н═н▒н²н╓н≈нён≈нё нён∙ н°н≥н▒ н■н≥н∙н╔н≤н╔н²нён≈ (н╝ н▒н╕н≈нён╓н∙ н╓н÷ н н∙н²н÷ н⌠н≥н▒ "
+"н²н▒ н°н≈н² н╔н═н▒н║н╖н∙н≥ EMAIL BACKUP)"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 130
 msgid "Theme"
@@ -670,7 +658,7 @@ msgstr ""
 # File: phpESP/admin/include/tab/general.inc, line: 150
 #, fuzzy
 msgid "Options"
-msgstr "еяытгсеис"
+msgstr "н∙н║н╘н╓н≈нён∙н≥нё"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 152
 msgid "Allow survey respondents to save/resume. (Survey login required.)"
@@ -688,17 +676,17 @@ msgid ""
 "presented by selecting a question from the list, then use the up/down \n"
 "buttons to change its position."
 msgstr ""
-"акканте тг сеияа поу хекете ма\n"
-"елжамисфомтаи ои еяытгсеис диакецомтас\n"
-"тгм епихулгтг хесг апо тгм киста."
+"н▒н⌡н⌡н▒н·н╓н∙ н╓н≈ нён∙н≥н║н▒ н═н÷н╔ н≤н∙н⌡н∙н╓н∙ н²н▒\n"
+"н∙н°н╕н▒н²н≥нён√н÷н²н╓н▒н≥ н÷н≥ н∙н║н╘н╓н≈нён∙н≥нё н■н≥н▒н⌡н∙н⌠н÷н²н╓н▒нё\n"
+"н╓н≈н² н∙н═н≥н≤н╔н°н≈н╓н≈ н≤н∙нён≈ н▒н═н÷ н╓н≈н² н⌡н≥нён╓н▒."
 #
 # File: phpESP/admin/include/tab/order.inc, line: 89
 msgid "----- Section Break -----"
-msgstr "аккацг толеа"
+msgstr "н▒н⌡н⌡н▒н⌠н≈ н╓н÷н°н∙н▒"
 #
 # File: phpESP/admin/include/tab/order.inc, line: 96
 msgid "Add Section Break"
-msgstr "пяосхгйг толеа"
+msgstr "н═н║н÷нён≤н≈н н≈ н╓н÷н°н∙н▒"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 43
 #, fuzzy
@@ -712,17 +700,17 @@ msgid ""
 "further changes click <b>Finish</b> at the bottom of\n"
 "this page."
 msgstr ""
-"аутг еимаи лиа еписйопгсг тгс еяеумас.\n"
-"стгм еписйопгсг та йоулпиа &quot;еполемг\n"
-"секида&quot; йаи &quot;апостокг апамтгсеым&quot;\n"
-"еимаи амемеяца. г еяеума ха вягсилопоигсеи\n"
-"та вяылата тгс истиосекидас поу ха\n"
-"сулпеяикгжхеи. еам дем хекете ма йамете\n"
-"аккес аккацес йамте йкий сто <b>текос</b>."
+"н▒н╔н╓н≈ н∙н≥н²н▒н≥ н°н≥н▒ н∙н═н≥нён н÷н═н≈нён≈ н╓н≈нё н∙н║н∙н╔н²н▒нё.\n"
+"нён╓н≈н² н∙н═н≥нён н÷н═н≈нён≈ н╓н▒ н н÷н╔н°н═н≥н▒ &quot;н∙н═н÷н°н∙н²н≈\n"
+"нён∙н⌡н≥н■н▒&quot; н н▒н≥ &quot;н▒н═н÷нён╓н÷н⌡н≈ н▒н═н▒н²н╓н≈нён∙н╘н²&quot;\n"
+"н∙н≥н²н▒н≥ н▒н²н∙н²н∙н║н⌠н▒. н≈ н∙н║н∙н╔н²н▒ н≤н▒ н╖н║н≈нён≥н°н÷н═н÷н≥н≈нён∙н≥\n"
+"н╓н▒ н╖н║н╘н°н▒н╓н▒ н╓н≈нё н≥нён╓н≥н÷нён∙н⌡н≥н■н▒нё н═н÷н╔ н≤н▒\n"
+"нён╔н°н═н∙н║н≥н⌡н≈н╕н≤н∙н≥. н∙н▒н² н■н∙н² н≤н∙н⌡н∙н╓н∙ н²н▒ н н▒н²н∙н╓н∙\n"
+"н▒н⌡н⌡н∙нё н▒н⌡н⌡н▒н⌠н∙нё н н▒н²н╓н∙ н н⌡н≥н  нён╓н÷ <b>н╓н∙н⌡н÷нё</b>."
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 52
 msgid "Section"
-msgstr "толеас"
+msgstr "н╓н÷н°н∙н▒нё"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 77
 msgid "Previous Page"
@@ -734,38 +722,47 @@ msgstr ""
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 82
 msgid "Next Page"
-msgstr "еполемг секида"
+msgstr "н∙н═н÷н°н∙н²н≈ нён∙н⌡н≥н■н▒"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 84
 msgid "Submit Survey"
-msgstr "апостокг апамтгсеым"
+msgstr "н▒н═н÷нён╓н÷н⌡н≈ н▒н═н▒н²н╓н≈нён∙н╘н²"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "New Question"
+msgstr "н∙н║н╘н╓н≈нён∙н≥нё"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 106
+#, fuzzy
 msgid ""
-"Edit this field, or click the number of the field you would like to edit:"
+"Edit this question, or click the number of the question you would like to "
+"edit:"
 msgstr ""
-"диояхысте то педио ч йамте йкий стом аяихло тоу педиоу поу хекете ма "
-"диояхысете:"
+"н■н≥н÷н║н≤н╘нён╓н∙ н╓н÷ н═н∙н■н≥н÷ н╝ н н▒н²н╓н∙ н н⌡н≥н  нён╓н÷н² н▒н║н≥н≤н°н÷ н╓н÷н╔ н═н∙н■н≥н÷н╔ н═н÷н╔ н≤н∙н⌡н∙н╓н∙ н²н▒ "
+"н■н≥н÷н║н≤н╘нён∙н╓н∙:"
 #
-# File: phpESP/admin/include/tab/questions.inc, line: 117
-msgid "Field"
-msgstr "педио"
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Question"
+msgstr "н∙н║н╘н╓н≈нён∙н≥нё"
 #
-# File: phpESP/admin/include/tab/questions.inc, line: 122
-msgid "Field Name"
-msgstr "омола педиоу"
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Question Name"
+msgstr "н∙н║н╘н╓н≈нён∙н≥нё"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 123
 msgid "Type"
-msgstr "тупос"
+msgstr "н╓н╔н═н÷нё"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 124
 msgid "Length"
-msgstr "лгйос"
+msgstr "н°н≈н н÷нё"
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 125
 msgid "Precision"
-msgstr "айяибеиа (Precision)"
+msgstr "н▒н н║н≥н▓н∙н≥н▒ (Precision)"
 #
 # File: phpESP/admin/include/tab/questions_options.inc, line: 38
 #, fuzzy
@@ -775,27 +772,27 @@ msgid ""
 "fill-in-the-blank answer at the end of this question.\n"
 "Any blank lines will be suppressed."
 msgstr ""
-"еисацете тис пихамес апамтгсеис (ам апаитеитаи)\n"
-"еисацете <tt>!other</tt> се лиа цяаллг циа ма \n"
-"дглиоуяцгсете йемо педио циа екеухеяг апамтгсг.\n"
-"ои йемес цяаллес дем ха упаявоум стгм текийг еяеума."
+"н∙н≥нён▒н⌠н∙н╓н∙ н╓н≥нё н═н≥н≤н▒н²н∙нё н▒н═н▒н²н╓н≈нён∙н≥нё (н▒н² н▒н═н▒н≥н╓н∙н≥н╓н▒н≥)\n"
+"н∙н≥нён▒н⌠н∙н╓н∙ <tt>!other</tt> нён∙ н°н≥н▒ н⌠н║н▒н°н°н≈ н⌠н≥н▒ н²н▒ \n"
+"н■н≈н°н≥н÷н╔н║н⌠н≈нён∙н╓н∙ н н∙н²н÷ н═н∙н■н≥н÷ н⌠н≥н▒ н∙н⌡н∙н╔н≤н∙н║н≈ н▒н═н▒н²н╓н≈нён≈.\n"
+"н÷н≥ н н∙н²н∙нё н⌠н║н▒н°н°н∙нё н■н∙н² н≤н▒ н╔н═н▒н║н╖н÷н╔н² нён╓н≈н² н╓н∙н⌡н≥н н≈ н∙н║н∙н╔н²н▒."
 #
 # File: phpESP/admin/include/tab/questions_options.inc, line: 70
 msgid "Add another answer line"
-msgstr "пяосхгйг меас цяаллгс апамтгсгс"
+msgstr "н═н║н÷нён≤н≈н н≈ н²н∙н▒нё н⌠н║н▒н°н°н≈нё н▒н═н▒н²н╓н≈нён≈нё"
 #
 # File: phpESP/admin/include/where/access.inc, line: 83
 msgid "Please select a group."
-msgstr "паяайакы диакенте лиа олада"
+msgstr "н═н▒н║н▒н н▒н⌡н╘ н■н≥н▒н⌡н∙н·н╓н∙ н°н≥н▒ н÷н°н▒н■н▒"
 #
 # File: phpESP/admin/include/where/access.inc, line: 104
 # File: phpESP/admin/include/where/access.inc, line: 232
 msgid "Private"
-msgstr "идиытийг"
+msgstr "н≥н■н≥н╘н╓н≥н н≈"
 #
 # File: phpESP/admin/include/where/access.inc, line: 140
 msgid "Survey Access"
-msgstr "пяосбасг еяеумас"
+msgstr "н═н║н÷нён▓н▒нён≈ н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/access.inc, line: 146
 msgid ""
@@ -803,19 +800,19 @@ msgid ""
 "Public surveys let anyone submit data.\n"
 "Private surveys are restricted by Respondent Groups."
 msgstr ""
-"ауто сас епитяепеи ма екецвете поиос евеи пяосбасг\n"
-"ма сулпкгяымеи лиа жояла. ои дглосиес еяеумес лпояоум\n"
-"ма сулпкгяыхоум апо опоиомдгпоте. ои идиытийес еяеумес\n"
-"еимаи пеяиояислемес стгм олада еяытгхемтым."
+"н▒н╔н╓н÷ нён▒нё н∙н═н≥н╓н║н∙н═н∙н≥ н²н▒ н∙н⌡н∙н⌠н╖н∙н╓н∙ н═н÷н≥н÷нё н∙н╖н∙н≥ н═н║н÷нён▓н▒нён≈\n"
+"н²н▒ нён╔н°н═н⌡н≈н║н╘н²н∙н≥ н°н≥н▒ н╕н÷н║н°н▒. н÷н≥ н■н≈н°н÷нён≥н∙нё н∙н║н∙н╔н²н∙нё н°н═н÷н║н÷н╔н²\n"
+"н²н▒ нён╔н°н═н⌡н≈н║н╘н≤н÷н╔н² н▒н═н÷ н÷н═н÷н≥н÷н²н■н≈н═н÷н╓н∙. н÷н≥ н≥н■н≥н╘н╓н≥н н∙нё н∙н║н∙н╔н²н∙нё\n"
+"н∙н≥н²н▒н≥ н═н∙н║н≥н÷н║н≥нён°н∙н²н∙нё нён╓н≈н² н÷н°н▒н■н▒ н∙н║н╘н╓н≈н≤н∙н²н╓н╘н²."
 #
 # File: phpESP/admin/include/where/access.inc, line: 150
 msgid "Note"
-msgstr "сглеиысг"
+msgstr "нён≈н°н∙н≥н╘нён≈"
 #
 # File: phpESP/admin/include/where/access.inc, line: 151
 #, fuzzy
 msgid "You must use %s when using private surveys."
-msgstr "отам вягсилопоиоумтаи ои идиытийес еяеумес"
+msgstr "н÷н╓н▒н² н╖н║н≈нён≥н°н÷н═н÷н≥н÷н╔н²н╓н▒н≥ н÷н≥ н≥н■н≥н╘н╓н≥н н∙нё н∙н║н∙н╔н²н∙нё"
 #
 # File: phpESP/admin/include/where/access.inc, line: 166
 # File: phpESP/admin/include/where/access.inc, line: 169
@@ -834,12 +831,12 @@ msgstr "отам вягсилопоиоумтаи ои идиытийес еяеумес"
 # File: phpESP/admin/include/where/status.inc, line: 141
 # File: phpESP/admin/include/where/test.inc, line: 112
 msgid "Group"
-msgstr "олада"
+msgstr "н÷н°н▒н■н▒"
 #
 # File: phpESP/admin/include/where/access.inc, line: 170
 #, fuzzy
 msgid "Max Responses"
-msgstr "апамтгсг"
+msgstr "н▒н═н▒н²н╓н≈нён≈"
 #
 # File: phpESP/admin/include/where/access.inc, line: 171
 msgid "Save/Restore"
@@ -851,20 +848,20 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/access.inc, line: 184
 msgid "Remove"
-msgstr "ажаияесг"
+msgstr "н▒н╕н▒н≥н║н∙нён≈"
 #
 # File: phpESP/admin/include/where/access.inc, line: 190
 # File: phpESP/admin/include/where/groups.inc, line: 92
 msgid "Add"
-msgstr "пяосхгйг"
+msgstr "н═н║н÷нён≤н≈н н≈"
 #
 # File: phpESP/admin/include/where/access.inc, line: 233
 msgid "Make Public"
-msgstr "летатяопг се дглосиа"
+msgstr "н°н∙н╓н▒н╓н║н÷н═н≈ нён∙ н■н≈н°н÷нён≥н▒"
 #
 # File: phpESP/admin/include/where/access.inc, line: 236
 msgid "Make Private"
-msgstr "летатяопг се идиытийг"
+msgstr "н°н∙н╓н▒н╓н║н÷н═н≈ нён∙ н≥н■н≥н╘н╓н≥н н≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 14
 # File: phpESP/admin/include/where/admrespondent.inc, line: 14
@@ -876,43 +873,43 @@ msgstr "летатяопг се идиытийг"
 # File: phpESP/admin/include/where/tab.inc, line: 86
 # File: phpESP/admin/include/where/upload.inc, line: 19
 msgid "to access this form"
-msgstr "цоа тгм пяосбасг се аутг тгм жояла"
+msgstr "н⌠н÷н▒ н╓н≈н² н═н║н÷нён▓н▒нён≈ нён∙ н▒н╔н╓н≈ н╓н≈н² н╕н÷н║н°н▒"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 41
 # File: phpESP/admin/include/where/admdesigner.inc, line: 106
 # File: phpESP/admin/include/where/admrespondent.inc, line: 41
 # File: phpESP/admin/include/where/admrespondent.inc, line: 99
 msgid "to access this group"
-msgstr "циа тгм пяосбасг се аутг тгм олада"
+msgstr "н⌠н≥н▒ н╓н≈н² н═н║н÷нён▓н▒нён≈ нён∙ н▒н╔н╓н≈ н╓н≈н² н÷н°н▒н■н▒"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 45
 # File: phpESP/admin/include/where/admrespondent.inc, line: 45
 msgid "Cannot delete account."
-msgstr "дем еимаи думатом ма диацяажеи о коцаяиаслос"
+msgstr "н■н∙н² н∙н≥н²н▒н≥ н■н╔н²н▒н╓н÷н² н²н▒ н■н≥н▒н⌠н║н▒н╕н∙н≥ н÷ н⌡н÷н⌠н▒н║н≥н▒нён°н÷нё"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 111
 # File: phpESP/admin/include/where/admrespondent.inc, line: 104
 msgid "Username, Password, and Group are required."
-msgstr "то омола вягстг, о йыдийос йаи г олада апаитоумтаи"
+msgstr "н╓н÷ н÷н²н÷н°н▒ н╖н║н≈нён╓н≈, н÷ н н╘н■н≥н н÷нё н н▒н≥ н≈ н÷н°н▒н■н▒ н▒н═н▒н≥н╓н÷н╔н²н╓н▒н≥"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 119
 # File: phpESP/admin/include/where/admrespondent.inc, line: 112
 msgid "Error adding account."
-msgstr "кахос йата тгм пяосхгйг коцаяиаслоу"
+msgstr "н⌡н▒н≤н÷нё н н▒н╓н▒ н╓н≈н² н═н║н÷нён≤н≈н н≈ н⌡н÷н⌠н▒н║н≥н▒нён°н÷н╔"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 154
 # File: phpESP/admin/include/where/admrespondent.inc, line: 136
 msgid "Cannot change account data."
-msgstr "дем еимаи думатом ма аккавхоум та дедолема тоу коцаяиаслоу"
+msgstr "н■н∙н² н∙н≥н²н▒н≥ н■н╔н²н▒н╓н÷н² н²н▒ н▒н⌡н⌡н▒н╖н≤н÷н╔н² н╓н▒ н■н∙н■н÷н°н∙н²н▒ н╓н÷н╔ н⌡н÷н⌠н▒н║н≥н▒нён°н÷н╔"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 202
 # File: phpESP/admin/include/where/admrespondent.inc, line: 176
 msgid "Account not found."
-msgstr "о коцаяиаслос дем бяехгйе"
+msgstr "н÷ н⌡н÷н⌠н▒н║н≥н▒нён°н÷нё н■н∙н² н▓н║н∙н≤н≈н н∙"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 208
 msgid "Designer Account Administration"
-msgstr "диавеияисг коцаяиаслоу сведиастг"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён≈ н⌡н÷н⌠н▒н║н≥н▒нён°н÷н╔ нён╖н∙н■н≥н▒нён╓н≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 214
 # File: phpESP/admin/include/where/admrespondent.inc, line: 189
@@ -922,13 +919,13 @@ msgstr "диавеияисг коцаяиаслоу сведиастг"
 # File: phpESP/admin/include/where/respondents.inc, line: 93
 # File: phpESP/public/signup.php, line: 147
 msgid "Username"
-msgstr "омола вягстг"
+msgstr "н÷н²н÷н°н▒ н╖н║н≈нён╓н≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 223
 # File: phpESP/admin/include/where/admrespondent.inc, line: 198
 # File: phpESP/public/signup.php, line: 152
 msgid "Password"
-msgstr "йыдийос"
+msgstr "н н╘н■н≥н н÷нё"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 254
 # File: phpESP/admin/include/where/admrespondent.inc, line: 229
@@ -936,7 +933,7 @@ msgstr "йыдийос"
 # File: phpESP/admin/include/where/respondents.inc, line: 94
 # File: phpESP/public/signup.php, line: 132
 msgid "First Name"
-msgstr "омола"
+msgstr "н÷н²н÷н°н▒"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 259
 # File: phpESP/admin/include/where/admrespondent.inc, line: 234
@@ -944,90 +941,90 @@ msgstr "омола"
 # File: phpESP/admin/include/where/respondents.inc, line: 95
 # File: phpESP/public/signup.php, line: 137
 msgid "Last Name"
-msgstr "епымуло"
+msgstr "н∙н═н╘н²н╔н°н÷"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 269
 # File: phpESP/admin/include/where/admrespondent.inc, line: 244
 msgid "Expiration"
-msgstr "кгнг"
+msgstr "н⌡н≈н·н≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 274
 # File: phpESP/admin/include/where/admrespondent.inc, line: 249
 msgid "year"
-msgstr "етос"
+msgstr "н∙н╓н÷нё"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 275
 # File: phpESP/admin/include/where/admrespondent.inc, line: 250
 msgid "month"
-msgstr "лгмас"
+msgstr "н°н≈н²н▒нё"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 276
 # File: phpESP/admin/include/where/admrespondent.inc, line: 251
 msgid "day"
-msgstr "глеяа"
+msgstr "н≈н°н∙н║н▒"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 280
 # File: phpESP/admin/include/where/admrespondent.inc, line: 255
 msgid "Disabled"
-msgstr "амемеяцо"
+msgstr "н▒н²н∙н²н∙н║н⌠н÷"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 285
 # File: phpESP/admin/include/where/admdesigner.inc, line: 322
 # File: phpESP/admin/include/where/admrespondent.inc, line: 260
 msgid "Update"
-msgstr "амамеысг"
+msgstr "н▒н²н▒н²н∙н╘нён≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 286
 # File: phpESP/admin/include/where/admdesigner.inc, line: 323
 # File: phpESP/admin/include/where/admrespondent.inc, line: 261
 msgid "Cancel"
-msgstr "айуяысг"
+msgstr "н▒н н╔н║н╘нён≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 287
 # File: phpESP/admin/include/where/admdesigner.inc, line: 324
 # File: phpESP/admin/include/where/admrespondent.inc, line: 262
 # File: phpESP/admin/include/where/groups.inc, line: 76
 msgid "Delete"
-msgstr "диацяажг"
+msgstr "н■н≥н▒н⌠н║н▒н╕н≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 290
 msgid "Design Surveys"
-msgstr "сведиасг еяеумым"
+msgstr "нён╖н∙н■н≥н▒нён≈ н∙н║н∙н╔н²н╘н²"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 295
 msgid "Change Survey Status"
-msgstr "акканте тгм йатастасг тгс еяеумас"
+msgstr "н▒н⌡н⌡н▒н·н╓н∙ н╓н≈н² н н▒н╓н▒нён╓н▒нён≈ н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 297
 msgid "Activate/End"
-msgstr "емеяцопоигсг/кгнг"
+msgstr "н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён≈/н⌡н≈н·н≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 301
 msgid "Export Survey Data"
-msgstr "енацыцг дедолемым еяеумас"
+msgstr "н∙н·н▒н⌠н╘н⌠н≈ н■н∙н■н÷н°н∙н²н╘н² н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 306
 msgid "Group Editor"
-msgstr "епенеяцасиа оладым"
+msgstr "н∙н═н∙н·н∙н║н⌠н▒нён≥н▒ н÷н°н▒н■н╘н²"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 308
 msgid "may edit <b>all</b> forms owned by this group"
 msgstr ""
-"лпояоум ма диояхыхоум <b>окес</b> ои жоялес поу амгйоум се аутг тгм олада"
+"н°н═н÷н║н÷н╔н² н²н▒ н■н≥н÷н║н≤н╘н≤н÷н╔н² <b>н÷н⌡н∙нё</b> н÷н≥ н╕н÷н║н°н∙нё н═н÷н╔ н▒н²н≈н н÷н╔н² нён∙ н▒н╔н╓н≈ н╓н≈н² н÷н°н▒н■н▒"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 312
 #, fuzzy
 msgid "Administer Designers"
-msgstr "пяосхгйг меоу сведиастг"
+msgstr "н═н║н÷нён≤н≈н н≈ н²н∙н÷н╔ нён╖н∙н■н≥н▒нён╓н≈"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 317
 #, fuzzy
 msgid "Administer Respondents"
-msgstr "диавеияистеите тгм олада еяытгхемтес"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён╓н∙н≥н╓н∙ н╓н≈н² н÷н°н▒н■н▒ н∙н║н╘н╓н≈н≤н∙н²н╓н∙нё"
 #
 # File: phpESP/admin/include/where/admrespondent.inc, line: 183
 msgid "Respondent Account Administration"
-msgstr "диавеияисг коцаяиаслым еяытгхемтым"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён≈ н⌡н÷н⌠н▒н║н≥н▒нён°н╘н² н∙н║н╘н╓н≈н≤н∙н²н╓н╘н²"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 24
 # File: phpESP/admin/include/where/download.inc, line: 38
@@ -1039,15 +1036,15 @@ msgstr "диавеияисг коцаяиаслым еяытгхемтым"
 # File: phpESP/admin/include/where/status.inc, line: 100
 # File: phpESP/admin/include/where/test.inc, line: 35
 msgid "to access this survey"
-msgstr "циа тгм пяосбасг се аутг тгм еяеума"
+msgstr "н⌠н≥н▒ н╓н≈н² н═н║н÷нён▓н▒нён≈ нён∙ н▒н╔н╓н≈ н╓н≈н² н∙н║н∙н╔н²н▒"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 30
 msgid "Error copying survey."
-msgstr "кахос йата тгм амтицяажг тгс еяеумас"
+msgstr "н⌡н▒н≤н÷нё н н▒н╓н▒ н╓н≈н² н▒н²н╓н≥н⌠н║н▒н╕н≈ н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 61
 msgid "Copy Survey"
-msgstr "амтицяажг еяеумас"
+msgstr "н▒н²н╓н≥н⌠н║н▒н╕н≈ н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 63
 #, fuzzy
@@ -1056,11 +1053,10 @@ msgid ""
 "status of a newly created survey. You will be able to edit the\n"
 "survey, and will have to activate it before use."
 msgstr ""
-"\n"
-"епи╦нте лиа еяеума циа ма тгм амтицяаьете. то амтицяажо ха евеи\n"
-"айяибыс тгм идиа йатастасн ле лиа йаимоуяциа еяеума. ха лпояеите\n"
-"ма епенеяцастеите тгм еяеума йаи ха пяепеи ма тгм емеяцопоигсете пяим тгм "
-"вягсилопоигсете. "
+"н∙н═н≥н┬н·н╓н∙ н°н≥н▒ н∙н║н∙н╔н²н▒ н⌠н≥н▒ н²н▒ н╓н≈н² н▒н²н╓н≥н⌠н║н▒н╗н∙н╓н∙. н╓н÷ н▒н²н╓н≥н⌠н║н▒н╕н÷ н≤н▒ н∙н╖н∙н≥\n"
+"н▒н н║н≥н▓н╘нё н╓н≈н² н≥н■н≥н▒ н н▒н╓н▒нён╓н▒нён· н°н∙ н°н≥н▒ н н▒н≥н²н÷н╔н║н⌠н≥н▒ н∙н║н∙н╔н²н▒. н≤н▒ н°н═н÷н║н∙н≥н╓н∙\n"
+"н²н▒ н∙н═н∙н·н∙н║н⌠н▒нён╓н∙н≥н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒ н н▒н≥ н≤н▒ н═н║н∙н═н∙н≥ н²н▒ н╓н≈н² н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён∙н╓н∙ н═н║н≥н² н╓н≈н² "
+"н╖н║н≈нён≥н°н÷н═н÷н≥н≈нён∙н╓н∙. "
 #
 # File: phpESP/admin/include/where/copy.inc, line: 71
 # File: phpESP/admin/include/where/export.inc, line: 35
@@ -1068,42 +1064,42 @@ msgstr ""
 # File: phpESP/admin/include/where/status.inc, line: 105
 # File: phpESP/admin/include/where/status.inc, line: 142
 msgid "Status"
-msgstr "йатастасг"
+msgstr "н н▒н╓н▒нён╓н▒нён≈"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 79
 # File: phpESP/admin/include/where/export.inc, line: 61
 # File: phpESP/admin/include/where/purge.inc, line: 65
 # File: phpESP/admin/include/where/status.inc, line: 181
 msgid "Archived"
-msgstr "аявеиохетглемг"
+msgstr "н▒н║н╖н∙н≥н÷н≤н∙н╓н≈н°н∙н²н≈"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 81
 # File: phpESP/admin/include/where/export.inc, line: 64
 # File: phpESP/admin/include/where/purge.inc, line: 67
 # File: phpESP/admin/include/where/status.inc, line: 185
 msgid "Ended"
-msgstr "кгцлемг"
+msgstr "н⌡н≈н⌠н°н∙н²н≈"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 83
 # File: phpESP/admin/include/where/export.inc, line: 66
 # File: phpESP/admin/include/where/purge.inc, line: 69
 # File: phpESP/admin/include/where/status.inc, line: 188
 msgid "Active"
-msgstr "емеяцг"
+msgstr "н∙н²н∙н║н⌠н≈"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 85
 # File: phpESP/admin/include/where/export.inc, line: 68
 # File: phpESP/admin/include/where/purge.inc, line: 71
 # File: phpESP/admin/include/where/status.inc, line: 191
 msgid "Testing"
-msgstr "се дойилг"
+msgstr "нён∙ н■н÷н н≥н°н≈"
 #
 # File: phpESP/admin/include/where/copy.inc, line: 87
 # File: phpESP/admin/include/where/export.inc, line: 58
 # File: phpESP/admin/include/where/purge.inc, line: 73
 # File: phpESP/admin/include/where/status.inc, line: 174
 msgid "Editing"
-msgstr "се епенеяцасиа"
+msgstr "нён∙ н∙н═н∙н·н∙н║н⌠н▒нён≥н▒"
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 19
 # File: phpESP/admin/include/where/crosstab.inc, line: 27
@@ -1129,23 +1125,23 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/designers.inc, line: 90
 msgid "Manage Web Form Designer Accounts"
-msgstr "диавеияисг дийтуайгс жоялас коцаяиаслым сведиастым"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён≈ н■н≥н н╓н╔н▒н н≈нё н╕н÷н║н°н▒нё н⌡н÷н⌠н▒н║н≥н▒нён°н╘н² нён╖н∙н■н≥н▒нён╓н╘н²"
 #
 # File: phpESP/admin/include/where/designers.inc, line: 91
 # File: phpESP/admin/include/where/respondents.inc, line: 90
 msgid "Click on a username to edit, or click on add new user below."
 msgstr ""
-"йамте йкий се ема омола вягстг циа ма диояхысете ч йамте йкий сто пяосхгйг "
-"меоу вягстг паяайаты."
+"н н▒н²н╓н∙ н н⌡н≥н  нён∙ н∙н²н▒ н÷н²н÷н°н▒ н╖н║н≈нён╓н≈ н⌠н≥н▒ н²н▒ н■н≥н÷н║н≤н╘нён∙н╓н∙ н╝ н н▒н²н╓н∙ н н⌡н≥н  нён╓н÷ н═н║н÷нён≤н≈н н≈ "
+"н²н∙н÷н╔ н╖н║н≈нён╓н≈ н═н▒н║н▒н н▒н╓н╘."
 #
 # File: phpESP/admin/include/where/designers.inc, line: 106
 # File: phpESP/admin/include/where/respondents.inc, line: 105
 msgid "disabled"
-msgstr "амемеяцг"
+msgstr "н▒н²н∙н²н∙н║н⌠н≈"
 #
 # File: phpESP/admin/include/where/designers.inc, line: 138
 msgid "Add a new Designer"
-msgstr "пяосхгйг меоу сведиастг"
+msgstr "н═н║н÷нён≤н≈н н≈ н²н∙н÷н╔ нён╖н∙н■н≥н▒нён╓н≈"
 #
 # File: phpESP/admin/include/where/designers.inc, line: 143
 msgid "Bulk Upload Designers"
@@ -1153,47 +1149,34 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/download.inc, line: 22
 msgid "Invalid survey ID."
-msgstr "кахос ID еяеумас"
-#
-# File: phpESP/admin/include/where/download.inc, line: 60
-msgid "DBF download not yet implemented."
-msgstr "то йатбесла тоу DBF дем евеи укопоигхеи айола"
-#
-# File: phpESP/admin/include/where/download.inc, line: 62
-# File: phpESP/admin/include/where/export.inc, line: 139
-msgid "The PHP dBase Extension is not installed."
-msgstr "то PHP dBase Extension дем евеи ецйатастахеи"
+msgstr "н⌡н▒н≤н÷нё ID н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/edit.inc, line: 31
 msgid "Edit a Survey"
-msgstr "епенеяцасиа лиас еяеумас"
+msgstr "н∙н═н∙н·н∙н║н⌠н▒нён≥н▒ н°н≥н▒нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/edit.inc, line: 32
 msgid "Pick Survey to Edit"
-msgstr "епикенте тгм еяеума пяос епенеяцасиа"
+msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒ н═н║н÷нё н∙н═н∙н·н∙н║н⌠н▒нён≥н▒"
 #
 # File: phpESP/admin/include/where/export.inc, line: 19
 msgid "Export Data"
-msgstr "енацыцг дедолемым"
+msgstr "н∙н·н▒н⌠н╘н⌠н≈ н■н∙н■н÷н°н∙н²н╘н²"
 #
 # File: phpESP/admin/include/where/export.inc, line: 36
 msgid "Format"
-msgstr "диалояжысг"
+msgstr "н■н≥н▒н°н÷н║н╕н╘нён≈"
 #
-# File: phpESP/admin/include/where/export.inc, line: 84
-# File: phpESP/admin/include/where/test.inc, line: 134
-msgid "CSV"
-msgstr "CSV"
+# File: phpESP/admin/include/where/export.inc, line: 96
+# File: phpESP/admin/include/where/test.inc, line: 141
+msgid "Save On Server"
+msgstr ""
 #
 # File: phpESP/admin/include/where/export.inc, line: 86
 # File: phpESP/admin/include/where/test.inc, line: 135
-msgid "download"
-msgstr "йатебасла"
-#
-# File: phpESP/admin/include/where/export.inc, line: 88
-# File: phpESP/admin/include/where/test.inc, line: 136
-msgid "DBF"
-msgstr "DBF"
+#, fuzzy
+msgid "Download"
+msgstr "н н▒н╓н∙н▓н▒нён°н▒"
 #
 # File: phpESP/admin/include/where/export.inc, line: 116
 # File: phpESP/admin/include/where/export.inc, line: 148
@@ -1201,7 +1184,7 @@ msgstr "DBF"
 # File: phpESP/admin/include/where/results.inc, line: 33
 # File: phpESP/admin/include/where/test.inc, line: 52
 msgid "Testing Survey..."
-msgstr "дойилг еяеумас..."
+msgstr "н■н÷н н≥н°н≈ н∙н║н∙н╔н²н▒нё..."
 #
 # File: phpESP/admin/include/where/export.inc, line: 116
 # File: phpESP/admin/include/where/export.inc, line: 148
@@ -1210,200 +1193,193 @@ msgstr "дойилг еяеумас..."
 msgid "SID"
 msgstr "SID"
 #
+# File: phpESP/admin/include/where/download.inc, line: 62
+# File: phpESP/admin/include/where/export.inc, line: 139
+msgid "The PHP dBase Extension is not installed."
+msgstr "н╓н÷ PHP dBase Extension н■н∙н² н∙н╖н∙н≥ н∙н⌠н н▒н╓н▒нён╓н▒н≤н∙н≥"
+#
 # File: phpESP/admin/include/where/export.inc, line: 151
 msgid "Survey exported as:"
-msgstr "г еяеума енавхгйе ыс:"
+msgstr "н≈ н∙н║н∙н╔н²н▒ н∙н·н▒н╖н≤н≈н н∙ н╘нё:"
 #
 # File: phpESP/admin/include/where/export.inc, line: 153
 msgid "Error exporting survey as:"
-msgstr "кахос йата тгм енацыцг тгс еяеумас ыс:"
+msgstr "н⌡н▒н≤н÷нё н н▒н╓н▒ н╓н≈н² н∙н·н▒н⌠н╘н⌠н≈ н╓н≈нё н∙н║н∙н╔н²н▒нё н╘нё:"
 #
 # File: phpESP/admin/include/where/groups.inc, line: 23
 msgid "Error adding group."
-msgstr "кахос йата тгм пяосхгйг оладас"
+msgstr "н⌡н▒н≤н÷нё н н▒н╓н▒ н╓н≈н² н═н║н÷нён≤н≈н н≈ н÷н°н▒н■н▒нё"
 #
 # File: phpESP/admin/include/where/groups.inc, line: 27
 # File: phpESP/admin/include/where/groups.inc, line: 36
 msgid "Error deleting group."
-msgstr "кахос йата тгм диацяажг оладас"
+msgstr "н⌡н▒н≤н÷нё н н▒н╓н▒ н╓н≈н² н■н≥н▒н⌠н║н▒н╕н≈ н÷н°н▒н■н▒нё"
 #
 # File: phpESP/admin/include/where/groups.inc, line: 32
 msgid "Group is not empty."
-msgstr "г олада евеи дедолема"
+msgstr "н≈ н÷н°н▒н■н▒ н∙н╖н∙н≥ н■н∙н■н÷н°н∙н²н▒"
 #
 # File: phpESP/admin/include/where/groups.inc, line: 48
 # File: phpESP/admin/include/where/manage.inc, line: 69
 msgid "Manage Groups"
-msgstr "диавеияистеите тис оладес"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён╓н∙н≥н╓н∙ н╓н≥нё н÷н°н▒н■н∙нё"
 #
 # File: phpESP/admin/include/where/groups.inc, line: 55
 msgid "Description"
-msgstr "пеяицяажг"
+msgstr "н═н∙н║н≥н⌠н║н▒н╕н≈"
 #
 # File: phpESP/admin/include/where/groups.inc, line: 56
 msgid "Members"
-msgstr "лекг"
+msgstr "н°н∙н⌡н≈"
 #
 # File: phpESP/admin/include/where/guide.inc, line: 19
 msgid "User's guide not found."
-msgstr "то ецвеияидио вягсгс дем бяехгйе"
+msgstr "н╓н÷ н∙н⌠н╖н∙н≥н║н≥н■н≥н÷ н╖н║н≈нён≈нё н■н∙н² н▓н║н∙н≤н≈н н∙"
 #
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
-msgstr "епамасумдесг"
+msgstr "н∙н═н▒н²н▒нён╔н²н■н∙нён≈"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 18
 msgid "Superuser"
 msgstr "SUPERUSER"
 #
-# File: phpESP/admin/include/where/manage.inc, line: 28
-msgid "Choose a function"
-msgstr "епикенте лиа кеитоуяциа"
-#
 # File: phpESP/admin/include/where/manage.inc, line: 35
 msgid "Create a New Survey"
-msgstr "дглиоуяциа меас еяеумас"
+msgstr "н■н≈н°н≥н÷н╔н║н⌠н≥н▒ н²н∙н▒нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 36
 msgid "Edit an Existing Survey"
-msgstr "епенеяцастеите лиа упаявоуса еяеума"
+msgstr "н∙н═н∙н·н∙н║н⌠н▒нён╓н∙н≥н╓н∙ н°н≥н▒ н╔н═н▒н║н╖н÷н╔нён▒ н∙н║н∙н╔н²н▒"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 37
 # File: phpESP/admin/include/where/test.inc, line: 104
 msgid "Test a Survey"
-msgstr "дойилг лиас еяеумас"
+msgstr "н■н÷н н≥н°н≈ н°н≥н▒нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 38
 msgid "Copy an Existing Survey"
-msgstr "амтицяаьте лиа упаявоуса еяеума"
+msgstr "н▒н²н╓н≥н⌠н║н▒н╗н╓н∙ н°н≥н▒ н╔н═н▒н║н╖н÷н╔нён▒ н∙н║н∙н╔н²н▒"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 41
 msgid "Change the Status of a Survey"
-msgstr "акканте тгм йатастасг лиас еяеумас"
+msgstr "н▒н⌡н⌡н▒н·н╓н∙ н╓н≈н² н н▒н╓н▒нён╓н▒нён≈ н°н≥н▒нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 42
 msgid "(active/end/delete)"
-msgstr "(емеяцопоигсг/кгнг/диацяажг)"
+msgstr "(н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён≈/н⌡н≈н·н≈/н■н≥н▒н⌠н║н▒н╕н≈)"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 44
 msgid "Change Access To a Survey"
-msgstr "акканте тгм пяосбасг се лиа еяуема"
+msgstr "н▒н⌡н⌡н▒н·н╓н∙ н╓н≈н² н═н║н÷нён▓н▒нён≈ нён∙ н°н≥н▒ н∙н║н╔н∙н²н▒"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 44
 msgid "Limit Respondents."
-msgstr "пеяиояисте тоус еяытгхемтес"
+msgstr "н═н∙н║н≥н÷н║н≥нён╓н∙ н╓н÷н╔нё н∙н║н╘н╓н≈н≤н∙н²н╓н∙нё"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 48
 msgid "View Results from a Survey"
-msgstr "деите та апотекеслата апо лиа еяеума"
+msgstr "н■н∙н≥н╓н∙ н╓н▒ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒ н▒н═н÷ н°н≥н▒ н∙н║н∙н╔н²н▒"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 49
 #, fuzzy
 msgid "Cross Tabulate Survey Results"
-msgstr "суцвымеусг апотекеслатым еяеумым"
+msgstr "нён╔н⌠н╖н╘н²н∙н╔нён≈ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н╘н² н∙н║н∙н╔н²н╘н²"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 50
 msgid "View a Survey Report"
-msgstr "деите лиа ейхесг еяеумас"
-#
-# File: phpESP/admin/include/where/manage.inc, line: 51
-msgid "Export Data to CSV"
-msgstr "енацыцг стоивеиым се CSV"
+msgstr "н■н∙н≥н╓н∙ н°н≥н▒ н∙н н≤н∙нён≈ н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
-msgstr "акканте том йыдийо сас"
+msgstr "н▒н⌡н⌡н▒н·н╓н∙ н╓н÷н² н н╘н■н≥н н÷ нён▒нё"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 63
 # File: phpESP/admin/include/where/respondents.inc, line: 89
 msgid "Manage Respondent Accounts"
-msgstr "диавеияистеите тоус коцаяиаслоус еяытгхемтым"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён╓н∙н≥н╓н∙ н╓н÷н╔нё н⌡н÷н⌠н▒н║н≥н▒нён°н÷н╔нё н∙н║н╘н╓н≈н≤н∙н²н╓н╘н²"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 67
 msgid "Manage Designer Accounts"
-msgstr "диавеияистеите тоус коцаяиаслоус сведиастым"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён╓н∙н≥н╓н∙ н╓н÷н╔нё н⌡н÷н⌠н▒н║н≥н▒нён°н÷н╔нё нён╖н∙н■н≥н▒нён╓н╘н²"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 76
 msgid "View the list of things still to do"
-msgstr "деите тгм киста ле тис бектиысеис поу ха цимоум"
+msgstr "н■н∙н≥н╓н∙ н╓н≈н² н⌡н≥нён╓н▒ н°н∙ н╓н≥нё н▓н∙н⌡н╓н≥н╘нён∙н≥нё н═н÷н╔ н≤н▒ н⌠н≥н²н÷н╔н²"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 77
 msgid "(development goals)"
-msgstr "(стовои амапяунгс)"
+msgstr "(нён╓н÷н╖н÷н≥ н▒н²н▒н═н║н╔н·н≈нё)"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 78
 msgid "View the User &amp; Administrator Guide"
-msgstr "деите то ецвеияидио вягсгс &amp; диавеияисгс"
+msgstr "н■н∙н≥н╓н∙ н╓н÷ н∙н⌠н╖н∙н≥н║н≥н■н≥н÷ н╖н║н≈нён≈нё &amp; н■н≥н▒н╖н∙н≥н║н≥нён≈нё"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 183
+msgid "Click here to open the Help window."
+msgstr "н н▒н²н╓н∙ н н⌡н≥н  н∙н■н╘ н⌠н≥н▒ н²н▒ н▒н²н÷н≥н·н∙н╓н∙ н╓н≈н² н▓н÷н≈н≤н∙н≥н▒"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 83
 msgid "Log out"
-msgstr "енодос"
+msgstr "н∙н·н÷н■н÷нё"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 24
 msgid "SIDS"
 msgstr "SIDS"
 #
-# File: phpESP/admin/include/where/merge.inc, line: 86
-msgid "Error!"
-msgstr "кахос!"
-#
-# File: phpESP/admin/include/where/merge.inc, line: 87
-msgid "You need to select at least two surveys!"
-msgstr "пяепеи ма епикенете тоукавистом дуо еяеумес!"
-#
 # File: phpESP/admin/include/where/merge.inc, line: 124
 msgid "Merge Survey Results"
-msgstr "суцвымеусг апотекеслатым еяеумым"
+msgstr "нён╔н⌠н╖н╘н²н∙н╔нён≈ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н╘н² н∙н║н∙н╔н²н╘н²"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 125
 msgid "Pick Surveys to Merge"
-msgstr "епикенте тис еяеумес пяос суцвымеусг"
+msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н╓н≥нё н∙н║н∙н╔н²н∙нё н═н║н÷нё нён╔н⌠н╖н╘н²н∙н╔нён≈"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 128
 msgid "List of Surveys"
-msgstr "киста еяеумым"
+msgstr "н⌡н≥нён╓н▒ н∙н║н∙н╔н²н╘н²"
 #
 # File: phpESP/admin/include/where/merge.inc, line: 130
 msgid "Surveys to Merge"
-msgstr "еяеумес циа суцвымеусг"
+msgstr "н∙н║н∙н╔н²н∙нё н⌠н≥н▒ нён╔н⌠н╖н╘н²н∙н╔нён≈"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 13
 # File: phpESP/admin/include/where/passwd.inc, line: 56
 msgid "Change Password"
-msgstr "аккацг йыдийоу"
+msgstr "н▒н⌡н⌡н▒н⌠н≈ н н╘н■н≥н н÷н╔"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 22
 msgid "Your password has been successfully changed."
-msgstr "о йыдийос сас аккане епитувыс"
+msgstr "н÷ н н╘н■н≥н н÷нё нён▒нё н▒н⌡н⌡н▒н·н∙ н∙н═н≥н╓н╔н╖н╘нё"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 26
 msgid "Password not set, check your old password."
-msgstr "о йыдийос сас дем аккане, екецнте том пакио сас йыдийо"
+msgstr "н÷ н н╘н■н≥н н÷нё нён▒нё н■н∙н² н▒н⌡н⌡н▒н·н∙, н∙н⌡н∙н⌠н·н╓н∙ н╓н÷н² н═н▒н⌡н≥н÷ нён▒нё н н╘н■н≥н н÷"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 29
 msgid "New passwords do not match or are blank."
-msgstr "ои меои йыдийои дем таияиафоум ч еимаи йемои."
+msgstr "н÷н≥ н²н∙н÷н≥ н н╘н■н≥н н÷н≥ н■н∙н² н╓н▒н≥н║н≥н▒н√н÷н╔н² н╝ н∙н≥н²н▒н≥ н н∙н²н÷н≥."
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 41
 msgid "Old Password"
-msgstr "пакиос йыдийос"
+msgstr "н═н▒н⌡н≥н÷нё н н╘н■н≥н н÷нё"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 46
 msgid "New Password"
-msgstr "меос йыдийос"
+msgstr "н²н∙н÷нё н н╘н■н≥н н÷нё"
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 51
 msgid "Confirm New Password"
-msgstr "епибебаиысг меоу йыдийоу"
+msgstr "н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈ н²н∙н÷н╔ н н╘н■н≥н н÷н╔"
 #
 # File: phpESP/admin/include/where/purge.inc, line: 12
 msgid "Only superusers allowed."
-msgstr "епитяепомтаи ломо ои SUPERUSERS"
+msgstr "н∙н═н≥н╓н║н∙н═н÷н²н╓н▒н≥ н°н÷н²н÷ н÷н≥ SUPERUSERS"
 #
 # File: phpESP/admin/include/where/purge.inc, line: 38
 # File: phpESP/admin/include/where/purge.inc, line: 103
 msgid "Purge Surveys"
-msgstr "диацяажг еяеумым"
+msgstr "н■н≥н▒н⌠н║н▒н╕н≈ н∙н║н∙н╔н²н╘н²"
 #
 # File: phpESP/admin/include/where/purge.inc, line: 40
 msgid ""
@@ -1417,61 +1393,61 @@ msgid ""
 "back."
 msgstr ""
 "\n"
-"г секида аутг дем еимаи сто йемтяийо лемоу епеидг еимаи\n"
-"епийимудмо. ауто диацяажеи <b>емтекыс</b> тгм еяеума\n"
-"апо тгм басг дедолемым циа <b>памта</b>. окес ои еяытгсеис,\n"
-"ои пкгяожояиес, та апотекеслата, йкп ха диацяажоум. лгм\n"
-"пяовыягсете ам дем еисте апокутыс бебаиои. дем упаявеи\n"
-"аккг епибебаиысг йаи дем ха лпояесете ма амайтгсете та дедолема\n"
-"поте."
+"н≈ нён∙н⌡н≥н■н▒ н▒н╔н╓н≈ н■н∙н² н∙н≥н²н▒н≥ нён╓н÷ н н∙н²н╓н║н≥н н÷ н°н∙н²н÷н╔ н∙н═н∙н≥н■н≈ н∙н≥н²н▒н≥\n"
+"н∙н═н≥н н≥н²н╔н■н²н÷. н▒н╔н╓н÷ н■н≥н▒н⌠н║н▒н╕н∙н≥ <b>н∙н²н╓н∙н⌡н╘нё</b> н╓н≈н² н∙н║н∙н╔н²н▒\n"
+"н▒н═н÷ н╓н≈н² н▓н▒нён≈ н■н∙н■н÷н°н∙н²н╘н² н⌠н≥н▒ <b>н═н▒н²н╓н▒</b>. н÷н⌡н∙нё н÷н≥ н∙н║н╘н╓н≈нён∙н≥нё,\n"
+"н÷н≥ н═н⌡н≈н║н÷н╕н÷н║н≥н∙нё, н╓н▒ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒, н н⌡н═ н≤н▒ н■н≥н▒н⌠н║н▒н╕н÷н╔н². н°н≈н²\n"
+"н═н║н÷н╖н╘н║н≈нён∙н╓н∙ н▒н² н■н∙н² н∙н≥нён╓н∙ н▒н═н÷н⌡н╔н╓н╘нё н▓н∙н▓н▒н≥н÷н≥. н■н∙н² н╔н═н▒н║н╖н∙н≥\n"
+"н▒н⌡н⌡н≈ н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈ н н▒н≥ н■н∙н² н≤н▒ н°н═н÷н║н∙нён∙н╓н∙ н²н▒ н▒н²н▒н н╓н≈нён∙н╓н∙ н╓н▒ н■н∙н■н÷н°н∙н²н▒\n"
+"н═н÷н╓н∙."
 #
 # File: phpESP/admin/include/where/purge.inc, line: 58
 msgid "# Q's"
-msgstr "# ея."
+msgstr "# н∙н║."
 #
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
-msgstr "йахаяислос тым CHECKBOXES"
+msgstr "н н▒н≤н▒н║н≥нён°н÷нё н╓н╘н² CHECKBOXES"
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
 msgid "README not found."
-msgstr "дем бяехгйе то аявеио README"
+msgstr "н■н∙н² н▓н║н∙н≤н≈н н∙ н╓н÷ н▒н║н╖н∙н≥н÷ README"
 #
 # File: phpESP/admin/include/where/report.inc, line: 37
 msgid "Go back to Report Menu"
-msgstr "писы сто лемоу тым ейхесеым"
+msgstr "н═н≥нён╘ нён╓н÷ н°н∙н²н÷н╔ н╓н╘н² н∙н н≤н∙нён∙н╘н²"
 #
 # File: phpESP/admin/include/where/report.inc, line: 65
 msgid "View Form Report"
-msgstr "деите тгм ейхесг жоялас"
+msgstr "н■н∙н≥н╓н∙ н╓н≈н² н∙н н≤н∙нён≈ н╕н÷н║н°н▒нё"
 #
 # File: phpESP/admin/include/where/report.inc, line: 66
 msgid "Pick Form to View"
-msgstr "епикенте лиа жояла ма деите"
+msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н°н≥н▒ н╕н÷н║н°н▒ н²н▒ н■н∙н≥н╓н∙"
 #
 # File: phpESP/admin/include/where/respondents.inc, line: 137
 msgid "Add a new Respondent"
-msgstr "пяосхгйг меоу еяытгхемта"
+msgstr "н═н║н÷нён≤н≈н н≈ н²н∙н÷н╔ н∙н║н╘н╓н≈н≤н∙н²н╓н▒"
 #
 # File: phpESP/admin/include/where/respondents.inc, line: 142
 #, fuzzy
 msgid "Bulk Upload Respondents"
-msgstr "пяосхгйг меоу еяытгхемта"
+msgstr "н═н║н÷нён≤н≈н н≈ н²н∙н÷н╔ н∙н║н╘н╓н≈н≤н∙н²н╓н▒"
 #
 # File: phpESP/admin/include/where/results.inc, line: 48
 # File: phpESP/admin/include/where/results.inc, line: 156
 #, fuzzy
 msgid "Cross Tabulation"
-msgstr "епикенте лиа кеитоуяциа"
+msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н°н≥н▒ н⌡н∙н≥н╓н÷н╔н║н⌠н≥н▒"
 #
 # File: phpESP/admin/include/where/results.inc, line: 105
 msgid "Test Survey"
-msgstr "дойиласте лиа еяеума"
+msgstr "н■н÷н н≥н°н▒нён╓н∙ н°н≥н▒ н∙н║н∙н╔н²н▒"
 #
 # File: phpESP/admin/include/where/results.inc, line: 113
 #, fuzzy
 msgid "Reset"
-msgstr "дойилг"
+msgstr "н■н÷н н≥н°н≈"
 #
 # File: phpESP/admin/include/where/results.inc, line: 114
 msgid "Cross Tabulate"
@@ -1479,34 +1455,34 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/results.inc, line: 148
 msgid "View Survey Results"
-msgstr "деите та апотекеслата еяеумас"
+msgstr "н■н∙н≥н╓н∙ н╓н▒ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒ н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/results.inc, line: 149
 msgid "Pick Survey to View"
-msgstr "епикенте лиа еяеума ма деите"
+msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н°н≥н▒ н∙н║н∙н╔н²н▒ н²н▒ н■н∙н≥н╓н∙"
 #
 # File: phpESP/admin/include/where/results.inc, line: 157
 #, fuzzy
 msgid "Pick Survey to Cross Tabulate"
-msgstr "епикенте тгм еяеума поу ха техеи се дойилг"
+msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒ н═н÷н╔ н≤н▒ н╓н∙н≤н∙н≥ нён∙ н■н÷н н≥н°н≈"
 #
 # File: phpESP/admin/include/where/results.inc, line: 164
 #, fuzzy
 msgid "Respondent"
-msgstr "апамтгсг"
+msgstr "н▒н═н▒н²н╓н≈нён≈"
 #
 # File: phpESP/admin/include/where/results.inc, line: 173
 #, fuzzy
 msgid "Resp"
-msgstr "апамтгсг"
+msgstr "н▒н═н▒н²н╓н≈нён≈"
 #
 # File: phpESP/admin/include/where/status.inc, line: 104
 msgid "Can not set survey status."
-msgstr "дем еимаи сумато ма техеи г йатастасг тгс еяеумас"
+msgstr "н■н∙н² н∙н≥н²н▒н≥ нён╔н²н▒н╓н÷ н²н▒ н╓н∙н≤н∙н≥ н≈ н н▒н╓н▒нён╓н▒нён≈ н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/status.inc, line: 111
 msgid "Survey Status"
-msgstr "йатастасг еяеумас"
+msgstr "н н▒н╓н▒нён╓н▒нён≈ н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/admin/include/where/status.inc, line: 115
 #, fuzzy
@@ -1516,10 +1492,10 @@ msgid ""
 "survey may be switched \n"
 "back into <b>Edit</b> mode if additional edits are needed."
 msgstr ""
-"H <b>доKиMг</b> хетеи лиа еяеума се дойиластийг пеяиодо. стгм опоиа\n"
-"пеяиодо лпояеите ма дойиласте тгм еяуема йаи ма деите апотекеслата.\n"
-"дем ха лпояеиете ма йамете аккес аккацес стгм еяеума апо тгм стицлг\n"
-"поу ха лпеи г еяеума се дойилг. "
+"H <b>н■н÷Kн≥Mн≈</b> н≤н∙н╓н∙н≥ н°н≥н▒ н∙н║н∙н╔н²н▒ нён∙ н■н÷н н≥н°н▒нён╓н≥н н≈ н═н∙н║н≥н÷н■н÷. нён╓н≈н² н÷н═н÷н≥н▒\n"
+"н═н∙н║н≥н÷н■н÷ н°н═н÷н║н∙н≥н╓н∙ н²н▒ н■н÷н н≥н°н▒нён╓н∙ н╓н≈н² н∙н║н╔н∙н²н▒ н н▒н≥ н²н▒ н■н∙н≥н╓н∙ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒.\n"
+"н■н∙н² н≤н▒ н°н═н÷н║н∙н≥н∙н╓н∙ н²н▒ н н▒н²н∙н╓н∙ н▒н⌡н⌡н∙нё н▒н⌡н⌡н▒н⌠н∙нё нён╓н≈н² н∙н║н∙н╔н²н▒ н▒н═н÷ н╓н≈н² нён╓н≥н⌠н°н≈\n"
+"н═н÷н╔ н≤н▒ н°н═н∙н≥ н≈ н∙н║н∙н╔н²н▒ нён∙ н■н÷н н≥н°н≈. "
 #
 # File: phpESP/admin/include/where/status.inc, line: 119
 #, fuzzy
@@ -1530,10 +1506,10 @@ msgid ""
 "results from testing mode (if any). No further editing of survey is\n"
 "allowed."
 msgstr ""
-"г <b>емеяцопоигсг</b> летатяепеи тгм еяеума се емеяцг. се ауто то стадио\n"
-"г еяеума бяисйетаи се паяацыцийо стадио йаи лпояеи ма лпеи ONLINE. ауто ха\n"
-"диацяаьеи ока та апотекеслата апо тгм дойилстийг пеяиодо (ам упаявоум).\n"
-"йалиа епенеяцасиа дем епитяепетаи апо еды йаи пеяа. "
+"н≈ <b>н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён≈</b> н°н∙н╓н▒н╓н║н∙н═н∙н≥ н╓н≈н² н∙н║н∙н╔н²н▒ нён∙ н∙н²н∙н║н⌠н≈. нён∙ н▒н╔н╓н÷ н╓н÷ нён╓н▒н■н≥н÷\n"
+"н≈ н∙н║н∙н╔н²н▒ н▓н║н≥нён н∙н╓н▒н≥ нён∙ н═н▒н║н▒н⌠н╘н⌠н≥н н÷ нён╓н▒н■н≥н÷ н н▒н≥ н°н═н÷н║н∙н≥ н²н▒ н°н═н∙н≥ ONLINE. н▒н╔н╓н÷ н≤н▒\n"
+"н■н≥н▒н⌠н║н▒н╗н∙н≥ н÷н⌡н▒ н╓н▒ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒ н▒н═н÷ н╓н≈н² н■н÷н н≥н°нён╓н≥н н≈ н═н∙н║н≥н÷н■н÷ (н▒н² н╔н═н▒н║н╖н÷н╔н²).\n"
+"н н▒н°н≥н▒ н∙н═н∙н·н∙н║н⌠н▒нён≥н▒ н■н∙н² н∙н═н≥н╓н║н∙н═н∙н╓н▒н≥ н▒н═н÷ н∙н■н╘ н н▒н≥ н═н∙н║н▒. "
 #
 # File: phpESP/admin/include/where/status.inc, line: 124
 msgid ""
@@ -1542,11 +1518,11 @@ msgid ""
 "still\n"
 "viewable from the results menu."
 msgstr ""
-"г <b>кгнг</b> летатяепеи лиа еяеума се кгцлемг. се аутг тгм йатастасг\n"
-"дем лпояеи ма цимеи йалиа пеяаитеяы епнеяцасиа йаи дем лпояеи ма девтеи "
-"аккес\n"
-"апамтгсеис. та апотекеслата олыс лпояеите ма та бкепете апо то лемоу тым\n"
-"апотекеслатым."
+"н≈ <b>н⌡н≈н·н≈</b> н°н∙н╓н▒н╓н║н∙н═н∙н≥ н°н≥н▒ н∙н║н∙н╔н²н▒ нён∙ н⌡н≈н⌠н°н∙н²н≈. нён∙ н▒н╔н╓н≈ н╓н≈н² н н▒н╓н▒нён╓н▒нён≈\n"
+"н■н∙н² н°н═н÷н║н∙н≥ н²н▒ н⌠н≥н²н∙н≥ н н▒н°н≥н▒ н═н∙н║н▒н≥н╓н∙н║н╘ н∙н═н·н∙н║н⌠н▒нён≥н▒ н н▒н≥ н■н∙н² н°н═н÷н║н∙н≥ н²н▒ н■н∙н╖н╓н∙н≥ "
+"н▒н⌡н⌡н∙нё\n"
+"н▒н═н▒н²н╓н≈нён∙н≥нё. н╓н▒ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒ н÷н°н╘нё н°н═н÷н║н∙н≥н╓н∙ н²н▒ н╓н▒ н▓н⌡н∙н═н∙н╓н∙ н▒н═н÷ н╓н÷ н°н∙н²н÷н╔ н╓н╘н²\n"
+"н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н╘н²."
 #
 # File: phpESP/admin/include/where/status.inc, line: 128
 msgid ""
@@ -1555,113 +1531,116 @@ msgid ""
 "an\n"
 "archived survey."
 msgstr ""
-"г <b>аявеиохетгсг</b> диацяажеи тгм еяеума. апохгйеуеи тгм еяеума стгм басг\n"
-"дедолемым акка дем ха упаявеи пеяаитеяы епенеяцасиа тгс еяеумас. <b>дем</b> "
-"ха лпояеите\n"
-"пкеом ма деите та апотекеслата лиас аявеиохетглемгс еяеумас."
+"н≈ <b>н▒н║н╖н∙н≥н÷н≤н∙н╓н≈нён≈</b> н■н≥н▒н⌠н║н▒н╕н∙н≥ н╓н≈н² н∙н║н∙н╔н²н▒. н▒н═н÷н≤н≈н н∙н╔н∙н≥ н╓н≈н² н∙н║н∙н╔н²н▒ нён╓н≈н² н▓н▒нён≈\n"
+"н■н∙н■н÷н°н∙н²н╘н² н▒н⌡н⌡н▒ н■н∙н² н≤н▒ н╔н═н▒н║н╖н∙н≥ н═н∙н║н▒н≥н╓н∙н║н╘ н∙н═н∙н·н∙н║н⌠н▒нён≥н▒ н╓н≈нё н∙н║н∙н╔н²н▒нё. <b>н■н∙н²</b> "
+"н≤н▒ н°н═н÷н║н∙н≥н╓н∙\n"
+"н═н⌡н∙н÷н² н²н▒ н■н∙н≥н╓н∙ н╓н▒ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒ н°н≥н▒нё н▒н║н╖н∙н≥н÷н≤н∙н╓н≈н°н∙н²н≈нё н∙н║н∙н╔н²н▒нё."
 #
 # File: phpESP/admin/include/where/status.inc, line: 175
 # File: phpESP/admin/include/where/test.inc, line: 132
 msgid "Test"
-msgstr "дойилг"
+msgstr "н■н÷н н≥н°н≈"
 #
 # File: phpESP/admin/include/where/status.inc, line: 176
 msgid "Activate"
-msgstr "емеяцопоигсг"
+msgstr "н∙н²н∙н║н⌠н÷н═н÷н≥н≈нён≈"
 #
 # File: phpESP/admin/include/where/status.inc, line: 177
 msgid "End"
-msgstr "кгнг"
+msgstr "н⌡н≈н·н≈"
 #
 # File: phpESP/admin/include/where/status.inc, line: 178
 msgid "Archive"
-msgstr "аявеио"
+msgstr "н▒н║н╖н∙н≥н÷"
 #
 # File: phpESP/admin/include/where/status.inc, line: 193
 msgid "Edit"
-msgstr "епенеяцасиа"
+msgstr "н∙н═н∙н·н∙н║н⌠н▒нён≥н▒"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 92
 msgid "No tabs defined. Please check your INI settings."
-msgstr "дем ояистгйам та табS. екецнте тис яухлисеис тоу ими."
+msgstr "н■н∙н² н÷н║н≥нён╓н≈н н▒н² н╓н▒ н╓н▒н▓S. н∙н⌡н∙н⌠н·н╓н∙ н╓н≥нё н║н╔н≤н°н≥нён∙н≥нё н╓н÷н╔ н≥н²н≥."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 144
 # File: phpESP/admin/include/where/upload.inc, line: 110
 msgid "Help"
-msgstr "богхеиа"
+msgstr "н▓н÷н≈н≤н∙н≥н▒"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 153
 msgid "General"
-msgstr "цемийо"
+msgstr "н⌠н∙н²н≥н н÷"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 msgid "Questions"
-msgstr "еяытгсеис"
+msgstr "н∙н║н╘н╓н≈нён∙н≥нё"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 155
 msgid "Order"
-msgstr "сеияа"
+msgstr "нён∙н≥н║н▒"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 156
 msgid "Preview"
-msgstr "пяоеписйопгсг"
+msgstr "н═н║н÷н∙н═н≥нён н÷н═н≈нён≈"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 157
 msgid "Finish"
-msgstr "текос"
+msgstr "н╓н∙н⌡н÷нё"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 170
 msgid ""
 "Click cancel to cancel this survey, or click continue to proceed to the next "
 "tab."
 msgstr ""
-"йамте йкий стгм айуяысг циа ма айуяысете тгм еяеума, аккиыс йамте йкий сто "
-"сумевеиа циа ма пяовыягсете."
+"н н▒н²н╓н∙ н н⌡н≥н  нён╓н≈н² н▒н н╔н║н╘нён≈ н⌠н≥н▒ н²н▒ н▒н н╔н║н╘нён∙н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒, н▒н⌡н⌡н≥н╘нё н н▒н²н╓н∙ н н⌡н≥н  нён╓н÷ "
+"нён╔н²н∙н╖н∙н≥н▒ н⌠н≥н▒ н²н▒ н═н║н÷н╖н╘н║н≈нён∙н╓н∙."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 177
+#, fuzzy
 msgid ""
-"The survey title and other general fields are on the <b>General</b> tab.\n"
-"Individual survey questions are added and modified on the <b>Questions</b> "
-"tab.\n"
-"Questions may be re-ordered or deleted from the <b>Order</b> tab.\n"
+"The survey title and other general fields are on the <strong>General</"
+"strong> tab.\n"
+"Individual survey questions are added and modified on the <strong>Questions</"
+"strong> tab.\n"
+"Questions may be re-ordered or deleted from the <strong>Order</strong> tab.\n"
 "You may see a preview of your survey at any time, by going to the "
-"<b>Preview</b>\n"
-"tab. If you have no further changes click <b>Finish</b> to go back to the\n"
+"<strong>Preview</strong>\n"
+"tab. If you have no further changes click <strong>Finish</strong> to go back "
+"to the\n"
 "Management Interface."
 msgstr ""
-"о титкос тгс еяеумас йаи та акка цемийа педиа бяисйомтаи сто <b>цемийо</b>.\n"
-"ои еяытгсеис тгс еяеумас пяостихомтаи йаи аккафоум апо то <b>еяытгсеис</b>.\n"
-"лпояеи ма аккавхеи г сеияа елжамисгс тым еяытгсеым, ч ма диацяажоум апо то "
-"<b>сеияа</b>.\n"
-"лпояеите ма пяоеписйопгсете лиа еяеума опоиадгпоте стицлг епикецомтас тгм "
-"<b>пяоеписйопгсг</b>.\n"
-"ам демхекете ма йамете аккес аккацес епикенте <b>текос</b> циа ма "
-"епистяеьете сто\n"
-"пеяибакком диавеияисгс."
-#
-# File: phpESP/admin/include/where/tab.inc, line: 183
-msgid "Click here to open the Help window."
-msgstr "йамте йкий еды циа ма амоинете тгм богхеиа"
+"н÷ н╓н≥н╓н⌡н÷нё н╓н≈нё н∙н║н∙н╔н²н▒нё н н▒н≥ н╓н▒ н▒н⌡н⌡н▒ н⌠н∙н²н≥н н▒ н═н∙н■н≥н▒ н▓н║н≥нён н÷н²н╓н▒н≥ нён╓н÷ <b>н⌠н∙н²н≥н н÷</b>.\n"
+"н÷н≥ н∙н║н╘н╓н≈нён∙н≥нё н╓н≈нё н∙н║н∙н╔н²н▒нё н═н║н÷нён╓н≥н≤н÷н²н╓н▒н≥ н н▒н≥ н▒н⌡н⌡н▒н√н÷н╔н² н▒н═н÷ н╓н÷ <b>н∙н║н╘н╓н≈нён∙н≥нё</b>.\n"
+"н°н═н÷н║н∙н≥ н²н▒ н▒н⌡н⌡н▒н╖н≤н∙н≥ н≈ нён∙н≥н║н▒ н∙н°н╕н▒н²н≥нён≈нё н╓н╘н² н∙н║н╘н╓н≈нён∙н╘н², н╝ н²н▒ н■н≥н▒н⌠н║н▒н╕н÷н╔н² н▒н═н÷ н╓н÷ "
+"<b>нён∙н≥н║н▒</b>.\n"
+"н°н═н÷н║н∙н≥н╓н∙ н²н▒ н═н║н÷н∙н═н≥нён н÷н═н≈нён∙н╓н∙ н°н≥н▒ н∙н║н∙н╔н²н▒ н÷н═н÷н≥н▒н■н≈н═н÷н╓н∙ нён╓н≥н⌠н°н≈ н∙н═н≥н⌡н∙н⌠н÷н²н╓н▒нё н╓н≈н² "
+"<b>н═н║н÷н∙н═н≥нён н÷н═н≈нён≈</b>.\n"
+"н▒н² н■н∙н²н≤н∙н⌡н∙н╓н∙ н²н▒ н н▒н²н∙н╓н∙ н▒н⌡н⌡н∙нё н▒н⌡н⌡н▒н⌠н∙нё н∙н═н≥н⌡н∙н·н╓н∙ <b>н╓н∙н⌡н÷нё</b> н⌠н≥н▒ н²н▒ "
+"н∙н═н≥нён╓н║н∙н╗н∙н╓н∙ нён╓н÷\n"
+"н═н∙н║н≥н▓н▒н⌡н⌡н÷н² н■н≥н▒н╖н∙н≥н║н≥нён≈нё."
 #
 # File: phpESP/admin/include/where/test.inc, line: 70
 msgid "View Results"
-msgstr "деите апотекеслата"
+msgstr "н■н∙н≥н╓н∙ н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒"
 #
 # File: phpESP/admin/include/where/test.inc, line: 105
 msgid "Pick Survey to Test"
-msgstr "епикенте тгм еяеума поу ха техеи се дойилг"
+msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н╓н≈н² н∙н║н∙н╔н²н▒ н═н÷н╔ н≤н▒ н╓н∙н≤н∙н≥ нён∙ н■н÷н н≥н°н≈"
 #
 # File: phpESP/admin/include/where/test.inc, line: 115
 msgid "Export"
-msgstr "енацыцг"
+msgstr "н∙н·н▒н⌠н╘н⌠н≈"
+#
+# File: phpESP/admin/include/where/test.inc, line: 127
+msgid "standalone"
+msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 msgid "Results"
-msgstr "апотекеслата"
+msgstr "н▒н═н÷н╓н∙н⌡н∙нён°н▒н╓н▒"
 #
 # File: phpESP/admin/include/where/todo.inc, line: 15
 msgid "Todo list not found."
-msgstr "г киста дем бяехгйе"
+msgstr "н≈ н⌡н≥нён╓н▒ н■н∙н² н▓н║н∙н≤н≈н н∙"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 72
 msgid "An error occurred during upload.  Rows that failed are listed below."
@@ -1679,17 +1658,17 @@ msgstr ""
 # File: phpESP/admin/include/where/upload.inc, line: 106
 #, fuzzy
 msgid "Upload Account Information"
-msgstr "диавеияисг коцаяиаслым еяытгхемтым"
+msgstr "н■н≥н▒н╖н∙н≥н║н≥нён≈ н⌡н÷н⌠н▒н║н≥н▒нён°н╘н² н∙н║н╘н╓н≈н≤н∙н²н╓н╘н²"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 107
 #, fuzzy
 msgid "All fields are required"
-msgstr " еимаи уповяеытийес"
+msgstr " н∙н≥н²н▒н≥ н╔н═н÷н╖н║н∙н╘н╓н≥н н∙нё"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 120
 #, fuzzy
 msgid "File Type"
-msgstr "тупос"
+msgstr "н╓н╔н═н÷нё"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 121
 msgid "Tab Delimited"
@@ -1698,17 +1677,16 @@ msgstr ""
 # File: phpESP/admin/include/where/upload.inc, line: 122
 #, fuzzy
 msgid "File to upload"
-msgstr "дем еимаи думатом ма жоятыхеи то ACL"
+msgstr "н■н∙н² н∙н≥н²н▒н≥ н■н╔н²н▒н╓н÷н² н²н▒ н╕н÷н║н╓н╘н≤н∙н≥ н╓н÷ ACL"
 #
 # File: phpESP/admin/phpESP.ini.php, line: 175
 msgid "Thank You For Completing This Survey."
 msgstr ""
 #
-# File: phpESP/admin/phpESP.ini.php, line: 176
+# File: phpESP/admin/phpESP.ini.php, line: 172
 msgid ""
 "Please do not use the back button on your browser to go\n"
-"back. Please click on the link below to return you to where\n"
-"you launched this survey."
+"back."
 msgstr ""
 #
 # File: phpESP/admin/phpESP.ini.php, line: 181
@@ -1722,14 +1700,27 @@ msgstr ""
 msgid "%%%% Gettext Test Failed"
 msgstr ""
 #
+# File: phpESP/public/captcha_check.php, line: 4
+msgid "You entered an incorrect code. Please fill in the correct code."
+msgstr ""
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 msgid "Error processing survey: Survey not specified."
-msgstr "кахос диадийасиас еяеумас: дем евеи епикецеи еяеума"
+msgstr "н⌡н▒н≤н÷нё н■н≥н▒н■н≥н н▒нён≥н▒нё н∙н║н∙н╔н²н▒нё: н■н∙н² н∙н╖н∙н≥ н∙н═н≥н⌡н∙н⌠н∙н≥ н∙н║н∙н╔н²н▒"
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 29
+#, fuzzy
+msgid "You have already completed this survey."
+msgstr "н∙н╖н∙н╓н∙ н÷н⌡н÷н н⌡н≈н║н╘нён∙н≥ н╓н≈н² нён╖н∙н■н≥н▒нён≈ н╓н≈нё н∙н║н∙н╔н²н▒нё"
 #
 # File: phpESP/public/handler.php, line: 64
 # File: phpESP/public/handler.php, line: 69
 msgid "Error processing survey: Survey is not active."
-msgstr "кахос диадийасиас еяеумас: г еяеума дем еимаи емеяцг"
+msgstr "н⌡н▒н≤н÷нё н■н≥н▒н■н≥н н▒нён≥н▒нё н∙н║н∙н╔н²н▒нё: н≈ н∙н║н∙н╔н²н▒ н■н∙н² н∙н≥н²н▒н≥ н∙н²н∙н║н⌠н≈"
+#
+# File: phpESP/public/handler.php, line: 207
+msgid "Please fill in the code displayed here."
+msgstr ""
 #
 # File: phpESP/public/signup.php, line: 54
 msgid "Sorry, the account request form is disabled."
@@ -1742,7 +1733,7 @@ msgstr ""
 # File: phpESP/public/signup.php, line: 72
 #, fuzzy
 msgid "Passwords do not match."
-msgstr "ои меои йыдийои дем таияиафоум ч еимаи йемои."
+msgstr "н÷н≥ н²н∙н÷н≥ н н╘н■н≥н н÷н≥ н■н∙н² н╓н▒н≥н║н≥н▒н√н÷н╔н² н╝ н∙н≥н²н▒н≥ н н∙н²н÷н≥."
 #
 # File: phpESP/public/signup.php, line: 100
 msgid "Request failed, please choose a different username."
@@ -1769,40 +1760,311 @@ msgstr ""
 # File: phpESP/public/signup.php, line: 157
 #, fuzzy
 msgid "Confirm Password"
-msgstr "епибебаиысг меоу йыдийоу"
+msgstr "н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈ н²н∙н÷н╔ н н╘н■н≥н н÷н╔"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 352
+#~ msgid "Page"
+#~ msgstr "нён∙н⌡н≥н■н▒"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 352
+#~ msgid "of"
+#~ msgstr "н▒н═н÷"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 154
+#, fuzzy
+#~ msgid "Sorry, this question name is already in use."
+#~ msgstr "н⌡н╔н═н▒н°н▒н≥, н╓н÷ н÷н²н÷н°н▒ н╖н║н≈нён≥н°н÷н═н÷н≥н∙н≥н╓н▒н≥ н≈н■н≈."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 117
+#~ msgid "Field"
+#~ msgstr "н═н∙н■н≥н÷"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 122
+#~ msgid "Field Name"
+#~ msgstr "н÷н²н÷н°н▒ н═н∙н■н≥н÷н╔"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/download.inc, line: 60
+#~ msgid "DBF download not yet implemented."
+#~ msgstr "н╓н÷ н н▒н╓н▓н∙нён°н▒ н╓н÷н╔ DBF н■н∙н² н∙н╖н∙н≥ н╔н⌡н÷н═н÷н≥н≈н≤н∙н≥ н▒н н÷н°н▒"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 84
+# File: phpESP/admin/include/where/test.inc, line: 134
+#~ msgid "CSV"
+#~ msgstr "CSV"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 88
+# File: phpESP/admin/include/where/test.inc, line: 136
+#~ msgid "DBF"
+#~ msgstr "DBF"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 28
+#~ msgid "Choose a function"
+#~ msgstr "н∙н═н≥н⌡н∙н·н╓н∙ н°н≥н▒ н⌡н∙н≥н╓н÷н╔н║н⌠н≥н▒"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 51
+#~ msgid "Export Data to CSV"
+#~ msgstr "н∙н·н▒н⌠н╘н⌠н≈ нён╓н÷н≥н╖н∙н≥н╘н² нён∙ CSV"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 86
+#~ msgid "Error!"
+#~ msgstr "н⌡н▒н≤н÷нё!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 87
+#~ msgid "You need to select at least two surveys!"
+#~ msgstr "н═н║н∙н═н∙н≥ н²н▒ н∙н═н≥н⌡н∙н·н∙н╓н∙ н╓н÷н╔н⌡н▒н╖н≥нён╓н÷н² н■н╔н÷ н∙н║н∙н╔н²н∙нё!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #~ msgid "Administer Group Members"
-#~ msgstr "диавеияистеите тгм олада лекг"
+#~ msgstr "н■н≥н▒н╖н∙н≥н║н≥нён╓н∙н≥н╓н∙ н╓н≈н² н÷н°н▒н■н▒ н°н∙н⌡н≈"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #~ msgid "No survey specified."
-#~ msgstr "дем епикевхгйе еяеума"
+#~ msgstr "н■н∙н² н∙н═н≥н⌡н∙н╖н≤н≈н н∙ н∙н║н∙н╔н²н▒"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "Total"
-#~ msgstr "сумоко"
+#~ msgstr "нён╔н²н÷н⌡н÷"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
-#~ msgstr "кахос омола вягстг ч йыдийос, ч о коцаяиаслос сас еимаи амемеяцос"
+#~ msgstr "н⌡н▒н≤н÷нё н÷н²н÷н°н▒ н╖н║н≈нён╓н≈ н╝ н н╘н■н≥н н÷нё, н╝ н÷ н⌡н÷н⌠н▒н║н≥н▒нён°н÷нё нён▒нё н∙н≥н²н▒н≥ н▒н²н∙н²н∙н║н⌠н÷нё"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "free-form"
-#~ msgstr "екеухеяг жояла"
+#~ msgstr "н∙н⌡н∙н╔н≤н∙н║н≈ н╕н÷н║н°н▒"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "ie. instructions, background info, etc."
-#~ msgstr "дгк. одгциес, пкгяожояиесл йкп."
+#~ msgstr "н■н≈н⌡. н÷н■н≈н⌠н≥н∙нё, н═н⌡н≈н║н÷н╕н÷н║н≥н∙нён° н н⌡н═."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "Confirmation Heading"
-#~ msgstr "епийежакида епибебаиысгс"
+#~ msgstr "н∙н═н≥н н∙н╕н▒н⌡н≥н■н▒ н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈нё"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -1810,35 +2072,101 @@ msgstr "епибебаиысг меоу йыдийоу"
 #~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
 #~ "the Confirmation Heading."
 #~ msgstr ""
-#~ "йеилемо стгм секида &quot;епибебаиысгс&quot; . елжамифетаи йаты апо тгм "
-#~ "епийежакида епибебаиысгс "
+#~ "н н∙н≥н°н∙н²н÷ нён╓н≈н² нён∙н⌡н≥н■н▒ &quot;н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈нё&quot; . н∙н°н╕н▒н²н≥н√н∙н╓н▒н≥ н н▒н╓н╘ н▒н═н÷ н╓н≈н² "
+#~ "н∙н═н≥н н∙н╕н▒н⌡н≥н■н▒ н∙н═н≥н▓н∙н▓н▒н≥н╘нён≈нё "
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "You must use"
-#~ msgstr "пяепеи ма вягсилопоигсете"
+#~ msgstr "н═н║н∙н═н∙н≥ н²н▒ н╖н║н≈нён≥н°н÷н═н÷н≥н≈нён∙н╓н∙"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "Max Logins"
-#~ msgstr "лецистос аяихлос пяосбасеым"
+#~ msgstr "н°н∙н⌠н≥нён╓н÷нё н▒н║н≥н≤н°н÷нё н═н║н÷нён▓н▒нён∙н╘н²"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "to access this menu"
-#~ msgstr "циа тгм пяосбасг се ауто то лемоу"
+#~ msgstr "н⌠н≥н▒ н╓н≈н² н═н║н÷нён▓н▒нён≈ нён∙ н▒н╔н╓н÷ н╓н÷ н°н∙н²н÷н╔"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "Purge"
-#~ msgstr "диацяажг"
+#~ msgstr "н■н≥н▒н⌠н║н▒н╕н≈"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "STATUS"
-#~ msgstr "йатастасг"
+#~ msgstr "н н▒н╓н▒нён╓н▒нён≈"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
 #~ msgid "to design forms"
-#~ msgstr "пяос жоялес сведиасгс"
+#~ msgstr "н═н║н÷нё н╕н÷н║н°н∙нё нён╖н∙н■н≥н▒нён≈нё"

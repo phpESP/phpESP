@@ -6,21 +6,7 @@
 // Matthew Gregg
 // <greggmc at musc.edu>
 
-	if (!defined('ESP_BASE'))
-		define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
-
-	$CONFIG = ESP_BASE . 'admin/phpESP.ini.php';
-	if(!file_exists($CONFIG)) {
-		echo("<b>FATAL: Unable to open config file Aborting.</b>");
-		exit;
-	}
-	if(!extension_loaded('mysql')) {
-		echo('<b>FATAL: Mysql extension not loaded. Aborting.</b>');
-		exit;
-	}
-	require_once($CONFIG);	
-	
-    esp_init_adodb();
+	require_once("./phpESP.first.php");	
 	
 	$_name = '';
 	$_title = '';
@@ -31,10 +17,10 @@
 		unset($_GET['name']);
 		$_SERVER['QUERY_STRING'] = ereg_replace('(^|&)name=[^&]*&?', '', $_SERVER['QUERY_STRING']);
 	}
-    if (isset($_POST['name'])) {
-        $_name = _addslashes($_POST['name']);
-        unset($_POST['name']);
-    }
+    	if (isset($_POST['name'])) {
+        	$_name = _addslashes($_POST['name']);
+        	unset($_POST['name']);
+    	}
 
 	if (!empty($_name)) {
         	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = $_name";
@@ -42,10 +28,10 @@
             		if (record_count($_result) > 0)
                 		list($sid, $_title, $_css) = fetch_row($_result);
             		db_close($_result);
-        		}
+        	}
         	unset($_sql);
         	unset($_result);
-		}
+	}
 
         // To make all results public uncomment the next line.
         //$results = 1;

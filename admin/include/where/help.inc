@@ -11,7 +11,7 @@
 
 <table class="help">
   <tr>
-    <td colspan="2" style="border-bottom:1px dashed #000000"><h1>Survey Resource</h1></td>
+    <td colspan="2" style="border-bottom:1px dashed #000000"><h1 id="top">Survey Resource</h1></td>
   </tr>
   <tr>
     <td style="vertical-align:top; width:125px; border-right:1px dashed #000000;"><div class="menu"> <a href="#new" style="text-decoration:none;">Create a Survey</a>
@@ -33,7 +33,7 @@
         <a href="#types" style="text-decoration:none;">Response Types/Uses</a>
         <ul>
           <li><a href="#yes_no" style="text-decoration:none; font-size:80%;">Yes/No</a></li>
-          <li><a href="#single_line" style="text-decoration:none; font-size:80%;">Single Line</a></li>
+          <li><a href="#textbox" style="text-decoration:none; font-size:80%;">Textbox</a></li>
           <li><a href="#essay" style="text-decoration:none; font-size:80%;">Essay</a></li>
           <li><a href="#radio" style="text-decoration:none; font-size:80%;">Radio Buttons</a></li>
           <li><a href="#check" style="text-decoration:none; font-size:80%;">Check Boxes</a></li>
@@ -41,7 +41,11 @@
           <li><a href="#rating" style="text-decoration:none; font-size:80%;">Rate</a></li>
           <li><a href="#date" style="text-decoration:none; font-size:80%;">Date</a></li>
           <li><a href="#numeric" style="text-decoration:none; font-size:80%;">Numeric</a></li>
+          <li><a href="#session_text" style="text-decoration:none; font-size:80%;">Session text</a></li>
         </ul>
+	<p>
+        <a href="#types" style="text-decoration:none;">Response Types Examples</a>
+	</p>
         <a href="#results" style="text-decoration:none;">Survey Results</a>
         <ul>
           <li><a href="#analysis" style="text-decoration:none; font-size:80%;">Cross Analysis</a></li>
@@ -101,9 +105,9 @@
               <td>n/a</td>
             </tr>
             <tr>
-              <td>Text</td>
-              <td>length</td>
-              <td>max length</td>
+              <td>Textbox</td>
+              <td>length of the box</td>
+              <td>max length of the text</td>
             </tr>
             <tr>
               <td>Essay</td>
@@ -237,7 +241,7 @@
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
       <hr style="width:100%;" />
       <h2 id="types">Response Types</h2>
-      <h3 style="padding-left:10px;">Yes/No</h3>
+      <h3 style="padding-left:10px;" id="yes_no">Yes/No</h3>
       <ul>
         <li>Explanation:
           <dl>
@@ -256,11 +260,11 @@
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Single Line Text Entry</h3>
+      <h3 style="padding-left:10px;" id="textbox">Text Box</h3>
       <ul>
         <li>Explanation:
           <dl>
-            <dd>Use this for questions that require a one line answer. Note: The maximum lenght of the textbox can be set using the <strong>precision</strong> field.</dd>
+            <dd>Use this for questions that require a one line answer. Note: the size of the textbox can be set using the <strong>length</strong> field, he maximum length of the textbox can be set using the <strong>precision</strong> field.</dd>
           </dl>
         </li>
         <li>Example:
@@ -272,7 +276,7 @@
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Essay</h3>
+      <h3 style="padding-left:10px;" id="essay">Essay</h3>
       <ul>
         <li>Explanation:
           <dl>
@@ -288,7 +292,7 @@
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Radio Buttons</h3>
+      <h3 style="padding-left:10px;" id="radio">Radio Buttons</h3>
       <ul>
         <li>Explanation:
           <dl>
@@ -307,7 +311,7 @@
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Check Boxes</h3>
+      <h3 style="padding-left:10px;" id="check">Check Boxes</h3>
       <ul>
         <li>Explanation:
           <dl>
@@ -326,7 +330,7 @@
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Dropdown Box</h3>
+      <h3 style="padding-left:10px;" id="dropdown">Dropdown Box</h3>
       <ul>
         <li>Explanation:
           <dl>
@@ -346,11 +350,11 @@
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Rate (scale 1..N)</h3>
+      <h3 style="padding-left:10px;" id="rating">Rate (scale 1..N)</h3>
       <ul>
         <li>Explanation:
           <dl>
-            <dd>Use this for questions that require a rating. You can have a rating scale of 1 to N, set by the <strong>length</strong> box. Multiple options can also be added to the rating block as you see below.</dd>
+            <dd>Use this for questions that require a rating. You can have a rating scale of 1 to N, set by the <strong>length</strong> field. Multiple options can also be added to the rating block as you see below. To show an extra column "N/A", set the <strong>precision</strong> field to 1.</dd>
           </dl>
         </li>
         <li>Example:
@@ -401,27 +405,27 @@
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Date</h3>
+      <h3 style="padding-left:10px;" id="date">Date</h3>
       <ul>
         <li>Explanation:
           <dl>
-            <dd>Use this for responses that require uses to submit back a date.</dd>
+            <dd>Use this for responses that require uses to submit back a date. Configure the date format in the ini file.</dd>
           </dl>
         </li>
         <li>Example:
           <dl>
             <dd>
               <input type="text" name="date" size="10" />
-              <em>(e.g. 4/21/2002)</em></dd>
+              <em>(e.g. <?php echo strftime ($GLOBALS['ESPCONFIG']['date_format'],strtotime("09/21/2003")) ;?>)</em></dd>
           </dl>
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
-      <h3 style="padding-left:10px;">Numeric</h3>
+      <h3 style="padding-left:10px;" id="numeric">Numeric</h3>
       <ul>
         <li>Explanation:
           <dl>
-            <dd>Use this for questions which you will only want a numeric answer. Note: All non-numeric responses are disgarded.</dd>
+            <dd>Use this for questions which you will only want a numeric answer. Note: All non-numeric responses are disgarded. The <strong>length</strong> determines the max number of digits that can be used, the <strong>precision</strong> field adds extra size for the numbers begind the comma. This is not very precise yet, so just use the <strong>length</strong> field for now.</dd>
           </dl>
         </li>
         <li>Example
@@ -429,6 +433,15 @@
             <dd>
               <input type="text" name="numeric" size="10" />
             </dd>
+          </dl>
+        </li>
+      </ul>
+      <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
+      <h3 style="padding-left:10px;" id="session_text">Session text</h3>
+      <ul>
+        <li>Explanation:
+          <dl>
+            <dd>Use this to add some text to you survey (like a disclaimer before sending on submit). This is in fact no question a user can answer to.</dd>
           </dl>
         </li>
       </ul>

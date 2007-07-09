@@ -1,16 +1,19 @@
 <?php
 /* 
-V4.22 15 Apr 2004  (c) 2000-2004 John Lim (jlim@natsoft.com.my). All rights reserved.
+V4.94 23 Jan 2007  (c) 2000-2007 John Lim (jlim#natsoft.com.my). All rights reserved.
   Released under both BSD license and Lesser GPL library license. 
   Whenever there is any discrepancy between the two licenses, 
   the BSD license will take precedence. See License.txt. 
   Set tabs to 4 for best viewing.
   
-  Latest version is available at http://php.weblogs.com/
+  Latest version is available at http://adodb.sourceforge.net
   
   Library for basic performance monitoring and tuning 
   
 */
+
+// security - hide paths
+if (!defined('ADODB_DIR')) die();
 
 class perf_oci8 extends ADODB_perf{
 	
@@ -78,7 +81,7 @@ AND    b.name = 'sorts (memory)'",
 			'db_cache_size' ),
 		'shared pool size' => array('DATAC',
 			"select value from v\$parameter where name = 'shared_pool_size'",
-			'shared_pool_size, which holds shared cursors, stored procedures and similar shared structs' ),
+			'shared_pool_size, which holds shared sql, stored procedures, dict cache and similar shared structs' ),
 		'java pool size' => array('DATAJ',
 			"select value from v\$parameter where name = 'java_pool_size'",
 			'java_pool_size' ),
@@ -104,10 +107,10 @@ AND    b.name = 'sorts (memory)'",
 			"select round((1-bytes/sgasize)*100, 2)
 			from (select sum(bytes) sgasize from sys.v_\$sgastat) s, sys.v_\$sgastat f
 			where name = 'free memory' and pool = 'shared pool'",
-		'Percentage of data cache actually in use - too low is bad, too high is worse'),
+		'Percentage of data cache actually in use - should be over 85%'),
 		
-		'shared pool utilization ratio' => array('RATIOU',
-		'select round((sga.bytes/p.value)*100,2)
+				'shared pool utilization ratio' => array('RATIOU', 
+		'select round((sga.bytes/case when p.value=0 then sga.bytes else to_number(p.value) end)*100,2)
 		from v$sgastat sga, v$parameter p
 		where sga.name = \'free memory\' and sga.pool = \'shared pool\'
 		and p.name = \'shared_pool_size\'',
@@ -120,7 +123,7 @@ AND    b.name = 'sorts (memory)'",
 		'Percentage of large_pool actually in use - too low is bad, too high is worse'),
 		'sort buffer size' => array('CACHE',
 			"select value from v\$parameter where name='sort_area_size'",
-			'sort_area_size (per query), uses memory in pga' ),
+			'max in-mem sort_area_size (per query), uses memory in pga' ),
 
 		'pga usage at peak' => array('RATIOU',
 		'=PGA','Mb utilization at peak transactions (requires Oracle 9i+)'),
@@ -141,15 +144,18 @@ AND    b.name = 'sorts (memory)'",
 		'cursor sharing' => array('CURSOR',
 			"select value from v\$parameter where name = 'cursor_sharing'",
 			'Cursor reuse strategy. Recommended is FORCE (8i+) or SIMILAR (9i+). See <a href=http://www.praetoriate.com/oracle_tips_cursor_sharing.htm>cursor_sharing</a>.'),
-			
+		/*
+		'cursor reuse' => array('CURSOR',
+			"select count(*) from (select sql_text_wo_constants, count(*)
+  from t1
+ group by sql_text_wo_constants
+having count(*) > 100)",'These are sql statements that should be using bind variables'),*/
 		'index cache cost' => array('COST',
 			"select value from v\$parameter where name = 'optimizer_index_caching'",
-			'% of indexed data blocks expected in the cache.
-			Recommended is 20-80. Default is 0. See <a href=http://www.dba-oracle.com/oracle_tips_cbo_part1.htm>optimizer_index_caching</a>.'),
-		
+			'=WarnIndexCost'),
 		'random page cost' => array('COST',
 			"select value from v\$parameter where name = 'optimizer_index_cost_adj'",
-			'Recommended is 10-50 for TP, and 50 for data warehouses. Default is 100. See <a href=http://www.dba-oracle.com/oracle_tips_cost_adj.htm>optimizer_index_cost_adj</a>. '),		
+			'=WarnPageCost'),
 		
 		false
 		
@@ -164,6 +170,23 @@ AND    b.name = 'sorts (memory)'",
 		$this->conn =& $conn;
 	}
 	
+	function WarnPageCost($val)
+	{
+		if ($val == 100) $s = '<font color=red><b>Too High</b>. </font>';
+		else $s = '';
+		
+		return $s.'Recommended is 20-50 for TP, and 50 for data warehouses. Default is 100. See <a href=http://www.dba-oracle.com/oracle_tips_cost_adj.htm>optimizer_index_cost_adj</a>. ';
+	}
+	
+	function WarnIndexCost($val)
+	{
+		if ($val == 0) $s = '<font color=red><b>Too Low</b>. </font>';
+		else $s = '';
+		
+		return $s.'Percentage of indexed data blocks expected in the cache.
+			Recommended is 20 (fast disk array) to 50 (slower hard disks). Default is 0.
+			 See <a href=http://www.dba-oracle.com/oracle_tips_cbo_part1.htm>optimizer_index_caching</a>.';
+		}
 	
 	function PGA()
 	{
@@ -240,6 +263,7 @@ CREATE TABLE PLAN_TABLE (
 		
 		$this->conn->BeginTrans();
 		$id = "ADODB ".microtime();
+
 		$rs =& $this->conn->Execute("EXPLAIN PLAN SET STATEMENT_ID='$id' FOR $sql");
 		$m = $this->conn->ErrorMsg();
 		if ($m) {
@@ -248,7 +272,7 @@ CREATE TABLE PLAN_TABLE (
 			$s .= "<p>$m</p>";
 			return $s;
 		}
-		$rs = $this->conn->Execute("
+		$rs =& $this->conn->Execute("
 		select 
   '<pre>'||lpad('--', (level-1)*2,'-') || trim(operation) || ' ' || trim(options)||'</pre>'  as Operation, 
   object_name,COST,CARDINALITY,bytes
@@ -322,7 +346,7 @@ select  a.size_for_estimate as cache_mb_estimate,
 				$check = $rs->fields[0].'::'.$rs->fields[1];			
 			} else
 				$sql .= $rs->fields[2];
-			
+			if (substr($sql,strlen($sql)-1) == "\0") $sql = substr($sql,0,strlen($sql)-1);
 			$rs->MoveNext();
 		}
 		$rs->Close();
@@ -379,28 +403,33 @@ where
 order by
   1 desc, s.address, p.piece";
 
-  		global $ADODB_CACHE_MODE,$HTTP_GET_VARS;
-  		if (isset($HTTP_GET_VARS['expsixora']) && isset($HTTP_GET_VARS['sql'])) {
-				$partial = empty($HTTP_GET_VARS['part']);
-				echo "<a name=explain></a>".$this->Explain($HTTP_GET_VARS['sql'],$partial)."\n";
+  		global $ADODB_CACHE_MODE;
+  		if (isset($_GET['expsixora']) && isset($_GET['sql'])) {
+				$partial = empty($_GET['part']);
+				echo "<a name=explain></a>".$this->Explain($_GET['sql'],$partial)."\n";
 		}
 
-		if (isset($HTTP_GET_VARS['sql'])) return $this->_SuspiciousSQL();
+		if (isset($_GET['sql'])) return $this->_SuspiciousSQL($numsql);
+		
+		$s = '';
+		$s .= $this->_SuspiciousSQL($numsql);
+		$s .= '<p>';
 		
 		$save = $ADODB_CACHE_MODE;
 		$ADODB_CACHE_MODE = ADODB_FETCH_NUM;
+		if ($this->conn->fetchMode !== false) $savem = $this->conn->SetFetchMode(false);
+		
 		$savelog = $this->conn->LogSQL(false);
 		$rs =& $this->conn->SelectLimit($sql);
 		$this->conn->LogSQL($savelog);
+		
+		if (isset($savem)) $this->conn->SetFetchMode($savem);
 		$ADODB_CACHE_MODE = $save;
 		if ($rs) {
-			$s = "\n<h3>Ixora Suspicious SQL</h3>";
+			$s .= "\n<h3>Ixora Suspicious SQL</h3>";
 			$s .= $this->tohtml($rs,'expsixora');
-		} else 
-			$s = '';
+		}
 		
-		if ($s) $s .= '<p>';
-		$s .= $this->_SuspiciousSQL();
 		return $s;
 	}
 	
@@ -444,31 +473,35 @@ where
 order by
   1 desc, s.address, p.piece
 ";
-		global $ADODB_CACHE_MODE,$HTTP_GET_VARS;
-  		if (isset($HTTP_GET_VARS['expeixora']) && isset($HTTP_GET_VARS['sql'])) {
-			$partial = empty($HTTP_GET_VARS['part']);	
-			echo "<a name=explain></a>".$this->Explain($HTTP_GET_VARS['sql'],$partial)."\n";
+		global $ADODB_CACHE_MODE;
+  		if (isset($_GET['expeixora']) && isset($_GET['sql'])) {
+			$partial = empty($_GET['part']);	
+			echo "<a name=explain></a>".$this->Explain($_GET['sql'],$partial)."\n";
 		}
-		
-		if (isset($HTTP_GET_VARS['sql'])) {
-			 $var =& $this->_ExpensiveSQL();
+		if (isset($_GET['sql'])) {
+			 $var = $this->_ExpensiveSQL($numsql);
 			 return $var;
 		}
+		
+		$s = '';		
+		$s .= $this->_ExpensiveSQL($numsql);
+		$s .= '<p>';
 		$save = $ADODB_CACHE_MODE;
 		$ADODB_CACHE_MODE = ADODB_FETCH_NUM;
+		if ($this->conn->fetchMode !== false) $savem = $this->conn->SetFetchMode(false);
+		
 		$savelog = $this->conn->LogSQL(false);
 		$rs =& $this->conn->Execute($sql);
 		$this->conn->LogSQL($savelog);
+		
+		if (isset($savem)) $this->conn->SetFetchMode($savem);
 		$ADODB_CACHE_MODE = $save;
+		
 		if ($rs) {
-			$s = "\n<h3>Ixora Expensive SQL</h3>";
+			$s .= "\n<h3>Ixora Expensive SQL</h3>";
 			$s .= $this->tohtml($rs,'expeixora');
-		} else 
-			$s = '';
-		
-		
-		if ($s) $s .= '<p>';
-		$s .= $this->_ExpensiveSQL();
+		}
+	
 		return $s;
 	}
 	

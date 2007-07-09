@@ -63,8 +63,8 @@ function mkcheckbox ($_name, $value, $varr = null) {
 /* {{{ proto string mktext(string name, int size)
    Returns HTML format for a text entry line. */
 function mktext ($_name, $size = 20, $max = 0, $varr = null) {
-    if ($varr == null)
-        $varr =& $_POST;
+        if ($varr == null)
+            $varr =& $_POST;
 	$size = intval($size);
 	$max  = intval($max);
 	$str = "size=\"$size\"";

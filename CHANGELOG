@@ -1,0 +1,42 @@
+Changes made by Franky on version 1.8.2:
+
+20070615
+Added option to disable automatic numbering of questions when showing the survey
+Reworked a bit the "!other" anwser for radio/checkbox answers
+The answer to numerical questions are now also checked (to see the answer is indeed numerical)
+
+20070412
+fixes for losing the session info when changing respondents or designers
+
+uptill 20061201
+- multiple fixes, see: http://sourceforge.net/tracker/index.php?func=detail&aid=1598273&group_id=8956&atid=308956
+
+I also added the possibility to choose the language in handler.php, either by GET option or by setting a $lang parameter. To do this, I added below the line
+
+> require_once(ESP_BASE . '/admin/phpESP.ini.php');
+the next lines:
+< if (isset($_REQUEST['lang'])) {
+< esp_setlocale_ex($_REQUEST['lang']);
+< }
+< if (isset($lang)) {
+< esp_setlocale_ex($lang);
+< }
+
+So now handler.php?lang=nl_NL works, as well as setting $lang="nl_NL" and including handler.php as always.
+
+
+20061202 (I think)
+- added cookie checks to disable double postings (variable limit_double_postings in admin/phpESP.ini.php). It is disabled by default but I recommend you use it.
+- You need to use public/phpESP.first.php in every php survey page now (at the beginning, because cookies and sessions are used)
+
+20061205
+- added a captcha as well, so no scripted answers are possible (variable use_captcha in admin/phpESP.ini.php). It is disabled by default but I recommend you use it.
+
+20061207 - version 1.8.2e
+- implemented captcha abuse prevention mechanism, and updated captcha.README. I'll probably release the captcha as a seperate program as well
+- included patch 1609284
+
+2006121011 - version 1.8.2f
+- cookies to prevent double posting are no longer set if the survey is in test
+- updated the help pages a bit
+- added the ability to change the format of the date field, according to http://be.php.net/manual/en/function.strftime.php (I hope this'll work for everybody)

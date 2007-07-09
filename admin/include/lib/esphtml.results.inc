@@ -64,7 +64,7 @@ function mkrespercent($counts,$total,$precision,$showTotals) {
 			printf("<img src=\"" .$GLOBALS['ESPCONFIG']['image_url'] ."hbar.gif\" height=9 width=%d>",$percent*2);
 			echo("<img src=\"" .$GLOBALS['ESPCONFIG']['image_url'] ."hbar_r.gif\" height=9 width=4>");
 			printf("&nbsp;%.${precision}f%%",$percent); ?></b></td>
-		<td width="10%" align="right"><b><?php echo($total); ?></b></td>
+		<td width="10%" align="right"><b><?php print "$i ($total)"; ?></b></td>
 	</tr>
 <?php } ?>
 </table>
@@ -117,7 +117,7 @@ function mkresrank($counts,$total,$precision,$showTotals) {
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td colspan=2 align="left"><b><?php echo(_('TOTAL')); ?></b></td>
 		<td align="right"><b><?php printf("%.${precision}f%%",$pt); ?></b></td>
-		<td align="right"><b><?php echo($total); ?></b></td>
+		<td align="right"><b><?php print "$i ($total)"; ?></b></td>
 	</tr>
 <?php } ?>
 </table>
@@ -155,7 +155,7 @@ function mkrescount($counts,$total,$precision,$showTotals) {
 ?>
 	<tr bgcolor="<?php echo($bg); ?>">
 		<td><b><?php echo(_('TOTAL')); ?></b></td>
-		<td align="right"><b><?php echo($total); ?></b></td>
+		<td align="right"><b><?php print "$i ($total)"; ?></b></td>
 		<td align="right"><b>(<?php if($i) printf("%.${precision}f",$i/$total*100.0); ?>%)</b></td>
 	</tr>
 <?php	} ?>
@@ -202,7 +202,7 @@ function mkresavg($counts,$total,$precision,$showTotals,$length) {
 		<td></td>
 		<?php
 			for ($i = 0; $i < $length; )
-				echo( "<td width=\"$width\">". ++$i ."</td>\n");
+				echo( "<td align=\"right\" width=\"$width\">". ++$i ."</td>\n");
 		?>
 		<td width="20"></td>
 		<td></td>

@@ -77,6 +77,7 @@ CREATE TABLE survey (
 	thank_head	CHAR(255),
 	thank_body	TEXT,
 	changed         TIMESTAMP DEFAULT '0000-00-00 00:00:00',
+	auto_num	ENUM('Y','N') NOT NULL DEFAULT 'Y',
 	PRIMARY KEY (id),
 	UNIQUE(name)
 );
@@ -148,6 +149,7 @@ CREATE TABLE response (
 	submitted	TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
 	complete	ENUM('Y','N') NOT NULL DEFAULT 'N',
 	username	CHAR(64),
+	ip		CHAR(64),
 	PRIMARY KEY (id),
 	KEY `survey_id` (`survey_id`)
 );
