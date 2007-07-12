@@ -29,15 +29,15 @@
 	 * is saved, and $_SESSION['foo'] is ignored.
 	 * When Register_Globals is off, the global $foo is ignored
 	 * and $_SESSION['foo'] is saved.
-	 * By making $_SESSION['foo'] a reference to $foo
+	 * By making $_SESSION['foo'] a copy of $foo
 	 * when reg_glob is on, we can use $_SESSION uniformly
 	 * from here on, regardless of the INI settings.
 	 */
 	if(ini_get('register_globals')) {
-		$_SESSION['survey_id']  = intval(&$survey_id);
-		$_SESSION['new_survey'] = &$new_survey;
-		$_SESSION['last_tab']   = &$last_tab;
-		$_SESSION['curr_q']     = &$curr_q;
+		$_SESSION['survey_id']  = intval($survey_id);
+		$_SESSION['new_survey'] = $new_survey;
+		$_SESSION['last_tab']   = $last_tab;
+		$_SESSION['curr_q']     = $curr_q;
 	}
 	
 	global $errstr;
