@@ -47,7 +47,8 @@ $ESPCONFIG['db_name'] = 'phpesp';
 $ESPCONFIG['limit_double_postings'] = 3;
 
 // to use captcha confirmation, set this to 1
-$ESPCONFIG['use_captcha'] = 1;
+// Be sure to install the GD extension for PHP first, before using this
+$ESPCONFIG['use_captcha'] = 0;
 
 //date format to be used when filling in date fields in a survey
 $ESPCONFIG['date_format'] = "%d/%m/%Y";
