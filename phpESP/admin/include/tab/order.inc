@@ -88,7 +88,7 @@ function removeItem() {
                 echo('<option value="'.$qid.'">'.$i++.'. '.substr($content,0, 100).$dots.'</option>');
             }
             else {
-                ++$sec;
+                //++$sec;
                 echo('<option value="'.$qid.'"><strong>'._('----- Section Break -----').'</strong></option>\n');
 			}
         }
