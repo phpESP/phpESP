@@ -128,7 +128,7 @@
             		email=$u_email,
             		disabled=$u_disabled,
             		changed=".sys_time_stamp().",
-            		expiration=$u_expiration WHERE username=$u AND realm=$r;
+            		expiration=$u_expiration WHERE username=$u AND realm=$r";
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
             		$errstr .= mkerror(_('Cannot change account data.') .' ('.
@@ -152,7 +152,7 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r;
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
 		$result = execute_sql($sql,"","ADODB_FETCH_ASSOC");
 		if($arr = fetch_row($result)) {
 			#foreach(array(
