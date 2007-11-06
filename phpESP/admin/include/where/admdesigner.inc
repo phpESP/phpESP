@@ -44,7 +44,7 @@
 		if($_SESSION['acl']['superuser'] == 'Y' ||
 			in_array($r, $_SESSION['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
-			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r;
+			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
 			if(!execute_sql($sql) || affected_rows() < 1) {
 				/* unsucessfull -- abort */
 				$errstr .= mkerror(_('Cannot delete account.') .' ('.
@@ -109,7 +109,7 @@
             in_array($r, $_SESSION['acl']['pgroup']) ||
             auth_no_access(_('to access this group'))) {
             #$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
-            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u;
+            $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u";
             $result = execute_sql($sql);
             if(!$result || record_count($result) < 1) {
 		/* new user */
@@ -154,7 +154,7 @@
             		puser=$u_puser,
             		disabled=$u_disabled,
             		changed=".sys_time_stamp().",
-            		expiration=$u_expiration WHERE username=$u;
+            		expiration=$u_expiration WHERE username=$u";
             	#WHERE username=$u AND realm=$r;
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
@@ -186,7 +186,7 @@
 
 	/* load ACL */
 	if(!empty($u) && !empty($r)) {
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r;
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
 		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 		if($arr = fetch_row($result)) {
 			#foreach(array(
