@@ -9,9 +9,12 @@
 // <jflemer@acm.rpi.edu>
 
     /* SuperUser or Designers with "Administer Designers(pgroup)" permissions only*/
-    if(($_SESSION['acl']['superuser'] != 'Y' &&
+    if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_both' &&
+	$GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_resp' &&
+	$GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_des' &&
+	$_SESSION['acl']['superuser'] != 'Y' &&
         count($_SESSION['acl']['pgroup']) == 0) &&
-        !auth_no_access(_('to access this form'))) {
+        !auth_no_access(_('to access this form')) {
         return;
     }
 

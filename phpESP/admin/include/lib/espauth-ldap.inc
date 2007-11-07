@@ -24,7 +24,7 @@
    access to the survey. */
 function survey_auth($sid, $username, $password, $css, $title) {
 	// Default to _unauthorized_
-	$auth = false;
+	$auth_ldap_accept = $auth = false; // default to unauthorized
 	//if (isset($GLOBALS['HTTP_GET_VARS']['auth_options']) || isset($GLOBALS['HTTP_POST_VARS']['auth_options'])) {
 	if (isset($_GET['auth_options']) || isset($_POST['auth_options'])) {
 		$GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));
@@ -60,8 +60,31 @@ function survey_auth($sid, $username, $password, $css, $title) {
          // if we are running mysql >4.0 need to check/upgrade passwords
         password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['respondent_table']);
 
-		// Formulate the query check whether user is authorized
-		$sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
+		// Add configuration for ldap server and other things
+		$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_realm_attr'].$realm."))";
+
+		$ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'],
+				$GLOBALS['ESPCONFIG']['ldap_port']);
+
+		if ($ds) {
+			$search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
+			if (@ldap_count_entries($ds,$search_result)==1) {
+				$user_info = ldap_get_entries($ds, $search_result);
+				$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $ldap_password);
+				if ($auth_bind) {
+					$auth_ldap_accept = true;
+				}
+			}
+		}
+		ldap_close($ds);
+
+        if ($auth_ldap_accept) {
+		   $sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
+			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a
+			WHERE a.survey_id = $sid"; 
+        } else {
+		   // Formulate the query check whether user is authorized
+		   $sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
 			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['respondent_table']." r
 			WHERE a.survey_id = $sid AND
 				r.username = "._addslashes($username)." AND
@@ -69,6 +92,7 @@ function survey_auth($sid, $username, $password, $css, $title) {
 				r.realm = a.realm AND
 				r.disabled = 'N' AND
 				(r.expiration = '0000-00-00 00:00:00' OR r.expiration > ".sys_time_stamp().")";
+        }
 
 		// Execute the query and put results in $usrres
 		$usrres = execute_sql( $sql );
@@ -77,7 +101,7 @@ function survey_auth($sid, $username, $password, $css, $title) {
 			return(false);
 		}
 
-    if (record_count( $usrres ) > 0) {
+        if (record_count( $usrres ) > 0) {
 			// A matching row was found - the user is authorized.
 			$auth = true;
 			list($maxlogin, $arealm, $aresume, $anavigate) = $usrres->fields;
@@ -198,8 +222,7 @@ function manage_auth($username, $password, $raw_password="") {
 		// Information is entered into the database after authorization.
 
 		// Add configuration for ldap server and other things
-
-		$tmp_ldap_filter = $GLOBALS['ESPCONFIG']['ldap_filter'] .$username;
+		$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_designer_filter']."))";
 
 		$ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'],
 				$GLOBALS['ESPCONFIG']['ldap_port']);
