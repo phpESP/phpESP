@@ -9,7 +9,9 @@
 // <jflemer@acm.rpi.edu>
 
     /* SuperUser or Designers with "Administer Respondents(puser)" permissions only*/
-    if($_SESSION['acl']['superuser'] != 'Y' &&
+    if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_both' &&
+	$GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_resp' &&
+	$_SESSION['acl']['superuser'] != 'Y' &&
         count($_SESSION['acl']['puser']) == 0 &&
         !auth_no_access(_('to access this form'))) {
             return;
