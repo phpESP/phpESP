@@ -1,5 +1,11 @@
 Changes made by Franky on version 1.8.2:
 
+20071107
+- Correct LDAP auth, authenticated users are no longer recreated in the DB
+- You can choose between LDAP authentication for respondents, designers or both
+- Fixed some session checks when already logged in
+- Fixed some typo's (why did nobody see these???)
+
 20070615
 Added option to disable automatic numbering of questions when showing the survey
 Reworked a bit the "!other" anwser for radio/checkbox answers
