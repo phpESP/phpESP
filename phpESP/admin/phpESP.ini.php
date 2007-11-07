@@ -76,7 +76,7 @@ $ESPCONFIG['auth_response'] = true;
 // ldap_resp: respondents in LDAP, ldap_des: designers in LDAP
 // ldap_both: both respondents and designers in LDAP
 // default: mysql
-$ESPCONFIG['auth_type'] = 'ldap_resp';
+$ESPCONFIG['auth_type'] = 'default';
 
 // LDAP connection information
 // (Set these values if you choose 'ldap' as the authentication type.)
@@ -87,14 +87,14 @@ $ESPCONFIG['ldap_port']   = '389';
 $ESPCONFIG['ldap_dn']     = 'dc=example, dc=com';
 $ESPCONFIG['ldap_filter'] = 'uid=';
 // the LDAP attribute that is compared with the "group" when completing private
-// surveys
+// surveys. If more than one LDAP value exists, the first one is taken
 $ESPCONFIG['ldap_realm_attr'] = 'objectClass';
 // the LDAP attribute/value needed to designate a LDAP user as a designer
 $ESPCONFIG['ldap_designer_filter'] = 'radiusUserCategory=engineer';
 // the LDAP attribute needed to designate a LDAP user as a superuser
 $ESPCONFIG['ldap_superuser_attr'] = 'uid';
 // the LDAP attribute needed to designate a LDAP user as a superuser
-$ESPCONFIG['ldap_superuser_value'] = 'franky';
+$ESPCONFIG['ldap_superuser_value'] = 'test';
 // most newer LDAP servers need protocol 3 to be able to bind successfully
 // if this doesn't work for you, turn it of
 $ESPCONFIG['ldap_force_proto_3'] = true;
