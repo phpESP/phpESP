@@ -129,6 +129,7 @@
             		disabled=$u_disabled,
             		changed=".sys_time_stamp().",
             		expiration=$u_expiration WHERE username=$u AND realm=$r";
+print "TTT: $sql";
             	if(!execute_sql($sql)) {
             		/* unsucessfull -- abort */
             		$errstr .= mkerror(_('Cannot change account data.') .' ('.

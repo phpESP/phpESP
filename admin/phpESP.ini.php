@@ -72,18 +72,36 @@ $ESPCONFIG['auth_design'] = true;
 // Use authentication for survey responders (BOOLEAN)
 $ESPCONFIG['auth_response'] = true;
 
-// Choose authentication type: { 'default', 'ldap' }
-$ESPCONFIG['auth_type'] = 'default';
+// Choose authentication type: { 'default', 'ldap_both', 'ldap_resp', 'ldap_des' }
+// ldap_resp: respondents in LDAP, ldap_des: designers in LDAP
+// ldap_both: both respondents and designers in LDAP
+// default: mysql
+$ESPCONFIG['auth_type'] = 'ldap_resp';
 
 // LDAP connection information
 // (Set these values if you choose 'ldap' as the authentication type.)
+// if a user is not found in ldap, the DB is still searched as well
+// designer info is copied in the DB
 $ESPCONFIG['ldap_server'] = 'ldap://ldap.example.com';
 $ESPCONFIG['ldap_port']   = '389';
 $ESPCONFIG['ldap_dn']     = 'dc=example, dc=com';
 $ESPCONFIG['ldap_filter'] = 'uid=';
+// the LDAP attribute that is compared with the "group" when completing private
+// surveys
+$ESPCONFIG['ldap_realm_attr'] = 'objectClass';
+// the LDAP attribute/value needed to designate a LDAP user as a designer
+$ESPCONFIG['ldap_designer_filter'] = 'radiusUserCategory=engineer';
+// the LDAP attribute needed to designate a LDAP user as a superuser
+$ESPCONFIG['ldap_superuser_attr'] = 'uid';
+// the LDAP attribute needed to designate a LDAP user as a superuser
+$ESPCONFIG['ldap_superuser_value'] = 'franky';
+// most newer LDAP servers need protocol 3 to be able to bind successfully
+// if this doesn't work for you, turn it of
+$ESPCONFIG['ldap_force_proto_3'] = true;
 
 // Group to add responders to via the sign-up page
 // (Set to "null", without quotes, to disable the sign-up page.)
+// Please do disable this for LDAP auth for respondents
 $ESPCONFIG['signup_realm'] = 'auto';
 
 // Default language for designer interface
@@ -119,7 +137,7 @@ $ESPCONFIG['DEBUG'] = false;
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '1.8.2k';
+$ESPCONFIG['version'] = '1.8.2l';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';

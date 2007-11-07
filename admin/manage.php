@@ -89,9 +89,9 @@
 
     $where = '';
     if(isset($_POST['where']))
-    $where = $_POST['where'];
+       $where = $_POST['where'];
     elseif(isset($_GET['where']))
-    $where = $_GET['where'];
+       $where = $_GET['where'];
 
     if ($where == 'download') {
         include(esp_where($where));
@@ -138,37 +138,3 @@
 ?>
 </body>
 </html>
-<?php exit; ?>
-=======
-        <?php
-            if(!empty($ESPCONFIG['style_sheet'])) {
-                echo("<link href=\"". $ESPCONFIG['style_sheet'] ."\" rel=\"stylesheet\" type=\"text/css\" />\n");
-            }
-            if(!empty($ESPCONFIG['charset'])) {
-                echo('<meta http-equiv="Content-Type" content="text/html; charset='. $ESPCONFIG['charset'] ."\" />\n");
-            }
-        ?>
-        </head>
-        <body <?php
-            echo('bgcolor="'. $ESPCONFIG['main_bgcolor'] .'"');
-            if(!empty($ESPCONFIG['link_color']))  echo(' link="'.  $ESPCONFIG['link_color']  .'"');
-            if(!empty($ESPCONFIG['vlink_color'])) echo(' vlink="'. $ESPCONFIG['vlink_color'] .'"');
-        if(!empty($ESPCONFIG['alink_color'])) echo(' alink="'. $ESPCONFIG['alink_color'] .'"'); ?>>
-        <?php
-            if($ESPCONFIG['DEBUG']) {
-                include($ESPCONFIG['include_path']."/debug".$ESPCONFIG['extension']);
-            }
-
-            if(file_exists($ESPCONFIG['include_path']."/head".$ESPCONFIG['extension']))
-            include($ESPCONFIG['include_path']."/head".$ESPCONFIG['extension']);
-
-            include(esp_where($where));
-
-            if(file_exists($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']))
-            include($ESPCONFIG['include_path']."/foot".$ESPCONFIG['extension']);
-
-        ?>
-        </body>
-        </html>
-    <?php exit; ?>
->>>>>>> 1.26

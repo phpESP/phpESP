@@ -54,16 +54,20 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
 			<div id="userAdmin">
                         <ul>
                             <?php
-                            if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap') { ?>
+                            if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_both' && $GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_des') { ?>
                             <li><a href="<?php echo("${base}?where=passwd");   ?>"><?php echo(_('Change Your Password')); ?></a></li>
                             <?php
                             }
-                            if($_SESSION['acl']['superuser'] == 'Y' ||
-                            count($_SESSION['acl']['puser']) > 0) { ?>
+                            if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_both' &&
+				$GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_resp' &&
+				($_SESSION['acl']['superuser'] == 'Y' ||
+				 count($_SESSION['acl']['puser']) > 0)) { ?>
                             <li><a href="<?php echo("${base}?where=respondents"); ?>"><?php echo(_('Manage Respondent Accounts')); ?></a></li>
                             <?php   }
-                            if($_SESSION['acl']['superuser'] == 'Y' ||
-                            count($_SESSION['acl']['pgroup']) > 0) { ?>
+                            if($GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_both' &&
+				$GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_des' &&
+				($_SESSION['acl']['superuser'] == 'Y' ||
+                            	 count($_SESSION['acl']['pgroup']) > 0)) { ?>
                             <li><a href="<?php echo("${base}?where=designers");   ?>"><?php echo(_('Manage Designer Accounts')); ?></a></li>
                             <?php	if($_SESSION['acl']['superuser'] == 'Y') { ?>
                             <li><a href="<?php echo("${base}?where=groups"); ?>"><?php echo(_('Manage Groups')); ?></a></li>

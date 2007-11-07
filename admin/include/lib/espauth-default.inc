@@ -11,7 +11,7 @@
 /* {{{ proto bool survey_auth(int survey_id, string username, string password)
    Returns true if the supplied username/password is allowed
    access to the survey. */
-function survey_auth($sid, $username, $password, $css, $title) {
+function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
 	// Default to _unauthorized_
 	$auth = false;
 
@@ -159,11 +159,10 @@ function manage_auth($username, $password, $raw_password="") {
 			!empty($password) &&
 			isset($_SESSION['acl']) &&
 			isset($_SESSION['acl']['username']) &&
-			isset($_SESSION['acl']['password']) &&
 			$_SESSION['acl']['username'] == $username) {
-		$sql = "SELECT ".db_crypt($password)." = ". $_SESSION['acl']['password'];
-		$auth = get_one($sql);
-		if($auth)
+		#$sql = "SELECT ".db_crypt($password)." = ". $_SESSION['acl']['password'];
+		#$auth = get_one($sql);
+		#if($auth)
 			return(true);
 	}
 
@@ -232,7 +231,7 @@ function manage_auth($username, $password, $raw_password="") {
 	foreach($fields as $f) {
 		$$f = array();
 	}
-    while( !$accres->EOF ) {
+	while( !$accres->EOF ) {
 		if($accres->fields['realm'] == 'superuser')
 			$acl['superuser'] = 'Y';
 		foreach($fields as $f) {

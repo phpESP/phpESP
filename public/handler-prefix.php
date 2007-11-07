@@ -152,7 +152,7 @@
 
         }
 
-        if(!survey_auth($sid, $espuser, _addslashes($esppass), $_css, $_title))
+        if(!survey_auth($sid, $espuser, _addslashes($esppass), $esppass, $_css, $_title))
             return;
 
         if (auth_get_option('resume')) {
