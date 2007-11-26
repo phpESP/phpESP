@@ -152,7 +152,7 @@ $ESPCONFIG['handler']        = ESP_BASE . '/public/handler.php';
 $ESPCONFIG['handler_prefix'] = ESP_BASE . '/public/handler-prefix.php';
 
 // Valid tabs when editing surveys
-$ESPCONFIG['tabs'] = array('general', 'questions', 'preview', 'order', 'finish');
+$ESPCONFIG['tabs'] = array('general', 'questions', 'order', 'conditions', 'preview', 'finish');
 
 // Copy of PHP_SELF for later use
 $ESPCONFIG['ME'] = $server['PHP_SELF'];
