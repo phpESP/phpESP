@@ -251,3 +251,15 @@ INSERT INTO question_type VALUES ('9','Date','N','response_date');
 INSERT INTO question_type VALUES ('10','Numeric','N','response_text');
 INSERT INTO question_type VALUES ('99','Page Break','N','');
 INSERT INTO question_type VALUES ('100','Section Text','N','');
+
+DROP TABLE IF EXISTS conditions;
+CREATE TABLE conditions (
+        id              INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	survey_id	INT UNSIGNED NOT NULL,
+	q1_id		INT UNSIGNED NOT NULL,
+	q2_id 		INT UNSIGNED NOT NULL,
+	cond		INT UNSIGNED NOT NULL,
+	cond_value	TEXT,
+	PRIMARY KEY (id)
+);
+

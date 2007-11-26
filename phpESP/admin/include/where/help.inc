@@ -19,6 +19,7 @@
           <li><a href="#general_tab" style="text-decoration:none; font-size:80%;">General Tab</a></li>
           <li><a href="#question_tab" style="text-decoration:none; font-size:80%;">Question Tab</a></li>
           <li><a href="#order_tab" style="text-decoration:none; font-size:80%;">Order Tab</a></li>
+          <li><a href="#condition_tab" style="text-decoration:none; font-size:80%;">Condition Tab</a></li>
           <li><a href="#preview_tab" style="text-decoration:none; font-size:80%;">Preview Tab</a></li>
           <li><a href="#finish_tab" style="text-decoration:none; font-size:80%;">Finish Tab</a></li>
         </ul>
@@ -157,7 +158,18 @@
       <h3 style="padding-left:10px;"><a id="order_tab">Order Tab:</a></h3>
       <ul>
         <li>
-          <p>On this tab, you can change the order of the questions, delete questions, and insert <strong>section</strong> breaks. A section break, divides your survey into multiple pages (good for long surveys).</p>
+          <p>On this tab, you can change the order of the questions, delete questions, and insert <strong>section</strong> breaks. A section break divides your survey into multiple pages (good for long surveys).</p>
+        </li>
+      </ul>
+      <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
+      <h3 style="padding-left:10px;"><a id="condition_tab">Condition Tab:</a></h3>
+      <ul>
+        <li>
+          <p>On this tab, you can change define conditions on questions, so a question is only shown when a condition is met.<br />
+	     All conditions are "OR" conditions, so if one conditions is fullfilled, the question is shown.<br />
+	     A question that has a condition must be an optional question. So, if you define a condition on a question, the "Required" parameter is set to "No".<br />
+	     A question that has a condition must be on the next page than the question/value that is used to compare it with. Use the "Order tab" to insert a section break where wanted (this is NOT done automatically).
+	</p>
         </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>

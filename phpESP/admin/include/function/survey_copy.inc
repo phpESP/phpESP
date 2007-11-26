@@ -17,7 +17,7 @@ function add_squotes (&$val, $key) {
 /* {{{ proto bool survey_copy(int survey_id)
    Creates an editable copy of a survey. */
 function survey_copy($sid) {
-    $survey_fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num');
+	$survey_fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num');
 	$sql = "SELECT ". join(', ',$survey_fields)." FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
 	$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 	if(record_count($result) != 1)
@@ -33,11 +33,11 @@ function survey_copy($sid) {
 	// check for 'name' conflict, and resolve
 	$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=". _addslashes($survey['name']);
 	$i=0;
-    $result = execute_sql($sql);
+	$result = execute_sql($sql);
 	while($result->fields[0] > 0) {
-        $result->MoveNext();
+		$result->MoveNext();
 		$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name=". _addslashes($survey['name'].++$i);
-        $result = execute_sql($sql);
+		$result = execute_sql($sql);
 	}
 	if($i)
 		$survey['name'] .= $i;
@@ -56,16 +56,16 @@ function survey_copy($sid) {
 	$has_choices = esp_type_has_choices();
 
 	// make copies of all the questions
-    $question_fields = array('id', 'survey_id', 'name', 'type_id', 'result_id', 'length', 'precise', 
-    'position', 'content', 'required', 'deleted', 'public');
+	$question_fields = array('id', 'survey_id', 'name', 'type_id', 'result_id', 'length', 'precise', 
+			'position', 'content', 'required', 'deleted', 'public');
 	$sql = "SELECT ". join(', ',$question_fields)." FROM ".$GLOBALS['ESPCONFIG']['question_table']."
 		WHERE survey_id=${sid} AND deleted='N'
 		ORDER by position, id";
 	$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 	$pos=1;
-    array_shift($question_fields);
+	array_shift($question_fields);
 	while($question = fetch_row($result)) {
-        $result->MoveNext();
+		$result->MoveNext();
 		$tid = $question['type_id'];
 		$qid = $question['id'];
 		// fix some fields first
@@ -73,15 +73,15 @@ function survey_copy($sid) {
 		$question['position'] = $pos++;
 
 		// copy question to new survey
-        array_shift($question);
-        if(!isset($question['result_id'])) {
-            $question['result_id'] = 'NULL';
-        }
-        $question['name'] = _addslashes($question['name']);
-        $question['content'] = _addslashes($question['content']);
-        $question['required'] = _addslashes($question['required']);
-        $question['deleted'] = _addslashes($question['deleted']);
-        $question['public'] = _addslashes($question['public']);
+		array_shift($question);
+		if(!isset($question['result_id'])) {
+			$question['result_id'] = 'NULL';
+		}
+		$question['name'] = _addslashes($question['name']);
+		$question['content'] = _addslashes($question['content']);
+		$question['required'] = _addslashes($question['required']);
+		$question['deleted'] = _addslashes($question['deleted']);
+		$question['public'] = _addslashes($question['public']);
 		$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." ";
 		$sql .= '('. join(',', $question_fields) .') ';
 		$sql .= 'VALUES ( '. join(',',array_values($question)) .' )';
@@ -91,17 +91,17 @@ function survey_copy($sid) {
 
 		// make copies of all the question choices (if exist)
 		if($has_choices[$tid]) {
-            $question_choice_fields = array('question_id', 'content', 'value');
+			$question_choice_fields = array('question_id', 'content', 'value');
 			$sql = "SELECT ". join(', ',$question_choice_fields)."
-                FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
+				FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
 				WHERE question_id=${qid}
 				ORDER BY id";
 			$result2 = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 			while($choice = fetch_row($result2)) {
-                $result2->MoveNext();
+				$result2->MoveNext();
 				$choice['question_id'] = $new_qid;
-                $choice['content'] = _addslashes($choice['content']);
-                $choice['value'] = _addslashes($choice['value']);
+				$choice['content'] = _addslashes($choice['content']);
+				$choice['value'] = _addslashes($choice['value']);
 
 				$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_choice_table']." ";
 				$sql .= '('. join(',',$question_choice_fields) .') ';
