@@ -184,6 +184,7 @@ Management Interface.')); ?><br />
 <input type="submit" name="tab" value="General" />
 <input type="submit" name="tab" value="Questions" />
 <input type="submit" name="tab" value="Order" />
+<input type="submit" name="tab" value="Conditions" />
 <input type="submit" name="tab" value="Preview" />
 <input type="submit" name="tab" value="Finish" />
 </form>

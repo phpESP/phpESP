@@ -190,5 +190,8 @@ and password to complete the survey.') ?></blockquote>
     require_once($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
     require_once($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
     require_once($ESPCONFIG['include_path']."/function/account_upload".$ESPCONFIG['extension']);
+    require_once($ESPCONFIG['include_path']."/function/response_purge".$ESPCONFIG['extension']);
+    require_once($ESPCONFIG['include_path']."/function/question_render".$ESPCONFIG['extension']);
+    require_once($ESPCONFIG['include_path']."/function/question_conditioncheck".$ESPCONFIG['extension']);
 
 ?>

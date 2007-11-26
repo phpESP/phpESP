@@ -196,7 +196,7 @@
 <input type="hidden" name="name" value="<?php echo($name); ?>" />
     </fieldset>
 <?php
-        survey_render($sid,$_REQUEST['sec'],$msg);
+        survey_render($sid,$_REQUEST['sec'],$_REQUEST['rid'],$msg);
 ?>
     <fieldset>
 <?php
