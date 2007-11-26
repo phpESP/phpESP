@@ -36,11 +36,19 @@ function question_conditioncheck($sid,$qid,$rid) {
   while(list($id,$sid,$q1_id,$q2_id,$cond,$cond_val) = fetch_row($result)) {
      $result->MoveNext();
      if ($rid>0) {
+	$resp=array();
         $resp=response_select($sid, $rid, $col = null, array($q2_id));
-	$resp_val=$resp[$q2_id][0];
-	if (call_user_func($conditions[$cond],$resp_val,$cond_val) == TRUE) {
-	   # the condition is fullfilled, so we need to show the question
-  	   return true;
+	if (isset($resp[$q2_id])) {
+	   $resp_val=$resp[$q2_id][0];
+	   // for dropdown and some other types, this value is an array
+	   // we take the value (for now) and not the index ...
+	   if (is_array($resp_val)) {
+		$resp_val=$resp_val[0];
+	   }
+	   if (call_user_func($conditions[$cond],$resp_val,$cond_val) == TRUE) {
+	      # the condition is fullfilled, so we need to show the question
+  	      return true;
+	   }
 	}
      }
   }

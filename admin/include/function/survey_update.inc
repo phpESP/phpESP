@@ -346,18 +346,28 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		if(isset($_POST['addcondition']) && ($_POST['addcondition']=='go')) {
 			$id1=$_POST['q1_id'];
 			$id2=$_POST['q2_id'];
+			if ($id1==$id2) {
+				$errstr = _('Please select two different questions.');
+				return(0);
+			}
 			$cond=$_POST['cond'];
-			$cond_val=$_POST['cond_value'];
+			$cond_val=_addslashes($_POST['cond_value']);
 			$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['condition_table']." (survey_id,q1_id,q2_id,cond,cond_value)
-				VALUES ($sid, $id1, $id2, $cond, '$cond_val')";
-			execute_sql($sql);
+				VALUES ($sid, $id1, $id2, $cond, $cond_val)";
+			$result=execute_sql($sql);
+			if (!$result)
+			   $errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 			# Conditional questions can't be required questions as well
 			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET required='N' WHERE id=$id1";
-			execute_sql($sql);
+			$result=execute_sql($sql);
+			if (!$result)
+			   $errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 		}
 		if(isset($_POST['deletecondition'])) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['condition_table']." WHERE id=".key($_POST['deletecondition']);
-			execute_sql($sql);
+			$result=execute_sql($sql);
+			if (!$result)
+			   $errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 		}
 		return(1);
 	}

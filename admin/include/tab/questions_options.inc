@@ -17,7 +17,7 @@
 
 	// this type of question has answer options
 	if ($updated && $curr_q) {
-		$sql = "SELECT id,content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=${curr_q_id} ORDER BY id";
+		$sql = "SELECT id,content FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=${curr_q} ORDER BY id";
 		$result = execute_sql($sql);
 		$c = record_count($result);
 	} else {

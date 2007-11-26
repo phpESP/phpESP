@@ -11,7 +11,7 @@
 /* {{{ proto bool survey_render(int survey_id, int section, int resonse_id, string message)
    Reads current form variables from $_POST.
    Builds HTML for the survey (prefixed w/ message). */
-function survey_render($sid, $section = 1, $rid, $message = '') {
+function survey_render($sid, $section = 1, $rid=0, $message = '') {
 	//global $_POST;
 	@reset($_POST);
 
@@ -80,6 +80,10 @@ function survey_render($sid, $section = 1, $rid, $message = '') {
 		}
 		#if (!question_conditioncheck($sid,$qid,$_POST['rid'])) {
 		if (question_conditioncheck($sid,$qid,$rid)) {
+		   $questions_shown=1;
+		   question_render($question,$i,$survey['auto_num']);
+		} elseif (isset($_POST['tab']) && ($_POST['tab']=="preview")) {
+		   // also show in preview
 		   $questions_shown=1;
 		   question_render($question,$i,$survey['auto_num']);
 		}
