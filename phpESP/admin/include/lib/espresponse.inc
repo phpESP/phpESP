@@ -185,6 +185,14 @@
             else
             $val = '';
 
+	    // don't allow >1 responses for the same response ID and the same question ID
+	    $sql  = "SELECT COUNT(*) from ".$GLOBALS['ESPCONFIG'][$table.'_table']." WHERE response_id=${rid} AND question_id=${qid}";
+	    $count = get_one($sql);
+            if ($count > 0) {
+		return $rid;
+	    }
+
+
             switch($table) {
                 case 'response_bool':
                     $sql  = "INSERT INTO ".$GLOBALS['ESPCONFIG'][$table.'_table']." ( response_id,question_id,choice_id ) VALUES ( ${rid},${qid},${val} )";
@@ -287,8 +295,9 @@
                         }
                     }
                     db_close($c_result);
-                    if(!isset($_POST[$qid]) || count($_POST[$qid]) < 1)
-                    break;
+                    #if(!isset($_POST[$qid]) || count($_POST[$qid]) < 1)
+                    if(!isset($_POST[$qid]) || !is_array($_POST[$qid]))
+			break;
                     foreach($_POST[$qid] as $cid) {
                         $cid = _addslashes($cid);
                         if(ereg("other_[0-9]+", $cid))
@@ -862,8 +871,9 @@
             q.id = a.question_id AND
             q.survey_id = $sid AND
             q.deleted = 'N'";
-            $res = execute_sql($sql);
-            if ($num = get_one($res) > $max)
+            #$res = execute_sql($sql);
+            #if ($num = get_one($res) > $max)
+            if ($num = get_one($sql) > $max)
             $max = $num;
         }
         return $max;
@@ -881,8 +891,9 @@
         q.type_id = 99 AND
         q.position < $pos AND
         q.deleted = 'N'";
-        $res = execute_sql($sql);
-        $max = get_one($res);
+        #$res = execute_sql($sql);
+        #$max = get_one($res);
+        $max = get_one($sql);
         return $max;
     }
     /* }}} */

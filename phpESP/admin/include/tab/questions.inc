@@ -8,58 +8,35 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	if(empty($_SESSION['curr_q']))
-		$_SESSION['curr_q'] = 0;
-    if(empty($_POST['id']))
-        $_POST['id'] = 0;
+        if(empty($_POST['id']))
+        	$_POST['id'] = 0;
 
 	$curr_q =& $_SESSION['curr_q'];
 	$sid =& $_SESSION['survey_id'];
    	$id = intval($_POST['id']);
 
-    if (isset($_POST['type_id']))
-        $_POST['type_id'] = intval($_POST['type_id']) ?
-                $_POST['type_id'] : '';
-    else
-        $_POST['type_id'] = '';
-
-	// build array of question IDs
-	$sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_table']."
-	WHERE survey_id=$sid AND deleted='N' AND type_id != 99
-	ORDER BY position";
-	$result = execute_sql($sql);
-	$total_num_q = record_count($result);
-	$q_ids = array();
-	while(list($qi) = fetch_row($result)) {
-        $result->MoveNext();
-		array_push($q_ids, $qi);
-    }
-	db_close($result);
+	if (isset($_POST['type_id']))
+		$_POST['type_id'] = intval($_POST['type_id']) ?  $_POST['type_id'] : '';
+	else
+        	$_POST['type_id'] = '';
 
 	// update failed, stay on same question
 	if(!$updated || isset($_POST['extra_choices'])) {
-		for ( $q = 0; $q < $total_num_q && $q_ids[$q] != $id ; $q++);
-		$_POST['q'] = ++$q;
-		unset($q);
+		$curr_q = $_POST['id'];
 	} else {
-		if(empty($_POST['q']))
-			$_POST['q'] = $curr_q;
-		if($_POST['q'] == _('New Question'))
-			$_POST['q'] = 0;
-		if($_POST['q']<0 || $_POST['q']>$total_num_q)
-			$_POST['q'] = 1;
+		if(isset($_POST['new_question']))
+			$curr_q = 0;
+		if(isset($_POST['edit_question']))
+			$curr_q = $_POST['q_id'];
+		if($q_id<0)
+			$curr_q = 1;
 	}
-	$curr_q = $_POST['q'];
-	if($curr_q && isset($q_ids[$curr_q-1]))
-		$curr_q_id = $q_ids[$curr_q-1];
-	else
-		$curr_q_id = 0;
 
 	$fields = array('name','type_id','length','precise','required','content','position');
-	if($updated && $total_num_q > 0 && $curr_q) {
+	if($updated && $curr_q) {
 		// survey questions exist already
 		// load values from DB
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id=${curr_q_id} AND deleted='N' ORDER BY position";
+		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id=${curr_q} AND deleted='N' ORDER BY position";
 		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 		$question = fetch_row($result);
 		db_close($result);
@@ -69,34 +46,63 @@
 	} else if ($updated) {
 		// adding a new question (possibly because there are no questions yet)
 		$curr_q = 0;
-		$curr_q_id = '';
 		foreach(array('name','length','precise','content','position') as $f) {
 			$_POST[$f] = '';
 		}
 	} else {
 		foreach($fields as $f) {
-            if(!empty($_POST[$f]))
+			if(!empty($_POST[$f]))
 			    $_POST[$f] = _stripslashes($_POST[$f]);
-            else
-                $_POST[$f] = '';
+			else
+			    $_POST[$f] = '';
 		}
 	}
 ?>
-	<input type="hidden" name="id" value="<?php echo($curr_q_id); ?>" />
-	<p>
-	<?php echo(_('Edit this question, or click the number of the question you would like to edit:')); ?>
+	<input type="hidden" name="id" value="<?php echo($curr_q); ?>" />
+	<?php 
+	   echo(_('Edit this question, or click the number of the question you would like to edit:'));
+	?>
 	</p>
-<?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
-	<input type="submit" name="q" value="<?php echo($i); ?>" />
-<?php } ?>
-	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>" />
+
+	<select name="q_id" id="q_id">
+<?php
+	$i = 1;
+	// build array of question IDs
+	$sql = "SELECT id,type_id,position,content FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+	WHERE survey_id=$sid AND deleted='N' AND type_id != 99
+	ORDER BY position";
+	$result = execute_sql($sql);
+	while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
+           $result->MoveNext();
+           $dots = "";
+           $content = strip_tags($content);
+           if($tid != 99) {
+                if (strlen($content) > 30) {
+                        $dots = "...";
+                }
+		if ($qid==$curr_q) {
+                   echo('<option selected value="'.$qid.'">'.$i++.'. '.substr($content,0, 30).$dots.'</option>');
+		} else {
+                   echo('<option value="'.$qid.'">'.$i++.'. '.substr($content,0, 30).$dots.'</option>');
+		}
+           }
+           else {
+                //++$sec;
+               	 echo('<option value="'.$qid.'"><strong>'._('----- Section Break -----').'</strong></option>\n');
+           }
+	}
+	db_close($result);
+?>
+	</select>
+
+	<input type="submit" name="edit_question" value="<?php echo(_('Edit Question')); ?>" />
+	<input type="submit" name="new_question" value="<?php echo(_('New Question')); ?>" />
 	<hr /> 
 	<strong><?php
 		if(!$curr_q) {
 			echo('<span class="red">'._('New Question').'</span>');
-		} else {
-			echo(_('Question')." $curr_q");
-		} ?></strong>
+		} ?>
+	</strong>
 	<table>
 		<tr>
 			<th>&nbsp;</th>
@@ -153,7 +159,3 @@
 	}
 ?>
 	<hr />
-<?php for($i=1; $i<$total_num_q+1; ++$i) { ?>
-	<input type="submit" name="q" value="<?php echo($i); ?>" />
-<?php } ?>
-	<input type="submit" name="q" value="<?php echo(_('New Question')); ?>" />
