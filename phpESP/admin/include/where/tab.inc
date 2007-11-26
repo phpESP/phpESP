@@ -105,6 +105,9 @@
 				$tab='order';
 				break;
 			case 'order':
+				$tab='conditions';
+				break;
+			case 'conditions':
 				$tab='preview';
 				break;
 			default:
@@ -151,11 +154,12 @@
       <input type="hidden" name="where" value="tab" />
 <div id="tabmenu">
       <ul id="sections">
-		  <li><input type="image" alt="<?php echo(_('General')); ?>"   name="general"   src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Questions')); ?>" name="questions" src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Order')); ?>"     name="order"     src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Preview')); ?>"   name="preview"   src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Finish')); ?>"    name="finish"    src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('General')); ?>"    name="general"    src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Questions')); ?>"  name="questions"  src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Order')); ?>"      name="order"      src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Conditions')); ?>" name="conditions" src="<?php echo($ESPCONFIG['image_url']); ?>conditions_<?php $a='d'; if($tab == 'conditions') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Preview')); ?>"    name="preview"    src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif" /></li>
+		  <li><input type="image" alt="<?php echo(_('Finish')); ?>"     name="finish"     src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif" /></li>
       </ul>
 </div>
 <table>
