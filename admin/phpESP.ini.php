@@ -87,10 +87,10 @@ $ESPCONFIG['ldap_port']   = '389';
 $ESPCONFIG['ldap_dn']     = 'dc=example, dc=com';
 $ESPCONFIG['ldap_filter'] = 'uid=';
 // the LDAP attribute that is compared with the "group" when completing private
-// surveys. If more than one LDAP value exists, the first one is taken
+// surveys
 $ESPCONFIG['ldap_realm_attr'] = 'objectClass';
 // the LDAP attribute/value needed to designate a LDAP user as a designer
-$ESPCONFIG['ldap_designer_filter'] = 'radiusUserCategory=engineer';
+$ESPCONFIG['ldap_designer_filter'] = 'UserCategory=engineer';
 // the LDAP attribute needed to designate a LDAP user as a superuser
 $ESPCONFIG['ldap_superuser_attr'] = 'uid';
 // the LDAP attribute needed to designate a LDAP user as a superuser
@@ -102,6 +102,8 @@ $ESPCONFIG['ldap_force_proto_3'] = true;
 // Group to add responders to via the sign-up page
 // (Set to "null", without quotes, to disable the sign-up page.)
 // Please do disable this for LDAP auth for respondents
+$ESPCONFIG['signup_realm'] = 'auto';
+
 $ESPCONFIG['signup_realm'] = 'auto';
 
 // Default language for designer interface
@@ -137,7 +139,7 @@ $ESPCONFIG['DEBUG'] = false;
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '1.8.2l';
+$ESPCONFIG['version'] = '2.0.0';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';
@@ -194,6 +196,7 @@ $ESPCONFIG['response_rank_table']       = $DB_PREFIX."response_rank";
 $ESPCONFIG['response_single_table']     = $DB_PREFIX."response_single";
 $ESPCONFIG['response_text_table']       = $DB_PREFIX."response_text";
 $ESPCONFIG['survey_table']              = $DB_PREFIX."survey";
+$ESPCONFIG['condition_table']           = $DB_PREFIX."conditions";
 
 // Load I18N support
 require_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);

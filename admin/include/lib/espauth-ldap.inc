@@ -22,7 +22,8 @@
 /* {{{ proto bool survey_auth(int survey_id, string username, string password)
    Returns true if the supplied username/password is allowed
    access to the survey. */
-function survey_auth($sid, $username, $password, $css, $title) {
+function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
+ 	$ldap_password = $raw_password;
 	// Default to _unauthorized_
 	$auth_ldap_accept = $auth = false; // default to unauthorized
 	//if (isset($GLOBALS['HTTP_GET_VARS']['auth_options']) || isset($GLOBALS['HTTP_POST_VARS']['auth_options'])) {
@@ -61,7 +62,8 @@ function survey_auth($sid, $username, $password, $css, $title) {
         password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['respondent_table']);
 
 		// Add configuration for ldap server and other things
-		$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_realm_attr'].$realm."))";
+		#$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_realm_attr']."=".$realm."))";
+		$tmp_ldap_filter = $GLOBALS['ESPCONFIG']['ldap_filter'].$username;
 
 		$ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'],
 				$GLOBALS['ESPCONFIG']['ldap_port']);
@@ -69,10 +71,15 @@ function survey_auth($sid, $username, $password, $css, $title) {
 		if ($ds) {
 			$search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
 			if (@ldap_count_entries($ds,$search_result)==1) {
-				$user_info = ldap_get_entries($ds, $search_result);
-				$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $ldap_password);
+				$entry_id=ldap_first_entry($ds, $search_result);
+				if ($GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
+					ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+				}
+				$auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
 				if ($auth_bind) {
 					$auth_ldap_accept = true;
+					$values = @ldap_get_values($ds, $entry_id,$GLOBALS['ESPCONFIG']['ldap_realm_attr']);
+					$ldap_realm=$values[0];
 				}
 			}
 		}
@@ -81,7 +88,8 @@ function survey_auth($sid, $username, $password, $css, $title) {
         if ($auth_ldap_accept) {
 		   $sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
 			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a
-			WHERE a.survey_id = $sid"; 
+			WHERE a.survey_id = $sid
+			AND a.realm='".$ldap_realm."'";
         } else {
 		   // Formulate the query check whether user is authorized
 		   $sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
@@ -202,21 +210,18 @@ function manage_auth($username, $password, $raw_password="") {
 			!empty($password) &&
 			isset($_SESSION['acl']) &&
 			isset($_SESSION['acl']['username']) &&
-			isset($_SESSION['acl']['password']) &&
 			$_SESSION['acl']['username'] == $username) {
-		$sql = "SELECT ".db_crypt($password) ."= ". $_SESSION['acl']['password'];
-		$auth = get_one($sql);
-		if($auth)
-			return(true);
+		return(true);
+		#$sql = "SELECT ".db_crypt($password) ."= ". $_SESSION['acl']['password'];
+		#$auth = get_one($sql);
+		#if($auth)
+		#	return(true);
 	}
 
 	$auth_ldap_accept = $auth = false; // default to unauthorized
 	$_SESSION['acl'] = array();
 
 	if (!empty($username) && !empty($password) && !empty($ldap_password)) {
-         // if we are running mysql >4.0 need to check/upgrade passwords
-        password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['designer_table']);
-
 		// Formulate the query check whether user is authorized
 		// This only gives authorization for use of the survey.
 		// Information is entered into the database after authorization.
@@ -230,68 +235,32 @@ function manage_auth($username, $password, $raw_password="") {
 		if ($ds) {
 			$search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
 			if (@ldap_count_entries($ds,$search_result)==1) {
-				$user_info = ldap_get_entries($ds, $search_result);
-				$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $ldap_password);
+				//$user_info = ldap_get_entries($ds, $search_result);
+				$entry_id=ldap_first_entry($ds, $search_result);
+				if ($GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
+					ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+				}
+				//$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $ldap_password);
+				$auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
 				if ($auth_bind) {
 					$auth_ldap_accept = true;
+					$values = @ldap_get_values($ds, $entry_id,$GLOBALS['ESPCONFIG']['ldap_realm_attr']);
+					$ldap_realm=$values[0];
+					$values = @ldap_get_values($ds, $entry_id,$GLOBALS['ESPCONFIG']['ldap_superuser_attr']);
+					$ldap_superuser_value=$values[0];
 				}
 			}
 		}
 		ldap_close($ds);
 
-		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
-			username = "._addslashes($username)." AND
-			password = ".db_crypt($password)." AND
-			disabled = 'N' AND
-			(expiration = '0000-00-00 00:00:00' OR expiration > ". sys_time_stamp().")";
-		// Execute the query and put results in $accres
-		$accres = execute_sql( $sql, "", ADODB_FETCH_ASSOC);
-		if(!$accres) {
-			header( 'HTTP/1.0 503 '. _('Service Unavailable'));
-			echo('<html><head><title>'. _('Service Unavailable') .
-				'</title></head><body><h1>HTTP 503 '.
-				_('Service Unavailable') .'</h1>'.
-				mkerror(_('Unable to load ACL.') .' ('. ErrorMsg() .')') .
-				'</body></html>');
-			return(false);
-		}
-
-		// Get number of rows in $accres.
-		if (record_count( $accres ) > 0) {
-			// A matching row was found - the user is authorized.
+		if ($auth_ldap_accept) {
 			$auth = true;
-		} else if ($auth_ldap_accept) {
-			$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE
-					username = "._addslashes($username)." AND
-					disabled = 'N' AND
-					(expiration = '0000-00-00 00:00:00' OR expiration > ". sys_time_stamp().")";
-
- 		    // Execute the query and put results in $accres
-		    $accres = execute_sql($sql, "", ADODB_FETCH_ASSOC);
-			if (record_count($accres) < 1) {
-				// Create the group
-				$user_sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['realm_table']." (name, title, changed) VALUES ("._addslashes($username).", "._addslashes($username).", ". sys_time_stamp().")";
-                execute_sql($user_sql);
-
-				$user_sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['designer_table']."
-							(username,password,auth,realm,fname,
-							pdesign,pstatus,pdata,pall,
-							pgroup,puser,disabled,expiration,changed)
-							VALUES ("._addslashes($username).",".db_crypt($password).",
-									'BASIC',"._addslashes($username).", "._addslashes($username).",
-									'Y','Y','Y','Y','N','N','N','0',".sys_time_stamp().")";
-			} else {
-				$user_sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET password = ".db_crypt($password) ." WHERE username = "._addslashes($username);
-			}
-			if (execute_sql($user_sql)) {
-				$auth = true;
-			}
 		}
 	}
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) {
-         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+          if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
              header( 'WWW-Authenticate: Basic realm="'. _('Management Interface') .'"' );
              header( 'HTTP/1.0 401 '. _('Unauthorized'));
              echo("<html>\n<head><title>401 ". _('Unauthorized') ."</title></head>\n".
@@ -300,13 +269,12 @@ function manage_auth($username, $password, $raw_password="") {
              "</body>\n</html>\n");
              exit;
              return(false);
-         }
-         elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+          } elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
              echo show_login();
              exit;
              return(false);
-         }
-    }
+          }
+ 	}
 
 	// All tests passed ... create ACL array,
 	// and stick it in the session
@@ -315,20 +283,18 @@ function manage_auth($username, $password, $raw_password="") {
 		'superuser' => 'N',
 		'home' => '/tmp'
 	);
+	// all the fields for the ACL
 	$fields = array('pdesign', 'pstatus', 'pdata', 'pall', 'pgroup', 'puser');
+	// the fields that a LDAP user gets
+	$fields_Y = array('pdesign', 'pstatus', 'pdata', 'pall');
 	foreach($fields as $f) {
 		$$f = array();
 	}
-    while( !$accres->EOF ) {
-		if($accres->fields['realm'] == 'superuser')
-			$acl['superuser'] = 'Y';
-		foreach($fields as $f) {
-			if($accres->fields[$f] == 'Y')
-				array_push($$f, $accres->fields['realm']);
-		}
-        $accres->MoveNext();
+	if ($ldap_superuser_value == $GLOBALS['ESPCONFIG']['ldap_superuser_value'])
+		$acl['superuser'] = 'Y';
+	foreach($fields_Y as $f) {
+		array_push($$f, $ldap_realm);
 	}
-	db_close($accres);
 
 	foreach($fields as $f) {
 		$acl[$f] =& $$f;

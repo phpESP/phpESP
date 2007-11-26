@@ -50,6 +50,10 @@ function survey_purge($sids) {
 	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id ${sidstr}";
 	execute_sql($sql);
 
+	// then conditions
+	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['condition_table']." WHERE survey_id ${sidstr}";
+	execute_sql($sql);
+
 	// and finally the survey(s)
 	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id ${sidstr}";
 	execute_sql($sql);
