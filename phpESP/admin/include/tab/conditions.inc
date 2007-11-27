@@ -26,7 +26,7 @@ if (record_count($result)) {
    $print_or=0;
    while( list($id, $tmp_sid, $qid1, $qid2, $cond, $cond_val) = fetch_row($result)) {
 	   if ($print_or==1) {
-	      print "<tr><td>OR</td></tr>";
+	      print "<tr><td>"._('OR')."</td></tr>";
 	   } else {
 	      $print_or=1;
 	   }
@@ -61,7 +61,17 @@ ORDER BY position";
 $result = execute_sql($sql);
 $max = record_count($result);
 ?>
-<?php echo(_('Add conditions to a question.')); ?>
+<div align=left>
+<?php
+   echo(_('All conditions are "OR" conditions, so if one conditions is fullfilled, the question is shown.<br />
+A question that has a condition must be an optional question. So, if you define a condition on a question, the "Required" parameter is set to "No".<br />
+A question that has a condition must be on the next page than the question/value that is used to compare it with. Use the "Order tab" to insert a section break where wanted (this is <b>NOT</b> done automatically).'));
+?>
+</div>
+<hr>
+<?php
+   echo(_('Add conditions to a question.'));
+?>
 <hr>
 <?php
 if ($max > 20) {

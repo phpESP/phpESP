@@ -37,8 +37,8 @@ function mkerror ($msg) {
 /* {{{ proto string mkradio(string name, string value)
    Returns HTML format for a radio button. */
 function mkradio ($_name, $value, $varr = null) {
-    if ($varr == null)
-        $varr =& $_POST;
+    	if ($varr == null)
+        	$varr =& $_POST;
 	$str = '<input type="radio" name="' . htmlspecialchars($_name) .'" value="' . htmlspecialchars($value) .'"';
 	if ( isset($varr[$_name]) && $varr[$_name] == $value )
 		$str .= " checked=\"checked\"";
@@ -50,10 +50,10 @@ function mkradio ($_name, $value, $varr = null) {
 /* {{{ proto string mkcheckbox(string name, string value)
    Returns HTML format for a check box. */
 function mkcheckbox ($_name, $value, $varr = null) {
-    if ($varr == null)
-        $varr =& $_POST;
+    	if ($varr == null)
+        	$varr =& $_POST;
 	$str = '<input type="checkbox" name="' . htmlspecialchars($_name) .'[]" value="' . htmlspecialchars($value) .'"';
-	if (isset($varr[$_name]) && is_array($varr[$_name]) && in_array($value, $varr[$_name]))
+	if (isset($varr) && is_array($varr) && in_array($value, $varr))
 		$str .= " checked=\"checked\"";
 	$str .= ' />';
 	return($str);
@@ -85,8 +85,8 @@ function mkpass ($_name) {
 /* {{{ proto string mkhidden(string name)
    Returns HTML format for a hidden form field. */
 function mkhidden ($_name, $varr = null) {
-    if ($varr == null)
-        $varr =& $_POST;
+    	if ($varr == null)
+        	$varr =& $_POST;
 	if (isset($varr[$_name]))
 		return('<input type="hidden" name="'. htmlspecialchars($_name) .'" value="'. _stripslashes(htmlspecialchars($varr[$_name])) .'" />');
 	return('<input type="hidden" name="'. htmlspecialchars($_name) .'" />');
@@ -96,8 +96,8 @@ function mkhidden ($_name, $varr = null) {
 /* {{{ proto string mktextarea(string name, int rows, int cols, string wrap_type)
    Returns HTML format for a text entry box. */
 function mktextarea ($_name, $rows, $cols, $wrap, $varr = null) {
-    if ($varr == null)
-        $varr =& $_POST;
+    	if ($varr == null)
+        	$varr =& $_POST;
 	$str = '<textarea name="' . htmlspecialchars($_name) .'"';
 	if($rows > 0)
 		$str .= ' rows="' . $rows . '"';
@@ -116,8 +116,8 @@ function mktextarea ($_name, $rows, $cols, $wrap, $varr = null) {
 /* {{{ proto string mkselect(string name, array options)
    Returns HTML format for a select box (dropdown). */
 function mkselect ($_name, $options, $varr = null) {
-    if ($varr == null)
-        $varr =& $_POST;
+    	if ($varr == null)
+        	$varr =& $_POST;
 	$str  = "<select name=\"${_name}\">\n";
 	$str .= "<option></option>\n";
 	while(list($cid, $content) = each($options)) {
