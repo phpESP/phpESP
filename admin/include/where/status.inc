@@ -18,7 +18,7 @@
 		$sql = "SELECT status,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
 		$result = execute_sql($sql);
 		if((list($old_status, $owner, $realm) = fetch_row($result))) {
-            $result->MoveNext();
+			$result->MoveNext();
 			$access = false;
 			$err = false;
 			$status = $old_status;
@@ -42,7 +42,7 @@
 						$access = true;
 					}
 					$status = $old_status | STATUS_TEST;
-					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
+					if($old_status & ( STATUS_TEST | STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
 						$err = true;
 					break;
 				case 'm':	// Edit
@@ -67,7 +67,7 @@
 						$access = true;
 					}
 					$status = $old_status | STATUS_ACTIVE;
-					if($old_status & ( STATUS_DELETED | STATUS_DONE ) )
+					if($old_status & ( STATUS_ACTIVE | STATUS_DELETED | STATUS_DONE ) )
 						$err = true;
 					else
 						response_delete_all($sid);
@@ -80,7 +80,7 @@
 						$access = true;
 					}
 					$status = $old_status | STATUS_DONE;
-					if($old_status & STATUS_DELETED )
+					if($old_status & (STATUS_DONE | STATUS_DELETED) )
 						$err = true;
 					break;
 				case 'd':	// Delete
@@ -91,18 +91,20 @@
 						$access = true;
 					}
 					$status = $old_status | STATUS_DELETED;
+					if($old_status & STATUS_DELETED)
+						$err = true;
 					break;
 			}
 			/* superuser overrides all */
 			if($_SESSION['acl']['superuser'] == 'Y')
 				$access = true;
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status=$status WHERE id=${sid}";
 			if($access || auth_no_access(_('to access this survey'))) {
 				if(!$err) {
+					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['survey_table']." SET status=$status WHERE id=${sid}";
 					execute_sql($sql);
 				} else {
-					mkwarn(_('Can not set survey status.'));
-					mkerror(_('Status') .': '. $old_status);
+					print mkwarn(_('Can not set survey status.'));
+					print mkerror(_('Status') .': '. $old_status);
 				}
 			}
 		}
