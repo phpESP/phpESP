@@ -35,7 +35,7 @@ CREATE TABLE access (
 
 CREATE TABLE designer (
   username varchar(64) NOT NULL DEFAULT '',
-  password varchar(32) NOT NULL DEFAULT '',
+  password varchar(64) NOT NULL DEFAULT '',
   auth varchar(16) NOT NULL DEFAULT 'BASIC',
   realm varchar(16) NOT NULL DEFAULT '',
   fname varchar(16) DEFAULT NULL,
@@ -178,7 +178,7 @@ INSERT INTO realm VALUES ('auto','Self added users','20040212 205000');
 
 CREATE TABLE respondent (
   username varchar(64) NOT NULL DEFAULT '',
-  password varchar(32) NOT NULL DEFAULT '',
+  password varchar(64) NOT NULL DEFAULT '',
   auth varchar(16) NOT NULL DEFAULT 'BASIC',
   realm varchar(16) NOT NULL DEFAULT '',
   fname varchar(16) DEFAULT NULL,
