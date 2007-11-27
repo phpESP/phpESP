@@ -202,10 +202,10 @@
 <?php
 		if ($ESPCONFIG['auth_response']) {
 			if (auth_get_option('navigate') && $_REQUEST['sec'] > 1) {
-                echo(mksubmit("prev", "Previous Page"));
+                echo(mksubmit("prev", _('Previous Page')));
 			}
 			if (auth_get_option('resume')) {
-                echo(mksubmit("resume", "Save"));
+                echo(mksubmit("resume", _('Save')));
 			}
 		}
 		if($_REQUEST['sec'] == $num_sections) {
