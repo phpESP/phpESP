@@ -334,8 +334,8 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			$sql = "SELECT MAX(position)+1 FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE survey_id=$sid";
 			$pos = get_one($sql);
 
-			$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." (survey_id,type_id,position,content)
-				VALUES ($sid, 99, $pos, 'break')";
+			$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_table']." (survey_id,name,type_id,position,content)
+				VALUES ($sid, 'break', 99, $pos, 'break')";
 			execute_sql($sql);
 		}
 		db_close($result);

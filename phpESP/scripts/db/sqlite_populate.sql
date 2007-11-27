@@ -18,7 +18,7 @@ CREATE TABLE access (
 
 CREATE TABLE designer (
   username char(64) NOT NULL default '',
-  password char(32) NOT NULL default '',
+  password char(64) NOT NULL default '',
   auth char(16) NOT NULL default 'BASIC',
   realm char(16) NOT NULL default '',
   fname char(16) default NULL,
@@ -126,7 +126,7 @@ INSERT INTO realm VALUES ('auto','Self added users',date('now'));
 
 CREATE TABLE respondent (
   username char(64) NOT NULL default '',
-  password char(32) NOT NULL default '',
+  password char(64) NOT NULL default '',
   auth char(16) NOT NULL default 'BASIC',
   realm char(16) NOT NULL default '',
   fname char(16) default NULL,
