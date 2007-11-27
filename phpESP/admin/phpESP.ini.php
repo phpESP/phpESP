@@ -66,6 +66,17 @@ $ESPCONFIG['allow_email'] = true;
 // Send human readable email, rather than machine readable (BOOLEAN)
 $ESPCONFIG['human_email'] = true;
 
+// The from address to use in the mails
+// (use valid emails, I won't protect you here ...)
+$ESPCONFIG['email_from_name'] = "PHPESP";
+$ESPCONFIG['email_from_address'] = "phpesp@". $_SERVER['SERVER_NAME'];
+// the email return path for bounces ...
+$ESPCONFIG['email_return_path'] = $_SERVER['SERVER_ADMIN'] ."@". $_SERVER['SERVER_NAME'];
+# example:
+# $ESPCONFIG['email_from_name'] = "Customer Department";
+# $ESPCONFIG['email_from_address'] = "cust@somedomain.com";
+# $ESPCONFIG['email_return_path'] = "admin@somedomain.com";
+
 // Use authentication for designer interface (BOOLEAN)
 $ESPCONFIG['auth_design'] = true;
 
