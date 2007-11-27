@@ -41,10 +41,7 @@ function validate() {
 // End -->
 </script>
 <?php echo(_('This is a preview of how this survey will look.
-In the preview the survey navigation buttons are inactive, use
-the section number buttons to view different sections. Some
-navigation buttons may not appear on your final survey, depending
-on what access it is assigned. The survey will use the background
+The survey will use the background
 color of the document in which it is embedded. If you have no
 further changes click <b>Finish</b> at the bottom of
 this page.')); ?>
@@ -72,17 +69,17 @@ this page.')); ?>
 		<td>
 <?php
 	survey_render($sid,$_POST['section']);
-	if ($ESPCONFIG['auth_response']) {
-		if ($_POST['section'] > 1) {
-        	echo('<input type="button" value="' . _('Previous Page'). '" /> ');
-        }
-	    echo ('<input type="button" value="'. _('Save') .'" /> ');
-	}
-	if($_POST['section'] != $num_sections) {
-		echo('<input type="button" value="'. _('Next Page') .'" /> ');
-	} else {
-		echo('<input type="button" value="'. _('Submit Survey') .'" />');
-	}
+#	if ($ESPCONFIG['auth_response']) {
+#		if ($_POST['section'] > 1) {
+#        	echo('<input type="button" value="' . _('Previous Page'). '" /> ');
+#        }
+#	    echo ('<input type="button" value="'. _('Save') .'" /> ');
+#	}
+#	if($_POST['section'] != $num_sections) {
+#		echo('<input type="button" value="'. _('Next Page') .'" /> ');
+#	} else {
+#		echo('<input type="button" value="'. _('Submit Survey') .'" />');
+#	}
 ?>
 		</td>
 	</tr>
