@@ -204,8 +204,8 @@
 			$r =$arr['realm'];
 			if(intval($arr['expiration']) > 0) {
 				$arr['ex_year']  = substr($arr['expiration'],0,4);
-				$arr['ex_month'] = substr($arr['expiration'],4,2);
-				$arr['ex_day']   = substr($arr['expiration'],6,2);
+				$arr['ex_month'] = substr($arr['expiration'],5,2);
+				$arr['ex_day']   = substr($arr['expiration'],8,2);
 			} else {
 				$arr['ex_year']  = '';
 				$arr['ex_month'] = '';
