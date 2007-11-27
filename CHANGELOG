@@ -10,6 +10,7 @@ A question that has a condition must be on the next page than the question/value
 
 - Discovered the page admin/manage.php?where=purge, to purge a survey
 - Added the possibility to purge a response from a survey (only superuser can do this): admin/manage.php?where=response_purge
+- You can now configure the mail address used by phpesp when sending mails
 
 
 20071107

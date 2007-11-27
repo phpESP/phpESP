@@ -829,13 +829,21 @@
         while (list($k, $v) = each($user))
         $body .= $k . $qsep . $v . $end;
 
-        $headers = "From: \"phpESP ".
-        addslashes($GLOBALS['ESPCONFIG']['version']) .
-        "\" <phpesp@". $_SERVER['SERVER_NAME'] .">\n";
-        $headers .= "X-Sender: <phpesp@". $_SERVER['SERVER_NAME'] .">\n";
+        if (isset($GLOBALS['ESPCONFIG']['email_from_name']) &&
+            isset($GLOBALS['ESPCONFIG']['email_from_address']) && 
+            isset($GLOBALS['ESPCONFIG']['email_return_path'])) {
+            $headers = "From: ".addslashes($GLOBALS['ESPCONFIG']['email_from_name']).
+                        "<".addslashes($GLOBALS['ESPCONFIG']['email_from_address']).">\n";
+            $headers .= "Return-Path: <". addslashes($GLOBALS['ESPCONFIG']['email_return_path']).">\n";
+        } else {
+           $headers = "From: \"phpESP ".
+           addslashes($GLOBALS['ESPCONFIG']['version']) .
+           "\" <phpesp@". $_SERVER['SERVER_NAME'] .">\n";
+           $headers .= "Return-Path: <". $_SERVER['SERVER_ADMIN'] ."@".
+                       $_SERVER['SERVER_NAME'] . ">\n";
+           $headers .= "X-Sender: <phpesp@". $_SERVER['SERVER_NAME'] .">\n";
+        }
         $headers .= "X-Mailer: phpESP\n";
-        $headers .= "Return-Path: <". $_SERVER['SERVER_ADMIN'] ."@".
-        $_SERVER['SERVER_NAME'] . ">\n";
 
         reset($answers);
         while($arr = array_shift($answers)) {
