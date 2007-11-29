@@ -8,17 +8,6 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-/* This function is a hack to handle input-type=image tags.
- * (e.g.  <input type="image" name="tab" src="clickme.gif"> )
- * You cannot set a 'value' attribute in such a tag. When you
- * click on an image, browsers create two form variables based
- * on the 'name' attribute: <name>_x & <name>_y, the coordinates
- * of where the user clicked on the image.
- *
- * To make this work with my 'where=<module>' wrapper, this
- * function checks for certain variables of the form "blah_x"
- * and "blah_y" and includes 'blah'.
- */
 	session_register('survey_id');
 	session_register('new_survey');
 	session_register('last_tab');
@@ -41,6 +30,7 @@
 	}
 	
 	global $errstr;
+	$tab="";
 	
 	if(@$_GET['where'] == 'new') {
 		$_SESSION['survey_id']  = '';
@@ -51,7 +41,7 @@
 	
 	if(!empty($_GET['newid'])) {
 		$_SESSION['survey_id']  = intval($_GET['newid']);
-		$_POST['tab']           = 'general';
+		$tab="general";
 		$_SESSION['last_tab']   = '';
 		$_SESSION['new_survey'] = false;
 	}
@@ -83,7 +73,6 @@
 	if($_SESSION['acl']['superuser'] != 'Y' &&
 			count($_SESSION['acl']['pdesign']) < 1 &&
 			!auth_no_access(_('to access this form'))) {
-    //        echo "SESSION: ".$_SESSION['acl']['superuser'];
 		return;
 	}
 		
@@ -92,48 +81,21 @@
 		echo('<b>'. _('No tabs defined. Please check your INI settings.'). '</b>');
 		return;
 	}
-	
-	$tab = &$_POST['tab'];
-		
-/* XXX I18n do not translate */
-	if(stristr($tab,'continue')) {
-		switch($_SESSION['last_tab']) {
-			case 'general':
-				$tab='questions';
-				break;
-			case 'questions':
-				$tab='order';
-				break;
-			case 'order':
-				$tab='conditions';
-				break;
-			case 'conditions':
-				$tab='preview';
-				break;
-			default:
-				$tab='general';
+	foreach($ESPCONFIG['tabs'] as $mytab) {
+		if (isset($_POST['tab']) && strtolower($_POST['tab'])==$mytab) {
+			$tab=$mytab;
 		}
 	}
-/* XXX I18n do not translate */
-
-	if(empty($tab)) {
-		foreach($ESPCONFIG['tabs'] as $tab) {
-			$x = @$_POST["${tab}_x"];
-			$y = @$_POST["${tab}_y"];
-			if(!empty($x) && !empty($y)) {
-				break;
-			}
-			$tab = $_SESSION['last_tab'];
-		}
+	if ($tab=="") {
+		$tab = $_SESSION['last_tab'];
 	}
-	if(empty($tab))
-		$tab = 'general';
 	$tab = strtolower(ereg_replace(' +','_',$tab));
+		
 	if(!ereg('^[A-Za-z0-9_]+$',$tab))	// Valid chars are [A-Za-z0-9_]
 		$tab = 'general';
-	if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']))
+	if(!file_exists($ESPCONFIG['include_path'].'/tab/'.$tab.$ESPCONFIG['extension']))
 		$tab = 'general';
-	if(!file_exists($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension'])) {
+	if(!file_exists($ESPCONFIG['include_path'].'/tab/'.$tab.$ESPCONFIG['extension'])) {
 		echo('<b>'. _('Unable to open include file. Check INI settings. Aborting.'). '</b>');
 		exit;
 	}
@@ -143,29 +105,27 @@
 ?>
 </div>
 </form>
-<form method="post" id="tabs" onsubmit="validate();" action="<?php echo($GLOBALS['ESPCONFIG']['ME']); ?>">
+<form method="post" id="tabs" onsubmit="validate();" action="<?php echo($ESPCONFIG['ME']); ?>">
 <div>
 
 <h2>Survey Design</h2>
 <?php if(!empty($errstr)) echo(mkerror($errstr)."<br />\n"); ?>
 <span class="large">
-<a href="<?php echo($GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
+<a href="<?php echo($ESPCONFIG['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
 </span>
       <input type="hidden" name="where" value="tab" />
 <div id="tabmenu">
-      <ul id="sections">
-		  <li><input type="image" alt="<?php echo(_('General')); ?>"    name="general"    src="<?php echo($ESPCONFIG['image_url']); ?>general_<?php $a='d'; if($tab == 'general') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Questions')); ?>"  name="questions"  src="<?php echo($ESPCONFIG['image_url']); ?>questions_<?php $a='d'; if($tab == 'questions') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Order')); ?>"      name="order"      src="<?php echo($ESPCONFIG['image_url']); ?>order_<?php $a='d'; if($tab == 'order') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Conditions')); ?>" name="conditions" src="<?php echo($ESPCONFIG['image_url']); ?>conditions_<?php $a='d'; if($tab == 'conditions') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Preview')); ?>"    name="preview"    src="<?php echo($ESPCONFIG['image_url']); ?>preview_<?php $a='d'; if($tab == 'preview') $a='a'; echo($a); ?>.gif" /></li>
-		  <li><input type="image" alt="<?php echo(_('Finish')); ?>"     name="finish"     src="<?php echo($ESPCONFIG['image_url']); ?>finish_<?php $a='d'; if($tab == 'finish') $a='a'; echo($a); ?>.gif" /></li>
-      </ul>
+<input type="submit" name="tab" value="General" />
+<input type="submit" name="tab" value="Questions" />
+<input type="submit" name="tab" value="Order" />
+<input type="submit" name="tab" value="Conditions" />
+<input type="submit" name="tab" value="Preview" />
+<input type="submit" name="tab" value="Finish" />
 </div>
 <table>
   <tr>
     <td>
-<?php include($GLOBALS['ESPCONFIG']['include_path'].'/tab/'.$tab.$GLOBALS['ESPCONFIG']['extension']); $_SESSION['last_tab'] = $tab; ?>
+<?php include($ESPCONFIG['include_path'].'/tab/'.$tab.$ESPCONFIG['extension']); $_SESSION['last_tab'] = $tab; ?>
     </td>
   </tr>
 </table>
@@ -184,7 +144,7 @@ Questions may be re-ordered or deleted from the <strong>Order</strong> tab.
 You may see a preview of your survey at any time, by going to the <strong>Preview</strong>
 tab. If you have no further changes click <strong>Finish</strong> to go back to the
 Management Interface.')); ?><br />
-<a href="<?php echo("". $GLOBALS['ESPCONFIG']['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Click here to open the Help window.')); ?></a></p>
+<a href="<?php echo("". $ESPCONFIG['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Click here to open the Help window.')); ?></a></p>
 <input type="submit" name="tab" value="General" />
 <input type="submit" name="tab" value="Questions" />
 <input type="submit" name="tab" value="Order" />

@@ -6,7 +6,6 @@
 
 ?>
 
-<input type="hidden" name="tab" value="" />
 <input type="hidden" name="conditions" value="" />
 
 <?php

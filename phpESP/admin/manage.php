@@ -45,13 +45,13 @@
         elseif ($ESPCONFIG['auth_mode'] == 'form') {
             if (isset($_POST['Login'])) {
                 if (!isset($_POST['username'])) {
-                    $_POST['username'] = "";
+                    $username = "";
                 }
                 if ($_POST['username'] != "") {
                     $_SESSION['username'] = $_POST['username'];
                 }
                 if (!isset($_POST['password'])) {
-                    $_POST['password'] = "";
+                    $password = "";
                 }
                 if ($_POST['password'] != "") {
                     $_SESSION['raw_password'] = $_POST['password'];
