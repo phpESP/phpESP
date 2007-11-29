@@ -22,7 +22,7 @@
 
 	// update failed, stay on same question
 	if(!$updated || isset($_POST['extra_choices'])) {
-		$curr_q = $_POST['id'];
+		$curr_q = $id;
 	} else {
 		if(isset($_POST['new_question']))
 			$curr_q = 0;
@@ -76,20 +76,14 @@
            $result->MoveNext();
            $dots = "";
            $content = strip_tags($content);
-           if($tid != 99) {
-                if (strlen($content) > 30) {
-                        $dots = "...";
-                }
-		if ($qid==$curr_q) {
-                   echo('<option selected value="'.$qid.'">'.$i++.'. '.substr($content,0, 30).$dots.'</option>');
-		} else {
-                   echo('<option value="'.$qid.'">'.$i++.'. '.substr($content,0, 30).$dots.'</option>');
-		}
+           if (strlen($content) > 30) {
+              $dots = "...";
            }
-           else {
-                //++$sec;
-               	 echo('<option value="'.$qid.'"><strong>'._('----- Section Break -----').'</strong></option>\n');
-           }
+	   if ($qid==$curr_q) {
+              echo('<option selected value="'.$qid.'">'.$i++.'. '.substr($content,0, 30).$dots.'</option>');
+	   } else {
+              echo('<option value="'.$qid.'">'.$i++.'. '.substr($content,0, 30).$dots.'</option>');
+	   }
 	}
 	db_close($result);
 ?>
@@ -120,7 +114,7 @@
 				$result = execute_sql($sql);
 				$arr = array();
 				while(list($key, $val) = fetch_row($result)) {
-                    $result->MoveNext();
+                    			$result->MoveNext();
 					$arr["$key"] = _($val);
 				}
 				echo(mkselect('type_id',$arr));

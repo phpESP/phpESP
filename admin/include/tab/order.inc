@@ -66,7 +66,6 @@ function removeItem() {
 }
 // comment -->
 </script>
-<input type="hidden" name="tab" value="" />
 <input type="hidden" name="removeit" value="" />
 <input type="hidden" name="questions_order" value="" />
         <?php
