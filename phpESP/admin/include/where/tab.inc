@@ -76,20 +76,35 @@
 		return;
 	}
 		
-
-	if(empty($ESPCONFIG['tabs'])) {
-		echo('<b>'. _('No tabs defined. Please check your INI settings.'). '</b>');
-		return;
-	}
-	foreach($ESPCONFIG['tabs'] as $mytab) {
-		if (isset($_POST['tab']) && strtolower($_POST['tab'])==$mytab) {
-			$tab=$mytab;
-		}
+	if (isset($_POST['tab'])) {
+		$tab=$_POST['tab'];
 	}
 	if ($tab=="") {
 		$tab = $_SESSION['last_tab'];
 	}
 	$tab = strtolower(ereg_replace(' +','_',$tab));
+
+/* XXX I18n do not translate */
+	if(stristr($tab,'continue')) {
+		switch($_SESSION['last_tab']) {
+			case 'general':
+				$tab='questions';
+				break;
+			case 'questions':
+				$tab='order';
+				break;
+			case 'order':
+				$tab='conditions';
+				break;
+			case 'conditions':
+				$tab='preview';
+				break;
+			default:
+				$tab='general';
+		}
+	}
+
+/* XXX I18n do not translate */
 		
 	if(!ereg('^[A-Za-z0-9_]+$',$tab))	// Valid chars are [A-Za-z0-9_]
 		$tab = 'general';
