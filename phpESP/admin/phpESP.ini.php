@@ -103,8 +103,9 @@ $ESPCONFIG['ldap_realm_attr'] = 'objectClass';
 // the LDAP attribute/value needed to designate a LDAP user as a designer
 $ESPCONFIG['ldap_designer_filter'] = 'UserCategory=engineer';
 // the LDAP attribute needed to designate a LDAP user as a superuser
+// we show the example of "uid=test"
 $ESPCONFIG['ldap_superuser_attr'] = 'uid';
-// the LDAP attribute needed to designate a LDAP user as a superuser
+// the LDAP value needed to designate a LDAP user as a superuser
 $ESPCONFIG['ldap_superuser_value'] = 'test';
 // most newer LDAP servers need protocol 3 to be able to bind successfully
 // if this doesn't work for you, turn it of
@@ -115,15 +116,13 @@ $ESPCONFIG['ldap_force_proto_3'] = true;
 // Please do disable this for LDAP auth for respondents
 $ESPCONFIG['signup_realm'] = 'auto';
 
-$ESPCONFIG['signup_realm'] = 'auto';
-
 // Default language for designer interface
 // (Must have gettext support avaiable.)
 $ESPCONFIG['default_lang'] = 'en_US';
 
 // HTML character set used by phpESP
 // (Try 'Windows-1251' for Cryillic, etc.)
-$ESPCONFIG['charset'] = 'ISO-8859-1';
+$ESPCONFIG['charset'] = 'ISO-8859-15';
 
 // Default number of option lines for new questions
 $ESPCONFIG['default_num_choices'] = 10;
