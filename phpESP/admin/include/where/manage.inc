@@ -29,6 +29,9 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <li><a href="<?php echo("${base}?where=edit");    ?>"><?php echo(_('Edit an Existing Survey')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=test");    ?>"><?php echo(_('Test a Survey')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=copy");    ?>"><?php echo(_('Copy an Existing Survey')); ?></a></li>
+                            <?php       if($_SESSION['acl']['superuser'] == 'Y') { ?>
+                            <li><a href="<?php echo("${base}?where=purge");  ?>"><?php echo(_('Purge a survey')); ?></a></li>
+                            <?php } ?>
                         </ul>
                         <ul>
                     <li><a href="<?php echo("${base}?where=status");  ?>"><?php echo(_('Change the Status of a Survey')); ?></a><br />
@@ -46,6 +49,9 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <li><a href="<?php echo(htmlentities("${base}?where=results&type=cross")); ?>"><?php echo(_('Cross Tabulate Survey Results')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=report");  ?>"><?php echo(_('View a Survey Report')); ?></a></li>
                             <li><a href="<?php echo("${base}?where=export");  ?>"><?php echo(_('Export Data')); ?></a></li>
+                            <?php       if($_SESSION['acl']['superuser'] == 'Y') { ?>
+                            <li><a href="<?php echo("${base}?where=response_purge");  ?>"><?php echo(_('Purge a response')); ?></a></li>
+                            <?php } ?>
                         </ul>
 			</div>
 			<!-- End Survey Results -->
