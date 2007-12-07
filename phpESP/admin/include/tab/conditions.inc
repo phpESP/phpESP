@@ -64,7 +64,8 @@ $max = record_count($result);
 <?php
    echo(_('All conditions are "OR" conditions, so if one conditions is fullfilled, the question is shown.<br />
 A question that has a condition must be an optional question. So, if you define a condition on a question, the "Required" parameter is set to "No".<br />
-A question that has a condition must be on the next page than the question/value that is used to compare it with. Use the "Order tab" to insert a section break where wanted (this is <b>NOT</b> done automatically).'));
+A question that has a condition must be on the next page than the question/value that is used to compare it with. Use the "Order tab" to insert a section break where wanted (this is <b>NOT</b> done automatically).<br />
+A Yes/No question can only be compared using the values "Yes or "No".'));
 ?>
 </div>
 <hr>
