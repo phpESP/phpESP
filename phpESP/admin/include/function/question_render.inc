@@ -36,7 +36,7 @@ function question_render($question,$question_number,$auto_num,$on_one_line=0) {
 </tr>
 <?php
 
-			continue;
+			return;
 		}
 
 		$has_choices = esp_type_has_choices();

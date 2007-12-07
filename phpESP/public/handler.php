@@ -215,10 +215,10 @@
                 echo _("Please fill in the code displayed here.");
                 print '<br><input type="text" name="captcha_check"></td></tr></table>';
             }
-            echo(mksubmit("submit", "Submit Survey"));
-    	} else {
-            echo(mksubmit("next", "Next Page"));
-    	}
+            echo(mksubmit("submit", _('Submit Survey')));
+        } else {
+            echo(mksubmit("next", _('Next Page')));
+        }
 ?>
         </fieldset>
 </form>
