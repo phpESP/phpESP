@@ -52,20 +52,16 @@ database.
 UPDATING DATABASE
 -----------------
 
-Updating from version 1.5 to version 1.6 requires a few small changes
-in the database.  Please execute the update script as follows
+Go into the dir scripts/db and run the following mysql statements on your database (run all updates that are needed in the correct sequence):
 
-  $ mysql -u root -p phpesp < scripts/db/mysql_update-1.5-1.6.sql
+mysql_update-1.5-1.6.sql (if still running 1.5)
+mysql_update-1.8.2h-1.8.2i.sql (if running a version <= 1.8.2h and going to 1.8.2i)
+mysql_update-1.8.2k-2.0.0.sql (if running a version 1.8.2i-1.8.2k and going to 2.0.0)
 
-If your database name is something other than 'phpesp' that name
-instead in the command line.  As always, you may execute the sql script
-with some other administration tool if you wish.
-
-If you update your mySQL installation from pre 4.1 to 4.1 or higher, you 
-will need to run the following update script to modify existing tables to
-support mySQL's new password hash.
-
-  $ mysql -u root -p phpesp < scripts/db/mysql4.x_upgrade.sql
+Please execute the update script as follows:
+  $ mysql -u root -p phpesp < scripts/db/mysql_update-1.8.2h-1.8.2i.sql
+  $ mysql -u root -p phpesp < scripts/db/mysql_update-1.8.2k-2.0.0.sql
+Change "root" by the correct DB user and "phpesp" by the correct DB name.
 
 Once you move to mySQL 4.1 you cannot downgrade your mySQL back to 4.0 
 or below and expect phpESP to function.
