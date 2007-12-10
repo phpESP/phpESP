@@ -28,7 +28,7 @@
 			$curr_q = 0;
 		if(isset($_POST['edit_question']))
 			$curr_q = $_POST['q_id'];
-		if($q_id<0)
+		if($curr_q<0)
 			$curr_q = 1;
 	}
 
