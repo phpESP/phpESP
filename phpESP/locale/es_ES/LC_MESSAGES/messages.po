@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-04-13 12:20+0200\n"
+"POT-Creation-Date: 2007-12-10 10:56+0100\n"
 "PO-Revision-Date: 2002-08-02 16:21--500\n"
 "Last-Translator: RAUL PITTI <rpitti@netmasters.com.pa>\n"
 "Language-Team: es_ES <jflemer@alum.rpi.edu>\n"
@@ -59,58 +59,6 @@ msgstr ""
 #, fuzzy
 msgid "Resume survey"
 msgstr "Probar  encuesta"
-#
-# File: phpESP/admin/include/function/survey_copy.inc, line: 30
-msgid "copy"
-msgstr "copiar"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 21
-# File: phpESP/admin/include/function/survey_merge.inc, line: 26
-msgid "Invalid argument."
-msgstr "Argumento inválido."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 44
-# File: phpESP/admin/include/function/survey_report.inc, line: 37
-# File: phpESP/admin/include/function/survey_report.inc, line: 48
-# File: phpESP/admin/include/function/survey_results.inc, line: 126
-# File: phpESP/admin/include/function/survey_results.inc, line: 139
-# File: phpESP/admin/include/function/survey_results.inc, line: 193
-# File: phpESP/admin/include/function/survey_results.inc, line: 198
-msgid "Error opening survey."
-msgstr "Error abriendo al encuesta."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 57
-# File: phpESP/admin/include/function/survey_merge.inc, line: 62
-# File: phpESP/admin/include/function/survey_merge.inc, line: 87
-msgid "Error opening surveys."
-msgstr "Error abriendo las encuestas."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 63
-# File: phpESP/admin/include/function/survey_results.inc, line: 198
-msgid "No responses found."
-msgstr "No se encontraron respuestas."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 63
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
-msgid "TOTAL"
-msgstr "TOTAL"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 87
-# File: phpESP/admin/include/function/survey_report.inc, line: 48
-# File: phpESP/admin/include/function/survey_results.inc, line: 139
-msgid "No questions found."
-msgstr "No se encontraron preguntas."
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 61
-msgid "Page %d of %d"
-msgstr ""
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 67
-#, fuzzy
-msgid "Questions marked with a %s are required."
-msgstr "Las preguntas marcadas con "
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 142
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -172,6 +120,63 @@ msgstr "5"
 # File: phpESP/admin/include/function/survey_render.inc, line: 289
 msgid "N/A"
 msgstr "N/D"
+#
+# File: phpESP/admin/include/function/survey_copy.inc, line: 30
+msgid "copy"
+msgstr "copiar"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 21
+# File: phpESP/admin/include/function/survey_merge.inc, line: 26
+msgid "Invalid argument."
+msgstr "Argumento inválido."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 44
+# File: phpESP/admin/include/function/survey_report.inc, line: 37
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 126
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+# File: phpESP/admin/include/function/survey_results.inc, line: 193
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "Error opening survey."
+msgstr "Error abriendo al encuesta."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 57
+# File: phpESP/admin/include/function/survey_merge.inc, line: 62
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+msgid "Error opening surveys."
+msgstr "Error abriendo las encuestas."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "No responses found."
+msgstr "No se encontraron respuestas."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
+msgid "TOTAL"
+msgstr "TOTAL"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+msgid "No questions found."
+msgstr "No se encontraron preguntas."
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 61
+msgid "Page %d of %d"
+msgstr ""
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 67
+#, fuzzy
+msgid "Questions marked with a %s are required."
+msgstr "Las preguntas marcadas con "
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 164
+#, fuzzy
+msgid "Sorry, no questions for you to answer in this section."
+msgstr "Debe seleccionar un tipo para ésta pregunta."
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
@@ -293,6 +298,11 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_update.inc, line: 310
 msgid "Sorry, you need at least one answer option for this question type."
 msgstr "Necesita al menos una opción de respuesta para esta pregunta."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please select two different questions."
+msgstr "Por favor introduzca el texto para ésta pregunta."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 19
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 29
@@ -424,6 +434,67 @@ msgstr "Rango Promedio"
 # File: phpESP/admin/include/lib/espresponse.inc, line: 59
 msgid "You are missing the following required questions:"
 msgstr "No ha completado las siguientes preguntas obligatorias:"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please only use numbers for the following questions:"
+msgstr "Por favor introduzca el texto para ésta pregunta."
+#
+# File: phpESP/admin/include/where/test.inc, line: 133
+#, fuzzy
+msgid "equals"
+msgstr "Resultados"
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 15
+msgid "is different from"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 16
+msgid "smaller than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 17
+msgid "bigger than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 22
+msgid "Current conditions defined:"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 111
+msgid "OR"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 33
+# File: phpESP/admin/include/tab/conditions.inc, line: 82
+msgid "Only show question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 41
+# File: phpESP/admin/include/tab/conditions.inc, line: 104
+msgid "if answer to question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 65
+msgid ""
+"All conditions are \"OR\" conditions, so if one conditions is fullfilled, "
+"the question is shown.<br />\n"
+"A question that has a condition must be an optional question. So, if you "
+"define a condition on a question, the \"Required\" parameter is set to \"No"
+"\".<br />\n"
+"A question that has a condition must be on the next page than the question/"
+"value that is used to compare it with. Use the \"Order tab\" to insert a "
+"section break where wanted (this is <b>NOT</b> done automatically).<br />\n"
+"A Yes/No question can only be compared using the values \"Yes or \"No\"."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 73
+msgid "Add conditions to a question."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/order.inc, line: 89
+msgid "----- Section Break -----"
+msgstr "----- Salto de Sección -----"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 27
 msgid "Survey Design Completed"
@@ -594,10 +665,6 @@ msgstr ""
 msgid "The URL to which a user is redirected after completing this survey."
 msgstr ""
 #
-# File: phpESP/admin/include/tab/general.inc, line: 111
-msgid "OR"
-msgstr ""
-#
 # File: phpESP/admin/include/tab/general.inc, line: 113
 msgid "(heading text)"
 msgstr ""
@@ -638,6 +705,15 @@ msgstr ""
 msgid "Select a theme (css) to use with this survey."
 msgstr ""
 #
+# File: phpESP/admin/include/tab/general.inc, line: 149
+msgid "Automatic numbering"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 155
+msgid ""
+"Select if questions are to be numbered automatically when showing the survey."
+msgstr ""
+#
 # File: phpESP/admin/include/tab/general.inc, line: 150
 #, fuzzy
 msgid "Options"
@@ -659,10 +735,6 @@ msgid ""
 "buttons to change its position."
 msgstr ""
 #
-# File: phpESP/admin/include/tab/order.inc, line: 89
-msgid "----- Section Break -----"
-msgstr "----- Salto de Sección -----"
-#
 # File: phpESP/admin/include/tab/order.inc, line: 96
 msgid "Add Section Break"
 msgstr "Agregar salto de sección"
@@ -670,10 +742,7 @@ msgstr "Agregar salto de sección"
 # File: phpESP/admin/include/tab/preview.inc, line: 43
 msgid ""
 "This is a preview of how this survey will look.\n"
-"In the preview the survey navigation buttons are inactive, use\n"
-"the section number buttons to view different sections. Some\n"
-"navigation buttons may not appear on your final survey, depending\n"
-"on what access it is assigned. The survey will use the background\n"
+"The survey will use the background\n"
 "color of the document in which it is embedded. If you have no\n"
 "further changes click <b>Finish</b> at the bottom of\n"
 "this page."
@@ -699,11 +768,6 @@ msgstr "Siguiente Página"
 msgid "Submit Survey"
 msgstr "Enviar Encuesta"
 #
-# File: phpESP/admin/include/where/tab.inc, line: 154
-#, fuzzy
-msgid "New Question"
-msgstr "Preguntas"
-#
 # File: phpESP/admin/include/tab/questions.inc, line: 87
 msgid ""
 "Edit this question, or click the number of the question you would like to "
@@ -712,7 +776,12 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #, fuzzy
-msgid "Question"
+msgid "Edit Question"
+msgstr "Preguntas"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "New Question"
 msgstr "Preguntas"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
@@ -1214,6 +1283,12 @@ msgstr "Probar una encuesta"
 msgid "Copy an Existing Survey"
 msgstr "Copiar una encuesta existente"
 #
+# File: phpESP/admin/include/where/purge.inc, line: 38
+# File: phpESP/admin/include/where/purge.inc, line: 103
+#, fuzzy
+msgid "Purge a survey"
+msgstr "Eliminar Encuestas"
+#
 # File: phpESP/admin/include/where/manage.inc, line: 41
 msgid "Change the Status of a Survey"
 msgstr "Cambiar el estatus de una encuesta"
@@ -1242,6 +1317,11 @@ msgstr "Resultado de unir encuestas"
 # File: phpESP/admin/include/where/manage.inc, line: 50
 msgid "View a Survey Report"
 msgstr "Ver reporte de la encuesta"
+#
+# File: phpESP/admin/include/where/access.inc, line: 170
+#, fuzzy
+msgid "Purge a response"
+msgstr "Respuesta"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
@@ -1385,6 +1465,30 @@ msgstr "Agregrar un nuevo encuestado"
 msgid "Bulk Upload Respondents"
 msgstr "Agregrar un nuevo encuestado"
 #
+# File: phpESP/admin/include/where/purge.inc, line: 38
+# File: phpESP/admin/include/where/purge.inc, line: 103
+#, fuzzy
+msgid "Purge response"
+msgstr "Eliminar Encuestas"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 40
+#, fuzzy
+msgid ""
+"\n"
+"This page is not directly on the main menu because it is\n"
+"dangerous. This <b>completely</b> removes everything about a\n"
+"response from the database <b>forever</b>. Do\n"
+"not do anything here that you are not completely certain\n"
+"about. There is no confirmation, there is no turning\n"
+"back."
+msgstr ""
+"\n"
+"Esta página no aparece directamente en el menú principal\n"
+"por su peligrosidad.  Esta opción removera PARA SIEMPRE\n"
+"de la base de datos TODA LA ENCUESTA (preguntas, resultados, etc.)\n"
+"NO REALIZA NINGUNA ACCIÓN SI NO ESTA SEGURO DE LO QUE HACE.\n"
+"NO EXISTE CONFIRMACIÓN NI PUNTO DE RETORNO!. "
+#
 # File: phpESP/admin/include/where/results.inc, line: 48
 # File: phpESP/admin/include/where/results.inc, line: 156
 #, fuzzy
@@ -1489,36 +1593,10 @@ msgstr "Archivar"
 msgid "Edit"
 msgstr "Editar"
 #
-# File: phpESP/admin/include/where/tab.inc, line: 92
-msgid "No tabs defined. Please check your INI settings."
-msgstr ""
-"No se han definido opciones.  Por favor revise la configuración de su "
-"archivo INI ."
-#
 # File: phpESP/admin/include/where/tab.inc, line: 144
 # File: phpESP/admin/include/where/upload.inc, line: 110
 msgid "Help"
 msgstr "Ayuda"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 153
-msgid "General"
-msgstr "General"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 154
-msgid "Questions"
-msgstr "Preguntas"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 155
-msgid "Order"
-msgstr "Ordenar"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 156
-msgid "Preview"
-msgstr "Previsualizar"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-msgid "Finish"
-msgstr "Finalizar"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 170
 msgid ""
@@ -1696,6 +1774,39 @@ msgid "Confirm Password"
 msgstr "Confirme la nueva contraseña"
 #
 #
+# File: phpESP/admin/include/where/tab.inc, line: 92
+#~ msgid "No tabs defined. Please check your INI settings."
+#~ msgstr ""
+#~ "No se han definido opciones.  Por favor revise la configuración de su "
+#~ "archivo INI ."
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 153
+#~ msgid "General"
+#~ msgstr "General"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#~ msgid "Questions"
+#~ msgstr "Preguntas"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 155
+#~ msgid "Order"
+#~ msgstr "Ordenar"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 156
+#~ msgid "Preview"
+#~ msgstr "Previsualizar"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+#~ msgid "Finish"
+#~ msgstr "Finalizar"
+#
+#
+#
 #
 #
 #
@@ -1719,9 +1830,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "de"
+#
 #
 #
 #
@@ -1748,9 +1861,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Campo"
+#
 #
 #
 #
@@ -1776,9 +1891,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "Descargas en formato DBF no están implementadas"
+#
 #
 #
 #
@@ -1805,10 +1922,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -1834,6 +1953,7 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exportar datos a CSV"
@@ -1848,9 +1968,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Error!"
+#
 #
 #
 #
@@ -1877,6 +1999,7 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrar membresía del Grupo"
 #
@@ -1891,8 +2014,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "No se especificó la encuesta."
+#
 #
 #
 #
@@ -1923,8 +2048,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "son obligatorias."
+#
 #
 #
 #
@@ -1957,9 +2084,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "free-form"
 #~ msgstr "texto libre"
+#
 #
 #
 #
@@ -1990,8 +2119,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "Required?"
 #~ msgstr "Requerido?"
+#
 #
 #
 #
@@ -2022,8 +2153,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "para acessar este menú"
+#
 #
 #
 #
@@ -2054,8 +2187,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
 #
 #
 #
@@ -2088,8 +2223,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Encabezado de Confirmación"
+#
 #
 #
 #
