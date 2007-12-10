@@ -8,7 +8,6 @@
     // For eGrad2000.com
     // <jflemer@alum.rpi.edu>
 
-    session_start();
     if (!defined('ESP_BASE'))
     define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 

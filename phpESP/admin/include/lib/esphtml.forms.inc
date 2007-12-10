@@ -182,6 +182,16 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     $str .= '</label>';
     $str .= mkpass("password");
     $str .= "\n".'</div><div class="row">'."\n";
+    # if the variable $lang is set, we assume we don't need to ask for the language
+    if (!isset($_REQUEST['lang']) && !isset($lang)) {
+       $str .= "Language:";
+       $_languages=array();
+       foreach (esp_getlocales() as $_lang) {
+	   $_languages[$_lang]=$_lang;
+       }
+       $str .= mkselect("lang",$_languages);
+       $str .= "\n".'</div><div class="row">'."\n";
+    }
     $str .= mksubmit("Login");
     if ($_surveyname != "") {
         $str .= '<input type="hidden" name="'."$_surveyname".'"';
