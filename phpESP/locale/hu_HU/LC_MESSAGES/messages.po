@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 10:56+0100\n"
+"POT-Creation-Date: 2007-12-10 11:41+0100\n"
 "PO-Revision-Date: 2003-08-13 13:29-0500\n"
 "Last-Translator: Monika Berze <monika@proaction.hu>\n"
 "Language-Team: hu_HU <jflemer@alum.rpi.edu>\n"
@@ -1850,9 +1850,15 @@ msgid "Confirm Password"
 msgstr "Jelszó megerõsítése"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Nincs fül definiálva. Kérem ellenõrizze az INI beállításait!"
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 153
@@ -1860,9 +1866,15 @@ msgstr "Jelszó megerõsítése"
 #~ msgstr "Általános"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Kérdések"
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 155
@@ -1870,14 +1882,23 @@ msgstr "Jelszó megerõsítése"
 #~ msgstr "Sorrend"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Elõnézet"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Befejezés"
+#
+#
+#
 #
 #
 #
@@ -1913,9 +1934,15 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "-ból/-bõl"
+#
+#
+#
 #
 #
 #
@@ -1952,9 +1979,15 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Kérdés"
+#
+#
+#
 #
 #
 #
@@ -1990,9 +2023,15 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF letöltés még nincs megvalósítva."
+#
+#
+#
 #
 #
 #
@@ -2029,10 +2068,16 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
 #
 #
 #
@@ -2068,9 +2113,15 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Adat exportálása CSV-be"
+#
+#
+#
 #
 #
 #
@@ -2106,9 +2157,15 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 87
 #~ msgid "You need to select at least two surveys!"
 #~ msgstr "Legalább 2 kérdõívet ki kell választania!"
+#
+#
+#
 #
 #
 #
@@ -2151,12 +2208,18 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 #~ msgid ""
 #~ "Error cross-tabulating. Please ensure you make both\n"
 #~ "                                     a column and row selection."
 #~ msgstr ""
 #~ "Hiba a keresztbevetésnél. Kérem ellenõrizze, hogy kiválaszott-e\n"
 #~ "                                     egy oszlopot és egy sort."
+#
+#
+#
 #
 #
 #
@@ -2199,8 +2262,14 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Csoport tagok adminisztrátora"
+#
+#
+#
 #
 #
 #
@@ -2237,9 +2306,15 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
 #, fuzzy
 #~ msgid "active"
 #~ msgstr "Aktív"
+#
+#
+#
 #
 #
 #
