@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 10:56+0100\n"
+"POT-Creation-Date: 2007-12-10 11:41+0100\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Robert <HEConsulting@t-online.de>\n"
 "Language-Team: de_DE <jflemer@alum.rpi.edu>\n"
@@ -1841,9 +1841,15 @@ msgid "Confirm Password"
 msgstr "Passwort best&auml;tigen"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Keine TABS definiert. Bitte die INI pr&uuml;fen"
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 153
@@ -1851,9 +1857,15 @@ msgstr "Passwort best&auml;tigen"
 #~ msgstr "Allgemein"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Fragen"
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 155
@@ -1861,14 +1873,23 @@ msgstr "Passwort best&auml;tigen"
 #~ msgstr "Reihenfolge"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Vorschau"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Fertig"
+#
+#
+#
 #
 #
 #
@@ -1896,9 +1917,15 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "von"
+#
+#
+#
 #
 #
 #
@@ -1927,9 +1954,15 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Feld"
+#
+#
+#
 #
 #
 #
@@ -1957,9 +1990,15 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF Download noch nicht implementiert."
+#
+#
+#
 #
 #
 #
@@ -1988,10 +2027,16 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
 #
 #
 #
@@ -2019,9 +2064,15 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Daten nach CVS exportieren"
+#
+#
+#
 #
 #
 #
@@ -2049,9 +2100,15 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 87
 #~ msgid "You need to select at least two surveys!"
 #~ msgstr "Mind. zwei Umfragen m&uuml;ssen gew&auml;lt werden!"
+#
+#
+#
 #
 #
 #
@@ -2085,12 +2142,18 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid ""
 #~ "Error cross-tabulating. Please ensure you make both\n"
 #~ "                                     a column and row selection."
 #~ msgstr ""
 #~ "Fehler bei der Kreuztabellierung. Stellen Sie sicher, dass sowohl\n"
 #~ "                            Spalten und Zeilen ausgew&auml;hlt wurden."
+#
+#
+#
 #
 #
 #
@@ -2124,6 +2187,9 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Mitglieder f&uuml;r Gruppen administrieren"
 #
@@ -2139,8 +2205,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "Keine Umfrage ausgew&auml;hlt"
+#
+#
+#
 #
 #
 #
@@ -2175,8 +2247,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "are required."
 #~ msgstr " markiert sind m&uuml;ssen beantwortet werden"
+#
+#
+#
 #
 #
 #
@@ -2211,8 +2289,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "free-form"
 #~ msgstr "Freies Format"
+#
+#
+#
 #
 #
 #
@@ -2247,8 +2331,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "Required?"
 #~ msgstr "Erforderlich?"
+#
+#
+#
 #
 #
 #
@@ -2283,8 +2373,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "to access this menu"
 #~ msgstr "um dieses Men&uuml; zu erreichen"
+#
+#
+#
 #
 #
 #
@@ -2319,8 +2415,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
+#
+#
 #
 #
 #
@@ -2357,8 +2459,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Best&auml;tigungs- Kopfzeile"
+#
+#
+#
 #
 #
 #
@@ -2401,8 +2509,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
+#
+#
 #~ msgid "Max Logins"
 #~ msgstr "Max. Logins"
+#
+#
+#
 #
 #
 #

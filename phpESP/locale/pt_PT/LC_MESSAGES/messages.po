@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 10:56+0100\n"
+"POT-Creation-Date: 2007-12-10 11:41+0100\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Lopo Pizarro <lopopizarro@users.sourceforge.net>\n"
 "Language-Team: pt_PT <jflemer@alum.rpi.edu>\n"
@@ -1822,9 +1822,15 @@ msgid "Confirm Password"
 msgstr "Confirmar Nova Senha"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Nenhuma aba foi definida. Por favor verifique configurações INI."
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 153
@@ -1832,9 +1838,15 @@ msgstr "Confirmar Nova Senha"
 #~ msgstr "Geral"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Perguntas"
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 155
@@ -1842,14 +1854,23 @@ msgstr "Confirmar Nova Senha"
 #~ msgstr "Ordenar"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Pré-visualizar"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Finalizar"
+#
+#
+#
 #
 #
 #
@@ -1879,9 +1900,15 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "de"
+#
+#
+#
 #
 #
 #
@@ -1912,9 +1939,15 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Campo"
+#
+#
+#
 #
 #
 #
@@ -1944,9 +1977,15 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "O download do DBF não foi implementado."
+#
+#
+#
 #
 #
 #
@@ -1977,10 +2016,16 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
 #
 #
 #
@@ -2010,6 +2055,9 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exportar dados no formato CSV"
@@ -2026,9 +2074,15 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Erro!"
+#
+#
+#
 #
 #
 #
@@ -2059,6 +2113,9 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrar os Membros do Grupo"
 #
@@ -2075,8 +2132,14 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "Não foi especificado qualquer questionário."
+#
+#
+#
 #
 #
 #
@@ -2111,8 +2174,14 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "are required."
 #~ msgstr "são obrigatórias."
+#
+#
+#
 #
 #
 #
@@ -2148,8 +2217,14 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "free-form"
 #~ msgstr "free-form"
+#
+#
+#
 #
 #
 #
@@ -2184,8 +2259,14 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "Required?"
 #~ msgstr "Obrigatório?"
+#
+#
+#
 #
 #
 #
@@ -2220,8 +2301,14 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "to access this menu"
 #~ msgstr "para aceder este menu"
+#
+#
+#
 #
 #
 #
@@ -2256,6 +2343,9 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
 #
@@ -2274,8 +2364,14 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid "to design forms"
 #~ msgstr "para fazer o design dos formulários"
+#
+#
+#
 #
 #
 #
@@ -2314,12 +2410,18 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
+#
+#
 #~ msgid ""
 #~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
 #~ "the Confirmation Heading."
 #~ msgstr ""
 #~ "Body text na página de &quot;Confirmação&quot;. Aparece abaixo do "
 #~ "Cabeçalho de Confirmação."
+#
+#
+#
 #
 #
 #
