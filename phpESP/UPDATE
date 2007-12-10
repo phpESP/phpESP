@@ -1,8 +1,0 @@
-- Make a backup of your database and webfiles.
-- go into the dir scripts/db and run the following mysql statements on your database (run all updates that are needed in the correct sequence):
-
-mysql_update-1.5-1.6.sql (if still running 1.5)
-mysql_update-1.8.2h-1.8.2i.sql (if running a version <= 1.8.2h and going to 1.8.2i)
-mysql_update-1.8.2k-2.0.0.sql (if running a version <= 1.8.2k and going to 2.0.0)
-
-
