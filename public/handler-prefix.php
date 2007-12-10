@@ -54,7 +54,6 @@
     }
 
     $GLOBALS['errmsg'] = '';
-    if (!isset($_SESSION)) session_start();
 
     if(isset($_REQUEST['results']) || isset($_REQUEST['results'])) {
         $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Security violation.'));

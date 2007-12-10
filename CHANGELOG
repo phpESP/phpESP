@@ -1,5 +1,10 @@
 Changes made by Franky:
 
+20071210
+- Already on 2.0.1
+- Changed language detection so you can select the language also in the admin interface
+- some session cleanups
+
 20071126
 - bumped the version to 2.0.0 (long overdue)
 - Added the posibility to define conditions on a question. See the help page in the admin interface for more info. In short:

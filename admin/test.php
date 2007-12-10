@@ -10,6 +10,12 @@
 /* phpESP System Information */
 
 session_start();
+// if the session fails to start
+if (!isset($_SESSION)) {
+   echo "This script can't work without setting the php session variable first!!!";
+   exit ;
+}
+
 if (!isset($_SESSION['esp_counter']))
     $_SESSION['esp_counter'] = 0;
 $_SESSION['esp_counter']++;
