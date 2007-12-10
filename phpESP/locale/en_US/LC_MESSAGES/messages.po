@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:41+0100\n"
+"POT-Creation-Date: 2007-12-10 11:49+0100\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: James Flemer <jflemer@alum.rpi.edu>\n"
 "Language-Team: en_US <jflemer@alum.rpi.edu>\n"

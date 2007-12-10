@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:41+0100\n"
+"POT-Creation-Date: 2007-12-10 11:49+0100\n"
 "PO-Revision-Date: 2003-02-07 10:01+0200\n"
 "Last-Translator: armandos <armandos@hol.gr>\n"
 "Language-Team: el_GR <jflemer@alum.rpi.edu>\n"
@@ -1848,9 +1848,11 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "ΔΕΝ ΟΡΙΣΤΗΚΑΝ ΤΑ ΤΑΒS. ΕΛΕΓΞΤΕ ΤΙΣ ΡΥΘΜΙΣΕΙΣ ΤΟΥ ΙΝΙ."
+#
 #
 #
 #
@@ -1864,9 +1866,11 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "ΕΡΩΤΗΣΕΙΣ"
+#
 #
 #
 #
@@ -1880,6 +1884,7 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "ΠΡΟΕΠΙΣΚΟΠΗΣΗ"
@@ -1888,9 +1893,11 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "ΤΕΛΟΣ"
+#
 #
 #
 #
@@ -1926,9 +1933,11 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "ΑΠΟ"
+#
 #
 #
 #
@@ -1965,9 +1974,11 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "ΠΕΔΙΟ"
+#
 #
 #
 #
@@ -2003,9 +2014,11 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "ΤΟ ΚΑΤΒΕΣΜΑ ΤΟΥ DBF ΔΕΝ ΕΧΕΙ ΥΛΟΠΟΙΗΘΕΙ ΑΚΟΜΑ"
+#
 #
 #
 #
@@ -2042,10 +2055,12 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2081,6 +2096,7 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "ΕΞΑΓΩΓΗ ΣΤΟΙΧΕΙΩΝ ΣΕ CSV"
@@ -2100,9 +2116,11 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "ΛΑΘΟΣ!"
+#
 #
 #
 #
@@ -2139,6 +2157,7 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "ΔΙΑΧΕΙΡΙΣΤΕΙΤΕ ΤΗΝ ΟΜΑΔΑ ΜΕΛΗ"
 #
@@ -2158,8 +2177,10 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "ΔΕΝ ΕΠΙΛΕΧΘΗΚΕ ΕΡΕΥΝΑ"
+#
 #
 #
 #
@@ -2198,8 +2219,10 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "ΛΑΘΟΣ ΟΝΟΜΑ ΧΡΗΣΤΗ ή ΚΩΔΙΚΟΣ, ή Ο ΛΟΓΑΡΙΑΣΜΟΣ ΣΑΣ ΕΙΝΑΙ ΑΝΕΝΕΡΓΟΣ"
+#
 #
 #
 #
@@ -2238,6 +2261,7 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ΔΗΛ. ΟΔΗΓΙΕΣ, ΠΛΗΡΟΦΟΡΙΕΣΜ ΚΛΠ."
 #
@@ -2258,8 +2282,10 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "ΕΠΙΚΕΦΑΛΙΔΑ ΕΠΙΒΕΒΑΙΩΣΗΣ"
+#
 #
 #
 #
@@ -2302,8 +2328,10 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "ΠΡΕΠΕΙ ΝΑ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ"
+#
 #
 #
 #
@@ -2342,8 +2370,10 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "ΓΙΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΟ ΤΟ ΜΕΝΟΥ"
+#
 #
 #
 #
@@ -2382,8 +2412,10 @@ msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
 #
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "ΚΑΤΑΣΤΑΣΗ"
+#
 #
 #
 #

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:41+0100\n"
+"POT-Creation-Date: 2007-12-10 11:49+0100\n"
 "PO-Revision-Date: 2004-05-26 14:12+0300\n"
 "Last-Translator: Tom Ingberg <tom.ingberg@edu.vantaa.fi>\n"
 "Language-Team: Finnish\n"
@@ -1814,11 +1814,13 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr ""
 #~ "Välilehtiä ei ole määritelty. Ole hyvä ja tarkista INI-tiedoston "
 #~ "asetukset."
+#
 #
 #
 #
@@ -1832,9 +1834,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Kysymykset"
+#
 #
 #
 #
@@ -1848,6 +1852,7 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Esikatselu"
@@ -1856,9 +1861,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Valmis"
+#
 #
 #
 #
@@ -1892,9 +1899,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "/"
+#
 #
 #
 #
@@ -1929,6 +1938,7 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Kenttä"
@@ -1947,9 +1957,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 122
 #~ msgid "Field Name"
 #~ msgstr "Kentän nimi"
+#
 #
 #
 #
@@ -1984,9 +1996,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 28
 #~ msgid "Choose a function"
 #~ msgstr "Valitse toiminto"
+#
 #
 #
 #
@@ -2020,9 +2034,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Virhe!"
+#
 #
 #
 #
@@ -2057,8 +2073,10 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Voi hallita ryhmän jäseniä"
+#
 #
 #
 #
