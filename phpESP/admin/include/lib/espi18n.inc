@@ -105,6 +105,8 @@ function esp_setlocale($lang)
 {
     global $ESPCONFIG;
 
+    $ESPCONFIG['lang'] = $lang;
+    $lang .= ".UTF-8";
     setlocale(LC_ALL, $lang);
     if (defined('LC_MESSAGES'))
         setlocale(LC_MESSAGES, $lang);
@@ -113,7 +115,6 @@ function esp_setlocale($lang)
     @putenv('LANG=' . $lang);
     @putenv('LANGUAGE=' . $lang);
 
-    $ESPCONFIG['lang'] = $lang;
 }
 
 function esp_getlocales()
