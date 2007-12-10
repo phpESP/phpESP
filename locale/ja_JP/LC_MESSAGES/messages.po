@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-04-13 12:20+0200\n"
+"POT-Creation-Date: 2007-12-10 10:56+0100\n"
 "PO-Revision-Date: 2002-09-26 19:00+0900\n"
 "Last-Translator: IYODA Atsushi <iyoda@users.sourceforge.net>\n"
 "Language-Team: ja_JP <jflemer@alum.rpi.edu>\n"
@@ -57,58 +57,6 @@ msgstr ""
 #, fuzzy
 msgid "Resume survey"
 msgstr "テストアンケート"
-#
-# File: phpESP/admin/include/function/survey_copy.inc, line: 30
-msgid "copy"
-msgstr "copy"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 21
-# File: phpESP/admin/include/function/survey_merge.inc, line: 26
-msgid "Invalid argument."
-msgstr "不正な引数です"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 44
-# File: phpESP/admin/include/function/survey_report.inc, line: 37
-# File: phpESP/admin/include/function/survey_report.inc, line: 48
-# File: phpESP/admin/include/function/survey_results.inc, line: 126
-# File: phpESP/admin/include/function/survey_results.inc, line: 139
-# File: phpESP/admin/include/function/survey_results.inc, line: 193
-# File: phpESP/admin/include/function/survey_results.inc, line: 198
-msgid "Error opening survey."
-msgstr "アンケートが開けませんでした"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 57
-# File: phpESP/admin/include/function/survey_merge.inc, line: 62
-# File: phpESP/admin/include/function/survey_merge.inc, line: 87
-msgid "Error opening surveys."
-msgstr "1個以上のアンケートが開けませんでした"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 63
-# File: phpESP/admin/include/function/survey_results.inc, line: 198
-msgid "No responses found."
-msgstr "No responses found."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 63
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
-msgid "TOTAL"
-msgstr "合計"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 87
-# File: phpESP/admin/include/function/survey_report.inc, line: 48
-# File: phpESP/admin/include/function/survey_results.inc, line: 139
-msgid "No questions found."
-msgstr "設問が1つもありません"
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 61
-msgid "Page %d of %d"
-msgstr ""
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 67
-#, fuzzy
-msgid "Questions marked with a %s are required."
-msgstr " "
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 142
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -170,6 +118,63 @@ msgstr "5"
 # File: phpESP/admin/include/function/survey_render.inc, line: 289
 msgid "N/A"
 msgstr ""
+#
+# File: phpESP/admin/include/function/survey_copy.inc, line: 30
+msgid "copy"
+msgstr "copy"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 21
+# File: phpESP/admin/include/function/survey_merge.inc, line: 26
+msgid "Invalid argument."
+msgstr "不正な引数です"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 44
+# File: phpESP/admin/include/function/survey_report.inc, line: 37
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 126
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+# File: phpESP/admin/include/function/survey_results.inc, line: 193
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "Error opening survey."
+msgstr "アンケートが開けませんでした"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 57
+# File: phpESP/admin/include/function/survey_merge.inc, line: 62
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+msgid "Error opening surveys."
+msgstr "1個以上のアンケートが開けませんでした"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "No responses found."
+msgstr "No responses found."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
+msgid "TOTAL"
+msgstr "合計"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+msgid "No questions found."
+msgstr "設問が1つもありません"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 61
+msgid "Page %d of %d"
+msgstr ""
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 67
+#, fuzzy
+msgid "Questions marked with a %s are required."
+msgstr " "
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 164
+#, fuzzy
+msgid "Sorry, no questions for you to answer in this section."
+msgstr "この設問事項に対する方を選択しなければなりません。"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
@@ -290,6 +295,11 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_update.inc, line: 310
 msgid "Sorry, you need at least one answer option for this question type."
 msgstr ""
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please select two different questions."
+msgstr "この設問事項に対する説明を入力してください"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 19
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 29
@@ -421,6 +431,67 @@ msgstr "平均ランク"
 # File: phpESP/admin/include/lib/espresponse.inc, line: 59
 msgid "You are missing the following required questions:"
 msgstr "以下の項目が記入されていません。"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please only use numbers for the following questions:"
+msgstr "この設問事項に対する説明を入力してください"
+#
+# File: phpESP/admin/include/where/test.inc, line: 133
+#, fuzzy
+msgid "equals"
+msgstr "結果"
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 15
+msgid "is different from"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 16
+msgid "smaller than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 17
+msgid "bigger than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 22
+msgid "Current conditions defined:"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 111
+msgid "OR"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 33
+# File: phpESP/admin/include/tab/conditions.inc, line: 82
+msgid "Only show question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 41
+# File: phpESP/admin/include/tab/conditions.inc, line: 104
+msgid "if answer to question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 65
+msgid ""
+"All conditions are \"OR\" conditions, so if one conditions is fullfilled, "
+"the question is shown.<br />\n"
+"A question that has a condition must be an optional question. So, if you "
+"define a condition on a question, the \"Required\" parameter is set to \"No"
+"\".<br />\n"
+"A question that has a condition must be on the next page than the question/"
+"value that is used to compare it with. Use the \"Order tab\" to insert a "
+"section break where wanted (this is <b>NOT</b> done automatically).<br />\n"
+"A Yes/No question can only be compared using the values \"Yes or \"No\"."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 73
+msgid "Add conditions to a question."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/order.inc, line: 89
+msgid "----- Section Break -----"
+msgstr "-----空きセクション-----"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 27
 msgid "Survey Design Completed"
@@ -591,10 +662,6 @@ msgstr ""
 msgid "The URL to which a user is redirected after completing this survey."
 msgstr ""
 #
-# File: phpESP/admin/include/tab/general.inc, line: 111
-msgid "OR"
-msgstr ""
-#
 # File: phpESP/admin/include/tab/general.inc, line: 113
 msgid "(heading text)"
 msgstr ""
@@ -635,6 +702,15 @@ msgstr ""
 msgid "Select a theme (css) to use with this survey."
 msgstr ""
 #
+# File: phpESP/admin/include/tab/general.inc, line: 149
+msgid "Automatic numbering"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 155
+msgid ""
+"Select if questions are to be numbered automatically when showing the survey."
+msgstr ""
+#
 # File: phpESP/admin/include/tab/general.inc, line: 150
 #, fuzzy
 msgid "Options"
@@ -658,10 +734,6 @@ msgid ""
 msgstr ""
 "リストの番号を変更することにより、質問の順番を並び替えることができます。"
 #
-# File: phpESP/admin/include/tab/order.inc, line: 89
-msgid "----- Section Break -----"
-msgstr "-----空きセクション-----"
-#
 # File: phpESP/admin/include/tab/order.inc, line: 96
 msgid "Add Section Break"
 msgstr "空きセクションの追加"
@@ -670,10 +742,7 @@ msgstr "空きセクションの追加"
 #, fuzzy
 msgid ""
 "This is a preview of how this survey will look.\n"
-"In the preview the survey navigation buttons are inactive, use\n"
-"the section number buttons to view different sections. Some\n"
-"navigation buttons may not appear on your final survey, depending\n"
-"on what access it is assigned. The survey will use the background\n"
+"The survey will use the background\n"
 "color of the document in which it is embedded. If you have no\n"
 "further changes click <b>Finish</b> at the bottom of\n"
 "this page."
@@ -703,11 +772,6 @@ msgstr "次のページ"
 msgid "Submit Survey"
 msgstr "投稿する"
 #
-# File: phpESP/admin/include/where/tab.inc, line: 154
-#, fuzzy
-msgid "New Question"
-msgstr "質問"
-#
 # File: phpESP/admin/include/tab/questions.inc, line: 106
 #, fuzzy
 msgid ""
@@ -719,7 +783,12 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #, fuzzy
-msgid "Question"
+msgid "Edit Question"
+msgstr "質問"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "New Question"
 msgstr "質問"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
@@ -1225,6 +1294,11 @@ msgstr "アンケートをテストする"
 msgid "Copy an Existing Survey"
 msgstr "既存のアンケートをコピーする"
 #
+# File: phpESP/admin/include/funcs.inc, line: 139
+#, fuzzy
+msgid "Purge a survey"
+msgstr "テストアンケート"
+#
 # File: phpESP/admin/include/where/manage.inc, line: 41
 msgid "Change the Status of a Survey"
 msgstr "アンケートの状態を変更する"
@@ -1253,6 +1327,11 @@ msgstr "アンケート結果をマージしてください"
 # File: phpESP/admin/include/where/manage.inc, line: 50
 msgid "View a Survey Report"
 msgstr "アンケートの内容をみる"
+#
+# File: phpESP/admin/include/where/access.inc, line: 170
+#, fuzzy
+msgid "Purge a response"
+msgstr "レスポンス"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
@@ -1390,6 +1469,22 @@ msgstr "新しい回答者を追加してください"
 msgid "Bulk Upload Respondents"
 msgstr "新しい回答者を追加してください"
 #
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 174
+#, fuzzy
+msgid "Purge response"
+msgstr "レスポンス"
+#
+# File: phpESP/admin/include/where/response_purge.inc, line: 25
+msgid ""
+"\n"
+"This page is not directly on the main menu because it is\n"
+"dangerous. This <b>completely</b> removes everything about a\n"
+"response from the database <b>forever</b>. Do\n"
+"not do anything here that you are not completely certain\n"
+"about. There is no confirmation, there is no turning\n"
+"back."
+msgstr ""
+#
 # File: phpESP/admin/include/where/results.inc, line: 48
 # File: phpESP/admin/include/where/results.inc, line: 156
 #, fuzzy
@@ -1506,34 +1601,10 @@ msgstr "アーカイブ"
 msgid "Edit"
 msgstr "編集"
 #
-# File: phpESP/admin/include/where/tab.inc, line: 92
-msgid "No tabs defined. Please check your INI settings."
-msgstr "無効なタブ。INI設定をチェックしてください"
-#
 # File: phpESP/admin/include/where/tab.inc, line: 144
 # File: phpESP/admin/include/where/upload.inc, line: 110
 msgid "Help"
 msgstr "ヘルプ"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 153
-msgid "General"
-msgstr ""
-#
-# File: phpESP/admin/include/where/tab.inc, line: 154
-msgid "Questions"
-msgstr "質問"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 155
-msgid "Order"
-msgstr "オーダー"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 156
-msgid "Preview"
-msgstr "プレビュー"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-msgid "Finish"
-msgstr "終了"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 170
 msgid ""
@@ -1707,6 +1778,32 @@ msgid "Confirm Password"
 msgstr "もっかい"
 #
 #
+# File: phpESP/admin/include/where/tab.inc, line: 92
+#~ msgid "No tabs defined. Please check your INI settings."
+#~ msgstr "無効なタブ。INI設定をチェックしてください"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#~ msgid "Questions"
+#~ msgstr "質問"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 155
+#~ msgid "Order"
+#~ msgstr "オーダー"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 156
+#~ msgid "Preview"
+#~ msgstr "プレビュー"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+#~ msgid "Finish"
+#~ msgstr "終了"
+#
+#
+#
 #
 #
 #
@@ -1720,6 +1817,7 @@ msgstr "もっかい"
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "Page"
 #~ msgstr "ページ"
+#
 #
 #
 #
@@ -1748,6 +1846,7 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "フィールド"
@@ -1763,9 +1862,11 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 122
 #~ msgid "Field Name"
 #~ msgstr "フィールドネーム"
+#
 #
 #
 #
@@ -1794,10 +1895,12 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -1825,6 +1928,7 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "CVSデータを見る"
@@ -1840,9 +1944,11 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "ぶべらんぼー"
+#
 #
 #
 #
@@ -1871,6 +1977,7 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "グループメンバーを管理"
 #
@@ -1886,8 +1993,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "アンケートが指定されていません"
+#
 #
 #
 #
@@ -1920,8 +2029,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "マークの質問は必須項目です。"
+#
 #
 #
 #
@@ -1954,8 +2065,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ie.手順、背景情報など"
+#
 #
 #
 #
@@ -1988,8 +2101,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "「プライベート」にする場合は"
+#
 #
 #
 #
@@ -2024,8 +2139,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "確認表題"
+#
 #
 #
 #

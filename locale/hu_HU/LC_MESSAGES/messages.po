@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-04-13 12:20+0200\n"
+"POT-Creation-Date: 2007-12-10 10:56+0100\n"
 "PO-Revision-Date: 2003-08-13 13:29-0500\n"
 "Last-Translator: Monika Berze <monika@proaction.hu>\n"
 "Language-Team: hu_HU <jflemer@alum.rpi.edu>\n"
@@ -62,57 +62,6 @@ msgstr ""
 # File: phpESP/admin/include/funcs.inc, line: 139
 msgid "Resume survey"
 msgstr "Kérdõív folytatása"
-#
-# File: phpESP/admin/include/function/survey_copy.inc, line: 30
-msgid "copy"
-msgstr "másolás"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 21
-# File: phpESP/admin/include/function/survey_merge.inc, line: 26
-msgid "Invalid argument."
-msgstr "Érvénytelen érték."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 44
-# File: phpESP/admin/include/function/survey_report.inc, line: 37
-# File: phpESP/admin/include/function/survey_report.inc, line: 48
-# File: phpESP/admin/include/function/survey_results.inc, line: 126
-# File: phpESP/admin/include/function/survey_results.inc, line: 139
-# File: phpESP/admin/include/function/survey_results.inc, line: 193
-# File: phpESP/admin/include/function/survey_results.inc, line: 198
-msgid "Error opening survey."
-msgstr "Hiba a kérdõív megnyitásakor."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 57
-# File: phpESP/admin/include/function/survey_merge.inc, line: 62
-# File: phpESP/admin/include/function/survey_merge.inc, line: 87
-msgid "Error opening surveys."
-msgstr "Hiba a kérdõívek megnyitásakor."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 63
-# File: phpESP/admin/include/function/survey_results.inc, line: 198
-msgid "No responses found."
-msgstr "Nincs válasz."
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 63
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
-# File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
-msgid "TOTAL"
-msgstr "Teljes"
-#
-# File: phpESP/admin/include/function/survey_merge.inc, line: 87
-# File: phpESP/admin/include/function/survey_report.inc, line: 48
-# File: phpESP/admin/include/function/survey_results.inc, line: 139
-msgid "No questions found."
-msgstr "Nincs kérdés."
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 61
-msgid "Page %d of %d"
-msgstr "%d oldal %d -ból/bõl"
-#
-# File: phpESP/admin/include/function/survey_render.inc, line: 67
-msgid "Questions marked with a %s are required."
-msgstr "A %s -sel jelölt mezõk kitöltése kötelezõ."
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 142
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -174,6 +123,62 @@ msgstr "5"
 # File: phpESP/admin/include/function/survey_render.inc, line: 289
 msgid "N/A"
 msgstr "-"
+#
+# File: phpESP/admin/include/function/survey_copy.inc, line: 30
+msgid "copy"
+msgstr "másolás"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 21
+# File: phpESP/admin/include/function/survey_merge.inc, line: 26
+msgid "Invalid argument."
+msgstr "Érvénytelen érték."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 44
+# File: phpESP/admin/include/function/survey_report.inc, line: 37
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 126
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+# File: phpESP/admin/include/function/survey_results.inc, line: 193
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "Error opening survey."
+msgstr "Hiba a kérdõív megnyitásakor."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 57
+# File: phpESP/admin/include/function/survey_merge.inc, line: 62
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+msgid "Error opening surveys."
+msgstr "Hiba a kérdõívek megnyitásakor."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "No responses found."
+msgstr "Nincs válasz."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
+msgid "TOTAL"
+msgstr "Teljes"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+msgid "No questions found."
+msgstr "Nincs kérdés."
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 61
+msgid "Page %d of %d"
+msgstr "%d oldal %d -ból/bõl"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 67
+msgid "Questions marked with a %s are required."
+msgstr "A %s -sel jelölt mezõk kitöltése kötelezõ."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 164
+#, fuzzy
+msgid "Sorry, no questions for you to answer in this section."
+msgstr "Ehhez a kérdéshez választani kell egy típust!"
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
@@ -293,6 +298,11 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_update.inc, line: 310
 msgid "Sorry, you need at least one answer option for this question type."
 msgstr "Legalább egy választ meg kell adnia ehhez a kérdéstípushoz!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please select two different questions."
+msgstr "Kérem írja be a kérdést!"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 19
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 29
@@ -423,6 +433,67 @@ msgstr "Átlag rangsor"
 # File: phpESP/admin/include/lib/espresponse.inc, line: 59
 msgid "You are missing the following required questions:"
 msgstr "A következõ kötelezõ kérdésre nem válaszolt:"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please only use numbers for the following questions:"
+msgstr "Kérem írja be a kérdést!"
+#
+# File: phpESP/admin/include/where/test.inc, line: 133
+#, fuzzy
+msgid "equals"
+msgstr "Eredmények"
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 15
+msgid "is different from"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 16
+msgid "smaller than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 17
+msgid "bigger than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 22
+msgid "Current conditions defined:"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 111
+msgid "OR"
+msgstr "vagy"
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 33
+# File: phpESP/admin/include/tab/conditions.inc, line: 82
+msgid "Only show question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 41
+# File: phpESP/admin/include/tab/conditions.inc, line: 104
+msgid "if answer to question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 65
+msgid ""
+"All conditions are \"OR\" conditions, so if one conditions is fullfilled, "
+"the question is shown.<br />\n"
+"A question that has a condition must be an optional question. So, if you "
+"define a condition on a question, the \"Required\" parameter is set to \"No"
+"\".<br />\n"
+"A question that has a condition must be on the next page than the question/"
+"value that is used to compare it with. Use the \"Order tab\" to insert a "
+"section break where wanted (this is <b>NOT</b> done automatically).<br />\n"
+"A Yes/No question can only be compared using the values \"Yes or \"No\"."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 73
+msgid "Add conditions to a question."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/order.inc, line: 89
+msgid "----- Section Break -----"
+msgstr "----- Töréspont -----"
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 27
 msgid "Survey Design Completed"
@@ -591,10 +662,6 @@ msgid "The URL to which a user is redirected after completing this survey."
 msgstr ""
 "Kérdõív kitöltése után a felhasználót erre az URL címre irányítjuk tovább."
 #
-# File: phpESP/admin/include/tab/general.inc, line: 111
-msgid "OR"
-msgstr "vagy"
-#
 # File: phpESP/admin/include/tab/general.inc, line: 113
 msgid "(heading text)"
 msgstr "(fejléc)"
@@ -637,6 +704,15 @@ msgstr "Stílus"
 msgid "Select a theme (css) to use with this survey."
 msgstr "Válasszon egy stílus (css), amit a kérdõívhez használ."
 #
+# File: phpESP/admin/include/tab/general.inc, line: 149
+msgid "Automatic numbering"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 155
+msgid ""
+"Select if questions are to be numbered automatically when showing the survey."
+msgstr ""
+#
 # File: phpESP/admin/include/tab/general.inc, line: 150
 msgid "Options"
 msgstr "Opciók"
@@ -664,21 +740,15 @@ msgstr ""
 "Megváltoztathatja a kérdések sorrendjét,\n"
 "ha a listából kiválasztja a kívánt poziciót."
 #
-# File: phpESP/admin/include/tab/order.inc, line: 89
-msgid "----- Section Break -----"
-msgstr "----- Töréspont -----"
-#
 # File: phpESP/admin/include/tab/order.inc, line: 96
 msgid "Add Section Break"
 msgstr "Töréspont hozzáadása"
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 43
+#, fuzzy
 msgid ""
 "This is a preview of how this survey will look.\n"
-"In the preview the survey navigation buttons are inactive, use\n"
-"the section number buttons to view different sections. Some\n"
-"navigation buttons may not appear on your final survey, depending\n"
-"on what access it is assigned. The survey will use the background\n"
+"The survey will use the background\n"
 "color of the document in which it is embedded. If you have no\n"
 "further changes click <b>Finish</b> at the bottom of\n"
 "this page."
@@ -713,11 +783,6 @@ msgstr "Következõ oldal"
 msgid "Submit Survey"
 msgstr "Kérdõív elküldése"
 #
-# File: phpESP/admin/include/where/tab.inc, line: 154
-#, fuzzy
-msgid "New Question"
-msgstr "Kérdések"
-#
 # File: phpESP/admin/include/tab/questions.inc, line: 106
 #, fuzzy
 msgid ""
@@ -729,7 +794,12 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #, fuzzy
-msgid "Question"
+msgid "Edit Question"
+msgstr "Kérdések"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "New Question"
 msgstr "Kérdések"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
@@ -1254,6 +1324,12 @@ msgstr "Kérdõív tesztelése"
 msgid "Copy an Existing Survey"
 msgstr "Létezõ kérdõív másolása"
 #
+# File: phpESP/admin/include/where/purge.inc, line: 38
+# File: phpESP/admin/include/where/purge.inc, line: 103
+#, fuzzy
+msgid "Purge a survey"
+msgstr "Kérdõívek ûrítése"
+#
 # File: phpESP/admin/include/where/manage.inc, line: 41
 msgid "Change the Status of a Survey"
 msgstr "Kérdõív állapotának megváltoztatása"
@@ -1281,6 +1357,11 @@ msgstr "Kérdõív keresztbevetésének eredménye"
 # File: phpESP/admin/include/where/manage.inc, line: 50
 msgid "View a Survey Report"
 msgstr "Kérdõív riport megtekintése"
+#
+# File: phpESP/admin/include/where/access.inc, line: 170
+#, fuzzy
+msgid "Purge a response"
+msgstr "Max. válaszok"
 #
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
@@ -1431,6 +1512,32 @@ msgstr "Új válaszadó hozzáadása"
 msgid "Bulk Upload Respondents"
 msgstr "Válaszadók feltöltése"
 #
+# File: phpESP/admin/include/where/purge.inc, line: 38
+# File: phpESP/admin/include/where/purge.inc, line: 103
+#, fuzzy
+msgid "Purge response"
+msgstr "Kérdõívek ûrítése"
+#
+#
+# File: phpESP/admin/include/where/purge.inc, line: 40
+#, fuzzy
+msgid ""
+"\n"
+"This page is not directly on the main menu because it is\n"
+"dangerous. This <b>completely</b> removes everything about a\n"
+"response from the database <b>forever</b>. Do\n"
+"not do anything here that you are not completely certain\n"
+"about. There is no confirmation, there is no turning\n"
+"back."
+msgstr ""
+"\n"
+"Ez az oldal nincs közvetlenül a fõmenüben, mert veszélyes.\n"
+"Egy kérdõívrõl mindent <b>teljesen</b> eltávolít <b>örökre</b> az "
+"adatbázisból.\n"
+"Minden kérdés, az általános információ, az eredmények stb. törlõdnek\n"
+"az adatbázisból. Ne változtasson semmit, ha nem biztos teljesen a \n"
+"dolgában. Ez nem egy megerõsítés, nem lehet visszafordítani!"
+#
 # File: phpESP/admin/include/where/results.inc, line: 48
 # File: phpESP/admin/include/where/results.inc, line: 156
 msgid "Cross Tabulation"
@@ -1552,34 +1659,10 @@ msgstr "Archív"
 msgid "Edit"
 msgstr "Szerkeszt"
 #
-# File: phpESP/admin/include/where/tab.inc, line: 92
-msgid "No tabs defined. Please check your INI settings."
-msgstr "Nincs fül definiálva. Kérem ellenõrizze az INI beállításait!"
-#
 # File: phpESP/admin/include/where/tab.inc, line: 144
 # File: phpESP/admin/include/where/upload.inc, line: 110
 msgid "Help"
 msgstr "Segítség"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 153
-msgid "General"
-msgstr "Általános"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 154
-msgid "Questions"
-msgstr "Kérdések"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 155
-msgid "Order"
-msgstr "Sorrend"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 156
-msgid "Preview"
-msgstr "Elõnézet"
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-msgid "Finish"
-msgstr "Befejezés"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 170
 msgid ""
@@ -1767,6 +1850,37 @@ msgid "Confirm Password"
 msgstr "Jelszó megerõsítése"
 #
 #
+# File: phpESP/admin/include/where/tab.inc, line: 92
+#~ msgid "No tabs defined. Please check your INI settings."
+#~ msgstr "Nincs fül definiálva. Kérem ellenõrizze az INI beállításait!"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 153
+#~ msgid "General"
+#~ msgstr "Általános"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#~ msgid "Questions"
+#~ msgstr "Kérdések"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 155
+#~ msgid "Order"
+#~ msgstr "Sorrend"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 156
+#~ msgid "Preview"
+#~ msgstr "Elõnézet"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+#~ msgid "Finish"
+#~ msgstr "Befejezés"
+#
+#
+#
 #
 #
 #
@@ -1798,9 +1912,11 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "-ból/-bõl"
+#
 #
 #
 #
@@ -1835,9 +1951,11 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Kérdés"
+#
 #
 #
 #
@@ -1871,9 +1989,11 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF letöltés még nincs megvalósítva."
+#
 #
 #
 #
@@ -1908,10 +2028,12 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -1945,9 +2067,11 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Adat exportálása CSV-be"
+#
 #
 #
 #
@@ -1981,9 +2105,11 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 87
 #~ msgid "You need to select at least two surveys!"
 #~ msgstr "Legalább 2 kérdõívet ki kell választania!"
+#
 #
 #
 #
@@ -2024,12 +2150,14 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 #~ msgid ""
 #~ "Error cross-tabulating. Please ensure you make both\n"
 #~ "                                     a column and row selection."
 #~ msgstr ""
 #~ "Hiba a keresztbevetésnél. Kérem ellenõrizze, hogy kiválaszott-e\n"
 #~ "                                     egy oszlopot és egy sort."
+#
 #
 #
 #
@@ -2070,8 +2198,10 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Csoport tagok adminisztrátora"
+#
 #
 #
 #
@@ -2106,9 +2236,11 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "active"
 #~ msgstr "Aktív"
+#
 #
 #
 #
