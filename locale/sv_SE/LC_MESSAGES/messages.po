@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 10:56+0100\n"
+"POT-Creation-Date: 2007-12-10 11:41+0100\n"
 "PO-Revision-Date: 2002-03-22 16:40-0500\n"
 "Last-Translator: Mats Landstedt <mats.landstedt@tuesday.se>\n"
 "Language-Team: sv_SE <jflemer@acm.jhu.edu>\n"
@@ -1832,10 +1832,16 @@ msgid "Confirm Password"
 msgstr "Bekräfta det Nya Lösenordet"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #, fuzzy
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Inga flikar är definierade. Kontrollera INI inställningarna."
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 153
@@ -1843,9 +1849,15 @@ msgstr "Bekräfta det Nya Lösenordet"
 #~ msgstr "Generellt"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Frågor"
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 155
@@ -1853,14 +1865,23 @@ msgstr "Bekräfta det Nya Lösenordet"
 #~ msgstr "Ordning"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Förhandsvisning"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Avsluta"
+#
+#
+#
 #
 #
 #
@@ -1890,9 +1911,15 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "av"
+#
+#
+#
 #
 #
 #
@@ -1923,9 +1950,15 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Fält"
+#
+#
+#
 #
 #
 #
@@ -1955,9 +1988,15 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF download är inte installerat"
+#
+#
+#
 #
 #
 #
@@ -1988,10 +2027,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
 #
 #
 #
@@ -2021,6 +2066,9 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exportera Data till CSV"
@@ -2037,9 +2085,15 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Fel!"
+#
+#
+#
 #
 #
 #
@@ -2070,6 +2124,9 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrera Grupp Medlemmar"
 #
@@ -2086,8 +2143,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "Ingen undersökning är specificerad"
+#
+#
+#
 #
 #
 #
@@ -2124,8 +2187,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "Fel användare ID eller password, eller så har ditt konto spärrats."
+#
+#
+#
 #
 #
 #
@@ -2162,6 +2231,9 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "dvs. instruktioner, information osv."
 #
@@ -2181,8 +2253,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Bekräftelse Rubrik"
+#
+#
+#
 #
 #
 #
@@ -2223,8 +2301,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "You must use"
 #~ msgstr "Du måste använda"
+#
+#
+#
 #
 #
 #
@@ -2261,8 +2345,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "to access this menu"
 #~ msgstr "för att öppna denna meny"
+#
+#
+#
 #
 #
 #
@@ -2299,8 +2389,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
+#
+#
 #
 #
 #
@@ -2337,8 +2433,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "Design Web Forms"
 #~ msgstr "Designa Web  Formulär"
+#
+#
+#
 #
 #
 #
@@ -2375,8 +2477,14 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Svar från undersökningen"
+#
+#
+#
 #
 #
 #

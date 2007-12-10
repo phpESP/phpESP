@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 10:56+0100\n"
+"POT-Creation-Date: 2007-12-10 11:41+0100\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: <info@cawi.it>\n"
 "Language-Team: it_IT <jflemer@alum.rpi.edu>\n"
@@ -1818,10 +1818,16 @@ msgid "Confirm Password"
 msgstr "Conferma la nuova Password"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr ""
 #~ "Non sono definiti tabs. Controlla per cortesia il tuo settaggio di INI."
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 153
@@ -1829,9 +1835,15 @@ msgstr "Conferma la nuova Password"
 #~ msgstr "Generale"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Domande"
+#
+#
+#
 #
 #
 # File: phpESP/admin/include/where/tab.inc, line: 155
@@ -1839,14 +1851,23 @@ msgstr "Conferma la nuova Password"
 #~ msgstr "Ordine"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Anteprima"
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Finito"
+#
+#
+#
 #
 #
 #
@@ -1876,9 +1897,15 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "di"
+#
+#
+#
 #
 #
 #
@@ -1909,9 +1936,15 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Campo"
+#
+#
+#
 #
 #
 #
@@ -1941,9 +1974,15 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF download non ancora completata."
+#
+#
+#
 #
 #
 #
@@ -1974,10 +2013,16 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
 #
 #
 #
@@ -2007,6 +2052,9 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Esporta dati da CSV"
@@ -2023,9 +2071,15 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Errore!"
+#
+#
+#
 #
 #
 #
@@ -2056,6 +2110,9 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Membri Gruppo di Amministrazione"
 #
@@ -2072,8 +2129,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "Nessuna indagine specificata."
+#
+#
+#
 #
 #
 #
@@ -2108,8 +2171,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "are required."
 #~ msgstr "sono richiesti."
+#
+#
+#
 #
 #
 #
@@ -2145,8 +2214,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "free-form"
 #~ msgstr "forma libera"
+#
+#
+#
 #
 #
 #
@@ -2181,8 +2256,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "Required?"
 #~ msgstr "Richiesta?"
+#
+#
+#
 #
 #
 #
@@ -2217,8 +2298,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "to access this menu"
 #~ msgstr "per accedere a questo menu"
+#
+#
+#
 #
 #
 #
@@ -2253,8 +2340,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "Stato"
+#
+#
+#
 #
 #
 #
@@ -2289,8 +2382,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "%s"
 #~ msgstr "%s"
+#
+#
+#
 #
 #
 #
@@ -2329,8 +2428,14 @@ msgstr "Conferma la nuova Password"
 #
 #
 #
+#
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Conferma intestazione "
+#
+#
+#
 #
 #
 #
@@ -2355,6 +2460,9 @@ msgstr "Conferma la nuova Password"
 #~ msgstr ""
 #~ "Corpo del testo in &quot;Confirmation&quot; pagina. Questo appare sotto "
 #~ "l' intestazione di conferma"
+#
+#
+#
 #
 #
 #
