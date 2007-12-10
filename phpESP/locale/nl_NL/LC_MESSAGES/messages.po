@@ -409,7 +409,7 @@ msgstr "De permissie %s ontbreekt voor deze account."
 #
 # File: phpESP/admin/include/lib/esphtml.forms.inc, line: 145
 msgid "Submit"
-msgstr "Verstuur."
+msgstr "Verzend"
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 83
 msgid "Rank"
@@ -417,7 +417,7 @@ msgstr "Plaats"
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 174
 msgid "Response"
-msgstr "Respons"
+msgstr "Antwoord"
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 199
 msgid "Average rank"

@@ -14,15 +14,6 @@
         require_once($CONFIG);
 
         esp_init_adodb();
-	if (isset($_REQUEST['lang'])) {
-		esp_setlocale_ex($_REQUEST['lang']);
-	}
-	if (isset($lang)) {
-		esp_setlocale_ex($lang);
-	}
-
-
-	if (!isset($_SESSION)) session_start();
 
         if(!empty($_REQUEST['submit'])) {
 		$sid=intval($_POST['sid']);

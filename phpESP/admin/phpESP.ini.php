@@ -4,9 +4,12 @@
 
 /* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
-// Written by James Flemer
-// For eGrad2000.com
-// <jflemer@alum.rpi.edu>
+if (!isset($_SESSION)) session_start();
+// if the session fails to start
+if (!isset($_SESSION)) {
+   echo "This script can't work without setting the php session variable first!!!";
+   exit ;
+}
 
 if (!defined('ESP_BASE')) define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 if (isset($_SERVER))  $server =& $_SERVER;
@@ -211,7 +214,18 @@ $ESPCONFIG['condition_table']           = $DB_PREFIX."conditions";
 
 // Load I18N support
 require_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
-esp_setlocale_ex();
+if (isset($_REQUEST['lang'])) { 
+   esp_setlocale_ex($_REQUEST['lang']);
+   $_SESSION['lang']=$_REQUEST['lang'];
+} elseif (isset($lang)) {
+   esp_setlocale_ex($lang);
+   $_SESSION['lang']=$lang;
+} elseif (isset($_SESSION['lang'])) {
+   esp_setlocale_ex($_SESSION['lang']);
+} else {
+   esp_setlocale_ex();
+}
+
 
 // default thank you messages
 $ESPCONFIG['thank_head'] = _('Thank You For Completing This Survey.');

@@ -23,13 +23,6 @@
 		exit;
 	}
 
-        if (isset($_REQUEST['lang'])) {
-            esp_setlocale_ex($_REQUEST['lang']);
-        }
-        if (isset($lang)) {
-            esp_setlocale_ex($lang);
-        }
-
 	require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
 	require_once($ESPCONFIG['handler_prefix']);
 	if(!defined('ESP-AUTH-OK')) {

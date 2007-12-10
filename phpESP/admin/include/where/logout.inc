@@ -12,7 +12,7 @@
 ?>
 <table cellspacing="0" cellpadding="4">
 	<tr>
-		<td>Logged out.<br>
+		<td><?php echo _('Logged out.'); ?><br>
 			<?php echo("<a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Log back in.') . "</a>\n"); ?>
 		</td>
 	</tr>
