@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:41+0100\n"
+"POT-Creation-Date: 2007-12-10 11:49+0100\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Cedric Levasseur <cedric.levasseur@linux-at-business.com>, "
 "and olivier sevin <cjanson@ifrance.com>\n"
@@ -1840,9 +1840,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Pas d'onglets définis. Merci de vérifier vos paramètres INI."
+#
 #
 #
 #
@@ -1856,9 +1858,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Questions"
+#
 #
 #
 #
@@ -1872,6 +1876,7 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Apercu"
@@ -1880,9 +1885,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Fin"
+#
 #
 #
 #
@@ -1916,9 +1923,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "sur"
+#
 #
 #
 #
@@ -1953,9 +1962,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Champ"
+#
 #
 #
 #
@@ -1989,9 +2000,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "Téléchargement DBF pas encore effectué"
+#
 #
 #
 #
@@ -2026,10 +2039,12 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2063,6 +2078,7 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exporter les données en CSV"
@@ -2081,9 +2097,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Erreur!"
+#
 #
 #
 #
@@ -2118,6 +2136,7 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrer les membres du groupe"
 #
@@ -2136,8 +2155,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "Pas d'Etude spécifiée"
+#
 #
 #
 #
@@ -2176,8 +2197,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "sont obligatoires"
+#
 #
 #
 #
@@ -2216,8 +2239,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "formulaire libre"
+#
 #
 #
 #
@@ -2256,8 +2281,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Required?"
 #~ msgstr "Obligatoire?"
+#
 #
 #
 #
@@ -2296,8 +2323,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "pour accéder à ce menu"
+#
 #
 #
 #
@@ -2336,6 +2365,7 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUT"
 #
@@ -2356,8 +2386,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "to design forms"
 #~ msgstr "pour créer le formulaire"
+#
 #
 #
 #
@@ -2401,8 +2433,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "En-tête de la confirmation"
+#
 #
 #
 #
@@ -2449,8 +2483,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Max Logins"
 #~ msgstr "Max de Logins"
+#
 #
 #
 #

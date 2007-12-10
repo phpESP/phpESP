@@ -40,7 +40,9 @@ for i in $langs; do
 #   sed -E "s/Project-Id-Version: $package-.*\\\\n/Project-Id-Version: $package-$version\\\\n/;
 #	s/PO(-Revision|T-Creation)-Date: .*\\\\n/PO\\1-Date: $date\\\\n/" > "$i.po"
 #  echo "==> Compiling strings for $i"
-  msgfmt --strict -f -c -v -o "$i.mo" "$i.po"
+# We don't want the fuzzy translations compiled, people should update the language files
+#  msgfmt --strict -f -c -v -o "$i.mo" "$i.po"
+  msgfmt --strict -c -v -o "$i.mo" "$i.po"
   mv "$i.po" "$i/LC_MESSAGES/messages.po"
   mv "$i.mo" "$i/LC_MESSAGES/messages.mo"
 done
