@@ -219,9 +219,9 @@ if (isset($_REQUEST['lang'])) {
    $_SESSION['lang']=$_REQUEST['lang'];
 } elseif (isset($lang)) {
    esp_setlocale_ex($lang);
-   $_SESSION['lang']=$lang;
-} elseif (isset($_SESSION['lang'])) {
-   esp_setlocale_ex($_SESSION['lang']);
+   $_SESSION['language']=$lang;
+} elseif (isset($_SESSION['language'])) {
+   esp_setlocale_ex($_SESSION['language']);
 } else {
    esp_setlocale_ex();
 }
