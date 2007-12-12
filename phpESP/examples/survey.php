@@ -8,6 +8,7 @@ $page_footer = preg_replace ('/.*FORM_BODY/s','',$template_file);
  $sid=0;
  if (isset($_GET['sid'])) $sid=intval($_GET['sid']);
  $lang="en_US";
+ # this must be included before any output happens
  include("public/phpESP.first.php");
 
  if ($sid>0) {
