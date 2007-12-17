@@ -1,4 +1,8 @@
 <?php
+    	if (defined('ESP-FIRST-INCLUDED'))
+        	return;
+	define ('ESP-FIRST-INCLUDED',true);
+
         if (!defined('ESP_BASE'))
                 define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 
