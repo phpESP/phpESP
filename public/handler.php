@@ -18,7 +18,7 @@
 	// add this at the top of every php script using this one:
 	// require_once("./phpESP.first.php");
 
-	if (!defined('ESP_BASE')) {
+	if (!defined('ESP-FIRST-INCLUDED')) {
 		echo "In order to conduct surveys, please include phpESP.first.php in your php script!!!";
 		exit;
 	}

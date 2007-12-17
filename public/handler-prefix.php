@@ -8,50 +8,15 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-/* When using the authentication for responses you need to include
- * part of the script *before* your template so that the
- * HTTP Auth headers can be sent when needed.
- *
- * So, create your template file with this as the *first*
- * line:
- *   <?php $sid=<SID>; include('.../phpESP/public/handler-prefix.php'); ?>
- * then where you want to include the actual survey use this
- * line:
- *   <?php inlcude('.../phpESP/public/handler.php'); ?>
- *
- * For example, here is a very small template:
- *   <?php $sid=42; include('phpESP/public/handler-prefix.php'); ?>
- *   <html>
- *   <head><title>Example.com</title></head>
- *   <body>
- *   <table border="0" width="800">
- *   <tr><td colspan="2"><img src="example-banner.png"
- *       border="0" width="800" height="42"></td></tr>
- *   <tr><td><?php inlcude('example-sidebar.php'); ?></td>
- *       <td><?php include('phpESP/public/handler.php'); ?>
- *       </td>
- *   </tr>
- *   <tr><td colspan="2"><p align="right"><font size="-2">
- *       Copyright &copy; 2003. Example.com</font></p></td></tr>
- *   </table>
- *   </body>
- *   </html>
- *
- */
+    if (!defined('ESP-FIRST-INCLUDED')) {
+        echo "In order to conduct surveys, please include phpESP.first.php in your php script, not handler-prefix.php!";
+        exit;
+    }
 
     if (defined('ESP-HANDLER-PREFIX'))
         return;
 
     define('ESP-HANDLER-PREFIX', true);
-
-    if (!defined('ESP_BASE'))
-        define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
-
-    require_once(ESP_BASE . '/admin/phpESP.ini.php');
-    require_once($ESPCONFIG['include_path']."/funcs".$ESPCONFIG['extension']);
-    if (!isset($cfg['adodb_conn'])){
-        esp_init_adodb();
-    }
 
     $GLOBALS['errmsg'] = '';
 

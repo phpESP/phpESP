@@ -54,7 +54,7 @@
 			$test = true;
 			unset($_REQUEST['sid']);
 			$_POST['userid'] = 'test';
-			define('ESP-HANDLER-PREFIX', true);
+			define('ESP-FIRST-INCLUDED', true);
 			define('ESP-AUTH-OK', true);
 			$_POST['sec'] = empty($_POST['sec']) ? 1 : intval($_POST['sec']);
 			$_POST['rid'] = empty($_POST['rid']) ? 0 : intval($_POST['rid']);
