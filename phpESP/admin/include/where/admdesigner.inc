@@ -13,8 +13,8 @@
 	$GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_resp' &&
 	$GLOBALS['ESPCONFIG']['auth_type'] != 'ldap_des' &&
 	$_SESSION['acl']['superuser'] != 'Y' &&
-        count($_SESSION['acl']['pgroup']) == 0) &&
-        !auth_no_access(_('to access this form')) {
+        count($_SESSION['acl']['pgroup']) == 0 &&
+        !auth_no_access(_('to access this form'))) {
         return;
     }
 
