@@ -38,7 +38,7 @@ h1 {
 </li>
 <li><h1>Survey Deployment</h1>
     <ul>
-        <li><a href="#dhandler"><b>What are handler.php and handler-prefix.php, and how do I use them?</b></a></li>
+        <li><a href="#dhandler"><b>What are handler.php and phpESP.first.php, and how do I use them?</b></a></li>
 	<li><a href="#dresults"><b>How do I publish survey results?</b></a></li>
     </ul>
 </li>
@@ -122,10 +122,9 @@ This may be done from the <em>Survey Access</em> page.</p>
 </li>
 <hr>
 <li><h1>Survey Deployment</h1>
-<p><a name="dhandler"><b>What are handler.php and handler-prefix.php, and how do I use them?</b></a>
-<p class="indented">They are used to embed a survey in another block of html/php code.  For private surveys, 
-handler-prefix.php should be included before handler.php.  Look at the source of handler-prefix.php for 
-an example.</p>
+<p><a name="dhandler"><b>What are handler.php and phpESP.first.php, and how do I use them?</b></a>
+<p class="indented">They are used to embed a survey in another block of html/php code. You should always include phpESP.first.php at the top of your html code, before any output begins. Look at the examples in the example dir for usage.
+</p>
 <a href="#top">Top</a>
 <p><a name="dresults"><b>How do I publish survey results?</b></a>
 <p class="indented">
@@ -135,7 +134,7 @@ your copy to uncomment approximately on line 48:<br /><br />
 <tt> //$results = 1; </tt><br /><br />
 then use your copied/edited page just like the survey.php page.  It should then display
 results instead of the survey.  The same applies to custom
-survey templates, setting $results to one before calling handler{-prefix} 
+survey templates, setting $results to one before calling handler.php  
 will switch to results mode.
 </p>
 <a href="#top">Top</a>
