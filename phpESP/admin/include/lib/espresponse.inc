@@ -159,6 +159,14 @@
             // create a uniqe id for this response
             $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['response_table']." (survey_id,submitted,username,ip) VALUES ( ${sid},".sys_time_stamp().",${userid},'${ip}')";
             $result = execute_sql($sql);
+    	    if (!$result) {
+		$msg = '<font color="red">'. _('Request failed, please contact the administrator.') .'</font>';
+		if ($GLOBALS['ESPCONFIG']['DEBUG'])
+		   $msg .= mkerror(ErrorNo() . ': ' . ErrorMsg());
+		print $msg;
+		exit;
+	    }
+
             $rid = insert_id("response_id_seq");
         }
         $sql = "
