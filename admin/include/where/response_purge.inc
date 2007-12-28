@@ -48,7 +48,7 @@ back.')); ?></p>
 ?>
     <tr style="background-color: <?php echo($bg); ?>">
 		<td colspan="8">
-			<input type="hidden" name="where" value="purge" />
+			<input type="hidden" name="where" value="response_purge" />
 			<input type="submit" name="submit" value="<?php echo(_('Purge response')); ?>" />
 		</td>
 	</tr>
