@@ -28,6 +28,10 @@ $ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP/'
 // URL of the images directory (for <img src='...'> tags)
 $ESPCONFIG['image_url'] = $ESPCONFIG['base_url'] . 'images/';
 
+// URL for favorite icon (optional)
+// NOTE: uncomment if you have one, and make sure you deposit an icon file whereever you've specified
+// $ESPCONFIG['favicon'] = $ESPCONFIG['base_url'] . 'images/favicon.ico';
+
 // URL of the automatic survey publisher
 $ESPCONFIG['autopub_url'] = $ESPCONFIG['base_url'] . 'public/survey.php';
 
