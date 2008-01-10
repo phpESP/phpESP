@@ -62,6 +62,9 @@
 <title><?php echo($_title); ?></title>
 <script type="text/javascript" src="<?php echo($ESPCONFIG['js_url']);?>default.js"></script>
 <?php
+    if(!empty($ESPCONFIG['favicon'])) {
+        echo("<link rel=\"shortcut icon\" href=\"" . $ESPCONFIG['favicon'] . "\" />\n");
+    }
     if (!empty($_css)) {
 	    echo('<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css ."\" type=\"text/css\" />\n");
     }

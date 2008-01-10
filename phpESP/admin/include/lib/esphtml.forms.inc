@@ -158,6 +158,9 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
         $_css = "default.css";
     }
     $str .= '<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css .'" type="text/css">';
+    if(!empty($GLOBALS['ESPCONFIG']['favicon'])) {
+        $str .= "<link rel=\"shortcut icon\" href=\"" . $GLOBALS['ESPCONFIG']['favicon'] . "\" />\n";
+    }
     $str .=  "\n</head>\n<body id=\"auth\">\n";
     
     $str .= '<div class="headerGraphic"></div>';

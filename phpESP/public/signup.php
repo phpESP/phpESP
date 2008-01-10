@@ -121,6 +121,11 @@
 <html>
 <head>
 <title><?php echo _('Account Request Form'); ?></title>
+<?php
+    if(!empty($GLOBALS['ESPCONFIG']['favicon'])) {
+        echo("<link rel=\"shortcut icon\" href=\"" . $GLOBALS['ESPCONFIG']['favicon'] . "\" />\n");
+    }
+?>
 </head>
 <body>
 <?php } // !$embed ?>
