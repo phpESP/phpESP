@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:49+0100\n"
+"POT-Creation-Date: 2008-01-11 13:08-0500\n"
 "PO-Revision-Date: 2003-08-13 13:29-0500\n"
 "Last-Translator: Monika Berze <monika@proaction.hu>\n"
 "Language-Team: hu_HU <jflemer@alum.rpi.edu>\n"
@@ -362,6 +362,10 @@ msgstr "Lehetetlen az ACL futtatása."
 msgid "Management Interface"
 msgstr "Kezelõ Felület"
 #
+# File: phpesp_current/admin/include/lib/espauth-default.inc, line: 217
+msgid "phpESP Management Login"
+msgstr ""
+#
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
 msgstr "Hozzáférés letiltva"
@@ -438,6 +442,11 @@ msgstr "A következõ kötelezõ kérdésre nem válaszolt:"
 #, fuzzy
 msgid "Please only use numbers for the following questions:"
 msgstr "Kérem írja be a kérdést!"
+#
+# File: phpESP/public/signup.php, line: 100
+#, fuzzy
+msgid "Request failed, please contact the administrator."
+msgstr "A kérés hibás, kérem válasszon egy másik felhasználó nevet!"
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 #, fuzzy
@@ -1299,6 +1308,11 @@ msgstr "Tagok"
 msgid "User's guide not found."
 msgstr "A Felhasználói kézikönyv nem található!"
 #
+# File: phpESP/admin/include/where/manage.inc, line: 83
+#, fuzzy
+msgid "Logged out."
+msgstr "Kilépés"
+#
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
 msgstr "Belépés"
@@ -1485,6 +1499,13 @@ msgstr "Kérdés szám"
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
 msgstr "Check boxok törlése"
+#
+# File: phpesp_current/admin/include/where/purge.inc, line: 104
+msgid ""
+"You are about to PERMANENTLY and IRREVOCABLY remove ALL information about "
+"the selected surveys. Click Ok if you are absolutely sure this is what you "
+"want to do."
+msgstr ""
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
 msgid "README not found."
@@ -1854,9 +1875,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Nincs fül definiálva. Kérem ellenõrizze az INI beállításait!"
+#
+#
+#
+#
 #
 #
 #
@@ -1872,9 +1901,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Kérdések"
+#
+#
+#
+#
 #
 #
 #
@@ -1890,6 +1927,10 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Elõnézet"
@@ -1899,9 +1940,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Befejezés"
+#
+#
+#
+#
 #
 #
 #
@@ -1945,9 +1994,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "-ból/-bõl"
+#
+#
+#
+#
 #
 #
 #
@@ -1992,9 +2049,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Kérdés"
+#
+#
+#
+#
 #
 #
 #
@@ -2038,9 +2103,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF letöltés még nincs megvalósítva."
+#
+#
+#
+#
 #
 #
 #
@@ -2085,10 +2158,18 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
+#
 #
 #
 #
@@ -2132,9 +2213,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Adat exportálása CSV-be"
+#
+#
+#
+#
 #
 #
 #
@@ -2178,9 +2267,17 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 87
 #~ msgid "You need to select at least two surveys!"
 #~ msgstr "Legalább 2 kérdõívet ki kell választania!"
+#
+#
+#
+#
 #
 #
 #
@@ -2231,12 +2328,20 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid ""
 #~ "Error cross-tabulating. Please ensure you make both\n"
 #~ "                                     a column and row selection."
 #~ msgstr ""
 #~ "Hiba a keresztbevetésnél. Kérem ellenõrizze, hogy kiválaszott-e\n"
 #~ "                                     egy oszlopot és egy sort."
+#
+#
+#
+#
 #
 #
 #
@@ -2287,6 +2392,10 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Csoport tagok adminisztrátora"
 #
@@ -2310,8 +2419,16 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "Nincs kérdõív létrehozva."
+#
+#
+#
+#
 #
 #
 #
@@ -2357,12 +2474,10 @@ msgstr "Jelszó megerõsítése"
 #
 #
 #
+#
+#
+#
+#
 #, fuzzy
 #~ msgid "Action"
 #~ msgstr "Oldal"
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
-msgid "phpESP Management Login"
-msgstr ""
-# File: phpESP/admin/include/where/purge.inc:112
-msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
-msgstr ""
