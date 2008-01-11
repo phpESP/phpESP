@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:49+0100\n"
+"POT-Creation-Date: 2008-01-11 13:08-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Cedric Levasseur <cedric.levasseur@linux-at-business.com>, "
 "and olivier sevin <cjanson@ifrance.com>\n"
@@ -361,6 +361,10 @@ msgstr "Impossible de charger les ACLs"
 msgid "Management Interface"
 msgstr "Interface d'administration"
 #
+# File: phpesp_current/admin/include/lib/espauth-default.inc, line: 217
+msgid "phpESP Management Login"
+msgstr ""
+#
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
 msgstr "Ce compte n'a pas la permission nécéssaire"
@@ -439,6 +443,11 @@ msgstr "Vous avez oublié les questions obligatoires suivantes:"
 #, fuzzy
 msgid "Please only use numbers for the following questions:"
 msgstr "Merci d'entrez un texte pour cette question."
+#
+# File: phpESP/public/signup.php, line: 100
+#, fuzzy
+msgid "Request failed, please contact the administrator."
+msgstr "La demande a échoué, choisissez un username différent."
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 #, fuzzy
@@ -1290,6 +1299,11 @@ msgstr "Membres"
 msgid "User's guide not found."
 msgstr "Manuel utilisateur introuvable."
 #
+# File: phpESP/admin/include/where/manage.inc, line: 83
+#, fuzzy
+msgid "Logged out."
+msgstr "Se déconnecter"
+#
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
 msgstr "Se reconnecter"
@@ -1474,6 +1488,13 @@ msgstr "# Qs"
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
 msgstr "Remise à zéro des cases à cocher"
+#
+# File: phpesp_current/admin/include/where/purge.inc, line: 104
+msgid ""
+"You are about to PERMANENTLY and IRREVOCABLY remove ALL information about "
+"the selected surveys. Click Ok if you are absolutely sure this is what you "
+"want to do."
+msgstr ""
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
 msgid "README not found."
@@ -1841,9 +1862,17 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Pas d'onglets définis. Merci de vérifier vos paramètres INI."
+#
+#
+#
+#
 #
 #
 #
@@ -1859,9 +1888,17 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Questions"
+#
+#
+#
+#
 #
 #
 #
@@ -1877,6 +1914,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Apercu"
@@ -1886,9 +1927,17 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Fin"
+#
+#
+#
+#
 #
 #
 #
@@ -1924,9 +1973,17 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "sur"
+#
+#
+#
+#
 #
 #
 #
@@ -1963,9 +2020,17 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Champ"
+#
+#
+#
+#
 #
 #
 #
@@ -2001,9 +2066,17 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "Téléchargement DBF pas encore effectué"
+#
+#
+#
+#
 #
 #
 #
@@ -2040,10 +2113,18 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
+#
 #
 #
 #
@@ -2079,6 +2160,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exporter les données en CSV"
@@ -2098,9 +2183,17 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Erreur!"
+#
+#
+#
+#
 #
 #
 #
@@ -2137,6 +2230,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrer les membres du groupe"
 #
@@ -2156,8 +2253,16 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "Pas d'Etude spécifiée"
+#
+#
+#
+#
 #
 #
 #
@@ -2198,8 +2303,16 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "are required."
 #~ msgstr "sont obligatoires"
+#
+#
+#
+#
 #
 #
 #
@@ -2240,8 +2353,16 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "free-form"
 #~ msgstr "formulaire libre"
+#
+#
+#
+#
 #
 #
 #
@@ -2282,8 +2403,16 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Required?"
 #~ msgstr "Obligatoire?"
+#
+#
+#
+#
 #
 #
 #
@@ -2324,8 +2453,16 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "to access this menu"
 #~ msgstr "pour accéder à ce menu"
+#
+#
+#
+#
 #
 #
 #
@@ -2366,6 +2503,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUT"
 #
@@ -2387,8 +2528,16 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "to design forms"
 #~ msgstr "pour créer le formulaire"
+#
+#
+#
+#
 #
 #
 #
@@ -2434,8 +2583,16 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "En-tête de la confirmation"
+#
+#
+#
+#
 #
 #
 #
@@ -2484,6 +2641,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Max Logins"
 #~ msgstr "Max de Logins"
 #
@@ -2509,11 +2670,9 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Réponse de l'étude:"
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
-msgid "phpESP Management Login"
-msgstr ""
-# File: phpESP/admin/include/where/purge.inc:112
-msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
-msgstr ""
