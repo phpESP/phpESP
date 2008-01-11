@@ -2511,3 +2511,6 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #~ msgid "Response from survey:"
 #~ msgstr "Réponse de l'étude:"
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""

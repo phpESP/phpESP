@@ -214,7 +214,7 @@ function manage_auth($username, $password, $raw_password="") {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
             }
-            echo show_login(null, $error_message, null, "phpESP Management Login");
+            echo show_login(null, $error_message, null, _('phpESP Management Login'));
             exit;
             return(false);
         }

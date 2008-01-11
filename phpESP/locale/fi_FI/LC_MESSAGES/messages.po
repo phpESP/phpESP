@@ -2095,3 +2095,6 @@ msgstr "Vahvista salasana"
 #
 #~ msgid "No survey specified."
 #~ msgstr "Ei kyselyä valittuna."
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""

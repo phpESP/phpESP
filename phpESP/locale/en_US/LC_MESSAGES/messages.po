@@ -1679,3 +1679,6 @@ msgstr ""
 # File: phpESP/public/signup.php, line: 157
 msgid "Confirm Password"
 msgstr ""
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""

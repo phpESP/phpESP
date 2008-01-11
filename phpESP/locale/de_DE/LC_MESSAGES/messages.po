@@ -2576,3 +2576,6 @@ msgstr "Passwort best&auml;tigen"
 #
 #~ msgid "Response from survey:"
 #~ msgstr "Antwort der Umfrage"
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""
