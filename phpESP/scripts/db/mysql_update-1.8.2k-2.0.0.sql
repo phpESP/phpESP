@@ -26,3 +26,4 @@ CREATE TABLE conditions (
 -- # To be sure, I add these again
 ALTER TABLE respondent MODIFY COLUMN password CHAR(64) NOT NULL;
 ALTER TABLE designer   MODIFY COLUMN password CHAR(64) NOT NULL;
+ALTER TABLE response ADD COLUMN ip CHAR(64) AFTER username;
