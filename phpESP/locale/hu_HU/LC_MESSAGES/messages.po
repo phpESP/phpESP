@@ -1,0 +1,2483 @@
+# phpESP
+# By James Flemer <jflemer@alum.rpi.edu>
+# $Id: messages.po 978 2008-01-11 18:32:16Z greggmc $
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phpESP-1.7\n"
+"POT-Creation-Date: 2008-01-11 13:08-0500\n"
+"PO-Revision-Date: 2003-08-13 13:29-0500\n"
+"Last-Translator: Monika Berze <monika@proaction.hu>\n"
+"Language-Team: hu_HU <jflemer@alum.rpi.edu>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+#
+# File: phpESP/admin/include/funcs.inc, line: 40
+# File: phpESP/admin/include/where/tab.inc, line: 134
+msgid "Unable to open include file. Check INI settings. Aborting."
+msgstr ""
+"Nem lehet az &quot;include&quot; fájlt megnyitni. Ellenõrize az INI "
+"beállításokat! Mûvelet megszakítása!"
+#
+# File: phpESP/admin/include/funcs.inc, line: 49
+#, fuzzy
+msgid "Unable to open ADODB include file. Check INI settings. Aborting."
+msgstr ""
+"Nem lehet az &quot;include&quot; fájlt megnyitni. Ellenõrize az INI "
+"beállításokat! Mûvelet megszakítása!"
+#
+# File: phpESP/admin/include/funcs.inc, line: 76
+# File: phpESP/admin/include/funcs.inc, line: 77
+# File: phpESP/admin/include/funcs.inc, line: 78
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 139
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 140
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 142
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 176
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 177
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 179
+msgid "Service Unavailable"
+msgstr "A szolgáltatás nem érhetõ el"
+#
+#
+# File: phpESP/admin/include/funcs.inc, line: 79
+msgid "Connection to database failed. Please check configuration."
+msgstr "Hibás adatbáziscsatlakozás. Kérem ellenõrizze a beállításokat!"
+#
+#
+# File: phpESP/admin/include/funcs.inc, line: 135
+msgid ""
+"Your progress has been saved.  You may return at any\n"
+"time to complete this survey.  To do so, simply bookmark\n"
+"the link below.  You may be prompted for your username\n"
+"and password to complete the survey."
+msgstr ""
+"Munkája el lett mentve. Bármikor vissza tud\n"
+"térni, hogy ezt a kérdõívet befejezze. Ezt az alábbi webcímen\n"
+"teheti meg. Adja meg felhasználó nevét és jelszavát, hogy \n"
+"a kérdõívet befejezze."
+#
+#
+# File: phpESP/admin/include/funcs.inc, line: 139
+msgid "Resume survey"
+msgstr "Kérdõív folytatása"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 142
+# File: phpESP/admin/include/function/survey_report.inc, line: 71
+# File: phpESP/admin/include/function/survey_report.inc, line: 73
+# File: phpESP/admin/include/function/survey_results.inc, line: 301
+# File: phpESP/admin/include/function/survey_results.inc, line: 313
+# File: phpESP/admin/include/where/access.inc, line: 181
+# File: phpESP/admin/include/where/access.inc, line: 182
+# File: phpESP/admin/include/where/admdesigner.inc, line: 281
+# File: phpESP/admin/include/where/admdesigner.inc, line: 291
+# File: phpESP/admin/include/where/admdesigner.inc, line: 296
+# File: phpESP/admin/include/where/admdesigner.inc, line: 302
+# File: phpESP/admin/include/where/admdesigner.inc, line: 307
+# File: phpESP/admin/include/where/admdesigner.inc, line: 313
+# File: phpESP/admin/include/where/admdesigner.inc, line: 318
+# File: phpESP/admin/include/where/admrespondent.inc, line: 256
+msgid "Yes"
+msgstr "Igen"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 146
+# File: phpESP/admin/include/function/survey_report.inc, line: 71
+# File: phpESP/admin/include/function/survey_report.inc, line: 73
+# File: phpESP/admin/include/function/survey_results.inc, line: 301
+# File: phpESP/admin/include/function/survey_results.inc, line: 315
+# File: phpESP/admin/include/where/access.inc, line: 181
+# File: phpESP/admin/include/where/access.inc, line: 182
+# File: phpESP/admin/include/where/admdesigner.inc, line: 281
+# File: phpESP/admin/include/where/admdesigner.inc, line: 291
+# File: phpESP/admin/include/where/admdesigner.inc, line: 296
+# File: phpESP/admin/include/where/admdesigner.inc, line: 302
+# File: phpESP/admin/include/where/admdesigner.inc, line: 307
+# File: phpESP/admin/include/where/admdesigner.inc, line: 313
+# File: phpESP/admin/include/where/admdesigner.inc, line: 318
+# File: phpESP/admin/include/where/admrespondent.inc, line: 256
+msgid "No"
+msgstr "Nem"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 261
+msgid "1"
+msgstr "1"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 262
+msgid "2"
+msgstr "2"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 263
+msgid "3"
+msgstr "3"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 264
+msgid "4"
+msgstr "4"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 265
+msgid "5"
+msgstr "5"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 266
+# File: phpESP/admin/include/function/survey_render.inc, line: 289
+msgid "N/A"
+msgstr "-"
+#
+# File: phpESP/admin/include/function/survey_copy.inc, line: 30
+msgid "copy"
+msgstr "másolás"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 21
+# File: phpESP/admin/include/function/survey_merge.inc, line: 26
+msgid "Invalid argument."
+msgstr "Érvénytelen érték."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 44
+# File: phpESP/admin/include/function/survey_report.inc, line: 37
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 126
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+# File: phpESP/admin/include/function/survey_results.inc, line: 193
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "Error opening survey."
+msgstr "Hiba a kérdõív megnyitásakor."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 57
+# File: phpESP/admin/include/function/survey_merge.inc, line: 62
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+msgid "Error opening surveys."
+msgstr "Hiba a kérdõívek megnyitásakor."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/function/survey_results.inc, line: 198
+msgid "No responses found."
+msgstr "Nincs válasz."
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 63
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 118
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
+msgid "TOTAL"
+msgstr "Teljes"
+#
+# File: phpESP/admin/include/function/survey_merge.inc, line: 87
+# File: phpESP/admin/include/function/survey_report.inc, line: 48
+# File: phpESP/admin/include/function/survey_results.inc, line: 139
+msgid "No questions found."
+msgstr "Nincs kérdés."
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 61
+msgid "Page %d of %d"
+msgstr "%d oldal %d -ból/bõl"
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 67
+msgid "Questions marked with a %s are required."
+msgstr "A %s -sel jelölt mezõk kitöltése kötelezõ."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 164
+#, fuzzy
+msgid "Sorry, no questions for you to answer in this section."
+msgstr "Ehhez a kérdéshez választani kell egy típust!"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 24
+# File: phpESP/admin/include/function/survey_results.inc, line: 113
+msgid "Error system table corrupt."
+msgstr "Hiba, a rendszer tábla sérült."
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 24
+# File: phpESP/admin/include/function/survey_results.inc, line: 113
+# File: phpESP/admin/include/function/survey_results.inc, line: 154
+msgid "Table"
+msgstr "Tábla"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 52
+msgid "Report for"
+msgstr "Riport"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 52
+# File: phpESP/admin/include/function/survey_report.inc, line: 58
+# File: phpESP/admin/include/function/survey_update.inc, line: 311
+# File: phpESP/admin/include/where/access.inc, line: 162
+# File: phpESP/admin/include/where/access.inc, line: 199
+# File: phpESP/admin/include/where/copy.inc, line: 68
+# File: phpESP/admin/include/where/edit.inc, line: 35
+# File: phpESP/admin/include/where/export.inc, line: 30
+# File: phpESP/admin/include/where/purge.inc, line: 53
+# File: phpESP/admin/include/where/report.inc, line: 69
+# File: phpESP/admin/include/where/results.inc, line: 162
+# File: phpESP/admin/include/where/status.inc, line: 137
+# File: phpESP/admin/include/where/test.inc, line: 108
+msgid "ID"
+msgstr "ID"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 57
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 174
+msgid "#"
+msgstr "#"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 59
+msgid "Req'd"
+msgstr "Kötelezõ"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 60
+# File: phpESP/admin/include/where/access.inc, line: 106
+# File: phpESP/admin/include/where/access.inc, line: 167
+# File: phpESP/admin/include/where/access.inc, line: 204
+# File: phpESP/admin/include/where/access.inc, line: 235
+msgid "Public"
+msgstr "Nyilvános"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+msgid "Content"
+msgstr "Kérdés"
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 53
+msgid "Previous"
+msgstr "Elõzõ"
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 64
+msgid "Next"
+msgstr "Következõ"
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 68
+msgid "Navigate Individual Respondent Submissions"
+msgstr "Navigáció az egyéni válaszadók között."
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 154
+msgid "Error cross-analyzing. Question not valid type."
+msgstr "Hiba a kereszt-elemzés során. A kérdésnek nem érvényes a típusa."
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 227
+#, fuzzy
+msgid "Cross analysis on QN:"
+msgstr "Keresztelemzés a következõ kérdésen:"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 36
+# File: phpESP/admin/include/function/survey_update.inc, line: 73
+msgid "Sorry, please fill out the name, group, and title before proceeding."
+msgstr "Kérem töltse ki a név, csoport és cím mezõket a folytatás elõtt!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 56
+msgid "Sorry, name already in use. Pick a new name."
+msgstr "Sajnos a név már foglalt. Válasszon egy másikat!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 87
+msgid "Sorry, that name is already in use."
+msgstr "Sajnos a név már foglalt."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 101
+# File: phpESP/admin/include/function/survey_update.inc, line: 262
+# File: phpESP/admin/include/function/survey_update.inc, line: 302
+msgid "Warning, error encountered."
+msgstr "Figyelmeztetés: ütközési hiba!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+msgid "Please enter text for this question."
+msgstr "Kérem írja be a kérdést!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 164
+msgid "Sorry, you must select a type for this question."
+msgstr "Ehhez a kérdéshez választani kell egy típust!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 169
+# File: phpESP/admin/include/tab/questions.inc, line: 47
+# File: phpESP/admin/include/tab/questions.inc, line: 111
+# File: phpESP/admin/include/tab/questions.inc, line: 115
+msgid "New Field"
+msgstr "Új kérdés"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 182
+msgid ""
+"Sorry, you cannot change between those types of question. Create a new "
+"question instead."
+msgstr ""
+"Sajnos nem tudja megváltoztatni a kérdés típusát. Készítsen egy újabb "
+"kérdést helyette!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 310
+msgid "Sorry, you need at least one answer option for this question type."
+msgstr "Legalább egy választ meg kell adnia ehhez a kérdéstípushoz!"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please select two different questions."
+msgstr "Kérem írja be a kérdést!"
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 19
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 29
+# File: phpESP/public/handler-prefix.php, line: 56
+# File: phpESP/public/handler-prefix.php, line: 61
+msgid "Error processing survey: Security violation."
+msgstr "Hiba a kérdõív feldolgozásban: biztonsági szabály megsértése."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 33
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 44
+msgid "Unable to execute query for access."
+msgstr "Lehetetlen a belépési utasítás végrehajtása."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 60
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 72
+msgid "Unable to execute query respondents."
+msgstr "Lehetetlen a válasz utasítás végrehajtása."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 76
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 92
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 158
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 159
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 160
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 88
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 104
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 221
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 222
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 223
+msgid "Unauthorized"
+msgstr "Jogosulatlan"
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 77
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 161
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 89
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 224
+msgid ""
+"Incorrect User ID or Password, or your account has been disabled/expired."
+msgstr ""
+"Helytelen felhasználó ID vagy jelszó, vagy az Ön hozzáférési joga le van "
+"tiltva/\n"
+"lejárt."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 93
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 105
+msgid ""
+"Your account has been disabled or you have already completed this survey."
+msgstr "AZ Ön hozzáférési joga lejárt, vagy már ezt a kérdõívet befejezte."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 143
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 180
+msgid "Unable to load ACL."
+msgstr "Lehetetlen az ACL futtatása."
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 157
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 220
+# File: phpESP/admin/include/where/manage.inc, line: 14
+msgid "Management Interface"
+msgstr "Kezelõ Felület"
+#
+# File: phpesp_current/admin/include/lib/espauth-default.inc, line: 217
+msgid "phpESP Management Login"
+msgstr ""
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 248
+msgid "This account does not have permission"
+msgstr "Hozzáférés letiltva"
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 250
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 313
+# File: phpESP/admin/include/tab/finish.inc, line: 52
+# File: phpESP/admin/include/where/access.inc, line: 156
+# File: phpESP/admin/include/where/access.inc, line: 192
+# File: phpESP/admin/include/where/access.inc, line: 252
+# File: phpESP/admin/include/where/admdesigner.inc, line: 328
+# File: phpESP/admin/include/where/admrespondent.inc, line: 266
+# File: phpESP/admin/include/where/copy.inc, line: 31
+# File: phpESP/admin/include/where/copy.inc, line: 40
+# File: phpESP/admin/include/where/copy.inc, line: 108
+# File: phpESP/admin/include/where/designers.inc, line: 151
+# File: phpESP/admin/include/where/edit.inc, line: 63
+# File: phpESP/admin/include/where/export.inc, line: 20
+# File: phpESP/admin/include/where/export.inc, line: 94
+# File: phpESP/admin/include/where/export.inc, line: 156
+# File: phpESP/admin/include/where/groups.inc, line: 50
+# File: phpESP/admin/include/where/groups.inc, line: 95
+# File: phpESP/admin/include/where/guide.inc, line: 12
+# File: phpESP/admin/include/where/guide.inc, line: 22
+# File: phpESP/admin/include/where/merge.inc, line: 42
+# File: phpESP/admin/include/where/merge.inc, line: 153
+# File: phpESP/admin/include/where/passwd.inc, line: 23
+# File: phpESP/admin/include/where/passwd.inc, line: 60
+# File: phpESP/admin/include/where/purge.inc, line: 13
+# File: phpESP/admin/include/where/purge.inc, line: 49
+# File: phpESP/admin/include/where/purge.inc, line: 107
+# File: phpESP/admin/include/where/readme.inc, line: 12
+# File: phpESP/admin/include/where/readme.inc, line: 22
+# File: phpESP/admin/include/where/report.inc, line: 38
+# File: phpESP/admin/include/where/report.inc, line: 97
+# File: phpESP/admin/include/where/respondents.inc, line: 150
+# File: phpESP/admin/include/where/results.inc, line: 120
+# File: phpESP/admin/include/where/results.inc, line: 248
+# File: phpESP/admin/include/where/status.inc, line: 134
+# File: phpESP/admin/include/where/status.inc, line: 228
+# File: phpESP/admin/include/where/test.inc, line: 71
+# File: phpESP/admin/include/where/test.inc, line: 143
+# File: phpESP/admin/include/where/todo.inc, line: 8
+# File: phpESP/admin/include/where/todo.inc, line: 18
+# File: phpESP/admin/include/where/upload.inc, line: 133
+msgid "Go back to Management Interface"
+msgstr "Vissza a Kezelõ Felülethez"
+#
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 311
+msgid "This account does not have permission %s."
+msgstr "Ennek a hozzáférési jognak nincs engedélye %s."
+#
+# File: phpESP/admin/include/lib/esphtml.forms.inc, line: 145
+msgid "Submit"
+msgstr "OK"
+#
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 83
+msgid "Rank"
+msgstr "Rangsor"
+#
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 174
+msgid "Response"
+msgstr "Válasz"
+#
+# File: phpESP/admin/include/lib/esphtml.results.inc, line: 199
+msgid "Average rank"
+msgstr "Átlag rangsor"
+#
+# File: phpESP/admin/include/lib/espresponse.inc, line: 59
+msgid "You are missing the following required questions:"
+msgstr "A következõ kötelezõ kérdésre nem válaszolt:"
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please only use numbers for the following questions:"
+msgstr "Kérem írja be a kérdést!"
+#
+# File: phpESP/public/signup.php, line: 100
+#, fuzzy
+msgid "Request failed, please contact the administrator."
+msgstr "A kérés hibás, kérem válasszon egy másik felhasználó nevet!"
+#
+# File: phpESP/admin/include/where/test.inc, line: 133
+#, fuzzy
+msgid "equals"
+msgstr "Eredmények"
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 15
+msgid "is different from"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 16
+msgid "smaller than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 17
+msgid "bigger than"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 22
+msgid "Current conditions defined:"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 111
+msgid "OR"
+msgstr "vagy"
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 33
+# File: phpESP/admin/include/tab/conditions.inc, line: 82
+msgid "Only show question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 41
+# File: phpESP/admin/include/tab/conditions.inc, line: 104
+msgid "if answer to question "
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 65
+msgid ""
+"All conditions are \"OR\" conditions, so if one conditions is fullfilled, "
+"the question is shown.<br />\n"
+"A question that has a condition must be an optional question. So, if you "
+"define a condition on a question, the \"Required\" parameter is set to \"No"
+"\".<br />\n"
+"A question that has a condition must be on the next page than the question/"
+"value that is used to compare it with. Use the \"Order tab\" to insert a "
+"section break where wanted (this is <b>NOT</b> done automatically).<br />\n"
+"A Yes/No question can only be compared using the values \"Yes or \"No\"."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 73
+msgid "Add conditions to a question."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/order.inc, line: 89
+msgid "----- Section Break -----"
+msgstr "----- Töréspont -----"
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 27
+msgid "Survey Design Completed"
+msgstr "A kérdõív elõállítása kész."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 29
+msgid "You have completed this survey design."
+msgstr "Befejezte a kédõív létrehozását."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 31
+msgid ""
+"To insert this survey into your web page, copy the text\n"
+"below, and paste it into the HTML of your page."
+msgstr ""
+"Ahhoz, hogy ezt a kérdõívet felhasználja a saját oldalán,\n"
+"másolja ki az alábbi szöveget és helyezze el a HTML-be."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 39
+msgid ""
+"Once activated you can also access the survey directly\n"
+"from the following URL."
+msgstr ""
+"Ha egyszer már aktiválva van, akkor a következõ URL \n"
+"címrõl közvetlenül is elérheti a kérdõívet."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 45
+msgid ""
+"You must activate this survey before you can collect\n"
+"results. Once a survey is active, you may no longer make any\n"
+"changes to it. You may activate this survey by choosing\n"
+"<b>Change the Status of an Existing Survey</b> from the\n"
+"Management Interface."
+msgstr ""
+"Aktiválnia kell a kérdõívet mielõtt kigyûjtené az eredményeket.Ha egy "
+"kérdõív már aktív, akkor nem lehet többé módosítani.Ezt a kérdõívet "
+"aktiválhatja a Kezelõ Felületen lévõ\n"
+"<b>Kérdõív állapotának módosítása</b> linkre kattintva."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 31
+#, fuzzy
+msgid ""
+"The information on this tab applies to the whole survey.\n"
+"Fill out this page then go to the <strong>Fields</strong> tab to\n"
+"edit individual fields."
+msgstr ""
+"Ezen a fülön lévõ információk az egész kérdõívre vonatkoznak.\n"
+"Töltse ki ezt az oldalt, aztán menjen a <b>Kérdések</b> fülre,\n"
+"hogy a kérdéseket megszerkessze!"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 44
+# File: phpESP/admin/include/where/access.inc, line: 163
+# File: phpESP/admin/include/where/access.inc, line: 200
+# File: phpESP/admin/include/where/copy.inc, line: 69
+# File: phpESP/admin/include/where/edit.inc, line: 36
+# File: phpESP/admin/include/where/export.inc, line: 31
+# File: phpESP/admin/include/where/purge.inc, line: 54
+# File: phpESP/admin/include/where/report.inc, line: 70
+# File: phpESP/admin/include/where/results.inc, line: 169
+# File: phpESP/admin/include/where/status.inc, line: 138
+# File: phpESP/admin/include/where/test.inc, line: 109
+msgid "Name"
+msgstr "Név"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 47
+# File: phpESP/admin/include/tab/general.inc, line: 72
+# File: phpESP/admin/include/tab/general.inc, line: 80
+# File: phpESP/admin/include/tab/questions.inc, line: 126
+msgid "Required"
+msgstr "Kötelezõ"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 49
+msgid "Survey filename."
+msgstr "Kérdõív fájl neve"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 50
+msgid "This is used for all further access to this survey."
+msgstr "Minden további hivatkozásban ez szerepel."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 51
+msgid "no spaces"
+msgstr "szóköz nélkül"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 51
+msgid "alpha-numeric only"
+msgstr "csak betû és szám szerepelhet"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 55
+# File: phpESP/admin/include/where/access.inc, line: 165
+# File: phpESP/admin/include/where/access.inc, line: 202
+# File: phpESP/admin/include/where/copy.inc, line: 72
+# File: phpESP/admin/include/where/edit.inc, line: 38
+# File: phpESP/admin/include/where/export.inc, line: 33
+# File: phpESP/admin/include/where/purge.inc, line: 56
+# File: phpESP/admin/include/where/report.inc, line: 72
+# File: phpESP/admin/include/where/results.inc, line: 171
+# File: phpESP/admin/include/where/status.inc, line: 140
+# File: phpESP/admin/include/where/test.inc, line: 111
+msgid "Owner"
+msgstr "Tulajdonos"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 73
+msgid "User and Group that owns this survey."
+msgstr "Kérdõív felhasználója és csoportja"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 77
+# File: phpESP/admin/include/where/access.inc, line: 164
+# File: phpESP/admin/include/where/access.inc, line: 201
+# File: phpESP/admin/include/where/copy.inc, line: 70
+# File: phpESP/admin/include/where/edit.inc, line: 37
+# File: phpESP/admin/include/where/export.inc, line: 32
+# File: phpESP/admin/include/where/purge.inc, line: 55
+# File: phpESP/admin/include/where/report.inc, line: 71
+# File: phpESP/admin/include/where/results.inc, line: 170
+# File: phpESP/admin/include/where/status.inc, line: 139
+# File: phpESP/admin/include/where/test.inc, line: 110
+msgid "Title"
+msgstr "Cím"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 81
+msgid "Title of this survey."
+msgstr "A kérdõív címe"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 82
+msgid "This appears at the top of every page of this survey."
+msgstr "A kérdõív minden oldalán felül ez fog látszódni."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 83
+# File: phpESP/admin/include/tab/general.inc, line: 92
+msgid "free-form, including spaces"
+msgstr "szabadon választható, szóközt tartalmazhat"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 88
+msgid "Subtitle"
+msgstr "Alcím"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 91
+msgid "Subtitle of this survey."
+msgstr "A kérdõív alcíme"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 92
+msgid "Appears below the title."
+msgstr "A cím alatt helyezkedik le."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 97
+msgid "Additional Info"
+msgstr "Kiegészítõ információ"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 100
+msgid ""
+"Text to be displayed on this survey before any fields.\n"
+"(i.e. instructions, background info, etc.)"
+msgstr ""
+"A kérdõíven még a kérdések elõtt szereplõ szöveg.\n"
+"(pl. instrukciók, háttér információk stb.)"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 106
+msgid "Confirmation Page"
+msgstr "Nyugtázó oldal"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 109
+msgid "(URL)"
+msgstr "(URL)"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 110
+msgid "The URL to which a user is redirected after completing this survey."
+msgstr ""
+"Kérdõív kitöltése után a felhasználót erre az URL címre irányítjuk tovább."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 113
+msgid "(heading text)"
+msgstr "(fejléc)"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 115
+msgid "(body text)"
+msgstr "(szövegtörzs)"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 116
+msgid ""
+"Heading (in bold) and body text for the &quot;Confirmation&quot; page\n"
+"displayed after a user completes this survey."
+msgstr ""
+"A féjléc (félkövér) és a szövegtörzs a &quot;Nyugtázó&quot; oldalon\n"
+"jelenik meg, miután a kérdõívet kitöltötték."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 118
+msgid "(URL, if present, takes precedent over confirmation text.)"
+msgstr "(URL, ha létezik, elsõbbséget élvez a nyugtázó  szöveggel szemben.)"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 123
+# File: phpESP/admin/include/where/admdesigner.inc, line: 264
+# File: phpESP/admin/include/where/admrespondent.inc, line: 239
+msgid "Email"
+msgstr "Email"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 126
+msgid ""
+"Sends a copy of each submission to address (or leave blank for no email "
+"backup)."
+msgstr ""
+"Másolat küldése erre a címre minden válasz esetén (vagy hagyja üresen,hogy "
+"ne kapjon email másolatot)."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 130
+msgid "Theme"
+msgstr "Stílus"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 145
+msgid "Select a theme (css) to use with this survey."
+msgstr "Válasszon egy stílus (css), amit a kérdõívhez használ."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 149
+msgid "Automatic numbering"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 155
+msgid ""
+"Select if questions are to be numbered automatically when showing the survey."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 150
+msgid "Options"
+msgstr "Opciók"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 152
+msgid "Allow survey respondents to save/resume. (Survey login required.)"
+msgstr ""
+"Kérdõív válaszainak mentésének/folytatásának engedélyezése.\n"
+"(Belépés szükséges)"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 157
+msgid ""
+"Allow survey respondents to go forward and back between survey sections."
+msgstr ""
+"Kérdõív válaszok engedélyezése, hogy a kérdõív részek között elõre és vissza "
+"lehessen menni."
+#
+# File: phpESP/admin/include/tab/order.inc, line: 18
+#, fuzzy
+msgid ""
+"Change the order that questions are\n"
+"presented by selecting a question from the list, then use the up/down \n"
+"buttons to change its position."
+msgstr ""
+"Megváltoztathatja a kérdések sorrendjét,\n"
+"ha a listából kiválasztja a kívánt poziciót."
+#
+# File: phpESP/admin/include/tab/order.inc, line: 96
+msgid "Add Section Break"
+msgstr "Töréspont hozzáadása"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 43
+#, fuzzy
+msgid ""
+"This is a preview of how this survey will look.\n"
+"The survey will use the background\n"
+"color of the document in which it is embedded. If you have no\n"
+"further changes click <b>Finish</b> at the bottom of\n"
+"this page."
+msgstr ""
+"Ez egy elõnézeti oldal, ahogyan a kérdõív ki fog kinézni.\n"
+"Elõnézetben a kérdõív navigációs gombjai inaktívak,\n"
+"ezért használja az oldalszám gombokat, hogy a többi oldalt is láthasssa.\n"
+"Néhány navigációs gomb az Ön kérdõívén nem biztos, hogy látszódni fog.\n"
+"Ez attól függ, hogy milyen hozzáférés lett meghatározva. A kérdõív háttere "
+"olyan,\n"
+" mint amilyet korábban meghatározott. Ha nem akar a kérdõíven változtatni, "
+"kattintson\n"
+"az oldal alján található <b>Vége</b> gombra."
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 52
+msgid "Section"
+msgstr "Oldal"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 77
+msgid "Previous Page"
+msgstr "Elõzõ oldal"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 79
+msgid "Save"
+msgstr "Mentés"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 82
+msgid "Next Page"
+msgstr "Következõ oldal"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 84
+msgid "Submit Survey"
+msgstr "Kérdõív elküldése"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 106
+#, fuzzy
+msgid ""
+"Edit this question, or click the number of the question you would like to "
+"edit:"
+msgstr ""
+"Változtassa meg ezt a kérdést, vagy kattinson arra a számra, amelyik kérdést "
+"meg szeretné változtatni:"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Edit Question"
+msgstr "Kérdések"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "New Question"
+msgstr "Kérdések"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Question Name"
+msgstr "Kérdések"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 123
+msgid "Type"
+msgstr "Típus"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 124
+msgid "Length"
+msgstr "Hossz"
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 125
+msgid "Precision"
+msgstr "Pontosság"
+#
+# File: phpESP/admin/include/tab/questions_options.inc, line: 38
+msgid ""
+"Enter the possible answers (if applicable). Enter\n"
+"%s on an line by itself to create a\n"
+"fill-in-the-blank answer at the end of this question.\n"
+"Any blank lines will be suppressed."
+msgstr ""
+"Írja be a lehetséges válaszokat (ha szükséges). Az egyik sorba írja be, "
+"hogy\n"
+"%s, hogy automatikusan létrehozzon egy üres válaszmezõt a kérdés végén."
+#
+# File: phpESP/admin/include/tab/questions_options.inc, line: 70
+msgid "Add another answer line"
+msgstr "Újabb válaszsor hozzáadása"
+#
+# File: phpESP/admin/include/where/access.inc, line: 83
+msgid "Please select a group."
+msgstr "Válasszon egy csoportot!"
+#
+# File: phpESP/admin/include/where/access.inc, line: 104
+# File: phpESP/admin/include/where/access.inc, line: 232
+msgid "Private"
+msgstr "Privát"
+#
+#
+# File: phpESP/admin/include/where/access.inc, line: 140
+msgid "Survey Access"
+msgstr "Kérdõív hozzáférés"
+#
+# File: phpESP/admin/include/where/access.inc, line: 146
+msgid ""
+"This lets you control who has access to fill out a form.\n"
+"Public surveys let anyone submit data.\n"
+"Private surveys are restricted by Respondent Groups."
+msgstr ""
+"Itt van rá lehetõsége, hogy kiossza a hozzáférési jogosultságokat\n"
+"az egyes kérdõívhezekhez.\n"
+"A publikus kérdõíveket bárki kitöltheti.\n"
+"A privát kérdõívek csak a Válaszadók Csoportjára vonatkozik."
+#
+# File: phpESP/admin/include/where/access.inc, line: 150
+msgid "Note"
+msgstr "Megjegyzés:"
+#
+# File: phpESP/admin/include/where/access.inc, line: 151
+msgid "You must use %s when using private surveys."
+msgstr ""
+"Ha privát kérdõívet akar használni, akkor a %s fájlokat kell használnia!"
+#
+# File: phpESP/admin/include/where/access.inc, line: 166
+# File: phpESP/admin/include/where/access.inc, line: 169
+# File: phpESP/admin/include/where/access.inc, line: 203
+# File: phpESP/admin/include/where/admdesigner.inc, line: 228
+# File: phpESP/admin/include/where/admrespondent.inc, line: 203
+# File: phpESP/admin/include/where/copy.inc, line: 73
+# File: phpESP/admin/include/where/designers.inc, line: 97
+# File: phpESP/admin/include/where/edit.inc, line: 39
+# File: phpESP/admin/include/where/export.inc, line: 34
+# File: phpESP/admin/include/where/groups.inc, line: 54
+# File: phpESP/admin/include/where/purge.inc, line: 57
+# File: phpESP/admin/include/where/report.inc, line: 73
+# File: phpESP/admin/include/where/respondents.inc, line: 96
+# File: phpESP/admin/include/where/results.inc, line: 172
+# File: phpESP/admin/include/where/status.inc, line: 141
+# File: phpESP/admin/include/where/test.inc, line: 112
+msgid "Group"
+msgstr "Csoport"
+#
+# File: phpESP/admin/include/where/access.inc, line: 170
+msgid "Max Responses"
+msgstr "Max. válaszok"
+#
+# File: phpESP/admin/include/where/access.inc, line: 171
+msgid "Save/Restore"
+msgstr "Mentés/Helyreállítás"
+#
+# File: phpESP/admin/include/where/access.inc, line: 172
+msgid "Back/Forward"
+msgstr "Vissza/Tovább"
+#
+# File: phpESP/admin/include/where/access.inc, line: 184
+msgid "Remove"
+msgstr "Eltávolít"
+#
+# File: phpESP/admin/include/where/access.inc, line: 190
+# File: phpESP/admin/include/where/groups.inc, line: 92
+msgid "Add"
+msgstr "Hozzáad"
+#
+# File: phpESP/admin/include/where/access.inc, line: 233
+msgid "Make Public"
+msgstr "Nyilvánossá tétel"
+#
+# File: phpESP/admin/include/where/access.inc, line: 236
+msgid "Make Private"
+msgstr "Priváttá tétel"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 14
+# File: phpESP/admin/include/where/admrespondent.inc, line: 14
+# File: phpESP/admin/include/where/designers.inc, line: 14
+# File: phpESP/admin/include/where/groups.inc, line: 13
+# File: phpESP/admin/include/where/report.inc, line: 24
+# File: phpESP/admin/include/where/respondents.inc, line: 14
+# File: phpESP/admin/include/where/tab.inc, line: 77
+# File: phpESP/admin/include/where/tab.inc, line: 86
+# File: phpESP/admin/include/where/upload.inc, line: 19
+msgid "to access this form"
+msgstr "ehhez az ûrlaphoz való hozzáférés"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 41
+# File: phpESP/admin/include/where/admdesigner.inc, line: 106
+# File: phpESP/admin/include/where/admrespondent.inc, line: 41
+# File: phpESP/admin/include/where/admrespondent.inc, line: 99
+msgid "to access this group"
+msgstr "ehhez a csoporthoz való hozzáférés"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 45
+# File: phpESP/admin/include/where/admrespondent.inc, line: 45
+msgid "Cannot delete account."
+msgstr "A hozzáférés nem lett törölve."
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 111
+# File: phpESP/admin/include/where/admrespondent.inc, line: 104
+msgid "Username, Password, and Group are required."
+msgstr "Felhasználó név, jelszó és csoport megadása kötelezõ!"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 119
+# File: phpESP/admin/include/where/admrespondent.inc, line: 112
+msgid "Error adding account."
+msgstr "Hiba a hozzáférés hozzáadásakor."
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 154
+# File: phpESP/admin/include/where/admrespondent.inc, line: 136
+msgid "Cannot change account data."
+msgstr "A hozzáférés adatait nem lett megváltoztatva."
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 202
+# File: phpESP/admin/include/where/admrespondent.inc, line: 176
+msgid "Account not found."
+msgstr "A hozzáférés nem található."
+#
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 208
+msgid "Designer Account Administration"
+msgstr "Kérdõív létrehozók hozzáférésének adminisztációja."
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 214
+# File: phpESP/admin/include/where/admrespondent.inc, line: 189
+# File: phpESP/admin/include/where/designers.inc, line: 94
+# File: phpESP/admin/include/where/manage.inc, line: 20
+# File: phpESP/admin/include/where/passwd.inc, line: 36
+# File: phpESP/admin/include/where/respondents.inc, line: 93
+# File: phpESP/public/signup.php, line: 147
+msgid "Username"
+msgstr "Felhasználó név"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 223
+# File: phpESP/admin/include/where/admrespondent.inc, line: 198
+# File: phpESP/public/signup.php, line: 152
+msgid "Password"
+msgstr "Jelszó"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 254
+# File: phpESP/admin/include/where/admrespondent.inc, line: 229
+# File: phpESP/admin/include/where/designers.inc, line: 95
+# File: phpESP/admin/include/where/respondents.inc, line: 94
+# File: phpESP/public/signup.php, line: 132
+msgid "First Name"
+msgstr "Keresztnév"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 259
+# File: phpESP/admin/include/where/admrespondent.inc, line: 234
+# File: phpESP/admin/include/where/designers.inc, line: 96
+# File: phpESP/admin/include/where/respondents.inc, line: 95
+# File: phpESP/public/signup.php, line: 137
+msgid "Last Name"
+msgstr "Vezetéknév"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 269
+# File: phpESP/admin/include/where/admrespondent.inc, line: 244
+msgid "Expiration"
+msgstr "Lejárat"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 274
+# File: phpESP/admin/include/where/admrespondent.inc, line: 249
+msgid "year"
+msgstr "év"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 275
+# File: phpESP/admin/include/where/admrespondent.inc, line: 250
+msgid "month"
+msgstr "hónap"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 276
+# File: phpESP/admin/include/where/admrespondent.inc, line: 251
+msgid "day"
+msgstr "nap"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 280
+# File: phpESP/admin/include/where/admrespondent.inc, line: 255
+msgid "Disabled"
+msgstr "Letilt"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 285
+# File: phpESP/admin/include/where/admdesigner.inc, line: 322
+# File: phpESP/admin/include/where/admrespondent.inc, line: 260
+msgid "Update"
+msgstr "Felvitel"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 286
+# File: phpESP/admin/include/where/admdesigner.inc, line: 323
+# File: phpESP/admin/include/where/admrespondent.inc, line: 261
+msgid "Cancel"
+msgstr "Mégse"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 287
+# File: phpESP/admin/include/where/admdesigner.inc, line: 324
+# File: phpESP/admin/include/where/admrespondent.inc, line: 262
+# File: phpESP/admin/include/where/groups.inc, line: 76
+msgid "Delete"
+msgstr "Töröl"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 290
+msgid "Design Surveys"
+msgstr "Kérdõívek létrehozása"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 295
+msgid "Change Survey Status"
+msgstr "Kérdõív állapotának módosítása"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 297
+msgid "Activate/End"
+msgstr "Aktív/Vége"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 301
+msgid "Export Survey Data"
+msgstr "Kérdõív adatok exportálása"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 306
+msgid "Group Editor"
+msgstr "Csoport szerkesztõ"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 308
+msgid "may edit <b>all</b> forms owned by this group"
+msgstr "<b>Minden</b> kérdõív szerkeszthetõ, amit ez a csoport birtokol"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 312
+#, fuzzy
+msgid "Administer Designers"
+msgstr "Új készítõ létrehozása"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 317
+#, fuzzy
+msgid "Administer Respondents"
+msgstr "Válaszadók Csoportjának adminisztrátora"
+#
+#
+# File: phpESP/admin/include/where/admrespondent.inc, line: 183
+msgid "Respondent Account Administration"
+msgstr "Válszadó hozzáférési jogának adminisztrációja"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 24
+# File: phpESP/admin/include/where/download.inc, line: 38
+# File: phpESP/admin/include/where/download.inc, line: 49
+# File: phpESP/admin/include/where/export.inc, line: 113
+# File: phpESP/admin/include/where/export.inc, line: 125
+# File: phpESP/admin/include/where/results.inc, line: 30
+# File: phpESP/admin/include/where/results.inc, line: 42
+# File: phpESP/admin/include/where/status.inc, line: 100
+# File: phpESP/admin/include/where/test.inc, line: 35
+msgid "to access this survey"
+msgstr "ehhez a kérdõívhez való hozzáférés"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 30
+msgid "Error copying survey."
+msgstr "Hiba a kérdõív másolásakor."
+#
+# File: phpESP/admin/include/where/copy.inc, line: 61
+msgid "Copy Survey"
+msgstr "Kérdõív másolása"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 63
+msgid ""
+"Choose a survey of which to make a copy. The copy will have the same\n"
+"status of a newly created survey. You will be able to edit the\n"
+"survey, and will have to activate it before use."
+msgstr ""
+"Válassza ki azt a kérdõívet, amit másolni szeretne. A másolatnak az állapota "
+"meg fog\n"
+"egyezni egy újonnan létrehozott kérdõív állapotával. A kérdõívet "
+"szerkesztheti és\n"
+"aktiválhatja, mielõtt használná."
+#
+# File: phpESP/admin/include/where/copy.inc, line: 71
+# File: phpESP/admin/include/where/export.inc, line: 35
+# File: phpESP/admin/include/where/purge.inc, line: 59
+# File: phpESP/admin/include/where/status.inc, line: 105
+# File: phpESP/admin/include/where/status.inc, line: 142
+msgid "Status"
+msgstr "Állapot"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 79
+# File: phpESP/admin/include/where/export.inc, line: 61
+# File: phpESP/admin/include/where/purge.inc, line: 65
+# File: phpESP/admin/include/where/status.inc, line: 181
+msgid "Archived"
+msgstr "Archivált"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 81
+# File: phpESP/admin/include/where/export.inc, line: 64
+# File: phpESP/admin/include/where/purge.inc, line: 67
+# File: phpESP/admin/include/where/status.inc, line: 185
+msgid "Ended"
+msgstr "Befejezett"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 83
+# File: phpESP/admin/include/where/export.inc, line: 66
+# File: phpESP/admin/include/where/purge.inc, line: 69
+# File: phpESP/admin/include/where/status.inc, line: 188
+msgid "Active"
+msgstr "Aktív"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 85
+# File: phpESP/admin/include/where/export.inc, line: 68
+# File: phpESP/admin/include/where/purge.inc, line: 71
+# File: phpESP/admin/include/where/status.inc, line: 191
+msgid "Testing"
+msgstr "Tesztelt"
+#
+# File: phpESP/admin/include/where/copy.inc, line: 87
+# File: phpESP/admin/include/where/export.inc, line: 58
+# File: phpESP/admin/include/where/purge.inc, line: 73
+# File: phpESP/admin/include/where/status.inc, line: 174
+msgid "Editing"
+msgstr "Szerkeztett"
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 19
+# File: phpESP/admin/include/where/crosstab.inc, line: 27
+# File: phpESP/admin/include/where/crosstab.inc, line: 32
+msgid "Error cross-tabulating."
+msgstr "Hiba a keresztbevetésnél."
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 20
+msgid ""
+"Please ensure that your column and row selections are not of the same "
+"question."
+msgstr ""
+"Kérem ellenõrizze, hogy a kiválasztott oszlop és sor nem tartozik-e\n"
+"ugyanahhoz a kérdéshez!"
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 28
+msgid "Please ensure you make both a column and row selection."
+msgstr "Kérem ellenõrizze, hogy kiválaszott-e egy sort és egy oszlopot!"
+#
+# File: phpESP/admin/include/where/crosstab.inc, line: 33
+msgid ""
+"You are attempting to cross analyze and tabulate at the same time. This is "
+"not possible!"
+msgstr ""
+"Ön egyszerre akar kersztbevetést és kersztbe elemzést végrehajtani. Ez "
+"lehetetlen!"
+#
+#
+# File: phpESP/admin/include/where/designers.inc, line: 90
+msgid "Manage Web Form Designer Accounts"
+msgstr "Kérdõív készítõk jogosultságainak kezelése"
+#
+#
+# File: phpESP/admin/include/where/designers.inc, line: 91
+# File: phpESP/admin/include/where/respondents.inc, line: 90
+msgid "Click on a username to edit, or click on add new user below."
+msgstr ""
+"Kattinson egy felhasználóra, hogy módosítsa, vagy kattinson az új "
+"felhasználó gombra."
+#
+# File: phpESP/admin/include/where/designers.inc, line: 106
+# File: phpESP/admin/include/where/respondents.inc, line: 105
+msgid "disabled"
+msgstr "letilt"
+#
+# File: phpESP/admin/include/where/designers.inc, line: 138
+msgid "Add a new Designer"
+msgstr "Új készítõ létrehozása"
+#
+# File: phpESP/admin/include/where/designers.inc, line: 143
+msgid "Bulk Upload Designers"
+msgstr "Készitõk feltöltése"
+#
+# File: phpESP/admin/include/where/download.inc, line: 22
+msgid "Invalid survey ID."
+msgstr "Érvénytelen kérdõív ID."
+#
+#
+# File: phpESP/admin/include/where/edit.inc, line: 31
+msgid "Edit a Survey"
+msgstr "Kérdõív szerkesztése"
+#
+#
+# File: phpESP/admin/include/where/edit.inc, line: 32
+msgid "Pick Survey to Edit"
+msgstr "Válasszon ki egy kérdõívet a szerkesztéshez."
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 19
+msgid "Export Data"
+msgstr "Adatok exportálása"
+#
+# File: phpESP/admin/include/where/export.inc, line: 36
+msgid "Format"
+msgstr "Formátum"
+#
+# File: phpESP/admin/include/where/export.inc, line: 96
+# File: phpESP/admin/include/where/test.inc, line: 141
+msgid "Save On Server"
+msgstr ""
+#
+# File: phpESP/admin/include/where/export.inc, line: 86
+# File: phpESP/admin/include/where/test.inc, line: 135
+#, fuzzy
+msgid "Download"
+msgstr "letöltés"
+#
+# File: phpESP/admin/include/where/export.inc, line: 116
+# File: phpESP/admin/include/where/export.inc, line: 148
+# File: phpESP/admin/include/where/merge.inc, line: 24
+# File: phpESP/admin/include/where/results.inc, line: 33
+# File: phpESP/admin/include/where/test.inc, line: 52
+msgid "Testing Survey..."
+msgstr "Kérdõív tesztelése..."
+#
+# File: phpESP/admin/include/where/export.inc, line: 116
+# File: phpESP/admin/include/where/export.inc, line: 148
+# File: phpESP/admin/include/where/results.inc, line: 33
+# File: phpESP/admin/include/where/test.inc, line: 52
+msgid "SID"
+msgstr "SID"
+#
+# File: phpESP/admin/include/where/download.inc, line: 62
+# File: phpESP/admin/include/where/export.inc, line: 139
+msgid "The PHP dBase Extension is not installed."
+msgstr "A PHP dBase kiterjesztés még nincs insallálva."
+#
+# File: phpESP/admin/include/where/export.inc, line: 151
+msgid "Survey exported as:"
+msgstr "A kérdõív exportálva:"
+#
+# File: phpESP/admin/include/where/export.inc, line: 153
+msgid "Error exporting survey as:"
+msgstr "Hiba a kérdõív exportálásnál."
+#
+# File: phpESP/admin/include/where/groups.inc, line: 23
+msgid "Error adding group."
+msgstr "Hiba a csoport hozzáadásánál."
+#
+# File: phpESP/admin/include/where/groups.inc, line: 27
+# File: phpESP/admin/include/where/groups.inc, line: 36
+msgid "Error deleting group."
+msgstr "Hiba a csoport törlésénél"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 32
+msgid "Group is not empty."
+msgstr "A csoport nem üres."
+#
+# File: phpESP/admin/include/where/groups.inc, line: 48
+# File: phpESP/admin/include/where/manage.inc, line: 69
+msgid "Manage Groups"
+msgstr "Csoport kezelése"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 55
+msgid "Description"
+msgstr "Leírás"
+#
+# File: phpESP/admin/include/where/groups.inc, line: 56
+msgid "Members"
+msgstr "Tagok"
+#
+# File: phpESP/admin/include/where/guide.inc, line: 19
+msgid "User's guide not found."
+msgstr "A Felhasználói kézikönyv nem található!"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 83
+#, fuzzy
+msgid "Logged out."
+msgstr "Kilépés"
+#
+# File: phpESP/admin/include/where/logout.inc, line: 16
+msgid "Log back in."
+msgstr "Belépés"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 18
+msgid "Superuser"
+msgstr "Szuper felhasználó"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 35
+msgid "Create a New Survey"
+msgstr "Új kérdõív létrehozása"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 36
+msgid "Edit an Existing Survey"
+msgstr "Egy létezõ kérdõív szerkesztése"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 37
+# File: phpESP/admin/include/where/test.inc, line: 104
+msgid "Test a Survey"
+msgstr "Kérdõív tesztelése"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 38
+msgid "Copy an Existing Survey"
+msgstr "Létezõ kérdõív másolása"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 38
+# File: phpESP/admin/include/where/purge.inc, line: 103
+#, fuzzy
+msgid "Purge a survey"
+msgstr "Kérdõívek ûrítése"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 41
+msgid "Change the Status of a Survey"
+msgstr "Kérdõív állapotának megváltoztatása"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 42
+msgid "(active/end/delete)"
+msgstr "(aktív/vége/törlés)"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 44
+msgid "Change Access To a Survey"
+msgstr "Kérdõív hozzáférési jogainak megváltozatása"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 44
+msgid "Limit Respondents."
+msgstr "Válaszadók limitálása"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 48
+msgid "View Results from a Survey"
+msgstr "A kérdõív eredméynének megtekintése"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 49
+msgid "Cross Tabulate Survey Results"
+msgstr "Kérdõív keresztbevetésének eredménye"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 50
+msgid "View a Survey Report"
+msgstr "Kérdõív riport megtekintése"
+#
+# File: phpESP/admin/include/where/access.inc, line: 170
+#, fuzzy
+msgid "Purge a response"
+msgstr "Max. válaszok"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 58
+msgid "Change Your Password"
+msgstr "Jelszó megváltoztatása"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 63
+# File: phpESP/admin/include/where/respondents.inc, line: 89
+msgid "Manage Respondent Accounts"
+msgstr "Válaszadók jogainak kezelése"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 67
+msgid "Manage Designer Accounts"
+msgstr "Készítõk jogainak kezelése"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 76
+msgid "View the list of things still to do"
+msgstr "Az eddig csinált dolgok listájának megtekintése"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 77
+msgid "(development goals)"
+msgstr "(fejlesztési célok)"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 78
+msgid "View the User &amp; Administrator Guide"
+msgstr "Felhasználói és adminisztrátori kézikönyv megtekintése"
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 183
+msgid "Click here to open the Help window."
+msgstr "Kattinson ide, hogy a Segítség ablak megnyíljon!"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 83
+msgid "Log out"
+msgstr "Kilépés"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 24
+msgid "SIDS"
+msgstr "SIDS"
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 124
+msgid "Merge Survey Results"
+msgstr "Kérdõív eredmények egyesítése"
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 125
+msgid "Pick Surveys to Merge"
+msgstr "Válasszon ki kérdõívket az egyesítéshez!"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 128
+msgid "List of Surveys"
+msgstr "Kérdõívek listája"
+#
+# File: phpESP/admin/include/where/merge.inc, line: 130
+msgid "Surveys to Merge"
+msgstr "Kérdõívek egyesítése"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 13
+# File: phpESP/admin/include/where/passwd.inc, line: 56
+msgid "Change Password"
+msgstr "Jelszó megváltoztatása"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 22
+msgid "Your password has been successfully changed."
+msgstr "Jelszavát sikeresen megváltoztattuk."
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 26
+msgid "Password not set, check your old password."
+msgstr "A jelszó nem lett módosítva. Kérem ellenõrizze a régi jelszavát!"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 29
+msgid "New passwords do not match or are blank."
+msgstr "Az új jelszó és az új jelszó megerõsítése nem egyezik meg!"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 41
+msgid "Old Password"
+msgstr "Régi jelszó"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 46
+msgid "New Password"
+msgstr "Új jelszó"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 51
+msgid "Confirm New Password"
+msgstr "Új jelszó megerõsítése"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 12
+msgid "Only superusers allowed."
+msgstr "Csak szuper felhasználóknak engedélyezett!"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 38
+# File: phpESP/admin/include/where/purge.inc, line: 103
+msgid "Purge Surveys"
+msgstr "Kérdõívek ûrítése"
+#
+#
+# File: phpESP/admin/include/where/purge.inc, line: 40
+#, fuzzy
+msgid ""
+"\n"
+"This page is not directly on the main menu because it is\n"
+"dangerous. This <b>completely</b> removes everything about a\n"
+"survey from the database <b>forever</b>. All question info,\n"
+"general info, results, etc. are purged from the database. Do\n"
+"not do anything here that you are not completely certain\n"
+"about. There is no confirmation, there is no turning\n"
+"back."
+msgstr ""
+"\n"
+"Ez az oldal nincs közvetlenül a fõmenüben, mert veszélyes.\n"
+"Egy kérdõívrõl mindent <b>teljesen</b> eltávolít <b>örökre</b> az "
+"adatbázisból.\n"
+"Minden kérdés, az általános információ, az eredmények stb. törlõdnek\n"
+"az adatbázisból. Ne változtasson semmit, ha nem biztos teljesen a \n"
+"dolgában. Ez nem egy megerõsítés, nem lehet visszafordítani!"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 58
+msgid "# Q's"
+msgstr "Kérdés szám"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 102
+msgid "Clear Checkboxes"
+msgstr "Check boxok törlése"
+#
+# File: phpesp_current/admin/include/where/purge.inc, line: 104
+msgid ""
+"You are about to PERMANENTLY and IRREVOCABLY remove ALL information about "
+"the selected surveys. Click Ok if you are absolutely sure this is what you "
+"want to do."
+msgstr ""
+#
+# File: phpESP/admin/include/where/readme.inc, line: 19
+msgid "README not found."
+msgstr "README nem található."
+#
+# File: phpESP/admin/include/where/report.inc, line: 37
+msgid "Go back to Report Menu"
+msgstr "Vissza a Riport menübe"
+#
+#
+# File: phpESP/admin/include/where/report.inc, line: 65
+msgid "View Form Report"
+msgstr "Riport megtekintése"
+#
+#
+# File: phpESP/admin/include/where/report.inc, line: 66
+msgid "Pick Form to View"
+msgstr "Válasszon ki egy kérdõívet a megtekintéshez!"
+#
+# File: phpESP/admin/include/where/respondents.inc, line: 137
+msgid "Add a new Respondent"
+msgstr "Új válaszadó hozzáadása"
+#
+# File: phpESP/admin/include/where/respondents.inc, line: 142
+msgid "Bulk Upload Respondents"
+msgstr "Válaszadók feltöltése"
+#
+# File: phpESP/admin/include/where/purge.inc, line: 38
+# File: phpESP/admin/include/where/purge.inc, line: 103
+#, fuzzy
+msgid "Purge response"
+msgstr "Kérdõívek ûrítése"
+#
+#
+# File: phpESP/admin/include/where/purge.inc, line: 40
+#, fuzzy
+msgid ""
+"\n"
+"This page is not directly on the main menu because it is\n"
+"dangerous. This <b>completely</b> removes everything about a\n"
+"response from the database <b>forever</b>. Do\n"
+"not do anything here that you are not completely certain\n"
+"about. There is no confirmation, there is no turning\n"
+"back."
+msgstr ""
+"\n"
+"Ez az oldal nincs közvetlenül a fõmenüben, mert veszélyes.\n"
+"Egy kérdõívrõl mindent <b>teljesen</b> eltávolít <b>örökre</b> az "
+"adatbázisból.\n"
+"Minden kérdés, az általános információ, az eredmények stb. törlõdnek\n"
+"az adatbázisból. Ne változtasson semmit, ha nem biztos teljesen a \n"
+"dolgában. Ez nem egy megerõsítés, nem lehet visszafordítani!"
+#
+# File: phpESP/admin/include/where/results.inc, line: 48
+# File: phpESP/admin/include/where/results.inc, line: 156
+msgid "Cross Tabulation"
+msgstr "Keresztbevetés"
+#
+# File: phpESP/admin/include/where/results.inc, line: 105
+msgid "Test Survey"
+msgstr "Kérdõív tesztelése"
+#
+# File: phpESP/admin/include/where/results.inc, line: 113
+msgid "Reset"
+msgstr "Visszaállít"
+#
+# File: phpESP/admin/include/where/results.inc, line: 114
+msgid "Cross Tabulate"
+msgstr "Keresztbe vetni"
+#
+# File: phpESP/admin/include/where/results.inc, line: 148
+msgid "View Survey Results"
+msgstr "Kérdõív eredményeinek megtekintése"
+#
+# File: phpESP/admin/include/where/results.inc, line: 149
+msgid "Pick Survey to View"
+msgstr "Válasszon ki egy kérdõívet a megtekintéshez!"
+#
+# File: phpESP/admin/include/where/results.inc, line: 157
+msgid "Pick Survey to Cross Tabulate"
+msgstr "Válasszon ki egy kérdõívet a keresztbevetéshez!"
+#
+# File: phpESP/admin/include/where/results.inc, line: 164
+msgid "Respondent"
+msgstr "Válasz"
+#
+# File: phpESP/admin/include/where/results.inc, line: 173
+msgid "Resp"
+msgstr "Válasz"
+#
+# File: phpESP/admin/include/where/status.inc, line: 104
+msgid "Can not set survey status."
+msgstr "Nem lehet a kérdõív állapotát beállítani"
+#
+#
+# File: phpESP/admin/include/where/status.inc, line: 111
+msgid "Survey Status"
+msgstr "Kérdõív állapota"
+#
+# File: phpESP/admin/include/where/status.inc, line: 115
+#, fuzzy
+msgid ""
+"<b>Test</b> transitions a survey into testing mode. At which point you may\n"
+"perform a live test by taking the survey, and viewing the results. The "
+"survey may be switched \n"
+"back into <b>Edit</b> mode if additional edits are needed."
+msgstr ""
+"<b>Teszt</b> állapot a kérdõívet tesztelõ üzemmódba helyezi át. Így "
+"lehetõsége\n"
+"nyílik egy a kérdõív élesben történõ tesztelésére, és az eredmények "
+"megtekintésére.\n"
+"Nem tud a kérdõíven változtatásokat eszközölni, ha tesztelõ állapotban van."
+#
+# File: phpESP/admin/include/where/status.inc, line: 119
+msgid ""
+"<b>Activate</b> transitions a survey into active mode. In this mode the\n"
+"survey is open for production use, and may be put online. This will clear "
+"any\n"
+"results from testing mode (if any). No further editing of survey is\n"
+"allowed."
+msgstr ""
+"<b>Aktív</b> állapot a kérdõívet aktív állapotba helyezi át. Ebben a módban\n"
+"a kérdõív átkerül on-line használatba. A tesztmódban képzõdött válaszok "
+"törlõdnek\n"
+"(ha vannak). A kérdõíven nem lehet többé változtatni!"
+#
+# File: phpESP/admin/include/where/status.inc, line: 124
+#, fuzzy
+msgid ""
+"<b>End</b> transitions a survey into ended mode. In this mode, no edits are\n"
+"possible, no users may take the survey (it is inactive), but results are "
+"still\n"
+"viewable from the results menu."
+msgstr ""
+"<b>Vége</b> állapot a kérdõívet befejezett állapotba helyezi át. Ebben a "
+"módban\n"
+"nem lehet szerkeszteni, nem érik el a felhasználók (inaktív), de az "
+"eredmények\n"
+"még mindig megtekinthetõek az eredmények menüben."
+#
+# File: phpESP/admin/include/where/status.inc, line: 128
+#, fuzzy
+msgid ""
+"<b>Archive</b> removes this survey. It is still stored in the database, but\n"
+"no further interaction is allowed. You may <b>not</b> view the results of "
+"an\n"
+"archived survey."
+msgstr ""
+"<b>Archív</b> mód eltávolítja a kérdõívet. Még mindig tárolódik az "
+"adatbázisban, \n"
+"de további hozzáférésre nincs mód. Egy archív kérdõívnek az eredményeit "
+"<b>nem</b> tudja megtekinteni."
+#
+# File: phpESP/admin/include/where/status.inc, line: 175
+# File: phpESP/admin/include/where/test.inc, line: 132
+msgid "Test"
+msgstr "Teszt"
+#
+# File: phpESP/admin/include/where/status.inc, line: 176
+msgid "Activate"
+msgstr "Aktív"
+#
+# File: phpESP/admin/include/where/status.inc, line: 177
+msgid "End"
+msgstr "Vége"
+#
+# File: phpESP/admin/include/where/status.inc, line: 178
+msgid "Archive"
+msgstr "Archív"
+#
+# File: phpESP/admin/include/where/status.inc, line: 193
+msgid "Edit"
+msgstr "Szerkeszt"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 144
+# File: phpESP/admin/include/where/upload.inc, line: 110
+msgid "Help"
+msgstr "Segítség"
+#
+# File: phpESP/admin/include/where/tab.inc, line: 170
+msgid ""
+"Click cancel to cancel this survey, or click continue to proceed to the next "
+"tab."
+msgstr ""
+"Kattintson a Mégse gombra, ha mégsem hozza létre a kérdõívet, vagy "
+"kattintson\n"
+"a Tovább gombra, ha a folytatni akarja."
+#
+# File: phpESP/admin/include/where/tab.inc, line: 177
+#, fuzzy
+msgid ""
+"The survey title and other general fields are on the <strong>General</"
+"strong> tab.\n"
+"Individual survey questions are added and modified on the <strong>Questions</"
+"strong> tab.\n"
+"Questions may be re-ordered or deleted from the <strong>Order</strong> tab.\n"
+"You may see a preview of your survey at any time, by going to the "
+"<strong>Preview</strong>\n"
+"tab. If you have no further changes click <strong>Finish</strong> to go back "
+"to the\n"
+"Management Interface."
+msgstr ""
+"A kérdõív címe és egyéb általános mezõk a <b>Általános</b> fülön van.\n"
+"A kérdõívhez kérdéseket hozzáadni vagy módosítani a <b>Kérdések</b> fül\n"
+"alatt teheti meg. A kérdéseket a <b>Sorrend</b> fül alatt tudja sorrendbe\n"
+"rakni, vagy törölni. A kérdõívrõl bármikor megtekintheti az elõnézetet az\n"
+"<b>Elõnézet</b> fül alatt. Ha nincs már változtatnivaló, akkor kattinson a\n"
+"<b>Befejezés</b>-re, hogy visszatérhessen a Kezelõ Felülethez."
+#
+# File: phpESP/admin/include/where/test.inc, line: 70
+msgid "View Results"
+msgstr "Eredmények megtekintése"
+#
+#
+# File: phpESP/admin/include/where/test.inc, line: 105
+msgid "Pick Survey to Test"
+msgstr "Kattinston a kérdõívre a teszteléshez!"
+#
+# File: phpESP/admin/include/where/test.inc, line: 115
+msgid "Export"
+msgstr "Export"
+#
+# File: phpESP/admin/include/where/test.inc, line: 127
+msgid "standalone"
+msgstr ""
+#
+# File: phpESP/admin/include/where/test.inc, line: 133
+msgid "Results"
+msgstr "Eredmények"
+#
+# File: phpESP/admin/include/where/todo.inc, line: 15
+msgid "Todo list not found."
+msgstr "A tennivalók listája nem található."
+#
+# File: phpESP/admin/include/where/upload.inc, line: 72
+msgid "An error occurred during upload.  Rows that failed are listed below."
+msgstr ""
+"Egy hiba lépett fel a feltöltéskor. Az alábbi listában találja a hiányzó "
+"sorokat:"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 98
+msgid ""
+"An error occurred during upload.  Please check the format of your text file."
+msgstr ""
+"Egy hiba lépett fel a feltöltéskor. Kérem ellenõrizze a text fájl formátumát!"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 102
+msgid "An error occurred during upload.  Please complete all form fields."
+msgstr ""
+"Egy hiba lépett fel a feltöltéskor. Kérem egészítse ki mindegyik mezõt!"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 106
+msgid "Upload Account Information"
+msgstr "Feltöltési jogosultsági információk"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 107
+msgid "All fields are required"
+msgstr "Minden mezõ kitöltése kötelezõ!"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 120
+msgid "File Type"
+msgstr "Fájl típus"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 121
+msgid "Tab Delimited"
+msgstr "Meghatározatlan fül"
+#
+# File: phpESP/admin/include/where/upload.inc, line: 122
+msgid "File to upload"
+msgstr "Fájl helye:"
+#
+# File: phpESP/admin/phpESP.ini.php, line: 175
+msgid "Thank You For Completing This Survey."
+msgstr "Köszönjük, hogy kitöltötte a kérdõívet!"
+#
+# File: phpESP/admin/phpESP.ini.php, line: 176
+#, fuzzy
+msgid ""
+"Please do not use the back button on your browser to go\n"
+"back."
+msgstr ""
+"Kérem ne használja a böngészõjének a Vissza gombját, hogy visszalépjen! \n"
+"Kérem kattinson az alábbi linkre, hogy visszatérjen oda, ahonnan a "
+"kérdõívet\n"
+"elindította!"
+#
+# File: phpESP/admin/phpESP.ini.php, line: 181
+# File: phpESP/admin/phpESP.ini.php, line: 187
+msgid ""
+"Unable to find the phpESP %s directory.\n"
+"\t\t\tPlease check %s to ensure that all paths are set correctly."
+msgstr ""
+"A phpESp %s könyvtára nem található.\n"
+"\t\t\tKérem ellenõrizze  %s könyvtárat, hogy az összes elérés helyesen lett "
+"beállítva!"
+#
+# File: phpESP/admin/test.php, line: 146
+msgid "%%%% Gettext Test Failed"
+msgstr "A Gettext tesztelése hiányzik"
+#
+# File: phpESP/public/captcha_check.php, line: 4
+msgid "You entered an incorrect code. Please fill in the correct code."
+msgstr ""
+#
+# File: phpESP/public/handler-prefix.php, line: 71
+msgid "Error processing survey: Survey not specified."
+msgstr "Hiba a kérdõív folyamatban: Kérdõív nem lett létrehozva."
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 29
+#, fuzzy
+msgid "You have already completed this survey."
+msgstr "Befejezte a kédõív létrehozását."
+#
+# File: phpESP/public/handler.php, line: 64
+# File: phpESP/public/handler.php, line: 69
+msgid "Error processing survey: Survey is not active."
+msgstr "Hiba a kérdõív folyamatban: Kérdõív nem aktív."
+#
+# File: phpESP/public/handler.php, line: 207
+msgid "Please fill in the code displayed here."
+msgstr ""
+#
+# File: phpESP/public/signup.php, line: 54
+msgid "Sorry, the account request form is disabled."
+msgstr "Elnézést, de a jogosultság kérési ûrlap le van tíltva!"
+#
+# File: phpESP/public/signup.php, line: 63
+msgid "Please complete all required fields."
+msgstr "Kérem töltse ki az összes kötelezõ mezõt!"
+#
+# File: phpESP/public/signup.php, line: 72
+msgid "Passwords do not match."
+msgstr "A jelszó és a jelszó megerõsítése nem egyezik meg"
+#
+# File: phpESP/public/signup.php, line: 100
+msgid "Request failed, please choose a different username."
+msgstr "A kérés hibás, kérem válasszon egy másik felhasználó nevet!"
+#
+# File: phpESP/public/signup.php, line: 107
+msgid "Your account, %s, has been created!"
+msgstr ""
+"A felhasználói jogosultsága, %s, létre lett hozva! Felhasználói "
+"jogosultságát létrehoztuk!"
+#
+# File: phpESP/public/signup.php, line: 120
+msgid "Account Request Form"
+msgstr "Hozzáférési jogosultság kérési ûrlap"
+#
+# File: phpESP/public/signup.php, line: 126
+msgid ""
+"Please complete the following form to request an account.\n"
+"Items marked with a %s are required."
+msgstr ""
+"Kérem töltse ki az alábbi ûrlapot a jogosultág igényléséhez.A %s-gal jelölt "
+"mezõk kitöltése kötelezõ!"
+#
+# File: phpESP/public/signup.php, line: 142
+msgid "Email Address"
+msgstr "Email cím"
+#
+# File: phpESP/public/signup.php, line: 157
+msgid "Confirm Password"
+msgstr "Jelszó megerõsítése"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 92
+#~ msgid "No tabs defined. Please check your INI settings."
+#~ msgstr "Nincs fül definiálva. Kérem ellenõrizze az INI beállításait!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 153
+#~ msgid "General"
+#~ msgstr "Általános"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#~ msgid "Questions"
+#~ msgstr "Kérdések"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 155
+#~ msgid "Order"
+#~ msgstr "Sorrend"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 156
+#~ msgid "Preview"
+#~ msgstr "Elõnézet"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+#~ msgid "Finish"
+#~ msgstr "Befejezés"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 352
+#~ msgid "Page"
+#~ msgstr "Oldal"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_render.inc, line: 352
+#~ msgid "of"
+#~ msgstr "-ból/-bõl"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 154
+#, fuzzy
+#~ msgid "Sorry, this question name is already in use."
+#~ msgstr "Sajnos a név már foglalt."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 117
+#~ msgid "Field"
+#~ msgstr "Kérdés"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/tab/questions.inc, line: 122
+#~ msgid "Field Name"
+#~ msgstr "Kérdés neve"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/download.inc, line: 60
+#~ msgid "DBF download not yet implemented."
+#~ msgstr "DBF letöltés még nincs megvalósítva."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 84
+# File: phpESP/admin/include/where/test.inc, line: 134
+#~ msgid "CSV"
+#~ msgstr "CSV"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/export.inc, line: 88
+# File: phpESP/admin/include/where/test.inc, line: 136
+#~ msgid "DBF"
+#~ msgstr "DBF"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 28
+#~ msgid "Choose a function"
+#~ msgstr "Válasszon funkciót!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/manage.inc, line: 51
+#~ msgid "Export Data to CSV"
+#~ msgstr "Adat exportálása CSV-be"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 86
+#~ msgid "Error!"
+#~ msgstr "Hiba!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 87
+#~ msgid "You need to select at least two surveys!"
+#~ msgstr "Legalább 2 kérdõívet ki kell választania!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid ""
+#~ "Error cross-tabulating. Please ensure that your column\n"
+#~ "                                             and row selections are not "
+#~ "of the same question."
+#~ msgstr ""
+#~ "Hiba a keresztbevetésnél. Kérem ellenõrizze, hogy az oszlop\n"
+#~ "                                             és a sor választása nem "
+#~ "tartozik-eugyanahhoz a kérdéshez!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid ""
+#~ "Error cross-tabulating. Please ensure you make both\n"
+#~ "                                     a column and row selection."
+#~ msgstr ""
+#~ "Hiba a keresztbevetésnél. Kérem ellenõrizze, hogy kiválaszott-e\n"
+#~ "                                     egy oszlopot és egy sort."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid ""
+#~ "Error cross-tabulating. You are attempting to cross analyse\n"
+#~ "                             and tabulate at the same time. This is not "
+#~ "possible!"
+#~ msgstr ""
+#~ "Hiba a keresztbevetésnél. Egyszerre akart keresztbevetést és keresztbe "
+#~ "elemzést\n"
+#~ "                              végrehajtani. Erre nincs lehetõség!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Administer Group Members"
+#~ msgstr "Csoport tagok adminisztrátora"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "No survey specified."
+#~ msgstr "Nincs kérdõív létrehozva."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "active"
+#~ msgstr "Aktív"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Action"
+#~ msgstr "Oldal"
