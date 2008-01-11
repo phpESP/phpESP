@@ -144,7 +144,7 @@ CREATE TABLE access (
 -- # (plus timestamp, and username if known)
 DROP TABLE IF EXISTS response;
 CREATE TABLE response (
-	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	survey_id	INT UNSIGNED NOT NULL,
 	submitted	TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
 	complete	ENUM('Y','N') NOT NULL DEFAULT 'N',
