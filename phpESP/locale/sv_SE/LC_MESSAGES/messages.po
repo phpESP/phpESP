@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:49+0100\n"
+"POT-Creation-Date: 2008-01-11 13:08-0500\n"
 "PO-Revision-Date: 2002-03-22 16:40-0500\n"
 "Last-Translator: Mats Landstedt <mats.landstedt@tuesday.se>\n"
 "Language-Team: sv_SE <jflemer@acm.jhu.edu>\n"
@@ -357,6 +357,10 @@ msgstr "Kan inte ladda ACL:en"
 msgid "Management Interface"
 msgstr "Administratörs sida"
 #
+# File: phpesp_current/admin/include/lib/espauth-default.inc, line: 217
+msgid "phpESP Management Login"
+msgstr ""
+#
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
 msgstr "Detta konto har inga rättigheter"
@@ -435,6 +439,10 @@ msgstr "Du har glömt följande obligatoriska frågor:"
 #, fuzzy
 msgid "Please only use numbers for the following questions:"
 msgstr "Fyll i texten till denna fråga."
+#
+# File: phpesp_current/admin/include/lib/espresponse.inc, line: 163
+msgid "Request failed, please contact the administrator."
+msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 #, fuzzy
@@ -1295,6 +1303,11 @@ msgstr "Medlemmar"
 msgid "User's guide not found."
 msgstr "Beskrivning för användare ej funnen"
 #
+# File: phpESP/admin/include/where/manage.inc, line: 83
+#, fuzzy
+msgid "Logged out."
+msgstr "Logga ut"
+#
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
 msgstr "Logga in igen"
@@ -1479,6 +1492,13 @@ msgstr "Sp. nummer"
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
 msgstr "Töm checkboxarna"
+#
+# File: phpesp_current/admin/include/where/purge.inc, line: 104
+msgid ""
+"You are about to PERMANENTLY and IRREVOCABLY remove ALL information about "
+"the selected surveys. Click Ok if you are absolutely sure this is what you "
+"want to do."
+msgstr ""
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
 msgid "README not found."
@@ -1836,10 +1856,18 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #, fuzzy
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Inga flikar är definierade. Kontrollera INI inställningarna."
+#
+#
+#
+#
 #
 #
 #
@@ -1855,9 +1883,17 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Frågor"
+#
+#
+#
+#
 #
 #
 #
@@ -1873,6 +1909,10 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Förhandsvisning"
@@ -1882,9 +1922,17 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Avsluta"
+#
+#
+#
+#
 #
 #
 #
@@ -1922,9 +1970,17 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "av"
+#
+#
+#
+#
 #
 #
 #
@@ -1963,9 +2019,17 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Fält"
+#
+#
+#
+#
 #
 #
 #
@@ -2003,9 +2067,17 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF download är inte installerat"
+#
+#
+#
+#
 #
 #
 #
@@ -2044,10 +2116,18 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
+#
+#
 #
 #
 #
@@ -2085,6 +2165,10 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exportera Data till CSV"
@@ -2105,9 +2189,17 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Fel!"
+#
+#
+#
+#
 #
 #
 #
@@ -2146,6 +2238,10 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrera Grupp Medlemmar"
 #
@@ -2166,8 +2262,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "Ingen undersökning är specificerad"
+#
+#
+#
+#
 #
 #
 #
@@ -2212,8 +2316,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "Fel användare ID eller password, eller så har ditt konto spärrats."
+#
+#
+#
+#
 #
 #
 #
@@ -2258,6 +2370,10 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "dvs. instruktioner, information osv."
 #
@@ -2281,8 +2397,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Bekräftelse Rubrik"
+#
+#
+#
+#
 #
 #
 #
@@ -2331,8 +2455,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "You must use"
 #~ msgstr "Du måste använda"
+#
+#
+#
+#
 #
 #
 #
@@ -2377,8 +2509,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "to access this menu"
 #~ msgstr "för att öppna denna meny"
+#
+#
+#
+#
 #
 #
 #
@@ -2423,8 +2563,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
+#
+#
+#
 #
 #
 #
@@ -2469,8 +2617,16 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Design Web Forms"
 #~ msgstr "Designa Web  Formulär"
+#
+#
+#
+#
 #
 #
 #
@@ -2515,6 +2671,10 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Svar från undersökningen"
 #
@@ -2538,11 +2698,9 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #
 #
+#
+#
+#
+#
 #~ msgid "Sorry, please fill out the name and title before proceeding."
 #~ msgstr "Beklagar, vänligen fyll i namnet och titeln före exekvering."
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
-msgid "phpESP Management Login"
-msgstr ""
-# File: phpESP/admin/include/where/purge.inc:112
-msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
-msgstr ""
