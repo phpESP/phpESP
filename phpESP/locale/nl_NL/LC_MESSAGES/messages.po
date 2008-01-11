@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:49+0100\n"
+"POT-Creation-Date: 2008-01-11 13:08-0500\n"
 "PO-Revision-Date: 2003-03-07 20:42+0100\n"
 "Last-Translator: Klaas Chielens <klaas@chielens.net>\n"
 "Language-Team: nl_NL <jflemer@alum.rpi.edu>\n"
@@ -355,6 +355,10 @@ msgstr "Kan ACL niet laden."
 msgid "Management Interface"
 msgstr "Beheers menu"
 #
+# File: phpesp_current/admin/include/lib/espauth-default.inc, line: 217
+msgid "phpESP Management Login"
+msgstr ""
+#
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
 msgstr "Dit account heeft geen permissies"
@@ -430,6 +434,12 @@ msgstr "Je hebt de volgende verplichte vragen niet ingevuld:"
 # File: phpESP/admin/include/function/survey_update.inc, line: 115
 msgid "Please only use numbers for the following questions:"
 msgstr "Gebruik aub enkel cijfers voor de volgende vragen:"
+#
+# File: phpESP/public/signup.php, line: 100
+#, fuzzy
+msgid "Request failed, please contact the administrator."
+msgstr ""
+"Uw verzoek was niet mogelijk, gelieve een andere gebruikersnaam te kiezen."
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 msgid "equals"
@@ -1274,6 +1284,11 @@ msgstr "Leden"
 msgid "User's guide not found."
 msgstr "gebruikers handleiding niet gevonden."
 #
+# File: phpESP/admin/include/where/manage.inc, line: 83
+#, fuzzy
+msgid "Logged out."
+msgstr "Log uit"
+#
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
 msgstr "Log weer in."
@@ -1455,6 +1470,13 @@ msgstr "# Vragen"
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
 msgstr "Maak de Checkboxen leeg"
+#
+# File: phpesp_current/admin/include/where/purge.inc, line: 104
+msgid ""
+"You are about to PERMANENTLY and IRREVOCABLY remove ALL information about "
+"the selected surveys. Click Ok if you are absolutely sure this is what you "
+"want to do."
+msgstr ""
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
 msgid "README not found."
@@ -1807,9 +1829,3 @@ msgstr "Email adres"
 # File: phpESP/public/signup.php, line: 157
 msgid "Confirm Password"
 msgstr "Bevestig Wachtwoord"
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
-msgid "phpESP Management Login"
-msgstr ""
-# File: phpESP/admin/include/where/purge.inc:112
-msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
-msgstr ""
