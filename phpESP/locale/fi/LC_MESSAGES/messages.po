@@ -1739,6 +1739,10 @@ msgstr "Sähköpostiosoite"
 msgid "Confirm Password"
 msgstr "Vahvista salasana"
 #
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""  
+#
 #
 #~ msgid "Administer Group Members"
 #~ msgstr "Voi hallita ryhmän jäseniä"

@@ -2360,3 +2360,6 @@ msgstr "Jelszó megerõsítése"
 #, fuzzy
 #~ msgid "Action"
 #~ msgstr "Oldal"
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""

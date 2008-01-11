@@ -2476,3 +2476,6 @@ msgstr "Confirmar Nova Senha"
 #
 #~ msgid "Max Logins"
 #~ msgstr "Logins máximos"
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""

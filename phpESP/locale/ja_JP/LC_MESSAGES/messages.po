@@ -2268,3 +2268,6 @@ msgstr "もっかい"
 #~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
 #~ "the Confirmation Heading."
 #~ msgstr "「確認」ページのボディテキスト。確認表題の下に表示されます。"
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""

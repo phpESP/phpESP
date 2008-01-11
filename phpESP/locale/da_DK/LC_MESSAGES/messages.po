@@ -2495,3 +2495,6 @@ msgstr "Bekræft ny adgangskode"
 #
 #~ msgid "Sorry, please fill out the name and title before proceeding."
 #~ msgstr "Beklager, udfyld venligst navn og titel før du fortsætter."
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""

@@ -2540,3 +2540,6 @@ msgstr "Bekräfta det Nya Lösenordet"
 #
 #~ msgid "Sorry, please fill out the name and title before proceeding."
 #~ msgstr "Beklagar, vänligen fyll i namnet och titeln före exekvering."
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""
