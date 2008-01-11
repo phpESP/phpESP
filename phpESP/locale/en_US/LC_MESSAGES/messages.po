@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:49+0100\n"
+"POT-Creation-Date: 2008-01-11 13:08-0500\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: James Flemer <jflemer@alum.rpi.edu>\n"
 "Language-Team: en_US <jflemer@alum.rpi.edu>\n"
@@ -342,6 +342,10 @@ msgstr ""
 msgid "Management Interface"
 msgstr ""
 #
+# File: phpesp_current/admin/include/lib/espauth-default.inc, line: 217
+msgid "phpESP Management Login"
+msgstr ""
+#
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
 msgstr ""
@@ -416,6 +420,10 @@ msgstr ""
 #
 # File: phpESP/admin/include/lib/espresponse.inc, line: 74
 msgid "Please only use numbers for the following questions:"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espresponse.inc, line: 163
+msgid "Request failed, please contact the administrator."
 msgstr ""
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 14
@@ -1207,6 +1215,10 @@ msgstr ""
 msgid "User's guide not found."
 msgstr ""
 #
+# File: phpesp_current/admin/include/where/logout.inc, line: 15
+msgid "Logged out."
+msgstr ""
+#
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
 msgstr ""
@@ -1377,6 +1389,13 @@ msgstr ""
 #
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/purge.inc, line: 104
+msgid ""
+"You are about to PERMANENTLY and IRREVOCABLY remove ALL information about "
+"the selected surveys. Click Ok if you are absolutely sure this is what you "
+"want to do."
 msgstr ""
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
@@ -1678,10 +1697,4 @@ msgstr ""
 #
 # File: phpESP/public/signup.php, line: 157
 msgid "Confirm Password"
-msgstr ""
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
-msgid "phpESP Management Login"
-msgstr ""
-# File: phpESP/admin/include/where/purge.inc:112
-msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
 msgstr ""
