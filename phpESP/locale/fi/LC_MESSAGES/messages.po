@@ -1743,6 +1743,10 @@ msgstr "Vahvista salasana"
 msgid "phpESP Management Login"
 msgstr ""  
 #
+# File: phpESP/admin/include/where/purge.inc:112
+msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
+msgstr ""
+#
 #
 #~ msgid "Administer Group Members"
 #~ msgstr "Voi hallita ryhmän jäseniä"

@@ -2268,6 +2268,9 @@ msgstr "もっかい"
 #~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
 #~ "the Confirmation Heading."
 #~ msgstr "「確認」ページのボディテキスト。確認表題の下に表示されます。"
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+<<<<<<< .working
 msgid "phpESP Management Login"
+msgstr ""
+# File: phpESP/admin/include/where/purge.inc:112
+msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
 msgstr ""

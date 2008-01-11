@@ -100,7 +100,12 @@ back.')); ?></p>
 		<td colspan="8">
 			<input type="hidden" name="where" value="purge" />
 			<input type="reset" name="reset" value="<?php echo(_('Clear Checkboxes')); ?>" />
-			<input type="submit" name="submit" value="<?php echo(_('Purge Surveys')); ?>" />
+            <?php
+            $confirmText = _('You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do.');
+            ?>
+			<input type="submit" name="submit"
+            onclick='return confirm("<?= $confirmText ?>")' onkeypress='return confirm ("<?= $confirmText ?>");'
+            value="<?php echo(_('Purge Surveys')); ?>" />
 		</td>
 	</tr>
 </table>
