@@ -33,8 +33,8 @@
     }
 
     if(!isset($sid) || empty($sid)) {
-        $GLOBALS['errmsg'] = mkerror(_('Error processing survey: Survey not specified.'));
-        return;
+        blur('/public/landing.php');
+        assert('false; // NOTREACHED');
     }
 
     if(!isset($_css)) {

@@ -89,3 +89,54 @@ fieldset.hidden {
 .notice {
     text-align: center;
 }
+
+form fieldset { border: 0; }
+div.form label, form label {
+  display: block;
+  float: left;
+  width: 8em;
+  margin-right: .25em;
+  text-align: right;
+  font-size: smaller;
+  color: #666;
+}
+div.form div, form div {
+  clear: both;
+}
+.landingPanel { margin-top: 1em; border: solid 1px; width: 40em; }
+.landingPanel table caption,
+.landingPanel h1 {
+  text-align: left;
+  font-size: larger;
+  font-weight: bold;
+  background: #ddd;
+  padding: .5em;
+  margin: 0;
+  color: #09f;
+}
+
+#my_login div { padding: .25em; }
+#my_login a { text-decoration: none; display: block; text-align: right; margin: 0 .25em; }
+
+#my_surveys { }
+#my_surveys table { width: 100%; }
+#my_surveys table thead {}
+#my_surveys table thead th { text-align: left; border-bottom: solid 1px; }
+#my_surveys table tbody tr:nth-child(odd) { background: #09f; }
+
+#my_history { }
+#my_history table { width: 100%; }
+#my_history table thead {}
+#my_history table thead th { text-align: left; border-bottom: solid 1px; }
+#my_history table tbody tr:nth-child(odd) { background: #09f; }
+
+#my_tools { }
+#my_tools li {}
+
+table.help { width: 100%; }
+table.help td.menu { vertical-align: top; width: 125px; border-right: dashed 1px #000; }
+table.help div { padding-left: 2em; }
+table.help a { text-decoration: none; padding: 0; }
+table.help td.menu li a { font-size: 80%; }
+table.help h1 { border-bottom: dashed 1px #000; }
+table.help h2, table.help h3, table.help h4 { margin: 0; }

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-01-11 13:08-0500\n"
+"POT-Creation-Date: 2008-01-15 14:18-0500\n"
 "PO-Revision-Date: 2002-08-02 16:21--500\n"
 "Last-Translator: RAUL PITTI <rpitti@netmasters.com.pa>\n"
 "Language-Team: es_ES <jflemer@alum.rpi.edu>\n"
@@ -446,6 +446,63 @@ msgstr "Por favor introduzca el texto para ésta pregunta."
 #
 # File: phpesp_current/admin/include/lib/espresponse.inc, line: 163
 msgid "Request failed, please contact the administrator."
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurvey.inc, line: 39
+msgid "Unable to get list of surveys for current user"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 117
+msgid "Unable to fetch statistics from table"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 138
+msgid "Unable to fetch statistics for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 158
+msgid "Unable to fetch statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 179
+msgid "Unable to increment statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 210
+msgid "Unable to decrement statistic for survey"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 87
+#, fuzzy
+msgid "Unable to set statistic for survey"
+msgstr "Necesita seleccionar al menso dos encuestas!"
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 267
+msgid "Unable to initialize statistics for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 286
+msgid "Unable to purge statistics for survey"
 msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
@@ -1336,6 +1393,11 @@ msgstr "Ver reporte de la encuesta"
 msgid "Purge a response"
 msgstr "Respuesta"
 #
+# File: phpESP/admin/include/where/results.inc, line: 148
+#, fuzzy
+msgid "View Survey Statistics"
+msgstr "Ver resultados de la encuesta"
+#
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
 msgstr "Cambiar contraseña"
@@ -1550,6 +1612,66 @@ msgstr "Respuesta"
 #, fuzzy
 msgid "Resp"
 msgstr "Respuesta"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 34
+msgid "Request to reset survey that is outside allowed access"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 49
+msgid "Various access statistics for your active and done surveys."
+msgstr ""
+#
+# File: phpESP/admin/include/where/copy.inc, line: 61
+#, fuzzy
+msgid "Survey"
+msgstr "Copiar Encuesta"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 53
+msgid "Login Failures"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 55
+msgid "Attempted"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 57
+msgid "Abandoned"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 59
+msgid "Suspended"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 61
+msgid "Completed"
+msgstr ""
+#
+# File: phpESP/admin/include/where/results.inc, line: 113
+#, fuzzy
+msgid "Reset?"
+msgstr "Probar"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 67
+msgid "Statistics Total"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 85
+msgid ""
+"You are about to make permanent and irrevocable changes. Click OK if you are "
+"certain this is what you want to do."
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 87
+msgid "Refresh"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 89
+msgid "Reset Statistics"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 91
+msgid "You have no active or done surveys. Check back later."
+msgstr ""
 #
 # File: phpESP/admin/include/where/status.inc, line: 104
 msgid "Can not set survey status."
@@ -1802,11 +1924,15 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr ""
 #~ "No se han definido opciones.  Por favor revise la configuración de su "
 #~ "archivo INI ."
+#
+#
 #
 #
 #
@@ -1830,9 +1956,13 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Preguntas"
+#
+#
 #
 #
 #
@@ -1856,6 +1986,8 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Previsualizar"
@@ -1869,9 +2001,13 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Finalizar"
+#
+#
 #
 #
 #
@@ -1915,9 +2051,13 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "de"
+#
+#
 #
 #
 #
@@ -1962,9 +2102,13 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Campo"
+#
+#
 #
 #
 #
@@ -2008,9 +2152,13 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "Descargas en formato DBF no están implementadas"
+#
+#
 #
 #
 #
@@ -2055,10 +2203,14 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
 #
 #
 #
@@ -2102,9 +2254,13 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exportar datos a CSV"
+#
+#
 #
 #
 #
@@ -2130,27 +2286,6 @@ msgstr "Confirme la nueva contraseña"
 #~ msgstr "Error!"
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/merge.inc, line: 87
-#~ msgid "You need to select at least two surveys!"
-#~ msgstr "Necesita seleccionar al menso dos encuestas!"
 #
 #
 #
@@ -2195,8 +2330,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 #~ msgid "No survey specified."
 #~ msgstr "No se especificó la encuesta."
+#
+#
 #
 #
 #
@@ -2245,8 +2384,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 #~ msgid "are required."
 #~ msgstr "son obligatorias."
+#
+#
 #
 #
 #
@@ -2297,9 +2440,13 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "free-form"
 #~ msgstr "texto libre"
+#
+#
 #
 #
 #
@@ -2348,8 +2495,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 #~ msgid "Required?"
 #~ msgstr "Requerido?"
+#
+#
 #
 #
 #
@@ -2398,8 +2549,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 #~ msgid "to access this menu"
 #~ msgstr "para acessar este menú"
+#
+#
 #
 #
 #
@@ -2448,8 +2603,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
+#
 #
 #
 #
@@ -2500,8 +2659,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Encabezado de Confirmación"
+#
+#
 #
 #
 #

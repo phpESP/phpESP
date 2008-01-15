@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-01-11 13:08-0500\n"
+"POT-Creation-Date: 2008-01-15 14:18-0500\n"
 "PO-Revision-Date: 2003-03-07 20:42+0100\n"
 "Last-Translator: Klaas Chielens <klaas@chielens.net>\n"
 "Language-Team: nl_NL <jflemer@alum.rpi.edu>\n"
@@ -440,6 +440,42 @@ msgstr "Gebruik aub enkel cijfers voor de volgende vragen:"
 msgid "Request failed, please contact the administrator."
 msgstr ""
 "Uw verzoek was niet mogelijk, gelieve een andere gebruikersnaam te kiezen."
+#
+# File: phpesp_current/admin/include/lib/espsurvey.inc, line: 39
+msgid "Unable to get list of surveys for current user"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 117
+msgid "Unable to fetch statistics from table"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 138
+msgid "Unable to fetch statistics for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 158
+msgid "Unable to fetch statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 179
+msgid "Unable to increment statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 210
+msgid "Unable to decrement statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 237
+msgid "Unable to set statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 267
+msgid "Unable to initialize statistics for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 286
+msgid "Unable to purge statistics for survey"
+msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 msgid "equals"
@@ -1351,6 +1387,11 @@ msgstr "Bekijk een vragenlijst rapportage"
 msgid "Purge a response"
 msgstr "Verwijder een antwoord"
 #
+# File: phpESP/admin/include/where/results.inc, line: 148
+#, fuzzy
+msgid "View Survey Statistics"
+msgstr "Bekijk vragenlijst resultaten Resultaten"
+#
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
 msgstr "Verander je wachtwoord"
@@ -1563,6 +1604,67 @@ msgstr "Respondent"
 # File: phpESP/admin/include/where/results.inc, line: 173
 msgid "Resp"
 msgstr "Respons"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 34
+msgid "Request to reset survey that is outside allowed access"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 49
+msgid "Various access statistics for your active and done surveys."
+msgstr ""
+#
+# File: phpESP/admin/include/where/copy.inc, line: 61
+#, fuzzy
+msgid "Survey"
+msgstr "Kopieer vragenlijst"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 53
+msgid "Login Failures"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 55
+msgid "Attempted"
+msgstr ""
+#
+# File: phpESP/admin/include/where/test.inc, line: 127
+#, fuzzy
+msgid "Abandoned"
+msgstr "alleenstaand"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 59
+msgid "Suspended"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 61
+msgid "Completed"
+msgstr ""
+#
+# File: phpESP/admin/include/where/results.inc, line: 113
+#, fuzzy
+msgid "Reset?"
+msgstr "Beginwaarden"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 67
+msgid "Statistics Total"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 85
+msgid ""
+"You are about to make permanent and irrevocable changes. Click OK if you are "
+"certain this is what you want to do."
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 87
+msgid "Refresh"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 89
+msgid "Reset Statistics"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 91
+msgid "You have no active or done surveys. Check back later."
+msgstr ""
 #
 # File: phpESP/admin/include/where/status.inc, line: 104
 msgid "Can not set survey status."

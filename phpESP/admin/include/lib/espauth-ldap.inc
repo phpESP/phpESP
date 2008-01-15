@@ -57,39 +57,15 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
     db_close($accres);
 
 	// A matching row was found - the survey requires authentication.
+    $loginAttempt = false;
 	if (!empty($username) && !empty($password)) {
-         // if we are running mysql >4.0 need to check/upgrade passwords
-        password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['respondent_table']);
-
-		// Add configuration for ldap server and other things
-		#$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_realm_attr']."=".$realm."))";
-		$tmp_ldap_filter = $GLOBALS['ESPCONFIG']['ldap_filter'].$username;
-
-		$ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'],
-				$GLOBALS['ESPCONFIG']['ldap_port']);
-
-		if ($ds) {
-			$search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
-			if (@ldap_count_entries($ds,$search_result)==1) {
-				$entry_id=ldap_first_entry($ds, $search_result);
-				if ($GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
-					ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-				}
-				$auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
-				if ($auth_bind) {
-					$auth_ldap_accept = true;
-					$values = @ldap_get_values($ds, $entry_id,$GLOBALS['ESPCONFIG']['ldap_realm_attr']);
-					$ldap_realm=$values[0];
-				}
-			}
-		}
-		ldap_close($ds);
-
-        if ($auth_ldap_accept) {
+        $loginAttempt = true;
+        $auth = authenticate($username, $raw_password, $realms);
+        if ($auth && 1 == count($realms)) {
 		   $sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
 			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a
 			WHERE a.survey_id = $sid
-			AND a.realm='".$ldap_realm."'";
+			AND a.realm='".current($realms)."'";
         } else {
 		   // Formulate the query check whether user is authorized
 		   $sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
@@ -120,6 +96,12 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) {
+        // record the fact that authentication failed
+        if ($loginAttempt) {
+            esp_require_once('/lib/espsurveystat');
+            survey_stat_increment(SURVEY_STAT_LOGINFAIL, $sid);
+        }
+
         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
             header( "WWW-Authenticate: Basic realm=\"$realm\"" );
             header( 'HTTP/1.0 401 '. _('Unauthorized'));
@@ -417,5 +399,47 @@ function auth_get_rid($sid, $username, $rid = 0) {
 	}
 }
 /* }}} */
+
+/* respondent authentication methods */
+// {{{ authenticate()                  See if a <username,password> credential is valid, and identify to which realms that applies
+// NOTE1: returns true iff authenticated, false otherwise
+// NOTE2: $realms will always be an array with at least one element.  If 2 or more, you must have an external
+// NOTE2: means to disambiguate to which realms the username/password pair applies
+
+function authenticate($username, $password, &$realms) {
+    $cfg =& $GLOBALS['ESPCONFIG'];
+
+    // if we are running mysql >4.0 need to check/upgrade passwords
+    password_upgrade($username, _addslashes($password), $cfg['respondent_table']);
+
+    // assume no authorization
+    $auth_ldap_accept = false;
+
+    // Add configuration for ldap server and other things
+    #$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_realm_attr']."=".$realm."))";
+    $tmp_ldap_filter = $GLOBALS['ESPCONFIG']['ldap_filter'].$username;
+
+    $ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'], $GLOBALS['ESPCONFIG']['ldap_port']);
+    if ($ds) {
+        $search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
+        if (@ldap_count_entries($ds,$search_result)==1) {
+            $entry_id=ldap_first_entry($ds, $search_result);
+            if ($GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
+                ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+            }
+            $auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
+            if ($auth_bind) {
+                $auth_ldap_accept = true;
+                $values = @ldap_get_values($ds, $entry_id,$GLOBALS['ESPCONFIG']['ldap_realm_attr']);
+                $realms[] = $values[0];
+            }
+        }
+    }
+    ldap_close($ds);
+
+    return ($auth_ldap_accept ? true : false);
+}
+
+// }}}
 
 ?>

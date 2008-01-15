@@ -53,6 +53,11 @@
           <li><a href="#tabulation" style="text-decoration:none; font-size:80%;">Cross Tabulation</a></li>
           <li><a href="#csv" style="text-decoration:none; font-size:80%;">Exporting to CSV</a></li>
         </ul>
+        <a href="#stats" style="text-decoration:none;">Survey Statistics</a>
+        <ul>
+          <li><a href="#refresh_statistics" style="text-decoration:none; font-size:80%;">Refreshing Statistics</a></li>
+          <li><a href="#reseting_statistics" style="text-decoration:none; font-size:80%;">Reseting Statistics</a></li>
+        </ul>
         <a href="#admin" style="text-decoration:none;">Administration</a>
         <ul>
           <li><a href="#batch" style="text-decoration:none; font-size:80%;">Batch Account Creation</a></li>
@@ -501,6 +506,55 @@
         <li> From the Management Interface, select <strong><a href="manage.php?where=export" onclick="window.open(this.href,'_blank');return false;">Export Data to CSV</a></strong> to view all the active or archived surveys. Simply click the <strong>download</strong> link listed behind the desired survey to obtain the CSV file. </li>
       </ul>
       <p style="padding-left:10px;"><a href="#top">Back to Top</a></p>
+      <hr style="width:100%;" />
+      <h2 id="stats">Survey Statistics</h2>
+      <p>While completing surveys, various access statistics are collected for administrative review. These statistics, described
+      in the table further below, allow you to better understand how your respondents interact with the surveys you create.
+      Questions such as:</p>
+      <ul>
+      <li>Are my respondents having difficulty logging in?</li>
+      <li>Are respondents moving through surveys, or are they abandoning them prematurely?</li>
+      <li>What percentage of survey attempts have resulted in a complete survey?</li>
+      </ul>
+      <p>provide valuable insight into the effectiveness of your surveys.</p>
+      <table>
+      <tr><th>Statistic</th><th>Meaning</th></tr>
+      <tr><td>Login Failures</td><td>The number of failed attempts to authenticate to take a particular survey.  This count only
+      reflects the number of failures while attempting to access <em>a particular survey</em>.  Failed attempts to access the
+      list of possible surveys are not recorded.</td></tr>
+      <tr><td>Attempted</td><td>The number of unique attempts to start taking a survey, regardless of whether the attempt results
+      in a completed or suspended survey.</td></tr>
+      <tr><td>Abandoned</td><td>The number of surveys begun, but not suspended or completed.  This statistic can accumulate for
+      a myriad of reasons, including:<ul>
+      <li>Closing the browser and returning to the survey</li>
+      <li>Refreshing the survey (via the browser refresh) before submitting</li>
+      </ul></td></tr>
+      <tr><td>Suspended</td><td>The number of surveys saved for later completion.</td></tr>
+      <tr><td>Completed</td><td>The number of surveys completed. If a survey allows a respondent to reply multiple times,
+      this statistic accumulates for each successful completion of the survey.</td></tr>
+      </table>
+      <p>If your survey is effective, the number of login failures and abandoned surveys is low, the number of attempts is
+      nearly equal to the number of complete, and the number of suspended is small.</p>
+      <p>As a general rule of thumb, you should investigate your survey implementation if any of these conditions occur:</p>
+      <ul>
+      <li>Excessive number of login failures.</li>
+      <li>Large number of abandoned surveys.</li>
+      <li>Large disparity in the number of attempted and completed surveys.</li>
+      <li>High number of suspended, and low number of completed, surveys.</li>
+      </ul>
+      <div style="padding-left:10px;" id="refresh_statistics"><h3>Refreshing Statistics</h3>
+      <p>As respondents complete surveys, the statistics will change.  You may update the statistics page to show the most recent
+      values by clicking the "Refresh Statistics" button.
+      </div>
+      <div style="padding-left:10px;" id="reseting_statistics"><h3>Reseting Statistics</h3>
+      <p>Occasionally, you may need to reset survey statistics.  For example, if you held a "trial run" survey phase before the
+      actual deployment, you would need to delete all the responses and reset the statistics for the "actual run."</p>
+      <p>To reset statistics for a survey, place a check in the "Reset" column on the row containing the survey you want to
+      reset, then click the "Reset Statistics" button.  You may reset more than one survey by placing a check beside every
+      survey you want to reset, then clicking the "Reset Statistics" button.  You will be prompted to confirm the reset
+      action each time you click the "Reset Statistics" button; answer "Ok" to reset, or "Cancel" to skip the reset.</p>
+      </div>
+      <p><a href="#top">Back to Top</a></p>
       <hr style="width:100%;" />
       <h2 id="admin">Administration Tasks</h2>
       <h3 style="padding-left:10px;" id="batch">Batch Account Creation</h3>

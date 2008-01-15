@@ -58,6 +58,25 @@ function survey_purge($sids) {
 	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id ${sidstr}";
 	execute_sql($sql);
 
+	// erase the access credentials
+	$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['access_table']." WHERE survey_id ${sidstr}";
+	execute_sql($sql);
+
+    // now, erase the accumulated statistics
+    // NOTE: we are purging *all* traces of the survey
+	if (is_int($sids)) {
+		$sids = array ($sids);
+	} else if (is_string($sids)) {
+		$sids = explode(' ', $sids);
+	}
+
+    if (is_array($sids)) {
+        esp_require_once('/lib/espsurveystat');
+        foreach ($sids as $sid) {
+            survey_stat_purge($sid);
+        }
+	}
+
 	return;
 }
 /* }}} */

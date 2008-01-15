@@ -190,3 +190,26 @@ div.row label {
     width: 100px;
     text-align: right;
 }
+
+
+/* 
+ * Styles for the landing page (public/landing.php).
+ * See public/css/default.css for example usage.
+ */
+#my_surveys { }
+#my_surveys table { }
+#my_surveys table caption { }
+#my_surveys table thead {}
+#my_surveys table thead th { }
+#my_surveys table tbody tr:nth-child(odd) { }
+
+#my_history { }
+#my_history table { }
+#my_history table caption { }
+#my_history table thead {}
+#my_history table thead th { }
+#my_history table tbody tr:nth-child(odd) { }
+
+#my_tools { }
+#my_tools h1 { }
+#my_tools li {}

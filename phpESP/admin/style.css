@@ -139,3 +139,10 @@ img {
 .exportsave {
     clear: left;
 }
+
+#view_survey_statistics { }
+#view_survey_statistics table { }
+#view_survey_statistics table tr { }
+#view_survey_statistics table tbody tr:nth-child(odd) { background: #09f; }
+#view_survey_statistics table td { }
+#view_survey_statistics table th { }

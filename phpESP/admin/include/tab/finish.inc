@@ -17,6 +17,9 @@
 		db_close($result);
 	}
 
+    // initialize the survey's statistics
+    esp_require_once('/lib/espsurveystat');
+    survey_stat_init($_SESSION['survey_id']);
 ?>
 <script type="text/javascript">
 function validate() {

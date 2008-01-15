@@ -52,6 +52,7 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                             <?php       if($_SESSION['acl']['superuser'] == 'Y') { ?>
                             <li><a href="<?php echo("${base}?where=response_purge");  ?>"><?php echo(_('Purge a response')); ?></a></li>
                             <?php } ?>
+                            <li><a href="<?php echo("${base}?where=statistics");  ?>"><?php echo(_('View Survey Statistics')); ?></a></li>
                         </ul>
 			</div>
 			<!-- End Survey Results -->
