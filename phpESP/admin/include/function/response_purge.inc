@@ -20,6 +20,16 @@ function response_purge($qids) {
 		$qidstr = array_to_insql($qids);
 	}
 
+    // decrement the completion statistic for all surveys associated with these responses
+    esp_require_once('/lib/espsurveystat');
+    $sql = sprintf('SELECT survey_id FROM %s WHERE id %s', $GLOBALS['ESPCONFIG']['response_table'], $qidstr);
+    $res = execute_sql($sql);
+    while ($row = fetch_row($res)) {
+        $res->MoveNext();
+        $sid = $row[0];
+        survey_stat_decrement(SURVEY_STAT_COMPLETED, $sid);
+    }
+
 	// work from the bottom up...
 	// start with the survey results
 	$tables = array('response_bool','response_date','response_multiple','response_other','response_rank','response_single','response_text');

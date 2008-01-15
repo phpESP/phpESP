@@ -87,6 +87,9 @@ function get_one($command) {
         return 0;
     }
 }
+
+/* }}} */
+
 /* {{{ proto integer record_count( adodb_recordset &$recordset)
     Returns the number of rows in &$recordset */
 function record_count(&$recordset) {

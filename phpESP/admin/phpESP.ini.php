@@ -123,6 +123,19 @@ $ESPCONFIG['ldap_force_proto_3'] = true;
 // Please do disable this for LDAP auth for respondents
 $ESPCONFIG['signup_realm'] = 'auto';
 
+// Use the landing page, where survey respondents can log in and
+// see all their current surveys, the historical record of their
+// surveys, change their password, get help on the survey, etc.
+// If sign-up is supported, a link to the sign-up page will be
+// provided on the login page.  The login page will also show all
+// publically available surveys.
+$ESPCONFIG['use_landing'] = true;
+
+// Email address where respondents can reach you if they need support.
+// Set to null (the default) to not expose an email address to users.
+// ESPCONFIG['support_email_address'] = 'you@example.com';
+$ESPCONFIG['support_email_address'] = null;
+
 // Default language for designer interface
 // (Must have gettext support avaiable.)
 $ESPCONFIG['default_lang'] = 'en_US';
@@ -215,6 +228,7 @@ $ESPCONFIG['response_single_table']     = $DB_PREFIX."response_single";
 $ESPCONFIG['response_text_table']       = $DB_PREFIX."response_text";
 $ESPCONFIG['survey_table']              = $DB_PREFIX."survey";
 $ESPCONFIG['condition_table']           = $DB_PREFIX."conditions";
+$ESPCONFIG['survey_statistics_table']   = $DB_PREFIX."survey_statistics";
 
 // Load I18N support
 require_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);

@@ -88,6 +88,12 @@
     // redirect to thank you page for survey ID 'sid'
     // exits PHP!
     function goto_thankyou($sid,$referer) {
+        // submitting a survey for good
+        esp_require_once('/lib/espsurveystat');
+        survey_stat_decrement(SURVEY_STAT_ABANDONED, $sid);
+        survey_stat_increment(SURVEY_STAT_COMPLETED, $sid);
+
+        // render the thank you page
         $cfg =& $GLOBALS['ESPCONFIG'];
 
         $sql = "SELECT thanks_page,thank_head,thank_body FROM ".$cfg['survey_table']." WHERE id=${sid}";
@@ -128,9 +134,14 @@ window.location="<?php echo($thank_url); ?>"
 
         echo "<h2 class=\"thankhead\"> $thank_head </h2>";
         echo "<blockquote class=\"thankbody\"> $thank_body </blockquote>";
+        if ($GLOBALS['ESPCONFIG']['use_landing']) {
+?>
+<a class="returnlink" href="<?php echo $GLOBALS['ESPCONFIG']['base_url'] . '/public/landing.php'; ?>"><?php echo _('Go to my surveys'); ?></a>
+<?php
+        }
 
         if (isset($_GET['where']) && $_GET['where'] == 'test'){
-           if ($GLOBALS['ESPCONFIG']['limit_double_postings']==0) {
+           iF ($gLOBALS['ESPCONFIG']['limit_double_postings']==0) {
               $ref = "<a class=\"returnlink\" href=\"". $referer."\">Return</a><br />";
 	   } else {
 	      $ref = "";
@@ -160,7 +171,43 @@ window.location="<?php echo($thank_url); ?>"
         return $retstr;
     }
 
-    function goto_saved($url) {
+    // {{{ blur()                      Go to a different URL, using the best method possible given the current output state
+    // NOTE: Does not return.
+
+    function blur($url, $forwardingLabel = 'Please click here to continue...') {    
+        // close the session, as it's no longer needed and we don't want to delay waiters
+        session_write_close();
+
+        // make sure the URL is absolute, as the Location: header requires it
+        if (0 !== strpos($url, 'http')) {
+            $url = rtrim($GLOBALS['ESPCONFIG']['base_url'], '/') . '/' . ltrim($url, '/');
+        }
+
+        // go elsewhere
+        if (headers_sent()) {
+            echo <<<EOHTML
+<script type='text/javascript'>
+window.location = "$url";
+</script>
+<noscript>
+<a href="$url">$forwardingLabel</a>
+</noscript>
+EOHTML;
+        } else {
+            header(sprintf('Location: %s', $url));
+        }
+
+        // go no further
+        exit(0);
+    }    
+
+    // }}}
+
+    function goto_saved($sid, $url) {
+        // sticking a survey for later
+        esp_require_once('/lib/espsurveystat');
+        survey_stat_decrement(SURVEY_STAT_ABANDONED, $sid);
+        survey_stat_increment(SURVEY_STAT_SUSPENDED, $sid);
 ?>
 <blockquote class="thankbody">
 <?php echo
@@ -168,30 +215,49 @@ _('Your progress has been saved.  You may return at any
 time to complete this survey.  To do so, simply bookmark
 the link below.  You may be prompted for your username
 and password to complete the survey.') ?></blockquote>
-<a class="returnlink" href="<?php echo $url; ?>"><?php echo _('Resume survey'); ?></a>
+<a class="returnlink" href="<?php echo $url; ?>"><?php echo _('Resume survey'); ?></a>&nbsp;
 <?php
+        if ($GLOBALS['ESPCONFIG']['use_landing']) {
+?>
+<a class="returnlink" href="<?php echo $GLOBALS['ESPCONFIG']['base_url'] . '/public/landing.php'; ?>"><?php echo _('Go to my surveys'); ?></a>
+<?php
+        }
         return;
     }
 
-    require_once($ESPCONFIG['include_path']."/lib/espcross".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/lib/espauth".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/lib/esphtml.forms".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/lib/esphtml.results".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/lib/espmerge".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/lib/espresponse".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/lib/espsql".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/lib/espdatalib".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_copy".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_merge".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_purge".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_render".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_report".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_results".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_update".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/survey_export_csv".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/account_upload".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/response_purge".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/question_render".$ESPCONFIG['extension']);
-    require_once($ESPCONFIG['include_path']."/function/question_conditioncheck".$ESPCONFIG['extension']);
+    // {{{ esp_require_once()          Wrap include file loading, so that paths are resolved centrally
+
+    function esp_require_once($path) {
+        // expose the global 'ESPCONFIG' as if it were local
+        $ESPCONFIG = $GLOBALS['ESPCONFIG'];
+
+        // load the file in
+        require_once($ESPCONFIG['include_path'] . $path . $ESPCONFIG['extension']);
+
+        return true;
+    }
+
+    // }}}
+
+    esp_require_once('/lib/espcross');
+    esp_require_once('/lib/espauth');
+    esp_require_once('/lib/esphtml.forms');
+    esp_require_once('/lib/esphtml.results');
+    esp_require_once('/lib/espmerge');
+    esp_require_once('/lib/espresponse');
+    esp_require_once('/lib/espsql');
+    esp_require_once('/lib/espdatalib');
+    esp_require_once('/function/survey_copy');
+    esp_require_once('/function/survey_merge');
+    esp_require_once('/function/survey_purge');
+    esp_require_once('/function/survey_render');
+    esp_require_once('/function/survey_report');
+    esp_require_once('/function/survey_results');
+    esp_require_once('/function/survey_update');
+    esp_require_once('/function/survey_export_csv');
+    esp_require_once('/function/account_upload');
+    esp_require_once('/function/response_purge');
+    esp_require_once('/function/question_render');
+    esp_require_once('/function/question_conditioncheck');
 
 ?>

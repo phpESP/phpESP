@@ -124,18 +124,22 @@
 
 	$msg = '';
 	if(!empty($_REQUEST['submit'])) {
-	      $msg .= response_check_answers($sid,$_REQUEST['sec']);
-	      # we only check the captcha if no all required 
-              if (empty($msg) && $ESPCONFIG['use_captcha']) {
-                 require_once(ESP_BASE.'public/captcha_check.php');
-                 $msg .= response_check_captcha("captcha_check",1);
-              }   
+	    $msg .= response_check_answers($sid,$_REQUEST['sec']);
+	    # we only check the captcha if no all required 
+        if (empty($msg) && $ESPCONFIG['use_captcha']) {
+            require_once(ESP_BASE.'public/captcha_check.php');
+            $msg .= response_check_captcha("captcha_check",1);
+        }   
 
-		if(empty($msg)) {
-            		if ($ESPCONFIG['auth_response'] && auth_get_option('resume')) {
+        if (empty($msg)) {
+            if ($ESPCONFIG['auth_response'] && auth_get_option('resume')) {
+                // submitting a previously saved survey
+                esp_require_once('/lib/espsurveystat');
+                survey_stat_decrement(SURVEY_STAT_SUSPENDED, $sid);
 
-                		response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
-			}
+                // delete the previous responses
+                response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+            }
 			$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
 			response_commit($_REQUEST['rid']);
 			response_send_email($sid,$_REQUEST['rid']);
@@ -149,9 +153,9 @@
         	response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
 		$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
         if ($action == $ESPCONFIG['autopub_url'])
-    		goto_saved("$action?name=$name");
+    		goto_saved($sid, "$action?name=$name");
         else
-            goto_saved($action);
+            goto_saved($sid, $action);
 		return;
 	}
 
@@ -173,9 +177,20 @@
 			$_REQUEST['sec']--;
 		}
 	}
-    
-    if ($ESPCONFIG['auth_response'] && auth_get_option('resume') && $_REQUEST['rid']>0)
+
+    // record start statistics
+    // ... increment the attempt
+    // ... assume the user will abandon the survey
+    // ... NOTE: this will be remedied if there is a save or a submit
+    esp_require_once('/lib/espsurveystat');
+    survey_stat_increment(SURVEY_STAT_ATTEMPTED, $sid);
+    survey_stat_increment(SURVEY_STAT_ABANDONED, $sid);
+
+    // if resuming a previous survey
+    if ($ESPCONFIG['auth_response'] && auth_get_option('resume') && $_REQUEST['rid']>0) {
         response_import_sec($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+        survey_stat_decrement(SURVEY_STAT_SUSPENDED, $sid);
+    }
 	
 ?>
 <form method="post" id="phpesp_response" action="<?php echo($action); ?>">

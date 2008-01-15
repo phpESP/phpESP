@@ -33,7 +33,6 @@ function mkerror ($msg) {
 }
 /* }}} */
 
-	
 /* {{{ proto string mkradio(string name, string value)
    Returns HTML format for a radio button. */
 function mkradio ($_name, $value, $varr = null) {
@@ -140,12 +139,14 @@ function mkfile ($_name) {
 
 /* {{{ proto string mksubmit(string name, string value)
    Returns HTML format for a submit button. */
-function mksubmit($_name, $_value = null) {
+function mksubmit($_name, $_value = null, $_attrs = array ()) {
     if ($_value == null)
         $_value = _('Submit');
     if (!empty($_value))
         $_value = ' value="'.htmlspecialchars($_value).'"';
-    return '<input type="submit" name="'.htmlspecialchars($_name).'"'.$_value.' />';
+    $_extra = make_element_attrs_from_array($_attrs);
+
+    return sprintf('<input type="submit" name="%s" %s %s />', htmlspecialchars($_name), $_value, $_extra);
 }
 /* }}} */
 
@@ -206,4 +207,19 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     return $str;
 }
 /* }}} */
+
+/* {{{ proto string make_element_attrs_from_array(array attributes)
+   Convert an array of key => value pairs into an HTML attributes specification key="value"
+*/
+
+function make_element_attrs_from_array($attrs) {
+    $extra = '';
+    foreach ($attrs as $attr => $value) {
+        $extra .= sprintf(' %s="%s"', $attr, htmlspecialchars($value));
+    }
+
+    return trim($extra);
+}
+
+// }}}
 ?>

@@ -44,37 +44,41 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
     db_close($accres);
 
 	// A matching row was found - the survey requires authentication.
+    $loginAttempt = false;
 	if (!empty($username) && !empty($password)) {
-        // if we are running mysql >4.0 need to check/upgrade passwords
-        password_upgrade($username, $password, $GLOBALS['ESPCONFIG']['respondent_table']);
-
-		// Formulate the query check whether user is authorized
-		$sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
-			FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['respondent_table']." r
-			WHERE a.survey_id = $sid AND
-				r.username = "._addslashes($username)." AND
-				r.password = ".db_crypt($password) ." AND
-				r.realm = a.realm AND
-				r.disabled = 'N' AND
-				(r.expiration = '0000-00-00 00:00:00' OR r.expiration > ". sys_time_stamp().")";
-		// Execute the query assign record set to $usrres
-		$usrres = execute_sql( $sql );
-		if(!$usrres) {
-			$GLOBALS['errmsg'] = mkerror(_('Unable to execute query respondents.' ));
-			return(false);
-		}
-
-		if (record_count($usrres) > 0) {
-			// A matching row was found - the user is authorized.
-			$auth = true;
-			list($maxlogin, $arealm, $aresume, $anavigate) = $usrres->fields;
-			db_close($usrres);
-			$GLOBALS['auth_options'] = array('resume' => $aresume, 'navigate' => $anavigate);
-		}
+        $loginAttempt = true;
+        $auth = authenticate($username, $raw_password, $realms);
+        if ($auth) {
+            $sql = "SELECT a.maxlogin, a.realm, a.resume, a.navigate
+                FROM ".$GLOBALS['ESPCONFIG']['access_table']." a, ".$GLOBALS['ESPCONFIG']['respondent_table']." r
+                WHERE a.survey_id = $sid AND
+                    r.username = "._addslashes($username)." AND
+                    r.password = ".db_crypt($password) ." AND
+                    r.realm = a.realm AND
+                    r.disabled = 'N' AND
+                    (r.expiration = '0000-00-00 00:00:00' OR r.expiration > ". sys_time_stamp().")";
+            // Execute the query assign record set to $usrres
+            $usrres = execute_sql($sql);
+            if ($usrres && 0 < record_count($usrres)) {
+                list($maxlogin, $arealm, $aresume, $anavigate) = $usrres->fields;
+                db_close($usrres);
+                $GLOBALS['auth_options'] = array('resume' => $aresume, 'navigate' => $anavigate);
+            } else {
+                $GLOBALS['errmsg'] = mkerror(_('Unable to execute query respondents.'));
+                return(false);
+            }
+        }
 	}
 
 	// no matching authorization ... send a 401
 	if ( ! $auth ) {
+        // record the fact that authentication failed
+        if ($loginAttempt) {
+            esp_require_once('/lib/espsurveystat');
+            survey_stat_increment(SURVEY_STAT_LOGINFAIL, $sid);
+        }
+
+        // throw the right output
         if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
             header( "WWW-Authenticate: Basic realm=\"$realm\"" );
             header( 'HTTP/1.0 401 '. _('Unauthorized'));
@@ -365,5 +369,53 @@ function auth_get_rid($sid, $username, $rid = 0) {
 	}
 }
 /* }}} */
+
+/* respondent authentication methods */
+// {{{ authenticate()                  See if a <username,password> credential is valid, and identify to which realms that applies
+// NOTE1: returns true iff authenticated, false otherwise
+// NOTE2: $realms will always be an array with at least one element.  If 2 or more, you must have an external
+// NOTE2: means to disambiguate to which realms the username/password pair applies
+
+function authenticate($username, $password, &$realms) {
+    $cfg =& $GLOBALS['ESPCONFIG'];
+
+    // if we are running mysql >4.0 need to check/upgrade passwords
+    password_upgrade($username, _addslashes($password), $cfg['respondent_table']);
+
+    // see if we have a realm where that <username, password> tuple is authorized and enabled
+    $user = _addslashes($username);
+    $pass = db_crypt(_addslashes($password));
+    $now  = sys_time_stamp();
+    $sql =<<<EOSQL
+SELECT realm
+  FROM {$cfg['respondent_table']}
+ WHERE username={$user} AND password={$pass} AND
+       disabled='N' AND (expiration='0000-00-00 00:00:00' OR {$now} < expiration)
+EOSQL;
+    $res = execute_sql($sql);
+    if ($res) {
+        // was there a single match?
+        // NOTE: <username, realm> is the unique key in the respondent table.  Thus, two or more users with the same
+        // NOTE: username and password, but different realms, will pass this check.  You must then have some external
+        // NOTE: method to disambiguate which realm is appropriate (like checking the surveys).
+        $isAuthenticated = (1 <= record_count($res) ? true : false);
+        if ($isAuthenticated) {
+            $realms = array ();
+            while ($row = fetch_row($res)) {
+                $res->MoveNext();
+                $realms[] = $row[0];
+            }
+            assert('1 <= count($realms); // expecting 1 or more realms');
+        }
+        return $isAuthenticated;
+    } else {
+        $GLOBALS['errmsg'] = mkerror(_('Unable to execute query respondents.'));
+        return false;
+    }
+
+    assert('false; // NOTREACHED');
+}
+
+// }}}
 
 ?>

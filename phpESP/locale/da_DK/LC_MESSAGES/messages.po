@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-01-11 13:08-0500\n"
+"POT-Creation-Date: 2008-01-15 14:18-0500\n"
 "PO-Revision-Date: 2002-03-22 16:40-0500\n"
 "Last-Translator: Henrik <henrik@hornhaver.dk>\n"
 "Language-Team: da_DK <jflemer@alum.rpi.edu>\n"
@@ -442,6 +442,64 @@ msgstr "Indtast venligst tekst til dette spørgsmål."
 #
 # File: phpesp_current/admin/include/lib/espresponse.inc, line: 163
 msgid "Request failed, please contact the administrator."
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurvey.inc, line: 39
+msgid "Unable to get list of surveys for current user"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 117
+msgid "Unable to fetch statistics from table"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 138
+msgid "Unable to fetch statistics for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 158
+msgid "Unable to fetch statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 179
+msgid "Unable to increment statistic for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 210
+msgid "Unable to decrement statistic for survey"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/merge.inc, line: 87
+#, fuzzy
+msgid "Unable to set statistic for survey"
+msgstr "Du skal have mindst to surveys"
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 267
+msgid "Unable to initialize statistics for survey"
+msgstr ""
+#
+# File: phpesp_current/admin/include/lib/espsurveystat.inc, line: 286
+msgid "Unable to purge statistics for survey"
 msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
@@ -1368,6 +1426,11 @@ msgstr "Vis en survey rapport"
 msgid "Purge a response"
 msgstr "Response"
 #
+# File: phpESP/admin/include/where/results.inc, line: 148
+#, fuzzy
+msgid "View Survey Statistics"
+msgstr "Vis survey resultater"
+#
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
 msgstr "Ret din adgangskode"
@@ -1570,6 +1633,66 @@ msgstr "Response"
 #, fuzzy
 msgid "Resp"
 msgstr "Response"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 34
+msgid "Request to reset survey that is outside allowed access"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 49
+msgid "Various access statistics for your active and done surveys."
+msgstr ""
+#
+# File: phpESP/admin/include/where/copy.inc, line: 61
+#, fuzzy
+msgid "Survey"
+msgstr "Survey kopieret"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 53
+msgid "Login Failures"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 55
+msgid "Attempted"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 57
+msgid "Abandoned"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 59
+msgid "Suspended"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 61
+msgid "Completed"
+msgstr ""
+#
+# File: phpESP/admin/include/where/results.inc, line: 113
+#, fuzzy
+msgid "Reset?"
+msgstr "Test"
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 67
+msgid "Statistics Total"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 85
+msgid ""
+"You are about to make permanent and irrevocable changes. Click OK if you are "
+"certain this is what you want to do."
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 87
+msgid "Refresh"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 89
+msgid "Reset Statistics"
+msgstr ""
+#
+# File: phpesp_current/admin/include/where/statistics.inc, line: 91
+msgid "You have no active or done surveys. Check back later."
+msgstr ""
 #
 # File: phpESP/admin/include/where/status.inc, line: 104
 msgid "Can not set survey status."
@@ -1835,10 +1958,14 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #, fuzzy
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "Ingen faneblade defineret. Kontroller venligst INI opsætning."
+#
+#
 #
 #
 #
@@ -1862,9 +1989,13 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #~ msgid "Questions"
 #~ msgstr "Spørgsmål"
+#
+#
 #
 #
 #
@@ -1888,6 +2019,8 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Vis"
@@ -1901,9 +2034,13 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "Afslut"
+#
+#
 #
 #
 #
@@ -1949,9 +2086,13 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "af"
+#
+#
 #
 #
 #
@@ -1998,6 +2139,8 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Felt"
@@ -2022,9 +2165,13 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 122
 #~ msgid "Field Name"
 #~ msgstr "Felt navn"
+#
+#
 #
 #
 #
@@ -2071,10 +2218,14 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
+#
 #
 #
 #
@@ -2120,9 +2271,13 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Eksporter data til CVS"
+#
+#
 #
 #
 #
@@ -2168,33 +2323,13 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
-# File: phpESP/admin/include/where/merge.inc, line: 87
-#~ msgid "You need to select at least two surveys!"
-#~ msgstr "Du skal have mindst to surveys"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #
 #
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrator gruppe medlemmer"
+#
+#
 #
 #
 #
@@ -2245,8 +2380,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "are required."
 #~ msgstr "er obligatoriske"
+#
+#
 #
 #
 #
@@ -2297,8 +2436,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "free-form"
 #~ msgstr "free-form"
+#
+#
 #
 #
 #
@@ -2349,8 +2492,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "Required?"
 #~ msgstr "Obligatorisk?"
+#
+#
 #
 #
 #
@@ -2401,6 +2548,8 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "Purge"
 #~ msgstr "Ryd"
 #
@@ -2427,8 +2576,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
+#
 #
 #
 #
@@ -2481,8 +2634,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "Confirmation Heading"
 #~ msgstr "Hoved til bekræftelse"
+#
+#
 #
 #
 #
@@ -2541,8 +2698,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "Max Logins"
 #~ msgstr "Maksimalt antal login"
+#
+#
 #
 #
 #
@@ -2597,6 +2758,8 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "NOTE: This does not currently work on embedded forms."
 #~ msgstr "Bemærk: Dette understøttes ikke i indlejrede (embedded) formularer."
 #
@@ -2625,8 +2788,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Respons fra survey"
+#
+#
 #
 #
 #
