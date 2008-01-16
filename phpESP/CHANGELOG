@@ -1,11 +1,16 @@
-Changes made by Franky:
+=================
+PHPESP CHANGE LOG
+=================
 
-20071210
+2.0.0 => 2.0.1
+=========================
 - Already on 2.0.1
 - Changed language detection so you can select the language also in the admin interface
 - some session cleanups
+Changes from 1.8.2.e till 2.0.1 made by Franky(liedekef)
 
-20071126
+1.8.2.f => 2.0.0
+=========================
 - bumped the version to 2.0.0 (long overdue)
 - Added the posibility to define conditions on a question. See the help page in the admin interface for more info. In short:
 A question is only shown when a condition is met.
@@ -18,17 +23,20 @@ A question that has a condition must be on the next page than the question/value
 - You can now configure the mail address used by phpesp when sending mails
 
 20071107
+=========================
 - Correct LDAP auth, authenticated users are no longer recreated in the DB
 - You can choose between LDAP authentication for respondents, designers or both
 - Fixed some session checks when already logged in
 - Fixed some typo's (why did nobody see these???)
 
 20070615
+=========================
 Added option to disable automatic numbering of questions when showing the survey
 Reworked a bit the "!other" anwser for radio/checkbox answers
 The answer to numerical questions are now also checked (to see the answer is indeed numerical)
 
 20070412
+=========================
 fixes for losing the session info when changing respondents or designers
 
 uptill 20061201
@@ -48,17 +56,301 @@ the next lines:
 So now handler.php?lang=nl_NL works, as well as setting $lang="nl_NL" and including handler.php as always.
 
 20061202 (I think)
+=========================
 - added cookie checks to disable double postings (variable limit_double_postings in admin/phpESP.ini.php). It is disabled by default but I recommend you use it.
 - You need to use public/phpESP.first.php in every php survey page now (at the beginning, because cookies and sessions are used)
 
 20061205
+=========================
 - added a captcha as well, so no scripted answers are possible (variable use_captcha in admin/phpESP.ini.php). It is disabled by default but I recommend you use it.
 
-20061207 - version 1.8.2e
+1.8.2.f => 1.8.2e
+=========================
 - implemented captcha abuse prevention mechanism, and updated captcha.README. I'll probably release the captcha as a seperate program as well
 - included patch 1609284
 
-2006121011 - version 1.8.2f
+1.8.2 => 1.8.2f
+=========================
 - cookies to prevent double posting are no longer set if the survey is in test
 - updated the help pages a bit
 - added the ability to change the format of the date field, according to http://be.php.net/manual/en/function.strftime.php (I hope this'll work for everybody)
+
+1.8.1 => 1.8.2
+=========================
+* FIXED problems with adding/deleting respondents/designers
+* FIXED display issues when previewing surveys.
+* FIXED ADODB SQL INJECT issue.
+
+1.8 => 1.8.1
+=========================
+* FIXED Export/Download problem for IE.
+  (from Aaron Axelsen <lists at frozenpc.net>)
+* FIXED Expiration data formatted incorrectly.
+
+1.8-rc1 => 1.8
+=========================
+* FIXED multi-paged surveys only storing last page results.
+  (from <merlot02 at users.sourceforge.net>)
+* FIXED qnType not showing on questions with tables
+  (from <merlot02 at users.sourceforge.net>)
+
+1.7.5 => 1.8-rc1
+=========================
+* ADDED support for PHP5
+  (from Kon Angelopoulos) 
+* FIXED several XSS and SQL injection bugs
+  (from Gavin Hicking <in dot garv at mail>)
+* ADDED new management interface layout 
+  (from Aaron Axelsen <lists at frozenpc.net>)
+
+1.7.5-dev2 => 1.7.5-dev3
+=========================
+* FIXED register_globals being on dependancy
+
+1.7.5-dev => 1.7.5-dev2
+=========================
+* FIXED form login problem
+
+1.7.2 => 1.7.5-dev
+=========================
+* Added form based login
+
+v1.7.1 => 1.7.2
+=========================
+* FIXED missing javascript funtion
+
+v1.7 ==> 1.7.1
+=========================
+* FIXED mysql create scripts support mySQL > 4.0
+* ADDED password check/upgrade for mySQL > 4.0
+* FIXED problem resuming surveys
+* FIXED survey copying
+
+v1.7-rc1 ==> v1.7-rc2
+=========================
+* FIXED quoting problem with array_to_insql function.
+
+v1.7-dev ==> v1.7-rc1
+=========================
+* FIXED !other Checkbox questions not recording.
+* FIXED bad javascript path in head.inc. (Reported by
+  <beachbum_boy AT users.sourceforge.net>).
+* ADDED a check for unsupported web server 
+  configuration(sapi, cgi, etc..) 
+* FIXED CSV export so duplicate question names and question 
+  answers are supported. 
+
+v1.6.1 final ==> v1.7-dev
+=========================
+* FIXED invalid CSS comments.
+* FIXED bugus CSS link background image link.
+* FIXED surveys created in 1.5 fail to CSV exported properly
+  (Reported by Hakan Kuecuekyilmaz).
+* FIXED legend text on "change status page" (Reported by
+  Daniel Buchmann).
+* FIXED Section text set to required causes survey to be
+  invalid. (Based on patch by Paul Jackson - 
+  <beachbum_boy AT users.sourceforge.net>.
+* FIXED crosstab grand total incorrect.
+* FIXED questions that have the same name cause CSV export
+  to "explode".  Question now are forced to be unique.
+  (Reported by Paul Jackson - 
+  <beachbum_boy AT users.sourceforge.net>.
+* FIXED mysql create script failed on mysql >= 4. (Based on
+  patch by Kevin Hawkins - jedihawk AT users.sourceforge.net>).
+* FIXED permission problems in admin pages. (Reported by
+  Leonard Chan - <wotg AT users.sourceforge.net>).
+* FIXED single quotes in question names cause bogus question 
+  names. Reported by (Elie De Brauwer -
+  <amo-ej1 AT users.sourceforge.net>).
+* FIXED quotes in essay questions cause extra escapes.
+  (Reported by Elie De Brauwer - 
+  <amo-ej1 AT users.sourceforge.net>).
+* FIXED removed duplicate call to survey_generate_csv in
+  download.inc.  Based on patch from (Rodolfo Cossalter -
+  <rcoss at users.sourceforge.net>).
+* FIXED allow https urls.
+* FIXED groups limited to one assignment for access.
+* FIXED 0 interpreted as a non-response in Text questions.
+  (Reported by <ude.csum [AT] adin>).
+* NEW FEATURE: Prefix can be assigned to DB tables.
+* ADDED support for databases other than mySQL.  ADOdb now
+  required by and shipping with phpESP.
+* ADDED new css tags for error/info text.
+* ADDED new help page (Based on a submission from Aaron Axelsen).
+* ADDED javascript popup to warn users of the non-reversibilty of
+  activating a survey.
+* ADDED javascript popup to warn users when canceling a new survey.
+* ADDED check for web server running in unsupported(CGI, etc..), mode.
+
+v1.6 final ==> v1.6.1 final
+===========================
+* FIXED redirects so that the server port is used.  (Reported by
+  <rcoss AT dm.uba.ar>.)
+* FIXED CSV export bug on rank questions.  (Based on Patch by Paul
+  Jackson <beachbum_boy AT users.sourceforge.net>.)
+* FIXED slash bug on question choices.  (Reported by Eric Bont.)
+* FIXED purge function for non en-US locales.
+* FIXED bug with the return link at the end of surveys when
+  using the auto-publish page.
+
+v1.6 RC3 ==> v1.6 final
+=======================
+* FIXED windows bug with LC_MESSAGES.  (Reported by Terry Black
+  <tblac AT doh.health.nsw.gov.au>.)
+* FIXED an E_ALL warning for HTTP_ACCEPT_LANGUAGES.
+* LANGUAGE: Update of German translation (de_DE)
+  (Robert <HEConsulting AT t-online.de>)
+* LANGUAGE: Update of Dutch translation (nl_NL)
+  (Klaas Chielens <klaas AT chielens.net>)
+* LANGUAGE: Translation into Greek (el_GR)
+  (armandos <armandos AT hol.gr>)
+* LANGUAGE: Translation into Swedish (sv_SE)
+  (Mats Landstedt <mats.landstedt AT tuesday.se>)
+
+v1.6 RC2 ==> v1.6 RC3
+=====================
+* NEW FEATURE: System test script.
+* FIXED compatibility with older PHP versions and settype(). 
+  (Submitted by Emmett Bearden <chadb AT beardendesigns.com>.)
+* FIXED bug with querying the database before it was opened.  (Noticed
+  by James P. Dugal <jpd AT louisiana.edu>.)
+* FIXED gettext support, again.  Hopefully for the last time.
+* ADDED redirector to admin page in main phpESP directory.
+* LANGUAGE: Translation into Japanese (ja)
+  (IYODA Atsushi <iyoda AT users.sourceforge.net>)
+
+v1.6 RC1 ==> v1.6 RC2
+=====================
+* FIXED a bug which caused non-resumable responses to be stored
+  incorrectly.  (Only affected multipage surveys.)
+* FIXED missing "help" link and title display on cross-tab interface. 
+* FIXED display of selected theme on general tab. (Noticed by Eric Bont
+  <kanven AT fhi.nl>.)
+
+v1.5 final ==> v1.6 RC1
+=======================
+* NEW FEATURE: Ability to navigate (back/forward) a survey response.
+* NEW FEATURE: Ability to save/resume a survey response.
+* NEW FEATURE: Ability to view individual survey responses.
+* NEW FEATURE: Graphical interface for cross analysis.
+* NEW FEATURE: Response id, response time, and username included in CSV
+  export.
+* NEW FEATURE: Self sign-up form for respondents.
+* ADDED a new default group 'auto' to database, used for self
+  registered respondents.
+* ADDED two new fields to the 'access' table to enable navigation and
+  save/resume on authenticated surveys.
+* CHANGED 'thank you' redirection to use 'Location:' header when
+  possible.
+* CHANGED code to automatically determine the install location.
+* CHANGED database connection to a support function so it is no longer
+  in phpESP.ini.
+* CHANGED handling of '!other' fields for more consistent behavior.
+* CHANGED length of username fields from 16 to 64 characters in the
+  database.
+* CHANGED lib/espresponse.inc.  Re-written several times.
+* CHANGED render_survey() to survey_render() for consistency.
+* CHANGED support function DESLASH() to _stripslashes().
+* CHANGED support function XADDSLASHES() to _addslashes().
+* CHANGED the configuration file to have a '.php' extension to avoid
+  potential security problems.
+* CHANGED use of include() to require_once(), and removed 'if
+  defined()' check.
+* FIXED access control list when authentication is disabled.
+* FIXED bug with counting number of users per group.
+* FIXED dependencies on register_globals finally.
+* FIXED lots of warnings with E_ALL.
+* FIXED some HTML tags.  Lower case tag name and XHTML nits.
+* FIXED warnings when DEBUG is enabled when open_basedir is in effect.
+
+v1.5 RC3 ==> v1.5 final
+=======================
+* FIXED a typo in phpESP.ini.
+
+v1.5 RC2 ==> v1.5 RC3
+=====================
+* FIXED bug that was causing !other results to be lost on
+  checkbox questions.
+
+v1.5 RC1 ==> v1.5 RC2
+=====================
+* FIXED Bug with new lines in exported CSV files.
+* FIXED Font sizes in some of the themes.
+* FIXED Spelling mistakes.
+* LANGUAGE: Translation into Italian (it)
+  (<info at cawi.it>)
+* LANGUAGE: Translation into Portuguese (pt)
+  (Lopo Pizarro <lopopizarro at users.sourceforge.net>)
+
+v1.4 final ==> v1.5 RC1
+=======================
+* NEW FEATURE: Survey Themes. See README_SURVEYTHEMES.
+  (Kon Angelopoulos <angekproductions at iprimus.com.au>)
+* NEW FEATURE: Bulk import of accounts.
+  (Matthew Gregg <greggmc at musc.edu>)
+* NEW FEATURE: Option to send Human Readable email for
+  each survey submission.
+  (Kon Angelopoulos <angekproductions at iprimus.com.au>)
+* NEW FEATURE: Display of number of responses to surveys
+  when listing of surveys.
+  (Gary Ashton-Jones <gashtonjones at f2network.com.au>)
+* NEW FEATURE: Javascript auto checks radio/checkbox
+  when data is entered into !other text fields.
+* FIXED Javascript behavior for IE on OS X.
+* CHANGED format of phpESP.ini a little bit to simplify it.
+* CHANGED results to show all question choices even if
+  count is zero.
+* LANGUAGE: Translation into Spanish (es)
+  (RAUL PITTI <rpitti at netmasters.com.pa>)
+* LANGUAGE: Translation into Brazilian Portuguese (pt-br)
+  (Ricardo Cavallini <ricardo at cavallini.com.br>)
+
+v1.4 beta 3 ==> v1.4 final
+==========================
+* NEW FEATURE: Automatic survey template added. This lets
+  you use a survey without having to create a HTML template
+  file yourself and insert the PHP tag.
+* NEW FEATURE: Added CSV (comma separated values) download
+  of collected data.
+* NEW FEATURE: Added LDAP authentication.
+  (Christopher Zorn <zorncj at musc.edu>)
+* FIXED problems with newlines and quotes in CSV data files.
+* FIXED inclusion of "Other" data in CSV files.
+* FIXED problem with zero (0) in req'd numeric fields.
+* FIXED namespace conflict on temporary variables. Was
+  causing Language preference to be ignored and results to be
+  improperly stored.
+* CHANGED name from 'phpESP -- Easy Survey Package' to
+  'phpESP -- php Easy Survey Package' (for TM# 1,721,621)
+* LANGUAGE: Translation into Danish (da)
+  (Henrik <henrik at hornhaver.dk>)
+* LANGUAGE: Translation into French (fr)
+  (Cedric Levasseur <cedric.levasseur at linux-at-business.com>,
+  Olivier Sevin <cjanson at ifrance.com>)
+
+v1.4 beta 2 ==> v1.4 beta 3
+===========================
+* NEW FEATURE: Section Text, allows free form text to be
+  placed inside a survey. (REQ: Database update!)
+  (Kon Angelopoulos <angekgabiel at iprimus.com.au>)
+* NEW FEATURE: Added a configuration variable to globally
+  disable email functions.
+* LANGUAGE: Translation into German (de)
+  (<flo.bee at web.de>)
+* LANGUAGE: Translation into Dutch (nl)
+  (Sipke Overbeeke <sipke at 8a.nl>)
+
+v1.4 beta 1 ==> v1.4 beta 2 (not released)
+==========================================
+* CHANGED results to store IP address if no other ID
+  available.
+* FIXED status page to omit archived surveys.
+* FIXED more spelling mistakes.
+
+v1.3 final ==> v1.4 beta 1
+==========================
+* FIXED spelling mistakes.
+
+----
+$Id$
