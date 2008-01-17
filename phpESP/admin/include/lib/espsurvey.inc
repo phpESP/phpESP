@@ -2,7 +2,7 @@
 /* $Id$ */
 /* vim: set tabstop=4 shiftwidth=4 expandtab: */
 /**
-* espsurveystat.inc -- Functions to work with phpESP survey statistics.
+* espsurvey.inc -- Functions to work with phpESP surveys.
 * Original Author: Bishop Bettini <bishop@ideacode.com>
 *
 * @_PATTERNS_@
@@ -17,8 +17,109 @@
 * $sql = sprintf('SELECT * FROM %s WHERE %s', $GLOBALS['ESPCONFIG']['survey_table'], $where);
 *
 * @_NOTES_@
+* Interpretation of the open constants returned by survey_open():
+* Constant                 Meaning
+* ------------------------ -----------------------------------------------------------------------------------
+* STATUS_OPEN              The current time is within the open & close dates, or those dates aren't given
+* STATUS_CLOSED_TOO_EARLY  The current time is before the open date
+* STATUS_CLOSED_TOO_LATE   The current time is after the close date
 *
 */
+// {{{ constants
+
+define('STATUS_OPEN',             0);
+define('STATUS_CLOSED_TOO_EARLY', 1);
+define('STATUS_CLOSED_TOO_LATE',  2);
+
+// }}}
+
+/* survey inquisition */
+// ... when you know the survey ID only, use these
+
+// ... when you already have information from the survey, use these
+// {{{ survey_status_is_edit()         Is the survey being edited?
+
+function survey_status_is_edit($status) {
+    return (is_numeric($status) && (0 === (int)$status) ? true : false);
+}
+
+// }}}
+// {{{ survey_status_is_active()       Is the survey in active status?
+
+function survey_status_is_active($status) {
+    return survey_status_is($status, STATUS_ACTIVE);
+}
+
+// }}}
+// {{{ survey_status_is_done()         Is the survey in done status?
+
+function survey_status_is_done($status) {
+    return survey_status_is($status, STATUS_DONE);
+}
+
+// }}}
+// {{{ survey_status_is_deleted()      Is the survey in deleted status?
+
+function survey_status_is_deleted($status) {
+    return survey_status_is($status, STATUS_DELETED);
+}
+
+// }}}
+// {{{ survey_status_is_test()         Is the survey in test status?
+
+function survey_status_is_test($status) {
+    return survey_status_is($status, STATUS_TEST);
+}
+
+// }}}
+// {{{ survey_status_is()              Does the survey status match the given bit?
+
+function survey_status_is($status, $bit) {
+    return (is_numeric($status) && ($bit === ((int)$status & $bit)) ? true : false);
+}
+
+// }}}
+// {{{ survey_open()                   Is "now" within the given open and close date times?
+
+function survey_open($open_date, $close_date, $now = null) {
+    // figure out if we have valid open and closing dates
+    // ... exclude nulls and empty dates
+    $has_open_date  = (empty($open_date)  || '0000-00-00 00:00:00' == $open_date  ? false : true);
+    $has_close_date = (empty($close_date) || '0000-00-00 00:00:00' == $close_date ? false : true);
+
+    // ... convert to time stamps, and if failure, assume the date is empty
+    $badts = (is_callable('version_compare') && version_compare('5.1.0', PHP_VERSION, '<=') ? false : -1);
+    if ($has_open_date) {
+        $open_date_ts = (is_int($open_date) ? $open_date : strtotime($open_date));
+        if ($badts === $open_date_ts) {
+            $has_open_date = false;
+        }
+    }
+    if ($has_close_date) {
+        $close_date_ts = (is_int($close_date) ? $close_date : strtotime($close_date));
+        if ($badts === $close_date_ts) {
+            $has_close_date = false;
+        }
+    }
+
+    $nowts = (is_int($now) ? $now : (is_null($now) ? time() : strtotime($now)));
+
+    // if there's an open date, but the current time is before then, we're too early
+    if ($has_open_date && $nowts < $open_date_ts) {
+        return STATUS_CLOSED_TOO_EARLY;
+
+    // if there's a close date, but the current time is after then, we're too late
+    } else if ($has_close_date && $close_date_ts < $nowts) {
+        return STATUS_CLOSED_TOO_LATE;
+
+    // otherwise, we're open for business
+    } else {
+        return STATUS_OPEN;
+    }
+}
+
+// }}}
+
 
 /* designer/administrator survey recovery methods */
 // {{{ survey_get_for_current_user()   Get the ID and information about ACTIVE or DONE surveys the CURRENT user can see
@@ -67,6 +168,7 @@ function survey_fetch_limiting_where($statusColumn = 'status', $ownerColumn = 'o
 
 // }}}
 
+
 /* respondent survey (and associated information) recovery methods */
 // {{{ survey_get_in_realm()           Get the surveys that a given realm may access (as driven by access table)
 
@@ -75,7 +177,7 @@ function survey_get_in_realm($realm, &$surveys) {
      $where = survey_fetch_limiting_where();
      $realm = _addslashes($realm);
      $sql =<<<EOSQL
-SELECT DISTINCT tblSurvey.id, tblSurvey.name, tblSurvey.title, tblSurvey.owner
+SELECT DISTINCT tblSurvey.id, tblSurvey.name, tblSurvey.title, tblSurvey.owner, tblSurvey.open_date, tblSurvey.close_date
   FROM {$GLOBALS['ESPCONFIG']['survey_table']} AS tblSurvey
   JOIN {$GLOBALS['ESPCONFIG']['access_table']} AS tblAccess
     ON tblAccess.survey_id=tblSurvey.id
@@ -93,7 +195,7 @@ function survey_get_public(&$surveys) {
      // get the survey data based on those limitations
      $where = survey_fetch_limiting_where();
      $sql =<<<EOSQL
-SELECT id,name,title,owner
+SELECT id,name,title,owner,open_date,close_date
   FROM {$GLOBALS['ESPCONFIG']['survey_table']}
  WHERE (public = 'Y') AND ($where)
  ORDER BY id DESC
@@ -146,46 +248,100 @@ EOSQL;
 }
 
 // }}}
-// {{{ survey_get_availability()       Determine if a user and realm can access one or more surveys
-// NOTE: A survey is "available" to a user when:
-// NOTE: (a) (survey is public) OR (in user's realm)
-// NOTE: (b) survey is active
-// NOTE: (c) (no max login) or (number of complete responses < max)
+// {{{ survey_get_accessibility()      Determine accessibility of one or more surveys, optionally pinned to user or realm
 
-function survey_get_availability(&$availability, $sids, $username, $realm) {
+/*
+NOTE1: A survey is "accessible" when it's:
+ (a) active:    status is active
+ (b) open:      survey is open (between open & close dates, if given)
+ (c) available: (user given and ((no max login) or (number of complete responses < max))) or (no user given)
+ (d) visible:   (survey is public) OR (in user's realm)
+
+NOTE2: Each row will have 5 columns: id, active, open, available, visible.  Possible values are:
+ o        id: >= 1
+ o    active: === 1 if active, === 0 otherwise
+ o      open: either STATUS_OPEN, STATUS_CLOSED_TOO_EARLY, or STATUS_CLOSED_TOO_LATE
+ o available: === 1 if available, === 0 otherwise
+ o   visible: === 1
+
+*/
+
+function survey_get_accessibility(&$accessibility, $sids, $username = null, $realm = null) {
+    $yes = _addslashes('Y');
+
+    // construct the accessibilty clauses
+    // ... active
     $statusActive = db_bin('tblSurvey.status', STATUS_ACTIVE);
-    $username     = _addslashes($username);
-    $realm        = _addslashes($realm);
-    $yes          = _addslashes('Y');
+    $statusActive =<<<EOSQL
+       CASE WHEN ($statusActive) THEN 1
+       ELSE 0
+       END
+EOSQL;
 
-    // construct the limit clauses
+    // ... open
+    $now = sys_time_stamp();
+    $STATUS_CLOSED_TOO_EARLY = STATUS_CLOSED_TOO_EARLY;
+    $STATUS_CLOSED_TOO_LATE  = STATUS_CLOSED_TOO_LATE;
+    $STATUS_OPEN             = STATUS_OPEN;
+    $openForBiz   =<<<EOSQL
+        CASE
+        WHEN NOT (tblSurvey.open_date IS NULL OR '0000-00-00 00:00:00' = tblSurvey.open_date) AND $now < tblSurvey.open_date
+        THEN $STATUS_CLOSED_TOO_EARLY
+        WHEN NOT (tblSurvey.close_date IS NULL OR '0000-00-00 00:00:00' = tblSurvey.close_date) AND tblSurvey.close_date < $now
+        THEN $STATUS_CLOSED_TOO_LATE
+        ELSE $STATUS_OPEN
+        END
+EOSQL;
+
+    // ... available
+    if (isset($username)) {
+        $username = _addslashes($username);
+        $mayRespond =<<<EOSQL
+            CASE WHEN (
+                       0 = COALESCE(maxlogin,0) OR
+                       (
+                         SELECT COUNT(*)
+                           FROM {$GLOBALS['ESPCONFIG']['response_table']} as tblResponse
+                          WHERE tblResponse.survey_id=tblAccess.survey_id AND
+                                tblResponse.username=$username AND
+                                tblResponse.complete=$yes
+                       ) < maxlogin
+                      )
+            THEN 1
+            ELSE 0
+            END
+EOSQL;
+    } else {
+        $mayRespond = '1';
+    }
+
+    // ... visible
     if (is_scalar($sids)) {
         $sids = array ($sids);
     } else if (! is_array($sids)) {
         return false;
     }
-    $limit = sprintf(
-                 '(tblSurvey.id %s) AND (tblSurvey.public=%s OR tblAccess.realm=%s)',
-                 array_to_insql($sids), $yes, $realm
-             );
 
-    // get the access columns, and add in the "available" computed column to indicate if the survey is "available to take"
+    if (isset($realm)) {
+        $realm = _addslashes($realm);
+        $limit = sprintf(
+                     '(tblSurvey.id %s) AND (tblSurvey.public=%s OR tblAccess.realm=%s)',
+                     array_to_insql($sids), $yes, $realm
+                 );
+    } else {
+        $limit = sprintf(
+                     '(tblSurvey.id %s) AND (tblSurvey.public=%s)',
+                     array_to_insql($sids), $yes
+                 );
+    }
+
+    // compute
     $sql =<<<EOSQL
 SELECT tblSurvey.id,
-       CASE
-       WHEN ($statusActive) AND (
-                                 0 = COALESCE(maxlogin,0) OR
-                                 (
-                                  SELECT COUNT(*)
-                                    FROM {$GLOBALS['ESPCONFIG']['response_table']} as tblResponse
-                                   WHERE tblResponse.survey_id=tblAccess.survey_id AND
-                                         tblResponse.username=$username AND
-                                         tblResponse.complete=$yes
-                                 ) < maxlogin
-                               )
-       THEN 1
-       ELSE 0
-       END AS available
+       ($statusActive) AS active,
+       ($openForBiz)   AS open,
+       ($mayRespond)   AS available,
+       1               AS visible
   FROM {$GLOBALS['ESPCONFIG']['survey_table']} AS tblSurvey
   LEFT
   JOIN {$GLOBALS['ESPCONFIG']['access_table']} AS tblAccess
@@ -193,10 +349,11 @@ SELECT tblSurvey.id,
  WHERE $limit
 EOSQL;
 
-    return survey_get_from_sql($sql, $availability);
+    return survey_get_from_sql($sql, $accessibility);
 }
 
 // }}}
+
 
 /* helper functions */
 // {{{ survey_get_from_sql()           Get an array of survey data from an SQL statement

@@ -32,10 +32,10 @@
 	}
 
 	// get the survey
-	$sql = "SELECT status, name, public FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
+	$sql = "SELECT status, name, public, open_date, close_date FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
 	$result = execute_sql($sql);
         if ($result && record_count($result) > 0)
-       	   list ($status, $name, $survey_public) = fetch_row($result);
+       	   list ($status, $name, $survey_public, $open_date, $close_date) = fetch_row($result);
         else
            $status = 0;
 
@@ -56,12 +56,6 @@
 	if (empty($_REQUEST['referer'])) {
 		$_REQUEST['referer'] = '';
  		$_REQUEST['direct'] = 1;
-	}
-
-	if (isset($_REQUEST['test'])) {
-	    $test = intval($_REQUEST['test']);
-	} else {
-       	    $test = 0;
 	}
 
 	if (!isset($_REQUEST['sec'])) {
@@ -101,16 +95,26 @@
 	   return;
 	}
 
-	if($status & ( STATUS_DONE | STATUS_DELETED )) {
+    // may this survey be accessed?
+    esp_require_once('/lib/espsurvey');
+    if (survey_status_is_edit($status) || survey_status_is_done($status) || survey_status_is_deleted($status)) {
+        $isActive = false;
+    } else if (survey_status_is_test($status)) {
+        if (isset($_REQUEST['test']) && $_REQUEST['test']) {
+            $isActive = true;
+        } else {
+            $isActive = false;
+        }
+    } else if (STATUS_OPEN !== survey_open($open_date, $close_date)) {
+        $isActive = false;
+    } else {
+        $isActive = true;
+    }
+    if (! $isActive) {
 		echo(mkerror(_('Error processing survey: Survey is not active.')));
-		return;
-	}
-	if(!($status & STATUS_ACTIVE)) {
-		if(!(isset($test) && $test && ($status & STATUS_TEST))) {
-			echo(mkerror(_('Error processing survey: Survey is not active.')));
-			return;
-		}
-	}
+        return;
+    }
+
 
    	if ($_REQUEST['referer'] == $ESPCONFIG['autopub_url'])
        	$_REQUEST['referer'] .= "?name=$name";

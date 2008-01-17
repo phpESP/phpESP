@@ -19,7 +19,7 @@
 		$survey = fetch_row($result);
 		db_close($result);
 	} else {
-		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','public','auto_num');
+		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','public','auto_num','open_date','close_date');
 	   	foreach ($fields as $f) {
             if(!empty($_POST[$f]))
 	    	    $survey[$f] = _stripslashes($_POST[$f]);
@@ -27,6 +27,14 @@
                 $survey[$f] = '';
         }
 	}
+
+    // if the date values are zeroes, something bad went in -- correct it on the display so as to not panic the user
+    if ('0000-00-00 00:00:00' == $survey['open_date']) {
+        $survey['open_date'] = '';
+    }
+    if ('0000-00-00 00:00:00' == $survey['close_date']) {
+        $survey['close_date'] = '';
+    }
 ?>
 <?php echo(_('The information on this tab applies to the whole survey.
 Fill out this page then go to the <strong>Fields</strong> tab to
@@ -154,6 +162,25 @@ displayed after a user completes this survey.')); ?>
 			echo(mkselect('auto_num',array('Y'=>_('Yes'),'N'=>_('No')), $survey) . '<span class="red"><em>'. _('Required') .'</em></span><br />' .
             		_('Select if questions are to be numbered automatically when showing the survey.')); ?>
 		</td>
+        </tr>
+	<tr><td colspan="2"><hr class="line1" /></td></tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Survey opening date')); ?></strong></td>
+        <td class="left"><?=
+			mktext('open_date', 16, null, $survey) . '<br />' .
+            _('The <em>earliest</em> date and time respondents may respond to survey.') . '<br />' .
+            _('If date given without a time, midnight on the given date is assumed.') . '<br />' .
+            _('If not supplied, respondents may respond immediately once survey activated.')
+		?></td>
+        </tr>
+	<tr style="vertical-align: top">
+		<td class="right"><strong><?php echo(_('Survey closing date')); ?></strong></td>
+        <td class="left"><?=
+			mktext('close_date', 16, null, $survey) . '<br />' .
+            _('When provided, the <em>latest</em> date and time respondents may respond to survey.') . '<br />' .
+            _('If date given without a time, midnight on the given date is assumed.') . '<br />' .
+            _('If not supplied, respondents may respond indefinitely until survey marked as done.')
+		?></td>
         </tr>
 <!--
 	<tr><td colspan="2"><hr class="line1" /></td></tr>

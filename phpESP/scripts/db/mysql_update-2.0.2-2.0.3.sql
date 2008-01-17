@@ -12,6 +12,7 @@
 -- # of "phpesp" in the command line.
 -- #
 
+-- ideacode Issue 919 (Track statistics related to survey completion)
 CREATE TABLE survey_statistics (
     survey_id INT UNSIGNED NOT NULL,
     loginfail INT UNSIGNED NOT NULL DEFAULT 0,
@@ -21,3 +22,7 @@ CREATE TABLE survey_statistics (
     completed INT UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (survey_id)
 );
+
+-- ideacode Issue 926 (Add opening and closing dates to survey)
+ALTER TABLE survey ADD COLUMN open_date DATETIME NULL AFTER status;
+ALTER TABLE survey ADD COLUMN close_date DATETIME NULL AFTER open_date;
