@@ -103,35 +103,42 @@ div.form label, form label {
 div.form div, form div {
   clear: both;
 }
-.landingPanel { margin-top: 1em; border: solid 1px; width: 40em; }
-.landingPanel table caption,
-.landingPanel h1 {
+#dashboard h1 { margin: 0; }
+#dashboard p { margin: 0 0 1em 0; }
+.dashboardPanel { margin-top: 1em; border: solid 1px #999; width: 50em; }
+.dashboardPanel table caption,
+.dashboardPanel h1 {
+  padding: .25em .5em;
+  margin: 0;
   text-align: left;
   font-size: larger;
   font-weight: bold;
   background: #ddd;
-  padding: .5em;
-  margin: 0;
   color: #09f;
+  border-bottom: solid 3px #000;
 }
+.dashboardPanel table { padding: 1em; empty-cells: show; border-spacing: 0px; }
+.dashboardPanel table th, .dashboardPanel table td { border: solid 1px #eee; padding: 0 .2em; }
+.dashboardPanel table thead th { background: #eee; text-align: center; border-bottom: solid 1px #999; }
+.dashboardPanel p { margin: 0; padding: 0 .25em; }
 
 #my_login div { padding: .25em; }
-#my_login a { text-decoration: none; display: block; text-align: right; margin: 0 .25em; }
+#my_login a { display: block; text-align: right; margin: 0 .25em; }
 
 #my_surveys { }
 #my_surveys table { width: 100%; }
-#my_surveys table thead {}
-#my_surveys table thead th { text-align: left; border-bottom: solid 1px; }
+#my_surveys table thead { }
+#my_surveys table thead th { }
 #my_surveys table tbody tr:nth-child(odd) { background: #09f; }
 
 #my_history { }
 #my_history table { width: 100%; }
-#my_history table thead {}
-#my_history table thead th { text-align: left; border-bottom: solid 1px; }
+#my_history table thead { }
+#my_history table thead th { }
 #my_history table tbody tr:nth-child(odd) { background: #09f; }
 
 #my_tools { }
-#my_tools li {}
+#my_tools li { }
 
 table.help { width: 100%; }
 table.help td.menu { vertical-align: top; width: 125px; border-right: dashed 1px #000; }

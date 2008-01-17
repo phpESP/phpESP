@@ -38,7 +38,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		}
 
 		// create a new survey in the database
-		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num');
+		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num','open_date','close_date');
 		foreach($fields as $f) {
 			if(isset($_POST[$f])) {
 				array_push($f_arr,$f);
@@ -73,7 +73,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				return(0);
 			}
 
-		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num');
+		$fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num','open_date','close_date');
 		$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${survey_id}";
 		$name = get_one($sql);
 
