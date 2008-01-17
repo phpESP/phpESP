@@ -131,11 +131,11 @@ $ESPCONFIG['signup_realm'] = 'auto';
 // If sign-up is supported, a link to the sign-up page will be
 // provided on the login page.  The login page will also show all
 // publically available surveys.
-$ESPCONFIG['dashboard_enable'] = true;
+$ESPCONFIG['dashboard_enable'] = false;
 
 // On the dashboard, before authentication, show a list of public
 // surveys.  This is only relevant if dashboard_enable = true.  
-$ESPCONFIG['dashboard_show_public_surveys'] = true;
+$ESPCONFIG['dashboard_show_public_surveys'] = false;
 
 // Allow respondents to change their profile?
 $ESPCONFIG['dashboard_allow_change_profile'] = true;
