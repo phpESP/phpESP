@@ -72,7 +72,7 @@ function is_session_authenticated() {
 // }}}
 // {{{ set_current_respondent()        Set the current respondent
 
-function set_current_respondent($username, $realm, $password) {
+function set_current_respondent($username, $realm, $password = null) {
     $cfg =& $GLOBALS['ESPCONFIG'];
     $sql = sprintf(
                'SELECT * FROM %s WHERE username = %s AND realm = %s',
@@ -98,8 +98,10 @@ function set_current_respondent($username, $realm, $password) {
     db_close($res);
 
     // FIXME: For now, to bootstrap public/handler-prefix.php
-    $_SESSION['espuser'] = $username;
-    $_SESSION['esppass'] = $password;
+    if (isset($password)) {
+        $_SESSION['espuser'] = $username;
+        $_SESSION['esppass'] = $password;
+    }
 
     return true;
 }

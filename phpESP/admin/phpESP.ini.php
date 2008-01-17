@@ -123,19 +123,33 @@ $ESPCONFIG['ldap_force_proto_3'] = true;
 // Please do disable this for LDAP auth for respondents
 $ESPCONFIG['signup_realm'] = 'auto';
 
-// Use the landing page, where survey respondents can log in and
+
+/* DASHBOARD RELATED */
+// Use the dashboard, where survey respondents can log in and
 // see all their current surveys, the historical record of their
 // surveys, change their password, get help on the survey, etc.
 // If sign-up is supported, a link to the sign-up page will be
 // provided on the login page.  The login page will also show all
 // publically available surveys.
-$ESPCONFIG['use_landing'] = true;
+$ESPCONFIG['dashboard_enable'] = true;
+
+// On the dashboard, before authentication, show a list of public
+// surveys.  This is only relevant if dashboard_enable = true.  
+$ESPCONFIG['dashboard_show_public_surveys'] = true;
+
+// Allow respondents to change their profile?
+$ESPCONFIG['dashboard_allow_change_profile'] = true;
+
+// Allow respondents to change their password?
+$ESPCONFIG['dashboard_allow_change_password'] = true;
 
 // Email address where respondents can reach you if they need support.
 // Set to null (the default) to not expose an email address to users.
 // ESPCONFIG['support_email_address'] = 'you@example.com';
 $ESPCONFIG['support_email_address'] = null;
 
+
+/* LANGUAGE RELATED */
 // Default language for designer interface
 // (Must have gettext support avaiable.)
 $ESPCONFIG['default_lang'] = 'en_US';
