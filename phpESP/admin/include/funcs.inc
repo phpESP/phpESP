@@ -134,9 +134,9 @@ window.location="<?php echo($thank_url); ?>"
 
         echo "<h2 class=\"thankhead\"> $thank_head </h2>";
         echo "<blockquote class=\"thankbody\"> $thank_body </blockquote>";
-        if ($GLOBALS['ESPCONFIG']['use_landing']) {
+        if ($GLOBALS['ESPCONFIG']['dashboard_enable']) {
 ?>
-<a class="returnlink" href="<?php echo $GLOBALS['ESPCONFIG']['base_url'] . '/public/landing.php'; ?>"><?php echo _('Go to my surveys'); ?></a>
+<a class="returnlink" href="<?php echo $GLOBALS['ESPCONFIG']['base_url'] . '/public/dashboard.php'; ?>"><?php echo _('Go to my surveys'); ?></a>
 <?php
         }
 
@@ -217,9 +217,9 @@ the link below.  You may be prompted for your username
 and password to complete the survey.') ?></blockquote>
 <a class="returnlink" href="<?php echo $url; ?>"><?php echo _('Resume survey'); ?></a>&nbsp;
 <?php
-        if ($GLOBALS['ESPCONFIG']['use_landing']) {
+        if ($GLOBALS['ESPCONFIG']['dashboard_enable']) {
 ?>
-<a class="returnlink" href="<?php echo $GLOBALS['ESPCONFIG']['base_url'] . '/public/landing.php'; ?>"><?php echo _('Go to my surveys'); ?></a>
+<a class="returnlink" href="<?php echo $GLOBALS['ESPCONFIG']['base_url'] . '/public/dashboard.php'; ?>"><?php echo _('Go to my surveys'); ?></a>
 <?php
         }
         return;

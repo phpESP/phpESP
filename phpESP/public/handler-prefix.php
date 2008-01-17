@@ -33,7 +33,7 @@
     }
 
     if(!isset($sid) || empty($sid)) {
-        blur('/public/landing.php');
+        blur('/public/dashboard.php');
         assert('false; // NOTREACHED');
     }
 
