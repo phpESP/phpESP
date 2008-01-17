@@ -62,12 +62,14 @@ INSERT INTO designer (username, password, fname, lname, realm, pdesign, pstatus,
 -- # table of different surveys available
 DROP TABLE IF EXISTS survey;
 CREATE TABLE survey (
-	id			INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id		INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name		CHAR(64) NOT NULL,
 	owner		CHAR(16) NOT NULL,
 	realm		CHAR(64) NOT NULL,
 	public		ENUM('Y','N') NOT NULL DEFAULT 'Y',
 	status		INT UNSIGNED NOT NULL DEFAULT '0',
+        open_date       DATETIME NULL,
+        close_date      DATETIME NULL,
 	title		CHAR(255) NOT NULL,
 	email		CHAR(64),
 	subtitle	TEXT,
