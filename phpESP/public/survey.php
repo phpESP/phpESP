@@ -69,6 +69,9 @@
 	    echo('<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css ."\" type=\"text/css\" />\n");
     }
     unset($_css);
+	if(!empty($ESPCONFIG['charset'])) {
+		echo('<meta http-equiv="Content-Type" content="text/html; charset='. $ESPCONFIG['charset'] ."\" />\n");
+	}
 ?>
 </head>
 <body>
