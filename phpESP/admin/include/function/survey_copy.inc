@@ -17,7 +17,7 @@ function add_squotes (&$val, $key) {
 /* {{{ proto bool survey_copy(int survey_id)
    Creates an editable copy of a survey. */
 function survey_copy($sid) {
-	$survey_fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num');
+    $survey_fields = array('name','realm','title','subtitle','email','theme','thanks_page','thank_head','thank_body','info','auto_num','open_date','close_date');
 	$sql = "SELECT ". join(', ',$survey_fields)." FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
 	$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
 	if(record_count($result) != 1)
