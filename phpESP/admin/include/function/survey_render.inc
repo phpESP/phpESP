@@ -89,8 +89,9 @@ function survey_render($sid, $section = 1, $rid=0, $message = '') {
 		}
 	}
 	if ($questions_shown==0) {
+        print "<p class=\"message\">";
 		print(_('Sorry, no questions for you to answer in this section.'));
-		print "<br /><br />";
+		print "</p><br /><br />";
 	}
 ?>
 </table>
