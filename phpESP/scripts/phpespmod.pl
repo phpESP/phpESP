@@ -10,6 +10,17 @@
 #   * Set more obvious defaults
 #
 # This script creates SQL statements for creating a new phpESP survey.
+#
+### WARNING ###
+#
+# This script is quasi-supported by the phpESP project: USE AT YOUR OWN RISK.
+#
+# We recommend throughly reading the documentation in this file as well as visiting the doc URL:
+#    http://sixshooter.v6.thrupoint.net/phpESP_proto/README.txt
+# 
+# Always validate the SQL generated against your expectations!
+#
+### WARNING ###
 #               
 # The input is a text file prepared with pipe ('|') delimited format:
 #   - the question (or item)
