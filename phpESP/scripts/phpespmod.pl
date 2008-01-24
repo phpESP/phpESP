@@ -213,10 +213,7 @@ print "\n\n-- # [$inputline]\n";
   $q_length  = 0;
 
 
-
-  $quest_name = sprintf( "%s%d","quest",$q_id);
-
-  ($q_question,$q_adl_text,$q_question_type,$buttons) = split('\|', $inputline);
+  ($q_question,$q_adl_text,$q_question_type,$buttons,$quest_name) = split('\|', $inputline);
   ($quest_name = sprintf( "%s%d","quest",$q_id)) unless $quest_name;
 
 
