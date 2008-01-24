@@ -5,9 +5,10 @@
 #   Released under BSD License.
 #   05/07/05
 #
-# Modified by Bishop Bettini <php@ideacode.com> 2008-01-22 to:
-#   * Support latest survey table schema
-#   * Set more obvious defaults
+# Modified by Bishop Bettini <php@ideacode.com> to:
+#   * 2008-01-22  Support latest survey table schema
+#   * 2008-01-22  Set more obvious defaults
+#   * 2008-01-24  Allow question name to be set in input file
 #
 # This script creates SQL statements for creating a new phpESP survey.
 #
@@ -27,6 +28,7 @@
 #   - any other text or explanation about the question (not currently used, set to 'none')
 #   - the question type (yes,text,essay,radio,check,dropdown,rate,date,numeric,break,section)
 #   - mutiple button labels delimited by ':' colons i.e. "first one:second one:third time pays for all"
+#   - (optional) question name; if not present, quesX is used, where "X" is an incrementing number
 #                 
 #
 # Sample input lines:
@@ -215,6 +217,7 @@ print "\n\n-- # [$inputline]\n";
   $quest_name = sprintf( "%s%d","quest",$q_id);
 
   ($q_question,$q_adl_text,$q_question_type,$buttons) = split('\|', $inputline);
+  ($quest_name = sprintf( "%s%d","quest",$q_id)) unless $quest_name;
 
 
   if($q_question_type =~/yes/i)      { $q_type_id = 1; }
