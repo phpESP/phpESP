@@ -13,6 +13,7 @@
 -- #
 
 -- ideacode Issue 919 (Track statistics related to survey completion)
+DROP TABLE IF NOT EXISTS survey_statistics;
 CREATE TABLE survey_statistics (
     survey_id INT UNSIGNED NOT NULL,
     loginfail INT UNSIGNED NOT NULL DEFAULT 0,
