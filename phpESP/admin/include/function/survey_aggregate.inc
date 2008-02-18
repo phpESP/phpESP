@@ -65,8 +65,6 @@ function survey_aggregate($sids) {
     $sql = sql_for_insert_into_table($GLOBALS['ESPCONFIG']['survey_table'], $survey);
     $res = execute_sql($sql);
     if (! $res) {
-        var_dump($sql);
-        die('huh');
         return false;
     }
     $new_sid = insert_id('survey_id_seq');
