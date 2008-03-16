@@ -21,7 +21,7 @@
 
         if(!empty($_REQUEST['submit'])) {
 		$sid=intval($_POST['sid']);
-                $msg = response_check_answers($sid,$_REQUEST['sec']);
+                $msg = response_check_answers($sid,$_REQUEST['rid'],$_REQUEST['sec']);
 
 		if ($ESPCONFIG['use_captcha']) {
         		require_once(ESP_BASE.'public/captcha_check.php');

@@ -12,7 +12,7 @@
     completed, else returns a message string indicating which
     questions need to be completed. It also checks numerical fields for only
     numerical values */
-    function response_check_answers($sid, $section) {
+    function response_check_answers($sid, $rid, $section) {
         //angek: may need to keep for backwards compatability
         //global $_POST;
         $sql = "SELECT id,type_id,content,required FROM ".$GLOBALS['ESPCONFIG']['question_table']."
@@ -28,38 +28,51 @@
         }
 
         $missing = array();	// array of missing questions
-	$not_numeric = array(); // array of numerical questions that are non-numeric
+	    $not_numeric = array(); // array of numerical questions that are non-numeric
 
+        // we loop through all the questions and check for
+        // missing and non-numerical issues, but only if the question
+        // was shown in the first place (it might have had a condition on it)
         while(list($qid,$tid,$content,$required) = fetch_row($result)) {
+
+            // if the question has no condition:
+            //      $question_was_shown=true
+            // if the question has a condition:
+            //      $question_was_shown=true if condition is fulfilled
+            //      false otherwise
+            $question_was_shown=question_conditioncheck($sid,$qid,$rid);
+
+            if ($question_was_shown) {
+                if($required=='Y' && $tid == 8) { // Rank
+                    $sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=$qid";
+                    $cid_result = execute_sql($sql);
+                    while(list($cid) = fetch_row($cid_result)) {
+                        if(!isset($_POST["${qid}_${cid}"])) {
+                            $missing[$qid] = $content;
+                            break;
+                        }
+                        $cid_result->MoveNext();
+                    }
+                    db_close($cid_result);
+                    continue;
+                }
+                if ($required=='Y' && $tid == 10 && $_POST[$qid] === '0') { // Numeric
+                    continue;
+                } elseif ($tid == 10 && !empty($_POST[$qid]) && !is_numeric($_POST[$qid])) {
+                    $not_numeric[$qid] = $content;
+                }
+                if (!isset($_POST[$qid])) {
+                    $_POST[$qid] = '';
+                }
+                if($required=='Y' && empty($_POST[$qid]) && $_POST[$qid] != '0') {
+                    $missing[$qid] = $content;
+                }
+            }
             $result->MoveNext();
-            if($required=='Y' && $tid == 8) { // Rank
-               $sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=$qid";
-               $cid_result = execute_sql($sql);
-               while(list($cid) = fetch_row($cid_result)) {
-                   $cid_result->MoveNext();
-                   if(!isset($_POST["${qid}_${cid}"])) {
-                       $missing[$qid] = $content;
-                       break;
-                   }
-               }
-               db_close($cid_result);
-               continue;
-            }
-            if ($required=='Y' && $tid == 10 && $_POST[$qid] === '0') { // Numeric
-               continue;
-            } elseif ($tid == 10 && !empty($_POST[$qid]) && !is_numeric($_POST[$qid])) {
-		$not_numeric[$qid] = $content;
-	    }
-            if (!isset($_POST[$qid])) {
-                $_POST[$qid] = '';
-            }
-            if($required=='Y' && empty($_POST[$qid]) && $_POST[$qid] != '0') {
-		$missing[$qid] = $content;
-	    }
         }
         db_close($result);
 
-	$message = '';
+        $message = '';
         if(count($missing) > 0) {
             // missing required variables
             $message .= _('You are missing the following required questions:') ."<br>\n";

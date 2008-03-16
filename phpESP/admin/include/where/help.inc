@@ -172,9 +172,8 @@
         <li>
           <p>On this tab, you can change define conditions on questions, so a question is only shown when a condition is met.<br />
 	     All conditions are "OR" conditions, so if one conditions is fullfilled, the question is shown.<br />
-	     A question that has a condition must be an optional question. So, if you define a condition on a question, the "Required" parameter is set to "No".<br />
 	     A question that has a condition must be on the next page than the question/value that is used to compare it with. Use the "Order tab" to insert a section break where wanted (this is NOT done automatically).<br />
-             A Yes/No question can only be compared using the values "Yes or "No".
+             Tip: a Yes/No question can only be compared using the values "Yes or "No".
 	</p>
         </li>
       </ul>
