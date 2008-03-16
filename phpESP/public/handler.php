@@ -61,12 +61,16 @@
 	if (!isset($_REQUEST['sec'])) {
             $_REQUEST['sec'] = 1;
 	}
-
-	if (!isset($_REQUEST['rid'])) {
-            $_REQUEST['rid'] = "";
+	$_REQUEST['sec'] = intval($_REQUEST['sec']);
+	if ($_REQUEST['sec'] == 1) {
+	    $_SESSION['rid'] = 0;
 	}
 
-	$_REQUEST['rid'] = intval($_REQUEST['rid']);
+	if (!isset($_SESSION['rid'])) {
+            $_SESSION['rid'] = 0;
+	}
+
+	$_SESSION['rid'] = intval($_SESSION['rid']);
 	$_REQUEST['direct'] = intval($_REQUEST['direct']);
 	$_REQUEST['referer'] = htmlspecialchars($_REQUEST['referer']);
 
@@ -128,34 +132,35 @@
 
 	$msg = '';
 	if(!empty($_REQUEST['submit'])) {
-	    $msg .= response_check_answers($sid,$_REQUEST['rid'],$_REQUEST['sec']);
+	    $msg .= response_check_answers($sid,$_SESSION['rid'],$_REQUEST['sec']);
 	    # we only check the captcha if no all required 
-        if (empty($msg) && $ESPCONFIG['use_captcha']) {
-            require_once(ESP_BASE.'public/captcha_check.php');
-            $msg .= response_check_captcha("captcha_check",1);
-        }   
+            if (empty($msg) && $ESPCONFIG['use_captcha']) {
+                require_once(ESP_BASE.'public/captcha_check.php');
+                $msg .= response_check_captcha("captcha_check",1);
+            }   
 
-        if (empty($msg)) {
-            if ($ESPCONFIG['auth_response'] && auth_get_option('resume')) {
-                // submitting a previously saved survey
-                esp_require_once('/lib/espsurveystat');
-                survey_stat_decrement(SURVEY_STAT_SUSPENDED, $sid);
+            if (empty($msg)) {
+                if ($ESPCONFIG['auth_response'] && auth_get_option('resume')) {
+                    // submitting a previously saved survey
+                    esp_require_once('/lib/espsurveystat');
+                    survey_stat_decrement(SURVEY_STAT_SUSPENDED, $sid);
 
-                // delete the previous responses
-                response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
-            }
-			$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
-			response_commit($_REQUEST['rid']);
-			response_send_email($sid,$_REQUEST['rid']);
+                    // delete the previous responses
+                    response_delete($sid, $_SESSION['rid'], $_REQUEST['sec']);
+                }
+		$_SESSION['rid'] = response_insert($sid,$_REQUEST['sec'],$_SESSION['rid']);
+		response_commit($_SESSION['rid']);
+		response_send_email($sid,$_SESSION['rid']);
+		$_SESSION['rid']="";
 			
-			goto_thankyou($sid,$_REQUEST['referer']);
-			return;
-		}
+		goto_thankyou($sid,$_REQUEST['referer']);
+		return;
+	    }
 	}
 
 	if(!empty($_REQUEST['resume']) && $ESPCONFIG['auth_response'] && auth_get_option('resume')) {
-        	response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
-		$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
+        	response_delete($sid, $_SESSION['rid'], $_REQUEST['sec']);
+		$_SESSION['rid'] = response_insert($sid,$_REQUEST['sec'],$_SESSION['rid']);
         if ($action == $ESPCONFIG['autopub_url'])
     		goto_saved($sid, "$action?name=$name");
         else
@@ -164,11 +169,11 @@
 	}
 
 	if(!empty($_REQUEST['next'])) {
-		$msg = response_check_answers($sid,$_REQUEST['rid'],$_REQUEST['sec']);
+		$msg = response_check_answers($sid,$_SESSION['rid'],$_REQUEST['sec']);
 		if(empty($msg)) {
             		if ($ESPCONFIG['auth_response'] && auth_get_option('resume'))
-                		response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
-            		$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
+                		response_delete($sid, $_SESSION['rid'], $_REQUEST['sec']);
+            		$_SESSION['rid'] = response_insert($sid,$_REQUEST['sec'],$_SESSION['rid']);
 			$_REQUEST['sec']++;
 		}
 	}
@@ -176,8 +181,8 @@
 	if (!empty($_REQUEST['prev']) && $ESPCONFIG['auth_response'] && auth_get_option('navigate')) {
 		if(empty($msg)) {
             		if (auth_get_option('resume'))
-               			response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);
-			$_REQUEST['rid'] = response_insert($sid,$_REQUEST['sec'],$_REQUEST['rid']);
+               			response_delete($sid, $_SESSION['rid'], $_REQUEST['sec']);
+			$_SESSION['rid'] = response_insert($sid,$_REQUEST['sec'],$_SESSION['rid']);
 			$_REQUEST['sec']--;
 		}
 	}
@@ -191,8 +196,8 @@
     survey_stat_increment(SURVEY_STAT_ABANDONED, $sid);
 
     // if resuming a previous survey
-    if ($ESPCONFIG['auth_response'] && auth_get_option('resume') && $_REQUEST['rid']>0) {
-        response_import_sec($sid, $_REQUEST['rid'], $_REQUEST['sec']);
+    if ($ESPCONFIG['auth_response'] && auth_get_option('resume') && $_SESSION['rid']>0) {
+        response_import_sec($sid, $_SESSION['rid'], $_REQUEST['sec']);
         survey_stat_decrement(SURVEY_STAT_SUSPENDED, $sid);
     }
 	
@@ -203,12 +208,12 @@
 <input type="hidden" name="direct" value="<?php echo($_REQUEST['direct']); ?>" />
 <input type="hidden" name="userid" value="<?php echo($_REQUEST['userid']); ?>" />
 <input type="hidden" name="sid" value="<?php echo($sid); ?>" />
-<input type="hidden" name="rid" value="<?php echo($_REQUEST['rid']); ?>" />
+<input type="hidden" name="rid" value="<?php echo($_SESSION['rid']); ?>" />
 <input type="hidden" name="sec" value="<?php echo($_REQUEST['sec']); ?>" />
 <input type="hidden" name="name" value="<?php echo($name); ?>" />
     </fieldset>
 <?php
-        survey_render($sid,$_REQUEST['sec'],$_REQUEST['rid'],$msg);
+        survey_render($sid,$_REQUEST['sec'],$_SESSION['rid'],$msg);
 ?>
     <fieldset>
 <?php
