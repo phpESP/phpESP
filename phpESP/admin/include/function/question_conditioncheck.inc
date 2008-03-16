@@ -6,20 +6,20 @@
 
 /* {{{ proto bool question_render(int $question_id, int respnse_number)
    Checks if conditions for qid are met */
-  function isequal (&$val1,&$val2) {
+function isequal (&$val1,&$val2) {
      return $val1==$val2;
-  }
-  function isnequal (&$val1,&$val2) {
+}
+function isnequal (&$val1,&$val2) {
      return $val1!=$val2;
-  }
-  function issmallerthan (&$val1,&$val2) {
+}
+function issmallerthan (&$val1,&$val2) {
      return $val1<$val2;
-  }
-  function isbiggerthan (&$val1,&$val2) {
+}
+function isbiggerthan (&$val1,&$val2) {
      return $val1>$val2;
-  }
-function question_conditioncheck($sid,$qid,$rid) {
+}
 
+function question_conditioncheck($sid,$qid,$rid) {
   $conditions[0]="isequal";
   $conditions[1]="isnequal";
   $conditions[2]="issmallerthan";

@@ -128,7 +128,7 @@
 
 	$msg = '';
 	if(!empty($_REQUEST['submit'])) {
-	    $msg .= response_check_answers($sid,$_REQUEST['sec']);
+	    $msg .= response_check_answers($sid,$_REQUEST['rid'],$_REQUEST['sec']);
 	    # we only check the captcha if no all required 
         if (empty($msg) && $ESPCONFIG['use_captcha']) {
             require_once(ESP_BASE.'public/captcha_check.php');
@@ -164,7 +164,7 @@
 	}
 
 	if(!empty($_REQUEST['next'])) {
-		$msg = response_check_answers($sid,$_REQUEST['sec']);
+		$msg = response_check_answers($sid,$_REQUEST['rid'],$_REQUEST['sec']);
 		if(empty($msg)) {
             		if ($ESPCONFIG['auth_response'] && auth_get_option('resume'))
                 		response_delete($sid, $_REQUEST['rid'], $_REQUEST['sec']);

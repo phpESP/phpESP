@@ -206,11 +206,11 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 		// UPDATE row in the DB for the current question
 		if($qid != '') {
 			// conditional questions can't be required
-			$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['condition_table']." WHERE q1_id='$qid'";
-			$count = get_one($sql);
-			if($count != 0) {
-			   $_POST['required']='N';
-			}
+			//$sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['condition_table']." WHERE q1_id='$qid'";
+			//$count = get_one($sql);
+			//if($count != 0) {
+			//   $_POST['required']='N';
+			//}
 
 			$fields = array('name','type_id','length','precise','required','content');
 			foreach($fields as $f) {
@@ -358,10 +358,10 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			if (!$result)
 			   $errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 			# Conditional questions can't be required questions as well
-			$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET required='N' WHERE id=$id1";
-			$result=execute_sql($sql);
-			if (!$result)
-			   $errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
+			//$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_table']." SET required='N' WHERE id=$id1";
+			//$result=execute_sql($sql);
+			//if (!$result)
+			//   $errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 		}
 		if(isset($_POST['deletecondition'])) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['condition_table']." WHERE id=".key($_POST['deletecondition']);
