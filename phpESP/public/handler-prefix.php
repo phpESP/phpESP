@@ -120,14 +120,14 @@
             return;
 
         if (auth_get_option('resume')) {
-            $_REQUEST['rid'] = auth_get_rid($sid, $espuser,
+            $_SESSION['rid'] = auth_get_rid($sid, $espuser,
                     $_REQUEST['rid']);
 
-            if (!empty($_REQUEST['rid']) && (empty($_REQUEST['sec']) ||
+            if (!empty($_SESSION['rid']) && (empty($_REQUEST['sec']) ||
                     intval($_REQUEST['sec']) < 1))
             {
                 $_REQUEST['sec'] = response_select_max_sec($sid,
-                        $_REQUEST['rid']);
+                        $_SESSION['rid']);
             }
         }
     }
