@@ -123,20 +123,20 @@
             $_SESSION['rid'] = auth_get_rid($sid, $espuser,
                     $_REQUEST['rid']);
 
-            if (!empty($_SESSION['rid']) && (empty($_REQUEST['sec']) ||
-                    intval($_REQUEST['sec']) < 1))
+            if (!empty($_SESSION['rid']) && (!isset($_SESSION['sec']) ||
+		 empty($_SESSION['sec']) || intval($_SESSION['sec']) < 1))
             {
-                $_REQUEST['sec'] = response_select_max_sec($sid,
+                $_SESSION['sec'] = response_select_max_sec($sid,
                         $_SESSION['rid']);
             }
         }
     }
 
-    if (empty($_REQUEST['sec']))
-        $_REQUEST['sec'] = 1;
+    if (!isset($_SESSION['sec']) || empty($_SESSION['sec']))
+        $_SESSION['sec'] = 1;
     else
-        $_REQUEST['sec'] = (intval($_REQUEST['sec']) > 0) ?
-                intval($_REQUEST['sec']) : 1;
+        $_SESSION['sec'] = (intval($_SESSION['sec']) > 0) ?
+                intval($_SESSION['sec']) : 1;
 
     define('ESP-AUTH-OK', true);
 
