@@ -265,3 +265,14 @@ CREATE TABLE conditions (
 	PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS survey_statistics;
+CREATE TABLE survey_statistics (
+    survey_id INT UNSIGNED NOT NULL,
+    loginfail INT UNSIGNED NOT NULL DEFAULT 0,
+    attempted INT UNSIGNED NOT NULL DEFAULT 0,
+    abandoned INT UNSIGNED NOT NULL DEFAULT 0,
+    suspended INT UNSIGNED NOT NULL DEFAULT 0,
+    completed INT UNSIGNED NOT NULL DEFAULT 0,
+    PRIMARY KEY (survey_id)
+);
+
