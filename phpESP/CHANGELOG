@@ -4,8 +4,8 @@ PHPESP CHANGE LOG
 
 2.0.2 => 2.0.3
 =========================
-- Dashboard (by bishop)
-- start/stop date for a survey (by bishop)
+- Dashboard (by Bishop Bettini)
+- start/stop date for a survey (by Bishop Bettini)
 - A conditional question resulted in a "non-required" for the question it depends on, this limit has been removed.
 
 2.0.1 => 2.0.2

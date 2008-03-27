@@ -54,7 +54,6 @@
                         $cid_result->MoveNext();
                     }
                     db_close($cid_result);
-                    continue;
                 }
                 if ($required=='Y' && $tid == 10 && $_POST[$qid] === '0') { // Numeric
                     continue;
@@ -64,7 +63,7 @@
                 if (!isset($_POST[$qid])) {
                     $_POST[$qid] = '';
                 }
-                if($required=='Y' && empty($_POST[$qid]) && $_POST[$qid] != '0') {
+                if($required=='Y' && $tid!=8 && empty($_POST[$qid]) && $_POST[$qid] != '0') {
                     $missing[$qid] = $content;
                 }
             }
@@ -486,9 +485,9 @@
             $c = count($row);
             $val = $row[$c - 2];
             if (ereg('^!other', $val))
-            $row[$c - 1] = 'other_' . $row[$c - 1];
+               $row[$c - 1] = 'other_' . $row[$c - 1];
             else
-            settype($row[$c - 1], 'integer');
+               settype($row[$c - 1], 'integer');
             $values[$qid] = $row;
             $result->MoveNext();
         }
@@ -509,9 +508,9 @@
             $c = count($row);
             $val = $row[$c - 2];
             if (ereg('^!other', $val))
-            $row[$c - 1] = 'other_' . $row[$c - 1];
+               $row[$c - 1] = 'other_' . $row[$c - 1];
             else
-            settype($row[$c - 1], 'integer');
+               settype($row[$c - 1], 'integer');
             if($tmp == $qid) {
                 $arr[] = $row;
                 $result->MoveNext();
@@ -761,7 +760,7 @@
                         array('', 'Other'), $subarr[2]);
                         $tmp = preg_replace("/^other/", $qid, $subarr[3]);
                         if (isset($res[$tmp]))
-                        $tmpv .= ': '. $res[$tmp][2];
+                           $tmpv .= ': '. $res[$tmp][2];
                         array_push($val, $tmpv);
                     } else {
                         array_push($val, $subarr[2]);
