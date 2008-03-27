@@ -58,14 +58,15 @@
  		$_REQUEST['direct'] = 1;
 	}
 
-	if (!isset($_SESSION['sec']) || empty($_SESSION['sec'])) {
+	$num_sections = survey_num_sections($sid);
+	if (!isset($_SESSION['sec']) || empty($_SESSION['sec']) || $_SESSION['sec']>$num_sections) {
         	$_SESSION['sec'] = 1;
     	} else {
         	$_SESSION['sec'] = (intval($_SESSION['sec']) > 0) ?
                 		    intval($_SESSION['sec']) : 1;
 	}
 
-	if ($_REQUEST['sec'] == 1) {
+	if ($_SESSION['sec'] == 1) {
 	    $_SESSION['rid'] = 0;
 	}
 
@@ -76,7 +77,6 @@
 	$_SESSION['rid'] = intval($_SESSION['rid']);
 	$_REQUEST['direct'] = intval($_REQUEST['direct']);
 	$_REQUEST['referer'] = htmlspecialchars($_REQUEST['referer']);
-
 
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
@@ -126,7 +126,6 @@
    	if ($_REQUEST['referer'] == $ESPCONFIG['autopub_url'])
        	$_REQUEST['referer'] .= "?name=$name";
 
-	$num_sections = survey_num_sections($sid);
 
 
 	$action = $ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . htmlspecialchars($_SERVER['PHP_SELF']);
@@ -155,6 +154,7 @@
 		response_commit($_SESSION['rid']);
 		response_send_email($sid,$_SESSION['rid']);
 		$_SESSION['rid']="";
+		$_SESSION['sec']="";
 			
 		goto_thankyou($sid,$_REQUEST['referer']);
 		return;
