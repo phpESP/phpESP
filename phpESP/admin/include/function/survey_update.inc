@@ -262,6 +262,14 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				$sql='';
 				$choice_id      = intval($_POST["choice_id_${i}"]);
 				$choice_content = $_POST["choice_content_${i}"];
+				//constraint: for rate questions (type_id=8)
+				// we don't allow "!other" as a choice
+				if ($_POST['type_id']==8 && $choice_content=='!other') {
+						$errstr = _('For rate questions, "!other" is not a possible answer');
+						return(0);
+				}
+
+				// for safety, we add slashes
 				if ($choice_content != '') {
 					$choice_content = _addslashes($choice_content);
 				}
