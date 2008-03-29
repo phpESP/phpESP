@@ -68,7 +68,6 @@ $ESPCONFIG['locale_path'] = ESP_BASE . '/locale/';
 $ESPCONFIG['unsupported'] = array('cgi', 'sapi');
 
 // Database Table Names:
-$DB_PREFIX = "";	// If your database uses a prefix, set it here.
 $ESPCONFIG['access_table']              = $DB_PREFIX."access";
 $ESPCONFIG['designer_table']            = $DB_PREFIX."designer";
 $ESPCONFIG['question_table']            = $DB_PREFIX."question";
