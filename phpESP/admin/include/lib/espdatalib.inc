@@ -243,3 +243,12 @@ function password_upgrade($username, $password, $table) {
     }
 }
 /* }}} */
+
+/* {{{ proto string MetaTables()
+    Returns an array of tables for the active database. */
+function MetaTables() {
+   $cfg =& $GLOBALS['ESPCONFIG'];
+
+   return $cfg['adodb_conn']->MetaTables('TABLES');
+}
+/* }}} */

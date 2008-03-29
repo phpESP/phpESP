@@ -49,7 +49,7 @@ $ESPCONFIG['date_format'] = "%d/%m/%Y";
 // ADODB 
 $ESPCONFIG['adodb_path'] = ESP_BASE . 'admin/include/lib/adodb/';
 $ESPCONFIG['adodb_database_type'] = 'mysql';
-$ESPCONFIG['adodb_dbpersist'] = 'true';
+$ESPCONFIG['adodb_persist'] = 'true';
 $ESPCONFIG['adodb_pathto_db'] = "/var/www/phpESP/scripts/db/esp.dbm";
 
 // Allow phpESP to send email (BOOLEAN)
