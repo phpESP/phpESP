@@ -86,6 +86,7 @@ $ESPCONFIG['response_text_table']       = $DB_PREFIX."response_text";
 $ESPCONFIG['survey_table']              = $DB_PREFIX."survey";
 $ESPCONFIG['condition_table']           = $DB_PREFIX."conditions";
 $ESPCONFIG['survey_statistics_table']   = $DB_PREFIX."survey_statistics";
+$ESPCONFIG['version_table']             = $DB_PREFIX."version";
 
 // Load I18N support
 require_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);

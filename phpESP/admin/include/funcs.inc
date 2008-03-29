@@ -63,7 +63,8 @@
             $dbconnected = $cfg['adodb_conn']->Connect($cfg['adodb_pathto_db']);
         }
         else {
-            if (!isset($cfg['adodbi_persist']) or !empty($cfg['adodb_persist'])) {
+            if (!isset($cfg['adodbi_persist']) or 
+		(isset($cfg['adodb_persist']) && $cfg['adodb_persist'])) {
                 // Use persistent connection (default)
                 $dbconnected = $cfg['adodb_conn']->PConnect($cfg['db_host'], $cfg['db_user'], $cfg['db_pass'], $cfg['db_name']);
             } else {
@@ -259,5 +260,6 @@ and password to complete the survey.') ?></blockquote>
     esp_require_once('/function/response_purge');
     esp_require_once('/function/question_render');
     esp_require_once('/function/question_conditioncheck');
+    esp_require_once('/function/db_update');
 
 ?>

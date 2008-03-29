@@ -21,6 +21,15 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
         }
         echo(': <tt>'. $_SESSION['acl']['username'] .'</tt>');
     }
+    $db_version = get_version();
+    $new_version = $ESPCONFIG['version'];
+    if (version_compare($db_version,$new_version,"!=")) {
+?></p>
+                        <ul>
+                            <li><a href="<?php echo("${base}?where=update");     ?>"><?php echo(_('Update the database')); ?></a></li>
+                        </ul>
+<?php
+    } else {
 ?></p>
 			<!-- Survey Administration -->
 			<div id="surveyAdmin">
@@ -102,5 +111,7 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
                         </ul>
 			</div>
 			<!-- End Logout -->
-                        <?php } /* AUTH_DESIGN */ ?>
+                        <?php } /* AUTH_DESIGN */ 
+}
+?>
 &nbsp;
