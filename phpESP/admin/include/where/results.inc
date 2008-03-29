@@ -125,7 +125,7 @@
 
     /* load names and titles of all surveys available to
     * _this_ user */
-    $statusok = (STATUS_ACTIVE | STATUS_DONE);
+    $statusok = (STATUS_ACTIVE | STATUS_DONE | STATUS_TEST);
     $statusno = STATUS_DELETED;
     if ($_SESSION['acl']['superuser'] == 'Y') {
         $sql = "SELECT id,name,title,owner,realm FROM ".$GLOBALS['ESPCONFIG']['survey_table']."
