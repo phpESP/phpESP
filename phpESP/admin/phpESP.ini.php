@@ -101,8 +101,14 @@ $ESPCONFIG['auth_type'] = 'default';
 // if a user is not found in ldap, the DB is still searched as well
 // designer info is copied in the DB
 $ESPCONFIG['ldap_server'] = 'ldap://ldap.example.com';
-$ESPCONFIG['ldap_port']   = '389';
+$ESPCONFIG['ldap_port'] = '389';
+// if wanted/needed, enter the settings to do an authenticated ldap bind
+// in order to search the ldap tree
+$ESPCONFIG['ldap_bind_dn'] = '';
+$ESPCONFIG['ldap_bind_password'] = '';
+//the base dn you want to search
 $ESPCONFIG['ldap_dn']     = 'dc=example, dc=com';
+//the ldap filtre used, this is completed with the uid the user enters
 $ESPCONFIG['ldap_filter'] = 'uid=';
 // the LDAP attribute that is compared with the "group" when completing private
 // surveys
