@@ -199,10 +199,21 @@ CONFIGURING PHPESP
 3. Configuring phpESP
 
    To configure phpESP, change to the admin/ directory of the installed
-   distribution, and edit "phpESP.ini.php".  Most users will only have
+   distribution, and create "phpESP.ini.php".  Most users will only have
    to change a few settings in this file.  The most common changes are
    to the 'base_url', and to the database username and password
-   ('db_user' and 'db_pass').
+   ('db_user' and 'db_pass'). The defaults for this file can be found
+   "phpESP.ini.php.default", so copy only the things you need to change.
+   Also a file "phpESP.ini.php.fixed" exists, containing values you should
+   never touch.
+   The sequence is this:
+
+   require (phpESP.ini.php.default);
+	 ==> defaults, gets overwritten every time
+   require (phpESP.ini.php);
+	 ==> your own values, never gets overwritten
+   require (phpESP.ini.php.fixed);
+	 ==> fixed parts, you can change these, but they get overwritten
 
    Note for international users:  phpESP uses GNU gettext to provide
    local translations of text displayed by applications; the
@@ -217,8 +228,8 @@ CONFIGURING PHPESP
 
       phpESP's configuration file contains passwords which local users
       could use to access your database.  It is recommended to ensure
-      that at least the phpESP configuration file (admin/phpESP.ini.php)
-      is not readable to system users.
+      that at least the phpESP configuration files (admin/phpESP.ini.php*)
+      are not readable to system users.
 
       An additional approach is to make phpESP's configuration file
       owned by the user 'root' and by a group which only the web server
@@ -226,6 +237,10 @@ CONFIGURING PHPESP
       group.  For example, if your web server runs as www.www, do as
       follows:
 
+         chown root.www admin/phpESP.ini.php.fixed
+         chmod 0440 admin/phpESP.ini.php.fixed
+         chown root.www admin/phpESP.ini.php.default
+         chmod 0440 admin/phpESP.ini.php.default
          chown root.www admin/phpESP.ini.php
          chmod 0440 admin/phpESP.ini.php
 

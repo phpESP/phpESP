@@ -126,7 +126,7 @@ ul,th {
     <li>Expected ESP_BASE: <?php _pass(dirname(dirname(__FILE__)) .'/'); ?></li>
     <li>Expected base_url: <?php _pass($ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['REQUEST_URI'])) . '/'); ?></li>
     <li><b>Loading phpESP.ini.php ...</b><br />
-      <?php require_once('phpESP.ini.php'); ?></li>
+      <?php require_once('phpESP.ini.php.base');require_once('phpESP.ini.php'); ?></li>
     <li>ESP_BASE: <?php
         if ((ESP_BASE == dirname(__FILE__) . '/../') || (ESP_BASE == dirname(dirname(__FILE__)) .'/'))
             _pass(ESP_BASE);

@@ -11,18 +11,28 @@
     if (!defined('ESP_BASE'))
     define('ESP_BASE', dirname(dirname(__FILE__)) .'/');
 
-    $CONFIG = ESP_BASE . '/admin/phpESP.ini.php';
-
+    $CONFIG = ESP_BASE . 'admin/phpESP.ini.php';
+    $DEFAULT_CONFIG = $CONFIG.'.default';
+    $FIXED_CONFIG = $CONFIG.'.fixed';
+    if(!file_exists($DEFAULT_CONFIG)) {
+            echo("<b>FATAL: Unable to open default config file. Aborting.</b>");
+            exit;
+    }
     if(!file_exists($CONFIG)) {
-        echo("<b>FATAL: Unable to open $CONFIG. Aborting.</b>");
-        exit;
+            echo("<b>FATAL: Unable to open config file. Aborting.</b>");
+            exit;
+    }
+    if(!file_exists($FIXED_CONFIG)) {
+            echo("<b>FATAL: Unable to open fixed config file. Aborting.</b>");
+            exit;
     }
     if(!extension_loaded('mysql')) {
-        echo('<b>FATAL: Mysql extension not loaded. Aborting.</b>');
-        exit;
+            echo('<b>FATAL: Mysql extension not loaded. Aborting.</b>');
+            exit;
     }
-
+    require_once($DEFAULT_CONFIG);
     require_once($CONFIG);
+    require_once($FIXED_CONFIG);
 
     /* check for an unsupported web server configuration */
     if((in_array(php_sapi_name(), $ESPCONFIG['unsupported'])) and ($ESPCONFIG['auth_design']) and ($ESPCONFIG['auth_mode'] == 'basic')) {

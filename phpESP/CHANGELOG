@@ -8,6 +8,10 @@ PHPESP CHANGE LOG
 - start/stop date for a survey (by Bishop Bettini)
 - A conditional question resulted in a "non-required" for the question it depends on, this limit has been removed.
 - You can know do authenticated ldap binds when searching for the uid, MS AD needs this (is more secure than anonymous binds anyway)
+- A default config file has been added (admin/phpESP.ini.php.default), your own changes should go into admin/phpESP.ini.php. The advantage is that new options can be added to the default file and you don't need to change anything to your own config file. Also a fixed part has been added (admin/phpESP.ini.php.fixed) containing values that should not be changed. The sequence is:
+require (phpESP.ini.php.default); ==> defaults, gets overwritten every time
+require (phpESP.ini.php); ==> your own values, never gets overwritten
+require (phpESP.ini.php.fixed); ==> fixed parts, you can change these, but they get overwritten
 
 2.0.1 => 2.0.2
 =========================
