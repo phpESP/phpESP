@@ -4,7 +4,7 @@
 if($_SESSION['acl']['superuser'] != 'Y') {
    echo("<br><a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
    exit;
-} else if (isset($_POST['submit']) && $_POST['submit']=="Update") {
+} else if (isset($_POST['action']) && $_POST['action']=="update") {
 // The update is called for
 
    // we do the check again, so updates can't happen again if you refresh the page
@@ -53,6 +53,18 @@ if($_SESSION['acl']['superuser'] != 'Y') {
          echo (_('Update done'));
       }
    } # end if (version_compare...
+} else if (isset($_POST['action']) && $_POST['action']=="versionupdate") {
+      echo (_('Updating from old version ').$_POST['version']);
+?>
+<form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>?where=update">
+<input type="hidden" name="where" value="update" />
+<input type="hidden" name="action" value="update" />
+<input type="hidden" name="version" value="<?php echo $_POST['version'];?>" />
+<br />
+<input type="submit" value="<?php echo _('Update'); ?>" name="submit" />
+</form>
+
+<?php
 } else {
 // we check the version
    $db_version = get_version();
@@ -64,10 +76,13 @@ if($_SESSION['acl']['superuser'] != 'Y') {
 ?>
 <form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>?where=update">
 <input type="hidden" name="where" value="update" />
-<table cellspacing="0" cellpadding="4" style="width: 350px;">
-</table>
+<input type="hidden" name="action" value="versionupdate" />
+<br />
+<?php echo _('Current version:');?>
+<input type="text" name="version"  value="<?php echo $db_version;?>" />
+<br />
+<input type="submit" value="<?php echo _('Go'); ?>" name="submit" />
 </form>
-<input type="submit" value="Update" name="submit" />
 
 <?php
    }
