@@ -30,6 +30,7 @@ $ESPCONFIG['db_host'] = 'localhost';
 $ESPCONFIG['db_user'] = 'root';
 $ESPCONFIG['db_pass'] = '';
 $ESPCONFIG['db_name'] = 'phpesp';
+$DB_PREFIX = "";   // If your database uses a prefix, set it here.
 
 // to limit double postings
 // set this to the number of days people are restricted from resubmitting
