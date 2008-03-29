@@ -7,6 +7,7 @@ PHPESP CHANGE LOG
 - Dashboard (by Bishop Bettini)
 - start/stop date for a survey (by Bishop Bettini)
 - A conditional question resulted in a "non-required" for the question it depends on, this limit has been removed.
+- You can know do authenticated ldap binds when searching for the uid, MS AD needs this (is more secure than anonymous binds anyway)
 
 2.0.1 => 2.0.2
 =========================
