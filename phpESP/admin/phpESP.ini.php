@@ -108,7 +108,7 @@ $ESPCONFIG['ldap_bind_dn'] = '';
 $ESPCONFIG['ldap_bind_password'] = '';
 //the base dn you want to search
 $ESPCONFIG['ldap_dn']     = 'dc=example, dc=com';
-//the ldap filter used, this is completed with the uid the user enters
+// the ldap filter used, this is completed with the uid the user enters
 $ESPCONFIG['ldap_filter'] = 'uid=';
 // the LDAP attribute that is compared with the "group" when completing private
 // surveys
