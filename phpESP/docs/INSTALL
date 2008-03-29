@@ -209,11 +209,12 @@ CONFIGURING PHPESP
    The sequence is this:
 
    require (phpESP.ini.php.default);
-	 ==> defaults, gets overwritten every time
+	 ==> defaults, gets overwritten with every new release
    require (phpESP.ini.php);
 	 ==> your own values, never gets overwritten
    require (phpESP.ini.php.fixed);
 	 ==> fixed parts, you can change these, but they get overwritten
+	     with every new release
 
    Note for international users:  phpESP uses GNU gettext to provide
    local translations of text displayed by applications; the
