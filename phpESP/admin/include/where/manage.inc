@@ -21,7 +21,7 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
         }
         echo(': <tt>'. $_SESSION['acl']['username'] .'</tt>');
     }
-    $db_version = get_version();
+    $db_version = get_dbversion();
     $new_version = $ESPCONFIG['version'];
     if (version_compare($db_version,$new_version,"!=")) {
 ?></p>

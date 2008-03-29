@@ -8,7 +8,7 @@ if($_SESSION['acl']['superuser'] != 'Y') {
 // The update is called for
 
    // we do the check again, so updates can't happen again if you refresh the page
-   $db_version = get_version();
+   $db_version = get_dbversion();
    $new_version = $ESPCONFIG['version'];
    $db_type=$ESPCONFIG['adodb_database_type'];
    if (version_compare($db_version,$new_version,"eq")) {
@@ -67,7 +67,7 @@ if($_SESSION['acl']['superuser'] != 'Y') {
 <?php
 } else {
 // we check the version
-   $db_version = get_version();
+   $db_version = get_dbversion();
    $new_version = $ESPCONFIG['version'];
    if (version_compare($db_version,$new_version,"eq")) {
       echo(_('Update not needed'));
