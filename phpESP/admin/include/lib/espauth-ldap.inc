@@ -420,13 +420,29 @@ function authenticate($username, $password, &$realms) {
     $tmp_ldap_filter = $GLOBALS['ESPCONFIG']['ldap_filter'].$username;
 
     $ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'], $GLOBALS['ESPCONFIG']['ldap_port']);
+    if ($ds && $GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
+        ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+    }
+
+    // do an authenticated bind for the search if wanted
+    $search_bind=false;
+    if ($ds && isset ($GLOBALS['ESPCONFIG']['ldap_bind_dn'])
+        && isset ($GLOBALS['ESPCONFIG']['ldap_bind_password'])
+        && !empty($GLOBALS['ESPCONFIG']['ldap_bind_dn']) 
+        && !empty($GLOBALS['ESPCONFIG']['ldap_bind_password'])) {
+        $search_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
+        if (!$search_bind) {
+            // the bind failed, so we return false
+            return false;
+        }
+    }
+    
+    // now search for the user uid to know it's dn
     if ($ds) {
         $search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
         if (@ldap_count_entries($ds,$search_result)==1) {
             $entry_id=ldap_first_entry($ds, $search_result);
-            if ($GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
-                ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-            }
+            // bind with the user password, unbind is not needed first
             $auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
             if ($auth_bind) {
                 $auth_ldap_accept = true;
@@ -434,8 +450,8 @@ function authenticate($username, $password, &$realms) {
                 $realms[] = $values[0];
             }
         }
+        ldap_close($ds);
     }
-    ldap_close($ds);
 
     return ($auth_ldap_accept ? true : false);
 }
