@@ -1,10 +1,3 @@
-****** IMPORTANT ******
-This is a developmental release.  Do not use this on your production phpESP database.
-We are now using ADODB and have made significant changes to the database API which
-may cause unknown data corruption.  Please create a fresh phpESP database instance and
-help us workout any remaining bugs.
-******IMPORTANT ******
-
 ===============
 UPDATING PHPESP
 ===============
@@ -52,18 +45,8 @@ database.
 UPDATING DATABASE
 -----------------
 
-Go into the dir scripts/db and run the following mysql statements on your database (run all updates that are needed in the correct sequence):
+Just go to your phpESP url as usual and log in as admin user, the update
+is completel web based.
 
-mysql_update-1.5-1.6.sql (if still running 1.5)
-mysql_update-1.8.2h-1.8.2i.sql (if running a version <= 1.8.2h and going to 1.8.2i)
-mysql_update-1.8.2k-2.0.0.sql (if running a version 1.8.2i-1.8.2k and going to 2.0.0)
-
-Please execute the update script as follows:
-  $ mysql -u root -p phpesp < scripts/db/mysql_update-1.8.2h-1.8.2i.sql
-  $ mysql -u root -p phpesp < scripts/db/mysql_update-1.8.2k-2.0.0.sql
-Change "root" by the correct DB user and "phpesp" by the correct DB name.
-
-Once you move to mySQL 4.1 you cannot downgrade your mySQL back to 4.0 
-or below and expect phpESP to function.
 ----
 $Id$
