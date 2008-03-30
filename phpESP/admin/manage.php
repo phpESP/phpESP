@@ -46,7 +46,12 @@
     if(get_cfg_var('register_globals')) {
         $_SESSION['acl'] = &$acl;
     }
-    if($ESPCONFIG['auth_design']) {
+
+    $db_version = get_dbversion();
+    $where = '';
+    if (version_compare($db_version,"0.0.0","eq")) {
+        $where="install";
+    } elseif($ESPCONFIG['auth_design']) {
         if ($ESPCONFIG['auth_mode'] == 'basic') {
             $raw_password = @$_SERVER['PHP_AUTH_PW'];
             $username = @$_SERVER['PHP_AUTH_USER'];
@@ -96,11 +101,8 @@
         );
     }
 
-    $where = '';
-    if(isset($_POST['where']))
-       $where = $_POST['where'];
-    elseif(isset($_GET['where']))
-       $where = $_GET['where'];
+    if(empty($where) && isset($_REQUEST['where']))
+       $where = $_REQUEST['where'];
 
     if ($where == 'download') {
         include(esp_where($where));
