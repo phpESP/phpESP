@@ -26,10 +26,6 @@
             echo("<b>FATAL: Unable to open fixed config file. Aborting.</b>");
             exit;
     }
-    if(!extension_loaded('mysql')) {
-            echo('<b>FATAL: Mysql extension not loaded. Aborting.</b>');
-            exit;
-    }
     require_once($DEFAULT_CONFIG);
     require_once($CONFIG);
     require_once($FIXED_CONFIG);
