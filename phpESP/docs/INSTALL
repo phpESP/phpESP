@@ -178,23 +178,10 @@ CONFIGURING PHPESP
 
    b. Tables and Data
    
-      Once a database and user have been created for phpESP, you must
-      create and populate the tables for phpESP.  You will find a
-      script names "mysql_populate.sql" in the same location as the 
-      last script.  This script should be executed on the new phpESP
-      database as the root user in mysql.  As above, you may run this
-      script using an administration tool of your choosing.
+      Once a database and user have been created for phpESP, go to
+      the configured url, eg. http://your-server/phpESP/, the creation
+      of tables and initial data is all web based.
 
-   Note: The recommended and supported method of executing these
-         scripts is via the mysql CLI (command line interface).  For
-         example, to run these scripts you would execute the following
-         commands:
-
-         $ mysql -u root -p < scripts/db/mysql_create.sql
-         $ mysql -u root -p phpesp < scripts/db/mysql_populate.sql
-         
-         If you use a database name other than "phpesp", substitute
-         that name on the second command line.
 
 3. Configuring phpESP
 
