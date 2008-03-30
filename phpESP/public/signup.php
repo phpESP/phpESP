@@ -117,7 +117,7 @@
     $sqlf = implode(',', $sqlf);
     $sqlv = implode(',', $sqlv);
     
-    $sql = "INSERT INTO respondent ($sqlf) VALUES ($sqlv)";
+    $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['respondent_table']." ($sqlf) VALUES ($sqlv)";
     
     /* execute statement */
     $res = execute_sql($sql);
