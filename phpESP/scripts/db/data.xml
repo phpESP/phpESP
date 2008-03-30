@@ -1,0 +1,17 @@
+<schema version="0.2">
+<sql>
+<query>INSERT INTO realm ( name, title ) VALUES ( 'superuser', 'ESP System Administrators' ), ( 'auto', 'Self added users' )</query>
+<query>INSERT INTO designer (username, password, fname, lname, realm, pdesign, pstatus, pdata, pall, pgroup, puser, disabled) VALUES ('root', PASSWORD('esp'), 'ESP', 'Superuser', 'superuser', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N')</query>
+<query>INSERT INTO question_type VALUES ('1','Yes/No','N','response_bool')</query>
+<query>INSERT INTO question_type VALUES ('2','Text Box','N','response_text')</query>
+<query>INSERT INTO question_type VALUES ('3','Essay Box','N','response_text')</query>
+<query>INSERT INTO question_type VALUES ('4','Radio Buttons','Y','response_single')</query>
+<query>INSERT INTO question_type VALUES ('5','Check Boxes','Y','response_multiple')</query>
+<query>INSERT INTO question_type VALUES ('6','Dropdown Box','Y','response_single')</query>
+<query>INSERT INTO question_type VALUES ('8','Rate (scale 1..5)','Y','response_rank')</query>
+<query>INSERT INTO question_type VALUES ('9','Date','N','response_date')</query>
+<query>INSERT INTO question_type VALUES ('10','Numeric','N','response_text')</query>
+<query>INSERT INTO question_type VALUES ('99','Page Break','N','')</query>
+<query>INSERT INTO question_type VALUES ('100','Section Text','N','')</query>
+</sql>
+</schema>

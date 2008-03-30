@@ -1,0 +1,503 @@
+<schema version="0.2">
+	<table name="access">
+		<field name="id" type="I" size="10">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="survey_id" type="I" size="10">
+
+			<NOTNULL/>
+		</field>
+		<field name="realm" type="C" size="16"></field>
+		<field name="maxlogin" type="I" size="10">
+			<DEFAULT value="0"/>
+		</field>
+		<field name="resume" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+
+		</field>
+		<field name="navigate" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<index name="survey_id">
+			<col>survey_id</col>
+		</index>
+
+	</table>
+	<table name="conditions">
+		<field name="id" type="I" size="10">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="survey_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+
+		<field name="q1_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="q2_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="cond" type="I" size="10">
+			<NOTNULL/>
+		</field>
+
+		<field name="cond_value" type="X"></field>
+	</table>
+	<table name="designer">
+		<field name="username" type="C" size="64">
+			<KEY/>
+		</field>
+		<field name="password" type="C" size="64">
+			<NOTNULL/>
+		</field>
+
+		<field name="auth" type="C" size="16">
+			<NOTNULL/>
+			<DEFAULT value="BASIC"/>
+		</field>
+		<field name="realm" type="C" size="16">
+			<KEY/>
+		</field>
+		<field name="fname" type="C" size="16"></field>
+		<field name="lname" type="C" size="24"></field>
+
+		<field name="email" type="C" size="64"></field>
+		<field name="pdesign" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="Y"/>
+		</field>
+		<field name="pstatus" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+
+		<field name="pdata" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="pall" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="pgroup" type="C" size="1">
+
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="puser" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="disabled" type="C" size="1">
+			<NOTNULL/>
+
+			<DEFAULT value="N"/>
+		</field>
+		<field name="changed" type="T">
+			<NOTNULL/>
+			<DEFAULT value="0000-00-00 00:00:00"/>
+		</field>
+		<field name="expiration" type="T">
+			<NOTNULL/>
+			<DEFAULT value="0000-00-00 00:00:00"/>
+
+		</field>
+	</table>
+	<table name="question">
+		<field name="id" type="I" size="10">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="survey_id" type="I" size="10">
+			<NOTNULL/>
+
+		</field>
+		<field name="name" type="C" size="30">
+			<NOTNULL/>
+		</field>
+		<field name="type_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="result_id" type="I" size="10"></field>
+		<field name="length" type="I" size="11">
+
+			<NOTNULL/>
+			<DEFAULT value="0"/>
+		</field>
+		<field name="precise" type="I" size="11">
+			<NOTNULL/>
+			<DEFAULT value="0"/>
+		</field>
+		<field name="position" type="I" size="10">
+			<NOTNULL/>
+
+		</field>
+		<field name="content" type="X">
+			<NOTNULL/>
+		</field>
+		<field name="required" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="deleted" type="C" size="1">
+
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="public" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="Y"/>
+		</field>
+		<index name="result_id">
+			<col>result_id</col>
+
+		</index>
+		<index name="survey_id">
+			<col>survey_id</col>
+		</index>
+	</table>
+	<table name="question_choice">
+		<field name="id" type="I" size="10">
+			<KEY/>
+
+			<AUTOINCREMENT/>
+		</field>
+		<field name="question_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="content" type="X">
+			<NOTNULL/>
+		</field>
+		<field name="value" type="X"></field>
+
+		<index name="question_id">
+			<col>question_id</col>
+		</index>
+	</table>
+	<table name="question_type">
+		<field name="id" type="I" size="10">
+			<KEY/>
+			<AUTOINCREMENT/>
+
+		</field>
+		<field name="type" type="C" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="has_choices" type="C" size="1">
+			<NOTNULL/>
+		</field>
+		<field name="response_table" type="C" size="32">
+			<NOTNULL/>
+
+		</field>
+	</table>
+	<table name="realm">
+		<field name="name" type="C" size="16">
+			<KEY/>
+		</field>
+		<field name="title" type="C" size="64">
+			<NOTNULL/>
+		</field>
+
+		<field name="changed" type="T">
+			<NOTNULL/>
+			<DEFAULT value="0000-00-00 00:00:00"/>
+		</field>
+	</table>
+	<table name="respondent">
+		<field name="username" type="C" size="64">
+			<KEY/>
+		</field>
+
+		<field name="password" type="C" size="64">
+			<NOTNULL/>
+		</field>
+		<field name="auth" type="C" size="16">
+			<NOTNULL/>
+			<DEFAULT value="BASIC"/>
+		</field>
+		<field name="realm" type="C" size="16">
+			<KEY/>
+
+		</field>
+		<field name="fname" type="C" size="16"></field>
+		<field name="lname" type="C" size="24"></field>
+		<field name="email" type="C" size="64"></field>
+		<field name="disabled" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="changed" type="T">
+
+			<NOTNULL/>
+			<DEFAULT value="0000-00-00 00:00:00"/>
+		</field>
+		<field name="expiration" type="T">
+			<NOTNULL/>
+			<DEFAULT value="0000-00-00 00:00:00"/>
+		</field>
+	</table>
+	<table name="response">
+
+		<field name="id" type="I" size="10">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="survey_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="submitted" type="T">
+			<NOTNULL/>
+
+			<DEFAULT value="0000-00-00 00:00:00"/>
+		</field>
+		<field name="complete" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="N"/>
+		</field>
+		<field name="username" type="C" size="64"></field>
+		<field name="ip" type="C" size="64"></field>
+		<index name="survey_id">
+
+			<col>survey_id</col>
+		</index>
+	</table>
+	<table name="response_bool">
+		<field name="response_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="question_id" type="I" size="10">
+
+			<KEY/>
+		</field>
+		<field name="choice_id" type="C" size="1">
+			<NOTNULL/>
+		</field>
+		<index name="response_id">
+			<col>response_id</col>
+		</index>
+
+		<index name="question_id">
+			<col>question_id</col>
+		</index>
+	</table>
+	<table name="response_date">
+		<field name="response_id" type="I" size="10">
+			<KEY/>
+		</field>
+
+		<field name="question_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="response" type="D"></field>
+		<index name="response_id">
+			<col>response_id</col>
+		</index>
+		<index name="question_id">
+
+			<col>question_id</col>
+		</index>
+	</table>
+	<table name="response_multiple">
+		<field name="id" type="I" size="10">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+
+		<field name="response_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="question_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="choice_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+
+		<index name="response_id">
+			<col>response_id</col>
+		</index>
+		<index name="question_id">
+			<col>question_id</col>
+		</index>
+		<index name="choice_id">
+			<col>choice_id</col>
+
+		</index>
+	</table>
+	<table name="response_other">
+		<field name="response_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="question_id" type="I" size="10">
+			<KEY/>
+		</field>
+
+		<field name="choice_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="response" type="X"></field>
+		<index name="response_id">
+			<col>response_id</col>
+		</index>
+		<index name="choice_id">
+
+			<col>choice_id</col>
+		</index>
+		<index name="question_id">
+			<col>question_id</col>
+		</index>
+	</table>
+	<table name="response_rank">
+		<field name="response_id" type="I" size="10">
+
+			<KEY/>
+		</field>
+		<field name="question_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="choice_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="rank" type="I" size="11">
+
+			<NOTNULL/>
+		</field>
+		<index name="response_id">
+			<col>response_id</col>
+		</index>
+		<index name="question_id">
+			<col>question_id</col>
+		</index>
+
+		<index name="choice_id">
+			<col>choice_id</col>
+		</index>
+	</table>
+	<table name="response_single">
+		<field name="response_id" type="I" size="10">
+			<KEY/>
+		</field>
+
+		<field name="question_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="choice_id" type="I" size="10">
+			<NOTNULL/>
+		</field>
+		<index name="response_id">
+			<col>response_id</col>
+
+		</index>
+		<index name="question_id">
+			<col>question_id</col>
+		</index>
+	</table>
+	<table name="response_text">
+		<field name="response_id" type="I" size="10">
+			<KEY/>
+
+		</field>
+		<field name="question_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="response" type="X"></field>
+		<index name="response_id">
+			<col>response_id</col>
+		</index>
+
+		<index name="question_id">
+			<col>question_id</col>
+		</index>
+	</table>
+	<table name="survey">
+		<field name="id" type="I" size="10">
+			<KEY/>
+			<AUTOINCREMENT/>
+
+		</field>
+		<field name="name" type="C" size="64">
+			<NOTNULL/>
+		</field>
+		<field name="owner" type="C" size="16">
+			<NOTNULL/>
+		</field>
+		<field name="realm" type="C" size="64">
+			<NOTNULL/>
+
+		</field>
+		<field name="public" type="C" size="1">
+			<NOTNULL/>
+			<DEFAULT value="Y"/>
+		</field>
+		<field name="status" type="I" size="10">
+			<NOTNULL/>
+			<DEFAULT value="0"/>
+		</field>
+
+		<field name="open_date" type="T"></field>
+		<field name="close_date" type="T"></field>
+		<field name="title" type="C" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="email" type="C" size="64"></field>
+		<field name="subtitle" type="X"></field>
+		<field name="info" type="X"></field>
+		<field name="theme" type="C" size="64"></field>
+
+		<field name="thanks_page" type="C" size="255"></field>
+		<field name="thank_head" type="C" size="255"></field>
+		<field name="thank_body" type="X"></field>
+		<field name="changed" type="T">
+			<NOTNULL/>
+			<DEFAULT value="0000-00-00 00:00:00"/>
+		</field>
+		<field name="auto_num" type="C" size="1">
+			<NOTNULL/>
+
+			<DEFAULT value="Y"/>
+		</field>
+		<index name="name">
+			<UNIQUE/>
+			<col>name</col>
+		</index>
+	</table>
+	<table name="survey_statistics">
+
+		<field name="survey_id" type="I" size="10">
+			<KEY/>
+		</field>
+		<field name="loginfail" type="I" size="10">
+			<NOTNULL/>
+			<DEFAULT value="0"/>
+		</field>
+		<field name="attempted" type="I" size="10">
+			<NOTNULL/>
+
+			<DEFAULT value="0"/>
+		</field>
+		<field name="abandoned" type="I" size="10">
+			<NOTNULL/>
+			<DEFAULT value="0"/>
+		</field>
+		<field name="suspended" type="I" size="10">
+			<NOTNULL/>
+			<DEFAULT value="0"/>
+
+		</field>
+		<field name="completed" type="I" size="10">
+			<NOTNULL/>
+			<DEFAULT value="0"/>
+		</field>
+	</table>
+	<table name="version">
+		<field name="versionid" type="C" size="16">
+			<NOTNULL/>
+
+		</field>
+	</table>
+</schema>
