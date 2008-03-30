@@ -117,6 +117,7 @@ ul,th {
     <li>GNU Gettext: <?php check_extension('gettext'); ?></li>
     <li>LDAP: <?php check_extension('ldap'); ?></li>
     <li>MySQL: <?php check_extension('mysql'); ?></li>
+    <li>PostgreSQL: <?php check_extension('pgsql'); ?></li>
     <li>PHP Extension Dir (compiled): <?php _pass(PHP_EXTENSION_DIR); ?></li>
     <li>PHP Extension Dir (run time): <?php _pass(ini_get('extension_dir')); ?></li>
   </ul></td></tr>
