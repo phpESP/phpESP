@@ -2,28 +2,36 @@
 
 require_once($GLOBALS['ESPCONFIG']['adodb_path'].'adodb-xmlschema.inc.php');
 function get_dbschema() {
+   global $DB_PREFIX;
    $cfg =& $GLOBALS['ESPCONFIG'];
    $schema = new adoSchema($cfg['adodb_conn']);
+   $schema->setPrefix($DB_PREFIX,false);
    return($schema->ExtractSchema());
 }
 
 function set_dbschema() {
+   global $DB_PREFIX;
    $cfg =& $GLOBALS['ESPCONFIG'];
    $schema = new adoSchema($cfg['adodb_conn']);
+   $schema->setPrefix($DB_PREFIX,false);
    $sql = $schema->ParseSchema(ESP_BASE."/scripts/db/schema.xml");
    return($schema->ExecuteSchema());
 }
 
 function initialize_db() {
+   global $DB_PREFIX;
    $cfg =& $GLOBALS['ESPCONFIG'];
    $schema = new adoSchema($cfg['adodb_conn']);
+   $schema->setPrefix($DB_PREFIX,false);
    $sql = $schema->ParseSchema(ESP_BASE."/scripts/db/data.xml");
    return($schema->ExecuteSchema());
 }
 
 function db_dump() {
+   global $DB_PREFIX;
    $cfg =& $GLOBALS['ESPCONFIG'];
    $schema = new adoSchema($cfg['adodb_conn']);
+   $schema->setPrefix($DB_PREFIX,false);
    return($schema->ExtractSchema(true));
 }
 
