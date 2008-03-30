@@ -29,7 +29,11 @@
     require_once($DEFAULT_CONFIG);
     require_once($CONFIG);
     $new_prefix=$DB_PREFIX;
-    $DB_PREFIX="";
+    if (!isset($OLD_DB_PREFIX)) {
+	    echo("<b>FATAL: Please define \$OLD_DB_PREFIX in the config file. Aborting.</b>");
+            exit;
+    }
+    $DB_PREFIX=$OLD_DB_PREFIX;
     require_once($FIXED_CONFIG);
 
     /* check for an unsupported web server configuration */
@@ -101,8 +105,9 @@
     
     foreach ($ESPCONFIG as $name=>$value) {
         if (substr($name,-6)=="_table") {
-            print "<br \>Renaming $value to $new_prefix$value ... ";
-            $sql="RENAME TABLE $value TO $new_prefix$value";
+            $newvalue=str_replace($DB_PREFIX,"",$value);
+            print "<br \>Renaming $value to $new_prefix$newvalue ... ";
+            $sql="RENAME TABLE $value TO $new_prefix$newvalue";
             $result = execute_sql($sql);
             if (!$result) {
                 echo(mkerror(_('FAILED')));
