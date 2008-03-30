@@ -23,12 +23,12 @@ if($_SESSION['acl']['superuser'] != 'Y') {
       }
 
       // the schema is now ok, so we now update the version
-      $sql="DELETE FROM version";
+      $sql="DELETE FROM ".$GLOBALS['ESPCONFIG']['version_table'];
       $result = execute_sql($sql);
       if (!$result) {
          echo(mkerror(_('Version delete FAILED'))."<br />\n");
       }
-      $sql="INSERT INTO version (versionid) VALUES ('$new_version')";
+      $sql="INSERT INTO ".$GLOBALS['ESPCONFIG']['version_table']." (versionid) VALUES ('$new_version')";
       $result = execute_sql($sql);
       if (!$result) {
          echo(mkerror(_('Version update FAILED'))."<br />\n");
