@@ -12,6 +12,8 @@ PHPESP CHANGE LOG
 require (phpESP.ini.php.default); ==> defaults, gets overwritten with every new release
 require (phpESP.ini.php); ==> your own values, never gets overwritten
 require (phpESP.ini.php.fixed); ==> fixed parts, you can change these, but they get overwritten with every new release
+- Web based updates and web based installs are now possible, no more manually entering sql statements in the db
+- Switching/changing database table prefixes is now possible
 
 2.0.1 => 2.0.2
 =========================
