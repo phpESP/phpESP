@@ -21,7 +21,7 @@
 
         $CONFIG = ESP_BASE . 'admin/phpESP.ini.php';
         $DEFAULT_CONFIG = $CONFIG.'.default';
-        $FIXED_CONFIG = $CONFIG.'.default';
+        $FIXED_CONFIG = $CONFIG.'.fixed';
         if(!file_exists($DEFAULT_CONFIG)) {
                 echo("<b>FATAL: Unable to open default config file. Aborting.</b>");
                 exit;
