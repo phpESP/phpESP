@@ -4,6 +4,8 @@
 if($_SESSION['acl']['superuser'] != 'Y') {
    echo("<br><a href=\"". $GLOBALS['ESPCONFIG']['ME'] ."?where=manage\">" . _('Go back to Management Interface') . "</a>\n");
    exit;
+} else if (isset($_POST['action']) && $_POST['action']=="showsql") {
+   show_generated_sql();
 } else if (isset($_POST['action']) && $_POST['action']=="update") {
 // The update is called for
 
@@ -43,11 +45,20 @@ if($_SESSION['acl']['superuser'] != 'Y') {
    } else {
       echo (_('Update available'));
 ?>
+
+<br />
+<form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>?where=update">
+<input type="hidden" name="where" value="update" />
+<input type="hidden" name="action" value="showsql" />
+<br />
+<input type="submit" value="<?php echo _('Show generated SQL'); ?>" name="submit" />
+</form>
+
 <form enctype="multipart/form-data" method="post" action="<?php echo ($GLOBALS['ESPCONFIG']['ME']); ?>?where=update">
 <input type="hidden" name="where" value="update" />
 <input type="hidden" name="action" value="update" />
 <br />
-<input type="submit" value="<?php echo _('Go'); ?>" name="submit" />
+<input type="submit" value="<?php echo _('Update the DB'); ?>" name="submit" />
 </form>
 
 <?php

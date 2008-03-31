@@ -9,6 +9,16 @@ function get_dbschema() {
    return($schema->ExtractSchema());
 }
 
+function show_generated_sql() {
+   global $DB_PREFIX;
+   $cfg =& $GLOBALS['ESPCONFIG'];
+   $schema = new adoSchema($cfg['adodb_conn']);
+   $schema->setPrefix($DB_PREFIX,false);
+   $sql = $schema->ParseSchema(ESP_BASE."/scripts/db/schema.xml");
+   print($schema->PrintSQL('HTML'));
+   return;
+}
+
 function set_dbschema() {
    global $DB_PREFIX;
    $cfg =& $GLOBALS['ESPCONFIG'];
