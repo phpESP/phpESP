@@ -211,8 +211,19 @@ function manage_auth($username, $password, $raw_password="") {
 		// Add configuration for ldap server and other things
 		$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_designer_filter']."))";
 
-		$ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'],
+		$ds = @ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'],
 				$GLOBALS['ESPCONFIG']['ldap_port']);
+
+        if ($ds && isset ($GLOBALS['ESPCONFIG']['ldap_bind_dn'])
+                && isset ($GLOBALS['ESPCONFIG']['ldap_bind_password'])
+                && !empty($GLOBALS['ESPCONFIG']['ldap_bind_dn']) 
+                && !empty($GLOBALS['ESPCONFIG']['ldap_bind_password'])) {
+            $search_bind = @ldap_bind($ds, $GLOBALS['ESPCONFIG']['ldap_bind_dn'], $GLOBALS['ESPCONFIG']['ldap_bind_password']);
+            if (!$search_bind) {
+                // the bind failed, so we return false
+                return false;
+            }
+        }
 
 		if ($ds) {
 			$search_result = @ldap_search($ds, $GLOBALS['ESPCONFIG']['ldap_dn'], $tmp_ldap_filter);
@@ -419,7 +430,7 @@ function authenticate($username, $password, &$realms) {
     #$tmp_ldap_filter = "(&(".$GLOBALS['ESPCONFIG']['ldap_filter'] .$username.")(".$GLOBALS['ESPCONFIG']['ldap_realm_attr']."=".$realm."))";
     $tmp_ldap_filter = $GLOBALS['ESPCONFIG']['ldap_filter'].$username;
 
-    $ds = ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'], $GLOBALS['ESPCONFIG']['ldap_port']);
+    $ds = @ldap_connect($GLOBALS['ESPCONFIG']['ldap_server'], $GLOBALS['ESPCONFIG']['ldap_port']);
     if ($ds && $GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
         ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
     }
@@ -430,7 +441,7 @@ function authenticate($username, $password, &$realms) {
         && isset ($GLOBALS['ESPCONFIG']['ldap_bind_password'])
         && !empty($GLOBALS['ESPCONFIG']['ldap_bind_dn']) 
         && !empty($GLOBALS['ESPCONFIG']['ldap_bind_password'])) {
-        $search_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
+        $search_bind = @ldap_bind($ds, $GLOBALS['ESPCONFIG']['ldap_bind_dn'], $GLOBALS['ESPCONFIG']['ldap_bind_password']);
         if (!$search_bind) {
             // the bind failed, so we return false
             return false;
