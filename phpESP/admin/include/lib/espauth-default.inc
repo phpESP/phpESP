@@ -45,6 +45,7 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
 
 	// A matching row was found - the survey requires authentication.
     $loginAttempt = false;
+    $maxlogin=0;
 	if (!empty($username) && !empty($password)) {
         $loginAttempt = true;
         $auth = authenticate($username, $raw_password, $realms);
@@ -138,6 +139,9 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
             }
             echo show_login($survey_name, $error_message, $css, $title);
             exit;
+            return(false);
+        }
+        else {
             return(false);
         }
     }

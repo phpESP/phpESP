@@ -58,6 +58,7 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
 
 	// A matching row was found - the survey requires authentication.
     $loginAttempt = false;
+    $maxlogin=0;
 	if (!empty($username) && !empty($password)) {
         $loginAttempt = true;
         $auth = authenticate($username, $raw_password, $realms);
@@ -120,7 +121,6 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
             }
 
             $error_message = "";
-            //if ($GLOBALS['HTTP_SERVER_VARS']['REQUEST_METHOD'] == 'POST') {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
             }
@@ -128,8 +128,10 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
             exit;
             return(false);
         }
+        else {
+            return(false);
+        }
     }
-
 
 	if ( $maxlogin > 0 ) {
 		// see if user is over the MAX # of responses
@@ -151,9 +153,7 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
             if (!isset($survey_name)) {
                 $survey_name = "";
             }
-            //if (isset($GLOBALS['_GET']['name'])) {
             if (isset($_GET['name'])) {
-              //  $survey_name = $GLOBALS['_GET']['name'];
                 $survey_name = $_GET['name'];
             }
             elseif (isset($_POST['name'])) {
