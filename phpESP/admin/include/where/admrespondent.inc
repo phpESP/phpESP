@@ -21,6 +21,7 @@
 	$errstr = '';
 	$u = '';
 	$r = '';
+    $arr = array();
 
 	/* abort */
 	if(isset($_POST['cancel'])) {
