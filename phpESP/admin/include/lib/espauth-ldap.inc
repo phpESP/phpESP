@@ -454,7 +454,7 @@ function authenticate($username, $password, &$realms) {
         if (@ldap_count_entries($ds,$search_result)==1) {
             $entry_id=ldap_first_entry($ds, $search_result);
             // bind with the user password, unbind is not needed first
-            $auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
+            $auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $password);
             if ($auth_bind) {
                 $auth_ldap_accept = true;
                 $values = @ldap_get_values($ds, $entry_id,$GLOBALS['ESPCONFIG']['ldap_realm_attr']);
