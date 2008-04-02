@@ -1,6 +1,6 @@
 <?php
 
-require_once($GLOBALS['ESPCONFIG']['adodb_path'].'adodb-xmlschema.inc.php');
+require_once($GLOBALS['ESPCONFIG']['adodb_path'].'adodb-xmlschema03.inc.php');
 function get_dbschema() {
    global $DB_PREFIX;
    $cfg =& $GLOBALS['ESPCONFIG'];
@@ -10,6 +10,8 @@ function get_dbschema() {
 }
 
 function show_generated_sql() {
+#print_r(get_dbschema());
+#die;
    global $DB_PREFIX;
    $cfg =& $GLOBALS['ESPCONFIG'];
    $schema = new adoSchema($cfg['adodb_conn']);
