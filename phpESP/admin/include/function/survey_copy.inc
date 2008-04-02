@@ -10,7 +10,7 @@
 // {{{ survey_copy()                   Copy a survey into a new survey
 
 function survey_copy($sid) {
-    esp_require_once('/lib/function/survey_aggregate.inc');
+    esp_require_once('/lib/function/survey_aggregate');
     return (survey_aggregate($sid) === false ? false : true);
 }
 
