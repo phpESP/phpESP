@@ -19,6 +19,9 @@ else                  $server =& $HTTP_SERVER_VARS;
  * Here are all the configuration options.
  */
 
+// Enable debugging code (BOOLEAN)
+$ESPCONFIG['DEBUG'] = false;
+
 // use http or https?
 $ESPCONFIG['proto'] = 'http://';
 
@@ -69,6 +72,9 @@ $ESPCONFIG['email_return_path'] = $_SERVER['SERVER_ADMIN'] ."@". $_SERVER['SERVE
 # $ESPCONFIG['email_from_name'] = "Customer Department";
 # $ESPCONFIG['email_from_address'] = "cust@somedomain.com";
 # $ESPCONFIG['email_return_path'] = "admin@somedomain.com";
+
+// Choose authentication mode: { 'basic', 'form' }
+$ESPCONFIG['auth_mode'] = 'form';
 
 // Use authentication for designer interface (BOOLEAN)
 $ESPCONFIG['auth_design'] = true;

@@ -15,19 +15,26 @@
     $DEFAULT_CONFIG = $CONFIG.'.default';
     $FIXED_CONFIG = $CONFIG.'.fixed';
     if(!file_exists($DEFAULT_CONFIG)) {
-            echo("<b>FATAL: Unable to open default config file. Aborting.</b>");
-            exit;
+        echo("<b>FATAL: Unable to open default config file. Aborting.</b>");
+        exit;
     }
     if(!file_exists($CONFIG)) {
-            echo("<b>FATAL: Unable to open config file. Aborting.</b>");
-            exit;
+        echo("<b>FATAL: Unable to open config file. Aborting.</b>");
+        exit;
     }
     if(!file_exists($FIXED_CONFIG)) {
-            echo("<b>FATAL: Unable to open fixed config file. Aborting.</b>");
-            exit;
+        echo("<b>FATAL: Unable to open fixed config file. Aborting.</b>");
+        exit;
     }
     require_once($DEFAULT_CONFIG);
     require_once($CONFIG);
+    // let's check for values that should not exist yet ...
+    // if they already exist, the user is still using an old too-complete
+    // config file
+    if (defined($ESPCONFIG['question_table'] )) {
+        echo("<b>FATAL: Fixed values found in main config $CONFIG, please make sure $CONFIG contains only the differences from $FIXED_CONFIG, nothing else. Aborting.</b>");
+        exit;
+    }
     require_once($FIXED_CONFIG);
 
     /* check for an unsupported web server configuration */

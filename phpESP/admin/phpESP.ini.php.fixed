@@ -21,9 +21,6 @@ $ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
 /*******************************************************************
  * Most users will not need to change anything below this line.    *
  *******************************************************************/
-// Enable debugging code (BOOLEAN)
-$ESPCONFIG['DEBUG'] = false;
-
 // Name of application
 $ESPCONFIG['name'] = 'phpESP';
 
@@ -32,9 +29,6 @@ $ESPCONFIG['version'] = '2.0.3';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';
-
-// Choose authentication mode: { 'basic', 'form' }
-$ESPCONFIG['auth_mode'] = 'form'; 
 
 // Survey handler to use
 $ESPCONFIG['handler']        = ESP_BASE . '/public/handler.php';
