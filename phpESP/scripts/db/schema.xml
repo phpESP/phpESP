@@ -8,7 +8,7 @@
 
 			<NOTNULL/>
 		</field>
-		<field name="realm" type="C" size="16"></field>
+		<field name="realm" type="C" size="64"></field>
 		<field name="maxlogin" type="I" size="10">
 			<DEFAULT value="0"/>
 		</field>
@@ -59,7 +59,7 @@
 			<NOTNULL/>
 			<DEFAULT value="BASIC"/>
 		</field>
-		<field name="realm" type="C" size="16">
+		<field name="realm" type="C" size="64">
 			<KEY/>
 		</field>
 		<field name="fname" type="C" size="16"></field>
@@ -196,7 +196,7 @@
 		</field>
 	</table>
 	<table name="realm">
-		<field name="name" type="C" size="16">
+		<field name="name" type="C" size="64">
 			<KEY/>
 		</field>
 		<field name="title" type="C" size="64">
@@ -220,7 +220,7 @@
 			<NOTNULL/>
 			<DEFAULT value="BASIC"/>
 		</field>
-		<field name="realm" type="C" size="16">
+		<field name="realm" type="C" size="64">
 			<KEY/>
 
 		</field>
