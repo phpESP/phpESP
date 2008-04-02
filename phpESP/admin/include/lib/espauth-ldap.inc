@@ -23,7 +23,6 @@
    Returns true if the supplied username/password is allowed
    access to the survey. */
 function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
- 	$ldap_password = $raw_password;
 	// Default to _unauthorized_
 	$auth_ldap_accept = $auth = false; // default to unauthorized
 	//if (isset($GLOBALS['HTTP_GET_VARS']['auth_options']) || isset($GLOBALS['HTTP_POST_VARS']['auth_options'])) {
@@ -177,7 +176,6 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
    access to the management interface. This sets/clears
    access control related session variables. */
 function manage_auth($username, $password, $raw_password="") {
-    $ldap_password = $raw_password;
 
 	// see if session is expired, or has been logged out
 	if(isset($_SESSION['acl']) &&
@@ -203,7 +201,7 @@ function manage_auth($username, $password, $raw_password="") {
 	$auth_ldap_accept = $auth = false; // default to unauthorized
 	$_SESSION['acl'] = array();
 
-	if (!empty($username) && !empty($password) && !empty($ldap_password)) {
+	if (!empty($username) && !empty($password) && !empty($raw_password)) {
 		// Formulate the query check whether user is authorized
 		// This only gives authorization for use of the survey.
 		// Information is entered into the database after authorization.
@@ -233,8 +231,8 @@ function manage_auth($username, $password, $raw_password="") {
 				if ($GLOBALS['ESPCONFIG']['ldap_force_proto_3']) {
 					ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
 				}
-				//$auth_bind = @ldap_bind($ds, $user_info[0]['dn'], $ldap_password);
-				$auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $ldap_password);
+                // bind with the raw password, unbind is not needed first
+				$auth_bind = @ldap_bind($ds, ldap_get_dn($ds,$entry_id), $raw_password);
 				if ($auth_bind) {
 					$auth_ldap_accept = true;
 					$values = @ldap_get_values($ds, $entry_id,$GLOBALS['ESPCONFIG']['ldap_realm_attr']);
