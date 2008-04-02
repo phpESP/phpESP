@@ -31,8 +31,8 @@
     // let's check for values that should not exist yet ...
     // if they already exist, the user is still using an old too-complete
     // config file
-    if (defined($ESPCONFIG['question_table'] )) {
-        echo("<b>FATAL: Fixed values found in main config $CONFIG, please make sure $CONFIG contains only the differences from $FIXED_CONFIG, nothing else. Aborting.</b>");
+    if (isset($ESPCONFIG['question_table'] )) {
+        echo("<b>FATAL: Fixed values found in main config $CONFIG.<br />Please make sure $CONFIG contains only the differences from $FIXED_CONFIG, nothing else. Aborting.</b>");
         exit;
     }
     require_once($FIXED_CONFIG);
