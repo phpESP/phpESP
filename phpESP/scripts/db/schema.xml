@@ -8,7 +8,7 @@
       <NOTNULL/>
     </field>
 
-    <field name="realm" type="C" size="16"/>
+    <field name="realm" type="C" size="64"/>
     <field name="maxlogin" type="I" size="10">
       <DEFAULT value="0"/>
     </field>
@@ -59,12 +59,12 @@
 
       <DEFAULT value="BASIC"/>
     </field>
-    <field name="realm" type="C" size="16">
+    <field name="realm" type="C" size="64">
       <KEY/>
     </field>
-    <field name="fname" type="C" size="16"/>
-    <field name="lname" type="C" size="24"/>
-    <field name="email" type="C" size="64"/>
+    <field name="fname" type="C" size="255"/>
+    <field name="lname" type="C" size="255"/>
+    <field name="email" type="C" size="255"/>
     <field name="pdesign" type="C" size="1">
 
       <NOTNULL/>
@@ -191,11 +191,11 @@
     </field>
   </table>
   <table name="realm">
-    <field name="name" type="C" size="16">
+    <field name="name" type="C" size="64">
       <KEY/>
     </field>
 
-    <field name="title" type="C" size="64">
+    <field name="title" type="C" size="255">
       <NOTNULL/>
     </field>
     <field name="changed" type="T">
@@ -216,12 +216,12 @@
       <DEFAULT value="BASIC"/>
 
     </field>
-    <field name="realm" type="C" size="16">
+    <field name="realm" type="C" size="64">
       <KEY/>
     </field>
-    <field name="fname" type="C" size="16"/>
-    <field name="lname" type="C" size="24"/>
-    <field name="email" type="C" size="64"/>
+    <field name="fname" type="C" size="255"/>
+    <field name="lname" type="C" size="255"/>
+    <field name="email" type="C" size="255"/>
     <field name="disabled" type="C" size="1">
       <NOTNULL/>
 
