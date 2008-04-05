@@ -44,6 +44,12 @@
         exit;
     }
 
+    /* now let's check if we have the extension needed to connect to the db */
+    if(!extension_loaded($ESPCONFIG['adodb_database_type'])) {
+        echo('<b>FATAL: Mysql extension not loaded. Aborting.</b>');
+        exit;
+    }
+    
     esp_init_adodb();
 
     if(get_cfg_var('register_globals')) {
