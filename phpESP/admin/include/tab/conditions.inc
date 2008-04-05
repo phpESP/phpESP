@@ -121,7 +121,11 @@ while( list($qid, $tid, $pos, $content) = fetch_row($result)) {
 		echo('<option value="'.$qid.'"><strong>'._('----- Section Break -----').'</strong></option>\n');
 	}
 }
-db_close($result);
+
+if ($result) {
+   db_close($result);
+}
+
 ?>
 </select>
 

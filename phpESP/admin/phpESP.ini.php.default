@@ -29,6 +29,7 @@ $ESPCONFIG['proto'] = 'http://';
 $ESPCONFIG['base_url'] = $ESPCONFIG['proto'] . $server['HTTP_HOST'] . '/phpESP/';
 
 // Database connection information
+// for the database type, change $ESPCONFIG['adodb_database_type'] (further down)
 $ESPCONFIG['db_host'] = 'localhost';
 $ESPCONFIG['db_user'] = 'root';
 $ESPCONFIG['db_pass'] = '';
@@ -52,6 +53,8 @@ $ESPCONFIG['date_format'] = "%d/%m/%Y";
 
 // ADODB 
 $ESPCONFIG['adodb_path'] = ESP_BASE . 'admin/include/lib/adodb/';
+// the database type, everything adodb supports should work ... hopefully ...
+// for valid values, see admin/include/lib/adodb/drivers
 $ESPCONFIG['adodb_database_type'] = 'mysql';
 $ESPCONFIG['adodb_persist'] = 'true';
 $ESPCONFIG['adodb_pathto_db'] = "/var/www/phpESP/scripts/db/esp.dbm";

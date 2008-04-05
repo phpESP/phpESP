@@ -42,7 +42,7 @@
 						$access = true;
 					}
 					$status = $old_status | STATUS_TEST;
-					if($old_status & ( STATUS_TEST | STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
+					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
 						$err = true;
 					break;
 				case 'm':	// Edit
@@ -67,6 +67,8 @@
 						$access = true;
 					}
 					$status = $old_status | STATUS_ACTIVE;
+                    // here we also check that we don't activate twice, because
+                    // it would delete all current responses ...
 					if($old_status & ( STATUS_ACTIVE | STATUS_DELETED | STATUS_DONE ) )
 						$err = true;
 					else
