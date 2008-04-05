@@ -110,12 +110,11 @@ function record_count(&$recordset) {
 function insert_id($sequence="") {
     $cfg =& $GLOBALS['ESPCONFIG'];
     switch ($cfg['adodb_database_type']) {
-        case "mysql":
-            return $cfg['adodb_conn']->Insert_ID(); 
         case "postgres":
+        case "oracle":
             $sql = "select currval('".$sequence."')";
             return $cfg['adodb_conn']->GetOne($sql); 
-        case "sqlite":
+        default:
             return $cfg['adodb_conn']->Insert_ID();
     }
 }
@@ -140,15 +139,15 @@ function db_qstr($data) {
 
 /* {{{ proto string db_bin(string $status, string $code)
     Returns a string properly formated for the active database
-    to handle bitwse comparisons. */
+    to handle bitwise comparisons. */
 function db_bin($status, $code) {
     $cfg =& $GLOBALS['ESPCONFIG'];
     switch ($cfg['adodb_database_type']) {
-        case "mysql":
-            return "($status & $code)";
         case "postgres":
             return "bin_compare($status, $code)";
-        case "sqlite":
+        case "oracle":
+            return "bitand($status, $code)";
+        default:
             return "($status & $code)";
     }
 }
@@ -180,9 +179,8 @@ function sys_time_stamp() {
 function db_crypt($password) {
     $cfg =& $GLOBALS['ESPCONFIG'];
     switch ($cfg['adodb_database_type']) {
-        case "mysql":
-            return "PASSWORD($password)";
         case "postgres":
+        case "oracle":
             return "md5($password)";
         case "sqlite":
             return _addslashes(md5($password));
