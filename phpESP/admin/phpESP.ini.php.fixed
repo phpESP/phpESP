@@ -1,6 +1,12 @@
 <?php
 
-// NEVER CHANGE ANYTHING IN THIS FILE, it will get overwritten in the next release ...
+//-----------------------------------------------------
+// TRY NOT TO CHANGE ANYTHING IN THIS FILE, it will get overwritten
+// in the next release!
+// If you need to change any value here, make sure you make a backup before
+// updating to the next version
+//-------------------------------------------------------
+
 
 // URL of the images directory (for <img src='...'> tags)
 $ESPCONFIG['image_url'] = $ESPCONFIG['base_url'] . 'images/';
@@ -25,7 +31,7 @@ $ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '2.0.3';
+$ESPCONFIG['version'] = '2.1.0';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';
