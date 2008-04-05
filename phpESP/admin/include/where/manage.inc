@@ -25,9 +25,11 @@ $base =& $GLOBALS['ESPCONFIG']['ME'];
     $new_version = $ESPCONFIG['version'];
     if (version_compare($db_version,$new_version,"!=")) {
 ?></p>
+			<div id="surveyAdmin">
                         <ul>
                             <li><a href="<?php echo("${base}?where=update");     ?>"><?php echo(_('Update the database')); ?></a></li>
                         </ul>
+			</div>
 <?php
     } else {
 ?></p>
