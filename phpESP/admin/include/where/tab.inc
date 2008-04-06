@@ -144,16 +144,24 @@
     </td>
   </tr>
 </table>
-<?php if($tab=='finish') {echo('&nbsp;'); return;} ?>
-<?php if($_SESSION['new_survey']) { ?>
-<?php echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')); ?><br />
-<input type="submit" name="where" value="Cancel" onclick='return cancelConfirm()' />
-<?php if($tab=='preview') { ?>
-	<input type="submit" name="tab" value="Finish" />
-<?php 	return; } ?>
-<input type="submit" name="tab" value="Continue &gt;" />
-<?php return; } ?>
-<p><?php echo(_('The survey title and other general fields are on the <strong>General</strong> tab.
+<?php 
+if($tab=='finish') {
+    echo('&nbsp;');
+    return;
+}
+if($_SESSION['new_survey']) {
+    echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')."<br />");
+    echo "<input type=\"submit\" name=\"where\" value=\""._('Cancel')."\" onclick='return cancelConfirm()' />";
+    if($tab=='preview') {
+	    echo "<input type=\"submit\" name=\"tab\" value=\""._('Finish')."\" />";
+    } else { 
+        echo "<input type=\"submit\" name=\"tab\" value=\""._('Continue')." &gt;\" />";
+    }
+    return; 
+}
+?>
+<p><?php
+echo(_('The survey title and other general fields are on the <strong>General</strong> tab.
 Individual survey questions are added and modified on the <strong>Questions</strong> tab.
 Questions may be re-ordered or deleted from the <strong>Order</strong> tab.
 You may see a preview of your survey at any time, by going to the <strong>Preview</strong>

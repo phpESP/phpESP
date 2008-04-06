@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2004-05-26 14:12+0300\n"
 "Last-Translator: Tom Ingberg <tom.ingberg@edu.vantaa.fi>\n"
 "Language-Team: Finnish\n"
@@ -1831,6 +1831,24 @@ msgstr ""
 "Paina peruuta jos haluat keskeyttää kyselyn laatimisen tai seuraava "
 "edetäksesi seuraavalle välilehdelle."
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+msgid "Finish"
+msgstr "Valmis"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "Sisältö"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
@@ -2213,9 +2231,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/phpESP.ini.php, line: 175
 #~ msgid "Thank You For Completing This Survey."
 #~ msgstr "Kiitos vastauksesta."
+#
 #
 #
 #
@@ -2229,6 +2249,7 @@ msgstr "Vahvista salasana"
 #~ msgstr ""
 #~ "Ole hyvä äläkä käytä selaimesi takaisin/back-nappia, vaan napsauta "
 #~ "oheista linkkiä jatkaaksesi."
+#
 #
 #
 #
@@ -2248,9 +2269,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 #~ msgid "Error processing survey: Survey not specified."
 #~ msgstr "Virhe käsiteltäessä kyselyä: Kyselyä ei ole määritelty."
+#
 #
 #
 #
@@ -2276,9 +2299,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 153
 #~ msgid "General"
 #~ msgstr "Yleiset"
+#
 #
 #
 #
@@ -2302,22 +2327,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Esikatselu"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-#~ msgid "Finish"
-#~ msgstr "Valmis"
 #
 #
 #
@@ -2361,9 +2375,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "/"
+#
 #
 #
 #
@@ -2408,6 +2424,7 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Kenttä"
@@ -2431,9 +2448,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 122
 #~ msgid "Field Name"
 #~ msgstr "Kentän nimi"
+#
 #
 #
 #
@@ -2478,9 +2497,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 28
 #~ msgid "Choose a function"
 #~ msgstr "Valitse toiminto"
+#
 #
 #
 #
@@ -2524,9 +2545,11 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Virhe!"
+#
 #
 #
 #
@@ -2571,8 +2594,10 @@ msgstr "Vahvista salasana"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Voi hallita ryhmän jäseniä"
+#
 #
 #
 #

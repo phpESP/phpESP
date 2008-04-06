@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2003-03-07 20:42+0100\n"
 "Last-Translator: Klaas Chielens <klaas@chielens.net>\n"
 "Language-Team: nl_NL <jflemer@alum.rpi.edu>\n"
@@ -1827,6 +1827,15 @@ msgstr ""
 "Klik annuleer om deze vragenlijst te annuleren, of klik doorgaan om verder "
 "te gaan naar de volgende tab."
 #
+# File: phpESP/admin/include/where/tab.inc, line: 156
+msgid "Finish"
+msgstr ""
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "Inhoud"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 msgid ""
 "The survey title and other general fields are on the <strong>General</"
@@ -2204,9 +2213,11 @@ msgstr "Bevestig Wachtwoord"
 #
 #
 #
+#
 # File: phpESP/admin/phpESP.ini.php, line: 175
 #~ msgid "Thank You For Completing This Survey."
 #~ msgstr "Dank je wel voor het invullen van de vragenlijst."
+#
 #
 #
 #
@@ -2222,6 +2233,7 @@ msgstr "Bevestig Wachtwoord"
 #
 #
 #
+#
 # File: phpESP/admin/phpESP.ini.php, line: 181
 # File: phpESP/admin/phpESP.ini.php, line: 187
 #~ msgid ""
@@ -2230,6 +2242,7 @@ msgstr "Bevestig Wachtwoord"
 #~ msgstr ""
 #~ "Kan de phpESP %s directory niet vinden. Gelieve %s te controlleren en "
 #~ "ervoor te zorgen dat alle paden correct zijn ingevuld. "
+#
 #
 #
 #

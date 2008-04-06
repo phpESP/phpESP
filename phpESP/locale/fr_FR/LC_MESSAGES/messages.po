@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Cedric Levasseur <cedric.levasseur@linux-at-business.com>, "
 "and olivier sevin <cjanson@ifrance.com>\n"
@@ -1924,6 +1924,24 @@ msgstr ""
 "Appuyer sur 'Annuler' pour annuler cette étude ou 'continuer' pour passer à "
 "l'onglet suivant"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+msgid "Finish"
+msgstr "Fin"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "Contenu"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
@@ -2347,9 +2365,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 #~ msgid "Error processing survey: Survey not specified."
 #~ msgstr "Erreur lors du traitement de l'étude: étude non spécificiée."
+#
 #
 #
 #
@@ -2373,9 +2393,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 153
 #~ msgid "General"
 #~ msgstr "Général"
+#
 #
 #
 #
@@ -2399,22 +2421,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Apercu"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-#~ msgid "Finish"
-#~ msgstr "Fin"
 #
 #
 #
@@ -2458,9 +2469,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "sur"
+#
 #
 #
 #
@@ -2505,9 +2518,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Champ"
+#
 #
 #
 #
@@ -2551,9 +2566,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "Téléchargement DBF pas encore effectué"
+#
 #
 #
 #
@@ -2598,10 +2615,12 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2645,6 +2664,7 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exporter les données en CSV"
@@ -2668,9 +2688,11 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Erreur!"
+#
 #
 #
 #
@@ -2715,6 +2737,7 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrer les membres du groupe"
 #
@@ -2738,8 +2761,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "Pas d'Etude spécifiée"
+#
 #
 #
 #
@@ -2788,8 +2813,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "sont obligatoires"
+#
 #
 #
 #
@@ -2838,8 +2865,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "formulaire libre"
+#
 #
 #
 #
@@ -2888,8 +2917,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "Vous devez utilisez"
+#
 #
 #
 #
@@ -2938,8 +2969,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "Purge"
 #~ msgstr "Purge"
+#
 #
 #
 #
@@ -2988,8 +3021,10 @@ msgstr "Confirmer le nouveau mot de passe"
 #
 #
 #
+#
 #~ msgid "to design forms"
 #~ msgstr "pour créer le formulaire"
+#
 #
 #
 #

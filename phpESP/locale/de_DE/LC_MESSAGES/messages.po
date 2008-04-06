@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Robert <HEConsulting@t-online.de>\n"
 "Language-Team: de_DE <jflemer@alum.rpi.edu>\n"
@@ -1862,6 +1862,24 @@ msgstr ""
 "Abbrechen beendet die Umfrage, Fortfahren f&uuml;hrt um zum n&auml;chsten "
 "Schritt."
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+msgid "Finish"
+msgstr "Fertig"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "Inhalt"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
@@ -2271,9 +2289,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/phpESP.ini.php, line: 175
 #~ msgid "Thank You For Completing This Survey."
 #~ msgstr "Vielen Dank f&uuml;r die Teilnahme an dieser Befragung."
+#
 #
 #
 #
@@ -2292,6 +2312,7 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/phpESP.ini.php, line: 181
 # File: phpESP/admin/phpESP.ini.php, line: 187
 #~ msgid ""
@@ -2305,10 +2326,12 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 #~ msgid "Error processing survey: Survey not specified."
 #~ msgstr ""
 #~ "Fehler beim Ausf&uuml;hren der Umfrage: Umfrage wurde nicht spezifiziert"
+#
 #
 #
 #
@@ -2332,9 +2355,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 153
 #~ msgid "General"
 #~ msgstr "Allgemein"
+#
 #
 #
 #
@@ -2358,9 +2383,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 155
 #~ msgid "Order"
 #~ msgstr "Reihenfolge"
+#
 #
 #
 #
@@ -2375,18 +2402,6 @@ msgstr "Passwort best&auml;tigen"
 #~ msgid "Preview"
 #~ msgstr "Vorschau"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-#~ msgid "Finish"
-#~ msgstr "Fertig"
 #
 #
 #
@@ -2430,9 +2445,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "von"
+#
 #
 #
 #
@@ -2477,9 +2494,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Feld"
+#
 #
 #
 #
@@ -2523,9 +2542,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "DBF Download noch nicht implementiert."
+#
 #
 #
 #
@@ -2570,10 +2591,12 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2617,9 +2640,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Daten nach CVS exportieren"
+#
 #
 #
 #
@@ -2663,9 +2688,11 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 87
 #~ msgid "You need to select at least two surveys!"
 #~ msgstr "Mind. zwei Umfragen m&uuml;ssen gew&auml;lt werden!"
+#
 #
 #
 #
@@ -2715,12 +2742,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid ""
 #~ "Error cross-tabulating. Please ensure you make both\n"
 #~ "                                     a column and row selection."
 #~ msgstr ""
 #~ "Fehler bei der Kreuztabellierung. Stellen Sie sicher, dass sowohl\n"
 #~ "                            Spalten und Zeilen ausgew&auml;hlt wurden."
+#
 #
 #
 #
@@ -2770,6 +2799,7 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Mitglieder f&uuml;r Gruppen administrieren"
 #
@@ -2793,8 +2823,10 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "Keine Umfrage ausgew&auml;hlt"
+#
 #
 #
 #
@@ -2845,8 +2877,10 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr " markiert sind m&uuml;ssen beantwortet werden"
+#
 #
 #
 #
@@ -2897,8 +2931,10 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "Freies Format"
+#
 #
 #
 #
@@ -2949,8 +2985,10 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "Required?"
 #~ msgstr "Erforderlich?"
+#
 #
 #
 #
@@ -3001,8 +3039,10 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "um dieses Men&uuml; zu erreichen"
+#
 #
 #
 #
@@ -3053,6 +3093,7 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
 #
@@ -3079,8 +3120,10 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid "to design forms"
 #~ msgstr "um Formulare zu erstellen"
+#
 #
 #
 #
@@ -3135,12 +3178,14 @@ msgstr "Passwort best&auml;tigen"
 #
 #
 #
+#
 #~ msgid ""
 #~ "Body text on the &quot;Confirmation&quot; page. This is displayed below "
 #~ "the Confirmation Heading."
 #~ msgstr ""
 #~ "Informationstext der unter der Best&auml;tigungs- Kopfzeile vorhanden "
 #~ "sein kann"
+#
 #
 #
 #

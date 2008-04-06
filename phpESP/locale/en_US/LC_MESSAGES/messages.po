@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: James Flemer <jflemer@alum.rpi.edu>\n"
 "Language-Team: en_US <jflemer@alum.rpi.edu>\n"
@@ -1697,6 +1697,14 @@ msgstr ""
 msgid ""
 "Click cancel to cancel this survey, or click continue to proceed to the next "
 "tab."
+msgstr ""
+#
+# File: phpESP/admin/include/where/tab.inc, line: 156
+msgid "Finish"
+msgstr ""
+#
+# File: phpESP/admin/include/where/tab.inc, line: 158
+msgid "Continue"
 msgstr ""
 #
 # File: phpESP/admin/include/where/tab.inc, line: 177
