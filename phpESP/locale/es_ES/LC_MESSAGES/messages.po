@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2002-08-02 16:21--500\n"
 "Last-Translator: RAUL PITTI <rpitti@netmasters.com.pa>\n"
 "Language-Team: es_ES <jflemer@alum.rpi.edu>\n"
@@ -1847,6 +1847,24 @@ msgstr ""
 "Presione Cancelar para cancelar esta encuesta, o presione continuar para "
 "proceder hacia el siguiente opción."
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+msgid "Finish"
+msgstr "Finalizar"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "Contenido"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
@@ -2249,9 +2267,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 #~ msgid "Error processing survey: Survey not specified."
 #~ msgstr "Error procesando la encuesta.  No especificó una encuesta."
+#
 #
 #
 #
@@ -2277,9 +2297,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 153
 #~ msgid "General"
 #~ msgstr "General"
+#
 #
 #
 #
@@ -2303,22 +2325,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Previsualizar"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-#~ msgid "Finish"
-#~ msgstr "Finalizar"
 #
 #
 #
@@ -2362,9 +2373,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "de"
+#
 #
 #
 #
@@ -2409,9 +2422,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Campo"
+#
 #
 #
 #
@@ -2455,9 +2470,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "Descargas en formato DBF no están implementadas"
+#
 #
 #
 #
@@ -2502,10 +2519,12 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2549,6 +2568,7 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exportar datos a CSV"
@@ -2572,9 +2592,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Error!"
+#
 #
 #
 #
@@ -2619,6 +2641,7 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrar membresía del Grupo"
 #
@@ -2642,8 +2665,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "No se especificó la encuesta."
+#
 #
 #
 #
@@ -2692,8 +2717,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "son obligatorias."
+#
 #
 #
 #
@@ -2744,9 +2771,11 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "free-form"
 #~ msgstr "texto libre"
+#
 #
 #
 #
@@ -2795,8 +2824,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "Debe utilizar"
+#
 #
 #
 #
@@ -2845,6 +2876,7 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "Purge"
 #~ msgstr "Eliminar"
 #
@@ -2870,8 +2902,10 @@ msgstr "Confirme la nueva contraseña"
 #
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
 #
 #
 #

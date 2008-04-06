@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1059,6 +1059,7 @@ msgstr ""
 # File: phpESP/admin/include/where/admdesigner.inc, line: 303
 # File: phpESP/admin/include/where/admdesigner.inc, line: 340
 # File: phpESP/admin/include/where/admrespondent.inc, line: 263
+# File: phpESP/admin/include/where/tab.inc, line: 154
 # File: phpESP/public/dashboard.php, line: 704
 # File: phpESP/public/dashboard.php, line: 751
 # File: phpESP/public/landing.php, line: 602
@@ -1450,7 +1451,7 @@ msgid "View the User &amp; Administrator Guide"
 msgstr ""
 #
 # File: phpESP/admin/include/where/manage.inc, line: 104
-# File: phpESP/admin/include/where/tab.inc, line: 162
+# File: phpESP/admin/include/where/tab.inc, line: 170
 msgid "Click here to open the Help window."
 msgstr ""
 #
@@ -1749,11 +1750,19 @@ msgstr ""
 msgid "Help"
 msgstr ""
 #
-# File: phpESP/admin/include/where/tab.inc, line: 149
+# File: phpESP/admin/include/where/tab.inc, line: 153
 msgid "Click cancel to cancel this survey, or click continue to proceed to the next tab."
 msgstr ""
 #
 # File: phpESP/admin/include/where/tab.inc, line: 156
+msgid "Finish"
+msgstr ""
+#
+# File: phpESP/admin/include/where/tab.inc, line: 158
+msgid "Continue"
+msgstr ""
+#
+# File: phpESP/admin/include/where/tab.inc, line: 164
 msgid ""
 "The survey title and other general fields are on the <strong>General</strong> tab.\n"
 "Individual survey questions are added and modified on the <strong>Questions</strong> tab.\n"

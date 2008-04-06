@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2002-09-26 19:00+0900\n"
 "Last-Translator: IYODA Atsushi <iyoda@users.sourceforge.net>\n"
 "Language-Team: ja_JP <jflemer@alum.rpi.edu>\n"
@@ -1856,6 +1856,24 @@ msgstr ""
 "このアンケートをキャンセルする場合は「Cancel」をクリックしてください。隣のタ"
 "ブに進む場合は「Continue」をクリックしてください。"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+msgid "Finish"
+msgstr "終了"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "コンテンツ"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
@@ -2237,9 +2255,11 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 #~ msgid "Error processing survey: Survey not specified."
 #~ msgstr "エラー：アンケートが選択されていません"
+#
 #
 #
 #
@@ -2263,9 +2283,11 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 155
 #~ msgid "Order"
 #~ msgstr "オーダー"
+#
 #
 #
 #
@@ -2280,18 +2302,6 @@ msgstr "もっかい"
 #~ msgid "Preview"
 #~ msgstr "プレビュー"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-#~ msgid "Finish"
-#~ msgstr "終了"
 #
 #
 #
@@ -2316,6 +2326,7 @@ msgstr "もっかい"
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "Page"
 #~ msgstr "ページ"
+#
 #
 #
 #
@@ -2362,6 +2373,7 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "フィールド"
@@ -2386,9 +2398,11 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 122
 #~ msgid "Field Name"
 #~ msgstr "フィールドネーム"
+#
 #
 #
 #
@@ -2435,10 +2449,12 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2484,6 +2500,7 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "CVSデータを見る"
@@ -2508,9 +2525,11 @@ msgstr "もっかい"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "ぶべらんぼー"
+#
 #
 #
 #
@@ -2557,6 +2576,7 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "グループメンバーを管理"
 #
@@ -2581,8 +2601,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "アンケートが指定されていません"
+#
 #
 #
 #
@@ -2633,8 +2655,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "マークの質問は必須項目です。"
+#
 #
 #
 #
@@ -2685,6 +2709,7 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ie.手順、背景情報など"
 #
@@ -2711,8 +2736,10 @@ msgstr "もっかい"
 #
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "「プライベート」にする場合は"
+#
 #
 #
 #

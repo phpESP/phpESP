@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2002-03-22 16:40-0500\n"
 "Last-Translator: Henrik <henrik@hornhaver.dk>\n"
 "Language-Team: da_DK <jflemer@alum.rpi.edu>\n"
@@ -1898,6 +1898,24 @@ msgstr ""
 "Klik på Fortryd for at afbryde denne survey eller klik på Fortsæt for at gå "
 "videre til næste faneblad."
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+msgid "Finish"
+msgstr "Afslut"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "Indhold"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
@@ -2300,9 +2318,11 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 #~ msgid "Error processing survey: Survey not specified."
 #~ msgstr "Fejl ved afvikling af survey: Survey er ikke specificeret"
+#
 #
 #
 #
@@ -2327,9 +2347,11 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 153
 #~ msgid "General"
 #~ msgstr "Generelt"
+#
 #
 #
 #
@@ -2353,22 +2375,11 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Vis"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-#~ msgid "Finish"
-#~ msgstr "Afslut"
 #
 #
 #
@@ -2414,9 +2425,11 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "af"
+#
 #
 #
 #
@@ -2463,6 +2476,7 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Felt"
@@ -2487,9 +2501,11 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 122
 #~ msgid "Field Name"
 #~ msgstr "Felt navn"
+#
 #
 #
 #
@@ -2536,10 +2552,12 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2585,6 +2603,7 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Eksporter data til CVS"
@@ -2609,9 +2628,11 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Fejl!"
+#
 #
 #
 #
@@ -2658,8 +2679,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrator gruppe medlemmer"
+#
 #
 #
 #
@@ -2710,8 +2733,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "er obligatoriske"
+#
 #
 #
 #
@@ -2762,8 +2787,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "free-form"
+#
 #
 #
 #
@@ -2814,8 +2841,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "to access this menu"
 #~ msgstr "for at åbne denne menu"
+#
 #
 #
 #
@@ -2866,6 +2895,7 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
 #
@@ -2892,8 +2922,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "to design forms"
 #~ msgstr "for at designe formularer"
+#
 #
 #
 #
@@ -2948,6 +2980,7 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "NOTE: This does not currently work on embedded forms."
 #~ msgstr "Bemærk: Dette understøttes ikke i indlejrede (embedded) formularer."
 #
@@ -2976,8 +3009,10 @@ msgstr "Bekræft ny adgangskode"
 #
 #
 #
+#
 #~ msgid "Response from survey:"
 #~ msgstr "Respons fra survey"
+#
 #
 #
 #

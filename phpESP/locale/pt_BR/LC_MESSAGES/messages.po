@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2008-04-06 19:19+0200\n"
+"POT-Creation-Date: 2008-04-06 19:34+0200\n"
 "PO-Revision-Date: 2002-02-18 13:29-0500\n"
 "Last-Translator: Ricardo Cavallini <ricardo@cavallini.com.br>\n"
 "Language-Team: pt_BR <jflemer@alum.rpi.edu>\n"
@@ -1911,6 +1911,24 @@ msgstr ""
 "Clique em cancelar para cancelar esse questionário ou clique em continue "
 "para proceder a próxima aba"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 157
+msgid "Finish"
+msgstr "Finalizar"
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 61
+#, fuzzy
+msgid "Continue"
+msgstr "Conteúdo"
+#
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
@@ -2316,9 +2334,11 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/public/handler-prefix.php, line: 71
 #~ msgid "Error processing survey: Survey not specified."
 #~ msgstr "Erro processando o questionário: Questionário não especificado."
+#
 #
 #
 #
@@ -2342,9 +2362,11 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 153
 #~ msgid "General"
 #~ msgstr "Geral"
+#
 #
 #
 #
@@ -2368,22 +2390,11 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "Preview"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 157
-#~ msgid "Finish"
-#~ msgstr "Finalizar"
 #
 #
 #
@@ -2429,9 +2440,11 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "de"
+#
 #
 #
 #
@@ -2478,9 +2491,11 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "Campo"
+#
 #
 #
 #
@@ -2526,9 +2541,11 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "O download do DBF não foi implementado."
+#
 #
 #
 #
@@ -2575,10 +2592,12 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/export.inc, line: 88
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
+#
 #
 #
 #
@@ -2624,6 +2643,7 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "Exportar dados no formato CSV"
@@ -2648,9 +2668,11 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "Erro!"
+#
 #
 #
 #
@@ -2697,6 +2719,7 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid "Administer Group Members"
 #~ msgstr "Administrar os Membros do Grupo"
 #
@@ -2721,8 +2744,10 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid "No survey specified."
 #~ msgstr "Nenhum questionário foi especificado."
+#
 #
 #
 #
@@ -2773,8 +2798,10 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid "are required."
 #~ msgstr "são obrigatórias."
+#
 #
 #
 #
@@ -2825,8 +2852,10 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid "free-form"
 #~ msgstr "free-form"
+#
 #
 #
 #
@@ -2877,8 +2906,10 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid "You must use"
 #~ msgstr "Você tem que usar"
+#
 #
 #
 #
@@ -2929,6 +2960,7 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid "Purge"
 #~ msgstr "Remover"
 #
@@ -2955,8 +2987,10 @@ msgstr "Confirmar Nova Senha"
 #
 #
 #
+#
 #~ msgid "STATUS"
 #~ msgstr "STATUS"
+#
 #
 #
 #
