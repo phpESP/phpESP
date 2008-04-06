@@ -6,26 +6,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: phpESP-1.7\n"
-"POT-Creation-Date: 2007-12-10 11:49+0100\n"
+"POT-Creation-Date: 2008-04-06 19:19+0200\n"
 "PO-Revision-Date: 2003-02-07 10:01+0200\n"
 "Last-Translator: armandos <armandos@hol.gr>\n"
 "Language-Team: el_GR <jflemer@alum.rpi.edu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
 #
 # File: phpESP/admin/include/funcs.inc, line: 40
 # File: phpESP/admin/include/where/tab.inc, line: 134
 msgid "Unable to open include file. Check INI settings. Aborting."
-msgstr "ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΑΝΟΙΧΘΕΙ ΤΟ ΑΡΧΕΙΟ include. ΕΛΕΓΞΤΕ ΤΙΣ ΡΥΘΜΙΣΕΙΣ ΤΟΥ ΙΝΙ. ΑΚΥΡΩΣΗ..."
-
+msgstr ""
+"ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΑΝΟΙΧΘΕΙ ΤΟ ΑΡΧΕΙΟ include. ΕΛΕΓΞΤΕ ΤΙΣ ΡΥΘΜΙΣΕΙΣ ΤΟΥ "
+"ΙΝΙ. ΑΚΥΡΩΣΗ..."
 #
 # File: phpESP/admin/include/funcs.inc, line: 49
 #, fuzzy
 msgid "Unable to open ADODB include file. Check INI settings. Aborting."
-msgstr "ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΑΝΟΙΧΘΕΙ ΤΟ ΑΡΧΕΙΟ include. ΕΛΕΓΞΤΕ ΤΙΣ ΡΥΘΜΙΣΕΙΣ ΤΟΥ ΙΝΙ. ΑΚΥΡΩΣΗ..."
-
+msgstr ""
+"ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΑΝΟΙΧΘΕΙ ΤΟ ΑΡΧΕΙΟ include. ΕΛΕΓΞΤΕ ΤΙΣ ΡΥΘΜΙΣΕΙΣ ΤΟΥ "
+"ΙΝΙ. ΑΚΥΡΩΣΗ..."
 #
 # File: phpESP/admin/include/funcs.inc, line: 76
 # File: phpESP/admin/include/funcs.inc, line: 77
@@ -38,13 +39,16 @@ msgstr "ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΑΝΟΙΧΘΕΙ ΤΟ ΑΡΧΕΙΟ
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 179
 msgid "Service Unavailable"
 msgstr "ΜΗ ΔΙΑΘΕΣΙΜΗ ΥΠΗΡΕΣΙΑ"
-
 #
 # File: phpESP/admin/include/funcs.inc, line: 79
 #, fuzzy
 msgid "Connection to database failed. Please check configuration."
 msgstr "ΔΕΝ ΟΡΙΣΤΗΚΑΝ ΤΑ ΤΑΒS. ΕΛΕΓΞΤΕ ΤΙΣ ΡΥΘΜΙΣΕΙΣ ΤΟΥ ΙΝΙ."
-
+#
+# File: phpESP/admin/include/funcs.inc, line: 140
+# File: phpESP/admin/include/funcs.inc, line: 223
+msgid "Go to my surveys"
+msgstr ""
 #
 # File: phpESP/admin/include/funcs.inc, line: 135
 msgid ""
@@ -53,13 +57,11 @@ msgid ""
 "the link below.  You may be prompted for your username\n"
 "and password to complete the survey."
 msgstr ""
-
 #
 # File: phpESP/admin/include/funcs.inc, line: 139
 #, fuzzy
 msgid "Resume survey"
 msgstr "ΔΟΚΙΜΑΣΤΕ ΜΙΑ ΕΡΕΥΝΑ"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 142
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -78,7 +80,6 @@ msgstr "ΔΟΚΙΜΑΣΤΕ ΜΙΑ ΕΡΕΥΝΑ"
 # File: phpESP/admin/include/where/admrespondent.inc, line: 256
 msgid "Yes"
 msgstr "ΝΑΙ"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 146
 # File: phpESP/admin/include/function/survey_report.inc, line: 71
@@ -97,49 +98,40 @@ msgstr "ΝΑΙ"
 # File: phpESP/admin/include/where/admrespondent.inc, line: 256
 msgid "No"
 msgstr "ΟΧΙ"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 261
 msgid "1"
 msgstr "1"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 262
 msgid "2"
 msgstr "2"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 263
 msgid "3"
 msgstr "3"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 264
 msgid "4"
 msgstr "4"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 265
 msgid "5"
 msgstr "5"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 266
 # File: phpESP/admin/include/function/survey_render.inc, line: 289
 msgid "N/A"
 msgstr "Δ.Α."
-
 #
 # File: phpESP/admin/include/function/survey_copy.inc, line: 30
 msgid "copy"
 msgstr "ΑΝΤΙΓΡΑΦΗ"
-
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 21
 # File: phpESP/admin/include/function/survey_merge.inc, line: 26
 msgid "Invalid argument."
 msgstr "ΛΑΘΟΣ ΠΑΡΑΜΕΤΡΟΣ"
-
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 44
 # File: phpESP/admin/include/function/survey_report.inc, line: 37
@@ -150,20 +142,17 @@ msgstr "ΛΑΘΟΣ ΠΑΡΑΜΕΤΡΟΣ"
 # File: phpESP/admin/include/function/survey_results.inc, line: 198
 msgid "Error opening survey."
 msgstr "ΛΑΘΟΣ ΚΑΤΑ ΤΟ ΑΝΟΙΓΜΑ ΤΗΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 57
 # File: phpESP/admin/include/function/survey_merge.inc, line: 62
 # File: phpESP/admin/include/function/survey_merge.inc, line: 87
 msgid "Error opening surveys."
 msgstr "ΛΑΘΟΣ ΚΑΤΑ ΤΟ ΑΝΟΙΓΜΑ ΤΩΝ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 63
 # File: phpESP/admin/include/function/survey_results.inc, line: 198
 msgid "No responses found."
 msgstr "ΔΕΝ ΒΡΕΘΗΚΑΝ ΑΠΑΝΤΗΣΕΙΣ"
-
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 63
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 61
@@ -171,49 +160,41 @@ msgstr "ΔΕΝ ΒΡΕΘΗΚΑΝ ΑΠΑΝΤΗΣΕΙΣ"
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 157
 msgid "TOTAL"
 msgstr "ΣΥΝΟΛΟ"
-
 #
 # File: phpESP/admin/include/function/survey_merge.inc, line: 87
 # File: phpESP/admin/include/function/survey_report.inc, line: 48
 # File: phpESP/admin/include/function/survey_results.inc, line: 139
 msgid "No questions found."
 msgstr "ΔΕΝ ΒΡΕΘΗΚΑΝ ΕΡΩΤΗΣΕΙΣ"
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 61
 msgid "Page %d of %d"
 msgstr ""
-
 #
 # File: phpESP/admin/include/function/survey_render.inc, line: 67
 #, fuzzy
 msgid "Questions marked with a %s are required."
 msgstr "ΟΙ ΕΡΩΤΗΣΕΙΣ ΠΟΥ ΣΗΜΕΙΩΝΟΝΤΑΙ ΜΕ "
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 164
 #, fuzzy
 msgid "Sorry, no questions for you to answer in this section."
 msgstr "ΛΥΠΑΜΑΙ, ΠΡΕΠΕΙ ΝΑ ΕΠΙΛΕΞΕΤΕ ΕΝΑΝ ΤΥΠΟ ΓΙΑ ΑΥΤΗ ΤΗΝ ΕΡΩΤΗΣΗ."
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
 msgid "Error system table corrupt."
 msgstr "ΛΑΘΟΣ ΠΙΝΑΚΑ ΣΥΣΤΗΜΑΤΟΣ (corrupt)"
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 24
 # File: phpESP/admin/include/function/survey_results.inc, line: 113
 # File: phpESP/admin/include/function/survey_results.inc, line: 154
 msgid "Table"
 msgstr "ΠΙΝΑΚΑΣ"
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 52
 msgid "Report for"
 msgstr "ΕΚΘΕΣΗ ΓΙΑ"
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 52
 # File: phpESP/admin/include/function/survey_report.inc, line: 58
@@ -230,18 +211,15 @@ msgstr "ΕΚΘΕΣΗ ΓΙΑ"
 # File: phpESP/admin/include/where/test.inc, line: 108
 msgid "ID"
 msgstr "ID"
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 57
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 174
 msgid "#"
 msgstr "#"
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 59
 msgid "Req'd"
 msgstr "ΑΠΑΙΤΕΙΤΑΙ"
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 60
 # File: phpESP/admin/include/where/access.inc, line: 106
@@ -250,73 +228,64 @@ msgstr "ΑΠΑΙΤΕΙΤΑΙ"
 # File: phpESP/admin/include/where/access.inc, line: 235
 msgid "Public"
 msgstr "ΔΗΜΟΣΙΑ"
-
 #
 # File: phpESP/admin/include/function/survey_report.inc, line: 61
 msgid "Content"
 msgstr "ΠΕΡΙΕΧΟΜΕΝΟ"
-
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 53
 #, fuzzy
 msgid "Previous"
 msgstr "ΠΡΟΕΠΙΣΚΟΠΗΣΗ"
-
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 64
 #, fuzzy
 msgid "Next"
 msgstr "ΕΠΟΜΕΝΗ ΣΕΛΙΔΑ"
-
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 68
 msgid "Navigate Individual Respondent Submissions"
 msgstr ""
-
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 154
 msgid "Error cross-analyzing. Question not valid type."
-msgstr "ΛΑΘΟΣ ΣΤΗΝ ΣΤΑΥΡΩΤΗ ΑΝΑΛΥΣΗ (cross-analyszing). Η ΕΡΩΤΗΣΗ ΔΕΝ ΕΧΕΙ ΑΠΟΔΕΚΤΟ ΤΥΠΟ."
-
+msgstr ""
+"ΛΑΘΟΣ ΣΤΗΝ ΣΤΑΥΡΩΤΗ ΑΝΑΛΥΣΗ (cross-analyszing). Η ΕΡΩΤΗΣΗ ΔΕΝ ΕΧΕΙ ΑΠΟΔΕΚΤΟ "
+"ΤΥΠΟ."
 #
 # File: phpESP/admin/include/function/survey_results.inc, line: 227
 #, fuzzy
 msgid "Cross analysis on QN:"
 msgstr "ΣΤΑΥΡΩΤΗ ΑΝΑΛΥΣΗ (cross-analysis) ΣΤΟ QID:"
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 36
 # File: phpESP/admin/include/function/survey_update.inc, line: 73
 msgid "Sorry, please fill out the name, group, and title before proceeding."
-msgstr "ΛΥΠΑΜΑΙ, ΠΑΡΑΚΑΛΩ ΣΥΜΠΛΗΡΩΣΤΕ ΤΟ ΟΝΟΜΑ, ΤΗΝ ΟΜΑΔΑ ΚΑΙ ΤΟΝ ΤΙΤΛΟ ΠΡΙΝ ΠΡΟΧΩΡΗΣΕΤΕ."
-
+msgstr ""
+"ΛΥΠΑΜΑΙ, ΠΑΡΑΚΑΛΩ ΣΥΜΠΛΗΡΩΣΤΕ ΤΟ ΟΝΟΜΑ, ΤΗΝ ΟΜΑΔΑ ΚΑΙ ΤΟΝ ΤΙΤΛΟ ΠΡΙΝ "
+"ΠΡΟΧΩΡΗΣΕΤΕ."
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 56
 msgid "Sorry, name already in use. Pick a new name."
 msgstr "ΛΥΠΑΜΑΙ, ΤΟ ΟΝΟΜΑ ΥΠΑΡΧΕΙ ΗΔΗ. ΕΠΙΛΕΞΤΕ ΕΝΑ ΝΕΟ ΟΝΟΜΑ."
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 87
 msgid "Sorry, that name is already in use."
 msgstr "ΛΥΠΑΜΑΙ, ΤΟ ΟΝΟΜΑ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΗΔΗ."
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 101
 # File: phpESP/admin/include/function/survey_update.inc, line: 262
 # File: phpESP/admin/include/function/survey_update.inc, line: 302
 msgid "Warning, error encountered."
 msgstr "ΠΡΟΣΟΧΗ, ΕΝΤΟΠΙΣΤΗΚΑΝ ΛΑΘΗ."
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 115
 msgid "Please enter text for this question."
 msgstr "ΠΑΡΑΚΑΛΩ ΕΙΣΑΓΕΤΕ ΤΟ ΚΕΙΜΕΝΟ ΓΙΑ ΑΥΤΗ ΤΗΝ ΕΡΩΤΗΣΗ."
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 164
 msgid "Sorry, you must select a type for this question."
 msgstr "ΛΥΠΑΜΑΙ, ΠΡΕΠΕΙ ΝΑ ΕΠΙΛΕΞΕΤΕ ΕΝΑΝ ΤΥΠΟ ΓΙΑ ΑΥΤΗ ΤΗΝ ΕΡΩΤΗΣΗ."
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 169
 # File: phpESP/admin/include/tab/questions.inc, line: 47
@@ -324,17 +293,29 @@ msgstr "ΛΥΠΑΜΑΙ, ΠΡΕΠΕΙ ΝΑ ΕΠΙΛΕΞΕΤΕ ΕΝΑΝ ΤΥΠΟ �
 # File: phpESP/admin/include/tab/questions.inc, line: 115
 msgid "New Field"
 msgstr "ΝΕΟ ΠΕΔΙΟ"
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 182
-msgid "Sorry, you cannot change between those types of question. Create a new question instead."
-msgstr "ΛΥΠΑΜΑΙ, ΔΕΝ ΜΠΟΡΕΙΤΕ ΝΑ ΑΛΛΑΞΕΤΕ ΑΝΑΜΕΣΑ ΣΕ ΑΥΤΟΥΣ ΤΟΥ ΤΥΠΟΥΣ ΤΗΣ ΕΡΩΤΗΣΗ. ΔΗΜΙΟΥΡΗΣΤΕ ΜΙΑ ΝΕΑ ΕΡΩΤΗΣΗ."
-
+msgid ""
+"Sorry, you cannot change between those types of question. Create a new "
+"question instead."
+msgstr ""
+"ΛΥΠΑΜΑΙ, ΔΕΝ ΜΠΟΡΕΙΤΕ ΝΑ ΑΛΛΑΞΕΤΕ ΑΝΑΜΕΣΑ ΣΕ ΑΥΤΟΥΣ ΤΟΥ ΤΥΠΟΥΣ ΤΗΣ ΕΡΩΤΗΣΗ. "
+"ΔΗΜΙΟΥΡΗΣΤΕ ΜΙΑ ΝΕΑ ΕΡΩΤΗΣΗ."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 268
+msgid "For rate questions, \"!other\" is not a possible answer"
+msgstr ""
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 310
 msgid "Sorry, you need at least one answer option for this question type."
-msgstr "ΛΥΠΑΜΑΙ, ΠΡΕΠΕΙ ΝΑ ΥΠΑΡΧΕΙ ΤΟΥΛΑΧΙΣΤΟΝ 1 ΠΙΘΑΝΗ ΑΠΑΝΤΗΣΗ ΣΕ ΑΥΤΟ ΤΟΝ ΤΥΠΟ ΕΡΩΤΗΣΗΣ."
-
+msgstr ""
+"ΛΥΠΑΜΑΙ, ΠΡΕΠΕΙ ΝΑ ΥΠΑΡΧΕΙ ΤΟΥΛΑΧΙΣΤΟΝ 1 ΠΙΘΑΝΗ ΑΠΑΝΤΗΣΗ ΣΕ ΑΥΤΟ ΤΟΝ ΤΥΠΟ "
+"ΕΡΩΤΗΣΗΣ."
+#
+# File: phpESP/admin/include/function/survey_update.inc, line: 115
+#, fuzzy
+msgid "Please select two different questions."
+msgstr "ΠΑΡΑΚΑΛΩ ΕΙΣΑΓΕΤΕ ΤΟ ΚΕΙΜΕΝΟ ΓΙΑ ΑΥΤΗ ΤΗΝ ΕΡΩΤΗΣΗ."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 19
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 29
@@ -342,19 +323,16 @@ msgstr "ΛΥΠΑΜΑΙ, ΠΡΕΠΕΙ ΝΑ ΥΠΑΡΧΕΙ ΤΟΥΛΑΧΙΣΤΟΝ 
 # File: phpESP/public/handler-prefix.php, line: 61
 msgid "Error processing survey: Security violation."
 msgstr "ΛΑΘΟΣ ΔΙΑΔΙΚΑΣΙΑΣ ΕΡΕΥΝΑΣ: ΠΑΡΑΒΙΑΣΗ ΑΣΦΑΛΕΙΑΣ"
-
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 33
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 44
 msgid "Unable to execute query for access."
 msgstr "ΑΔΥΝΑΤΟΝ ΝΑ ΕΚΤΕΛΕΣΤΕΙ ΤΟ ΕΡΩΤΗΜΑ (query) ΓΙΑ ΤΗΝ ΠΡΟΣΒΑΣΗ"
-
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 60
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 72
 msgid "Unable to execute query respondents."
 msgstr "ΑΔΥΝΑΤΟΝ ΝΑ ΕΚΤΕΛΕΣΤΕΙ ΤΟ ΕΡΩΤΗΜΑ (query) ΓΙΑ ΤΟΥΣ ΕΡΩΤΗΘΕΝΤΕΣ"
-
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 76
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 92
@@ -368,39 +346,42 @@ msgstr "ΑΔΥΝΑΤΟΝ ΝΑ ΕΚΤΕΛΕΣΤΕΙ ΤΟ ΕΡΩΤΗΜΑ (query) �
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 223
 msgid "Unauthorized"
 msgstr "ΔΕΝ ΕΧΕΤΕ ΠΡΟΣΒΑΣΗ (UNAUTHORIZED)"
-
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 77
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 161
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 89
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 224
-msgid "Incorrect User ID or Password, or your account has been disabled/expired."
-msgstr "ΛΑΘΟΣ ΟΝΟΜΑ ΧΡΗΣΤΗ ή ΚΩΔΙΚΟΣ ή Ο ΛΟΓΑΡΙΑΣΜΟΣ ΕΧΕΙ ΑΠΕΝΕΡΓΟΠΟΙΗΘΕΙ/ΛΗΞΕΙ"
-
+msgid ""
+"Incorrect User ID or Password, or your account has been disabled/expired."
+msgstr ""
+"ΛΑΘΟΣ ΟΝΟΜΑ ΧΡΗΣΤΗ ή ΚΩΔΙΚΟΣ ή Ο ΛΟΓΑΡΙΑΣΜΟΣ ΕΧΕΙ ΑΠΕΝΕΡΓΟΠΟΙΗΘΕΙ/ΛΗΞΕΙ"
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 93
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 105
-msgid "Your account has been disabled or you have already completed this survey."
-msgstr "Ο ΛΟΓΑΡΙΑΣΜΟΣ ΑΥΤΟΣ ΕΧΕΙ ΑΠΕΝΕΡΓΟΠΟΙΗΘΕΙ ή ΕΧΕΤ ΗΔΗ ΣΥΜΜΕΤΑΣΧΕΙ ΣΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ."
-
+msgid ""
+"Your account has been disabled or you have already completed this survey."
+msgstr ""
+"Ο ΛΟΓΑΡΙΑΣΜΟΣ ΑΥΤΟΣ ΕΧΕΙ ΑΠΕΝΕΡΓΟΠΟΙΗΘΕΙ ή ΕΧΕΤ ΗΔΗ ΣΥΜΜΕΤΑΣΧΕΙ ΣΕ ΑΥΤΗ ΤΗΝ "
+"ΕΡΕΥΝΑ."
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 143
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 180
 msgid "Unable to load ACL."
 msgstr "ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΦΟΡΤΩΘΕΙ ΤΟ ACL"
-
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 157
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 220
 # File: phpESP/admin/include/where/manage.inc, line: 14
 msgid "Management Interface"
 msgstr "ΠΕΡΙΒΑΛΛΟΝ ΔΙΑΧΕΙΡΙΣΗΣ"
-
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
+msgid "phpESP Management Login"
+msgstr ""
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 248
 msgid "This account does not have permission"
 msgstr "ΑΥΤΟΣ Ο ΛΟΓΑΡΙΑΣΜΟΣ ΔΕΝ ΕΧΕΙ ΤΗΝ ΑΔΕΙΑ"
-
 #
 # File: phpESP/admin/include/lib/espauth-default.inc, line: 250
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 313
@@ -445,112 +426,143 @@ msgstr "ΑΥΤΟΣ Ο ΛΟΓΑΡΙΑΣΜΟΣ ΔΕΝ ΕΧΕΙ ΤΗΝ ΑΔΕΙΑ"
 # File: phpESP/admin/include/where/upload.inc, line: 133
 msgid "Go back to Management Interface"
 msgstr "ΠΙΣΩ ΣΤΟ ΠΕΡΙΒΑΛΛΟΝ ΔΙΑΧΕΙΡΙΣΗΣ"
-
 #
 # File: phpESP/admin/include/lib/espauth-ldap.inc, line: 311
 #, fuzzy
 msgid "This account does not have permission %s."
 msgstr "ΑΥΤΟΣ Ο ΛΟΓΑΡΙΑΣΜΟΣ ΔΕΝ ΕΧΕΙ ΤΗΝ ΑΔΕΙΑ"
-
+#
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 60
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 72
+#, fuzzy
+msgid "Unable to set current respondent"
+msgstr "ΑΔΥΝΑΤΟΝ ΝΑ ΕΚΤΕΛΕΣΤΕΙ ΤΟ ΕΡΩΤΗΜΑ (query) ΓΙΑ ΤΟΥΣ ΕΡΩΤΗΘΕΝΤΕΣ"
 #
 # File: phpESP/admin/include/lib/esphtml.forms.inc, line: 145
 #, fuzzy
 msgid "Submit"
 msgstr "ΥΠΟΤΙΤΛΟΣ"
-
+#
+# File: phpESP/admin/include/lib/esphtml.forms.inc, line: 191
+msgid "Language:"
+msgstr ""
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 83
 msgid "Rank"
 msgstr "ΚΑΤΑΤΑΞΗ"
-
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 174
 msgid "Response"
 msgstr "ΑΠΑΝΤΗΣΗ"
-
 #
 # File: phpESP/admin/include/lib/esphtml.results.inc, line: 199
 msgid "Average rank"
 msgstr "ΜΕΣΟΣ ΟΡΟΣ ΚΑΤΑΤΑΞΗΣ"
-
 #
 # File: phpESP/admin/include/lib/espresponse.inc, line: 59
 msgid "You are missing the following required questions:"
 msgstr "ΔΕΝ ΕΧΕΤΕ ΑΠΑΝΤΗΣΕΙ ΣΤΙΣ ΠΑΡΑΚΑΤΩ ΥΠΟΧΡΕΩΤΙΚΕΣ ΕΡΩΤΗΣΕΙΣ:"
-
 #
 # File: phpESP/admin/include/function/survey_update.inc, line: 115
 #, fuzzy
 msgid "Please only use numbers for the following questions:"
 msgstr "ΠΑΡΑΚΑΛΩ ΕΙΣΑΓΕΤΕ ΤΟ ΚΕΙΜΕΝΟ ΓΙΑ ΑΥΤΗ ΤΗΝ ΕΡΩΤΗΣΗ."
-
+#
+# File: phpESP/admin/include/lib/espresponse.inc, line: 175
+msgid "Request failed, please contact the administrator."
+msgstr ""
+#
+msgid "Unable to get list of surveys for current user"
+msgstr ""
+#
+msgid "Unable to fetch statistics from table"
+msgstr ""
+#
+msgid "Unable to fetch statistics for survey"
+msgstr ""
+#
+msgid "Unable to fetch statistic for survey"
+msgstr ""
+#
+msgid "Unable to increment statistic for survey"
+msgstr ""
+#
+msgid "Unable to decrement statistic for survey"
+msgstr ""
+#
+msgid "Unable to set statistic for survey"
+msgstr ""
+#
+msgid "Unable to initialize statistics for survey"
+msgstr ""
+#
+msgid "Unable to purge statistics for survey"
+msgstr ""
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 #, fuzzy
 msgid "equals"
 msgstr "ΑΠΟΤΕΛΕΣΜΑΤΑ"
-
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 15
 msgid "is different from"
 msgstr ""
-
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 16
 msgid "smaller than"
 msgstr ""
-
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 17
 msgid "bigger than"
 msgstr ""
-
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 22
 msgid "Current conditions defined:"
 msgstr ""
-
+#
+# File: phpESP/admin/include/tab/conditions.inc, line: 28
+# File: phpESP/admin/include/tab/general.inc, line: 119
+msgid "OR"
+msgstr ""
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 33
 # File: phpESP/admin/include/tab/conditions.inc, line: 82
 msgid "Only show question "
 msgstr ""
-
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 41
 # File: phpESP/admin/include/tab/conditions.inc, line: 104
 msgid "if answer to question "
 msgstr ""
-
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 65
 msgid ""
-"All conditions are \"OR\" conditions, so if one conditions is fullfilled, the question is shown.<br />\n"
-"A question that has a condition must be an optional question. So, if you define a condition on a question, the \"Required\" parameter is set to \"No\".<br />\n"
-"A question that has a condition must be on the next page than the question/value that is used to compare it with. Use the \"Order tab\" to insert a section break where wanted (this is <b>NOT</b> done automatically).<br />\n"
+"All conditions are \"OR\" conditions, so if one conditions is fullfilled, "
+"the question is shown.<br />\n"
+"A question that has a condition must be an optional question. So, if you "
+"define a condition on a question, the \"Required\" parameter is set to \"No"
+"\".<br />\n"
+"A question that has a condition must be on the next page than the question/"
+"value that is used to compare it with. Use the \"Order tab\" to insert a "
+"section break where wanted (this is <b>NOT</b> done automatically).<br />\n"
 "A Yes/No question can only be compared using the values \"Yes or \"No\"."
 msgstr ""
-
 #
 # File: phpESP/admin/include/tab/conditions.inc, line: 73
 msgid "Add conditions to a question."
 msgstr ""
-
 #
 # File: phpESP/admin/include/tab/order.inc, line: 89
 msgid "----- Section Break -----"
 msgstr "ΑΛΛΑΓΗ ΤΟΜΕΑ"
-
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 27
 msgid "Survey Design Completed"
 msgstr "Η ΣΧΕΔΙΑΣΗ ΤΗΣ ΕΡΕΥΝΑΣ ΟΛΟΚΛΗΡΩΘΗΚΕ"
-
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 29
 msgid "You have completed this survey design."
 msgstr "ΕΧΕΤΕ ΟΛΟΚΛΗΡΩΣΕΙ ΤΗΝ ΣΧΕΔΙΑΣΗ ΤΗΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 31
 msgid ""
@@ -560,7 +572,6 @@ msgstr ""
 "ΓΙΑ ΝΑ ΕΙΣΑΓΕΤΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ ΣΤΗΝ ΙΣΤΙΟΣΕΛΙΔΑ ΣΑΣ,\n"
 "ΑΝΤΙΓΡΆΨΤΕ ΤΟ ΠΑΡΑΚΑΤΩ ΚΕΙΜΕΝΟ ΚΑΙ ΕΠΙΚΟΛΛΗΣΤΕ ΤΟ\n"
 "ΣΤΟΝ HTML ΚΩΔΙΚΑ ΤΗΣ ΣΕΛΙΔΑΣ ΣΑΣ"
-
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 39
 msgid ""
@@ -570,7 +581,6 @@ msgstr ""
 "ΑΦΟΥ ΕΝΕΡΓΟΠΟΙΗΣΕΤΕ ΤΗΝ ΕΡΕΥΝΑ ΜΠΟΡΕΙΤΕ ΝΑ\n"
 "ΕΧΕΤΕ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΗ ΚΑΤΕΥΘΕΙΑΝ ΜΕΣΩ ΤΗΣ\n"
 "ΕΞΗΣ ΔΙΕΥΘΥΝΣΗΣ:"
-
 #
 # File: phpESP/admin/include/tab/finish.inc, line: 45
 msgid ""
@@ -586,7 +596,13 @@ msgstr ""
 "ΕΝΕΡΓΟΠΟΙΗΣΕΤΕ ΤΗΝ ΕΡΕΥΝΑ ΔΙΑΛΕΓΟΝΤΑΣ ΤΗΝ ΕΠΙΛΟΓΗ\n"
 "<b>ΑΛΛΑΓΗ ΚΑΤΑΣΤΑΣΗΣ ΥΠΑΡΧΟΥΣΑΣ ΕΡΕΥΝΑΣ</b> ΑΠΟ\n"
 "ΤΟ ΠΕΡΙΒΑΛΛΟΝ ΔΙΑΧΕΙΡΙΣΗΣ."
-
+#
+# File: phpESP/admin/include/tab/general.inc, line: 39
+msgid ""
+"The information on this tab applies to the whole survey.\n"
+"Fill out this page then go to the <strong>Fields</strong> tab to\n"
+"edit individual fields."
+msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 44
 # File: phpESP/admin/include/where/access.inc, line: 163
@@ -601,27 +617,28 @@ msgstr ""
 # File: phpESP/admin/include/where/test.inc, line: 109
 msgid "Name"
 msgstr "ΟΝΟΜΑ"
-
+#
+# File: phpESP/admin/include/function/survey_report.inc, line: 59
+#, fuzzy
+msgid "Required"
+msgstr "ΑΠΑΙΤΕΙΤΑΙ"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 49
 msgid "Survey filename."
 msgstr "ΟΝΟΜΑ ΑΡΧΕΙΟΥ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/tab/general.inc, line: 50
 msgid "This is used for all further access to this survey."
-msgstr "ΑΥΤΟ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΓΙΑ ΟΛΕΣ ΤΙΣ ΥΠΟΛΟΙΠΕΣ ΠΡΟΣΒΑΣΕΙΣ ΣΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ."
-
+msgstr ""
+"ΑΥΤΟ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΓΙΑ ΟΛΕΣ ΤΙΣ ΥΠΟΛΟΙΠΕΣ ΠΡΟΣΒΑΣΕΙΣ ΣΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ."
 #
 # File: phpESP/admin/include/tab/general.inc, line: 51
 msgid "no spaces"
 msgstr "ΧΩΡΙΣ ΚΕΝΑ"
-
 #
 # File: phpESP/admin/include/tab/general.inc, line: 51
 msgid "alpha-numeric only"
 msgstr "ΜΟΝΟ ΑΛΦΑΡΙΘΜΗΤΙΚΟΥΣ ΧΑΡΑΚΤΗΡΕΣ"
-
 #
 # File: phpESP/admin/include/tab/general.inc, line: 55
 # File: phpESP/admin/include/where/access.inc, line: 165
@@ -636,7 +653,10 @@ msgstr "ΜΟΝΟ ΑΛΦΑΡΙΘΜΗΤΙΚΟΥΣ ΧΑΡΑΚΤΗΡΕΣ"
 # File: phpESP/admin/include/where/test.inc, line: 111
 msgid "Owner"
 msgstr "ΙΔΙΟΚΤΗΤΗΣ"
-
+#
+# File: phpESP/admin/include/tab/general.inc, line: 81
+msgid "User and Group that owns this survey."
+msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 77
 # File: phpESP/admin/include/where/access.inc, line: 164
@@ -651,34 +671,205 @@ msgstr "ΙΔΙΟΚΤΗΤΗΣ"
 # File: phpESP/admin/include/where/test.inc, line: 110
 msgid "Title"
 msgstr "ΤΙΤΛΟΣ"
-
+#
+# File: phpESP/admin/include/where/copy.inc, line: 24
+# File: phpESP/admin/include/where/download.inc, line: 38
+# File: phpESP/admin/include/where/download.inc, line: 49
+# File: phpESP/admin/include/where/export.inc, line: 113
+# File: phpESP/admin/include/where/export.inc, line: 125
+# File: phpESP/admin/include/where/results.inc, line: 30
+# File: phpESP/admin/include/where/results.inc, line: 42
+# File: phpESP/admin/include/where/status.inc, line: 100
+# File: phpESP/admin/include/where/test.inc, line: 35
+#, fuzzy
+msgid "Title of this survey."
+msgstr "ΓΙΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 50
+#, fuzzy
+msgid "This appears at the top of every page of this survey."
+msgstr ""
+"ΑΥΤΟ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΓΙΑ ΟΛΕΣ ΤΙΣ ΥΠΟΛΟΙΠΕΣ ΠΡΟΣΒΑΣΕΙΣ ΣΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ."
+#
+# File: phpESP/admin/include/tab/general.inc, line: 91
+# File: phpESP/admin/include/tab/general.inc, line: 100
+msgid "free-form, including spaces"
+msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 88
 msgid "Subtitle"
 msgstr "ΥΠΟΤΙΤΛΟΣ"
-
+#
+# File: phpESP/admin/include/where/copy.inc, line: 24
+# File: phpESP/admin/include/where/download.inc, line: 38
+# File: phpESP/admin/include/where/download.inc, line: 49
+# File: phpESP/admin/include/where/export.inc, line: 113
+# File: phpESP/admin/include/where/export.inc, line: 125
+# File: phpESP/admin/include/where/results.inc, line: 30
+# File: phpESP/admin/include/where/results.inc, line: 42
+# File: phpESP/admin/include/where/status.inc, line: 100
+# File: phpESP/admin/include/where/test.inc, line: 35
+#, fuzzy
+msgid "Subtitle of this survey."
+msgstr "ΓΙΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ"
 #
 # File: phpESP/admin/include/tab/general.inc, line: 92
 msgid "Appears below the title."
 msgstr "ΕΜΦΑΝΙΖΕΤΕ ΚΑΤΩ ΑΠΟ ΤΟΝ ΤΙΤΛΟ"
-
 #
 # File: phpESP/admin/include/tab/general.inc, line: 97
 msgid "Additional Info"
 msgstr "ΕΠΙΠΛΕΟΝ ΠΛΗΡΟΦΟΡΙΕΣ"
-
+#
+# File: phpESP/admin/include/tab/general.inc, line: 108
+msgid ""
+"Text to be displayed on this survey before any fields.\n"
+"(i.e. instructions, background info, etc.)"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Confirmation Page"
+msgstr "ΕΠΙΚΕΦΑΛΙΔΑ ΕΠΙΒΕΒΑΙΩΣΗΣ"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 117
+msgid "(URL)"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 118
+msgid "The URL to which a user is redirected after completing this survey."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 121
+msgid "(heading text)"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 123
+msgid "(body text)"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid ""
+"Heading (in bold) and body text for the &quot;Confirmation&quot; page\n"
+"displayed after a user completes this survey."
+msgstr ""
+"ΚΕΙΜΕΝΟ ΣΤΗΝ ΣΕΛΙΔΑ &quot;ΕΠΙΒΕΒΑΙΩΣΗΣ&quot; . ΕΜΦΑΝΙΖΕΤΑΙ ΚΑΤΩ ΑΠΟ ΤΗΝ "
+"ΕΠΙΚΕΦΑΛΙΔΑ ΕΠΙΒΕΒΑΙΩΣΗΣ "
+#
+# File: phpESP/admin/include/tab/general.inc, line: 126
+msgid "(URL, if present, takes precedent over confirmation text.)"
+msgstr ""
 #
 # File: phpESP/admin/include/tab/general.inc, line: 123
 # File: phpESP/admin/include/where/admdesigner.inc, line: 264
 # File: phpESP/admin/include/where/admrespondent.inc, line: 239
 msgid "Email"
 msgstr "ΔΙΕΥΘΥΝΣΗ EMAIL"
-
 #
 # File: phpESP/admin/include/tab/general.inc, line: 126
-msgid "Sends a copy of each submission to address (or leave blank for no email backup)."
-msgstr "ΣΤΕΛΝΕΙ ΕΝΑ ΑΝΤΙΓΡΑΦΟ ΚΑΘΕ ΑΠΑΝΤΗΣΗΣ ΣΕ ΜΙΑ ΔΙΕΥΘΥΝΣΗ (ή ΑΦΗΣΤΕ ΤΟ ΚΕΝΟ ΓΙΑ ΝΑ ΜΗΝ ΥΠΑΡΧΕΙ EMAIL BACKUP)"
-
+msgid ""
+"Sends a copy of each submission to address (or leave blank for no email "
+"backup)."
+msgstr ""
+"ΣΤΕΛΝΕΙ ΕΝΑ ΑΝΤΙΓΡΑΦΟ ΚΑΘΕ ΑΠΑΝΤΗΣΗΣ ΣΕ ΜΙΑ ΔΙΕΥΘΥΝΣΗ (ή ΑΦΗΣΤΕ ΤΟ ΚΕΝΟ ΓΙΑ "
+"ΝΑ ΜΗΝ ΥΠΑΡΧΕΙ EMAIL BACKUP)"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 138
+msgid "Theme"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 153
+msgid "Select a theme (css) to use with this survey."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 157
+msgid "Automatic numbering"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 163
+msgid ""
+"Select if questions are to be numbered automatically when showing the survey."
+msgstr ""
+#
+msgid "Survey opening date"
+msgstr ""
+#
+msgid "The <em>earliest</em> date and time respondents may respond to survey."
+msgstr ""
+#
+msgid "If date given without a time, midnight on the given date is assumed."
+msgstr ""
+#
+msgid ""
+"If not supplied, respondents may respond immediately once survey activated."
+msgstr ""
+#
+msgid "Survey closing date"
+msgstr ""
+#
+msgid ""
+"When provided, the <em>latest</em> date and time respondents may respond to "
+"survey."
+msgstr ""
+#
+msgid ""
+"If not supplied, respondents may respond indefinitely until survey marked as "
+"done."
+msgstr ""
+#
+#
+#
+#
+#
+#
+# File: phpESP/admin/include/where/tab.inc, line: 154
+#, fuzzy
+msgid "Options"
+msgstr "ΕΡΩΤΗΣΕΙΣ"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 190
+msgid "Allow survey respondents to save/resume. (Survey login required.)"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/general.inc, line: 195
+msgid ""
+"Allow survey respondents to go forward and back between survey sections."
+msgstr ""
 #
 # File: phpESP/admin/include/tab/order.inc, line: 18
 #, fuzzy
@@ -690,12 +881,10 @@ msgstr ""
 "ΑΛΛΑΞΤΕ ΤΗ ΣΕΙΡΑ ΠΟΥ ΘΕΛΕΤΕ ΝΑ\n"
 "ΕΜΦΑΝΙΣΖΟΝΤΑΙ ΟΙ ΕΡΩΤΗΣΕΙΣ ΔΙΑΛΕΓΟΝΤΑΣ\n"
 "ΤΗΝ ΕΠΙΘΥΜΗΤΗ ΘΕΣΗ ΑΠΟ ΤΗΝ ΛΙΣΤΑ."
-
 #
 # File: phpESP/admin/include/tab/order.inc, line: 96
 msgid "Add Section Break"
 msgstr "ΠΡΟΣΘΗΚΗ ΤΟΜΕΑ"
-
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 43
 #, fuzzy
@@ -713,61 +902,64 @@ msgstr ""
 "ΤΑ ΧΡΩΜΑΤΑ ΤΗΣ ΙΣΤΙΟΣΕΛΙΔΑΣ ΠΟΥ ΘΑ\n"
 "ΣΥΜΠΕΡΙΛΗΦΘΕΙ. ΕΑΝ ΔΕΝ ΘΕΛΕΤΕ ΝΑ ΚΑΝΕΤΕ\n"
 "ΑΛΛΕΣ ΑΛΛΑΓΕΣ ΚΑΝΤΕ ΚΛΙΚ ΣΤΟ <b>ΤΕΛΟΣ</b>."
-
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 52
 msgid "Section"
 msgstr "ΤΟΜΕΑΣ"
-
+#
+# File: phpESP/admin/include/function/survey_results.inc, line: 53
+#, fuzzy
+msgid "Previous Page"
+msgstr "ΠΡΟΕΠΙΣΚΟΠΗΣΗ"
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 76
+# File: phpESP/public/handler.php, line: 228
+msgid "Save"
+msgstr ""
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 82
 msgid "Next Page"
 msgstr "ΕΠΟΜΕΝΗ ΣΕΛΙΔΑ"
-
 #
 # File: phpESP/admin/include/tab/preview.inc, line: 84
 msgid "Submit Survey"
 msgstr "ΑΠΟΣΤΟΛΗ ΑΠΑΝΤΗΣΕΩΝ"
-
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 106
 #, fuzzy
-msgid "Edit this question, or click the number of the question you would like to edit:"
-msgstr "ΔΙΟΡΘΩΣΤΕ ΤΟ ΠΕΔΙΟ ή ΚΑΝΤΕ ΚΛΙΚ ΣΤΟΝ ΑΡΙΘΜΟ ΤΟΥ ΠΕΔΙΟΥ ΠΟΥ ΘΕΛΕΤΕ ΝΑ ΔΙΟΡΘΩΣΕΤΕ:"
-
+msgid ""
+"Edit this question, or click the number of the question you would like to "
+"edit:"
+msgstr ""
+"ΔΙΟΡΘΩΣΤΕ ΤΟ ΠΕΔΙΟ ή ΚΑΝΤΕ ΚΛΙΚ ΣΤΟΝ ΑΡΙΘΜΟ ΤΟΥ ΠΕΔΙΟΥ ΠΟΥ ΘΕΛΕΤΕ ΝΑ "
+"ΔΙΟΡΘΩΣΕΤΕ:"
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #, fuzzy
 msgid "Edit Question"
 msgstr "ΕΡΩΤΗΣΕΙΣ"
-
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #, fuzzy
 msgid "New Question"
 msgstr "ΕΡΩΤΗΣΕΙΣ"
-
 #
 # File: phpESP/admin/include/where/tab.inc, line: 154
 #, fuzzy
 msgid "Question Name"
 msgstr "ΕΡΩΤΗΣΕΙΣ"
-
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 123
 msgid "Type"
 msgstr "ΤΥΠΟΣ"
-
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 124
 msgid "Length"
 msgstr "ΜΗΚΟΣ"
-
 #
 # File: phpESP/admin/include/tab/questions.inc, line: 125
 msgid "Precision"
 msgstr "ΑΚΡΙΒΕΙΑ (Precision)"
-
 #
 # File: phpESP/admin/include/tab/questions_options.inc, line: 38
 #, fuzzy
@@ -781,28 +973,23 @@ msgstr ""
 "ΕΙΣΑΓΕΤΕ <tt>!other</tt> ΣΕ ΜΙΑ ΓΡΑΜΜΗ ΓΙΑ ΝΑ \n"
 "ΔΗΜΙΟΥΡΓΗΣΕΤΕ ΚΕΝΟ ΠΕΔΙΟ ΓΙΑ ΕΛΕΥΘΕΡΗ ΑΠΑΝΤΗΣΗ.\n"
 "ΟΙ ΚΕΝΕΣ ΓΡΑΜΜΕΣ ΔΕΝ ΘΑ ΥΠΑΡΧΟΥΝ ΣΤΗΝ ΤΕΛΙΚΗ ΕΡΕΥΝΑ."
-
 #
 # File: phpESP/admin/include/tab/questions_options.inc, line: 70
 msgid "Add another answer line"
 msgstr "ΠΡΟΣΘΗΚΗ ΝΕΑΣ ΓΡΑΜΜΗΣ ΑΠΑΝΤΗΣΗΣ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 83
 msgid "Please select a group."
 msgstr "ΠΑΡΑΚΑΛΩ ΔΙΑΛΕΞΤΕ ΜΙΑ ΟΜΑΔΑ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 104
 # File: phpESP/admin/include/where/access.inc, line: 232
 msgid "Private"
 msgstr "ΙΔΙΩΤΙΚΗ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 140
 msgid "Survey Access"
 msgstr "ΠΡΟΣΒΑΣΗ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 146
 msgid ""
@@ -814,18 +1001,15 @@ msgstr ""
 "ΝΑ ΣΥΜΠΛΗΡΩΝΕΙ ΜΙΑ ΦΟΡΜΑ. ΟΙ ΔΗΜΟΣΙΕΣ ΕΡΕΥΝΕΣ ΜΠΟΡΟΥΝ\n"
 "ΝΑ ΣΥΜΠΛΗΡΩΘΟΥΝ ΑΠΟ ΟΠΟΙΟΝΔΗΠΟΤΕ. ΟΙ ΙΔΙΩΤΙΚΕΣ ΕΡΕΥΝΕΣ\n"
 "ΕΙΝΑΙ ΠΕΡΙΟΡΙΣΜΕΝΕΣ ΣΤΗΝ ΟΜΑΔΑ ΕΡΩΤΗΘΕΝΤΩΝ."
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 150
 msgid "Note"
 msgstr "ΣΗΜΕΙΩΣΗ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 151
 #, fuzzy
 msgid "You must use %s when using private surveys."
 msgstr "ΟΤΑΝ ΧΡΗΣΙΜΟΠΟΙΟΥΝΤΑΙ ΟΙ ΙΔΙΩΤΙΚΕΣ ΕΡΕΥΝΕΣ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 166
 # File: phpESP/admin/include/where/access.inc, line: 169
@@ -845,44 +1029,36 @@ msgstr "ΟΤΑΝ ΧΡΗΣΙΜΟΠΟΙΟΥΝΤΑΙ ΟΙ ΙΔΙΩΤΙΚΕΣ ΕΡΕ
 # File: phpESP/admin/include/where/test.inc, line: 112
 msgid "Group"
 msgstr "ΟΜΑΔΑ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 170
 #, fuzzy
 msgid "Max Responses"
 msgstr "ΑΠΑΝΤΗΣΗ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 171
 msgid "Save/Restore"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 172
 msgid "Back/Forward"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 184
 msgid "Remove"
 msgstr "ΑΦΑΙΡΕΣΗ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 190
 # File: phpESP/admin/include/where/groups.inc, line: 92
 msgid "Add"
 msgstr "ΠΡΟΣΘΗΚΗ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 233
 msgid "Make Public"
 msgstr "ΜΕΤΑΤΡΟΠΗ ΣΕ ΔΗΜΟΣΙΑ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 236
 msgid "Make Private"
 msgstr "ΜΕΤΑΤΡΟΠΗ ΣΕ ΙΔΙΩΤΙΚΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 14
 # File: phpESP/admin/include/where/admrespondent.inc, line: 14
@@ -895,7 +1071,6 @@ msgstr "ΜΕΤΑΤΡΟΠΗ ΣΕ ΙΔΙΩΤΙΚΗ"
 # File: phpESP/admin/include/where/upload.inc, line: 19
 msgid "to access this form"
 msgstr "ΓΟΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΗ ΤΗΝ ΦΟΡΜΑ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 41
 # File: phpESP/admin/include/where/admdesigner.inc, line: 106
@@ -903,42 +1078,35 @@ msgstr "ΓΟΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΗ ΤΗΝ ΦΟΡΜΑ"
 # File: phpESP/admin/include/where/admrespondent.inc, line: 99
 msgid "to access this group"
 msgstr "ΓΙΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΗ ΤΗΝ ΟΜΑΔΑ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 45
 # File: phpESP/admin/include/where/admrespondent.inc, line: 45
 msgid "Cannot delete account."
 msgstr "ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΔΙΑΓΡΑΦΕΙ Ο ΛΟΓΑΡΙΑΣΜΟΣ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 111
 # File: phpESP/admin/include/where/admrespondent.inc, line: 104
 msgid "Username, Password, and Group are required."
 msgstr "ΤΟ ΟΝΟΜΑ ΧΡΗΣΤΗ, Ο ΚΩΔΙΚΟΣ ΚΑΙ Η ΟΜΑΔΑ ΑΠΑΙΤΟΥΝΤΑΙ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 119
 # File: phpESP/admin/include/where/admrespondent.inc, line: 112
 msgid "Error adding account."
 msgstr "ΛΑΘΟΣ ΚΑΤΑ ΤΗΝ ΠΡΟΣΘΗΚΗ ΛΟΓΑΡΙΑΣΜΟΥ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 154
 # File: phpESP/admin/include/where/admrespondent.inc, line: 136
 msgid "Cannot change account data."
 msgstr "ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΑΛΛΑΧΘΟΥΝ ΤΑ ΔΕΔΟΜΕΝΑ ΤΟΥ ΛΟΓΑΡΙΑΣΜΟΥ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 202
 # File: phpESP/admin/include/where/admrespondent.inc, line: 176
 msgid "Account not found."
 msgstr "Ο ΛΟΓΑΡΙΑΣΜΟΣ ΔΕΝ ΒΡΕΘΗΚΕ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 208
 msgid "Designer Account Administration"
 msgstr "ΔΙΑΧΕΙΡΙΣΗ ΛΟΓΑΡΙΑΣΜΟΥ ΣΧΕΔΙΑΣΤΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 214
 # File: phpESP/admin/include/where/admrespondent.inc, line: 189
@@ -949,14 +1117,12 @@ msgstr "ΔΙΑΧΕΙΡΙΣΗ ΛΟΓΑΡΙΑΣΜΟΥ ΣΧΕΔΙΑΣΤΗ"
 # File: phpESP/public/signup.php, line: 147
 msgid "Username"
 msgstr "ΟΝΟΜΑ ΧΡΗΣΤΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 223
 # File: phpESP/admin/include/where/admrespondent.inc, line: 198
 # File: phpESP/public/signup.php, line: 152
 msgid "Password"
 msgstr "ΚΩΔΙΚΟΣ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 254
 # File: phpESP/admin/include/where/admrespondent.inc, line: 229
@@ -965,7 +1131,6 @@ msgstr "ΚΩΔΙΚΟΣ"
 # File: phpESP/public/signup.php, line: 132
 msgid "First Name"
 msgstr "ΟΝΟΜΑ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 259
 # File: phpESP/admin/include/where/admrespondent.inc, line: 234
@@ -974,51 +1139,43 @@ msgstr "ΟΝΟΜΑ"
 # File: phpESP/public/signup.php, line: 137
 msgid "Last Name"
 msgstr "ΕΠΩΝΥΜΟ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 269
 # File: phpESP/admin/include/where/admrespondent.inc, line: 244
 msgid "Expiration"
 msgstr "ΛΗΞΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 274
 # File: phpESP/admin/include/where/admrespondent.inc, line: 249
 msgid "year"
 msgstr "ΕΤΟΣ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 275
 # File: phpESP/admin/include/where/admrespondent.inc, line: 250
 msgid "month"
 msgstr "ΜΗΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 276
 # File: phpESP/admin/include/where/admrespondent.inc, line: 251
 msgid "day"
 msgstr "ΗΜΕΡΑ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 280
 # File: phpESP/admin/include/where/admrespondent.inc, line: 255
 msgid "Disabled"
 msgstr "ΑΝΕΝΕΡΓΟ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 285
 # File: phpESP/admin/include/where/admdesigner.inc, line: 322
 # File: phpESP/admin/include/where/admrespondent.inc, line: 260
 msgid "Update"
 msgstr "ΑΝΑΝΕΩΣΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 286
 # File: phpESP/admin/include/where/admdesigner.inc, line: 323
 # File: phpESP/admin/include/where/admrespondent.inc, line: 261
 msgid "Cancel"
 msgstr "ΑΚΥΡΩΣΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 287
 # File: phpESP/admin/include/where/admdesigner.inc, line: 324
@@ -1026,54 +1183,45 @@ msgstr "ΑΚΥΡΩΣΗ"
 # File: phpESP/admin/include/where/groups.inc, line: 76
 msgid "Delete"
 msgstr "ΔΙΑΓΡΑΦΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 290
 msgid "Design Surveys"
 msgstr "ΣΧΕΔΙΑΣΗ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 295
 msgid "Change Survey Status"
 msgstr "ΑΛΛΑΞΤΕ ΤΗΝ ΚΑΤΑΣΤΑΣΗ ΤΗΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 297
 msgid "Activate/End"
 msgstr "ΕΝΕΡΓΟΠΟΙΗΣΗ/ΛΗΞΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 301
 msgid "Export Survey Data"
 msgstr "ΕΞΑΓΩΓΗ ΔΕΔΟΜΕΝΩΝ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 306
 msgid "Group Editor"
 msgstr "ΕΠΕΞΕΡΓΑΣΙΑ ΟΜΑΔΩΝ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 308
 msgid "may edit <b>all</b> forms owned by this group"
-msgstr "ΜΠΟΡΟΥΝ ΝΑ ΔΙΟΡΘΩΘΟΥΝ <b>ΟΛΕΣ</b> ΟΙ ΦΟΡΜΕΣ ΠΟΥ ΑΝΗΚΟΥΝ ΣΕ ΑΥΤΗ ΤΗΝ ΟΜΑΔΑ"
-
+msgstr ""
+"ΜΠΟΡΟΥΝ ΝΑ ΔΙΟΡΘΩΘΟΥΝ <b>ΟΛΕΣ</b> ΟΙ ΦΟΡΜΕΣ ΠΟΥ ΑΝΗΚΟΥΝ ΣΕ ΑΥΤΗ ΤΗΝ ΟΜΑΔΑ"
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 312
 #, fuzzy
 msgid "Administer Designers"
 msgstr "ΠΡΟΣΘΗΚΗ ΝΕΟΥ ΣΧΕΔΙΑΣΤΗ"
-
 #
 # File: phpESP/admin/include/where/admdesigner.inc, line: 317
 #, fuzzy
 msgid "Administer Respondents"
 msgstr "ΔΙΑΧΕΙΡΙΣΤΕΙΤΕ ΤΗΝ ΟΜΑΔΑ ΕΡΩΤΗΘΕΝΤΕΣ"
-
 #
 # File: phpESP/admin/include/where/admrespondent.inc, line: 183
 msgid "Respondent Account Administration"
 msgstr "ΔΙΑΧΕΙΡΙΣΗ ΛΟΓΑΡΙΑΣΜΩΝ ΕΡΩΤΗΘΕΝΤΩΝ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 24
 # File: phpESP/admin/include/where/download.inc, line: 38
@@ -1086,17 +1234,14 @@ msgstr "ΔΙΑΧΕΙΡΙΣΗ ΛΟΓΑΡΙΑΣΜΩΝ ΕΡΩΤΗΘΕΝΤΩΝ"
 # File: phpESP/admin/include/where/test.inc, line: 35
 msgid "to access this survey"
 msgstr "ΓΙΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΗ ΤΗΝ ΕΡΕΥΝΑ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 30
 msgid "Error copying survey."
 msgstr "ΛΑΘΟΣ ΚΑΤΑ ΤΗΝ ΑΝΤΙΓΡΑΦΗ ΤΗΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 61
 msgid "Copy Survey"
 msgstr "ΑΝΤΙΓΡΑΦΗ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 63
 #, fuzzy
@@ -1107,8 +1252,8 @@ msgid ""
 msgstr ""
 "ΕΠΙΈΞΤΕ ΜΙΑ ΕΡΕΥΝΑ ΓΙΑ ΝΑ ΤΗΝ ΑΝΤΙΓΡΑΨΕΤΕ. ΤΟ ΑΝΤΙΓΡΑΦΟ ΘΑ ΕΧΕΙ\n"
 "ΑΚΡΙΒΩΣ ΤΗΝ ΙΔΙΑ ΚΑΤΑΣΤΑΣΞ ΜΕ ΜΙΑ ΚΑΙΝΟΥΡΓΙΑ ΕΡΕΥΝΑ. ΘΑ ΜΠΟΡΕΙΤΕ\n"
-"ΝΑ ΕΠΕΞΕΡΓΑΣΤΕΙΤΕ ΤΗΝ ΕΡΕΥΝΑ ΚΑΙ ΘΑ ΠΡΕΠΕΙ ΝΑ ΤΗΝ ΕΝΕΡΓΟΠΟΙΗΣΕΤΕ ΠΡΙΝ ΤΗΝ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ. "
-
+"ΝΑ ΕΠΕΞΕΡΓΑΣΤΕΙΤΕ ΤΗΝ ΕΡΕΥΝΑ ΚΑΙ ΘΑ ΠΡΕΠΕΙ ΝΑ ΤΗΝ ΕΝΕΡΓΟΠΟΙΗΣΕΤΕ ΠΡΙΝ ΤΗΝ "
+"ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ. "
 #
 # File: phpESP/admin/include/where/copy.inc, line: 71
 # File: phpESP/admin/include/where/export.inc, line: 35
@@ -1117,7 +1262,6 @@ msgstr ""
 # File: phpESP/admin/include/where/status.inc, line: 142
 msgid "Status"
 msgstr "ΚΑΤΑΣΤΑΣΗ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 79
 # File: phpESP/admin/include/where/export.inc, line: 61
@@ -1125,7 +1269,6 @@ msgstr "ΚΑΤΑΣΤΑΣΗ"
 # File: phpESP/admin/include/where/status.inc, line: 181
 msgid "Archived"
 msgstr "ΑΡΧΕΙΟΘΕΤΗΜΕΝΗ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 81
 # File: phpESP/admin/include/where/export.inc, line: 64
@@ -1133,7 +1276,6 @@ msgstr "ΑΡΧΕΙΟΘΕΤΗΜΕΝΗ"
 # File: phpESP/admin/include/where/status.inc, line: 185
 msgid "Ended"
 msgstr "ΛΗΓΜΕΝΗ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 83
 # File: phpESP/admin/include/where/export.inc, line: 66
@@ -1141,7 +1283,6 @@ msgstr "ΛΗΓΜΕΝΗ"
 # File: phpESP/admin/include/where/status.inc, line: 188
 msgid "Active"
 msgstr "ΕΝΕΡΓΗ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 85
 # File: phpESP/admin/include/where/export.inc, line: 68
@@ -1149,7 +1290,6 @@ msgstr "ΕΝΕΡΓΗ"
 # File: phpESP/admin/include/where/status.inc, line: 191
 msgid "Testing"
 msgstr "ΣΕ ΔΟΚΙΜΗ"
-
 #
 # File: phpESP/admin/include/where/copy.inc, line: 87
 # File: phpESP/admin/include/where/export.inc, line: 58
@@ -1157,94 +1297,83 @@ msgstr "ΣΕ ΔΟΚΙΜΗ"
 # File: phpESP/admin/include/where/status.inc, line: 174
 msgid "Editing"
 msgstr "ΣΕ ΕΠΕΞΕΡΓΑΣΙΑ"
-
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 19
 # File: phpESP/admin/include/where/crosstab.inc, line: 27
 # File: phpESP/admin/include/where/crosstab.inc, line: 32
 msgid "Error cross-tabulating."
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 20
-msgid "Please ensure that your column and row selections are not of the same question."
+msgid ""
+"Please ensure that your column and row selections are not of the same "
+"question."
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 28
 msgid "Please ensure you make both a column and row selection."
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/crosstab.inc, line: 33
-msgid "You are attempting to cross analyze and tabulate at the same time. This is not possible!"
+msgid ""
+"You are attempting to cross analyze and tabulate at the same time. This is "
+"not possible!"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/designers.inc, line: 90
 msgid "Manage Web Form Designer Accounts"
 msgstr "ΔΙΑΧΕΙΡΙΣΗ ΔΙΚΤΥΑΚΗΣ ΦΟΡΜΑΣ ΛΟΓΑΡΙΑΣΜΩΝ ΣΧΕΔΙΑΣΤΩΝ"
-
 #
 # File: phpESP/admin/include/where/designers.inc, line: 91
 # File: phpESP/admin/include/where/respondents.inc, line: 90
 msgid "Click on a username to edit, or click on add new user below."
-msgstr "ΚΑΝΤΕ ΚΛΙΚ ΣΕ ΕΝΑ ΟΝΟΜΑ ΧΡΗΣΤΗ ΓΙΑ ΝΑ ΔΙΟΡΘΩΣΕΤΕ ή ΚΑΝΤΕ ΚΛΙΚ ΣΤΟ ΠΡΟΣΘΗΚΗ ΝΕΟΥ ΧΡΗΣΤΗ ΠΑΡΑΚΑΤΩ."
-
+msgstr ""
+"ΚΑΝΤΕ ΚΛΙΚ ΣΕ ΕΝΑ ΟΝΟΜΑ ΧΡΗΣΤΗ ΓΙΑ ΝΑ ΔΙΟΡΘΩΣΕΤΕ ή ΚΑΝΤΕ ΚΛΙΚ ΣΤΟ ΠΡΟΣΘΗΚΗ "
+"ΝΕΟΥ ΧΡΗΣΤΗ ΠΑΡΑΚΑΤΩ."
 #
 # File: phpESP/admin/include/where/designers.inc, line: 106
 # File: phpESP/admin/include/where/respondents.inc, line: 105
 msgid "disabled"
 msgstr "ΑΝΕΝΕΡΓΗ"
-
 #
 # File: phpESP/admin/include/where/designers.inc, line: 138
 msgid "Add a new Designer"
 msgstr "ΠΡΟΣΘΗΚΗ ΝΕΟΥ ΣΧΕΔΙΑΣΤΗ"
-
 #
 # File: phpESP/admin/include/where/designers.inc, line: 143
 msgid "Bulk Upload Designers"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/download.inc, line: 22
 msgid "Invalid survey ID."
 msgstr "ΛΑΘΟΣ ID ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/edit.inc, line: 31
 msgid "Edit a Survey"
 msgstr "ΕΠΕΞΕΡΓΑΣΙΑ ΜΙΑΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/edit.inc, line: 32
 msgid "Pick Survey to Edit"
 msgstr "ΕΠΙΛΕΞΤΕ ΤΗΝ ΕΡΕΥΝΑ ΠΡΟΣ ΕΠΕΞΕΡΓΑΣΙΑ"
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 19
 msgid "Export Data"
 msgstr "ΕΞΑΓΩΓΗ ΔΕΔΟΜΕΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 36
 msgid "Format"
 msgstr "ΔΙΑΜΟΡΦΩΣΗ"
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 96
 # File: phpESP/admin/include/where/test.inc, line: 141
 msgid "Save On Server"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 86
 # File: phpESP/admin/include/where/test.inc, line: 135
 #, fuzzy
 msgid "Download"
 msgstr "ΚΑΤΕΒΑΣΜΑ"
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 116
 # File: phpESP/admin/include/where/export.inc, line: 148
@@ -1253,7 +1382,6 @@ msgstr "ΚΑΤΕΒΑΣΜΑ"
 # File: phpESP/admin/include/where/test.inc, line: 52
 msgid "Testing Survey..."
 msgstr "ΔΟΚΙΜΗ ΕΡΕΥΝΑΣ..."
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 116
 # File: phpESP/admin/include/where/export.inc, line: 148
@@ -1261,253 +1389,261 @@ msgstr "ΔΟΚΙΜΗ ΕΡΕΥΝΑΣ..."
 # File: phpESP/admin/include/where/test.inc, line: 52
 msgid "SID"
 msgstr "SID"
-
 #
 # File: phpESP/admin/include/where/download.inc, line: 62
 # File: phpESP/admin/include/where/export.inc, line: 139
 msgid "The PHP dBase Extension is not installed."
 msgstr "ΤΟ PHP dBase Extension ΔΕΝ ΕΧΕΙ ΕΓΚΑΤΑΣΤΑΘΕΙ"
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 151
 msgid "Survey exported as:"
 msgstr "Η ΕΡΕΥΝΑ ΕΞΑΧΘΗΚΕ ΩΣ:"
-
 #
 # File: phpESP/admin/include/where/export.inc, line: 153
 msgid "Error exporting survey as:"
 msgstr "ΛΑΘΟΣ ΚΑΤΑ ΤΗΝ ΕΞΑΓΩΓΗ ΤΗΣ ΕΡΕΥΝΑΣ ΩΣ:"
-
 #
 # File: phpESP/admin/include/where/groups.inc, line: 23
 msgid "Error adding group."
 msgstr "ΛΑΘΟΣ ΚΑΤΑ ΤΗΝ ΠΡΟΣΘΗΚΗ ΟΜΑΔΑΣ"
-
 #
 # File: phpESP/admin/include/where/groups.inc, line: 27
 # File: phpESP/admin/include/where/groups.inc, line: 36
 msgid "Error deleting group."
 msgstr "ΛΑΘΟΣ ΚΑΤΑ ΤΗΝ ΔΙΑΓΡΑΦΗ ΟΜΑΔΑΣ"
-
 #
 # File: phpESP/admin/include/where/groups.inc, line: 32
 msgid "Group is not empty."
 msgstr "Η ΟΜΑΔΑ ΕΧΕΙ ΔΕΔΟΜΕΝΑ"
-
 #
 # File: phpESP/admin/include/where/groups.inc, line: 48
 # File: phpESP/admin/include/where/manage.inc, line: 69
 msgid "Manage Groups"
 msgstr "ΔΙΑΧΕΙΡΙΣΤΕΙΤΕ ΤΙΣ ΟΜΑΔΕΣ"
-
 #
 # File: phpESP/admin/include/where/groups.inc, line: 55
 msgid "Description"
 msgstr "ΠΕΡΙΓΡΑΦΗ"
-
 #
 # File: phpESP/admin/include/where/groups.inc, line: 56
 msgid "Members"
 msgstr "ΜΕΛΗ"
-
 #
 # File: phpESP/admin/include/where/guide.inc, line: 19
 msgid "User's guide not found."
 msgstr "ΤΟ ΕΓΧΕΙΡΙΔΙΟ ΧΡΗΣΗΣ ΔΕΝ ΒΡΕΘΗΚΕ"
-
+#
+# File: phpESP/admin/include/where/install.inc, line: 11
+# File: phpESP/admin/include/where/install.inc, line: 47
+msgid "Install not needed"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 13
+msgid "Installing"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 17
+msgid "Install FAILED"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 19
+msgid "Install done"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 25
+msgid "Initial data entering failed"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 27
+msgid "Initial data entering done"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 34
+# File: phpESP/admin/include/where/update.inc, line: 31
+msgid "Version delete FAILED"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 39
+# File: phpESP/admin/include/where/update.inc, line: 36
+msgid "Version update FAILED"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 49
+msgid "Install database"
+msgstr ""
+#
+# File: phpESP/admin/include/where/install.inc, line: 55
+msgid "Go"
+msgstr ""
+#
+# File: phpESP/admin/include/where/manage.inc, line: 83
+#, fuzzy
+msgid "Logged out."
+msgstr "ΕΞΟΔΟΣ"
 #
 # File: phpESP/admin/include/where/logout.inc, line: 16
 msgid "Log back in."
 msgstr "ΕΠΑΝΑΣΥΝΔΕΣΗ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 18
 msgid "Superuser"
 msgstr "SUPERUSER"
-
+#
+# File: phpESP/admin/include/where/manage.inc, line: 30
+msgid "Update the database"
+msgstr ""
 #
 # File: phpESP/admin/include/where/manage.inc, line: 35
 msgid "Create a New Survey"
 msgstr "ΔΗΜΙΟΥΡΓΙΑ ΝΕΑΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 36
 msgid "Edit an Existing Survey"
 msgstr "ΕΠΕΞΕΡΓΑΣΤΕΙΤΕ ΜΙΑ ΥΠΑΡΧΟΥΣΑ ΕΡΕΥΝΑ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 37
 # File: phpESP/admin/include/where/test.inc, line: 104
 msgid "Test a Survey"
 msgstr "ΔΟΚΙΜΗ ΜΙΑΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 38
 msgid "Copy an Existing Survey"
 msgstr "ΑΝΤΙΓΡΑΨΤΕ ΜΙΑ ΥΠΑΡΧΟΥΣΑ ΕΡΕΥΝΑ"
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 38
 # File: phpESP/admin/include/where/purge.inc, line: 103
 #, fuzzy
 msgid "Purge a survey"
 msgstr "ΔΙΑΓΡΑΦΗ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 41
 msgid "Change the Status of a Survey"
 msgstr "ΑΛΛΑΞΤΕ ΤΗΝ ΚΑΤΑΣΤΑΣΗ ΜΙΑΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 42
-msgid "(active/end/delete)"
+#, fuzzy
+msgid "(test/active/end/delete)"
 msgstr "(ΕΝΕΡΓΟΠΟΙΗΣΗ/ΛΗΞΗ/ΔΙΑΓΡΑΦΗ)"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 44
 msgid "Change Access To a Survey"
 msgstr "ΑΛΛΑΞΤΕ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΜΙΑ ΕΡΥΕΝΑ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 44
 msgid "Limit Respondents."
 msgstr "ΠΕΡΙΟΡΙΣΤΕ ΤΟΥΣ ΕΡΩΤΗΘΕΝΤΕΣ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 48
 msgid "View Results from a Survey"
 msgstr "ΔΕΙΤΕ ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΑΠΟ ΜΙΑ ΕΡΕΥΝΑ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 49
 #, fuzzy
 msgid "Cross Tabulate Survey Results"
 msgstr "ΣΥΓΧΩΝΕΥΣΗ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 50
 msgid "View a Survey Report"
 msgstr "ΔΕΙΤΕ ΜΙΑ ΕΚΘΕΣΗ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/access.inc, line: 170
 #, fuzzy
 msgid "Purge a response"
 msgstr "ΑΠΑΝΤΗΣΗ"
-
+#
+msgid "View Survey Statistics"
+msgstr ""
 #
 # File: phpESP/admin/include/where/manage.inc, line: 58
 msgid "Change Your Password"
 msgstr "ΑΛΛΑΞΤΕ ΤΟΝ ΚΩΔΙΚΟ ΣΑΣ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 63
 # File: phpESP/admin/include/where/respondents.inc, line: 89
 msgid "Manage Respondent Accounts"
 msgstr "ΔΙΑΧΕΙΡΙΣΤΕΙΤΕ ΤΟΥΣ ΛΟΓΑΡΙΑΣΜΟΥΣ ΕΡΩΤΗΘΕΝΤΩΝ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 67
 msgid "Manage Designer Accounts"
 msgstr "ΔΙΑΧΕΙΡΙΣΤΕΙΤΕ ΤΟΥΣ ΛΟΓΑΡΙΑΣΜΟΥΣ ΣΧΕΔΙΑΣΤΩΝ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 76
 msgid "View the list of things still to do"
 msgstr "ΔΕΙΤΕ ΤΗΝ ΛΙΣΤΑ ΜΕ ΤΙΣ ΒΕΛΤΙΩΣΕΙΣ ΠΟΥ ΘΑ ΓΙΝΟΥΝ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 77
 msgid "(development goals)"
 msgstr "(ΣΤΟΧΟΙ ΑΝΑΠΡΥΞΗΣ)"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 78
 msgid "View the User &amp; Administrator Guide"
 msgstr "ΔΕΙΤΕ ΤΟ ΕΓΧΕΙΡΙΔΙΟ ΧΡΗΣΗΣ &amp; ΔΙΑΧΕΙΡΙΣΗΣ"
-
 #
 # File: phpESP/admin/include/where/tab.inc, line: 183
 msgid "Click here to open the Help window."
 msgstr "ΚΑΝΤΕ ΚΛΙΚ ΕΔΩ ΓΙΑ ΝΑ ΑΝΟΙΞΕΤΕ ΤΗΝ ΒΟΗΘΕΙΑ"
-
 #
 # File: phpESP/admin/include/where/manage.inc, line: 83
 msgid "Log out"
 msgstr "ΕΞΟΔΟΣ"
-
 #
 # File: phpESP/admin/include/where/merge.inc, line: 24
 msgid "SIDS"
 msgstr "SIDS"
-
 #
 # File: phpESP/admin/include/where/merge.inc, line: 124
 msgid "Merge Survey Results"
 msgstr "ΣΥΓΧΩΝΕΥΣΗ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/merge.inc, line: 125
 msgid "Pick Surveys to Merge"
 msgstr "ΕΠΙΛΕΞΤΕ ΤΙΣ ΕΡΕΥΝΕΣ ΠΡΟΣ ΣΥΓΧΩΝΕΥΣΗ"
-
 #
 # File: phpESP/admin/include/where/merge.inc, line: 128
 msgid "List of Surveys"
 msgstr "ΛΙΣΤΑ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/merge.inc, line: 130
 msgid "Surveys to Merge"
 msgstr "ΕΡΕΥΝΕΣ ΓΙΑ ΣΥΓΧΩΝΕΥΣΗ"
-
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 13
 # File: phpESP/admin/include/where/passwd.inc, line: 56
 msgid "Change Password"
 msgstr "ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ"
-
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 22
 msgid "Your password has been successfully changed."
 msgstr "Ο ΚΩΔΙΚΟΣ ΣΑΣ ΑΛΛΑΞΕ ΕΠΙΤΥΧΩΣ"
-
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 26
 msgid "Password not set, check your old password."
 msgstr "Ο ΚΩΔΙΚΟΣ ΣΑΣ ΔΕΝ ΑΛΛΑΞΕ, ΕΛΕΓΞΤΕ ΤΟΝ ΠΑΛΙΟ ΣΑΣ ΚΩΔΙΚΟ"
-
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 29
 msgid "New passwords do not match or are blank."
 msgstr "ΟΙ ΝΕΟΙ ΚΩΔΙΚΟΙ ΔΕΝ ΤΑΙΡΙΑΖΟΥΝ ή ΕΙΝΑΙ ΚΕΝΟΙ."
-
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 41
 msgid "Old Password"
 msgstr "ΠΑΛΙΟΣ ΚΩΔΙΚΟΣ"
-
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 46
 msgid "New Password"
 msgstr "ΝΕΟΣ ΚΩΔΙΚΟΣ"
-
 #
 # File: phpESP/admin/include/where/passwd.inc, line: 51
 msgid "Confirm New Password"
 msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 12
 msgid "Only superusers allowed."
 msgstr "ΕΠΙΤΡΕΠΟΝΤΑΙ ΜΟΝΟ ΟΙ SUPERUSERS"
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 38
 # File: phpESP/admin/include/where/purge.inc, line: 103
 msgid "Purge Surveys"
 msgstr "ΔΙΑΓΡΑΦΗ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 40
 msgid ""
@@ -1528,55 +1664,52 @@ msgstr ""
 "ΠΡΟΧΩΡΗΣΕΤΕ ΑΝ ΔΕΝ ΕΙΣΤΕ ΑΠΟΛΥΤΩΣ ΒΕΒΑΙΟΙ. ΔΕΝ ΥΠΑΡΧΕΙ\n"
 "ΑΛΛΗ ΕΠΙΒΕΒΑΙΩΣΗ ΚΑΙ ΔΕΝ ΘΑ ΜΠΟΡΕΣΕΤΕ ΝΑ ΑΝΑΚΤΗΣΕΤΕ ΤΑ ΔΕΔΟΜΕΝΑ\n"
 "ΠΟΤΕ."
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 58
 msgid "# Q's"
 msgstr "# ΕΡ."
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 102
 msgid "Clear Checkboxes"
 msgstr "ΚΑΘΑΡΙΣΜΟΣ ΤΩΝ CHECKBOXES"
-
+#
+# File: phpESP/admin/include/where/purge.inc:112
+msgid ""
+"You are about to PERMANENTLY and IRREVOCABLY remove ALL information about "
+"the selected surveys. Click Ok if you are absolutely sure this is what you "
+"want to do."
+msgstr ""
 #
 # File: phpESP/admin/include/where/readme.inc, line: 19
 msgid "README not found."
 msgstr "ΔΕΝ ΒΡΕΘΗΚΕ ΤΟ ΑΡΧΕΙΟ README"
-
 #
 # File: phpESP/admin/include/where/report.inc, line: 37
 msgid "Go back to Report Menu"
 msgstr "ΠΙΣΩ ΣΤΟ ΜΕΝΟΥ ΤΩΝ ΕΚΘΕΣΕΩΝ"
-
 #
 # File: phpESP/admin/include/where/report.inc, line: 65
 msgid "View Form Report"
 msgstr "ΔΕΙΤΕ ΤΗΝ ΕΚΘΕΣΗ ΦΟΡΜΑΣ"
-
 #
 # File: phpESP/admin/include/where/report.inc, line: 66
 msgid "Pick Form to View"
 msgstr "ΕΠΙΛΕΞΤΕ ΜΙΑ ΦΟΡΜΑ ΝΑ ΔΕΙΤΕ"
-
 #
 # File: phpESP/admin/include/where/respondents.inc, line: 137
 msgid "Add a new Respondent"
 msgstr "ΠΡΟΣΘΗΚΗ ΝΕΟΥ ΕΡΩΤΗΘΕΝΤΑ"
-
 #
 # File: phpESP/admin/include/where/respondents.inc, line: 142
 #, fuzzy
 msgid "Bulk Upload Respondents"
 msgstr "ΠΡΟΣΘΗΚΗ ΝΕΟΥ ΕΡΩΤΗΘΕΝΤΑ"
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 38
 # File: phpESP/admin/include/where/purge.inc, line: 103
 #, fuzzy
 msgid "Purge response"
 msgstr "ΔΙΑΓΡΑΦΗ ΕΡΕΥΝΩΝ"
-
 #
 # File: phpESP/admin/include/where/purge.inc, line: 40
 #, fuzzy
@@ -1597,87 +1730,120 @@ msgstr ""
 "ΠΡΟΧΩΡΗΣΕΤΕ ΑΝ ΔΕΝ ΕΙΣΤΕ ΑΠΟΛΥΤΩΣ ΒΕΒΑΙΟΙ. ΔΕΝ ΥΠΑΡΧΕΙ\n"
 "ΑΛΛΗ ΕΠΙΒΕΒΑΙΩΣΗ ΚΑΙ ΔΕΝ ΘΑ ΜΠΟΡΕΣΕΤΕ ΝΑ ΑΝΑΚΤΗΣΕΤΕ ΤΑ ΔΕΔΟΜΕΝΑ\n"
 "ΠΟΤΕ."
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 48
 # File: phpESP/admin/include/where/results.inc, line: 156
 #, fuzzy
 msgid "Cross Tabulation"
 msgstr "ΕΠΙΛΕΞΤΕ ΜΙΑ ΛΕΙΤΟΥΡΓΙΑ"
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 105
 msgid "Test Survey"
 msgstr "ΔΟΚΙΜΑΣΤΕ ΜΙΑ ΕΡΕΥΝΑ"
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 113
 #, fuzzy
 msgid "Reset"
 msgstr "ΔΟΚΙΜΗ"
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 114
 msgid "Cross Tabulate"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 148
 msgid "View Survey Results"
 msgstr "ΔΕΙΤΕ ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 149
 msgid "Pick Survey to View"
 msgstr "ΕΠΙΛΕΞΤΕ ΜΙΑ ΕΡΕΥΝΑ ΝΑ ΔΕΙΤΕ"
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 157
 #, fuzzy
 msgid "Pick Survey to Cross Tabulate"
 msgstr "ΕΠΙΛΕΞΤΕ ΤΗΝ ΕΡΕΥΝΑ ΠΟΥ ΘΑ ΤΕΘΕΙ ΣΕ ΔΟΚΙΜΗ"
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 164
 #, fuzzy
 msgid "Respondent"
 msgstr "ΑΠΑΝΤΗΣΗ"
-
 #
 # File: phpESP/admin/include/where/results.inc, line: 173
 #, fuzzy
 msgid "Resp"
 msgstr "ΑΠΑΝΤΗΣΗ"
-
+#
+msgid "Request to reset survey that is outside allowed access"
+msgstr ""
+#
+msgid "Various access statistics for your active and done surveys."
+msgstr ""
+#
+msgid "Survey"
+msgstr ""
+#
+msgid "Login Failures"
+msgstr ""
+#
+msgid "Attempted"
+msgstr ""
+#
+msgid "Abandoned"
+msgstr ""
+#
+msgid "Suspended"
+msgstr ""
+#
+msgid "Completed"
+msgstr ""
+#
+msgid "Reset?"
+msgstr ""
+#
+msgid "Statistics Total"
+msgstr ""
+#
+msgid ""
+"You are about to make permanent and irrevocable changes. Click OK if you are "
+"certain this is what you want to do."
+msgstr ""
+#
+msgid "Refresh"
+msgstr ""
+#
+msgid "Reset Statistics"
+msgstr ""
+#
+msgid "You have no active or done surveys. Check back later."
+msgstr ""
 #
 # File: phpESP/admin/include/where/status.inc, line: 104
 msgid "Can not set survey status."
 msgstr "ΔΕΝ ΕΙΝΑΙ ΣΥΝΑΤΟ ΝΑ ΤΕΘΕΙ Η ΚΑΤΑΣΤΑΣΗ ΤΗΣ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 111
 msgid "Survey Status"
 msgstr "ΚΑΤΑΣΤΑΣΗ ΕΡΕΥΝΑΣ"
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 115
 #, fuzzy
 msgid ""
 "<b>Test</b> transitions a survey into testing mode. At which point you may\n"
-"perform a live test by taking the survey, and viewing the results. The survey may be switched \n"
+"perform a live test by taking the survey, and viewing the results. The "
+"survey may be switched \n"
 "back into <b>Edit</b> mode if additional edits are needed."
 msgstr ""
 "H <b>ΔΟKΙMΗ</b> ΘΕΤΕΙ ΜΙΑ ΕΡΕΥΝΑ ΣΕ ΔΟΚΙΜΑΣΤΙΚΗ ΠΕΡΙΟΔΟ. ΣΤΗΝ ΟΠΟΙΑ\n"
 "ΠΕΡΙΟΔΟ ΜΠΟΡΕΙΤΕ ΝΑ ΔΟΚΙΜΑΣΤΕ ΤΗΝ ΕΡΥΕΝΑ ΚΑΙ ΝΑ ΔΕΙΤΕ ΑΠΟΤΕΛΕΣΜΑΤΑ.\n"
 "ΔΕΝ ΘΑ ΜΠΟΡΕΙΕΤΕ ΝΑ ΚΑΝΕΤΕ ΑΛΛΕΣ ΑΛΛΑΓΕΣ ΣΤΗΝ ΕΡΕΥΝΑ ΑΠΟ ΤΗΝ ΣΤΙΓΜΗ\n"
 "ΠΟΥ ΘΑ ΜΠΕΙ Η ΕΡΕΥΝΑ ΣΕ ΔΟΚΙΜΗ. "
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 119
 #, fuzzy
 msgid ""
 "<b>Activate</b> transitions a survey into active mode. In this mode the\n"
-"survey is open for production use, and may be put online. This will clear any\n"
+"survey is open for production use, and may be put online. This will clear "
+"any\n"
 "results from testing mode (if any). No further editing of survey is\n"
 "allowed."
 msgstr ""
@@ -1685,405 +1851,474 @@ msgstr ""
 "Η ΕΡΕΥΝΑ ΒΡΙΣΚΕΤΑΙ ΣΕ ΠΑΡΑΓΩΓΙΚΟ ΣΤΑΔΙΟ ΚΑΙ ΜΠΟΡΕΙ ΝΑ ΜΠΕΙ ONLINE. ΑΥΤΟ ΘΑ\n"
 "ΔΙΑΓΡΑΨΕΙ ΟΛΑ ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΑΠΟ ΤΗΝ ΔΟΚΙΜΣΤΙΚΗ ΠΕΡΙΟΔΟ (ΑΝ ΥΠΑΡΧΟΥΝ).\n"
 "ΚΑΜΙΑ ΕΠΕΞΕΡΓΑΣΙΑ ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ ΑΠΟ ΕΔΩ ΚΑΙ ΠΕΡΑ. "
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 124
 msgid ""
 "<b>End</b> transitions a survey into ended mode. In this mode, no edits are\n"
-"possible, no users may take the survey (it is inactive), but results are still\n"
+"possible, no users may take the survey (it is inactive), but results are "
+"still\n"
 "viewable from the results menu."
 msgstr ""
 "Η <b>ΛΗΞΗ</b> ΜΕΤΑΤΡΕΠΕΙ ΜΙΑ ΕΡΕΥΝΑ ΣΕ ΛΗΓΜΕΝΗ. ΣΕ ΑΥΤΗ ΤΗΝ ΚΑΤΑΣΤΑΣΗ\n"
-"ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΓΙΝΕΙ ΚΑΜΙΑ ΠΕΡΑΙΤΕΡΩ ΕΠΞΕΡΓΑΣΙΑ ΚΑΙ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΔΕΧΤΕΙ ΑΛΛΕΣ\n"
+"ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΓΙΝΕΙ ΚΑΜΙΑ ΠΕΡΑΙΤΕΡΩ ΕΠΞΕΡΓΑΣΙΑ ΚΑΙ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΔΕΧΤΕΙ "
+"ΑΛΛΕΣ\n"
 "ΑΠΑΝΤΗΣΕΙΣ. ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΟΜΩΣ ΜΠΟΡΕΙΤΕ ΝΑ ΤΑ ΒΛΕΠΕΤΕ ΑΠΟ ΤΟ ΜΕΝΟΥ ΤΩΝ\n"
 "ΑΠΟΤΕΛΕΣΜΑΤΩΝ."
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 128
 msgid ""
 "<b>Archive</b> removes this survey. It is still stored in the database, but\n"
-"no further interaction is allowed. You may <b>not</b> view the results of an\n"
+"no further interaction is allowed. You may <b>not</b> view the results of "
+"an\n"
 "archived survey."
 msgstr ""
 "Η <b>ΑΡΧΕΙΟΘΕΤΗΣΗ</b> ΔΙΑΓΡΑΦΕΙ ΤΗΝ ΕΡΕΥΝΑ. ΑΠΟΘΗΚΕΥΕΙ ΤΗΝ ΕΡΕΥΝΑ ΣΤΗΝ ΒΑΣΗ\n"
-"ΔΕΔΟΜΕΝΩΝ ΑΛΛΑ ΔΕΝ ΘΑ ΥΠΑΡΧΕΙ ΠΕΡΑΙΤΕΡΩ ΕΠΕΞΕΡΓΑΣΙΑ ΤΗΣ ΕΡΕΥΝΑΣ. <b>ΔΕΝ</b> ΘΑ ΜΠΟΡΕΙΤΕ\n"
+"ΔΕΔΟΜΕΝΩΝ ΑΛΛΑ ΔΕΝ ΘΑ ΥΠΑΡΧΕΙ ΠΕΡΑΙΤΕΡΩ ΕΠΕΞΕΡΓΑΣΙΑ ΤΗΣ ΕΡΕΥΝΑΣ. <b>ΔΕΝ</b> "
+"ΘΑ ΜΠΟΡΕΙΤΕ\n"
 "ΠΛΕΟΝ ΝΑ ΔΕΙΤΕ ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΜΙΑΣ ΑΡΧΕΙΟΘΕΤΗΜΕΝΗΣ ΕΡΕΥΝΑΣ."
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 175
 # File: phpESP/admin/include/where/test.inc, line: 132
 msgid "Test"
 msgstr "ΔΟΚΙΜΗ"
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 176
 msgid "Activate"
 msgstr "ΕΝΕΡΓΟΠΟΙΗΣΗ"
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 177
 msgid "End"
 msgstr "ΛΗΞΗ"
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 178
 msgid "Archive"
 msgstr "ΑΡΧΕΙΟ"
-
 #
 # File: phpESP/admin/include/where/status.inc, line: 193
 msgid "Edit"
 msgstr "ΕΠΕΞΕΡΓΑΣΙΑ"
-
 #
 # File: phpESP/admin/include/where/tab.inc, line: 144
 # File: phpESP/admin/include/where/upload.inc, line: 110
 msgid "Help"
 msgstr "ΒΟΗΘΕΙΑ"
-
 #
 # File: phpESP/admin/include/where/tab.inc, line: 170
-msgid "Click cancel to cancel this survey, or click continue to proceed to the next tab."
-msgstr "ΚΑΝΤΕ ΚΛΙΚ ΣΤΗΝ ΑΚΥΡΩΣΗ ΓΙΑ ΝΑ ΑΚΥΡΩΣΕΤΕ ΤΗΝ ΕΡΕΥΝΑ, ΑΛΛΙΩΣ ΚΑΝΤΕ ΚΛΙΚ ΣΤΟ ΣΥΝΕΧΕΙΑ ΓΙΑ ΝΑ ΠΡΟΧΩΡΗΣΕΤΕ."
-
+msgid ""
+"Click cancel to cancel this survey, or click continue to proceed to the next "
+"tab."
+msgstr ""
+"ΚΑΝΤΕ ΚΛΙΚ ΣΤΗΝ ΑΚΥΡΩΣΗ ΓΙΑ ΝΑ ΑΚΥΡΩΣΕΤΕ ΤΗΝ ΕΡΕΥΝΑ, ΑΛΛΙΩΣ ΚΑΝΤΕ ΚΛΙΚ ΣΤΟ "
+"ΣΥΝΕΧΕΙΑ ΓΙΑ ΝΑ ΠΡΟΧΩΡΗΣΕΤΕ."
 #
 # File: phpESP/admin/include/where/tab.inc, line: 177
 #, fuzzy
 msgid ""
-"The survey title and other general fields are on the <strong>General</strong> tab.\n"
-"Individual survey questions are added and modified on the <strong>Questions</strong> tab.\n"
+"The survey title and other general fields are on the <strong>General</"
+"strong> tab.\n"
+"Individual survey questions are added and modified on the <strong>Questions</"
+"strong> tab.\n"
 "Questions may be re-ordered or deleted from the <strong>Order</strong> tab.\n"
-"You may see a preview of your survey at any time, by going to the <strong>Preview</strong>\n"
-"tab. If you have no further changes click <strong>Finish</strong> to go back to the\n"
+"You may see a preview of your survey at any time, by going to the "
+"<strong>Preview</strong>\n"
+"tab. If you have no further changes click <strong>Finish</strong> to go back "
+"to the\n"
 "Management Interface."
 msgstr ""
 "Ο ΤΙΤΛΟΣ ΤΗΣ ΕΡΕΥΝΑΣ ΚΑΙ ΤΑ ΑΛΛΑ ΓΕΝΙΚΑ ΠΕΔΙΑ ΒΡΙΣΚΟΝΤΑΙ ΣΤΟ <b>ΓΕΝΙΚΟ</b>.\n"
 "ΟΙ ΕΡΩΤΗΣΕΙΣ ΤΗΣ ΕΡΕΥΝΑΣ ΠΡΟΣΤΙΘΟΝΤΑΙ ΚΑΙ ΑΛΛΑΖΟΥΝ ΑΠΟ ΤΟ <b>ΕΡΩΤΗΣΕΙΣ</b>.\n"
-"ΜΠΟΡΕΙ ΝΑ ΑΛΛΑΧΘΕΙ Η ΣΕΙΡΑ ΕΜΦΑΝΙΣΗΣ ΤΩΝ ΕΡΩΤΗΣΕΩΝ, ή ΝΑ ΔΙΑΓΡΑΦΟΥΝ ΑΠΟ ΤΟ <b>ΣΕΙΡΑ</b>.\n"
-"ΜΠΟΡΕΙΤΕ ΝΑ ΠΡΟΕΠΙΣΚΟΠΗΣΕΤΕ ΜΙΑ ΕΡΕΥΝΑ ΟΠΟΙΑΔΗΠΟΤΕ ΣΤΙΓΜΗ ΕΠΙΛΕΓΟΝΤΑΣ ΤΗΝ <b>ΠΡΟΕΠΙΣΚΟΠΗΣΗ</b>.\n"
-"ΑΝ ΔΕΝΘΕΛΕΤΕ ΝΑ ΚΑΝΕΤΕ ΑΛΛΕΣ ΑΛΛΑΓΕΣ ΕΠΙΛΕΞΤΕ <b>ΤΕΛΟΣ</b> ΓΙΑ ΝΑ ΕΠΙΣΤΡΕΨΕΤΕ ΣΤΟ\n"
+"ΜΠΟΡΕΙ ΝΑ ΑΛΛΑΧΘΕΙ Η ΣΕΙΡΑ ΕΜΦΑΝΙΣΗΣ ΤΩΝ ΕΡΩΤΗΣΕΩΝ, ή ΝΑ ΔΙΑΓΡΑΦΟΥΝ ΑΠΟ ΤΟ "
+"<b>ΣΕΙΡΑ</b>.\n"
+"ΜΠΟΡΕΙΤΕ ΝΑ ΠΡΟΕΠΙΣΚΟΠΗΣΕΤΕ ΜΙΑ ΕΡΕΥΝΑ ΟΠΟΙΑΔΗΠΟΤΕ ΣΤΙΓΜΗ ΕΠΙΛΕΓΟΝΤΑΣ ΤΗΝ "
+"<b>ΠΡΟΕΠΙΣΚΟΠΗΣΗ</b>.\n"
+"ΑΝ ΔΕΝΘΕΛΕΤΕ ΝΑ ΚΑΝΕΤΕ ΑΛΛΕΣ ΑΛΛΑΓΕΣ ΕΠΙΛΕΞΤΕ <b>ΤΕΛΟΣ</b> ΓΙΑ ΝΑ "
+"ΕΠΙΣΤΡΕΨΕΤΕ ΣΤΟ\n"
 "ΠΕΡΙΒΑΛΛΟΝ ΔΙΑΧΕΙΡΙΣΗΣ."
-
 #
 # File: phpESP/admin/include/where/test.inc, line: 70
 msgid "View Results"
 msgstr "ΔΕΙΤΕ ΑΠΟΤΕΛΕΣΜΑΤΑ"
-
 #
 # File: phpESP/admin/include/where/test.inc, line: 105
 msgid "Pick Survey to Test"
 msgstr "ΕΠΙΛΕΞΤΕ ΤΗΝ ΕΡΕΥΝΑ ΠΟΥ ΘΑ ΤΕΘΕΙ ΣΕ ΔΟΚΙΜΗ"
-
 #
 # File: phpESP/admin/include/where/test.inc, line: 115
 msgid "Export"
 msgstr "ΕΞΑΓΩΓΗ"
-
 #
 # File: phpESP/admin/include/where/test.inc, line: 127
 msgid "standalone"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/test.inc, line: 133
 msgid "Results"
 msgstr "ΑΠΟΤΕΛΕΣΜΑΤΑ"
-
 #
 # File: phpESP/admin/include/where/todo.inc, line: 15
 msgid "Todo list not found."
 msgstr "Η ΛΙΣΤΑ ΔΕΝ ΒΡΕΘΗΚΕ"
-
+#
+# File: phpESP/admin/include/where/update.inc, line: 17
+# File: phpESP/admin/include/where/update.inc, line: 44
+msgid "Update not needed"
+msgstr ""
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 285
+# File: phpESP/admin/include/where/admdesigner.inc, line: 322
+# File: phpESP/admin/include/where/admrespondent.inc, line: 260
+#, fuzzy
+msgid "Updating"
+msgstr "ΑΝΑΝΕΩΣΗ"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 285
+# File: phpESP/admin/include/where/admdesigner.inc, line: 322
+# File: phpESP/admin/include/where/admrespondent.inc, line: 260
+#, fuzzy
+msgid "Update FAILED"
+msgstr "ΑΝΑΝΕΩΣΗ"
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 285
+# File: phpESP/admin/include/where/admdesigner.inc, line: 322
+# File: phpESP/admin/include/where/admrespondent.inc, line: 260
+#, fuzzy
+msgid "Update done"
+msgstr "ΑΝΑΝΕΩΣΗ"
+#
+# File: phpESP/admin/include/funcs.inc, line: 76
+# File: phpESP/admin/include/funcs.inc, line: 77
+# File: phpESP/admin/include/funcs.inc, line: 78
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 139
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 140
+# File: phpESP/admin/include/lib/espauth-default.inc, line: 142
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 176
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 177
+# File: phpESP/admin/include/lib/espauth-ldap.inc, line: 179
+#, fuzzy
+msgid "Update available"
+msgstr "ΜΗ ΔΙΑΘΕΣΙΜΗ ΥΠΗΡΕΣΙΑ"
+#
+# File: phpESP/admin/include/where/update.inc, line: 54
+msgid "Show generated SQL"
+msgstr ""
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 285
+# File: phpESP/admin/include/where/admdesigner.inc, line: 322
+# File: phpESP/admin/include/where/admrespondent.inc, line: 260
+#, fuzzy
+msgid "Update the DB"
+msgstr "ΑΝΑΝΕΩΣΗ"
 #
 # File: phpESP/admin/include/where/upload.inc, line: 72
 msgid "An error occurred during upload.  Rows that failed are listed below."
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/upload.inc, line: 98
-msgid "An error occurred during upload.  Please check the format of your text file."
+msgid ""
+"An error occurred during upload.  Please check the format of your text file."
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/upload.inc, line: 102
 msgid "An error occurred during upload.  Please complete all form fields."
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/upload.inc, line: 106
 #, fuzzy
 msgid "Upload Account Information"
 msgstr "ΔΙΑΧΕΙΡΙΣΗ ΛΟΓΑΡΙΑΣΜΩΝ ΕΡΩΤΗΘΕΝΤΩΝ"
-
 #
 # File: phpESP/admin/include/where/upload.inc, line: 107
 #, fuzzy
 msgid "All fields are required"
 msgstr " ΕΙΝΑΙ ΥΠΟΧΡΕΩΤΙΚΕΣ"
-
 #
 # File: phpESP/admin/include/where/upload.inc, line: 120
 #, fuzzy
 msgid "File Type"
 msgstr "ΤΥΠΟΣ"
-
 #
 # File: phpESP/admin/include/where/upload.inc, line: 121
 msgid "Tab Delimited"
 msgstr ""
-
 #
 # File: phpESP/admin/include/where/upload.inc, line: 122
 #, fuzzy
 msgid "File to upload"
 msgstr "ΔΕΝ ΕΙΝΑΙ ΔΥΝΑΤΟΝ ΝΑ ΦΟΡΤΩΘΕΙ ΤΟ ACL"
-
-#
-# File: phpESP/admin/phpESP.ini.php, line: 175
-msgid "Thank You For Completing This Survey."
-msgstr ""
-
-#
-# File: phpESP/admin/phpESP.ini.php, line: 172
-msgid ""
-"Please do not use the back button on your browser to go\n"
-"back."
-msgstr ""
-
-#
-# File: phpESP/admin/phpESP.ini.php, line: 181
-# File: phpESP/admin/phpESP.ini.php, line: 187
-msgid ""
-"Unable to find the phpESP %s directory.\n"
-"\t\t\tPlease check %s to ensure that all paths are set correctly."
-msgstr ""
-
 #
 # File: phpESP/admin/test.php, line: 146
 msgid "%%%% Gettext Test Failed"
 msgstr ""
-
+#
+# File: phpESP/admin/update_prefix.php, line: 113
+msgid "FAILED"
+msgstr ""
+#
+# File: phpESP/admin/update_prefix.php, line: 115
+msgid "DONE"
+msgstr ""
 #
 # File: phpESP/public/captcha_check.php, line: 4
 msgid "You entered an incorrect code. Please fill in the correct code."
 msgstr ""
-
 #
-# File: phpESP/public/handler-prefix.php, line: 71
-msgid "Error processing survey: Survey not specified."
-msgstr "ΛΑΘΟΣ ΔΙΑΔΙΚΑΣΙΑΣ ΕΡΕΥΝΑΣ: ΔΕΝ ΕΧΕΙ ΕΠΙΛΕΓΕΙ ΕΡΕΥΝΑ"
-
+# File: phpESP/public/dashboard.php, line: 56
+msgid ""
+"Feature disabled; set dashboard_enable = true in your configuration to "
+"engage."
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 101
+# File: phpESP/public/landing.php, line: 91
+msgid "Please contact an administrator: multi-realm"
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 151
+# File: phpESP/public/dashboard.php, line: 211
+# File: phpESP/public/landing.php, line: 139
+# File: phpESP/public/landing.php, line: 197
+msgid "Unable to change your password; contact an administrator"
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 169
+# File: phpESP/public/landing.php, line: 157
+msgid "Change My Profile"
+msgstr ""
+#
+# File: phpESP/public/signup.php, line: 72
+#, fuzzy
+msgid "Passwords do not match; check your typing"
+msgstr "ΟΙ ΝΕΟΙ ΚΩΔΙΚΟΙ ΔΕΝ ΤΑΙΡΙΑΖΟΥΝ ή ΕΙΝΑΙ ΚΕΝΟΙ."
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 26
+#, fuzzy
+msgid "Old password incorrect; check your typing"
+msgstr "Ο ΚΩΔΙΚΟΣ ΣΑΣ ΔΕΝ ΑΛΛΑΞΕ, ΕΛΕΓΞΤΕ ΤΟΝ ΠΑΛΙΟ ΣΑΣ ΚΩΔΙΚΟ"
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 13
+# File: phpESP/admin/include/where/passwd.inc, line: 56
+#, fuzzy
+msgid "Change My Password"
+msgstr "ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ"
+#
+# File: phpESP/public/dashboard.php, line: 270
+msgid "phpESP Respondent Dashboard"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Login"
+msgstr "ΜΕΓΙΣΤΟΣ ΑΡΙΘΜΟΣ ΠΡΟΣΒΑΣΕΩΝ"
+#
+# File: phpESP/public/dashboard.php, line: 321
+# File: phpESP/public/landing.php, line: 313
+msgid "Don't have an account? Sign up."
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 326
+# File: phpESP/public/landing.php, line: 318
+msgid "Need help? E-mail us."
+msgstr ""
+#
+# File: phpESP/admin/include/tab/preview.inc, line: 84
+#, fuzzy
+msgid "Public Surveys"
+msgstr "ΑΠΟΣΤΟΛΗ ΑΠΑΝΤΗΣΕΩΝ"
+#
+# File: phpESP/public/dashboard.php, line: 353
+msgid ""
+"If you have an account, please log in before taking these public surveys."
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 399
+msgid "Right now, my watch shows %s."
+msgstr ""
+#
+# File: phpESP/admin/include/where/copy.inc, line: 61
+#, fuzzy
+msgid "My Surveys"
+msgstr "ΑΝΤΙΓΡΑΦΗ ΕΡΕΥΝΑΣ"
+#
+# File: phpESP/admin/include/tab/general.inc, line: 49
+#, fuzzy
+msgid "Survey Title"
+msgstr "ΟΝΟΜΑ ΑΡΧΕΙΟΥ ΕΡΕΥΝΑΣ"
+#
+msgid "Submission Status"
+msgstr ""
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 259
+# File: phpESP/admin/include/where/admrespondent.inc, line: 234
+# File: phpESP/admin/include/where/designers.inc, line: 96
+# File: phpESP/admin/include/where/respondents.inc, line: 95
+# File: phpESP/public/signup.php, line: 137
+#, fuzzy
+msgid "Last Access"
+msgstr "ΕΠΩΝΥΜΟ"
+#
+msgid "Availability"
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 426
+# File: phpESP/public/landing.php, line: 379
+msgid "You do not have any surveys at this time."
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 441
+# File: phpESP/public/landing.php, line: 394
+msgid "My History"
+msgstr ""
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 29
+#, fuzzy
+msgid "You have no historical surveys at this time."
+msgstr "ΕΧΕΤΕ ΟΛΟΚΛΗΡΩΣΕΙ ΤΗΝ ΣΧΕΔΙΑΣΗ ΤΗΣ ΕΡΕΥΝΑΣ"
+#
+# File: phpESP/admin/include/where/manage.inc, line: 83
+#, fuzzy
+msgid "Logout"
+msgstr "ΕΞΟΔΟΣ"
+#
+# File: phpESP/public/dashboard.php, line: 477
+# File: phpESP/public/landing.php, line: 424
+msgid "Change my profile"
+msgstr ""
+#
+# File: phpESP/admin/include/where/passwd.inc, line: 13
+# File: phpESP/admin/include/where/passwd.inc, line: 56
+#, fuzzy
+msgid "Change my password"
+msgstr "ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ"
+#
+# File: phpESP/public/dashboard.php, line: 485
+# File: phpESP/public/landing.php, line: 428
+msgid "E-mail support"
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 489
+# File: phpESP/public/landing.php, line: 420
+msgid "My Tools"
+msgstr ""
+#
+msgid "Closed"
+msgstr ""
+#
+msgid "Now taking submissions"
+msgstr ""
+#
+msgid "Not yet taking submissions"
+msgstr ""
+#
+msgid "No longer taking submissions"
+msgstr ""
+#
+# File: phpESP/public/dashboard.php, line: 663
+# File: phpESP/public/landing.php, line: 561
+msgid "User ID"
+msgstr ""
+#
+msgid "Email Address"
+msgstr ""
+#
+# File: phpESP/admin/include/where/admdesigner.inc, line: 286
+# File: phpESP/admin/include/where/admdesigner.inc, line: 323
+# File: phpESP/admin/include/where/admrespondent.inc, line: 261
+#, fuzzy
+msgid "Change"
+msgstr "ΑΚΥΡΩΣΗ"
+#
+# File: phpESP/admin/include/tab/finish.inc, line: 29
+#, fuzzy
+msgid "You have already completed this survey."
+msgstr "ΕΧΕΤΕ ΟΛΟΚΛΗΡΩΣΕΙ ΤΗΝ ΣΧΕΔΙΑΣΗ ΤΗΣ ΕΡΕΥΝΑΣ"
 #
 # File: phpESP/public/handler.php, line: 64
 # File: phpESP/public/handler.php, line: 69
 msgid "Error processing survey: Survey is not active."
 msgstr "ΛΑΘΟΣ ΔΙΑΔΙΚΑΣΙΑΣ ΕΡΕΥΝΑΣ: Η ΕΡΕΥΝΑ ΔΕΝ ΕΙΝΑΙ ΕΝΕΡΓΗ"
-
+#
+# File: phpESP/public/handler.php, line: 235
+msgid "Please fill in the code displayed here."
+msgstr ""
+#
+# File: phpESP/public/landing.php, line: 46
+msgid ""
+"Feature disabled; set use_landing = true in your configuration to engage."
+msgstr ""
+#
+# File: phpESP/public/landing.php, line: 256
+msgid "phpESP Respondent Landing Page"
+msgstr ""
+#
+# File: phpESP/public/landing.php, line: 369
+# File: phpESP/public/landing.php, line: 398
+msgid "Date Last Taken"
+msgstr ""
 #
 # File: phpESP/public/signup.php, line: 54
 msgid "Sorry, the account request form is disabled."
 msgstr ""
-
 #
 # File: phpESP/public/signup.php, line: 63
 msgid "Please complete all required fields."
 msgstr ""
-
 #
 # File: phpESP/public/signup.php, line: 72
 #, fuzzy
 msgid "Passwords do not match."
 msgstr "ΟΙ ΝΕΟΙ ΚΩΔΙΚΟΙ ΔΕΝ ΤΑΙΡΙΑΖΟΥΝ ή ΕΙΝΑΙ ΚΕΝΟΙ."
-
 #
 # File: phpESP/public/signup.php, line: 100
 msgid "Request failed, please choose a different username."
 msgstr ""
-
 #
 # File: phpESP/public/signup.php, line: 107
 msgid "Your account, %s, has been created!"
 msgstr ""
-
 #
 # File: phpESP/public/signup.php, line: 120
 msgid "Account Request Form"
 msgstr ""
-
 #
 # File: phpESP/public/signup.php, line: 126
 msgid ""
 "Please complete the following form to request an account.\n"
 "Items marked with a %s are required."
 msgstr ""
-
 #
 # File: phpESP/public/signup.php, line: 157
 #, fuzzy
 msgid "Confirm Password"
 msgstr "ΕΠΙΒΕΒΑΙΩΣΗ ΝΕΟΥ ΚΩΔΙΚΟΥ"
-
-# File: phpESP/admin/include/lib/espauth-default.inc, line: 214
-msgid "phpESP Management Login"
-msgstr ""
-
 #
-# File: phpESP/admin/include/where/purge.inc:112
-msgid "You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do."
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:115
-msgid "Unable to fetch statistics from table"
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:136
-msgid "Unable to fetch statistics for survey"
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:156
-msgid "Unable to fetch statistic for survey"
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:177
-msgid "Unable to increment statistic for survey"
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:208
-msgid "Unable to decrement statistic for survey"
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:235
-msgid "Unable to set statistic for survey"
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:267
-msgid "Unable to initialize statistics for survey"
-msgstr ""
-
-#: admin/include/lib/espsurveystat.inc:286
-msgid "Unable to purge statistics for survey"
-msgstr ""
-
-#: admin/include/where/statistics.inc:38
-msgid "Request to reset survey that is outside allowed access"
-msgstr ""
-
-#: admin/include/where/statistics.inc:44
-msgid "View Survey Statistics"
-msgstr ""
-
-#: admin/include/where/statistics.inc:49
-msgid "Various access statistics for your active and done surveys."
-msgstr ""
-
-#: admin/include/where/statistics.inc:51
-msgid "Survey"
-msgstr ""
-
-#: admin/include/where/statistics.inc:53
-msgid "Login Failures"
-msgstr ""
-
-#: admin/include/where/statistics.inc:55
-msgid "Attempted"
-msgstr ""
-
-#: admin/include/where/statistics.inc:57
-msgid "Abandoned"
-msgstr ""
-
-#: admin/include/where/statistics.inc:59
-msgid "Suspended"
-msgstr ""
-
-#: admin/include/where/statistics.inc:61
-msgid "Completed"
-msgstr ""
-
-#: admin/include/where/statistics.inc:63
-msgid "Reset?"
-msgstr ""
-
-#: admin/include/where/statistics.inc:67
-msgid "Statistics Total"
-msgstr ""
-
-#: admin/include/where/statistics.inc:85
-msgid "You are about to make permanent and irrevocable changes. Click OK if you are certain this is what you want to do."
-msgstr ""
-
-#: admin/include/where/statistics.inc:87
-msgid "Refresh"
-msgstr ""
-
-#: admin/include/where/statistics.inc:89
-msgid "Reset Statistics"
-msgstr ""
-
-#: admin/include/where/statistics.inc:91
-msgid "You have no active or done surveys. Check back later."
-msgstr ""
-
-#: admin/include/lib/espsurvey.inc:366
-msgid "Unable to get list of surveys for current user"
-msgstr ""
-
-#: admin/include/tab/general.inc:168
-msgid "Survey opening date"
-msgstr ""
-
-#: admin/include/tab/general.inc:171
-msgid "The <em>earliest</em> date and time respondents may respond to survey."
-msgstr ""
-
-#: admin/include/tab/general.inc:172 admin/include/tab/general.inc:181
-msgid "If date given without a time, midnight on the given date is assumed."
-msgstr ""
-
-#: admin/include/tab/general.inc:173
-msgid "If not supplied, respondents may respond immediately once survey activated."
-msgstr ""
-
-#: admin/include/tab/general.inc:177
-msgid "Survey closing date"
-msgstr ""
-
-#: admin/include/tab/general.inc:180
-msgid "When provided, the <em>latest</em> date and time respondents may respond to survey."
-msgstr ""
-
-#: admin/include/tab/general.inc:182
-msgid "If not supplied, respondents may respond indefinitely until survey marked as done."
-msgstr ""
-
-#: public/dashboard.php:414 public/dashboard.php:444
-msgid "Submission Status"
-msgstr ""
-
-#: public/dashboard.php:416 public/dashboard.php:446
-msgid "Availability"
-msgstr ""
-
-#: public/dashboard.php:564
-msgid "Closed"
-msgstr ""
-
-#: public/dashboard.php:636
-msgid "Now taking submissions"
-msgstr ""
-
-#: public/dashboard.php:640
-msgid "Not yet taking submissions"
-msgstr ""
-
-#: public/dashboard.php:644
-msgid "No longer taking submissions"
-msgstr ""
-
-#: public/dashboard.php:702
-msgid "Email Address"
-msgstr ""
-
+#
+#
+#
+#
+# File: phpESP/public/handler-prefix.php, line: 71
+#~ msgid "Error processing survey: Survey not specified."
+#~ msgstr "ΛΑΘΟΣ ΔΙΑΔΙΚΑΣΙΑΣ ΕΡΕΥΝΑΣ: ΔΕΝ ΕΧΕΙ ΕΠΙΛΕΓΕΙ ΕΡΕΥΝΑ"
+#
+#
+#
+#
 #
 #
 #
@@ -2093,7 +2328,10 @@ msgstr ""
 # File: phpESP/admin/include/where/tab.inc, line: 92
 #~ msgid "No tabs defined. Please check your INI settings."
 #~ msgstr "ΔΕΝ ΟΡΙΣΤΗΚΑΝ ΤΑ ΤΑΒS. ΕΛΕΓΞΤΕ ΤΙΣ ΡΥΘΜΙΣΕΙΣ ΤΟΥ ΙΝΙ."
-
+#
+#
+#
+#
 #
 #
 #
@@ -2103,17 +2341,10 @@ msgstr ""
 # File: phpESP/admin/include/where/tab.inc, line: 153
 #~ msgid "General"
 #~ msgstr "ΓΕΝΙΚΟ"
-
 #
 #
 #
 #
-#
-#
-# File: phpESP/admin/include/where/tab.inc, line: 154
-#~ msgid "Questions"
-#~ msgstr "ΕΡΩΤΗΣΕΙΣ"
-
 #
 #
 #
@@ -2123,7 +2354,10 @@ msgstr ""
 # File: phpESP/admin/include/where/tab.inc, line: 155
 #~ msgid "Order"
 #~ msgstr "ΣΕΙΡΑ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2133,7 +2367,10 @@ msgstr ""
 # File: phpESP/admin/include/where/tab.inc, line: 156
 #~ msgid "Preview"
 #~ msgstr "ΠΡΟΕΠΙΣΚΟΠΗΣΗ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2143,7 +2380,10 @@ msgstr ""
 # File: phpESP/admin/include/where/tab.inc, line: 157
 #~ msgid "Finish"
 #~ msgstr "ΤΕΛΟΣ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2164,7 +2404,10 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "Page"
 #~ msgstr "ΣΕΛΙΔΑ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2185,7 +2428,10 @@ msgstr ""
 # File: phpESP/admin/include/function/survey_render.inc, line: 352
 #~ msgid "of"
 #~ msgstr "ΑΠΟ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2207,7 +2453,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Sorry, this question name is already in use."
 #~ msgstr "ΛΥΠΑΜΑΙ, ΤΟ ΟΝΟΜΑ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΗΔΗ."
-
+#
+#
+#
+#
 #
 #
 #
@@ -2228,7 +2477,10 @@ msgstr ""
 # File: phpESP/admin/include/tab/questions.inc, line: 117
 #~ msgid "Field"
 #~ msgstr "ΠΕΔΙΟ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2249,7 +2501,10 @@ msgstr ""
 # File: phpESP/admin/include/tab/questions.inc, line: 122
 #~ msgid "Field Name"
 #~ msgstr "ΟΝΟΜΑ ΠΕΔΙΟΥ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2270,7 +2525,10 @@ msgstr ""
 # File: phpESP/admin/include/where/download.inc, line: 60
 #~ msgid "DBF download not yet implemented."
 #~ msgstr "ΤΟ ΚΑΤΒΕΣΜΑ ΤΟΥ DBF ΔΕΝ ΕΧΕΙ ΥΛΟΠΟΙΗΘΕΙ ΑΚΟΜΑ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2292,7 +2550,10 @@ msgstr ""
 # File: phpESP/admin/include/where/test.inc, line: 134
 #~ msgid "CSV"
 #~ msgstr "CSV"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2314,7 +2575,10 @@ msgstr ""
 # File: phpESP/admin/include/where/test.inc, line: 136
 #~ msgid "DBF"
 #~ msgstr "DBF"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2335,7 +2599,10 @@ msgstr ""
 # File: phpESP/admin/include/where/manage.inc, line: 28
 #~ msgid "Choose a function"
 #~ msgstr "ΕΠΙΛΕΞΤΕ ΜΙΑ ΛΕΙΤΟΥΡΓΙΑ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2356,7 +2623,10 @@ msgstr ""
 # File: phpESP/admin/include/where/manage.inc, line: 51
 #~ msgid "Export Data to CSV"
 #~ msgstr "ΕΞΑΓΩΓΗ ΣΤΟΙΧΕΙΩΝ ΣΕ CSV"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2377,7 +2647,10 @@ msgstr ""
 # File: phpESP/admin/include/where/merge.inc, line: 86
 #~ msgid "Error!"
 #~ msgstr "ΛΑΘΟΣ!"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2398,7 +2671,10 @@ msgstr ""
 # File: phpESP/admin/include/where/merge.inc, line: 87
 #~ msgid "You need to select at least two surveys!"
 #~ msgstr "ΠΡΕΠΕΙ ΝΑ ΕΠΙΛΕΞΕΤΕ ΤΟΥΛΑΧΙΣΤΟΝ ΔΥΟ ΕΡΕΥΝΕΣ!"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2419,7 +2695,10 @@ msgstr ""
 #
 #~ msgid "Administer Group Members"
 #~ msgstr "ΔΙΑΧΕΙΡΙΣΤΕΙΤΕ ΤΗΝ ΟΜΑΔΑ ΜΕΛΗ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2440,7 +2719,10 @@ msgstr ""
 #
 #~ msgid "No survey specified."
 #~ msgstr "ΔΕΝ ΕΠΙΛΕΧΘΗΚΕ ΕΡΕΥΝΑ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2462,7 +2744,10 @@ msgstr ""
 #
 #~ msgid "Total"
 #~ msgstr "ΣΥΝΟΛΟ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2484,7 +2769,10 @@ msgstr ""
 #
 #~ msgid "Incorrect User ID or Password, or your account has been disabled."
 #~ msgstr "ΛΑΘΟΣ ΟΝΟΜΑ ΧΡΗΣΤΗ ή ΚΩΔΙΚΟΣ, ή Ο ΛΟΓΑΡΙΑΣΜΟΣ ΣΑΣ ΕΙΝΑΙ ΑΝΕΝΕΡΓΟΣ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2506,7 +2794,10 @@ msgstr ""
 #
 #~ msgid "free-form"
 #~ msgstr "ΕΛΕΥΘΕΡΗ ΦΟΡΜΑ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2528,51 +2819,10 @@ msgstr ""
 #
 #~ msgid "ie. instructions, background info, etc."
 #~ msgstr "ΔΗΛ. ΟΔΗΓΙΕΣ, ΠΛΗΡΟΦΟΡΙΕΣΜ ΚΛΠ."
-
 #
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Confirmation Heading"
-#~ msgstr "ΕΠΙΚΕΦΑΛΙΔΑ ΕΠΙΒΕΒΑΙΩΣΗΣ"
-
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Body text on the &quot;Confirmation&quot; page. This is displayed below the Confirmation Heading."
-#~ msgstr "ΚΕΙΜΕΝΟ ΣΤΗΝ ΣΕΛΙΔΑ &quot;ΕΠΙΒΕΒΑΙΩΣΗΣ&quot; . ΕΜΦΑΝΙΖΕΤΑΙ ΚΑΤΩ ΑΠΟ ΤΗΝ ΕΠΙΚΕΦΑΛΙΔΑ ΕΠΙΒΕΒΑΙΩΣΗΣ "
-
 #
 #
 #
@@ -2594,29 +2844,10 @@ msgstr ""
 #
 #~ msgid "You must use"
 #~ msgstr "ΠΡΕΠΕΙ ΝΑ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ"
-
 #
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Max Logins"
-#~ msgstr "ΜΕΓΙΣΤΟΣ ΑΡΙΘΜΟΣ ΠΡΟΣΒΑΣΕΩΝ"
-
 #
 #
 #
@@ -2638,7 +2869,10 @@ msgstr ""
 #
 #~ msgid "to access this menu"
 #~ msgstr "ΓΙΑ ΤΗΝ ΠΡΟΣΒΑΣΗ ΣΕ ΑΥΤΟ ΤΟ ΜΕΝΟΥ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2660,7 +2894,10 @@ msgstr ""
 #
 #~ msgid "Purge"
 #~ msgstr "ΔΙΑΓΡΑΦΗ"
-
+#
+#
+#
+#
 #
 #
 #
@@ -2682,7 +2919,10 @@ msgstr ""
 #
 #~ msgid "STATUS"
 #~ msgstr "ΚΑΤΑΣΤΑΣΗ"
-
+#
+#
+#
+#
 #
 #
 #
