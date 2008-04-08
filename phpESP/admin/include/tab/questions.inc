@@ -32,7 +32,7 @@
 			$curr_q = 1;
 	}
 
-	$fields = array('name','type_id','length','precise','required','content','position');
+	$fields = array('name','type_id','length','precise','required','content','position','ans_uniq');
 	if($updated && $curr_q) {
 		// survey questions exist already
 		// load values from DB
@@ -105,6 +105,7 @@
 			<th><?php echo(_('Length')); ?></th>
 			<th><?php echo(_('Precision')); ?></th>
 			<th><?php echo(_('Required')); ?>?</th>
+			<th><?php echo(_('Unique answer')); ?>?</th>
 		</tr><tr>
 			<td>&nbsp;</td>
 			<td><?php echo(mktext('name',12)); ?></td>
@@ -133,10 +134,16 @@
 					"Y" => _('Yes') . '               ',
 					"N" => _('No')
 				))); ?></td>
+			<td><?php
+				if(empty($_POST['ans_uniq'])) $_POST['ans_uniq'] = 'N';
+				echo(mkselect("ans_uniq",array(
+					"Y" => _('Yes') . '               ',
+					"N" => _('No')
+				))); ?></td>
 		</tr>
 		<tr>
 			<th>Text</th>
-			<td colspan="5"><?php
+			<td colspan="6"><?php
 				echo(mktextarea("content",4,60,"VIRTUAL"));
 			?></td>
 		</tr>

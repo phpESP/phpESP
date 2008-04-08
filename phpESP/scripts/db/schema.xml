@@ -150,6 +150,10 @@
       <NOTNULL/>
       <DEFAULT value="Y"/>
     </field>
+    <field name="ans_uniq" type="C" size="1">
+      <NOTNULL/>
+      <DEFAULT value="N"/>
+    </field>
     <index name="result_id">
       <col>result_id</col>
     </index>
