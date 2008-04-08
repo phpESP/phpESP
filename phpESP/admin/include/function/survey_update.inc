@@ -212,7 +212,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			//   $_POST['required']='N';
 			//}
 
-			$fields = array('name','type_id','length','precise','required','content');
+			$fields = array('name','type_id','length','precise','required','content','ans_uniq');
 			foreach($fields as $f) {
 				if(isset($_POST[$f]))
 					array_push($f_arr,$f."="._addslashes($_POST[$f]));

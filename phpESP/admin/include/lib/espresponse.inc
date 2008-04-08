@@ -15,7 +15,7 @@
     function response_check_answers($sid, $rid, $section) {
         //angek: may need to keep for backwards compatability
         //global $_POST;
-        $sql = "SELECT id,type_id,content,required FROM ".$GLOBALS['ESPCONFIG']['question_table']."
+        $sql = "SELECT id,type_id,content,required,ans_uniq FROM ".$GLOBALS['ESPCONFIG']['question_table']."
         ". survey_select_section_sql($sid,$section) ." AND
         deleted='N' AND type_id < 98
         ORDER BY position";
@@ -28,12 +28,13 @@
         }
 
         $missing = array();	// array of missing questions
-	    $not_numeric = array(); // array of numerical questions that are non-numeric
+	$not_numeric = array(); // array of numerical questions that are non-numeric
+	$unique_answers = array(); // array of questions that must have a unique answer (only for Textbox or numerical types)
 
         // we loop through all the questions and check for
         // missing and non-numerical issues, but only if the question
         // was shown in the first place (it might have had a condition on it)
-        while(list($qid,$tid,$content,$required) = fetch_row($result)) {
+        while(list($qid,$tid,$content,$required,$ans_uniq) = fetch_row($result)) {
 
             // if the question has no condition:
             //      $question_was_shown=true
@@ -43,6 +44,15 @@
             $question_was_shown=question_conditioncheck($sid,$qid,$rid);
 
             if ($question_was_shown) {
+		if ($ans_uniq=='Y' && ($tid==2 || $tid==10)) {
+		   // if a answer to a question must be unique, only for
+		   // text boxes or numerical questions
+                    $sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['response_text_table']." WHERE question_id=$qid && response='".$_POST[$qid]."'";
+		    $count_result = get_one($sql);
+		    if ($count_result) {
+			$unique_answers[$qid] = $content;
+		    }
+		}
                 if($required=='Y' && $tid == 8) { // Rank
                     $sql = "SELECT id FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE question_id=$qid";
                     $cid_result = execute_sql($sql);
@@ -85,6 +95,15 @@
             // missing required variables
             $message .= _('Please only use numbers for the following questions:') ."<br>\n";
             while(list($qid,$content)=each($not_numeric)) {
+                if($GLOBALS['ESPCONFIG']['DEBUG'])
+                   $message .= "<!-- ${qid} -->";
+                $message .= "==> ${content}<br>\n";
+            }
+        }
+        if(count($unique_answers) > 0) {
+            // double responses where unique one is needed
+            $message .= _('Please use a different answer for the following questions:') ."<br>\n";
+            while(list($qid,$content)=each($unique_answers)) {
                 if($GLOBALS['ESPCONFIG']['DEBUG'])
                    $message .= "<!-- ${qid} -->";
                 $message .= "==> ${content}<br>\n";
