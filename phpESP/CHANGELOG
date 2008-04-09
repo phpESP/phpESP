@@ -14,7 +14,7 @@ require (phpESP.ini.php); ==> your own values, never gets overwritten
 require (phpESP.ini.php.fixed); ==> fixed parts, you can change these, but they get overwritten with every new release
 - Web based updates and web based installs are now possible, no more manually entering sql statements in the db
 - Switching/changing database table prefixes is now possible
-- An answer to a question of type textbox, essay, date or numerical can now be required to be unique
+- An answer to a question of type textbox, essay or numerical can now be required to be unique
 
 2.0.1 => 2.0.2
 =========================

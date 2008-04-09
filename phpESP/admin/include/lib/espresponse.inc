@@ -44,10 +44,11 @@
             $question_was_shown=question_conditioncheck($sid,$qid,$rid);
 
             if ($question_was_shown) {
-		if ($ans_uniq=='Y' && ($tid==2 || $tid==10)) {
-		   // if a answer to a question must be unique, only for
-		   // text boxes or numerical questions
-                    $sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['response_text_table']." WHERE question_id=$qid && response='".$_POST[$qid]."'";
+		if ($ans_uniq=='Y' && ($tid==2 || $tid==3 || $tid==10)) {
+		    // if a answer to a question must be unique, only for
+		    // text boxes, essay or numerical questions
+		    $tmp_response=_addslashes($_POST[$qid]);
+                    $sql = "SELECT COUNT(*) FROM ".$GLOBALS['ESPCONFIG']['response_text_table']." WHERE question_id=$qid && response="._addslashes($_POST[$qid]);
 		    $count_result = get_one($sql);
 		    if ($count_result) {
 			$unique_answers[$qid] = $content;
