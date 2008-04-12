@@ -19,7 +19,7 @@
         exit;
     }
     if(!file_exists($CONFIG)) {
-        echo("<b>FATAL: Unable to open config file. Aborting.</b>");
+        echo("<b>FATAL: Unable to open config file admin/phpESP.ini.php. Aborting.</b>");
         exit;
     }
     if(!file_exists($FIXED_CONFIG)) {
