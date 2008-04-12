@@ -1,8 +1,14 @@
 <?php
 
-/* $Id: phpESP.ini.php 1017 2008-03-29 09:55:04Z liedekef $ */
+/* $Id: phpESP.ini.php.default 1017 2008-03-29 09:55:04Z liedekef $ */
 
 /* vim: set tabstop=4 shiftwidth=4 expandtab: */
+
+/* WARNING WARNING WARNING
+   DONT CHANGE ANYTHING IN THIS FILE
+   COPY THE ELEMENTS YOU WANT TO CHANGE TO phpESP.ini.php
+   AND CHANGE THEM THERE
+*/
 
 if (!isset($_SESSION)) session_start();
 // if the session fails to start
