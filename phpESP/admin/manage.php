@@ -37,6 +37,10 @@
     }
     require_once($FIXED_CONFIG);
 
+    /* check if the basic config files haven't changed */
+    check_checksum($DEFAULT_CONFIG);
+    check_checksum($FIXED_CONFIG);
+
     /* check for an unsupported web server configuration */
     if((in_array(php_sapi_name(), $ESPCONFIG['unsupported'])) and ($ESPCONFIG['auth_design']) and ($ESPCONFIG['auth_mode'] == 'basic')) {
         echo ('<b>FATAL: Your webserver is running PHP in an unsupported mode. Aborting.</b><br/>');
