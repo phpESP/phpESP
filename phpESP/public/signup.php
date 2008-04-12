@@ -41,8 +41,7 @@
         require_once($DEFAULT_CONFIG);
         require_once($CONFIG);
         require_once($FIXED_CONFIG);
-
-  
+	
   esp_init_adodb();
 
   $fields = array(

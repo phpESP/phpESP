@@ -240,6 +240,27 @@ and password to complete the survey.') ?></blockquote>
 
     // }}}
 
+    function esp_file_get_contents($file) {
+        if (function_exists('file_get_contents')) return file_get_contents($file);
+
+        $f = fopen($file,'r');
+        if (!$f) return '';
+        $t = '';
+
+        while ($s = fread($f,100000)) $t .= $s;
+        fclose($f);
+        return $t;
+    }
+
+    function check_checksum($file) {
+        $checksum=trim(esp_file_get_contents($file.".checksum"));
+        if (md5_file($file) != $checksum) {
+	   $file=str_replace(ESP_BASE,"",$file);
+	   print "ERROR: Checksum for file $file doesn't match";
+	   die;
+	}
+    }
+
     esp_require_once('/lib/espcross');
     esp_require_once('/lib/espauth');
     esp_require_once('/lib/esphtml.forms');
