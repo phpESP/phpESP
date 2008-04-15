@@ -255,10 +255,9 @@ and password to complete the survey.') ?></blockquote>
     function check_checksum($file) {
         $checksum=trim(esp_file_get_contents($file.".checksum"));
         if (md5_file($file) != $checksum) {
-	   $file=str_replace(ESP_BASE,"",$file);
-	   print "ERROR: Checksum for file $file doesn't match";
-	   die;
-	}
+            $file=str_replace(ESP_BASE,"",$file);
+            print mkwarn("WARNING: Checksum for file $file doesn't match");
+        }
     }
 
     esp_require_once('/lib/espcross');
