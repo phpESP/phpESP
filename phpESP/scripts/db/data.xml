@@ -1,4 +1,4 @@
-<schema version="0.2">
+<schema version="0.3">
 <sql>
 <query>INSERT INTO realm ( name, title ) VALUES ( 'superuser', 'ESP System Administrators' ), ( 'auto', 'Self added users' )</query>
 <query>INSERT INTO designer (username, password, fname, lname, realm, pdesign, pstatus, pdata, pall, pgroup, puser, disabled) VALUES ('root', PASSWORD('esp'), 'ESP', 'Superuser', 'superuser', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N')</query>
