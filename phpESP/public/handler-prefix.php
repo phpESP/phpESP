@@ -72,10 +72,10 @@
 
 
     if (empty($_REQUEST['rid']))
-        $_REQUEST['rid'] = '';
+        $_REQUEST['rid'] = 0;
     else
         $_REQUEST['rid'] = intval($_REQUEST['rid']) ?
-                intval($_REQUEST['rid']) : '';
+                intval($_REQUEST['rid']) : 0;
 
     if($ESPCONFIG['auth_response']) {
         // check for authorization on the survey
