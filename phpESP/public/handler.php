@@ -66,9 +66,10 @@
                 		    intval($_SESSION['sec']) : 1;
 	}
 
-	if ($_SESSION['sec'] == 1) {
-	    $_SESSION['rid'] = 0;
-	}
+// gets wrong for resumed surveys
+//	if ($_SESSION['sec'] == 1) {
+//	    $_SESSION['rid'] = 0;
+//	}
 
 	if (!isset($_SESSION['rid'])) {
             $_SESSION['rid'] = 0;
@@ -161,8 +162,10 @@
 	    }
 	}
 
+    // if we encounter the variable resume in the $_REQUEST
+    // the user wants to come back later
 	if(!empty($_REQUEST['resume']) && $ESPCONFIG['auth_response'] && auth_get_option('resume')) {
-        	response_delete($sid, $_SESSION['rid'], $_SESSION['sec']);
+        response_delete($sid, $_SESSION['rid'], $_SESSION['sec']);
 		$_SESSION['rid'] = response_insert($sid,$_SESSION['sec'],$_SESSION['rid']);
         if ($action == $ESPCONFIG['autopub_url'])
     		goto_saved($sid, "$action?name=$name");

@@ -921,8 +921,9 @@
             q.deleted = 'N'";
             #$res = execute_sql($sql);
             #if ($num = get_one($res) > $max)
-            if ($num = get_one($sql) > $max)
-            $max = $num;
+            $num = get_one($sql);
+            if ($num > $max)
+               $max = $num;
         }
         return $max;
     }
