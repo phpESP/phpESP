@@ -63,19 +63,61 @@
 
 	/* submitted */
 	if(isset($_POST['submit'])) {
-		$u         = _addslashes($_POST['u']);
-		$r         = _addslashes($_POST['r']);
-		$u_password  = _addslashes($_POST['password']);
+		if (!empty($_POST['u'])) {
+			$u = _addslashes($_POST['u']);
+		} else {
+			$u = '';
+		}
+		if (!empty($_POST['r'])) {
+			$r = _addslashes($_POST['r']);
+		} else {
+			$r = '';
+		}
+		if (!empty($_POST['password'])) {
+			$u_password = _addslashes($_POST['password']);
+		} else {
+			$u_password = '';
+		}
+		
 		$u_fname     = _addslashes($_POST['fname']);
 		$u_lname     = _addslashes($_POST['lname']);
 		$u_email     = _addslashes($_POST['email']);
-		$u_pdesign   = _addslashes($_POST['pdesign']);
-		$u_pstatus   = _addslashes($_POST['pstatus']);
-		$u_pdata     = _addslashes($_POST['pdata']);
-		$u_pall      = _addslashes($_POST['pall']);
-		$u_pgroup    = _addslashes($_POST['pgroup']);
-		$u_puser     = _addslashes($_POST['puser']);
-		$u_disabled  = _addslashes($_POST['disabled']);
+
+		if (!empty($_POST['pdesign'])) {
+			$u_pdesign = _addslashes($_POST['pdesign']);
+		} else {
+			$u_pdesign = _addslashes("Y");
+		}
+		if (!empty($_POST['pstatus'])) {
+			$u_pstatus = _addslashes($_POST['pstatus']);
+		} else {
+			$u_pstatus = _addslashes("N");
+		}
+		if (!empty($_POST['pdata'])) {
+			$u_pdata = _addslashes($_POST['pdata']);
+		} else {
+			$u_pdata = _addslashes("N");
+		}
+		if (!empty($_POST['pall'])) {
+			$u_pall = _addslashes($_POST['pall']);
+		} else {
+			$u_pall = _addslashes("N");
+		}
+		if (!empty($_POST['pgroup'])) {
+			$u_pgroup = _addslashes($_POST['pgroup']);
+		} else {
+			$u_pgroup = _addslashes("N");
+		}
+		if (!empty($_POST['puser'])) {
+			$u_puser = _addslashes($_POST['puser']);
+		} else {
+			$u_puser = _addslashes("N");
+		}
+		if (!empty($_POST['disabled'])) {
+			$u_disabled = _addslashes($_POST['disabled']);
+		} else {
+			$u_disabled = _addslashes("N");
+		}
 
 		if(!empty($_POST['ex_year']) ||
 				!empty($_POST['ex_month']) ||
@@ -135,13 +177,6 @@
             
             /* change user data */
             if(!empty($u) && !empty($r)) {
-            	if(empty($u_pdesign))
-            		$u_pdesign = 'Y';
-            	$fields = array('u_pstatus','u_pdata','u_pall','u_pgroup','u_puser','u_disabled');
-            	foreach($fields as $f) {
-            		if(empty($$f))
-            			$$f = 'N';
-            	}
             	if (!empty($u_password))
             		$u_password = "password=".db_crypt($u_password).",";
             	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['designer_table']." SET

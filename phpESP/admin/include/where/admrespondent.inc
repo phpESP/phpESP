@@ -54,13 +54,34 @@
 	}
 	/* submitted */
 	if(isset($_POST['submit'])) {
-		$u           = _addslashes($_POST['u']);
-		$r           = _addslashes($_POST['r']);
-		$u_password  = _addslashes($_POST['password']);
+		// for the following 4, we check for emptyness further down,
+		// so we only do the addslashes if they are not empty
+		if (!empty($_POST['u'])) {
+			$u = _addslashes($_POST['u']);
+		} else {
+			$u = '';
+		}
+		if (!empty($_POST['r'])) {
+			$r = _addslashes($_POST['r']);
+		} else {
+			$r = '';
+		}
+		if (!empty($_POST['password'])) {
+			$u_password = _addslashes($_POST['password']);
+		} else {
+			$u_password = '';
+		}
+		if (!empty($_POST['disabled'])) {
+			$u_disabled = _addslashes($_POST['disabled']);
+		} else {
+			$u_disabled = _addslashes("N");
+		}
+
+		// these 3 are not checked for emptyness, so we do the
+		// addslashes immediately, otherwise the sql is broken
 		$u_fname     = _addslashes($_POST['fname']);
 		$u_lname     = _addslashes($_POST['lname']);
 		$u_email     = _addslashes($_POST['email']);
-		$u_disabled  = _addslashes($_POST['disabled']);
 
 		if(!empty($_POST['ex_year']) ||
 				!empty($_POST['ex_month']) ||
@@ -118,8 +139,6 @@
             db_close($result);
             /* change user data */
             if(!empty($u) && !empty($r)) {
-            	if(empty($u_disabled))
-            		$u_disabled = 'N';
             	if (!empty($u_password))
             		$u_password = "password=".db_crypt($u_password).",";
             	$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['respondent_table']." SET
