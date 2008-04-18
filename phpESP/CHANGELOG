@@ -2,6 +2,12 @@
 PHPESP CHANGE LOG
 =================
 
+2.1.0 => 2.1.1
+=========================
+- Fixed some old issues with save/resume surveys
+- Fresh installations didn't have initial data due to an xml schema mismatch, easy to fix but inconvenient.
+- Changing a user or designer caused his password to become empty, not very wise ....
+
 2.0.2 => 2.1.0
 =========================
 - Dashboard implementation (by Bishop Bettini)
