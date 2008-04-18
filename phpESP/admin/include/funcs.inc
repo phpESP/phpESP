@@ -142,7 +142,7 @@ window.location="<?php echo($thank_url); ?>"
         }
 
         if (isset($_GET['where']) && $_GET['where'] == 'test'){
-           iF ($gLOBALS['ESPCONFIG']['limit_double_postings']==0) {
+           if ($GLOBALS['ESPCONFIG']['limit_double_postings']==0) {
               $ref = "<a class=\"returnlink\" href=\"". $referer."\">Return</a><br />";
 	   } else {
 	      $ref = "";
