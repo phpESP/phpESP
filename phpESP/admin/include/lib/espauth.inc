@@ -41,6 +41,10 @@ function authenticate_in_realm($username, $password, $realm) {
 // {{{ set_session_authentication()    Set session authentication bit
 
 function set_session_authentication($isAuthenticated) {
+    // IE6 has a serious problem with cookies in multi-home framed sites. Force it to shut up.
+    // See also: http://www.oreillynet.com/mac/blog/2002/06/p3p_in_ie6_frustrating_failure.html
+    @header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"');
+
     // start sessions if needed
     if ('' == session_name()) {
         session_start();
