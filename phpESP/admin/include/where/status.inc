@@ -41,7 +41,7 @@
 							$_SESSION['acl']['pdesign']))) {
 						$access = true;
 					}
-					$status = $old_status | STATUS_TEST;
+					$status = STATUS_TEST;
 					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
 						$err = true;
 					break;
@@ -53,7 +53,7 @@
 							$_SESSION['acl']['pdesign']))) {
 						$access = true;
 					}
-					$status = $old_status & ~STATUS_TEST;
+					$status = STATUS_EDIT;
 					if($old_status & ( STATUS_DELETED | STATUS_DONE | STATUS_ACTIVE ) )
 						$err = true;
 					else
@@ -81,7 +81,7 @@
 						in_array($realm, $_SESSION['acl']['pall']))) {
 						$access = true;
 					}
-					$status = $old_status | STATUS_DONE;
+					$status = STATUS_DONE;
 					if($old_status & (STATUS_DONE | STATUS_DELETED) )
 						$err = true;
 					break;
@@ -92,7 +92,7 @@
 						in_array($realm, $_SESSION['acl']['pall']))) {
 						$access = true;
 					}
-					$status = $old_status | STATUS_DELETED;
+					$status = STATUS_DELETED;
 					if($old_status & STATUS_DELETED)
 						$err = true;
 					break;
