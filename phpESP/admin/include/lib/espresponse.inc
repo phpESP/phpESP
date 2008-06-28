@@ -67,6 +67,9 @@
                     db_close($cid_result);
                 }
                 if ($required=='Y' && $tid == 10 && $_POST[$qid] === '0') { // Numeric
+		    # continue to the next entry, do movenext() otherwise we
+		    # stay here until eternity
+            	    $result->MoveNext();
                     continue;
                 } elseif ($tid == 10 && !empty($_POST[$qid]) && !is_numeric($_POST[$qid])) {
                     $not_numeric[$qid] = $content;
