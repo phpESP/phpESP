@@ -200,7 +200,7 @@
         foreach ($cids_row as $yy){
             $total_row = 0;
             foreach ($cids_col as $xx){
-                $sql1 = "SELECT count(*) FROM ".$GLOBALS['ESPCONFIG'][$tbl[0].'_table']." r1, ".$GLOBALS['ESPCONFIG'][$tbl[1].'_table']." r2
+                $sql1 = "SELECT count(*) FROM ".$tbl[0]." r1, ".$tbl[1]." r2
                 WHERE (r1.question_id = ${qids[0]} AND r1.choice_id = '${xx}')
                 AND (r2.question_id = ${qids[1]} AND r2.choice_id = '${yy}')
                 AND r1.response_id = r2.response_id";
