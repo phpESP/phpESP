@@ -31,7 +31,7 @@ $ESPCONFIG['js_url'] = $ESPCONFIG['base_url'] . 'js/';
 $ESPCONFIG['name'] = 'phpESP';
 
 // Application version
-$ESPCONFIG['version'] = '2.1.1';
+$ESPCONFIG['version'] = '2.1.2';
 
 // Extension of support files
 $ESPCONFIG['extension'] = '.inc';
