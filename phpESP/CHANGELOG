@@ -2,6 +2,10 @@
 PHPESP CHANGE LOG
 =================
 
+2.1.1 => 2.1.2
+=========================
+- some small bugs got squashed (status change for a survey was flacky and some other annoying things I can't remember)
+
 2.1.0 => 2.1.1
 =========================
 - Fixed some old issues with save/resume surveys

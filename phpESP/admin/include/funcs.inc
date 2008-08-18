@@ -9,6 +9,7 @@
 // <jflemer@alum.rpi.edu>
 
     if (!defined('STATUS_ACTIVE')) {
+        define('STATUS_EDIT',  0x00);
         define('STATUS_ACTIVE',  0x01);
         define('STATUS_DONE',    0x02);
         define('STATUS_DELETED', 0x04);
