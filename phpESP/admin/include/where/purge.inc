@@ -104,7 +104,7 @@ back.')); ?></p>
             $confirmText = _('You are about to PERMANENTLY and IRREVOCABLY remove ALL information about the selected surveys. Click Ok if you are absolutely sure this is what you want to do.');
             ?>
 			<input type="submit" name="submit"
-            onclick='return confirm("<?= $confirmText ?>")' onkeypress='return confirm ("<?= $confirmText ?>");'
+            onclick='return confirm("<?php echo $confirmText; ?>")' onkeypress='return confirm ("<?php echo $confirmText; ?>");'
             value="<?php echo(_('Purge Surveys')); ?>" />
 		</td>
 	</tr>

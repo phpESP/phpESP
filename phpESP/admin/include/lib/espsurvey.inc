@@ -152,7 +152,7 @@ function survey_fetch_limiting_where($statusColumn = 'status', $ownerColumn = 'o
 
      // now if we're not a superuser, we also limit to those we own or are in our realm
      if (isset($_SESSION['acl']) && is_array($_SESSION['acl'])) {
-         if ('Y' != $_SESSION['acl']['superuser']) {
+         if (isset($_SESSION['acl']['superuser']) && 'Y' != $_SESSION['acl']['superuser']) {
              $realms = array_to_insql(
                            array_intersect($_SESSION['acl']['pall'], $_SESSION['acl']['pdata'])
                        );
