@@ -63,7 +63,7 @@ function validate() {
 		<td class="right"><strong><?php echo(_('Owner')); ?></strong></td>
 		<td class="left"><?php
 			$realms = array();
-			if($_SESSION['acl']['superuser'] == 'Y') {
+			if(isset($_SESSION['acl']['superuser']) && $_SESSION['acl']['superuser'] == 'Y') {
 				$sql = "SELECT name FROM ".$GLOBALS['ESPCONFIG']['realm_table'];
 				$rr = execute_sql($sql);
 				while(list($r) = fetch_row($rr)) {
@@ -166,7 +166,7 @@ displayed after a user completes this survey.')); ?>
 	<tr><td colspan="2"><hr class="line1" /></td></tr>
 	<tr style="vertical-align: top">
 		<td class="right"><strong><?php echo(_('Survey opening date')); ?></strong></td>
-        <td class="left"><?=
+        <td class="left"><?php echo
 			mktext('open_date', 16, null, $survey) . '<br />' .
             _('The <em>earliest</em> date and time respondents may respond to survey.') . '<br />' .
             _('If date given without a time, midnight on the given date is assumed.') . '<br />' .
@@ -175,7 +175,7 @@ displayed after a user completes this survey.')); ?>
         </tr>
 	<tr style="vertical-align: top">
 		<td class="right"><strong><?php echo(_('Survey closing date')); ?></strong></td>
-        <td class="left"><?=
+        <td class="left"><?php echo
 			mktext('close_date', 16, null, $survey) . '<br />' .
             _('When provided, the <em>latest</em> date and time respondents may respond to survey.') . '<br />' .
             _('If date given without a time, midnight on the given date is assumed.') . '<br />' .

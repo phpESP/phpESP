@@ -67,6 +67,6 @@ Any blank lines will be suppressed.'), '<tt>!other</tt>'); ?>
 <?php	} ?>
 	<tr>
 		<td>&nbsp;</td>
-		<td class="left"><input type="button" name="extra_choices" onclick="addAnswerLine()" value="<?php echo(_('Add another answer line')); ?>" /> <input type="button" name="clear" value="Clear all answer lines" onclick="clearTextInputs()" /></td>
+		<td class="left"><input type="button" name="extra_choices" onclick="addAnswerLine()" value="<?php echo(_('Add another answer line')); ?>" /> <input type="button" name="clear" value="<?php echo(_('Clear all answer lines')); ?>" onclick="clearTextInputs()" /></td>
 	</tr>
 </table>

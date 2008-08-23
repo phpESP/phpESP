@@ -48,7 +48,7 @@ if (record_count($result)) {
 	   print "'".substr($content,0, 30).$dots."' ";
 	   echo $conditions[$cond]." '".$cond_val."'";
 	   $result->MoveNext();
-	   print " <input type=\"submit\" name=\"deletecondition[$id]\" size=5 value=\"delete\" />";
+	   print " <input type=\"submit\" name=\"deletecondition[$id]\" size=5 value=\""._('Delete')."\" />";
 	   print "</td></tr>";
    }
    print "</table><hr>";
@@ -136,6 +136,6 @@ if ($result) {
 <option value="3"><?php echo $conditions[3]; ?></option>
 </select>
 <input type="text" name="cond_value" id="cond_value" size=5 value="NONE">
-<input type="submit" name="addcondition" size=5 value="go" />
+<input type="submit" name="addcondition" size=5 value="<?php echo(_('Go')); ?>" />
 <hr />
 <br /><br />

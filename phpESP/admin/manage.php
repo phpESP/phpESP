@@ -130,6 +130,11 @@
 <head>
     <title><?php echo($ESPCONFIG['title']); ?></title>
     <script type="text/javascript" src="<?php echo($ESPCONFIG['js_url']);?>default.js"></script>
+    <script type="text/javascript">
+      var activateConfirmMsg="<?php echo(_('Warning! Once activated, this survey can no longer be edited.  Any further changes must be done on a copy.')); ?>";
+      var cancelConfirmMsg="<?php echo(_('Warning! This survey has not been saved.  Canceling now will remove any changes.')); ?>";
+      var mergeMsg="<h2><?php echo(_('You must select at least two surveys before you can merge')); ?></h2>";
+    </script>
 <?php
     if(!empty($ESPCONFIG['favicon'])) {
         echo("<link rel=\"shortcut icon\" href=\"" . $ESPCONFIG['favicon'] . "\" />\n");

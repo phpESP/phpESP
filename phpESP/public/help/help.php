@@ -70,7 +70,7 @@ a[href="#top"] { font-size: small; }
     <td rowspan="2">
       <div>
         <h2 id="overview">Overview</h2>
-        <p>Welcome to our online survey system, powered by phpESP!  <em><?= $yourAdminIs ?></em></p>
+        <p>Welcome to our online survey system, powered by phpESP!  <em><?php echo $yourAdminIs; ?></em></p>
         <p>Let's get started.  When you first access the survey system, you'll be asked to log in:</p>
         <img src='login.png' alt='first page' title='The first page of the survey system: log in, sign up, take public surveys, or get help' />
         <p><a href="#top">Back to Top</a></p>
@@ -99,7 +99,7 @@ a[href="#top"] { font-size: small; }
         <div>
           <h3 id="loginhelp">Getting Help</h3>
           <p>This help page is available both before and after logging in: the link labeled "Help" always brings you here.  The links in the menu to the left allow you to navigate within this page.  The "Back to Top" link after each section will take you to the top of the page, from which you can select additional menu links.</p>
-          <p>Remember, you can always contact your survey administrator for further information. <?= $yourAdminIs ?></p>
+          <p>Remember, you can always contact your survey administrator for further information. <?php echo $yourAdminIs; ?></p>
           <p><a href="#top">Back to Top</a></p>
         </div>
         <div>

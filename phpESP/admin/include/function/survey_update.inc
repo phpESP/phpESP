@@ -351,7 +351,8 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 
 		case "conditions":
 		$sid = $survey_id;
-		if(isset($_POST['addcondition']) && ($_POST['addcondition']=='go')) {
+		//if(isset($_POST['addcondition']) && ($_POST['addcondition']=='go')) {
+		if(isset($_POST['addcondition'])) {
 			$id1=$_POST['q1_id'];
 			$id2=$_POST['q2_id'];
 			if ($id1==$id2) {
@@ -371,7 +372,7 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			//if (!$result)
 			//   $errstr = _('Warning, error encountered.') .' [ '.ErrorNo().': '.ErrorMsg().' ]';
 		}
-		if(isset($_POST['deletecondition'])) {
+		elseif(isset($_POST['deletecondition'])) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['condition_table']." WHERE id=".key($_POST['deletecondition']);
 			$result=execute_sql($sql);
 			if (!$result)

@@ -40,12 +40,12 @@
 		$u = _addslashes($_POST['u']);
 		$r = _addslashes($_POST['r']);
 		/* user can't delete himself */
-		if ($_SESSION['username']===$u) {
+		if (isset($_SESSION['username']) && $_SESSION['username']===$u) {
 			include(esp_where('designers'));
 			return;
 		}
 		/* check acl */
-		if($_SESSION['acl']['superuser'] == 'Y' ||
+		if(isset($_SESSION['acl']['superuser']) && $_SESSION['acl']['superuser'] == 'Y' ||
 			in_array($r, $_SESSION['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
@@ -373,7 +373,7 @@
 		<td colspan="2" class="center">
 			<input type="submit" name="submit" value="<?php echo(_('Update')); ?>"/>&nbsp;
 			<input type="submit" name="cancel" value="<?php echo(_('Cancel')); ?>"/>&nbsp;
-			<?php if (!($_SESSION['username']===$u)) { ?>
+			<?php if (!(isset($_SESSION['username']) && $_SESSION['username']===$u)) { ?>
 			<input type="submit" name="delete" value="<?php echo(_('Delete')); ?>"/>
 			<?php } ?>
 		</td>
