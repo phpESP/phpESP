@@ -74,6 +74,9 @@ function survey_aggregate($sids) {
     $pos = 1;
     foreach ($sids as $sid) {
         $pos = survey_copy_questions($sid, $new_sid, $pos);
+        if (false === $pos) {
+            return false;
+        }
     }
 
     return $new_sid;
