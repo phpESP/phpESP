@@ -50,6 +50,15 @@
 # The script requires several command line variables as follows:
 #
 #   perl phpmodesp.pl survey_id_num  survey_name question_start_num
+#
+# Use the following SQL statements to determine correct values for the above parameters.
+#
+#   survey_id_num      := SELECT MAX(id)+1 FROM survey;
+#
+#   survey_name        := SELECT DISTINCT name FROM survey;         (Use a name **not** in this list.)
+#
+#   question_start_num := SELECT MAX(id)+1 FROM question;
+#
 # 
 # See comments below.
 #  
@@ -87,24 +96,13 @@ else
   $q_id          = $ARGV[2];  # Start with this question number.  Must be 1 greater than last database entry.  Check database question table.
 }
 
-# Use the following SQL statements to determine correct values
-# for the above variables.
-#
-#   SELECT COUNT(*) FROM question;   (Use value+1 for q_survey_id parameter.)
-#
-#   SELECT COUNT(*) FROM survey;     (Use value+1 for q_id parameter.)
-#
-#   SELECT name FROM survey;         (Use a new name not in this list.)
-#
-
-
 
 # Hardcoded banner,title, and thank_you values.  Change to a perl require file if needed.
 
 $s_title          = "FIX_ME";
 $s_subtitle       = "FIX_ME";
 $s_info           = "FIX_ME";
-$s_email          = "FIX_ME";
+$s_email          = "FIX_ME"; # use \@, eg: user\@example.com
 
 $s_css            = "FIX_ME";
 $s_thanks_head    = "FIX_ME";
