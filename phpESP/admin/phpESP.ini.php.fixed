@@ -92,7 +92,7 @@ $ESPCONFIG['version_table']             = $DB_PREFIX."version";
 require_once($ESPCONFIG['include_path'] . '/lib/espi18n' . $ESPCONFIG['extension']);
 if (isset($_REQUEST['lang'])) { 
    esp_setlocale_ex($_REQUEST['lang']);
-   $_SESSION['lang']=$_REQUEST['lang'];
+   $_SESSION['language']=$_REQUEST['lang'];
 } elseif (isset($lang)) {
    esp_setlocale_ex($lang);
    $_SESSION['language']=$lang;
