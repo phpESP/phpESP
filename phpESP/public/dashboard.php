@@ -274,13 +274,18 @@ function paint_header() {
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+EOHTML;
+    if(!empty($cfg['charset'])) {
+        echo('<meta http-equiv="Content-Type" content="text/html; charset='. $cfg['charset'] ."\" />\n");
+    }
+    if (! empty($cfg['favicon'])) {
+        echo '<link rel="shortcut icon" href="' . $cfg['favicon'] . '" />';
+    }
+    echo <<<EOHTML
   <title>{$title}</title>
   <link rel="stylesheet" href="{$cfg['css_url']}/default.css" type="text/css" />
   <script type="text/javascript" src="{$cfg['js_url']}/default.js"></script>
 EOHTML;
-    if (! empty($cfg['favicon'])) {
-        echo '<link rel="shortcut icon" href="' . $cfg['favicon'] . '" />';
-    }
     echo '</head><body><div id="dashboard">';
     echo @$GLOBALS['errmsg'];
 }
