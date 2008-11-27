@@ -156,7 +156,7 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     $str = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">";
     $str .="<head>\n";
     if(!empty($GLOBALS['ESPCONFIG']['charset'])) {
-        echo('<meta http-equiv="Content-Type" content="text/html; charset='. $ESPCONFIG['charset'] ."\" />\n");
+        echo('<meta http-equiv="Content-Type" content="text/html; charset='. $GLOBALS['ESPCONFIG']['charset'] ."\" />\n");
     }
     $str .="<title>Survey Login: $_title</title>\n";
     if (empty($_css)) {
