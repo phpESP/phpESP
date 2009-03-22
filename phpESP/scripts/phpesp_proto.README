@@ -1,0 +1,18 @@
+Background 
+----------
+
+The BSD Certification Group (www.bsdcertification.org) selected
+phpESP for creating and managing surveys.  The one drawback was
+its point-and-click interface.  A more rapid prototyping tool
+was needed to create and test surveys.
+
+
+The phpespmod.pl perl script was created to generate the minimum 
+set of SQL statements needed to create a new survey.  With this
+tool, and a delimited input file, a survey can be created
+and tested in minutes- regardless of length.
+
+
+For all other info concerning phpesp_proto, including latest updates
+and how to use it, see:
+http://sixshooter.v6.thrupoint.net/phpESP_proto/
