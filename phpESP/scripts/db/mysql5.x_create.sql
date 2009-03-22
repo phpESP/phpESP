@@ -30,8 +30,8 @@ INSERT INTO user (host, user, password) VALUES ( 'localhost',
 -- # Grant the 'phpesp' user (from 'localhost') privileges to select,
 -- # insert, update, and delete on the database 'phpesp'.
 INSERT INTO db (host, db, user, select_priv, insert_priv,
-  update_priv, delete_priv) VALUES ( 'localhost', 'phpesp',
-  'phpesp', 'Y', 'Y', 'Y', 'Y');
+  update_priv, delete_priv, create_priv, drop_priv, alter_priv)
+  VALUES ( 'localhost', 'phpesp', 'phpesp', 'Y', 'Y', 'Y', 'Y','Y','Y','Y');
 
 -- # Tell mysql to re-read the privileges tables so the previous two
 -- # operations take effect.
