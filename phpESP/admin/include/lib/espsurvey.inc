@@ -153,13 +153,33 @@ function survey_fetch_limiting_where($statusColumn = 'status', $ownerColumn = 'o
      // now if we're not a superuser, we also limit to those we own or are in our realm
      if (isset($_SESSION['acl']) && is_array($_SESSION['acl'])) {
          if (isset($_SESSION['acl']['superuser']) && 'Y' != $_SESSION['acl']['superuser']) {
+             // get the realms to which the user has access
+             // NOTE: $realms will include the SQL operator: IS, =, etc.
              $realms = array_to_insql(
                            array_intersect($_SESSION['acl']['pall'], $_SESSION['acl']['pdata'])
                        );
-             $where .= sprintf(
-                           ' AND (%s=%s OR %s %s)',
-                           $ownerColumn, _addslashes($_SESSION['acl']['username']), $realmColumn, $realms
-                       );
+
+             // if we are looking for that realm in just one column
+             if (is_string($realmColumn)) {
+                 // get the access to that one column
+                 $access = sprintf('%s %s', $realmColumn, $realms);
+
+             // but if we're looking for that realm in multiple columns
+             } else if (is_array($realmColumn)) {
+                 // get the access to any of those columns
+                 $access = array ();
+                 foreach ($realmColumn as $column) {
+                     $access[] = sprintf('%s %s', $column, $realms);
+                 }
+                 $access = implode(' OR ', $access);
+
+             // if we're given something else, fail gracefully closed
+             } else {
+                 $access = '1=0';
+             }
+
+             // build the SQL where the user owns the survey or has access to it
+             $where .= sprintf(' AND (%s=%s OR %s)', $ownerColumn, _addslashes($_SESSION['acl']['username']), $access);
          }
      }
 
@@ -174,7 +194,9 @@ function survey_fetch_limiting_where($statusColumn = 'status', $ownerColumn = 'o
 
 function survey_get_in_realm($realm, &$surveys) {
      // get the survey data based on those limitations
-     $where = survey_fetch_limiting_where();
+     // NOTE: SF Bug ID: 2674394: We need to give the realm since we've got realm in two places in the SQL below
+     // NOTE: (tblSurvey.realm and tblAccess.realm).
+     $where = survey_fetch_limiting_where('status','owner',array ('tblSurvey.realm', 'tblAccess.realm'));
      $realm = _addslashes($realm);
      $sql =<<<EOSQL
 SELECT DISTINCT tblSurvey.id, tblSurvey.name, tblSurvey.title, tblSurvey.owner, tblSurvey.open_date, tblSurvey.close_date
