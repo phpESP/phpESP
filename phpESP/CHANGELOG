@@ -5,6 +5,11 @@ PHPESP CHANGE LOG
 2.1.2 => 2.1.3
 =========================
 - Closed patches 2063913 (i18n issues, short tags, undefined indices yet again) and 2063920 (russian translation added)
+- group/designer edit was flawed
+- Some better documentation for installing
+- update create sql for mysql 5.x 
+- link to phpesp_proto in the scripts dir
+- make dashboard work again
 
 2.1.1 => 2.1.2
 =========================
