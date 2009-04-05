@@ -36,9 +36,10 @@
 		unset($_POST['submit']);
 		$u = _addslashes($_POST['u']);
 		$r = _addslashes($_POST['r']);
+		$r2 = _stripslashes($_POST['r']);
 		/* check acl */
 		if($_SESSION['acl']['superuser'] == 'Y' ||
-			in_array($r, $_SESSION['acl']['puser']) ||
+			in_array($r2, $_SESSION['acl']['puser']) ||
 			auth_no_access(_('to access this group'))) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
 			if(!execute_sql($sql) || affected_rows() < 1) {
@@ -63,8 +64,10 @@
 		}
 		if (!empty($_POST['r'])) {
 			$r = _addslashes($_POST['r']);
+			$r2 = _stripslashes($_POST['r']);
 		} else {
 			$r = '';
+			$r2 = '';
 		}
 		if (!empty($_POST['password'])) {
 			$u_password = _addslashes($_POST['password']);
@@ -117,7 +120,7 @@
 		/* new user */
         /* check acl */
         if($_SESSION['acl']['superuser'] == 'Y' ||
-            in_array($r, $_SESSION['acl']['puser']) ||
+            in_array($r2, $_SESSION['acl']['puser']) ||
             auth_no_access(_('to access this group'))) {
             $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username=$u AND realm=$r";
             $result = execute_sql($sql);
