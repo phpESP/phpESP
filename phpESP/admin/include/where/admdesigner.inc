@@ -39,6 +39,7 @@
 		unset($_POST['submit']);
 		$u = _addslashes($_POST['u']);
 		$r = _addslashes($_POST['r']);
+		$r2 = _stripslashes($_POST['r']);
 		/* user can't delete himself */
 		if (isset($_SESSION['username']) && $_SESSION['username']===$u) {
 			include(esp_where('designers'));
@@ -46,7 +47,7 @@
 		}
 		/* check acl */
 		if(isset($_SESSION['acl']['superuser']) && $_SESSION['acl']['superuser'] == 'Y' ||
-			in_array($r, $_SESSION['acl']['pgroup']) ||
+			in_array($r2, $_SESSION['acl']['pgroup']) ||
 			auth_no_access(_('to access this group'))) {
 			$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u AND realm=$r";
 			if(!execute_sql($sql) || affected_rows() < 1) {
@@ -70,8 +71,10 @@
 		}
 		if (!empty($_POST['r'])) {
 			$r = _addslashes($_POST['r']);
+			$r2 = _stripslashes($_POST['r']);
 		} else {
 			$r = '';
+			$r2 = '';
 		}
 		if (!empty($_POST['password'])) {
 			$u_password = _addslashes($_POST['password']);
@@ -152,7 +155,7 @@
 
         /* check acl */
         if($_SESSION['acl']['superuser'] == 'Y' ||
-            in_array($r, $_SESSION['acl']['pgroup']) ||
+            in_array($r2, $_SESSION['acl']['pgroup']) ||
             auth_no_access(_('to access this group'))) {
             #$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=".db_qstr($u)." AND realm=".db_qstr($r);
             $sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['designer_table']." WHERE username=$u";
@@ -210,6 +213,7 @@
 	} else if(isset($_GET['u']) && isset($_GET['r'])) {
 		$u = _addslashes($_GET['u']);
 		$r = _addslashes($_GET['r']);
+		$r2 = _stripslashes($_GET['r']);
 	} else {
 		$u = '';
 		$r = '';
