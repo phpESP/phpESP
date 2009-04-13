@@ -70,8 +70,9 @@ function survey_aggregate($sids) {
     $new_sid = insert_id('survey_id_seq');
 
     // copy the questions for each of the surveys
-    // NOTE: we increase the position through each loop so that the questions will follow each other
-    $pos = 1;
+    // NOTE1: we increase the position through each loop so that the questions will follow each other
+    // NOTE2: SFID 2672129: Question positions begin at 0.
+    $pos = 0;
     foreach ($sids as $sid) {
         $pos = survey_copy_questions($sid, $new_sid, $pos);
         if (false === $pos) {
@@ -85,7 +86,7 @@ function survey_aggregate($sids) {
 // }}}
 // {{{ survey_copy_questions()         Copy questions from one survey to another, starting at a given position
 
-function survey_copy_questions($sid, $new_sid, $pos = 1) {
+function survey_copy_questions($sid, $new_sid, $pos = 0) {
     $has_choices = esp_type_has_choices();
 
     // make copies of all the questions
