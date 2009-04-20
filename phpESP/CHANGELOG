@@ -11,6 +11,8 @@ PHPESP CHANGE LOG
 - link to phpesp_proto in the scripts dir
 - make dashboard work again
 - realm quoting fixed
+- SFID 2672129: Fixed question position numbering to use 0, not 1, during copy and aggregate
+- SFID 2669428: Fixed copy and aggregate so that conditions would be copied, as well.  Previously, conditions were not copied.  Any survey created prior to this version will not correctly copy conditions.
 
 2.1.1 => 2.1.2
 =========================
