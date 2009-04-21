@@ -34,21 +34,22 @@
 *   - opening/closing date (FUTURE ENHANCEMENT NEEDED TO WHOLE APP)
 *
 */
+// hook into the phpESP environment
+require_once('./phpESP.first.php');
+
 // {{{ constants
 
 // survey status
-define('STATUS_NOT_STARTED',  'Not Started');
-define('STATUS_ALL_PARTIAL',  'Started, but Incomplete');
-define('STATUS_SOME_PARTIAL', 'Some Finished, some Incomplete');
-define('STATUS_FINISHED',     'Finished');
+define('STATUS_NOT_STARTED',  _('Not Started'));
+define('STATUS_ALL_PARTIAL',  _('Started, but Incomplete'));
+define('STATUS_SOME_PARTIAL', _('Some Finished, some Incomplete'));
+define('STATUS_FINISHED',     _('Finished'));
 
 // miscellaneous
-define('FORMAT_OUTPUT_DATE', 'Y-m-d');
+define('FORMAT_OUTPUT_DATE', isset($ESPCONFIG['date_format'])?$ESPCONFIG['date_format']:'%Y-%m-%d');
 
 // }}}
 
-// hook into the phpESP environment
-require_once('./phpESP.first.php');
 
 // ensure we are configured to want this page
 if (! $GLOBALS['ESPCONFIG']['dashboard_enable']) {
@@ -273,13 +274,18 @@ function paint_header() {
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+EOHTML;
+    if(!empty($cfg['charset'])) {
+        echo('<meta http-equiv="Content-Type" content="text/html; charset='. $cfg['charset'] ."\" />\n");
+    }
+    if (! empty($cfg['favicon'])) {
+        echo '<link rel="shortcut icon" href="' . $cfg['favicon'] . '" />';
+    }
+    echo <<<EOHTML
   <title>{$title}</title>
   <link rel="stylesheet" href="{$cfg['css_url']}/default.css" type="text/css" />
   <script type="text/javascript" src="{$cfg['js_url']}/default.js"></script>
 EOHTML;
-    if (! empty($cfg['favicon'])) {
-        echo '<link rel="shortcut icon" href="' . $cfg['favicon'] . '" />';
-    }
     echo '</head><body><div id="dashboard">';
     echo @$GLOBALS['errmsg'];
 }
@@ -396,7 +402,7 @@ function paint_welcome() {
     }
 
     // spew the time
-    printf(_('Right now, my watch shows %s.'), date(FORMAT_OUTPUT_DATE));
+    printf(_('Right now, my watch shows %s.'), strftime(FORMAT_OUTPUT_DATE));
 }
 
 // }}}
@@ -617,7 +623,7 @@ function fetch_latest_submission_date($sid, $responses) {
         // don't need the date down to the second, so just go down to the minute
         $datets = strtotime($date);
         if (-1 !== $datets) {
-            $date = date(FORMAT_OUTPUT_DATE, $datets);
+            $date = strftime(FORMAT_OUTPUT_DATE, $datets);
         }
     } else {
         $date = '';

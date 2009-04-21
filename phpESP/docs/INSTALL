@@ -126,15 +126,12 @@ root of '/usr/local/apache/htdocs', you would type:
    tar zxvf /path/to/phpESP-1.6.tar.gz
    mv phpESP-1.6 phpESP
 
-and would then find phpESP at the URL
+and you would then find phpESP at the URL
 
    http://your-server/phpESP/
 
-The default user name is "root" and has a password of "esp".  You
-should login and change this password immediately after you configure
-phpESP.  This user name and password are for logging into phpESP, do
-not confuse them with the database user name and password below.
-
+Now, before you can use this URL, please read the next section about
+configuring phpESP.
 
 CONFIGURING PHPESP
 ------------------
@@ -166,22 +163,26 @@ CONFIGURING PHPESP
 
    a. Database and User
 
-      First, look at the "scripts/db/mysql_create.sql" file.  This
-      script, when run as the root user in mysql, will create a
-      database and user for phpESP.  Be sure to change the default
-      password, "phpesp", to something else before executing the
-      script!  (Remember to use this password when you configure phpESP
-      in the next step.)
+      The preferred method is that you create the database and user
+      for phpESP on your own. This can easily be done with a tool
+      like phpMyAdmin.
 
-      Alternatively, you may create the database and user for phpESP on
-      your own.  This can easily be done with a tool like phpMyAdmin.
+      Alternatively, look at the "scripts/db/mysql5.x_create.sql" (or 4.x
+      if you still have an older mysql) file. This script, when run as
+      the root user in mysql, will create a database and user for phpESP. 
+      Be sure to change the default password, "phpesp", to something else
+      before executing the script! (Remember to use this password when you
+      configure phpESP in the next step.)
 
    b. Tables and Data
    
       Once a database and user have been created for phpESP, go to
       the configured url, eg. http://your-server/phpESP/, the creation
       of tables and initial data is all web based.
-
+      The default user name is "root" and has a password of "esp". You
+      should login and change this password immediately after you configure
+      phpESP. This user name and password are for logging into phpESP, do
+      not confuse them with the database user name and password.
 
 3. Configuring phpESP
 

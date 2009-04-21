@@ -38,11 +38,13 @@
 		// load values from DB
 		$sql = "SELECT * FROM ".$GLOBALS['ESPCONFIG']['question_table']." WHERE id=${curr_q} AND deleted='N' ORDER BY position";
 		$result = execute_sql($sql,"",ADODB_FETCH_ASSOC);
-		$question = fetch_row($result);
-		db_close($result);
-		foreach($fields as $f) {
-			$_POST[$f] =& $question[$f];
+		if (record_count($result) > 0) {
+			$question = fetch_row($result);
+			foreach($fields as $f) {
+				$_POST[$f] =& $question[$f];
+			}
 		}
+		db_close($result);
 	} else if ($updated) {
 		// adding a new question (possibly because there are no questions yet)
 		$curr_q = 0;

@@ -79,6 +79,27 @@
 	if (isset($_POST['tab'])) {
 		$tab=$_POST['tab'];
 	}
+	if (isset($_POST['tab_general'])) {
+		$tab='general';
+	}
+	if (isset($_POST['tab_questions'])) {
+		$tab='questions';
+	}
+	if (isset($_POST['tab_order'])) {
+		$tab='order';
+	}
+	if (isset($_POST['tab_conditions'])) {
+		$tab='conditions';
+	}
+	if (isset($_POST['tab_preview'])) {
+		$tab='preview';
+	}
+	if (isset($_POST['tab_finish'])) {
+		$tab='finish';
+	}
+	if (isset($_POST['tab_continue'])) {
+		$tab='continue';
+	}
 	if ($tab=="") {
 		$tab = $_SESSION['last_tab'];
 	}
@@ -123,19 +144,19 @@
 <form method="post" id="tabs" onsubmit="validate();" action="<?php echo($ESPCONFIG['ME']); ?>">
 <div>
 
-<h2>Survey Design</h2>
+<h2><?php echo(_('Survey Design')); ?></h2>
 <?php if(!empty($errstr)) echo(mkerror($errstr)."<br />\n"); ?>
 <span class="large">
 <a href="<?php echo($ESPCONFIG['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Help')); ?></a>
 </span>
       <input type="hidden" name="where" value="tab" />
 <div id="tabmenu">
-<input type="submit" name="tab" value="General" />
-<input type="submit" name="tab" value="Questions" />
-<input type="submit" name="tab" value="Order" />
-<input type="submit" name="tab" value="Conditions" />
-<input type="submit" name="tab" value="Preview" />
-<input type="submit" name="tab" value="Finish" />
+<input type="submit" name="tab_general" value="<?php echo(_('General')); ?>" />
+<input type="submit" name="tab_questions" value="<?php echo(_('Questions')); ?>" />
+<input type="submit" name="tab_order" value="<?php echo(_('Order')); ?>" />
+<input type="submit" name="tab_conditions" value="<?php echo(_('Conditions')); ?>" />
+<input type="submit" name="tab_preview" value="<?php echo(_('Preview')); ?>" />
+<input type="submit" name="tab_finish" value="<?php echo(_('Finish')); ?>" />
 </div>
 <table>
   <tr>
@@ -153,9 +174,9 @@ if($_SESSION['new_survey']) {
     echo(_('Click cancel to cancel this survey, or click continue to proceed to the next tab.')."<br />");
     echo "<input type=\"submit\" name=\"where\" value=\""._('Cancel')."\" onclick='return cancelConfirm()' />";
     if($tab=='preview') {
-	    echo "<input type=\"submit\" name=\"tab\" value=\""._('Finish')."\" />";
+	    echo "<input type=\"submit\" name=\"tab_finish\" value=\"".(_('Finish'))."\" />";
     } else { 
-        echo "<input type=\"submit\" name=\"tab\" value=\""._('Continue')." &gt;\" />";
+        echo "<input type=\"submit\" name=\"tab_continue\" value=\"".(_('Continue'))." &gt;\" />";
     }
     return; 
 }
@@ -168,12 +189,12 @@ You may see a preview of your survey at any time, by going to the <strong>Previe
 tab. If you have no further changes click <strong>Finish</strong> to go back to the
 Management Interface.')); ?><br />
 <a href="<?php echo("". $ESPCONFIG['ME'] ."?where=help"); ?>" onclick="window.open(this.href,'_blank');return false;"><?php echo(_('Click here to open the Help window.')); ?></a></p>
-<input type="submit" name="tab" value="General" />
-<input type="submit" name="tab" value="Questions" />
-<input type="submit" name="tab" value="Order" />
-<input type="submit" name="tab" value="Conditions" />
-<input type="submit" name="tab" value="Preview" />
-<input type="submit" name="tab" value="Finish" />
+<input type="submit" name="tab_general" value="<?php echo(_('General')); ?>" />
+<input type="submit" name="tab_questions" value="<?php echo(_('Questions')); ?>" />
+<input type="submit" name="tab_order" value="<?php echo(_('Order')); ?>" />
+<input type="submit" name="tab_conditions" value="<?php echo(_('Conditions')); ?>" />
+<input type="submit" name="tab_preview" value="<?php echo(_('Preview')); ?>" />
+<input type="submit" name="tab_finish" value="<?php echo(_('Finish')); ?>" />
 </form>
 <form method="post" action="" id="null">
 <div>

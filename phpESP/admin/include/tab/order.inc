@@ -63,6 +63,7 @@ function removeItem() {
         tabs.removeit.value = 1;
         tabs.submit();
     }
+    return true;
 }
 // comment -->
 </script>
@@ -95,5 +96,5 @@ function removeItem() {
         ?>
         </select>
 <hr />
-<input type="button" value="Up" onclick="javascript:move(this.form,true,'questions')" /> | <input type="button" value="Down" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>"> | <input type="button" value="Remove" name="remove" onclick="javascript:removeItem()" />
+<input type="button" value="<?php echo(_('Up')); ?>" onclick="javascript:move(this.form,true,'questions')" /> | <input type="button" value="<?php echo(_('Down')); ?>" onclick="javascript:move(this.form, false, 'questions')"> | <input type="submit" name="addbreak" value="<?php echo(_('Add Section Break')); ?>"> | <input type="button" value="<?php echo(_('Remove')); ?>" name="remove" onclick="javascript:removeItem()" />
     <br /><br />

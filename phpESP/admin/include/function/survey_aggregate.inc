@@ -70,10 +70,14 @@ function survey_aggregate($sids) {
     $new_sid = insert_id('survey_id_seq');
 
     // copy the questions for each of the surveys
-    // NOTE: we increase the position through each loop so that the questions will follow each other
-    $pos = 1;
+    // NOTE1: we increase the position through each loop so that the questions will follow each other
+    // NOTE2: SFID 2672129: Question positions begin at 0.
+    $pos = 0;
     foreach ($sids as $sid) {
-        $pos = survey_copy_questions($sid, $new_sid, $pos);
+        $pos = survey_copy_questions_and_conditions($sid, $new_sid, $pos);
+        if (false === $pos) {
+            return false;
+        }
     }
 
     return $new_sid;
@@ -82,10 +86,11 @@ function survey_aggregate($sids) {
 // }}}
 // {{{ survey_copy_questions()         Copy questions from one survey to another, starting at a given position
 
-function survey_copy_questions($sid, $new_sid, $pos = 1) {
+function survey_copy_questions_and_conditions($sid, $new_sid, $pos = 0) {
     $has_choices = esp_type_has_choices();
 
     // make copies of all the questions
+    // NOTE: This is done the hard way: SELECT and then iterated INSERT
     $question_fields = array('id', 'survey_id', 'name', 'type_id', 'result_id', 'length', 'precise', 
             'position', 'content', 'required', 'deleted', 'public');
     $sql = "SELECT ". join(', ',$question_fields)." FROM ".$GLOBALS['ESPCONFIG']['question_table']."
@@ -143,6 +148,25 @@ function survey_copy_questions($sid, $new_sid, $pos = 1) {
         }
     }
     db_close($result);
+
+    // copy conditions
+    $sql =<<<EOSQL
+INSERT INTO conditions
+       (id,  survey_id, q1_id,    q2_id,    cond, cond_value)
+SELECT NULL, $new_sid,  qnew1.id, qnew2.id, cond, cond_value
+  FROM question qold1, question qold2, question qnew1, question qnew2, conditions c
+ WHERE qold1.id=c.q1_id AND qold2.id=c.q2_id AND
+       qold1.survey_id=$sid AND qold2.survey_id=$sid AND
+       qnew1.survey_id=$new_sid AND qnew1.position=qold1.position AND
+       qnew1.deleted=qold1.deleted AND
+       qnew2.survey_id=$new_sid AND
+       qnew2.position=qold2.position AND
+       qnew2.deleted=qold2.deleted
+EOSQL;
+    $result = execute_sql($sql);
+    if (false === $result) {
+        return false;
+    }
 
     return $pos;
 }

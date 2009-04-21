@@ -91,7 +91,7 @@
 		<td class="center">
 <input type="button" value="   &gt;&gt;   " onclick="move(this.form.list1,this.form.list2)" name="B1" /><br />
 <input type="button" value="   &lt;&lt;   " onclick="move(this.form.list2,this.form.list1)" name="B2" /><br />
-<input type="button" value="Merge" onclick="merge(this.form.list2)" name="B3" />
+<input type="button" value="<?php echo(_('Merge')); ?>" onclick="merge(this.form.list2)" name="B3" />
     <input type="hidden" id="sids" name="sids" value="">
 		</td>
 		<td class="center">

@@ -1,13 +1,13 @@
 <!--
 function activateConfirm() {
-    if (confirm("Warning! Once activated, this survey can no longer be edited.  Any further changes must be done on a copy.")) {
+    if (confirm(activateConfirmMsg)) {
         return true;
     }
     return false;
 }
 
 function cancelConfirm() {
-    if (confirm("Warning! This survey has not been saved.  Canceling now will remove any changes.")) {
+    if (confirm(cancelConfirmMsg)) {
         return true;
     }
     return false;
@@ -71,7 +71,7 @@ function merge(box) {
         form = document.getElementById('merge');
         form.submit();
     } else {
-        document.getElementById('error').innerHTML = "<h2>You must select at least two surveys before you can merge</h2>";
+        document.getElementById('error').innerHTML = mergeMsg";
     }
 }
 

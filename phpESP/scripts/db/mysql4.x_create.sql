@@ -1,4 +1,4 @@
--- # $Id$
+-- # $Id: mysql_create.sql 547 2003-02-27 19:04:51Z jimmerman $
 -- #
 -- # Database and User creation phpESP
 -- # Written by James Flemer

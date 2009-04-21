@@ -59,9 +59,10 @@
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><?php echo($_title); ?></title>
-<script type="text/javascript" src="<?php echo($ESPCONFIG['js_url']);?>default.js"></script>
 <?php
+	if(!empty($ESPCONFIG['charset'])) {
+		echo('<meta http-equiv="Content-Type" content="text/html; charset='. $ESPCONFIG['charset'] ."\" />\n");
+	}
     if(!empty($ESPCONFIG['favicon'])) {
         echo("<link rel=\"shortcut icon\" href=\"" . $ESPCONFIG['favicon'] . "\" />\n");
     }
@@ -69,10 +70,9 @@
 	    echo('<link rel="stylesheet" href="'. $GLOBALS['ESPCONFIG']['css_url'].$_css ."\" type=\"text/css\" />\n");
     }
     unset($_css);
-	if(!empty($ESPCONFIG['charset'])) {
-		echo('<meta http-equiv="Content-Type" content="text/html; charset='. $ESPCONFIG['charset'] ."\" />\n");
-	}
 ?>
+<script type="text/javascript" src="<?php echo($ESPCONFIG['js_url']);?>default.js"></script>
+<title><?php echo($_title); ?></title>
 </head>
 <body>
 <?php

@@ -42,7 +42,7 @@ $stats = stat_fetch_with_summary();
 
 // show them
 echo '<h2>' . _('View Survey Statistics') . '</h2>';
-echo "<a href='{$GLOBALS['ESPCONFIG']['ME']}?where=help#stats' target='_blank'>Help</a>";
+echo "<a href='{$GLOBALS['ESPCONFIG']['ME']}?where=help#stats' target='_blank'>"._('Help')."</a>";
 echo '<input type="hidden" name="where" value="statistics" />';
 echo '<div id="view_survey_statistics">';
 if (0 < count($stats)) {

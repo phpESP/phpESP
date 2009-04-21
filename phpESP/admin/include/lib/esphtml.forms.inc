@@ -52,7 +52,7 @@ function mkcheckbox ($_name, $value, $varr = null) {
     	if ($varr == null)
         	$varr =& $_POST;
 	$str = '<input type="checkbox" name="' . htmlspecialchars($_name) .'[]" value="' . htmlspecialchars($value) .'"';
-	if (isset($varr) && is_array($varr) && in_array($value, $varr))
+	if (isset($varr[$_name]) && is_array($varr[$_name]) && in_array($value, $varr[$_name]))
 		$str .= " checked=\"checked\"";
 	$str .= ' />';
 	return($str);
@@ -154,7 +154,11 @@ function mksubmit($_name, $_value = null, $_attrs = array ()) {
     Returns HTML login form */
 function show_login($_surveyname = null, $_message = null, $_css = null, $_title = "Survey Login") {
     $str = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">";
-    $str .="<head>\n<title>Survey Login: $_title</title>\n";
+    $str .="<head>\n";
+    if(!empty($GLOBALS['ESPCONFIG']['charset'])) {
+        echo('<meta http-equiv="Content-Type" content="text/html; charset='. $GLOBALS['ESPCONFIG']['charset'] ."\" />\n");
+    }
+    $str .="<title>Survey Login: $_title</title>\n";
     if (empty($_css)) {
         $_css = "default.css";
     }

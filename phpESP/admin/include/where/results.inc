@@ -50,7 +50,7 @@
         }
     ?>
     <font size="+2">
-<a href="<?php echo($GLOBALS['ESPCONFIG']['ME']."?where=help"); ?>" target="_blank">Help</a>
+<a href="<?php echo($GLOBALS['ESPCONFIG']['ME']."?where=help"); ?>" target="_blank"><?php echo _('Help'); ?></a>
     </font>
     <br /><br />
 <table class="results" cellpadding="4" cellspacing="0">

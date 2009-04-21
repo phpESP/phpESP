@@ -2,6 +2,22 @@
 PHPESP CHANGE LOG
 =================
 
+2.1.2 => 2.1.3
+=========================
+- Closed patches 2063913 (i18n issues, short tags, undefined indices yet again) and 2063920 (russian translation added)
+- group/designer/respondent edit was flawed
+- Some better documentation for installing
+- update create sql for mysql 5.x 
+- link to phpesp_proto in the scripts dir
+- make dashboard work again
+- realm quoting fixed
+- SFID 2672129: Fixed question position numbering to use 0, not 1, during copy and aggregate
+- SFID 2669428: Fixed copy and aggregate so that conditions would be copied, as well. Previously, conditions were not copied. Any survey created prior to this version will not correctly copy conditions.
+
+2.1.1 => 2.1.2
+=========================
+- some small bugs got squashed (status change for a survey was flacky and some other annoying things I can't remember)
+
 2.1.0 => 2.1.1
 =========================
 - Fixed some old issues with save/resume surveys
