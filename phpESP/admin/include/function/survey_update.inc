@@ -260,8 +260,9 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 			$count = 0;
 			for($i=1;$i<$_POST['num_choices']+1;$i++) {
 				$sql='';
-				$choice_id      = intval($_POST["choice_id_${i}"]);
-				$choice_content = $_POST["choice_content_${i}"];
+				$choice_id       = intval($_POST["choice_id_${i}"]);
+				$choice_content  = $_POST["choice_content_${i}"];
+				$choice_feedback = $_POST["choice_feedback_${i}"];
 				//constraint: for rate questions (type_id=8)
 				// we don't allow "!other" as a choice
 				if ($_POST['type_id']==8 && $choice_content=='!other') {
@@ -273,17 +274,19 @@ function survey_update(&$survey_id, &$tab, $old_tab) {
 				if ($choice_content != '') {
 					$choice_content = _addslashes($choice_content);
 				}
+                $choice_feedback = _addslashes($choice_feedback);
+
 				// each of the submitted choices
 				if($choice_id=='' && $choice_content!='') {
 					// insert (new)
-					$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_choice_table']." (question_id,content) VALUES (${qid},${choice_content})";
+					$sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_choice_table']." (question_id,content,feedback) VALUES (${qid},${choice_content},${choice_feedback})";
 					++$count;
 				} elseif($choice_id!='' && $choice_content=='') {
 					// delete (old)
 					$sql = "DELETE FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']." WHERE id=${choice_id}";
-				} elseif($choice_id!='' && $choice_content!='' && in_array($choice_id, $cids)) {
+				} elseif($choice_id!='' && ($choice_content!='' || $choice_feedback!='') && in_array($choice_id, $cids)) {
 					// update (old)
-					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_choice_table']." SET content=${choice_content} WHERE id=${choice_id}";
+					$sql = "UPDATE ".$GLOBALS['ESPCONFIG']['question_choice_table']." SET content=${choice_content},feedback=${choice_feedback} WHERE id=${choice_id}";
 					++$count;
 				}
 				if($sql != '') {

@@ -39,6 +39,10 @@ function addAnswerLine() {
     text = text+"<input type=\"text\" size=\"60\" name=\"choice_content_"+numchoice+"\" value=\"\" />\n";
     tablecell.innerHTML = text;
     tablecell.className = "left";
+    tablecell = tablerow.insertCell(-1);
+    var text = "<textarea name=\"choice_feedback_"+numchoice+"\"></textarea>\n";
+    tablecell.innerHTML = text;
+    tablecell.className = "left";
     document.getElementById('num_choices').value = numchoice;
 }
 

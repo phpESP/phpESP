@@ -434,9 +434,9 @@
     of "!other", or rank questions the Question ID concatenated with the
     Choice ID ("${qid}_${cid").  The value for all types is an array. 
     This array contains any columns requested by the parameter $col as
-    the first elements.  The last two elements are the response content,
-    and the content ID respectively.  (For multiple answer questions,
-    the value is an array of these arrays.)
+    the first elements.  The last three elements are the response content,
+    the content ID, and the feedback (if appropriate) respectively.  (For
+    multiple answer questions, the value is an array of these arrays.)
 
     For example, for a boolean type question (ID #42) and a check box
     type (ID #44), you might get something like:
@@ -498,7 +498,7 @@
         db_close($result);
 
         // --------------------- response_single ---------------------
-        $sql = "SELECT q.id $col,c.content,c.id
+        $sql = "SELECT q.id $col,c.content,c.id,c.feedback
         FROM ".$GLOBALS['ESPCONFIG']['response_single_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
         WHERE a.response_id=${rid} AND a.question_id=q.id AND a.choice_id=c.id $qids";
         $result = execute_sql($sql);
@@ -506,18 +506,18 @@
             $row = fetch_row($result);
             $qid = array_shift($row);
             $c = count($row);
-            $val = $row[$c - 2];
+            $val = $row[$c - 3];
             if (ereg('^!other', $val))
-               $row[$c - 1] = 'other_' . $row[$c - 1];
+               $row[$c - 2] = 'other_' . $row[$c - 2];
             else
-               settype($row[$c - 1], 'integer');
+               settype($row[$c - 2], 'integer');
             $values[$qid] = $row;
             $result->MoveNext();
         }
         db_close($result);
 
         // --------------------- response_multiple ---------------------
-        $sql = "SELECT q.id $col,c.content,c.id
+        $sql = "SELECT q.id $col,c.content,c.id,c.feedback
         FROM ".$GLOBALS['ESPCONFIG']['response_multiple_table']." a, ".$GLOBALS['ESPCONFIG']['question_table']." q, ".$GLOBALS['ESPCONFIG']['question_choice_table']." c
         WHERE a.response_id=${rid} AND a.question_id=q.id AND a.choice_id=c.id $qids
         ORDER BY a.question_id,c.id";
@@ -529,11 +529,11 @@
 
             $qid = array_shift($row);
             $c = count($row);
-            $val = $row[$c - 2];
+            $val = $row[$c - 3];
             if (ereg('^!other', $val))
-               $row[$c - 1] = 'other_' . $row[$c - 1];
+               $row[$c - 2] = 'other_' . $row[$c - 2];
             else
-               settype($row[$c - 1], 'integer');
+               settype($row[$c - 2], 'integer');
             if($tmp == $qid) {
                 $arr[] = $row;
                 $result->MoveNext();
