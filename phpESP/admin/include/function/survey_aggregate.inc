@@ -126,7 +126,7 @@ function survey_copy_questions_and_conditions($sid, $new_sid, $pos = 0) {
 
         // make copies of all the question choices (if exist)
         if($has_choices[$tid]) {
-            $question_choice_fields = array('question_id', 'content', 'value');
+            $question_choice_fields = array('question_id', 'content', 'value', 'feedback');
             $sql = "SELECT ". join(', ',$question_choice_fields)."
                 FROM ".$GLOBALS['ESPCONFIG']['question_choice_table']."
                 WHERE question_id=${qid}
@@ -135,8 +135,9 @@ function survey_copy_questions_and_conditions($sid, $new_sid, $pos = 0) {
             while($choice = fetch_row($result2)) {
                 $result2->MoveNext();
                 $choice['question_id'] = $new_qid;
-                $choice['content'] = _addslashes($choice['content']);
-                $choice['value'] = _addslashes($choice['value']);
+                $choice['content']     = _addslashes($choice['content']);
+                $choice['value']       = _addslashes($choice['value']);
+                $choice['feedback']    = _addslashes($choice['feedback']);
 
                 $sql = "INSERT INTO ".$GLOBALS['ESPCONFIG']['question_choice_table']." ";
                 $sql .= '('. join(',',$question_choice_fields) .') ';
