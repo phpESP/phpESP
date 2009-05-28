@@ -40,6 +40,10 @@ function addAnswerLine() {
     tablecell.innerHTML = text;
     tablecell.className = "left";
     tablecell = tablerow.insertCell(-1);
+    var text = "<input name=\"choice_credit_"+numchoice+"\" size=\"4\" />\n";
+    tablecell.innerHTML = text;
+    tablecell.className = "left";
+    tablecell = tablerow.insertCell(-1);
     var text = "<textarea name=\"choice_feedback_"+numchoice+"\"></textarea>\n";
     tablecell.innerHTML = text;
     tablecell.className = "left";
