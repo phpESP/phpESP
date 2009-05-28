@@ -251,6 +251,7 @@
 /**
 Functions to display feedback, if any, on the selected responses.
 See SFID 2771740
+See SFID 2771716
 */
 function paint_feedback_end_of_survey($sid, $rid, $sec) {
     // paint the feedback
@@ -268,17 +269,22 @@ function paint_feedback_end_of_section($sid, $rid, $sec) {
 
 function paint_feedback($sid, $rid, $sec, $additional = array ()) {
     // get all the feedback so far, if any
-    $hasFeedback = get_feedback($feedback, $sid, $rid, $sec);
+    $hasFeedback = get_feedback($feedback, $totalCredit, $sid, $rid, $sec);
 
     // if there are is feedback, paint it and exit
     if ($hasFeedback) {
-        // open teh form
+        // open the form
         paint_submission_form_open($additional);
 
-        // ... paint feedback to each response
+        // paint feedback to each response
         echo '<table>';
         array_walk($feedback, 'paint_feedback_row');
         echo '</table>';
+
+        // paint total credit
+        if (! is_null($totalCredit)) {
+            echo _('Total credit:') . ' ' . $totalCredit;
+        }
 
         // paint the next button
         // NOTE: don't call it "next", because the logic above has specific expectations about
@@ -302,7 +308,7 @@ array (
    // 'question number' => array ('Question?', array ('Choice1', 'Feedback1'), ..., array ('ChoiceN', 'FeedbackN'));
 );
 */
-function get_feedback(&$responses, $sid, $rid, $sec) {
+function get_feedback(&$responses, &$totalCredit, $sid, $rid, $sec) {
     // get the questions for each section (by ID)
     // NOTE: we're given section 1-base, but this method has section 0-base
     $sec -= 1;
@@ -328,7 +334,7 @@ function get_feedback(&$responses, $sid, $rid, $sec) {
             // pull it out
             unset($allResponses[$qid]);
 
-            /*
+            /* TODO: If we ever support rank and !other as types with feedback or credit
             // store it as multi
             list ($qid,$sub) = explode('_', $qid);
             $allResponses[$qid][] = $feedback;
@@ -336,8 +342,11 @@ function get_feedback(&$responses, $sid, $rid, $sec) {
         }
     }
 
-    // put them into our desired format
+    // initialize values
+    $totalCredit = null;
     $hasFeedback = false;
+
+    // put them into our desired format
     foreach ($allResponses as $qid => $feedback) {
         // figure out if this is a multi-response
         $hasMulti = (is_array($feedback[0]) ? true : false);
@@ -348,17 +357,29 @@ function get_feedback(&$responses, $sid, $rid, $sec) {
         // if this is a multiple response, add them each in
         if ($hasMulti) {
             foreach ($feedback as $response) {
-                $responses[$qnum][] = array ($response[1], $response[3]);
+                $responses[$qnum][] = array ($response[1], $response[3], $response[4]);
                 if (! empty($response[3])) {
                     $hasFeedback = true;
+                }
+                if (! empty($response[4])) {
+                    $hasFeedback = true;
+                    if (is_numeric($response[4])) {
+                        $totalCredit += $response[4];
+                    }
                 }
             }
 
         // otherwise, add this one in
         } else {
-            $responses[$qnum][] = array ($feedback[1], $feedback[3]);
+            $responses[$qnum][] = array ($feedback[1], $feedback[3], $feedback[4]);
             if (! empty($feedback[3])) {
                 $hasFeedback = true;
+            }
+            if (! empty($feedback[4])) {
+                $hasFeedback = true;
+                if (is_numeric($feedback[4])) {
+                    $totalCredit += $feedback[4];
+                }
             }
         }
 
@@ -376,6 +397,7 @@ function paint_feedback_row($response, $number) {
     // initialize variables we'll use in our output
     $label1 = _('Your choice:');
     $label2 = _('Feedback:');
+    $label3 = _('Credit:');
 
     // output the question
     echo <<<EOHTML
@@ -387,21 +409,36 @@ EOHTML;
 
     // output each choice and feedback
     foreach ($response as $info) {
-        list ($choice, $feedback) = $info;
+        // get the choice, feedback, and credit
+        list ($choice, $feedback, $credit) = $info;
 
-        if (empty($feedback)) {
-            $feedback = _('None');
-        }
+        // output the choice
         echo <<<EOHTML
 <tr>
   <td style='text-align: right;'>{$label1}</td>
   <td>{$choice}</td>
 </tr>
+EOHTML;
+
+        // if there's feedback, output it
+        if (! empty($feedback)) {
+            echo <<<EOHTML
 <tr>
   <td style='text-align: right;'>{$label2}</td>
   <td>{$feedback}</td>
 </tr>
 EOHTML;
+        }
+
+        // if there's credit, output it
+        if (! empty($credit)) {
+            echo <<<EOHTML
+<tr>
+  <td style='text-align: right;'>{$label3}</td>
+  <td>{$credit}</td>
+</tr>
+EOHTML;
+        }
     }
 }
 
