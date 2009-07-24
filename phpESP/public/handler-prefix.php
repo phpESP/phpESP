@@ -51,16 +51,13 @@
 
     if(empty($_REQUEST['userid'])) {
         // find remote user id (takes the first non-empty of the following)
-        //  1. a GET variable named 'userid'
-        //  2. the REMOTE_USER set by HTTP-Authentication
-        //  3. the query string
-        //  4. the remote ip address
-        if (!empty($_REQUEST['userid'])) {
-            $_REQUEST['userid'] = $_REQUEST['userid'];
-        } elseif(!empty($_SERVER['REMOTE_USER'])) {
+        //  1. the REMOTE_USER set by HTTP-Authentication
+        //  2. the query string
+        //  3. the remote ip address
+        if(!empty($_SERVER['REMOTE_USER'])) {
             $_REQUEST['userid'] = $_SERVER['REMOTE_USER'];
-        } elseif(!empty($_SERVER['QUERY_STRING'])) {
-            $_REQUEST['userid'] = urldecode($_SERVER['QUERY_STRING']);
+        //} elseif(!empty($_SERVER['QUERY_STRING'])) {
+        //    $_REQUEST['userid'] = urldecode($_SERVER['QUERY_STRING']);
         } else {
             $_REQUEST['userid'] = $_SERVER['REMOTE_ADDR'];
         }
@@ -88,10 +85,7 @@
                 $esppass = $_SERVER['PHP_AUTH_PW'];
         }
         elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
-            if (!isset($_REQUEST['username'])) {
-                $_REQUEST['username'] = "";
-            }
-            if ($_REQUEST['username'] != "") {
+            if (isset($_REQUEST['username']) && ($_REQUEST['username'] != "")) {
                 $_SESSION['espuser'] = $_REQUEST['username'];
             }
             if (isset($_SESSION['espuser'])) {
@@ -101,10 +95,7 @@
                 $espuser = "";
             }
 
-            if (!isset($_REQUEST['password'])) {
-                $_REQUEST['password'] = "";
-            }
-            if ($_REQUEST['password'] != "") {
+            if (isset($_REQUEST['password']) && ($_REQUEST['password'] != "")) {
                 $_SESSION['esppass'] = $_REQUEST['password'];
             }
             if (isset($_SESSION['esppass'])) {
@@ -124,19 +115,26 @@
                     $_REQUEST['rid']);
 
             if (!empty($_SESSION['rid']) && (!isset($_SESSION['sec']) ||
-		 empty($_SESSION['sec']) || intval($_SESSION['sec']) < 1))
+	        	 empty($_SESSION['sec']) || intval($_SESSION['sec']) < 1))
             {
-                $_SESSION['sec'] = response_select_max_sec($sid,
-                        $_SESSION['rid']);
+                // we let people return to previously filled in sections if defined
+                // in the request
+                if (isset($_REQUEST['sec']) && intval($_REQUEST['sec'])>1) {
+                    $_SESSION['sec'] = intval($_REQUEST['sec'];
+                } else {
+                    $_SESSION['sec'] = response_select_max_sec($sid,$_SESSION['rid']);
+                }
             }
         }
     }
 
-    if (!isset($_SESSION['sec']) || empty($_SESSION['sec']))
-        $_SESSION['sec'] = 1;
-    else
-        $_SESSION['sec'] = (intval($_SESSION['sec']) > 0) ?
-                intval($_SESSION['sec']) : 1;
+    $num_sections = survey_num_sections($sid);
+    if (!isset($_SESSION['sec']) || empty($_SESSION['sec']) || $_SESSION['sec']>$num_sections) {
+            $_SESSION['sec'] = 1;
+        } else {
+            $_SESSION['sec'] = (intval($_SESSION['sec']) > 0) ?
+                            intval($_SESSION['sec']) : 1;
+    }
 
     define('ESP-AUTH-OK', true);
 

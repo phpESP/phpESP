@@ -65,13 +65,13 @@
  		$_REQUEST['direct'] = 1;
 	}
 
-	$num_sections = survey_num_sections($sid);
-	if (!isset($_SESSION['sec']) || empty($_SESSION['sec']) || $_SESSION['sec']>$num_sections) {
-        	$_SESSION['sec'] = 1;
-    	} else {
-        	$_SESSION['sec'] = (intval($_SESSION['sec']) > 0) ?
-                		    intval($_SESSION['sec']) : 1;
-	}
+//	$num_sections = survey_num_sections($sid);
+//	if (!isset($_SESSION['sec']) || empty($_SESSION['sec']) || $_SESSION['sec']>$num_sections) {
+//        	$_SESSION['sec'] = 1;
+//    	} else {
+//        	$_SESSION['sec'] = (intval($_SESSION['sec']) > 0) ?
+//                		    intval($_SESSION['sec']) : 1;
+//	}
 
 // gets wrong for resumed surveys
 //	if ($_SESSION['sec'] == 1) {
