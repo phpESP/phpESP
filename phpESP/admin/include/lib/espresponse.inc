@@ -170,20 +170,20 @@
     Reads current form variables from HTTP_POST_VARS.
     Returns the ID for the response. */
     function response_insert($sid,$section,$rid) {
-        //angek may need to keep this for backwards compatability
-        global $_POST;
-        if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
-            $userid = isset($_SERVER['PHP_AUTH_USER']) ?  $_SERVER['PHP_AUTH_USER'] : '';
-        }
-        elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
-            if (isset($_SESSION['espuser'])) {
-                $userid = $_SESSION['espuser'];
+        if ($GLOBALS['ESPCONFIG']['auth_response']) {
+            if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
+                $userid = isset($_SERVER['PHP_AUTH_USER']) ?  $_SERVER['PHP_AUTH_USER'] : '';
+            }
+            elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+                if (isset($_SESSION['espuser'])) {
+                    $userid = $_SESSION['espuser'];
+                }
             }
         }
-	$ip="";
-	if (isset($_SERVER['REMOTE_ADDR'])) $ip=$_SERVER['REMOTE_ADDR'];
-	if (isset($_SERVER['HTTP_CLIENT_IP'])) $ip="$ip (".$_SERVER['HTTP_CLIENT_IP'].")";
-	elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) $ip="$ip (".$_SERVER['HTTP_X_FORWARDED_FOR'].")";
+        $ip="";
+        if (isset($_SERVER['REMOTE_ADDR'])) $ip=$_SERVER['REMOTE_ADDR'];
+        if (isset($_SERVER['HTTP_CLIENT_IP'])) $ip="$ip (".$_SERVER['HTTP_CLIENT_IP'].")";
+        elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) $ip="$ip (".$_SERVER['HTTP_X_FORWARDED_FOR'].")";
 
         if (empty($userid))
            $userid = $_POST['userid'];
