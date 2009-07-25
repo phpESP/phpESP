@@ -49,20 +49,6 @@
         $survey_name = "";
     }
 
-    if(empty($_REQUEST['userid'])) {
-        // find remote user id (takes the first non-empty of the following)
-        //  1. the REMOTE_USER set by HTTP-Authentication
-        //  2. the query string
-        //  3. the remote ip address
-        if(!empty($_SERVER['REMOTE_USER'])) {
-            $_REQUEST['userid'] = $_SERVER['REMOTE_USER'];
-        //} elseif(!empty($_SERVER['QUERY_STRING'])) {
-        //    $_REQUEST['userid'] = urldecode($_SERVER['QUERY_STRING']);
-        } else {
-            $_REQUEST['userid'] = $_SERVER['REMOTE_ADDR'];
-        }
-    }
-
     if(empty($_REQUEST['referer']))
         $_REQUEST['referer'] = isset($_SERVER['HTTP_REFERER']) ?
             $_SERVER['HTTP_REFERER'] : '';

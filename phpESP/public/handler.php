@@ -452,7 +452,6 @@ function paint_submission_form_open($additional = array ()) {
 <fieldset class="hidden">
 <input type="hidden" name="referer" value="{$_REQUEST['referer']}" />
 <input type="hidden" name="direct"  value="{$_REQUEST['direct']}" />
-<input type="hidden" name="userid"  value="{$_REQUEST['userid']}" />
 <input type="hidden" name="sid"     value="{$sid}" />
 <input type="hidden" name="rid"     value="{$_SESSION['rid']}" />
 <input type="hidden" name="sec"     value="{$_SESSION['sec']}" />

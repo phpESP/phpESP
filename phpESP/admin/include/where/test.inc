@@ -53,7 +53,7 @@
 			/* set things up for the handler to take over ... */
 			$test = true;
 			unset($_REQUEST['sid']);
-			$_POST['userid'] = 'test';
+			// $_POST['userid'] = 'test';
 			define('ESP-FIRST-INCLUDED', true);
             # the next should not be needed
 			# define('ESP-AUTH-OK', true);
