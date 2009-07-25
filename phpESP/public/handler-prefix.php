@@ -117,12 +117,14 @@
             if (!empty($_SESSION['rid']) && (!isset($_SESSION['sec']) ||
 	        	 empty($_SESSION['sec']) || intval($_SESSION['sec']) < 1))
             {
-                // we let people return to previously filled in sections if defined
-                // in the request
-                if (isset($_REQUEST['sec']) && intval($_REQUEST['sec'])>1) {
-                    $_SESSION['sec'] = intval($_REQUEST['sec']);
+		$section_to_return_to=response_select_max_sec($sid,$_SESSION['rid']);
+                // we let people return to previously filled in sections
+                // if defined in the URL request
+                if (isset($_GET['sec']) && intval($_GET['sec'])>0 &&
+		    $_GET['sec']<=$section_to_return_to) {
+                    $_SESSION['sec'] = intval($_GET['sec']);
                 } else {
-                    $_SESSION['sec'] = response_select_max_sec($sid,$_SESSION['rid']);
+                    $_SESSION['sec'] = $section_to_return_to;
                 }
             }
         }
