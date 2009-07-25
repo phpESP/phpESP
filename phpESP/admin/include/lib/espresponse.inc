@@ -170,7 +170,11 @@
     Reads current form variables from HTTP_POST_VARS.
     Returns the ID for the response. */
     function response_insert($sid,$section,$rid) {
-        if ($GLOBALS['ESPCONFIG']['auth_response']) {
+        $sql = "SELECT name, email, public FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id=${sid}";
+        $result = execute_sql($sql);
+        list($name, $email, $survey_public) = fetch_row($result);
+
+        if ($survey_public=="N") {
             if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic') {
                 $userid = isset($_SERVER['PHP_AUTH_USER']) ?  $_SERVER['PHP_AUTH_USER'] : '';
             }
@@ -179,14 +183,13 @@
                     $userid = $_SESSION['espuser'];
                 }
             }
+        } else {
+            $userid = "anonymous";
         }
         $ip="";
         if (isset($_SERVER['REMOTE_ADDR'])) $ip=$_SERVER['REMOTE_ADDR'];
         if (isset($_SERVER['HTTP_CLIENT_IP'])) $ip="$ip (".$_SERVER['HTTP_CLIENT_IP'].")";
         elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) $ip="$ip (".$_SERVER['HTTP_X_FORWARDED_FOR'].")";
-
-        if (empty($userid))
-           $userid = $_POST['userid'];
 
         $userid = _addslashes($userid);
 
@@ -844,26 +847,25 @@
             'survey.response' => $rid,
         );
         if ($survey_public=="N") {
+            $userid = "";
             if ($GLOBALS['ESPCONFIG']['auth_mode'] == 'basic' &&
-		isset($_SERVER['PHP_AUTH_USER'])) {
+		        isset($_SERVER['PHP_AUTH_USER'])) {
                 $userid = $_SERVER['PHP_AUTH_USER'];
-            }
-            elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
+            } elseif ($GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
                 $userid = $_SESSION['espuser'];
             }
 
-	    $user['user.username'] = $userid;
+	        $user['user.username'] = $userid;
             $sql = "SELECT fname,lname,email FROM ".$GLOBALS['ESPCONFIG']['respondent_table']." WHERE username = " . _addslashes($userid);
             $result = execute_sql($sql);
             if ($result && record_count($result)) {
-		list ($user_fname, $user_lname, $user_email) = fetch_row($result);
+		        list ($user_fname, $user_lname, $user_email) = fetch_row($result);
                 db_close($result);
                 if (!empty($user_fname)) $user["user.firstname"] = $user_fname;
                 if (!empty($user_lname)) $user["user.lastname"] = $user_lname;
                 if (!empty($user_email)) $user["user.email"] = $user_email;
             }
         } else {
-            //$user['user.username'] = $_POST['userid'];
             $user['user.username'] = "anonymous";
         }
 
