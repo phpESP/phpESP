@@ -120,7 +120,7 @@
                 // we let people return to previously filled in sections if defined
                 // in the request
                 if (isset($_REQUEST['sec']) && intval($_REQUEST['sec'])>1) {
-                    $_SESSION['sec'] = intval($_REQUEST['sec'];
+                    $_SESSION['sec'] = intval($_REQUEST['sec']);
                 } else {
                     $_SESSION['sec'] = response_select_max_sec($sid,$_SESSION['rid']);
                 }
