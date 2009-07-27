@@ -58,11 +58,16 @@
 	}
 		
     
-	$_REQUEST['direct'] = '';
+	$request_direct = 0;
+	$request_referer = '';
 
-	if (empty($_REQUEST['referer'])) {
-		$_REQUEST['referer'] = '';
- 		$_REQUEST['direct'] = 1;
+	if (!empty($_REQUEST['referer'])) {
+		$request_referer = htmlspecialchars($_REQUEST['referer']);
+	} else if (isset($_SERVER['HTTP_REFERER']) {
+		$request_referer = htmlspecialchars($_SERVER['HTTP_REFERER']);
+	} else {
+		// referer not set? Then we must be called directly
+ 		$request_direct = 1;
 	}
 
 //	$num_sections = survey_num_sections($sid);
@@ -83,8 +88,6 @@
 	}
 
 	$_SESSION['rid'] = intval($_SESSION['rid']);
-	$_REQUEST['direct'] = intval($_REQUEST['direct']);
-	$_REQUEST['referer'] = htmlspecialchars($_REQUEST['referer']);
 
 	// show results instead of show survey
 	// but do not allow getting results from URL or FORM
@@ -130,8 +133,8 @@
         return;
     }
 
-   	if ($_REQUEST['referer'] == $ESPCONFIG['autopub_url'])
-       	$_REQUEST['referer'] .= "?name=$name";
+   	if ($request_referer == $ESPCONFIG['autopub_url'])
+       	    $request_referer .= "?name=$name";
 
 	// let's build the correct return/submit/resume link
 	$action = $ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . htmlspecialchars($_SERVER['PHP_SELF']);
@@ -459,8 +462,8 @@ function paint_submission_form_open($additional = array ()) {
     echo <<<EOHTML
 <form method="post" id="phpesp_response" action="$action">
 <fieldset class="hidden">
-<input type="hidden" name="referer" value="{$_REQUEST['referer']}" />
-<input type="hidden" name="direct"  value="{$_REQUEST['direct']}" />
+<input type="hidden" name="referer" value="{$request_referer}" />
+<input type="hidden" name="direct"  value="{$request_direct}" />
 <input type="hidden" name="sid"     value="{$sid}" />
 <input type="hidden" name="rid"     value="{$_SESSION['rid']}" />
 <input type="hidden" name="sec"     value="{$_SESSION['sec']}" />
