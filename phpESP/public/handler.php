@@ -63,7 +63,7 @@
 
 	if (!empty($_REQUEST['referer'])) {
 		$request_referer = htmlspecialchars($_REQUEST['referer']);
-	} else if (isset($_SERVER['HTTP_REFERER']) {
+	} else if (isset($_SERVER['HTTP_REFERER'])) {
 		$request_referer = htmlspecialchars($_SERVER['HTTP_REFERER']);
 	} else {
 		// referer not set? Then we must be called directly
