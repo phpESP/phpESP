@@ -130,15 +130,24 @@
         return;
     }
 
-
    	if ($_REQUEST['referer'] == $ESPCONFIG['autopub_url'])
        	$_REQUEST['referer'] .= "?name=$name";
 
-
-
+	// let's build the correct return/submit/resume link
 	$action = $ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . htmlspecialchars($_SERVER['PHP_SELF']);
-	if (!empty($_SERVER['QUERY_STRING']))
-		$action .= "?" . htmlspecialchars($_SERVER['QUERY_STRING']);
+	$query_string="";
+	// we need to remove "sec=xx" from the query string, otherwise
+	// the resume link will contain this also and the user will always
+	// return to the same filled in section
+	if (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) {
+	    $query_string=$_SERVER['QUERY_STRING'];
+	}
+	$query_string=preg_replace ('/sec=\d+/s','',$query_string);
+	$query_string=preg_replace ('/\?$|\&$/s','',$query_string);
+	$query_string=preg_replace ('/\?\&/s','\?',$query_string);
+	
+	if (!empty($query_string))
+	    $action .= "?" . htmlspecialchars($query_string);
 
 	$msg = '';
 	if(!empty($_REQUEST['submit'])) {
