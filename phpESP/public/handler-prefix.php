@@ -49,15 +49,10 @@
         $survey_name = "";
     }
 
-    if(empty($_REQUEST['referer']))
-        $_REQUEST['referer'] = isset($_SERVER['HTTP_REFERER']) ?
-            $_SERVER['HTTP_REFERER'] : '';
-
-
     if (empty($_REQUEST['rid']))
-        $_REQUEST['rid'] = 0;
+        $request_rid = 0;
     else
-        $_REQUEST['rid'] = intval($_REQUEST['rid']) ?
+        $request_rid = intval($_REQUEST['rid']) ?
                 intval($_REQUEST['rid']) : 0;
 
     if($ESPCONFIG['auth_response']) {
@@ -97,8 +92,7 @@
             return;
 
         if (auth_get_option('resume')) {
-            $_SESSION['rid'] = auth_get_rid($sid, $espuser,
-                    $_REQUEST['rid']);
+            $_SESSION['rid'] = auth_get_rid($sid, $espuser, $request_rid);
 
             if (!empty($_SESSION['rid']) && (!isset($_SESSION['sec']) ||
 	        	 empty($_SESSION['sec']) || intval($_SESSION['sec']) < 1))
