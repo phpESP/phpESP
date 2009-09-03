@@ -111,7 +111,7 @@
     	}
     }
     array_push($sqlf, 'realm');
-    array_push($sqlv, addslashes($signup_realm) );
+    array_push($sqlv, _addslashes($signup_realm) );
 
     $sqlf = implode(',', $sqlf);
     $sqlv = implode(',', $sqlv);
