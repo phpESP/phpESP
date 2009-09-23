@@ -909,7 +909,19 @@
             $body .= $k . $qsep . $v . $end;
         }
 
-        return(mail($email,$subject,$body,$headers));
+        // support for multiple emails separated by ;
+        if(strpos($email, ';') !== false) {
+                $retVal = 1;
+                $emailArray = split(";", $email);
+                foreach($emailArray as $email_address) {
+                        if (!mail($email_address,$subject,$body,$headers)) {
+                            $retVal = 0;
+                        }
+                }
+                return $retVal;
+        } else {
+                return(mail($email,$subject,$body,$headers));
+        }
     }
     /* }}} */
 
