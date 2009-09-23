@@ -2,6 +2,10 @@
 PHPESP CHANGE LOG
 =================
 
+2.1.3 => 2.1.4
+=========================
+- Closed patch 2862454 (allow multiple email addresses)
+
 2.1.2 => 2.1.3
 =========================
 - Closed patches 2063913 (i18n issues, short tags, undefined indices yet again) and 2063920 (russian translation added)
