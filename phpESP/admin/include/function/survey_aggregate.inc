@@ -152,11 +152,15 @@ function survey_copy_questions_and_conditions($sid, $new_sid, $pos = 0) {
     db_close($result);
 
     // copy conditions
-    $sql =<<<EOSQL
-INSERT INTO conditions
+    $sql = "
+INSERT INTO ".$GLOBALS['ESPCONFIG']['condition_table']."
        (id,  survey_id, q1_id,    q2_id,    cond, cond_value)
 SELECT NULL, $new_sid,  qnew1.id, qnew2.id, cond, cond_value
-  FROM question qold1, question qold2, question qnew1, question qnew2, conditions c
+  FROM ".$GLOBALS['ESPCONFIG']['question_table']." qold1, 
+        ".$GLOBALS['ESPCONFIG']['question_table']." qold2, 
+        ".$GLOBALS['ESPCONFIG']['question_table']." qnew1,
+        ".$GLOBALS['ESPCONFIG']['question_table']." qnew2, 
+        ".$GLOBALS['ESPCONFIG']['condition_table']." c
  WHERE qold1.id=c.q1_id AND qold2.id=c.q2_id AND
        qold1.survey_id=$sid AND qold2.survey_id=$sid AND
        qnew1.survey_id=$new_sid AND qnew1.position=qold1.position AND
@@ -164,7 +168,7 @@ SELECT NULL, $new_sid,  qnew1.id, qnew2.id, cond, cond_value
        qnew2.survey_id=$new_sid AND
        qnew2.position=qold2.position AND
        qnew2.deleted=qold2.deleted
-EOSQL;
+    ";
     $result = execute_sql($sql);
     if (false === $result) {
         return false;
