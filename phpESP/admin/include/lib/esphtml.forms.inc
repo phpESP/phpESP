@@ -191,7 +191,7 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     $str .= mkpass("password");
     $str .= "\n".'</div><div class="row">'."\n";
     # if the variable $lang is set, we assume we don't need to ask for the language
-    if ((!isset($_REQUEST['lang']) && !isset($lang)) || empty($lang)) {
+    if ((!isset($_REQUEST['lang']) && !$_SESSION['language']) || empty($_SESSION['language'])) {
        $str .= _('Language:');
        $_languages=array();
        foreach (esp_getlocales() as $_lang) {
