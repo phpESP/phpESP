@@ -178,7 +178,7 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     }
 
     $str .= '<form name="loginform" id="loginform"  method="post">';
-    $str .= "\n<fieldset><legend>Login</legend>\n";
+    $str .= "\n<fieldset>\n";
     $str .= '<div class="row">';
     $str .= '<label for="username">';
     $str .= _('Username:');
