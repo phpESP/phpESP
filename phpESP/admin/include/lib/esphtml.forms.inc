@@ -181,12 +181,12 @@ function show_login($_surveyname = null, $_message = null, $_css = null, $_title
     $str .= "\n<fieldset><legend>Login</legend>\n";
     $str .= '<div class="row">';
     $str .= '<label for="username">';
-    $str .= "Username:";
+    $str .= _('Username:');
     $str .= '</label>';
     $str .= mktext("username");
     $str .= "\n".'</div><div class="row">'."\n";
     $str .= '<label for="password">';
-    $str .= "Password:";
+    $str .= _('Password:');
     $str .= '</label>';
     $str .= mkpass("password");
     $str .= "\n".'</div><div class="row">'."\n";
