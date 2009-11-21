@@ -1,4 +1,4 @@
-<?
+<?php
 // example use of handler.php
 $template_file = file_get_contents("http://blahblahblah.site.org/index.php?module=webpage&id=27");
 $page_header = preg_replace ('/FORM_BODY.*/s','',$template_file);
