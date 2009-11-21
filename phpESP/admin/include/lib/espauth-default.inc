@@ -98,7 +98,7 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
             }
             $error_message = "";
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
+                $error_message = _('Incorrect User ID or Password, or your account has been disabled/expired.');
             }
             echo show_login($survey_name, $error_message, $css, $title);
             exit;
@@ -135,7 +135,7 @@ function survey_auth($sid, $username, $password, $raw_password, $css, $title) {
             }
             $error_message = "";
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $error_message = "Your account has been disabled or you have already completed this survey.";
+                $error_message = _('Your account has been disabled or you have already completed this survey.');
             }
             echo show_login($survey_name, $error_message, $css, $title);
             exit;
@@ -220,7 +220,7 @@ function manage_auth($username, $password, $raw_password="") {
         elseif ( $GLOBALS['ESPCONFIG']['auth_mode'] == 'form') {
             $error_message = "";
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $error_message = "Incorrect User ID or Password, or your account has been disabled/expired.";
+                $error_message = _('Incorrect User ID or Password, or your account has been disabled/expired.');
             }
             echo show_login(null, $error_message, null, _('phpESP Management Login'));
             exit;
