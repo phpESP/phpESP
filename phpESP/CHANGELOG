@@ -5,6 +5,10 @@ PHPESP CHANGE LOG
 2.1.3 => 2.1.4
 =========================
 - Closed patch 2862454 (allow multiple email addresses)
+- Better explanation of the examples and cleaned up short php-tags
+- Fixing language choosing
+- Closed bug 2897816 (cleaned some hard code tablenames)
+- Some small fixes
 
 2.1.2 => 2.1.3
 =========================
