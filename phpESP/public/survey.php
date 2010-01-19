@@ -23,7 +23,7 @@
     	}
 
 	if (!empty($_name)) {
-        	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = $_name";
+        	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = $_name ORDER BY id ASC";
         	if ($_result = execute_sql($_sql)) {
             		if (record_count($_result) > 0)
                 		list($sid, $_title, $_css) = fetch_row($_result);

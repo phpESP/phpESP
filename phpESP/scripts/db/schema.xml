@@ -7,7 +7,6 @@
     <field name="survey_id" type="I" size="10">
       <NOTNULL/>
     </field>
-
     <field name="realm" type="C" size="64"/>
     <field name="maxlogin" type="I" size="10">
       <DEFAULT value="0"/>
@@ -17,7 +16,6 @@
       <DEFAULT value="N"/>
     </field>
     <field name="navigate" type="C" size="1">
-
       <NOTNULL/>
       <DEFAULT value="N"/>
     </field>
@@ -26,7 +24,6 @@
     </index>
   </table>
   <table name="conditions">
-
     <field name="id" type="I" size="10">
       <KEY/>
       <AUTOINCREMENT/>
@@ -36,7 +33,6 @@
     </field>
     <field name="q1_id" type="I" size="10">
       <NOTNULL/>
-
     </field>
     <field name="q2_id" type="I" size="10">
       <NOTNULL/>
@@ -46,7 +42,6 @@
     </field>
     <field name="cond_value" type="X"/>
   </table>
-
   <table name="designer">
     <field name="username" type="C" size="64">
       <KEY/>
@@ -56,7 +51,6 @@
     </field>
     <field name="auth" type="C" size="16">
       <NOTNULL/>
-
       <DEFAULT value="BASIC"/>
     </field>
     <field name="realm" type="C" size="64">
@@ -75,7 +69,6 @@
     </field>
     <field name="pdata" type="C" size="1">
       <NOTNULL/>
-
       <DEFAULT value="N"/>
     </field>
     <field name="pall" type="C" size="1">
@@ -85,7 +78,6 @@
     <field name="pgroup" type="C" size="1">
       <NOTNULL/>
       <DEFAULT value="N"/>
-
     </field>
     <field name="puser" type="C" size="1">
       <NOTNULL/>
@@ -95,7 +87,6 @@
       <NOTNULL/>
       <DEFAULT value="N"/>
     </field>
-
     <field name="changed" type="T">
       <NOTNULL/>
       <DEFAULT value="0000-00-00 00:00:00"/>
@@ -105,7 +96,6 @@
       <DEFAULT value="0000-00-00 00:00:00"/>
     </field>
   </table>
-
   <table name="question">
     <field name="id" type="I" size="10">
       <KEY/>
@@ -115,7 +105,6 @@
       <NOTNULL/>
     </field>
     <field name="name" type="C" size="30">
-
       <NOTNULL/>
     </field>
     <field name="type_id" type="I" size="10">
@@ -125,7 +114,6 @@
     <field name="length" type="I" size="11">
       <NOTNULL/>
       <DEFAULT value="0"/>
-
     </field>
     <field name="precise" type="I" size="11">
       <NOTNULL/>
@@ -135,7 +123,6 @@
       <NOTNULL/>
     </field>
     <field name="content" type="X"/>
-
     <field name="required" type="C" size="1">
       <NOTNULL/>
       <DEFAULT value="N"/>
@@ -145,7 +132,6 @@
       <DEFAULT value="N"/>
     </field>
     <field name="public" type="C" size="1">
-
       <NOTNULL/>
       <DEFAULT value="Y"/>
     </field>
@@ -158,7 +144,6 @@
     </index>
     <index name="survey_id">
       <col>survey_id</col>
-
     </index>
   </table>
   <table name="question_choice">
@@ -168,7 +153,6 @@
     </field>
     <field name="question_id" type="I" size="10">
       <NOTNULL/>
-
     </field>
     <field name="content" type="X"/>
     <field name="value" type="X"/>
@@ -183,7 +167,6 @@
     </index>
   </table>
   <table name="question_type">
-
     <field name="id" type="I" size="10">
       <KEY/>
       <AUTOINCREMENT/>
@@ -193,7 +176,6 @@
     </field>
     <field name="has_choices" type="C" size="1">
       <NOTNULL/>
-
     </field>
     <field name="response_table" type="C" size="32">
       <NOTNULL/>
@@ -203,7 +185,6 @@
     <field name="name" type="C" size="64">
       <KEY/>
     </field>
-
     <field name="title" type="C" size="255">
       <NOTNULL/>
     </field>
@@ -213,7 +194,6 @@
     </field>
   </table>
   <table name="respondent">
-
     <field name="username" type="C" size="64">
       <KEY/>
     </field>
@@ -223,7 +203,6 @@
     <field name="auth" type="C" size="16">
       <NOTNULL/>
       <DEFAULT value="BASIC"/>
-
     </field>
     <field name="realm" type="C" size="64">
       <KEY/>
@@ -233,7 +212,6 @@
     <field name="email" type="C" size="255"/>
     <field name="disabled" type="C" size="1">
       <NOTNULL/>
-
       <DEFAULT value="N"/>
     </field>
     <field name="changed" type="T">
@@ -243,7 +221,6 @@
     <field name="expiration" type="T">
       <NOTNULL/>
       <DEFAULT value="0000-00-00 00:00:00"/>
-
     </field>
   </table>
   <table name="response">
@@ -253,7 +230,6 @@
     </field>
     <field name="survey_id" type="I" size="10">
       <NOTNULL/>
-
     </field>
     <field name="submitted" type="T">
       <NOTNULL/>
@@ -263,7 +239,6 @@
       <NOTNULL/>
       <DEFAULT value="N"/>
     </field>
-
     <field name="username" type="C" size="64"/>
     <field name="ip" type="C" size="64"/>
     <index name="survey_id">
@@ -272,7 +247,6 @@
   </table>
   <table name="response_bool">
     <field name="response_id" type="I" size="10">
-
       <KEY/>
     </field>
     <field name="question_id" type="I" size="10">
@@ -282,7 +256,6 @@
       <NOTNULL/>
     </field>
     <index name="response_id">
-
       <col>response_id</col>
     </index>
     <index name="question_id">
@@ -291,7 +264,6 @@
   </table>
   <table name="response_date">
     <field name="response_id" type="I" size="10">
-
       <KEY/>
     </field>
     <field name="question_id" type="I" size="10">
@@ -300,7 +272,6 @@
     <field name="response" type="D"/>
     <index name="response_id">
       <col>response_id</col>
-
     </index>
     <index name="question_id">
       <col>question_id</col>
@@ -309,7 +280,6 @@
   <table name="response_multiple">
     <field name="id" type="I" size="10">
       <KEY/>
-
       <AUTOINCREMENT/>
     </field>
     <field name="response_id" type="I" size="10">
@@ -319,7 +289,6 @@
       <NOTNULL/>
     </field>
     <field name="choice_id" type="I" size="10">
-
       <NOTNULL/>
     </field>
     <index name="response_id">
@@ -328,7 +297,6 @@
     <index name="question_id">
       <col>question_id</col>
     </index>
-
     <index name="choice_id">
       <col>choice_id</col>
     </index>
@@ -337,7 +305,6 @@
     <field name="response_id" type="I" size="10">
       <KEY/>
     </field>
-
     <field name="question_id" type="I" size="10">
       <KEY/>
     </field>
@@ -347,7 +314,6 @@
     <field name="response" type="X"/>
     <index name="response_id">
       <col>response_id</col>
-
     </index>
     <index name="choice_id">
       <col>choice_id</col>
@@ -356,7 +322,6 @@
       <col>question_id</col>
     </index>
   </table>
-
   <table name="response_rank">
     <field name="response_id" type="I" size="10">
       <KEY/>
@@ -366,7 +331,6 @@
     </field>
     <field name="choice_id" type="I" size="10">
       <KEY/>
-
     </field>
     <field name="rank" type="I" size="11">
       <NOTNULL/>
@@ -375,7 +339,6 @@
       <col>response_id</col>
     </index>
     <index name="question_id">
-
       <col>question_id</col>
     </index>
     <index name="choice_id">
@@ -384,7 +347,6 @@
   </table>
   <table name="response_single">
     <field name="response_id" type="I" size="10">
-
       <KEY/>
     </field>
     <field name="question_id" type="I" size="10">
@@ -394,7 +356,6 @@
       <NOTNULL/>
     </field>
     <index name="response_id">
-
       <col>response_id</col>
     </index>
     <index name="question_id">
@@ -403,7 +364,6 @@
   </table>
   <table name="response_text">
     <field name="response_id" type="I" size="10">
-
       <KEY/>
     </field>
     <field name="question_id" type="I" size="10">
@@ -412,7 +372,6 @@
     <field name="response" type="X"/>
     <index name="response_id">
       <col>response_id</col>
-
     </index>
     <index name="question_id">
       <col>question_id</col>
@@ -421,7 +380,6 @@
   <table name="survey">
     <field name="id" type="I" size="10">
       <KEY/>
-
       <AUTOINCREMENT/>
     </field>
     <field name="name" type="C" size="64">
@@ -431,7 +389,6 @@
       <NOTNULL/>
     </field>
     <field name="realm" type="C" size="64">
-
       <NOTNULL/>
     </field>
     <field name="public" type="C" size="1">
@@ -441,7 +398,6 @@
     <field name="status" type="I" size="10">
       <NOTNULL/>
       <DEFAULT value="0"/>
-
     </field>
     <field name="open_date" type="T"/>
     <field name="close_date" type="T"/>
@@ -451,7 +407,6 @@
     <field name="email" type="C" size="64"/>
     <field name="subtitle" type="X"/>
     <field name="info" type="X"/>
-
     <field name="theme" type="C" size="64"/>
     <field name="thanks_page" type="C" size="255"/>
     <field name="thank_head" type="C" size="255"/>
@@ -461,16 +416,15 @@
       <DEFAULT value="0000-00-00 00:00:00"/>
     </field>
     <field name="auto_num" type="C" size="1">
-
       <NOTNULL/>
       <DEFAULT value="Y"/>
     </field>
-    <index name="name">
+    <index name="nameuser">
       <UNIQUE/>
       <col>name</col>
+      <col>owner</col>
     </index>
   </table>
-
   <table name="survey_statistics">
     <field name="survey_id" type="I" size="10">
       <KEY/>
@@ -480,7 +434,6 @@
       <DEFAULT value="0"/>
     </field>
     <field name="attempted" type="I" size="10">
-
       <NOTNULL/>
       <DEFAULT value="0"/>
     </field>
@@ -490,7 +443,6 @@
     </field>
     <field name="suspended" type="I" size="10">
       <NOTNULL/>
-
       <DEFAULT value="0"/>
     </field>
     <field name="completed" type="I" size="10">
@@ -498,11 +450,9 @@
       <DEFAULT value="0"/>
     </field>
   </table>
-
   <table name="version">
     <field name="versionid" type="C" size="16">
       <NOTNULL/>
     </field>
   </table>
-
 </schema>
