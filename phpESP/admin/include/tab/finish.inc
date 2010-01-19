@@ -42,7 +42,7 @@ below, and paste it into the HTML of your page.')); ?></p>
 	<p><?php echo(_('Once activated you can also access the survey directly
 from the following URL.')); ?></p>
 <blockquote><div><tt>
-	<?php echo($ESPCONFIG['autopub_url']."?name=".$survey_name); ?>
+	<?php echo($ESPCONFIG['autopub_url']."?sid=".$_SESSION['survey_id']); ?>
 </tt></div></blockquote>
 
 	<p><?php echo(_('You must activate this survey before you can collect
