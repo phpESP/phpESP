@@ -134,7 +134,7 @@
     }
 
    	if ($request_referer == $ESPCONFIG['autopub_url'])
-       	    $request_referer .= "?name=$name";
+       	    $request_referer .= "?sid=$sid";
 
 	// let's build the correct return/submit/resume link
 	$action = $ESPCONFIG['proto'] . $_SERVER['HTTP_HOST'] . htmlspecialchars($_SERVER['PHP_SELF']);
@@ -189,7 +189,7 @@
         response_delete($sid, $_SESSION['rid'], $_SESSION['sec']);
 		$_SESSION['rid'] = response_insert($sid,$_SESSION['sec'],$_SESSION['rid']);
         if ($action == $ESPCONFIG['autopub_url'])
-    		goto_saved($sid, "$action?name=$name");
+    		goto_saved($sid, "$action?sid=$sid");
         else
             goto_saved($sid, $action);
 		return;
@@ -467,7 +467,6 @@ function paint_submission_form_open($additional = array ()) {
 <input type="hidden" name="sid"     value="{$sid}" />
 <input type="hidden" name="rid"     value="{$_SESSION['rid']}" />
 <input type="hidden" name="sec"     value="{$_SESSION['sec']}" />
-<input type="hidden" name="name"    value="{$name}" />
 EOHTML;
 
     foreach ($additional as $field => $value) {

@@ -217,10 +217,10 @@ archived survey.')); ?></li>
 		<td><?php echo($sid); ?></td>
         <?php 
         if ($stat == 'Active') {?>
-            <td><a href="<?php print $ESPCONFIG['autopub_url']."?name=".$name; ?>"><?php echo($name); ?></a></td>
+            <td><a href="<?php print $ESPCONFIG['autopub_url']."?sid=".$sid; ?>"><?php echo($name); ?></a></td>
         <?php
 	} elseif ($stat == 'Testing') { ?>
-	   <td><a href="<?php print $ESPCONFIG['autopub_url']."?name=".$name."&test=1"; ?>"><?php echo($name); ?></a></td>
+	   <td><a href="<?php print $ESPCONFIG['autopub_url']."?sid=".$sid."&test=1"; ?>"><?php echo($name); ?></a></td>
         <?php
 	} elseif ($stat == 'Editing') { ?>
 	   <td><a href="<?php print $ESPCONFIG['ME'].htmlentities("?where=tab&newid=${sid}"); ?>"><?php echo($name); ?></a></td>
