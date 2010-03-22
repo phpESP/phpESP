@@ -5,6 +5,7 @@ PHPESP CHANGE LOG
 2.1.4 => 2.1.5
 =========================
 - "name=<name>" is now deprecated in favor of "sid=<sid>", it is still usuable but not recommended anymore. This way, different designers can create different surveys with the same name and don't get into trouble because another person used that name already
+- Closed bug 2951148 (esp_setlocale quietly fails to set up locale)
 
 2.1.3 => 2.1.4
 =========================
