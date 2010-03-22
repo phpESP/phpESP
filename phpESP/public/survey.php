@@ -8,19 +8,22 @@
 
 	require_once("./phpESP.first.php");	
 	
-	$_name = '';
-	$_title = '';
-	$_css = '';
+$_name = '';
+$_title = '';
+$_css = '';
     $sid = '';
-	if (isset($_GET['name'])) {
+    if (isset($_GET['sid'])) {
+        $sid=intval($_GET['sid']);
+    } elseif (isset($_POST['sid'])) {
+        $sid=intval($_POST['sid']);
+    } elseif (isset($_GET['name'])) {
 		$_name = _addslashes($_GET['name']);
 		unset($_GET['name']);
-		$_SERVER['QUERY_STRING'] = ereg_replace('(^|&)name=[^&]*&?', '', $_SERVER['QUERY_STRING']);
-	}
-    	if (isset($_POST['name'])) {
-        	$_name = _addslashes($_POST['name']);
-        	unset($_POST['name']);
-    	}
+	} elseif (isset($_POST['name'])) {
+       	$_name = _addslashes($_POST['name']);
+    }
+	$_SERVER['QUERY_STRING'] = ereg_replace('(^|&)name=[^&]*&?', '', $_SERVER['QUERY_STRING']);
+	$_SERVER['QUERY_STRING'] = ereg_replace('(^|&)sid=[^&]*&?', '', $_SERVER['QUERY_STRING']);
 
 	if (!empty($_name)) {
         	$_sql = "SELECT id,title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE name = $_name ORDER BY id ASC";
@@ -33,26 +36,26 @@
         	unset($_result);
 	}
 
-        // To make all results public uncomment the next line.
-        //$results = 1;
-        // See the FAQ for more instructions.
+    // To make all results public uncomment the next line.
+    //$results = 1;
+    // See the FAQ for more instructions.
 
-        // call the handler-prefix once $sid is set to handle
-        // authentication / authorization
+    // call the handler-prefix once $sid is set to handle
+    // authentication / authorization
 
 
-        if (empty($_name) && isset($sid) && $sid) {
-            $_sql = "SELECT title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid'";
-            if ($_result = execute_sql($_sql)) {
+    if (empty($_name) && isset($sid) && $sid) {
+        $_sql = "SELECT title,theme FROM ".$GLOBALS['ESPCONFIG']['survey_table']." WHERE id = '$sid'";
+        if ($_result = execute_sql($_sql)) {
                 if (record_count($_result) > 0){
                     list($_title, $_css) = fetch_row($_result);
                 }
                 db_close($_result);
-            }
-            unset($_sql);
-            unset($_result);
         }
-        include($ESPCONFIG['handler_prefix']);
+        unset($_sql);
+        unset($_result);
+    }
+    include($ESPCONFIG['handler_prefix']);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
