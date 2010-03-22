@@ -148,6 +148,7 @@ ul,th {
     <li>available langs: <?php _pass(implode(', ', esp_getlocales())); ?><br />
       (<?php _pass(implode(', ', array_keys(esp_getlocale_map()))); ?>)
     </li>
+    <li>LC_ALL: <?php check_string(setlocale(LC_ALL, 0), $ESPCONFIG['lang'].".".$ESPCONFIG['charset']); ?></li>
     <li>GNU Gettext test: <?php
         esp_setlocale('en_US');
         check_string(_('%%%% Gettext Test Failed'), 'Passed'); ?></li>
