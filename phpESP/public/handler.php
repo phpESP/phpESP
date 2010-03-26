@@ -357,7 +357,6 @@ function get_feedback(&$responses, &$totalCredit, $sid, $rid, $sec) {
     // initialize values
     $totalCredit = null;
     $hasFeedback = false;
-print_r($allResponses);
 
     // put them into our desired format
     foreach ($allResponses as $qid => $feedback) {
