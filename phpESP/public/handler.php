@@ -357,6 +357,7 @@ function get_feedback(&$responses, &$totalCredit, $sid, $rid, $sec) {
     // initialize values
     $totalCredit = null;
     $hasFeedback = false;
+print_r($allResponses);
 
     // put them into our desired format
     foreach ($allResponses as $qid => $feedback) {
@@ -369,30 +370,38 @@ function get_feedback(&$responses, &$totalCredit, $sid, $rid, $sec) {
         // if this is a multiple response, add them each in
         if ($hasMulti) {
             foreach ($feedback as $response) {
-                $responses[$qnum][] = array ($response[1], $response[3], $response[4]);
-                if (! empty($response[3])) {
+                if (defined($response[3]) && !empty($response[3])) {
                     $hasFeedback = true;
-                }
-                if (! empty($response[4])) {
+                } else {
+	    	    $response[3]="";
+	        }
+                if (defined($response[4]) && !empty($response[4])) {
                     $hasFeedback = true;
                     if (is_numeric($response[4])) {
                         $totalCredit += $response[4];
                     }
-                }
+                } else {
+		    $response[4]="";
+	        }
+                $responses[$qnum][] = array ($response[1], $response[3], $response[4]);
             }
 
         // otherwise, add this one in
         } else {
-            $responses[$qnum][] = array ($feedback[1], $feedback[3], $feedback[4]);
-            if (! empty($feedback[3])) {
+            if (defined($feedback[3]) && !empty($feedback[3])) {
                 $hasFeedback = true;
-            }
-            if (! empty($feedback[4])) {
+            } else {
+		$feedback[3]="";
+	    }
+            if (defined($feedback[4]) && !empty($feedback[4])) {
                 $hasFeedback = true;
                 if (is_numeric($feedback[4])) {
                     $totalCredit += $feedback[4];
                 }
-            }
+            } else {
+		$feedback[4]="";
+	    }
+            $responses[$qnum][] = array ($feedback[1], $feedback[3], $feedback[4]);
         }
 
         // increment the question number
@@ -458,7 +467,7 @@ EOHTML;
 Refactored methods.
 */
 function paint_submission_form_open($additional = array ()) {
-    global $action, $sid, $name;
+    global $action, $sid, $name, $request_referer, $request_direct;
     echo <<<EOHTML
 <form method="post" id="phpesp_response" action="$action">
 <fieldset class="hidden">
