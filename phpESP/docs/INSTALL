@@ -8,6 +8,14 @@ installation you need to read the UPDATING document in this directory, especiall
 the UPDATING DATABASE section.
 ****** NOTICE ******
 
+============================
+php.ini recommended settings
+============================
+Never show too much in the browser, therefore I recommend the following settings in php.ini:
+error_reporting = E_ALL & ~E_NOTICE
+display_errors = Off
+log_errors = On
+
 =================
 INSTALLING PHPESP
 =================
