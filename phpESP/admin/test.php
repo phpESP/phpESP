@@ -100,6 +100,7 @@ ul,th {
     <li>register_globals: <?php check_bool(ini_get('register_globals'), false); ?></li>
     <li>magic_quotes_gpc: <?php check_bool(ini_get('magic_quotes_gpc'), false); ?></li>
     <li>magic_quotes_runtime: <?php check_bool(ini_get('magic_quotes_runtime'), false); ?></li>
+    <li>display_errors: <?php check_bool(ini_get('display_errors'), false); ?></li>
     <li>safe_mode: <?php check_bool(ini_get('safe_mode'), false); ?></li>
     <li>open_basedir: <?php check_string(ini_get('open_basedir'), ''); ?></li>
   </ul></td></tr>
