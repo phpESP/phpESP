@@ -13,7 +13,8 @@ php.ini recommended settings
 ============================
 Never show too much in the browser, therefore I recommend the following settings in php.ini:
 error_reporting = E_ALL & ~E_NOTICE
-display_errors = Off
+display_errors = Off (or in newer versions: stderr)
+display_startup_errors = Off 
 log_errors = On
 
 =================
