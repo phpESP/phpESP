@@ -21,10 +21,16 @@
         $port = '';
     }
 
-    $dir = dirname($s['SCRIPT_NAME']) == '/' ? '' :  
+    $dir = dirname($s['SCRIPT_NAME']) == '/' ? '' :
            dirname($s['SCRIPT_NAME']);
-    $url = sprintf('%s://%s%s%s%s', $proto, $s['SERVER_NAME'], $port,
-            $dir, '/admin/manage.php');
+    $url = sprintf(
+        '%s://%s%s%s%s',
+        $proto,
+        $s['SERVER_NAME'],
+        $port,
+        $dir,
+        '/admin/manage.php'
+    );
 
     header("Location: $url");
 ?>
