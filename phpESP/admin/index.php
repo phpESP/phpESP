@@ -4,8 +4,15 @@
 
 /* vim: set tabstop=4 shiftwidth=4 expandtab: */
 
-    if (isset($_SERVER))  $s =& $_SERVER;
-    //else                  $s =& $HTTP_SERVER_VARS;
+    if ( isset($HTTP_SERVER_VARS) ) {
+        $_SERVER = & $HTTP_SERVER_VARS;
+    }
+
+    if ( !isset($_SERVER) ) {
+        exit('PHP Version lower 5.*. Exit!');
+    }
+
+    $s = & $_SERVER;
 
     if (isset($s['HTTPS']) && $s['HTTPS'] == 'on') {
         $proto = 'https';
