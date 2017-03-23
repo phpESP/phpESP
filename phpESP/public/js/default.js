@@ -1,4 +1,4 @@
-<!--
+// <!--
 function activateConfirm() {
     if (confirm(activateConfirmMsg)) {
         return true;
@@ -106,4 +106,4 @@ function BumpUp(box)  {
     }
 }
 
--->
+// -->
