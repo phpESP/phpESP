@@ -71,7 +71,7 @@ function merge(box) {
         form = document.getElementById('merge');
         form.submit();
     } else {
-        document.getElementById('error').innerHTML = mergeMsg";
+        document.getElementById('error').innerHTML = mergeMsg;
     }
 }
 
