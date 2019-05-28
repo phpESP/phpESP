@@ -8,10 +8,11 @@
 // For eGrad2000.com
 // <jflemer@alum.rpi.edu>
 
-	session_register('survey_id');
-	session_register('new_survey');
-	session_register('last_tab');
-	session_register('curr_q');
+/** @todo to be removed */
+//	session_register('survey_id');
+//	session_register('new_survey');
+//	session_register('last_tab');
+//	session_register('curr_q');
 
 	/* Use this hack to work around how PHP handles session vars.
 	 * When Register_Globals is on, the value of the global $foo
